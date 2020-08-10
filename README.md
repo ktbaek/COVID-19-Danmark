@@ -1,1 +1,1 @@
-# COVID-19-Danmark
+# Figurer for smitteudvikling i Danmark
