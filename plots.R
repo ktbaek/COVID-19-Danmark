@@ -1,9 +1,9 @@
 library(tidyverse)
 library(magrittr)
 
-admitted <- read_csv2("../data/SSIdata/newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata/deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata/test_pos_over_time.csv")
+admitted <- read_csv2("../data/SSIdata_200810/newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200810/deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200810/test_pos_over_time.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -65,7 +65,7 @@ plot(tests$Date, tests$Tested,
      axes = TRUE,
      cex = 1.2, 
      cex.axis = 1.2, 
-     ylim = c(0,26000),
+     ylim = c(0,27000),
      las = 1)
 
 mtext(text = "Dato",
@@ -89,7 +89,7 @@ dev.off()
 
 # Figure 3 ------------------------------------------------------------------
 
-png("../figures/fig_2_pct.png", width = 20, height = 16, units = "cm", res = 300)
+png("../figures/fig_3_pct.png", width = 20, height = 16, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 
 plot(tests_from_may$Date, tests_from_may$pct_confirmed, 
