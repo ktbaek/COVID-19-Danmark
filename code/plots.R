@@ -1,6 +1,7 @@
 library(tidyverse)
 library(magrittr)
 
+
 admitted <- read_csv2("../data/SSIdata_200811/newly_admitted_over_time.csv")
 deaths <- read_csv2("../data/SSIdata_200811/deaths_over_time.csv")
 tests <- read_csv2("../data/SSIdata_200811/test_pos_over_time.csv")
