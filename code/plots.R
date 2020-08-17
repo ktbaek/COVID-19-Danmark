@@ -2,9 +2,9 @@ library(tidyverse)
 library(magrittr)
 
 
-admitted <- read_csv2("../data/SSIdata_200814/newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200814/deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200814/test_pos_over_time.csv")
+admitted <- read_csv2("../data/SSIdata_200817/newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200817/deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200817/test_pos_over_time.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -66,7 +66,7 @@ plot(tests$Date, tests$Tested,
      axes = TRUE,
      cex = 1.2, 
      cex.axis = 1.2, 
-     ylim = c(0,34000),
+     ylim = c(0,36000),
      las = 1)
 
 mtext(text = "Dato",
@@ -284,3 +284,48 @@ text(x = as.Date("2020-04-30"), y = 140, labels = "Procent positive tests", col 
 text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col = "red", cex = 1, font = 2)
 
 dev.off()
+
+#tests %<>% slice(66:(n())) #exclude data before May
+#admitted %<>% slice(32:(n()))
+
+# tests %<>% mutate(test_factor = Tested)
+# 
+# 
+# 
+# #png("../figures/pct_hosp_deaths_from_may.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5,8,1,2))
+# 
+# plot(tests$Date + 7, tests$pct_2 * 10, 
+#      type = "b", 
+#      pch = 19, 
+#      ylab = "", 
+#      xlab = "", 
+#      axes = TRUE,
+#      cex = 1.2, 
+#      cex.axis = 1.4, 
+#      ylim = c(0,500),
+#      las = 1, 
+#      col = "blue",
+#      yaxt='n')
+# 
+# mtext(text = "Dato",
+#       side = 1,#side 1 = bottom
+#       line = 3, 
+#       cex = 1.4,
+#       font = 2)
+# 
+# mtext(text = "Relativ skala",
+#       side = 2,#side 1 = bottom
+#       line = 3, 
+#       cex = 1.4,
+#       font = 2)
+# 
+# #axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+# 
+# points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = "#2D708EFF", cex = 1.2)
+# 
+# text(x = as.Date("2020-03-29"), y = 5, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
+# text(x = as.Date("2020-04-30"), y = 140, labels = "Procent positive tests", col = "blue", cex = 1, font = 2)
+# text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col = "red", cex = 1, font = 2)
+# 
+# #dev.off()
