@@ -2,9 +2,9 @@ library(tidyverse)
 library(magrittr)
 
 
-admitted <- read_csv2("../data/SSIdata_200817/newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200817/deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200817/test_pos_over_time.csv")
+admitted <- read_csv2("../data/SSIdata_200818/newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200818/deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200818/test_pos_over_time.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -13,8 +13,8 @@ tests %<>%
 deaths %<>% 
   mutate(Dato = as.Date(Dato)) 
 
-admitted %<>% slice(1:(n()-2)) #exclude last two days that may not be updated
-deaths %<>% slice(1:(n()-3)) #exclude last two days that may not be updated AND summary row
+admitted %<>% slice(1:(n())) 
+deaths %<>% slice(1:(n()-1)) #exclude summary row
 tests %<>% slice(1:(n()-4)) #exclude last two days that may not be updated AND summary rows
 
 tests_from_may <- tests %>% slice(96:(n())) #exclude data before May
@@ -245,7 +245,7 @@ text(x = as.Date("2020-04-13"), y = 485, labels = "3. april", col = "red", cex =
 
 dev.off()
 
-# Figure 6 ------------------------------------------------------------------
+# Extra ------------------------------------------------------------------
 
 png("../figures/pct_hosp_deaths.png", width = 20, height = 16, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
@@ -285,47 +285,106 @@ text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col 
 
 dev.off()
 
-#tests %<>% slice(66:(n())) #exclude data before May
-#admitted %<>% slice(32:(n()))
 
-# tests %<>% mutate(test_factor = Tested)
-# 
-# 
-# 
-# #png("../figures/pct_hosp_deaths_from_may.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5,8,1,2))
-# 
-# plot(tests$Date + 7, tests$pct_2 * 10, 
-#      type = "b", 
-#      pch = 19, 
-#      ylab = "", 
-#      xlab = "", 
-#      axes = TRUE,
-#      cex = 1.2, 
-#      cex.axis = 1.4, 
-#      ylim = c(0,500),
-#      las = 1, 
-#      col = "blue",
-#      yaxt='n')
-# 
-# mtext(text = "Dato",
-#       side = 1,#side 1 = bottom
-#       line = 3, 
-#       cex = 1.4,
-#       font = 2)
-# 
-# mtext(text = "Relativ skala",
-#       side = 2,#side 1 = bottom
-#       line = 3, 
-#       cex = 1.4,
-#       font = 2)
-# 
-# #axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
-# 
-# points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = "#2D708EFF", cex = 1.2)
-# 
-# text(x = as.Date("2020-03-29"), y = 5, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
-# text(x = as.Date("2020-04-30"), y = 140, labels = "Procent positive tests", col = "blue", cex = 1, font = 2)
-# text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col = "red", cex = 1, font = 2)
-# 
-# #dev.off()
+rt_cases <- read_csv2("../data/SSIdata_200818/Rt_cases_2020_08_18.csv")
+
+ra <- function(x, n = 5){stats::filter(x, rep(1 / n, n), sides = 2)}
+tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
+                  running_avg_pos = ra(NewPositive))
+
+png("../figures/rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+
+plot(rt_cases$date_sample, rt_cases$estimate, 
+     type = "l", 
+     pch = 19, 
+     ylab = "", 
+     xlab = "", 
+     axes = TRUE,
+     cex = 1.2, 
+     cex.axis = 1.4, 
+     ylim = c(0,2),
+     las = 1, 
+     col = "darkgray",
+     lwd = 2,
+     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-14")))
+
+mtext(text = "Dato",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+mtext(text = "Kontakttal-værdi",
+      side = 2,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+
+#points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
+#points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
+points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+points(tests$Date, tests$running_avg_pos/170, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+text(x = as.Date("2020-05-15"), y = 0.05, labels = "Antal positive tests", col = "red", cex = 1, font = 2)
+text(x = as.Date("2020-06-26"), y = 1.3, labels = "Kontakttal: smittede", col = "darkgray", cex = 1, font = 2)
+abline(h = 1, col = "gray")
+abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
+abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
+
+dev.off()
+
+png("../figures/rt_cases_pct.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+
+plot(rt_cases$date_sample, rt_cases$estimate, 
+     type = "l", 
+     pch = 19, 
+     ylab = "", 
+     xlab = "", 
+     axes = TRUE,
+     cex = 1.2, 
+     cex.axis = 1.4, 
+     ylim = c(0,2),
+     las = 1, 
+     col = "darkgray",
+     lwd = 2,
+     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-14")))
+
+mtext(text = "Dato",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+mtext(text = "Kontakttal-værdi",
+      side = 2,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+
+points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
+points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
+#points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+#points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+text(x = as.Date("2020-05-15"), y = 0.2, labels = "Procent positive tests", col = "blue", cex = 1, font = 2)
+text(x = as.Date("2020-06-26"), y = 1.3, labels = "Kontakttal: smittede", col = "darkgray", cex = 1, font = 2)
+abline(h = 1, col = "gray")
+abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
+abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
+abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
+
+dev.off()
+
+
+
+
+                 
