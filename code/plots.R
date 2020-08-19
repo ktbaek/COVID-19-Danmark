@@ -1,10 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
+today <- "2020-08-19"
 
-admitted <- read_csv2("../data/SSIdata_200819/newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200819/deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200819/test_pos_over_time.csv")
+admitted <- read_csv2("../data/SSIdata_200819/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200819/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200819/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200819/Rt_cases_2020_08_18.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200819/Rt_indlagte_2020_08_18.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -35,8 +38,9 @@ plot(tests$Date, tests$NewPositive,
      cex = 1.2, 
      cex.axis = 1.2, 
      ylim = c(0,500),
+     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
-     col = "red")
+     col = "red",)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -67,6 +71,7 @@ plot(tests$Date, tests$Tested,
      cex = 1.2, 
      cex.axis = 1.2, 
      ylim = c(0,36000),
+     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1)
 
 mtext(text = "Dato",
@@ -154,8 +159,8 @@ mtext(text = "Antal",
 par(new = TRUE)
 plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = "blue", cex = 1.2, axes = FALSE, xlab = "", ylab = "")
 
-text(x = as.Date("2020-06-14"), y = 0.6, labels = "Procent positive", col = "blue", cex = 1.5, font = 2)
-text(x = as.Date("2020-05-16"), y = 0.07, labels = "Antal positive", col = "red", cex = 1.5, font = 2)
+text(x = as.Date("2020-06-16"), y = 0.6, labels = "Procent positive", col = "blue", cex = 1.5, font = 2)
+text(x = as.Date("2020-05-17"), y = 0.07, labels = "Antal positive", col = "red", cex = 1.5, font = 2)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
@@ -183,6 +188,7 @@ plot(admitted$Dato, admitted$Total,
      cex = 1.2, 
      cex.axis = 1.4, 
      ylim = c(0,100),
+     xlim = c(as.Date("2020-02-01"), as.Date(today)),
      las = 1, 
      col = "#2D708EFF")
 
@@ -201,7 +207,7 @@ mtext(text = "Antal",
 points(deaths$Dato, deaths$Antal_døde,  type = "b", 
        pch = 19, cex = 1.2, col = "#661313")
 
-text(x = as.Date("2020-04-27"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
+text(x = as.Date("2020-04-29"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
 text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = "#661313", cex = 1.5, font = 2)
 
 dev.off()
@@ -221,6 +227,7 @@ plot(tests$Date, tests$NewPositive,
      cex = 1.2, 
      cex.axis = 1.2, 
      ylim = c(0,500),
+     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = "red")
 
@@ -286,8 +293,7 @@ text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col 
 dev.off()
 
 
-rt_cases <- read_csv2("../data/SSIdata_200819/Rt_cases_2020_08_18.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200819/Rt_indlagte_2020_08_18.csv")
+
 
 ra <- function(x, n = 5){stats::filter(x, rep(1 / n, n), sides = 2)}
 tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
@@ -310,7 +316,7 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      las = 1, 
      col = "darkgray",
      lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
+     xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -356,7 +362,7 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      las = 1, 
      col = "darkgray",
      lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
+     xlim = c(as.Date("2020-05-01"), as.Date(today ) - 1))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -403,7 +409,7 @@ plot(rt_admitted$date_sample, rt_admitted$estimate,
      las = 1, 
      col = "darkgray",
      lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
+     xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
