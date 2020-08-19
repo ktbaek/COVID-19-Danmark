@@ -36,7 +36,7 @@ plot(tests$Date, tests$NewPositive,
      xlab = "", 
      axes = TRUE,
      cex = 1.2, 
-     cex.axis = 1.2, 
+     cex.axis = 1.4, 
      ylim = c(0,500),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
@@ -45,13 +45,13 @@ plot(tests$Date, tests$NewPositive,
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
       line = 3, 
-      cex = 1.2, 
+      cex = 1.4, 
       font = 2)
 
 mtext(text = "Antal",
       side = 2,#side 1 = bottom
       line = 4,
-      cex = 1.2,
+      cex = 1.4,
       font = 2)
 
 text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
@@ -69,7 +69,7 @@ plot(tests$Date, tests$Tested,
      xlab = "", 
      axes = TRUE,
      cex = 1.2, 
-     cex.axis = 1.2, 
+     cex.axis = 1.4, 
      ylim = c(0,36000),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1)
@@ -77,13 +77,13 @@ plot(tests$Date, tests$Tested,
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
       line = 3, 
-      cex = 1.2, 
+      cex = 1.4, 
       font = 2)
 
 mtext(text = "Antal",
       side = 2,#side 1 = bottom
       line = 5,
-      cex = 1.2,
+      cex = 1.4,
       font = 2)
 
 points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = "red", cex = 1.2)
