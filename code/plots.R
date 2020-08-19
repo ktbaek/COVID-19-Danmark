@@ -2,9 +2,9 @@ library(tidyverse)
 library(magrittr)
 
 
-admitted <- read_csv2("../data/SSIdata_200818/newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200818/deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200818/test_pos_over_time.csv")
+admitted <- read_csv2("../data/SSIdata_200819/newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200819/deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200819/test_pos_over_time.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -286,11 +286,14 @@ text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col 
 dev.off()
 
 
-rt_cases <- read_csv2("../data/SSIdata_200818/Rt_cases_2020_08_18.csv")
+rt_cases <- read_csv2("../data/SSIdata_200819/Rt_cases_2020_08_18.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200819/Rt_indlagte_2020_08_18.csv")
 
 ra <- function(x, n = 5){stats::filter(x, rep(1 / n, n), sides = 2)}
 tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
                   running_avg_pos = ra(NewPositive))
+
+admitted %<>% mutate(running_avg = ra(Total))
 
 png("../figures/rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
@@ -307,7 +310,7 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      las = 1, 
      col = "darkgray",
      lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-14")))
+     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -353,7 +356,7 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      las = 1, 
      col = "darkgray",
      lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-14")))
+     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -385,6 +388,51 @@ abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
 dev.off()
 
 
+png("../figures/rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+
+plot(rt_admitted$date_sample, rt_admitted$estimate, 
+     type = "l", 
+     pch = 19, 
+     ylab = "", 
+     xlab = "", 
+     axes = TRUE,
+     cex = 1.2, 
+     cex.axis = 1.4, 
+     ylim = c(0,2),
+     las = 1, 
+     col = "darkgray",
+     lwd = 2,
+     xlim = c(as.Date("2020-05-01"), as.Date("2020-08-17")))
+
+mtext(text = "Dato",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+mtext(text = "Kontakttal-værdi",
+      side = 2,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+
+points(admitted$Dato, admitted$Total/24, type = "b", pch = 19, col = rgb(red = 0, green = 0.5, blue = 0.5, alpha = 0.2), cex = 1.2)
+points(admitted$Dato, admitted$running_avg/24, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
+#points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+#points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+text(x = as.Date("2020-05-15"), y = 0.03, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
+text(x = as.Date("2020-06-30"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1, font = 2)
+abline(h = 1, col = "gray")
+abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
+abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
+abline(v = as.Date("2020-06-18")+0.5, col = "gray", lty = 3)
+abline(v = as.Date("2020-07-12"), col = "gray", lty = 3)
+abline(v = as.Date("2020-08-09")+0.5, col = "gray", lty = 3)
+
+dev.off()
 
 
                  
