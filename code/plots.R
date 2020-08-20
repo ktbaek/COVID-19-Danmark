@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-19"
+today <- "2020-08-20"
 
-admitted <- read_csv2("../data/SSIdata_200819/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200819/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200819/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200819/Rt_cases_2020_08_18.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200819/Rt_indlagte_2020_08_18.csv")
+admitted <- read_csv2("../data/SSIdata_200820/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200820/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200820/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200820/Rt_cases_2020_08_18.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200820/Rt_indlagte_2020_08_18.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -383,7 +383,7 @@ points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", ce
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.2, labels = "Procent positive tests", col = "blue", cex = 1, font = 2)
-text(x = as.Date("2020-06-26"), y = 1.3, labels = "Kontakttal: smittede", col = "darkgray", cex = 1, font = 2)
+text(x = as.Date("2020-06-24"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
@@ -425,12 +425,12 @@ mtext(text = "Kontakttal-værdi",
 
 #axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-points(admitted$Dato, admitted$Total/24, type = "b", pch = 19, col = rgb(red = 0, green = 0.5, blue = 0.5, alpha = 0.2), cex = 1.2)
+points(admitted$Dato, admitted$Total/24, type = "b", pch = 19, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.2), cex = 1.2)
 points(admitted$Dato, admitted$running_avg/24, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.03, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
-text(x = as.Date("2020-06-30"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1, font = 2)
+text(x = as.Date("2020-06-29"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
