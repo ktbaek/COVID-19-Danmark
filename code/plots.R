@@ -20,6 +20,15 @@ admitted %<>% slice(1:(n()))
 deaths %<>% slice(1:(n()-1)) #exclude summary row
 tests %<>% slice(1:(n()-4)) #exclude last two days that may not be updated AND summary rows
 
+ra <- function(x, n = 7){stats::filter(x, rep(1 / n, n), sides = 2)}
+tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
+                  running_avg_pos = ra(NewPositive),
+                  running_avg_total = ra(Tested))
+
+admitted %<>% mutate(running_avg = ra(Total))
+
+deaths %<>% mutate(running_avg = ra(Antal_døde))
+
 tests_from_may <- tests %>% slice(96:(n())) #exclude data before May
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
@@ -40,7 +49,7 @@ plot(tests$Date, tests$NewPositive,
      ylim = c(0,500),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
-     col = "red")
+     col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -53,6 +62,8 @@ mtext(text = "Antal",
       line = 4,
       cex = 1.4,
       font = 2)
+
+points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 
 text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
 dev.off()
@@ -72,7 +83,8 @@ plot(tests$Date, tests$Tested,
      cex.axis = 1.4, 
      ylim = c(0,38000),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1)
+     las = 1,
+     col = rgb(red = 0, green = 0, blue = 0, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -86,7 +98,9 @@ mtext(text = "Antal",
       cex = 1.4,
       font = 2)
 
-points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = "red", cex = 1.2)
+points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25), cex = 1.2)
+points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = "black", cex = 1.2, lwd = 2)
 
 text(x = as.Date("2020-05-05"), y = 21000, labels = "Total antal tests", col = "black", cex = 1.5, font = 2)
 text(x = as.Date("2020-06-10"), y = 2000, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
@@ -108,7 +122,7 @@ plot(tests_from_may$Date, tests_from_may$pct_confirmed,
      cex.axis = 1.4, 
      ylim = c(0,1.2),
      las = 1, 
-     col = "blue")
+     col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -121,6 +135,8 @@ mtext(text = "Procent",
       line = 4,
       cex = 1.4,
       font = 2)
+
+points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 
 text(x = as.Date("2020-06-20"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
@@ -141,7 +157,7 @@ plot(tests_from_may$Date, tests_from_may$NewPositive,
      cex.axis = 1.2,
      ylim = c(0,300),
      las = 1,
-     col = "red")
+     col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -156,8 +172,11 @@ mtext(text = "Antal",
       font = 2,
       col = "red")
 
+points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+
 par(new = TRUE)
-plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = "blue", cex = 1.2, axes = FALSE, xlab = "", ylab = "")
+plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25), cex = 1.2, axes = FALSE, xlab = "", ylab = "")
+points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 text(x = as.Date("2020-06-16"), y = 0.6, labels = "Procent positive", col = "blue", cex = 1.5, font = 2)
 text(x = as.Date("2020-05-17"), y = 0.07, labels = "Antal positive", col = "red", cex = 1.5, font = 2)
@@ -190,7 +209,7 @@ plot(admitted$Dato, admitted$Total,
      ylim = c(0,100),
      xlim = c(as.Date("2020-02-01"), as.Date(today)),
      las = 1, 
-     col = "#2D708EFF")
+     col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -205,7 +224,10 @@ mtext(text = "Antal",
       font = 2)
 
 points(deaths$Dato, deaths$Antal_døde,  type = "b", 
-       pch = 19, cex = 1.2, col = "#661313")
+       pch = 19, cex = 1.2, col = rgb(red = 0.5, green = 0.2, blue = 0.3, alpha = 0.25))
+
+points(admitted$Dato, admitted$running_avg, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
+points(deaths$Dato, deaths$running_avg, type = "l", pch = 19, col = "#661313", cex = 1.2, lwd = 2)
 
 text(x = as.Date("2020-04-29"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
 text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = "#661313", cex = 1.5, font = 2)
@@ -229,7 +251,7 @@ plot(tests$Date, tests$NewPositive,
      ylim = c(0,500),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
-     col = "red")
+     col = rgb(red = 1, green = 0., blue = 0, alpha = 0.25))
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -243,8 +265,9 @@ mtext(text = "Antal",
       cex = 1.2,
       font = 2)
 
-
-points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = "#2D708EFF", cex = 1.2)
+points(admitted$Dato, admitted$running_avg, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
+points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25), cex = 1.2)
 text(x = as.Date("2020-04-05"), y = -2, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2)
 text(x = as.Date("2020-05-10"), y = 400, labels = "Positive tests", col = "red", cex = 1.5, font = 2)
 text(x = as.Date("2020-04-05"), y = 110, labels = "25. marts", col = "#2D708EFF", cex = 0.8, font = 4)
@@ -294,13 +317,6 @@ dev.off()
 
 
 
-
-ra <- function(x, n = 7){stats::filter(x, rep(1 / n, n), sides = 2)}
-tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
-                  running_avg_pos = ra(NewPositive))
-
-admitted %<>% mutate(running_avg = ra(Total))
-
 png("../figures/rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 
@@ -334,7 +350,7 @@ mtext(text = "Kontakttal-værdi",
 
 #points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
-points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25), cex = 1.2)
 points(tests$Date, tests$running_avg_pos/170, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.05, labels = "Antal positive tests", col = "red", cex = 1, font = 2)
 text(x = as.Date("2020-06-26"), y = 1.3, labels = "Kontakttal: smittede", col = "darkgray", cex = 1, font = 2)
@@ -378,7 +394,7 @@ mtext(text = "Kontakttal-værdi",
 
 #axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
+points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25), cex = 1.2)
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
@@ -425,7 +441,7 @@ mtext(text = "Kontakttal-værdi",
 
 #axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-points(admitted$Dato, admitted$Total/24, type = "b", pch = 19, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.2), cex = 1.2)
+points(admitted$Dato, admitted$Total/24, type = "b", pch = 19, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25), cex = 1.2)
 points(admitted$Dato, admitted$running_avg/24, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
