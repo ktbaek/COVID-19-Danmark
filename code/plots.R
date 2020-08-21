@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-20"
+today <- "2020-08-21"
 
-admitted <- read_csv2("../data/SSIdata_200820/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200820/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200820/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200820/Rt_cases_2020_08_18.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200820/Rt_indlagte_2020_08_18.csv")
+admitted <- read_csv2("../data/SSIdata_200821/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200821/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200821/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200821/Rt_cases_2020_08_18.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200821/Rt_indlagte_2020_08_18.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -40,7 +40,7 @@ plot(tests$Date, tests$NewPositive,
      ylim = c(0,500),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
-     col = "red",)
+     col = "red")
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -70,7 +70,7 @@ plot(tests$Date, tests$Tested,
      axes = TRUE,
      cex = 1.2, 
      cex.axis = 1.4, 
-     ylim = c(0,36000),
+     ylim = c(0,38000),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1)
 
@@ -295,7 +295,7 @@ dev.off()
 
 
 
-ra <- function(x, n = 5){stats::filter(x, rep(1 / n, n), sides = 2)}
+ra <- function(x, n = 7){stats::filter(x, rep(1 / n, n), sides = 2)}
 tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
                   running_avg_pos = ra(NewPositive))
 
@@ -366,13 +366,13 @@ plot(rt_cases$date_sample, rt_cases$estimate,
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
-      line = 3, 
+      line = 4, 
       cex = 1.4,
       font = 2)
 
 mtext(text = "Kontakttal-værdi",
       side = 2,#side 1 = bottom
-      line = 3, 
+      line = 4, 
       cex = 1.4,
       font = 2)
 
@@ -413,13 +413,13 @@ plot(rt_admitted$date_sample, rt_admitted$estimate,
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
-      line = 3, 
+      line = 4, 
       cex = 1.4,
       font = 2)
 
 mtext(text = "Kontakttal-værdi",
       side = 2,#side 1 = bottom
-      line = 3, 
+      line = 4, 
       cex = 1.4,
       font = 2)
 
@@ -430,7 +430,7 @@ points(admitted$Dato, admitted$running_avg/24, type = "l", pch = 19, col = "#2D7
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.03, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
-text(x = as.Date("2020-06-29"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1, font = 2)
+text(x = as.Date("2020-06-27"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
@@ -439,6 +439,7 @@ abline(v = as.Date("2020-07-12"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-09")+0.5, col = "gray", lty = 3)
 
 dev.off()
+
 
 
                  
