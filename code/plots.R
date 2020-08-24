@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-21"
+today <- "2020-08-24"
 
-admitted <- read_csv2("../data/SSIdata_200821/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200821/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200821/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200821/Rt_cases_2020_08_18.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200821/Rt_indlagte_2020_08_18.csv")
+admitted <- read_csv2("../data/SSIdata_200824/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200824/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200824/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200824/Rt_cases_2020_08_18.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200824/Rt_indlagte_2020_08_18.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -81,7 +81,7 @@ plot(tests$Date, tests$Tested,
      axes = TRUE,
      cex = 1.2, 
      cex.axis = 1.4, 
-     ylim = c(0,38000),
+     ylim = c(0,40000),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.25))
@@ -352,6 +352,7 @@ mtext(text = "Kontakttal-værdi",
 #points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25), cex = 1.2)
 points(tests$Date, tests$running_avg_pos/170, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+
 text(x = as.Date("2020-05-23"), y = 0, labels = "Antal positive tests", col = "red", cex = 1.4, font = 2)
 text(x = as.Date("2020-06-18"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
