@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-24"
+today <- "2020-08-25"
 
-admitted <- read_csv2("../data/SSIdata_200824/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200824/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200824/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200824/Rt_cases_2020_08_18.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200824/Rt_indlagte_2020_08_18.csv")
+admitted <- read_csv2("../data/SSIdata_200825/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200825/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200825/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200825/Rt_cases_2020_08_25.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200825/Rt_indlagte_2020_08_25.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -361,6 +361,7 @@ abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
+abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
 
 dev.off()
 
@@ -407,6 +408,7 @@ abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
+abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
 
 dev.off()
 
