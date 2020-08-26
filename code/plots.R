@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-25"
+today <- "2020-08-26"
 
-admitted <- read_csv2("../data/SSIdata_200825/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200825/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200825/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200825/Rt_cases_2020_08_25.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200825/Rt_indlagte_2020_08_25.csv")
+admitted <- read_csv2("../data/SSIdata_200826/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200826/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200826/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200826/Rt_cases_2020_08_25.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200826/Rt_indlagte_2020_08_25.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%

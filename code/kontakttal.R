@@ -21,7 +21,7 @@ tests %<>% full_join(rt_cases, by = "Date")
 
 tests %<>% slice(96:(n()-4))
 
-window = 11
+window = 8
 
 
 tests %<>% mutate(slope = runner(
@@ -233,7 +233,7 @@ dev.off()
 
 
 
-png("../figures/rt_vs_slope_2.png", width = 20, height = 14, units = "cm", res = 300)
+png("../figures/rt_vs_slope_2_7d.png", width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_2, 
      type = "l", 
@@ -255,24 +255,32 @@ mtext(text = "Dato",
       cex = 1.4,
       font = 2)
 
-mtext(text = "2^hældning (antal positive) eller kontakttal",
+mtext(text = "2^hældning (antal positive)",
+      side = 2,#side 1 = bottom
+      line = 3,
+      cex = 1.4,
+      font = 2,
+      col = "red")
+
+mtext(text = "Kontakttal",
       side = 2,#side 1 = bottom
       line = 4,
       cex = 1.4,
-      font = 2)
+      font = 2,
+      col = "blue")
 
 points(tests$Date, tests$estimate, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 abline(h = 1, col = "gray", lty = 3)
 
-points(as.Date("2020-06-15"), 1.7, pch = 19, col = "red", cex = 2)
-segments(as.Date("2020-06-05"), 1.7, as.Date("2020-06-15"), 1.7, col = "red", lwd = 2)
-text(x = as.Date("2020-06-10"), y = 1.8, labels = "Vindue: 10 dage", col = "red", cex = 1.2, font = 1)
+points(as.Date("2020-05-11"), 1.9, pch = 15, col = "red", cex = 1.5)
+segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "red", lwd = 2)
+text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 7 dage", col = "red", cex = 1.2, font = 1,  adj = 0)
 
 dev.off()
 
 
-png("../figures/rt_vs_slope_pct_2.png", width = 20, height = 14, units = "cm", res = 300)
+png("../figures/rt_vs_slope_pct_2_7d.png", width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_pct_2,
      type = "l", 
@@ -294,19 +302,27 @@ mtext(text = "Dato",
       cex = 1.4,
       font = 2)
 
-mtext(text = "2^hældning (andel positive) eller kontakttal",
+mtext(text = "2^hældning (andel positive)",
+      side = 2,#side 1 = bottom
+      line = 3,
+      cex = 1.4,
+      font = 2,
+      col = "orange")
+
+mtext(text = "Kontakttal",
       side = 2,#side 1 = bottom
       line = 4,
       cex = 1.4,
-      font = 2)
+      font = 2,
+      col = "blue")
 
 points(tests$Date, tests$estimate, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 abline(h = 1, col = "gray", lty = 3)
 
-points(as.Date("2020-06-15"), 1.7, pch = 19, col = "orange", cex = 2)
-segments(as.Date("2020-06-05"), 1.7, as.Date("2020-06-15"), 1.7, col = "orange", lwd = 2)
-text(x = as.Date("2020-06-10"), y = 1.8, labels = "Vindue: 10 dage", col = "orange", cex = 1.2, font = 1)
+points(as.Date("2020-05-11"), 1.9, pch = 15, col = "orange", cex = 1.5)
+segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "orange", lwd = 2)
+text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 7 dage", col = "orange", cex = 1.2, font = 1,  adj = 0)
 dev.off()
 
 
