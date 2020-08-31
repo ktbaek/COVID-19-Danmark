@@ -2,12 +2,12 @@ library(tidyverse)
 library(magrittr)
 library(runner)
 
-today <- "2020-08-25"
+today <- "2020-08-31"
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
-tests <- read_csv2("../data/SSIdata_200825/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200825/Rt_cases_2020_08_25.csv")
+tests <- read_csv2("../data/SSIdata_200831/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200831/Rt_cases_2020_08_25.csv")
 
 rt_cases %<>% rename(Date = date_sample)
 
@@ -376,3 +376,137 @@ df %<>% mutate(slope = runner(
 print(df$slope[12])
 
 
+fdr = function(p, fpr) {
+  
+  fdr = 1 - (p/(p + (fpr * (1 - p))))
+  
+  return(fdr)
+}
+
+
+png("../figures/fdr_vs_prev.png", width = 20, height = 14, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+plot(seq(0:1000)/10000, fdr(seq(0:1000)/10000, 0.01),
+     type = "l", 
+     pch = 19, 
+     ylab = "", 
+     xlab = "", 
+     axes = FALSE,
+     cex = 1.2, 
+     cex.axis = 1.4, 
+     ylim = c(0,1),
+     xlim = c(0,0.1),
+     las = 1,
+     lwd = 5,
+     col = rgb(red = 0.6, green = 0, blue = 0.4, alpha = 1))
+
+points(seq(0:1000)/10000, fdr(seq(0:1000)/10000, 0.001), type = "l", lwd = 5, pch = 19, cex = 1.2, col = rgb(red = 0, green = 0.6, blue = 0.4, alpha = 1))
+
+box(which = "plot", lty = "solid")
+
+axis(2, at = pretty(fdr(seq(0:1000)/1000, 0.01)), labels=pretty(fdr(seq(0:1000)/1000, 0.01))*100, cex.axis = 1.4, las = 1)
+axis(1, at = c(0, 0.02, 0.04, 0.06, 0.08, 0.1), labels=c("0", "2", "4", "6", "8", "10"), cex.axis = 1.4, las = 1)
+
+#points(seq(0:1000)/1000, fdr(seq(0:1000)/1000, 0.0001), type = "b", pch = 19, cex = 1.2, col = rgb(red = 0.4, green = 0.6, blue = 0, alpha = 0.7))
+
+text(x = 0.006, y = 0.8, labels = "99 %", cex = 1.4, adj = 0, font = 2, col = rgb(red = 0.6, green = 0, blue = 0.4, alpha = 1))
+
+text(x = 0.008, y = 0.18, labels = "99,9 %", cex = 1.4, adj = 0, font = 2, col = rgb(red = 0, green = 0.6, blue = 0.4, alpha = 1))
+
+
+mtext(text = "Prævalens (procent)",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.4,
+      font = 2)
+
+mtext(text = "Falsk opdagelsesrate (procent)",
+      side = 2,#side 1 = bottom
+      line = 4,
+      cex = 1.4,
+      font = 2,
+      col = "black")
+
+  
+dev.off()
+ 
+  
+  df <- data.frame(p = rep(seq(1:100)/1000, 1, each = 100), fpr = rep(seq(1:100)/1000, 100, each = 1))
+  
+  df %<>% mutate(ratio = p/fpr, fdr = fdr(p, fpr))
+  
+  png("../figures/fdr_vs_ratio.png", width = 20, height = 14, units = "cm", res = 300)
+  par(family = "lato", mar = c(5,8,1,2))
+  plot(0,
+       type = "p", 
+       pch = 19, 
+       ylab = "", 
+      xlab = "", 
+       axes = FALSE,
+       cex = 1.2, 
+       cex.axis = 1.4, 
+       ylim = c(0,1),
+       xlim = c(0.01,100),
+      log = "x",
+      
+       
+       las = 1,
+       col = "white")
+  
+  abline(v = 0.01, col = "gray", lty = 3)
+  abline(v = 0.1, col = "gray", lty = 3)
+  abline(v = 1, col = "gray", lty = 3)
+  abline(v = 10, col = "gray", lty = 3)
+  abline(v = 100, col = "gray", lty = 3)
+  abline(h = 0.5, col = "gray", lty = 3)
+  abline(h = 0, col = "gray", lty = 3)
+  abline(h = 1, col = "gray", lty = 3)
+  
+  
+  points(df$ratio, df$fdr, type = "p", pch = 19, cex = 1.2,  col = rgb(red = 0, green = 0.48, blue = 0.52, alpha = 0.1))
+  
+  
+  box(which = "plot", lty = "solid")
+  
+  axis(1, at = c(0.01, 0.1, 1, 10, 100), labels=c("0,01", "0,1", "1", "10", "100"), cex.axis = 1.4)
+  axis(2, at = pretty(df$fdr), labels=pretty(df$fdr)*100, cex.axis = 1.4, las = 1)
+  
+  
+  
+  mtext(text = "Prævalens / falsk-positivrate",
+        side = 1,#side 1 = bottom
+        line = 3, 
+        cex = 1.4,
+        font = 2)
+  
+  mtext(text = "Falsk opdagelsesrate (procent)",
+        side = 2,#side 1 = bottom
+        line = 4,
+        cex = 1.4,
+        font = 2,
+        col = "black")
+  
+  dev.off()
+
+
+
+plot(seq(0:1000)/1000, fdr(seq(0:1000)/1000, 0.01),
+     type = "b", 
+     pch = 19, 
+     ylab = "", 
+     xlab = "", 
+     axes = TRUE,
+     cex = 1.2, 
+     cex.axis = 1.4, 
+     ylim = c(0,1),
+     xlim = c(0,0.2),
+     las = 1,
+     col = rgb(red = 1, green = 0, blue = 0, alpha = 0.7))
+
+points(seq(0:1000)/1000, fdr(seq(0:1000)/1000, 0.001), type = "b", pch = 19, cex = 1.2, col = rgb(red = 0.7, green = 0.3, blue = 0, alpha = 0.7))
+
+#points(seq(0:1000)/1000, fdr(seq(0:1000)/1000, 0.0001), type = "b", pch = 19, cex = 1.2, col = rgb(red = 0.4, green = 0.6, blue = 0, alpha = 0.7))
+
+text(x = 0.025, y = 0.5, labels = "FPR = 1 %", cex = 1.4, font = 2, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.9))
+
+text(x = 0.024, y = 0.13, labels = "FPR = 0,1 %", cex = 1.4, font = 2, col = rgb(red = 0.7, green = 0.3, blue = 0, alpha = 0.9))

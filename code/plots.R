@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-26"
+today <- "2020-08-31"
 
-admitted <- read_csv2("../data/SSIdata_200826/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200826/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200826/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200826/Rt_cases_2020_08_25.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200826/Rt_indlagte_2020_08_25.csv")
+admitted <- read_csv2("../data/SSIdata_200831/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200831/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200831/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200831/Rt_cases_2020_08_25.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200831/Rt_indlagte_2020_08_25.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -456,6 +456,98 @@ abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
 abline(v = as.Date("2020-06-18")+0.5, col = "gray", lty = 3)
 abline(v = as.Date("2020-07-12"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-09")+0.5, col = "gray", lty = 3)
+
+dev.off()
+
+png("../figures/postest_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+
+plot(tests$Date, rep(600, length(tests$Date)), 
+     ylab = "", 
+     xlab = "", 
+     axes = FALSE,
+     cex = 1.2, 
+     cex.axis = 1.2, 
+     ylim = c(-100,500),
+     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+     las = 1,
+     col = "white")
+
+mtext(text = "Dato",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.2, 
+      font = 2)
+
+mtext(text = "Antal",
+      side = 2,#side 1 = bottom
+      line = 4,
+      cex = 1.2,
+      font = 2)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(as.Date("2020-03-01"),
+          as.Date("2020-05-01"),
+          as.Date("2020-07-01"),
+          as.Date("2020-09-01")), format(c(as.Date("2020-03-01"),
+                                           as.Date("2020-05-01"),
+                                           as.Date("2020-07-01"),
+                                           as.Date("2020-09-01")), "%b") , cex.axis = 1.4)
+axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, 100, 200, 300, 400, 500), cex.axis = 1.4, las = 1)
+
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.7))
+segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
+
+text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 250, labels = "Positive tests", col = "red", cex = 1.5, font = 2, adj = 1)
+
+dev.off()
+
+png("../figures/pct_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5,8,1,2))
+
+plot(tests$Date, rep(600, length(tests$Date)), 
+     ylab = "", 
+     xlab = "", 
+     axes = FALSE,
+     cex = 1.2, 
+     cex.axis = 1.2, 
+     ylim = c(-100,200),
+     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+     las = 1,
+     col = "white")
+
+mtext(text = "Dato",
+      side = 1,#side 1 = bottom
+      line = 3, 
+      cex = 1.2, 
+      font = 2)
+
+mtext(text = "Antal                                                Procent                     ",
+      side = 2,#side 1 = bottom
+      line = 4,
+      cex = 1.2,
+      font = 2)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(as.Date("2020-03-01"),
+          as.Date("2020-05-01"),
+          as.Date("2020-07-01"),
+          as.Date("2020-09-01")), format(c(as.Date("2020-03-01"),
+                                           as.Date("2020-05-01"),
+                                           as.Date("2020-07-01"),
+                                           as.Date("2020-09-01")), "%b") , cex.axis = 1.4)
+axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, "10 %", "20 %", 300, 400, 500), cex.axis = 1.4, las = 1)
+
+
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed*10, lwd = 2, col = rgb(red = 1, green = 0.6, blue = 0, alpha = 0.9))
+segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
+
+text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 70, labels = "Andel positive tests", col = "orange", cex = 1.5, font = 2, adj = 1)
 
 dev.off()
 
