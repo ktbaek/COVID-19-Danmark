@@ -2,12 +2,12 @@ library(tidyverse)
 library(magrittr)
 library(runner)
 
-today <- "2020-08-31"
+today <- "2020-09-01"
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
-tests <- read_csv2("../data/SSIdata_200831/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200831/Rt_cases_2020_08_25.csv")
+tests <- read_csv2("../data/SSIdata_200901/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200901/Rt_cases_2020_09_01.csv")
 
 rt_cases %<>% rename(Date = date_sample)
 
@@ -21,7 +21,7 @@ tests %<>% full_join(rt_cases, by = "Date")
 
 tests %<>% slice(96:(n()-4))
 
-window = 8
+window = 11
 
 
 tests %<>% mutate(slope = runner(
@@ -179,61 +179,11 @@ dev.off()
 # 
 # 
 # 
-png("../figures/rt_vs_slope.png", width = 20, height = 14, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,6))
-plot(tests$Date, tests$slope, 
-     type = "l", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(-10,10),
-     xlim = c(as.Date("2020-05-01"), as.Date(today) - 1),
-     las = 1,
-     lwd = 2, 
-     col = "red")
-
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
-
-mtext(text = "Hældning (positive tests per dag)",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.4,
-      font = 2,
-      col = "red")
-
-
-
-abline(h = 0, col = "gray", lty = 3)
-
-par(new = TRUE)
-plot(tests$Date, tests$estimate, type = "l", pch = 19, col = "blue", cex = 1.2, axes = FALSE, xlab = "", ylab = "", ylim = c(0,2), lwd = 2)
-
-points(as.Date("2020-06-15"), 1.7, pch = 19, col = "red", cex = 2)
-segments(as.Date("2020-06-05"), 1.7, as.Date("2020-06-15"), 1.7, col = "red", lwd = 2)
-text(x = as.Date("2020-06-10"), y = 1.8, labels = "Vindue: 10 dage", col = "red", cex = 1.2, font = 1)
-
-axis(side = 4, las = 1, cex.axis = 1.2, at = c(0,1,2))
-
-mtext(text = "Kontakttal",
-      side = 4,#side 1 = bottom
-      line = 3,
-      cex = 1.2,
-      col = "blue",
-      font = 2)
-
-dev.off()
 
 
 
 
-png("../figures/rt_vs_slope_2_7d.png", width = 20, height = 14, units = "cm", res = 300)
+png("../figures/rt_vs_slope_2_10d.png", width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_2, 
      type = "l", 
@@ -275,12 +225,12 @@ abline(h = 1, col = "gray", lty = 3)
 
 points(as.Date("2020-05-11"), 1.9, pch = 15, col = "red", cex = 1.5)
 segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "red", lwd = 2)
-text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 7 dage", col = "red", cex = 1.2, font = 1,  adj = 0)
+text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 10 dage", col = "red", cex = 1.2, font = 1,  adj = 0)
 
 dev.off()
 
 
-png("../figures/rt_vs_slope_pct_2_7d.png", width = 20, height = 14, units = "cm", res = 300)
+png("../figures/rt_vs_slope_pct_2_10d.png", width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_pct_2,
      type = "l", 
@@ -322,7 +272,7 @@ abline(h = 1, col = "gray", lty = 3)
 
 points(as.Date("2020-05-11"), 1.9, pch = 15, col = "orange", cex = 1.5)
 segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "orange", lwd = 2)
-text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 7 dage", col = "orange", cex = 1.2, font = 1,  adj = 0)
+text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 10 dage", col = "orange", cex = 1.2, font = 1,  adj = 0)
 dev.off()
 
 
@@ -404,8 +354,8 @@ points(seq(0:1000)/10000, fdr(seq(0:1000)/10000, 0.001), type = "l", lwd = 5, pc
 
 box(which = "plot", lty = "solid")
 
-axis(2, at = pretty(fdr(seq(0:1000)/1000, 0.01)), labels=pretty(fdr(seq(0:1000)/1000, 0.01))*100, cex.axis = 1.4, las = 1)
-axis(1, at = c(0, 0.02, 0.04, 0.06, 0.08, 0.1), labels=c("0", "2", "4", "6", "8", "10"), cex.axis = 1.4, las = 1)
+axis(2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1), labels=c("0", "20%", "40%", "60%", "80%", "100%"), cex.axis = 1.4, las = 1)
+axis(1, at = c(0, 0.02, 0.04, 0.06, 0.08, 0.1), labels=c("0", "2%", "4%", "6%", "8%", "10%"), cex.axis = 1.4, las = 1)
 
 #points(seq(0:1000)/1000, fdr(seq(0:1000)/1000, 0.0001), type = "b", pch = 19, cex = 1.2, col = rgb(red = 0.4, green = 0.6, blue = 0, alpha = 0.7))
 
@@ -414,15 +364,15 @@ text(x = 0.006, y = 0.8, labels = "99 %", cex = 1.4, adj = 0, font = 2, col = rg
 text(x = 0.008, y = 0.18, labels = "99,9 %", cex = 1.4, adj = 0, font = 2, col = rgb(red = 0, green = 0.6, blue = 0.4, alpha = 1))
 
 
-mtext(text = "Prævalens (procent)",
+mtext(text = "Prævalens",
       side = 1,#side 1 = bottom
       line = 3, 
       cex = 1.4,
       font = 2)
 
-mtext(text = "Falsk opdagelsesrate (procent)",
+mtext(text = "Falsk opdagelsesrate",
       side = 2,#side 1 = bottom
-      line = 4,
+      line = 5,
       cex = 1.4,
       font = 2,
       col = "black")
@@ -463,25 +413,25 @@ dev.off()
   abline(h = 1, col = "gray", lty = 3)
   
   
-  points(df$ratio, df$fdr, type = "p", pch = 19, cex = 1.2,  col = rgb(red = 0, green = 0.48, blue = 0.52, alpha = 0.1))
+  points(df$ratio, df$fdr, type = "p", pch = 19, cex = 1.2,  col = rgb(red = df$fdr, green = 0.8-df$fdr/1.5, blue = 0.4, alpha = 0.2))
   
   
   box(which = "plot", lty = "solid")
   
   axis(1, at = c(0.01, 0.1, 1, 10, 100), labels=c("0,01", "0,1", "1", "10", "100"), cex.axis = 1.4)
-  axis(2, at = pretty(df$fdr), labels=pretty(df$fdr)*100, cex.axis = 1.4, las = 1)
+  axis(2, at = c(0, 0.2, 0.4, 0.6, 0.8, 1), labels=c("0", "20%", "40%", "60%", "80%", "100%"), cex.axis = 1.4, las = 1)
   
   
   
-  mtext(text = "Prævalens / falsk-positivrate",
+  mtext(text = "Prævalens : falsk-positivrate",
         side = 1,#side 1 = bottom
         line = 3, 
         cex = 1.4,
         font = 2)
   
-  mtext(text = "Falsk opdagelsesrate (procent)",
+  mtext(text = "Falsk opdagelsesrate",
         side = 2,#side 1 = bottom
-        line = 4,
+        line = 5,
         cex = 1.4,
         font = 2,
         col = "black")

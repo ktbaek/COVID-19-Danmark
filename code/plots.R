@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-08-31"
+today <- "2020-09-01"
 
-admitted <- read_csv2("../data/SSIdata_200831/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200831/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200831/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200831/Rt_cases_2020_08_25.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200831/Rt_indlagte_2020_08_25.csv")
+admitted <- read_csv2("../data/SSIdata_200901/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200901/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200901/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200901/Rt_cases_2020_09_01.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200901/Rt_indlagte_2020_09_01.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -277,43 +277,6 @@ dev.off()
 
 # Extra ------------------------------------------------------------------
 
-png("../figures/pct_hosp_deaths.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
-
-plot(tests$Date + 1, tests$pct_confirmed * 10, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,200),
-     las = 1, 
-     col = "blue",
-     yaxt='n')
-
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
-
-mtext(text = "Relativ skala",
-      side = 2,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
-
-#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
-
-points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = "#2D708EFF", cex = 1.2)
-points(deaths$Dato -8, deaths$Antal_døde * 4, type = "b", pch = 21, col = "red", cex = 1.2)
-text(x = as.Date("2020-03-29"), y = 5, labels = "Nyindlagte", col = "#2D708EFF", cex = 1, font = 2)
-text(x = as.Date("2020-04-30"), y = 140, labels = "Procent positive tests", col = "blue", cex = 1, font = 2)
-text(x = as.Date("2020-05-28"), y = 45, labels = "Døde (forskudt 8 dage)", col = "red", cex = 1, font = 2)
-
-dev.off()
 
 
 
@@ -401,7 +364,7 @@ points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", ce
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-24"), y = 0.06, labels = "Procent positive tests", col = "blue", cex = 1.4, font = 2)
-text(x = as.Date("2020-06-18"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-06-15"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
@@ -449,7 +412,7 @@ points(admitted$Dato, admitted$running_avg/24, type = "l", pch = 19, col = "#2D7
 #points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 #points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2)
-text(x = as.Date("2020-06-23"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-06-20"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
@@ -501,7 +464,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = rgb(red = 
 segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
 
 text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 250, labels = "Positive tests", col = "red", cex = 1.5, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 250, labels = "Positive tests", col = "red", cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
