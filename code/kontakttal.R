@@ -2,12 +2,12 @@ library(tidyverse)
 library(magrittr)
 library(runner)
 
-today <- "2020-09-01"
+today <- "2020-09-03"
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
-tests <- read_csv2("../data/SSIdata_200901/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200901/Rt_cases_2020_09_01.csv")
+tests <- read_csv2("../data/SSIdata_200903/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200903/Rt_cases_2020_09_01.csv")
 
 rt_cases %<>% rename(Date = date_sample)
 
@@ -21,7 +21,7 @@ tests %<>% full_join(rt_cases, by = "Date")
 
 tests %<>% slice(96:(n()-4))
 
-window = 11
+window = 8
 
 
 tests %<>% mutate(slope = runner(
@@ -183,7 +183,7 @@ dev.off()
 
 
 
-png("../figures/rt_vs_slope_2_10d.png", width = 20, height = 14, units = "cm", res = 300)
+png(paste0("../figures/rt_vs_slope_2_",window - 1,"d.png"), width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_2, 
      type = "l", 
@@ -225,12 +225,12 @@ abline(h = 1, col = "gray", lty = 3)
 
 points(as.Date("2020-05-11"), 1.9, pch = 15, col = "red", cex = 1.5)
 segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "red", lwd = 2)
-text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 10 dage", col = "red", cex = 1.2, font = 1,  adj = 0)
+text(x = as.Date("2020-05-01"), y = 2, labels = paste0("Vindue: ", window - 1, " dage"), col = "red", cex = 1.2, font = 1,  adj = 0)
 
 dev.off()
 
 
-png("../figures/rt_vs_slope_pct_2_10d.png", width = 20, height = 14, units = "cm", res = 300)
+png(paste0("../figures/rt_vs_slope_pct_2_", window - 1, "d.png"), width = 20, height = 14, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,1,2))
 plot(tests$Date, tests$slope_pct_2,
      type = "l", 
@@ -272,7 +272,7 @@ abline(h = 1, col = "gray", lty = 3)
 
 points(as.Date("2020-05-11"), 1.9, pch = 15, col = "orange", cex = 1.5)
 segments(as.Date("2020-05-01"), 1.9, as.Date("2020-05-11"), 1.9, col = "orange", lwd = 2)
-text(x = as.Date("2020-05-01"), y = 2, labels = "Vindue: 10 dage", col = "orange", cex = 1.2, font = 1,  adj = 0)
+text(x = as.Date("2020-05-01"), y = 2, labels = paste0("Vindue: ", window - 1, " dage"), col = "orange", cex = 1.2, font = 1,  adj = 0)
 dev.off()
 
 
