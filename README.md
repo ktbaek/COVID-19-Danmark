@@ -14,7 +14,7 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 
 ## Plots
 
-I mappen [figures -> artikel](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures) kan man finde opdaterede figurer fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
+De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
 ### Dagligt antal positive tests
 Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
