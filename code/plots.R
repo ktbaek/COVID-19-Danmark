@@ -558,7 +558,7 @@ mtext(text = "Dato",
       cex = 1.2, 
       font = 2)
 
-mtext(text = "Antal                                                Procent                     ",
+mtext(text = "Antal                                      Procent               ",
       side = 2,#side 1 = bottom
       line = 4,
       cex = 1.2,
