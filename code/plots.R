@@ -580,7 +580,7 @@ segments(tests$Date, 0, tests$Date, tests$pct_confirmed*10, lwd = 2, col = rgb(r
 segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
 
 text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 70, labels = "Andel positive tests", col = "orange", cex = 1.5, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 70, labels = "Andel positive tests", col = "orange", cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
