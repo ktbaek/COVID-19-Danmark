@@ -137,7 +137,7 @@ plot(tests_from_may$Date, tests_from_may$pct_confirmed,
      las = 1, 
      col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25))
 
-mtext(text = "Procent positive tests per antal testede",
+mtext(text = "Procent positive tests",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -164,7 +164,7 @@ dev.off()
 
 # Figure 4 ------------------------------------------------------------------
 
-png("../figures/fig_4_tests_pct.png", width = 20, height = 16, units = "cm", res = 300)
+png("../figures/fig_4_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
 par(family = "lato", mar = c(5,8,5,6))
 
 plot(tests_from_may$Date, tests_from_may$NewPositive,
