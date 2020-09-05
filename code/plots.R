@@ -1,13 +1,13 @@
 library(tidyverse)
 library(magrittr)
 
-today <- "2020-09-03"
+today <- "2020-09-04"
 
-admitted <- read_csv2("../data/SSIdata_200903/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200903/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200903/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200903/Rt_cases_2020_09_01.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200903/Rt_indlagte_2020_09_01.csv")
+admitted <- read_csv2("../data/SSIdata_200904/Newly_admitted_over_time.csv")
+deaths <- read_csv2("../data/SSIdata_200904/Deaths_over_time.csv")
+tests <- read_csv2("../data/SSIdata_200904/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200904/Rt_cases_2020_09_01.csv")
+rt_admitted <- read_csv2("../data/SSIdata_200904/Rt_indlagte_2020_09_01.csv")
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%
@@ -139,7 +139,7 @@ mtext(text = "Procent",
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 
-text(x = as.Date("2020-06-20"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
+text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
 dev.off()
 
 # Figure 4 ------------------------------------------------------------------
@@ -229,7 +229,7 @@ points(deaths$Dato, deaths$Antal_døde,  type = "b",
 points(admitted$Dato, admitted$running_avg, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
 points(deaths$Dato, deaths$running_avg, type = "l", pch = 19, col = "#661313", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-04-29"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
+text(x = as.Date("2020-05-02"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
 text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = "#661313", cex = 1.5, font = 2)
 
 dev.off()

@@ -2,12 +2,12 @@ library(tidyverse)
 library(magrittr)
 library(runner)
 
-today <- "2020-09-03"
+today <- "2020-09-04"
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
-tests <- read_csv2("../data/SSIdata_200903/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200903/Rt_cases_2020_09_01.csv")
+tests <- read_csv2("../data/SSIdata_200904/Test_pos_over_time.csv")
+rt_cases <- read_csv2("../data/SSIdata_200904/Rt_cases_2020_09_01.csv")
 
 rt_cases %<>% rename(Date = date_sample)
 
@@ -21,7 +21,7 @@ tests %<>% full_join(rt_cases, by = "Date")
 
 tests %<>% slice(96:(n()-4))
 
-window = 8
+window = 11
 
 
 tests %<>% mutate(slope = runner(
@@ -112,39 +112,7 @@ dev.off()
 
 
 
-png("../figures/slope_rt_regression.png", width = 20, height = 14, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
-plot(tests$slope_pct_2, tests$estimate, 
-     type = "p", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     las = 1,
-     xlim = c(0,2), 
-     col = rgb(red = 1, green = 0, blue = 0, alpha = 0.6))
 
-mtext(text = "Hældning (positive tests per dag)",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
-
-mtext(text = "Kontakttal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.4,
-      font = 2)
-
-abline(h = 1, col = "gray", lty = 3)
-abline(v = 1, col = "gray", lty = 3)
-
-abline(lm(estimate ~ slope_pct_2, tests), col = "gray", lty = 1)
-legend("topleft", bty="n", legend=paste0("R2 = ", format(summary(lm(estimate ~ slope_pct_2, tests))$adj.r.squared, digits=2)), cex = 1.5)
-
-dev.off()
 
 # res <- as.double(summary(lm(estimate ~ slope, tests))$residual)
 # par(family = "lato", mar = c(5,8,1,2))
