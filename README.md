@@ -5,9 +5,8 @@
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
 
 De datasæt der er brugt her er:
-- Antal testede og antal positive tests for hele landet
-- Antal testede og antal positive tests per kommune
-- Antal testede og antal positive tests per aldersgruppe for hele landet
+- Antal testede og antal positive tests for hele landet.
+- Antal testede og antal positive tests per aldersgruppe for hele landet og per kommune
 - Antal nyindlagte og antal døde for hele landet
 
 Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. På de grafer der inkluderer testdata er de seneste to dage derfor ikke medtaget.   
@@ -16,7 +15,7 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 
 De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-Antallet af positive tests omtales også som 'antallet af konstaterede smittede', 'antallet af bekræftede smittede', eller oftest bare som 'antallet af smittede'. 
+Antallet af positive tests omtales også som 'antallet af konstaterede smittede', 'antallet af bekræftede smittede', eller ofte fejlagtigt som 'antallet af smittede' (fejlagtigt fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
 
 ### Dagligt antal positive tests
 Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
@@ -51,10 +50,14 @@ Plottet sammenligner hvornår kurven over nyindlagte toppede med hvornår kurven
 ### Ugentligt antal positive tests og antal testede for hver kommune (kommuner med flest smittede)
 Plottet viser det ugentlige antal positive tests og antal testede for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
+Data opdateres på mandage. Bemærk at antal positive aflæses på højre lodrette akse mens antal testede aflæses på venstre lodrette akse. 
+
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pos_vs_test_july.png) 
 
 ### Ugentlig procentandel positive tests for hver kommune (kommuner med flest smittede)
 Plottet viser den ugentlige procentandel af positive tests for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
+
+Data opdateres på mandage.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pct_july.png) 
 
