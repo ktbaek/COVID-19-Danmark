@@ -61,24 +61,24 @@ Plottet sammenligner antal nyindlagte med procentandelen af positive tests.
 ### Ugentligt antal positive tests og antal testede for hver kommune (kommuner med flest smittede)
 Plottet viser det ugentlige antal positive tests og antal testede for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
-Data opdateres på mandage. Bemærk at antal positive aflæses på højre lodrette akse mens antal testede aflæses på venstre lodrette akse. 
+Plottet opdateres på mandage. Bemærk at antal positive aflæses på højre lodrette akse mens antal testede aflæses på venstre lodrette akse. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pos_vs_test_july.png) 
 
 ### Ugentlig procentandel positive tests for hver kommune (kommuner med flest smittede)
 Plottet viser den ugentlige procentandel af positive tests for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
-Data opdateres på mandage.
+Plottet opdateres på mandage.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pct_july.png) 
 
-### Ugentlig procentandel positive tests for hver kommune (alle 99 kommuner)
+### Ugentlig procentandel positive tests for hver kommune (alle kommuner)
 Plottet viser den ugentlige procentandel af positive tests for alle kommuner. 
 
 <img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/>
 
 
-### Ugentlig incidens for hver kommune (alle 99 kommuner)
+### Ugentlig incidens for hver kommune (alle kommuner)
 Plottet viser det ugentlige antal positive tests per 100.000 indbyggere for alle kommuner. 
 
 <img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
