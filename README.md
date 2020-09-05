@@ -47,12 +47,12 @@ Plottet sammenligner hvornår kurven over nyindlagte toppede med hvornår kurven
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_6_postest_hosp.png) 
 
-### Dagligt antal nyindlagte og antal positive tests (barplot)
+### Dagligt antal nyindlagte og antal positive tests (søjleplot)
 Plottet sammenligner antal nyindlagte med antal positive tests.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_hosp_barplot.png) 
 
-### Dagligt antal nyindlagte og procent positive tests (barplot)
+### Dagligt antal nyindlagte og procent positive tests (søjleplot)
 Plottet sammenligner antal nyindlagte med procentandelen af positive tests.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png) 
