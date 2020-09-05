@@ -16,7 +16,7 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 
 De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-Antallet af positive tests omtales også som antallet af konstaterede smittede, antallet af bekræftede smittede, eller oftest bare smittede. 
+Antallet af positive tests omtales også som 'antallet af konstaterede smittede', 'antallet af bekræftede smittede', eller oftest bare som 'antallet af smittede'. 
 
 ### Dagligt antal positive tests
 Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
