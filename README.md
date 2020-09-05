@@ -1,5 +1,27 @@
-# Figurer for smitteudvikling i Danmark
+# Figurer for smitteudvikling i Danmark baseret på data fra SSI
 
-I mappen [figures](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures) kan man finde opdaterede figurer fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
+## Data
 
-![alt text](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/Vigtigste_coronatal.png)
+Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
+
+De datasæt der er brugt her er:
+- Antal testede og antal positive tests for hele landet
+- Antal testede og antal positive tests per kommune
+- Antal testede og antal positive tests per aldersgruppe for hele landet
+- Antal nyindlagte og antal døde for hele landet
+
+Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. På de grafer der inkluderer testdata er de seneste to dage derfor ikke medtaget.   
+
+## Plots
+
+I mappen [figures -> artikel](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures) kan man finde opdaterede figurer fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
+
+### Antal positive tests
+
+Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
+ 
+
+
+

@@ -36,7 +36,7 @@ quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItali
 # Figure 1 ------------------------------------------------------------------
 
 png("../figures/fig_1_test_pos.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests$Date, tests$NewPositive, 
      type = "b", 
@@ -50,6 +50,13 @@ plot(tests$Date, tests$NewPositive,
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
+
+mtext(text = "Antal positive tests",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2, 
+      col = "red")
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -65,13 +72,13 @@ mtext(text = "Antal",
 
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
+#text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
 dev.off()
 
 # Figure 2 ------------------------------------------------------------------
 
 png("../figures/fig_2_tests.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests$Date, tests$Tested, 
      type = "b", 
@@ -85,6 +92,12 @@ plot(tests$Date, tests$Tested,
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.25))
+
+mtext(text = "Antal testede og antal positive",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -110,7 +123,7 @@ dev.off()
 # Figure 3 ------------------------------------------------------------------
 
 png("../figures/fig_3_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests_from_may$Date, tests_from_may$pct_confirmed, 
      type = "b", 
@@ -123,6 +136,13 @@ plot(tests_from_may$Date, tests_from_may$pct_confirmed,
      ylim = c(0,1.2),
      las = 1, 
      col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25))
+
+mtext(text = "Procent positive tests per antal testede",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2,
+      col = "blue")
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -139,13 +159,13 @@ mtext(text = "Procent",
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
 
-text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
+#text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
 dev.off()
 
 # Figure 4 ------------------------------------------------------------------
 
 png("../figures/fig_4_tests_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,6))
+par(family = "lato", mar = c(5,8,5,6))
 
 plot(tests_from_may$Date, tests_from_may$NewPositive,
      type = "b",
@@ -158,6 +178,12 @@ plot(tests_from_may$Date, tests_from_may$NewPositive,
      ylim = c(0,300),
      las = 1,
      col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
+
+mtext(text = "Procent vs. antal positive tests",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -196,7 +222,7 @@ dev.off()
 # Figure 5 ------------------------------------------------------------------
 
 png("../figures/fig_5_hosp.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(admitted$Dato, admitted$Total, 
      type = "b", 
@@ -210,6 +236,12 @@ plot(admitted$Dato, admitted$Total,
      xlim = c(as.Date("2020-02-01"), as.Date(today)),
      las = 1, 
      col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25))
+
+mtext(text = "Nyindlagte og døde",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -238,7 +270,7 @@ dev.off()
 # Figure 6 ------------------------------------------------------------------
 
 png("../figures/fig_6_postest_hosp.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests$Date, tests$NewPositive, 
      type = "b", 
@@ -252,6 +284,12 @@ plot(tests$Date, tests$NewPositive,
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = rgb(red = 1, green = 0., blue = 0, alpha = 0.25))
+
+mtext(text = "Nyindlagte vs. antal positive",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -281,7 +319,7 @@ dev.off()
 
 
 png("../figures/rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(rt_cases$date_sample, rt_cases$estimate, 
      type = "l", 
@@ -296,6 +334,12 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      col = "darkgray",
      lwd = 2,
      xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
+
+mtext(text = "Kontakttal (smittede) vs. antal positive",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -329,7 +373,7 @@ abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
 dev.off()
 
 png("../figures/rt_cases_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(rt_cases$date_sample, rt_cases$estimate, 
      type = "l", 
@@ -344,6 +388,12 @@ plot(rt_cases$date_sample, rt_cases$estimate,
      col = "darkgray",
      lwd = 2,
      xlim = c(as.Date("2020-05-01"), as.Date(today ) - 1))
+
+mtext(text = "Kontakttal (smittede) vs. procent positive",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -377,7 +427,7 @@ dev.off()
 
 
 png("../figures/rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(rt_admitted$date_sample, rt_admitted$estimate, 
      type = "l", 
@@ -392,6 +442,12 @@ plot(rt_admitted$date_sample, rt_admitted$estimate,
      col = "darkgray",
      lwd = 2,
      xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
+
+mtext(text = "Kontakttal (indlagte) vs. nyindlagte",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -423,7 +479,7 @@ abline(v = as.Date("2020-08-09")+0.5, col = "gray", lty = 3)
 dev.off()
 
 png("../figures/postest_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests$Date, rep(600, length(tests$Date)), 
      ylab = "", 
@@ -435,6 +491,12 @@ plot(tests$Date, rep(600, length(tests$Date)),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = "white")
+
+mtext(text = "Positive tests vs. nyindlagte",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
@@ -469,7 +531,7 @@ text(x = as.Date(today)-2, y = 250, labels = "Positive tests", col = "red", cex 
 dev.off()
 
 png("../figures/pct_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,1,2))
+par(family = "lato", mar = c(5,8,5,2))
 
 plot(tests$Date, rep(600, length(tests$Date)), 
      ylab = "", 
@@ -481,6 +543,12 @@ plot(tests$Date, rep(600, length(tests$Date)),
      xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
      las = 1,
      col = "white")
+
+mtext(text = "Procent positive tests vs. nyindlagte",
+      side = 3,#side 1 = bottom
+      line = 1, 
+      cex = 1.5, 
+      font = 2)
 
 mtext(text = "Dato",
       side = 1,#side 1 = bottom
