@@ -17,11 +17,24 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 I mappen [figures -> artikel](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures) kan man finde opdaterede figurer fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
 ### Antal positive tests
-
 Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
- 
+
+### Antal testede og antal positive tests
+Plottet viser det total antal testede personer og antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_2_tests.png) 
+
+### Procentdel af positive tests ifht. hvor mange der er testet
+Plottet viser positivprocenten for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3_pct.png) 
+
+### Antal positive tests og procent positive tests
+Plottet viser antal positive tests og positivprocenten for hele landet fra 1. maj. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_4_tests_pct.png) 
 
 
 
