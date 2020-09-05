@@ -47,6 +47,17 @@ Plottet sammenligner hvornår kurven over nyindlagte toppede med hvornår kurven
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_6_postest_hosp.png) 
 
+### Dagligt antal nyindlagte og antal positive tests (barplot)
+Plottet sammenligner antal nyindlagte med antal positive tests.
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_hosp_barplot.png) 
+
+### Dagligt antal nyindlagte og procent positive tests (barplot)
+Plottet sammenligner antal nyindlagte med procentandelen af positive tests.
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png) 
+
+
 ### Ugentligt antal positive tests og antal testede for hver kommune (kommuner med flest smittede)
 Plottet viser det ugentlige antal positive tests og antal testede for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 

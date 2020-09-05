@@ -1,6 +1,8 @@
 library(tidyverse)
 library(magrittr)
 
+Sys.setlocale("LC_ALL", "da_DK.UTF-8")
+
 today <- "2020-09-04"
 
 admitted <- read_csv2("../data/SSIdata_200904/Newly_admitted_over_time.csv")
@@ -115,7 +117,7 @@ points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = rgb(red = 1, g
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = "black", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-05-05"), y = 21000, labels = "Total antal tests", col = "black", cex = 1.5, font = 2)
+text(x = as.Date("2020-07-01"), y = 34000, labels = "Total antal tests", col = "black", cex = 1.5, font = 2)
 text(x = as.Date("2020-06-10"), y = 2000, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
 dev.off()
 
