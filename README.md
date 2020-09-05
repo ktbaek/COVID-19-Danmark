@@ -59,7 +59,8 @@ Plottet viser den ugentlige procentandel af positive tests for kommuner som på 
 ### Ugentlig procentandel positive tests for hver kommune (alle 99 kommuner)
 Plottet viser den ugentlige procentandel af positive tests for alle kommuner. 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png) 
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="200"/>
+
 
 ### Ugentlig incidens for hver kommune (alle 99 kommuner)
 Plottet viser det ugentlige antal positive tests per 100.000 indbyggere for alle kommuner. 
