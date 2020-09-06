@@ -13,11 +13,18 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 
 Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
+## Terminologi
+#### Antal positive tests
+Antallet af positive tests omtales også som 'antallet af konstaterede smittede', 'antallet af bekræftede smittede', eller ofte fejlagtigt som 'antallet af smittede' (fejlagtigt fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
+
+#### Procent positive tests
+Procent positive tests angiver den procentvise andel af positive tests ifht. hvor mange der er testet i alt. Omtales også som positivraten eller positivandelen.
+
 ## Plots
 
 De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-Antallet af positive tests omtales også som 'antallet af konstaterede smittede', 'antallet af bekræftede smittede', eller ofte fejlagtigt som 'antallet af smittede' (fejlagtigt fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
+
 
 ### Dagligt antal positive tests
 Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
