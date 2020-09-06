@@ -53,7 +53,7 @@ plot(tests$Date, tests$NewPositive,
      las = 1,
      col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
 
-mtext(text = "Antal positive tests",
+mtext(text = "Dagligt antal nye positive tests",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -95,7 +95,7 @@ plot(tests$Date, tests$Tested,
      las = 1,
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.25))
 
-mtext(text = "Antal testede og antal positive",
+mtext(text = "Dagligt antal udførte tests",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -117,8 +117,8 @@ points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = rgb(red = 1, g
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = "black", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-07-01"), y = 34000, labels = "Total antal tests", col = "black", cex = 1.5, font = 2)
-text(x = as.Date("2020-06-10"), y = 2000, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
+text(x = as.Date("2020-07-01"), y = 36000, labels = "Total antal tests", col = "black", cex = 1.4, font = 2)
+text(x = as.Date("2020-06-14"), y = 2500, labels = "Antal positive tests", col = "red", cex = 1.4, font = 2)
 dev.off()
 
 
@@ -139,7 +139,7 @@ plot(tests_from_may$Date, tests_from_may$pct_confirmed,
      las = 1, 
      col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25))
 
-mtext(text = "Procent positive tests",
+mtext(text = "Daglig procent nye positive tests",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -181,7 +181,7 @@ plot(tests_from_may$Date, tests_from_may$NewPositive,
      las = 1,
      col = rgb(red = 1, green = 0, blue = 0, alpha = 0.25))
 
-mtext(text = "Procent vs. antal positive tests",
+mtext(text = "Procent vs. antal nye positive tests",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -206,8 +206,8 @@ par(new = TRUE)
 plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.25), cex = 1.2, axes = FALSE, xlab = "", ylab = "")
 points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-06-16"), y = 0.6, labels = "Procent positive", col = "blue", cex = 1.5, font = 2)
-text(x = as.Date("2020-05-17"), y = 0.07, labels = "Antal positive", col = "red", cex = 1.5, font = 2)
+text(x = as.Date("2020-06-16"), y = 0.6, labels = "Procent positive", col = "blue", cex = 1.4, font = 2)
+text(x = as.Date("2020-05-17"), y = 0.07, labels = "Antal positive", col = "red", cex = 1.4, font = 2)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
@@ -239,7 +239,7 @@ plot(admitted$Dato, admitted$Total,
      las = 1, 
      col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25))
 
-mtext(text = "Nyindlagte og døde",
+mtext(text = "Dagligt antal nyindlagte og døde",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -263,8 +263,8 @@ points(deaths$Dato, deaths$Antal_døde,  type = "b",
 points(admitted$Dato, admitted$running_avg, type = "l", pch = 19, col = "#2D708EFF", cex = 1.2, lwd = 2)
 points(deaths$Dato, deaths$running_avg, type = "l", pch = 19, col = "#661313", cex = 1.2, lwd = 2)
 
-text(x = as.Date("2020-05-02"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.5, font = 2)
-text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = "#661313", cex = 1.5, font = 2)
+text(x = as.Date("2020-05-02"), y = 65, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2)
+text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = "#661313", cex = 1.4, font = 2)
 
 dev.off()
 
@@ -309,7 +309,7 @@ points(admitted$Dato, admitted$running_avg, type = "l", pch = 19, col = "#2D708E
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 points(admitted$Dato, admitted$Total, type = "b", pch = 19, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.25), cex = 1.2)
 text(x = as.Date("2020-04-05"), y = -2, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2)
-text(x = as.Date("2020-05-10"), y = 400, labels = "Positive tests", col = "red", cex = 1.5, font = 2)
+text(x = as.Date("2020-05-10"), y = 400, labels = "Positive tests", col = "red", cex = 1.4, font = 2)
 text(x = as.Date("2020-04-05"), y = 110, labels = "25. marts", col = "#2D708EFF", cex = 0.8, font = 4)
 text(x = as.Date("2020-04-13"), y = 485, labels = "3. april", col = "red", cex = 0.8, font = 4)
 
