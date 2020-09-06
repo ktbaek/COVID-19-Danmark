@@ -13,6 +13,8 @@ Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. P�
 
 Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
+*Jeg påtager mig ikke ansvar for eventuelle fejl.* 
+
 ## Terminologi
 #### Antal positive tests
 Antallet af positive tests omtales også som 'antallet af konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
