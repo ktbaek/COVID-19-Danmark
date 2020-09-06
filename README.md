@@ -91,9 +91,24 @@ Venstre plot viser den ugentlige procentdel af positive tests for alle kommuner.
 
 <img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
 
+### Ugentligt antal nye positive tests og testede for hver aldersgruppe
+Plottet viser det ugentlige antal nye positive tests og antal testede for hver aldersgruppe. 
+
+Plottet opdateres på onsdage. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pos_tested.png)
+
+### Ugentlig procentdel positive tests for hver aldersgruppe
+Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
+
+Plottet opdateres på onsdage.
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pct.png) 
+
+
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
-Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det ene plot viser de absolutte antal positive, det andet viser andelen. 
+Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser andelen. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_stack.png) 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_fill.png)
@@ -108,6 +123,8 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under 50 år.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_young.png)
+
+
 
 
 

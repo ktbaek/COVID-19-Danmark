@@ -149,6 +149,7 @@ ggplot(plot_data, aes(epiweek(Date) - 1, value)) +
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
         plot.title=element_text(face="bold"),
+        strip.text = element_text(face ="bold"),
         axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
         axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
@@ -176,6 +177,7 @@ ggplot(plot_data, aes(epiweek(Date) - 1, value)) +
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
         plot.title=element_text(size=14, face="bold"),
+        strip.text = element_text(face ="bold"),
         axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
         axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
@@ -203,6 +205,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           plot.title=element_text(face="bold"),
+          strip.text = element_text(face ="bold"),
           axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
@@ -227,6 +230,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           plot.title=element_text(size = 14, face="bold"),
+          strip.text = element_text(face ="bold"),
           axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
@@ -273,6 +277,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           plot.title=element_text(face="bold"),
+          strip.text = element_text(face ="bold"),
           axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
@@ -301,6 +306,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           plot.title=element_text(face="bold"),
+          strip.text = element_text(face ="bold"),
           axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0))) 
@@ -325,7 +331,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(plot.background=element_blank(),
           panel.border=element_blank(),
           axis.ticks = element_blank(),
-          plot.title=element_text(size = 14, hjust=0,face="bold"),
+          plot.title=element_text(size = 14, hjust=0.5, face="bold"),
           text = element_text(size=13, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           axis.title.y = element_text(size=12, family="lato"),
@@ -352,7 +358,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     theme(plot.background=element_blank(),
           panel.border=element_blank(),
           axis.ticks = element_blank(),
-          plot.title=element_text(size = 14, hjust=0,face="bold"),
+          plot.title=element_text(size = 14, hjust=0.5, face="bold"),
           text = element_text(size=13, family="lato"),
           legend.text=element_text(size=12, family="lato"),
           axis.title.y = element_text(size=12, family="lato"),
@@ -425,7 +431,7 @@ ggplot(plot_data, aes(Date, value)) +
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
-        plot.title=element_text(face="bold"),
+        plot.title=element_text(face="bold", hjust = 0.5),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -446,7 +452,7 @@ ggplot(plot_data, aes(Date, value)) +
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
-        plot.title=element_text(face="bold"),
+        plot.title=element_text(face="bold", hjust = 0.5),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -464,7 +470,7 @@ ggplot(plot_data, aes(Date, value)) +
   #scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
-        plot.title=element_text(face="bold"),
+        plot.title=element_text(face="bold", hjust = 0.5),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -482,11 +488,78 @@ ggplot(plot_data, aes(Date, value)) +
   #scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
-        plot.title=element_text(face="bold"),
+        plot.title=element_text(face="bold", hjust = 0.5),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
 ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", dpi = 300)
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  rename(Testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
+  group_by(Aldersgruppe, variable) %>%
+  mutate(value = c(0,diff(value))) %>%
+  mutate(value = ifelse(variable == "positive", value * 100, value))
+
+ggplot(plot_data, aes(Date, value)) + 
+  geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
+  facet_wrap(~Aldersgruppe, scales = "free") +
+  scale_color_discrete(name = "", labels = c("Positive", "Testede")) +
+  scale_y_continuous(
+    name = "Testede",
+    sec.axis = sec_axis(~./100, name="Positive"),
+    limits = c(0,50000)
+  ) +
+  labs(y = "Positive : Testede", x = "Dato", title = "Positive og testede per uge for hver aldersgruppe") +
+  theme_minimal() + 
+  theme(text = element_text(size=9, family="lato"),
+        legend.text=element_text(size=12, family="lato"),
+        plot.title=element_text(size=12, face="bold"),
+        strip.text = element_text(face ="bold"),
+        axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
+        axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
+
+ggsave("../figures/age_groups_pos_tested.png", width = 30, height = 15, units = "cm", dpi = 300)
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  rename(Testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
+  group_by(Aldersgruppe, variable) %>%
+  mutate(value = c(0,diff(value))) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  mutate(Ratio = positive/Testede * 100) 
+
+ggplot(plot_data, aes(Date, Ratio)) + 
+  geom_bar(stat = "identity", position = "stack", fill = "#FF6666") +
+  facet_wrap(~Aldersgruppe, scales = "free")  +
+  labs(y = "Procent", x = "Dato", title = "Procent positive per uge for hver aldersgruppe") +
+  scale_y_continuous(
+    limits = c(0,17)
+  ) +
+  theme_minimal() + 
+  theme(text = element_text(size=9, family="lato"),
+        plot.title=element_text(size=12, face="bold"),
+        strip.text = element_text(face ="bold"),
+        axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
+        axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
+
+ggsave("../figures/age_groups_pct.png", width = 22, height = 14, units = "cm", dpi = 300)
+
+
+
+
+
+
+
+
+
+
 
 
 # Figur: Pct nyindlagt per positive, fra marts -----------------------------------
