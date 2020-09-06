@@ -103,6 +103,24 @@ Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 5
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_stack.png) 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_fill.png)
 
+### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
+Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det ene plot viser de absolutte antal positive, det andet viser andelen. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_stack.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_fill.png)
+
+### Ugentligt antal nyindlagte og antal nye positive tests for ældre (> 50 år)
+Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over 50 år.
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_old.png)
+
+### Ugentligt antal nyindlagte og antal nye positive tests for yngre (< 50 år)
+Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under 50 år.
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_young.png)
+
+
+
 
 
 
