@@ -153,7 +153,34 @@ ggplot(plot_data, aes(epiweek(Date) - 1, value)) +
         axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
         axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
   
-ggsave("../figures/all_muni_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
+
+# Figur: Positiv vs testede - alle kommuner, ugenumre------------------
+
+plot_data <- muni_df_wk %>%
+  filter(Date > as.Date("2020-07-01")) %>%
+  mutate(Pos_diff = Pos_diff * 100) %>%
+  pivot_longer(cols = c(Pos_diff, Testede_diff), names_to = "variable", values_to = "value")
+
+ggplot(plot_data, aes(epiweek(Date) - 1, value)) + 
+  geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
+  facet_wrap(~`Kommune_(navn)`, scales = "free") +
+  scale_color_discrete(name = "", labels = c("Positive", "Testede")) +
+  scale_y_continuous(
+    name = "Testede",
+    sec.axis = sec_axis(~./100, name="Positive"),
+    limits = c(0,NA)
+  ) +
+  labs(y = "Positive : Testede", x = "Uge", title = "Positive og testede per uge for alle kommuner") +
+  theme_minimal() + 
+  theme(text = element_text(size=9, family="lato"),
+        legend.text=element_text(size=12, family="lato"),
+        plot.title=element_text(size=14, face="bold"),
+        axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+        axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
+        axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
+
+ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, units = "cm", dpi = 300)
 
 # Figur: Procent - kommuner med over 10 smittede fra juli, ugenumre --------
 
@@ -180,7 +207,31 @@ ggsave("../figures/all_muni_pos_vs_test_july.png", width = 30, height = 20, unit
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
   
-  ggsave("../figures/all_muni_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
+  ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
+  
+  # Figur: Procent - alle kommuner fra juli, ugenumre --------
+  
+  plot_data <- muni_df_wk %>%
+    filter(Date > as.Date("2020-07-01")) %>%
+    mutate(Ratio = Pos_diff/Testede_diff * 100) 
+  
+  
+  ggplot(plot_data, aes(epiweek(Date) - 1, Ratio)) + 
+    geom_bar(stat = "identity", position = "stack", fill = "#FF6666") + 
+    facet_wrap(~`Kommune_(navn)`, scales = "free") +
+    scale_y_continuous(
+      limits = c(0,8)
+    ) +
+    labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for alle kommuner") +
+    theme_minimal() + 
+    theme(text = element_text(size=9, family="lato"),
+          legend.text=element_text(size=12, family="lato"),
+          plot.title=element_text(size = 14, face="bold"),
+          axis.title.y = element_text(size=12, family="lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+          axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
+          axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
+  
+  ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm", dpi = 300)
  
  
   # MUNICIPALITY arrange weekly - wednesday for dates from may -----------------------------------------------------

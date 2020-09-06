@@ -27,12 +27,12 @@ De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurve
 
 
 ### Dagligt antal nye positive tests
-Plottet viser antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+Plottet viser antallet af nye positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
 
 ### Dagligt antal testede og antal nye positive tests
-Plottet viser det total antal testede personer og antallet af positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+Plottet viser det total antal testede personer og antallet af nye positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_2_tests.png) 
 
@@ -72,14 +72,19 @@ Plottet viser det ugentlige antal nye positive tests og antal testede for kommun
 
 Plottet opdateres på mandage. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pos_vs_test_july.png) 
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pos_vs_test_july.png). 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
 
 ### Ugentlig procentdel positive tests for hver kommune (kommuner med flest smittede)
 Plottet viser den ugentlige procentdel af positive tests for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 Plottet opdateres på mandage.
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_pct_july.png) 
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pct_july.png). 
+
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
 ### Ugentlig procentdel positive tests for hver kommune (alle kommuner)
 Plottet viser den ugentlige procentdel af positive tests for alle kommuner. 
