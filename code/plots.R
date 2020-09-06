@@ -95,7 +95,7 @@ plot(tests$Date, tests$Tested,
      las = 1,
      col = rgb(red = 0, green = 0, blue = 0, alpha = 0.25))
 
-mtext(text = "Dagligt antal udførte tests",
+mtext(text = "Dagligt antal testede",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 

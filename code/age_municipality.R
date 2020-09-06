@@ -421,10 +421,11 @@ plot_data <- data %>%
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) + 
   scale_fill_discrete(name = "", labels = c("Pos over 50 år", "Nyindlagte")) + 
-  labs(y = "Antal", x = "Dato") + 
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede ældre vs. total nyindlagte") + 
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
+        plot.title=element_text(face="bold"),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -441,10 +442,11 @@ plot_data <- data %>%
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) + 
   scale_fill_discrete(name = "", labels = c("Pos under 50 år", "Nyindlagte")) + 
-  labs(y = "Antal", x = "Dato") + 
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede yngre vs. total nyindlagte") + 
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
+        plot.title=element_text(face="bold"),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -458,10 +460,11 @@ plot_data <- data %>%
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) + 
   scale_fill_discrete(name = "Alder", labels = c("Over 50 år", "Under 50 år")) + 
-  labs(y = "Antal", x = "Dato") + 
-  scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive tests for ældre og yngre") + 
+  #scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
   theme(text = element_text(size=11, family="lato"),
+        plot.title=element_text(face="bold"),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
@@ -475,10 +478,11 @@ plot_data <- data %>%
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "fill", aes(fill = variable)) + 
   scale_fill_discrete(name = "Alder", labels = c("Over 50 år", "Under 50 år")) + 
-  labs(y = "Antal", x = "Dato") + 
-  scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
+  labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positive tests mellem ældre og yngre") + 
+  #scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
-  theme(text = element_text(size=14, family="lato"),
+  theme(text = element_text(size=11, family="lato"),
+        plot.title=element_text(face="bold"),
         axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
         axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
 

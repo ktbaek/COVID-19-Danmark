@@ -86,16 +86,11 @@ For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/C
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positive tests for hver kommune (alle kommuner)
-Plottet viser den ugentlige procentdel af positive tests for alle kommuner. 
+### Ugentlig procentdel positive tests eller incidens for hver kommune (alle kommuner)
+Venstre plot viser den ugentlige procentdel af positive tests for alle kommuner. Højre plot viser det ugentlige antal nye positive tests per 100.000 indbyggere for alle kommuner. 
 
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/>
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
 
-
-### Ugentlig incidens for hver kommune (alle kommuner)
-Plottet viser det ugentlige antal nye positive tests per 100.000 indbyggere for alle kommuner. 
-
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
 Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det ene plot viser de absolutte antal positive, det andet viser andelen. 
