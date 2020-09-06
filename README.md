@@ -9,13 +9,13 @@ De datasæt der er brugt her er:
 - Antal testede og antal positive tests per aldersgruppe for hele landet og per kommune
 - Antal nyindlagte og antal døde for hele landet
 
-Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. På de grafer der inkluderer testdata er de seneste to dage derfor ikke medtaget.   
+Der går typisk 2-3 dage før testdata for de seneste dage er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget.   
 
 Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
 ## Terminologi
 #### Antal positive tests
-Antallet af positive tests omtales også som 'antallet af konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* bare som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
+Antallet af positive tests omtales også som 'antallet af konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
 
 #### Procentdel positive tests
 Procentdel positive tests angiver den procentvise andel af positive tests ud af hvor mange der er testet i alt. Omtales også som positivraten eller positivandelen.
@@ -96,6 +96,15 @@ Plottet viser den ugentlige procentdel af positive tests for alle kommuner.
 Plottet viser det ugentlige antal nye positive tests per 100.000 indbyggere for alle kommuner. 
 
 <img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
+
+### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
+Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det ene plot viser de absolutte antal positive, det andet viser andelen. 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_stack.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_fill.png)
+
+
+
 
 
 
