@@ -69,11 +69,9 @@ Plottet sammenligner antal nyindlagte med procentdelen af positive tests.
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png) 
 
 ### Kontakttallet
-SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Plottene viser kontakttallene sammenlignet med hhv. antal positive tests, procent positive tests, og antal nyindlagte. 
+SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Plottene viser kontakttallene sammenlignet med hhv. antal positive tests og antal nyindlagte. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pos.png)
-
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pct.png)
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_admitted.png)
 
