@@ -33,7 +33,7 @@ Plottet viser antallet af nye positive tests for hele landet. Den optrukne linje
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
 
-### Dagligt antal testede og antal nye positive tests
+### Dagligt antal testede
 Plottet viser det total antal testede personer og antallet af nye positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_2_tests.png) 
