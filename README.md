@@ -154,7 +154,7 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 
 De ugentlige data er opgjort om onsdagen.
 
-``SSI datasæt: 'Cases_by_age'``
+``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_old.png)
 
@@ -163,7 +163,7 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 
 De ugentlige data er opgjort om onsdagen.
 
-``SSI datasæt: 'Cases_by_age'``
+``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_young.png)
 
