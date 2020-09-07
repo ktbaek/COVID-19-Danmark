@@ -89,9 +89,10 @@ Plottet viser det ugentlige antal nye positive tests og antal testede for kommun
 
 De ugentlige data er opgjort om mandagen. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
+``SSI datasæt: 'Municipality_test_pos'``
+
 For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pos_vs_test_july.png). 
 
-``SSI datasæt: 'Municipality_test_pos'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
 
@@ -100,9 +101,11 @@ Plottet viser den ugentlige procentdel af positive tests for kommuner som på et
 
 De ugentlige data er opgjort om mandagen.
 
+``SSI datasæt: 'Municipality_test_pos'``
+
 For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pct_july.png). 
 
-``SSI datasæt: 'Municipality_test_pos'``
+
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
