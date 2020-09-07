@@ -111,7 +111,7 @@ For at se dette plot startende 1. april, klik [her](https://github.com/ktbaek/CO
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positive tests eller incidens for hver kommune (alle kommuner)
+### Ugentlig procentdel positive tests for hver kommune (alle kommuner)
 Plottet viser den ugentlige procentdel af positive tests for alle kommuner.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
