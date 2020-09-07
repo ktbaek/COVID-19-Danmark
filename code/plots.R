@@ -5,11 +5,13 @@ Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
 today <- "2020-09-04"
 
-admitted <- read_csv2("../data/SSIdata_200904/Newly_admitted_over_time.csv")
-deaths <- read_csv2("../data/SSIdata_200904/Deaths_over_time.csv")
-tests <- read_csv2("../data/SSIdata_200904/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200904/Rt_cases_2020_09_01.csv")
-rt_admitted <- read_csv2("../data/SSIdata_200904/Rt_indlagte_2020_09_01.csv")
+today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
+
+admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
+deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
+tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
+rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_01.csv"))
+rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_01.csv"))
 
 tests %<>% 
   mutate(Date = as.Date(Date)) %>%

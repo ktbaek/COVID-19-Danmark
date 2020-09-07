@@ -87,11 +87,13 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 ### Ugentligt antal nye positive tests og antal testede for hver kommune (kommuner med flest smittede)
 Plottet viser det ugentlige antal nye positive tests og antal testede for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
-De ugentlige data er opgjort om mandagen. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
+Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
-``SSI datasæt: 'Municipality_test_pos'``
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
 For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pos_vs_test_july.png). 
+
+For at se dette plot startende 1. april, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_april.png).
 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
@@ -99,24 +101,22 @@ For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/C
 ### Ugentlig procentdel positive tests for hver kommune (kommuner med flest smittede)
 Plottet viser den ugentlige procentdel af positive tests for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
-De ugentlige data er opgjort om mandagen.
-
-``SSI datasæt: 'Municipality_test_pos'``
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
 For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_all_pct_july.png). 
+
+For at se dette plot startende 1. april, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_april.png).
 
 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
 ### Ugentlig procentdel positive tests eller incidens for hver kommune (alle kommuner)
-Venstre plot viser den ugentlige procentdel af positive tests for alle kommuner. Højre plot viser det ugentlige antal nye positive tests per 100.000 indbyggere for alle kommuner. 
+Plottet viser den ugentlige procentdel af positive tests for alle kommuner.  
 
-De ugentlige data er opgjort om onsdagen.
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-``SSI datasæt: 'Municipality_test_pos'``
-
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/>
 
 ### Ugentligt antal nye positive tests og testede for hver aldersgruppe
 Plottet viser det ugentlige antal nye positive tests og antal testede for hver aldersgruppe. 

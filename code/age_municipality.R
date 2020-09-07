@@ -2,6 +2,9 @@ library(tidyverse)
 library(magrittr)
 library(lubridate)
 
+Sys.setlocale("LC_ALL", "da_DK.UTF-8")
+
+today <- "2020-09-04"
 
 # download SSI files -----------------------------------------------------------
 
@@ -37,6 +40,10 @@ ssi_filer %<>% mutate(files = paste0(X1, ".zip"),
 ssi_filer <- ssi_filer[!(ssi_filer$date=="200728"),] #indeholder ikke aldersgruppe data
 ssi_filer <- ssi_filer[!(ssi_filer$date=="200622"),] #indeholder ikke aldersgruppe data
 
+ssi_filer_date <- ssi_filer$date
+
+ssi_filer_date %<>% c(ssi_filer_date, "200903", "200904")
+
 
 # read and tidy AGE data --------------------------------------------------
 
@@ -63,7 +70,7 @@ age_df %<>%
   arrange(date_of_file) %>%
   mutate(Date = as.Date(Date))
 
-abs(diff(unique(week_df$Date))) #test
+abs(diff(unique(age_df$Date))) #test
 
 
 # AGE arrange weekly ------------------------------------------------------
@@ -79,72 +86,120 @@ week_df %<>% bind_rows(early_data) %>% arrange(Date)
 
 # read and tidy MUNICIPALITY data -----------------------------------------
 
-read_muni_csv <- function(x) {
-  file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
-  file %<>% mutate(date_of_file = x)   %>% 
-    mutate(Date = paste0("2020-", str_sub(date_of_file,3,4), "-", str_sub(date_of_file,5,6))) 
-  
-  return(file)
-  
-}
+# read_muni_csv <- function(x) {
+#   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
+#   file %<>% mutate(date_of_file = x)   %>%
+#     mutate(Date = paste0("2020-", str_sub(date_of_file,3,4), "-", str_sub(date_of_file,5,6)))
+# 
+#   return(file)
+# 
+# }
+# 
+# csv_list <- lapply(ssi_filer$date, read_muni_csv)
+# 
+# muni_df <- bind_rows(csv_list)
+# 
+# muni_df %<>%
+#   mutate(Positive = ifelse(`Antal_bekræftede_COVID-19` == "<10", 10, `Antal_bekræftede_COVID-19`)) %>%
+#   mutate(Positive = as.numeric(gsub("\\.", "", Positive))) %>%
+#   mutate(Date = as.Date(Date)) %>%
+#   select(-date_of_file) %>%
+#   arrange(Date)
+# 
+# muni_df <- bind_cols(muni_df, data.frame("Dage_siden_sidst" = rep(c(0,abs(diff(unique(muni_df$Date)))), each = 99)))
+# 
+# muni_df %<>%
+#   group_by(`Kommune_(id)`) %>%
+#   mutate(Pos_diff = c(0,diff(Positive)),
+#          Testede_diff = c(0,diff(Antal_testede))) %>%
+#   ungroup()
+# 
+# 
+# muni_df %>% write.csv2("../data/municipality_over_time_combined.csv")
 
-csv_list <- lapply(ssi_filer$date, read_muni_csv)
+today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
-muni_df <- bind_rows(csv_list)
+muni_pos <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_cases_time_series.csv"))
+muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_tested_persons_time_series.csv"))
 
-muni_df %<>% 
-  mutate(Positive = ifelse(`Antal_bekræftede_COVID-19` == "<10", 10, `Antal_bekræftede_COVID-19`)) %>%
-  mutate(Positive = as.numeric(gsub("\\.", "", Positive))) %>%
-  mutate(Date = as.Date(Date)) %>%
-  select(-date_of_file) %>%
-  arrange(Date)
+muni_pos %<>%
+  mutate(Date = as.Date(date_sample)) %>%
+  select(-date_sample) %>%
+  pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Positive") %>%
+  mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
-muni_df <- bind_cols(muni_df, data.frame("Dage_siden_sidst" = rep(c(0,abs(diff(unique(muni_df$Date)))), each = 99)))
+muni_tested %<>%
+  mutate(Date = as.Date(PrDate_adjusted)) %>%
+  select(-PrDate_adjusted, -X101) %>%
+  pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Tested") %>%
+  mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
-muni_df %<>%
-  group_by(`Kommune_(id)`) %>%
-  mutate(Pos_diff = c(0,diff(Positive)),
-         Testede_diff = c(0,diff(Antal_testede))) %>%
-  ungroup() 
+muni_all <- muni_tested %>% full_join(muni_pos, by = c("Kommune", "Date")) %>%
+  filter(Date > as.Date("2020-02-29"))
 
+abs(diff(unique(muni_all$Date))) #test for daily continuity
 
-muni_df %>% write.csv2("../data/municipality_over_time_combined.csv")
+#test that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municaplity files from SSI
+tests_check <- tests %>% 
+  select(Date, NewPositive, Tested)
+
+muni_tests_check <- muni_all %>% 
+  group_by(Date) %>%
+  summarize(Pos_total = sum(Positive, na.rm = TRUE),
+            Tested_total = sum(Tested, na.rm = TRUE)) %>%
+  ungroup() %>%
+  full_join(tests_check, by = "Date")
+
+#Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases. I don't know why, ask SSI. 
 
 
 # MUNICIPALITY arrange weekly - monday for weeknumbers -----------------------------------------------------
 
+# muni_df_wk <- muni_df %>%
+#   filter(wday(Date) == 2) #mondays  consistently appears from july
+# 
+# muni_df_wk %<>%
+#   group_by(`Kommune_(id)`) %>%
+#   mutate(Pos_diff = c(0,diff(Positive)),
+#          Testede_diff = c(0,diff(Antal_testede))) %>%
+#   ungroup() 
 
-muni_df_wk <- muni_df %>%
-  filter(wday(Date) == 2) #mondays  consistently appears from july
+muni_all %<>%
+  filter(Date < as.Date(today)- 1) #remove last two days
 
-abs(diff(unique(muni_df_wk$Date))) #test
+muni_wk <- muni_all %>%
+  mutate(Week = isoweek(Date)) %>%
+  mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
 
-muni_df_wk %<>%
-  group_by(`Kommune_(id)`) %>%
-  mutate(Pos_diff = c(0,diff(Positive)),
-         Testede_diff = c(0,diff(Antal_testede))) %>%
-  ungroup() 
+muni_wk %<>%
+  filter(Week < isoweek(as.Date(today))) %>% #remove current week
+  group_by(Week, Kommune) %>%
+  mutate(Positive_wk = sum(Positive, na.rm = TRUE),
+            Tested_wk = sum(Tested, na.rm = TRUE)) %>%
+  ungroup() %>%
+  select(-Date, -Positive, -Tested) %>%
+  distinct()
 
 # Figur: Positiv vs testede - kommuner med over 10 smittede fra juli, ugenumre------------------
 
-plot_data <- muni_df_wk %>%
-  filter(Date > as.Date("2020-07-01")) %>%
-  group_by(`Kommune_(id)`) %>%
-  filter(max(Pos_diff) > 10) %>%
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  group_by(Kommune) %>%
+  filter(max(Positive_wk) > 10) %>%
   ungroup() %>%
-  mutate(Pos_diff = Pos_diff * 100) %>%
-  pivot_longer(cols = c(Pos_diff, Testede_diff), names_to = "variable", values_to = "value")
+  mutate(Positive_wk = Positive_wk * 100) %>%
+  pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(epiweek(Date) - 1, value)) + 
+ggplot(plot_data, aes(Week, value)) + 
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
-  facet_wrap(~`Kommune_(navn)`, scales = "free") +
+  facet_wrap(~Kommune, scales = "free") +
   scale_color_discrete(name = "", labels = c("Positive", "Testede")) +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~./100, name="Positive"),
     limits = c(0,NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Positive og testede per uge for kommuner med over 10 ugentligt positive") +
+  labs(y = "Positive : Testede", x = "Uge", title = "Nye positive og testede per uge for kommuner med flest positive per uge") +
   theme_minimal() + 
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
@@ -158,21 +213,21 @@ ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units
 
 # Figur: Positiv vs testede - alle kommuner, ugenumre------------------
 
-plot_data <- muni_df_wk %>%
-  filter(Date > as.Date("2020-07-01")) %>%
-  mutate(Pos_diff = Pos_diff * 100) %>%
-  pivot_longer(cols = c(Pos_diff, Testede_diff), names_to = "variable", values_to = "value")
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  mutate(Positive_wk = Positive_wk * 100) %>%
+  pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(epiweek(Date) - 1, value)) + 
+ggplot(plot_data, aes(Week, value)) + 
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
-  facet_wrap(~`Kommune_(navn)`, scales = "free") +
+  facet_wrap(~Kommune, scales = "free") +
   scale_color_discrete(name = "", labels = c("Positive", "Testede")) +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~./100, name="Positive"),
     limits = c(0,NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Positive og testede per uge for alle kommuner") +
+  labs(y = "Positive : Testede", x = "Uge", title = "Nye positive og testede per uge for alle kommuner") +
   theme_minimal() + 
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
@@ -186,21 +241,21 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
 
 # Figur: Procent - kommuner med over 10 smittede fra juli, ugenumre --------
 
-  plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-07-01")) %>%
-    group_by(`Kommune_(id)`) %>%
-    filter(max(Pos_diff) > 10) %>%
+  plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+    group_by(Kommune) %>%
+    filter(max(Positive_wk) > 10) %>%
     ungroup() %>%
-      mutate(Ratio = Pos_diff/Testede_diff * 100) 
+    mutate(Ratio = Positive_wk/Tested_wk * 100) 
   
   
-  ggplot(plot_data, aes(epiweek(Date) - 1, Ratio)) + 
+  ggplot(plot_data, aes(Week, Ratio)) + 
     geom_bar(stat = "identity", position = "stack", fill = "#FF6666") + 
-    facet_wrap(~`Kommune_(navn)`, scales = "free") +
+    facet_wrap(~Kommune, scales = "free") +
     scale_y_continuous(
-      limits = c(0,8)
+      limits = c(0,5)
     ) +
-    labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for kommuner med over 10 ugentligt positive") +
+    labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for kommuner med flest positive per uge") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -214,16 +269,16 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
   
   # Figur: Procent - alle kommuner fra juli, ugenumre --------
   
-  plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-07-01")) %>%
-    mutate(Ratio = Pos_diff/Testede_diff * 100) 
+  plot_data <- muni_wk %>%
+    filter(Week_end_Date > as.Date("2020-07-07")) %>%
+    mutate(Ratio = Positive_wk/Tested_wk * 100)  
   
   
-  ggplot(plot_data, aes(epiweek(Date) - 1, Ratio)) + 
+  ggplot(plot_data, aes(Week, Ratio)) + 
     geom_bar(stat = "identity", position = "stack", fill = "#FF6666") + 
-    facet_wrap(~`Kommune_(navn)`, scales = "free") +
+    facet_wrap(~Kommune, scales = "free") +
     scale_y_continuous(
-      limits = c(0,8)
+      limits = c(0,5)
     ) +
     labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for alle kommuner") +
     theme_minimal() + 
@@ -236,43 +291,28 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
   
   ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm", dpi = 300)
- 
- 
-  # MUNICIPALITY arrange weekly - wednesday for dates from may -----------------------------------------------------
+
   
+   # Figur: Positiv vs testede - kommuner med over 10 smittede fra april, datoer ------------------
   
-  muni_df_wk <- muni_df %>%
-    filter(wday(Date) == 4) #wed consistently appears from may
-  
-  abs(diff(unique(muni_df_wk$Date))) #test
-  
-  muni_df_wk %<>%
-    group_by(`Kommune_(id)`) %>%
-    mutate(Pos_diff = c(0,diff(Positive)),
-           Testede_diff = c(0,diff(Antal_testede))) %>%
-    ungroup()  
-  
-  
-   # Figur: Positiv vs testede - kommuner med over 10 smittede fra maj, datoer ------------------
-  
-  plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-05-10")) %>%
-    group_by(`Kommune_(id)`) %>%
-    filter(max(Pos_diff) > 10) %>%
+  plot_data <- muni_wk %>%
+    filter(Week_end_Date > as.Date("2020-04-07")) %>%
+    group_by(Kommune) %>%
+    filter(max(Positive_wk) > 10) %>%
     ungroup() %>%
-    mutate(Pos_diff = Pos_diff * 100) %>%
-    pivot_longer(cols = c(Pos_diff, Testede_diff), names_to = "variable", values_to = "value")
+    mutate(Positive_wk = Positive_wk * 100) %>%
+    pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
   
-  ggplot(plot_data, aes(Date, value)) + 
+  ggplot(plot_data, aes(Week_end_Date, value)) + 
     geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
-    facet_wrap(~`Kommune_(navn)`, scales = "free") +
+    facet_wrap(~Kommune, scales = "free") +
     scale_color_discrete(name = "", labels = c("Positive", "Testede")) +
     scale_y_continuous(
       name = "Testede",
       sec.axis = sec_axis(~./100, name="Positive"),
       limits = c(0,NA)
     ) +
-    labs(y = "Positive : Testede", x = "Dato", title = "Positive og testede per uge for kommuner med over 10 ugentligt positive") +
+    labs(y = "Positive : Testede", x = "Dato", title = "Nye positive og testede per uge for kommuner med flest positive per uge") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -282,26 +322,26 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
   
-  ggsave("../figures/all_muni_pos_vs_test_may.png", width = 36, height = 24, units = "cm", dpi = 300)
+  ggsave("../figures/all_muni_pos_vs_test_april.png", width = 42, height = 27, units = "cm", dpi = 300)
 
-  # Figur: Procent - kommuner med over 10 smittede fra maj, datoer --------
+  # Figur: Procent - kommuner med over 10 smittede fra april, datoer --------
 
 
-  plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-05-10")) %>%
-    group_by(`Kommune_(id)`) %>%
-    filter(max(Pos_diff) > 10) %>%
+  plot_data <- muni_wk %>%
+    filter(Week_end_Date > as.Date("2020-04-07")) %>%
+    group_by(Kommune) %>%
+    filter(max(Positive_wk) > 10) %>%
     ungroup() %>%
-    mutate(Ratio = Pos_diff/Testede_diff * 100) 
+    mutate(Ratio = Positive_wk/Tested_wk * 100) 
   
   
-  ggplot(plot_data, aes(Date, Ratio)) + 
+  ggplot(plot_data, aes(Week_end_Date, Ratio)) + 
     geom_bar(stat = "identity", position = "stack", fill = "#FF6666") + 
-    facet_wrap(~`Kommune_(navn)`, scales = "free") +
+    facet_wrap(~Kommune, scales = "free") +
     scale_y_continuous(
-      limits = c(0,8)
+      limits = c(0,20)
     ) +
-    labs(y = "Procent positive", x = "Dato", title = "Procent positive per uge for kommuner med over 10 ugentligt positive") +
+    labs(y = "Procent positive", x = "Dato", title = "Procent positive per uge for kommuner med flest positive per uge") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -311,22 +351,22 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0))) 
   
-  ggsave("../figures/all_muni_pct_may.png", width = 32, height = 24, units = "cm", dpi = 300)
+  ggsave("../figures/all_muni_pct_april.png", width = 32, height = 24, units = "cm", dpi = 300)
   
 # Figur: Procent - alle kommuner, heatmap ----------
 
   
-    plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-05-10")) %>%
-    mutate(Pos_diff = ifelse(Pos_diff < 0, 0, Pos_diff)) %>%
-    mutate(Ratio = Pos_diff/Testede_diff * 100) %>%
-   mutate(`Kommune_(navn)`=factor(`Kommune_(navn)`,levels=rev(sort(unique(`Kommune_(navn)`)))))
+  plot_data <- muni_wk %>%
+    filter(Week_end_Date > as.Date("2020-04-07")) %>%
+    mutate(Ratio = Positive_wk/Tested_wk * 100) %>%
+    mutate(Kommune=factor(Kommune,levels=rev(sort(unique(Kommune)))))
   
-  ggplot(plot_data, aes(Date, `Kommune_(navn)`, fill = Ratio)) + 
+  
+  ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) + 
     geom_tile(colour="white",size=0.25) + 
     coord_fixed(ratio = 7) +
     labs(x="",y="", title="Procent positive tests per udførte tests") +
-    scale_fill_continuous(name = "Procent",low =  "#00AFBB", high = "#FC4E07") +
+    scale_fill_continuous(name = "Procent",low =  "#00AFBB", high = "#FC4E07", na.value = "White") +
     theme_light() + 
     theme(plot.background=element_blank(),
           panel.border=element_blank(),
@@ -343,29 +383,28 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
 # Figur: Incidens - alle kommuner, heatmap ---------------------------------
 
   
-  plot_data <- muni_df_wk %>%
-    filter(Date > as.Date("2020-05-10")) %>%
-    mutate(Pos_diff = ifelse(Pos_diff < 0, 0, Pos_diff)) %>%
-    mutate(Ratio = Pos_diff/Befolkningstal * 100000) %>%
-    mutate(`Kommune_(navn)`=factor(`Kommune_(navn)`,levels=rev(sort(unique(`Kommune_(navn)`)))))
-  
-  ggplot(plot_data, aes(Date, `Kommune_(navn)`, fill = Ratio)) + 
-    geom_tile(colour="white",size=0.25) + 
-    coord_fixed(ratio = 7) +
-    labs(x="",y="", title="Antal positive tests per 100.000 indbyggere") +
-    scale_fill_continuous(name = "Antal/100.000",low =  "#00AFBB", high = "#FC4E07") +
-    theme_light() + 
-    theme(plot.background=element_blank(),
-          panel.border=element_blank(),
-          axis.ticks = element_blank(),
-          plot.title=element_text(size = 14, hjust=0.5, face="bold"),
-          text = element_text(size=13, family="lato"),
-          legend.text=element_text(size=12, family="lato"),
-          axis.title.y = element_text(size=12, family="lato"),
-          axis.title.x = element_text(size=12, family="lato"))
-  
-
-  ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 17, height = 50, units = "cm", dpi = 300)
+  # plot_data <- muni_wk %>%
+  #   filter(Week_end_Date > as.Date("2020-04-07")) %>%
+  #   mutate(Ratio = Pos_diff/Befolkningstal * 100000) %>%
+  #   mutate(`Kommune_(navn)`=factor(`Kommune_(navn)`,levels=rev(sort(unique(`Kommune_(navn)`)))))
+  # 
+  # ggplot(plot_data, aes(Date, `Kommune_(navn)`, fill = Ratio)) + 
+  #   geom_tile(colour="white",size=0.25) + 
+  #   coord_fixed(ratio = 7) +
+  #   labs(x="",y="", title="Antal positive tests per 100.000 indbyggere") +
+  #   scale_fill_continuous(name = "Antal/100.000",low =  "#00AFBB", high = "#FC4E07") +
+  #   theme_light() + 
+  #   theme(plot.background=element_blank(),
+  #         panel.border=element_blank(),
+  #         axis.ticks = element_blank(),
+  #         plot.title=element_text(size = 14, hjust=0.5, face="bold"),
+  #         text = element_text(size=13, family="lato"),
+  #         legend.text=element_text(size=12, family="lato"),
+  #         axis.title.y = element_text(size=12, family="lato"),
+  #         axis.title.x = element_text(size=12, family="lato"))
+  # 
+  # 
+  # ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 17, height = 50, units = "cm", dpi = 300)
 
 # read and tidy ADMITTED data --------------------------------------------------
 
@@ -550,37 +589,5 @@ ggplot(plot_data, aes(Date, Ratio)) +
         axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
 
 ggsave("../figures/age_groups_pct.png", width = 22, height = 14, units = "cm", dpi = 300)
-
-
-
-
-
-
-
-
-
-
-
-
-# Figur: Pct nyindlagt per positive, fra marts -----------------------------------
-
-plot_data <- data %>%
-  pivot_wider(names_from = variable, values_from = value) %>%
-  mutate(ratio_young = admitted/young,
-         ratio_old = admitted/old) %>%
-  select(-admitted, -old, - young) %>%
-  pivot_longer(cols = c(ratio_young, ratio_old), names_to = "variable", values_to = "value")
-
-ggplot(plot_data, aes(Date, value)) + 
-  geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) + 
-  scale_color_discrete(name = "Alder", labels = c("Over 50 år", "Under 50 år")) + 
-  labs(y = "Nyindlagte : positive", x = "Dato") + 
-  theme_minimal() + 
-  theme(text = element_text(size=11, family="lato"),
-        axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-        axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0)))
-
-ggsave("../figures/age_group_pos_ratio_admitted.png", width = 17, height = 12, units = "cm", dpi = 300)
-
 
 
