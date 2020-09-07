@@ -172,7 +172,7 @@ muni_wk <- muni_all %>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
 
 muni_wk %<>%
-  filter(Week < isoweek(as.Date(today))) %>% #remove current week
+  filter(Week < isoweek(as.Date(today) - 1)) %>% #remove current week
   group_by(Week, Kommune) %>%
   mutate(Positive_wk = sum(Positive, na.rm = TRUE),
             Tested_wk = sum(Tested, na.rm = TRUE)) %>%
