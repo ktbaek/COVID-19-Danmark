@@ -363,7 +363,7 @@ points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = rgb(red = 
 points(tests$Date, tests$running_avg_pos/170, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 
 text(x = as.Date("2020-05-23"), y = 0, labels = "Antal positive tests", col = "red", cex = 1.4, font = 2)
-text(x = as.Date("2020-06-18"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-06-14"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
@@ -494,7 +494,7 @@ plot(tests$Date, rep(600, length(tests$Date)),
      las = 1,
      col = "white")
 
-mtext(text = "Positive tests vs. nyindlagte",
+mtext(text = "Nye positive tests vs. nyindlagte",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -528,7 +528,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = rgb(red = 
 segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
 
 text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 250, labels = "Positive tests", col = "red", cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 250, labels = "Nye positive tests", col = "red", cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
@@ -546,7 +546,7 @@ plot(tests$Date, rep(600, length(tests$Date)),
      las = 1,
      col = "white")
 
-mtext(text = "Procent positive tests vs. nyindlagte",
+mtext(text = "Procent nye positive tests vs. nyindlagte",
       side = 3,#side 1 = bottom
       line = 1, 
       cex = 1.5, 
@@ -580,7 +580,7 @@ segments(tests$Date, 0, tests$Date, tests$pct_confirmed*10, lwd = 2, col = rgb(r
 segments(admitted$Dato, 0, admitted$Dato, -admitted$Total, lwd = 2, col = rgb(red = 0, green = 0.4, blue = 0.6, alpha = 0.9))
 
 text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = "#2D708EFF", cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 70, labels = "Andel positive tests", col = "orange", cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today)-2, y = 70, labels = "Andel nye positive tests", col = "orange", cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
