@@ -3,7 +3,7 @@ library(magrittr)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-09-04"
+today <- "2020-09-07"
 
 today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 

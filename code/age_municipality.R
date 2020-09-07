@@ -4,7 +4,7 @@ library(lubridate)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-09-04"
+today <- "2020-09-07"
 
 # download SSI files -----------------------------------------------------------
 
@@ -42,7 +42,7 @@ ssi_filer <- ssi_filer[!(ssi_filer$date=="200622"),] #indeholder ikke aldersgrup
 
 ssi_filer_date <- ssi_filer$date
 
-ssi_filer_date %<>% c(ssi_filer_date, "200903", "200904")
+ssi_filer_date %<>% c(ssi_filer_date, "200903", "200904", "200907")
 
 
 # read and tidy AGE data --------------------------------------------------
