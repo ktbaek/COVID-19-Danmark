@@ -1,5 +1,5 @@
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
-Senest opdateret 4. september 2020. 
+Senest opdateret 4. september 2020 efter kl 14. 
 
 ## Data
 
