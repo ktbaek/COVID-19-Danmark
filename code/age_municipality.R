@@ -322,7 +322,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0)))
   
-  ggsave("../figures/all_muni_pos_vs_test_april.png", width = 42, height = 27, units = "cm", dpi = 300)
+  ggsave("../figures/muni_10_pos_vs_test_april.png", width = 42, height = 27, units = "cm", dpi = 300)
 
   # Figur: Procent - kommuner med over 10 smittede fra april, datoer --------
 
@@ -351,7 +351,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
           axis.title.y.right = element_text(size=12, family="lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
           axis.title.x = element_text(size=12, family="lato", margin = margin(t = 20, r = 0, b = 0, l = 0))) 
   
-  ggsave("../figures/all_muni_pct_april.png", width = 32, height = 24, units = "cm", dpi = 300)
+  ggsave("../figures/muni_10_pct_april.png", width = 32, height = 24, units = "cm", dpi = 300)
   
 # Figur: Procent - alle kommuner, heatmap ----------
 
