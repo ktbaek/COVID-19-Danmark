@@ -3,6 +3,7 @@ library(magrittr)
 library(lubridate)
 library(scales)
 library(colorspace)
+library(ggthemes)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
