@@ -84,7 +84,7 @@ Plottet sammenligner antal nyindlagte med procentdelen af positive tests.
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pos.png), [procent positive tests](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_admitted.png). 
 
 
-### Ugentligt antal nye positive tests og antal testede for hver kommune (kommuner med flest smittede)
+### Ugentligt antal nye positive tests og antal testede for hver kommune
 Plottet viser det ugentlige antal nye positive tests og antal testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
@@ -100,7 +100,7 @@ For at se de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
 
-### Ugentlig procentdel positive tests for hver kommune (kommuner med flest smittede)
+### Ugentlig procentdel positive tests for hver kommune
 Plottet viser den ugentlige procentdel af positive tests for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
@@ -115,7 +115,7 @@ For at se de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positive tests for hver kommune (alle kommuner)
+### Ugentlig procentdel positive tests for hver kommune (heatmap)
 Plottet viser den ugentlige procentdel af positive tests for alle kommuner.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
