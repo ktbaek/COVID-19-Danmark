@@ -171,6 +171,53 @@ week_df <- age_df %>%
 
 week_df %<>% bind_rows(early_data) %>% arrange(Date)
 
+# arrange ADMITTED data --------------------------------------------------
+
+date_week <- admitted %>%
+  select(Date, Total) %>%
+  mutate(week = isoweek(Date - 4)) %>%
+  mutate(wed = wday(Date) == 4) %>%
+  filter(Date > as.Date("2020-03-11")) %>%
+  filter(wed) %>%
+  select(Date, week)
+
+week_admitted <- admitted %>%
+  mutate(week = isoweek(Date - 4)) %>%
+  filter(Date > as.Date("2020-03-11")) %>%
+  select(-Date) %>%
+  full_join(date_week, by = "week") %>%
+  group_by(Date) %>%
+  summarise(value = sum(Total)) %>%
+  ungroup() %>%
+  mutate(variable = "admitted") %>%
+  filter(!Date == "2020-03-18")
+
+
+# Combine AGE, ADMITTED and group into old and young --------------------------------
+
+
+young_group <- c("0-9", "10-19", "20-29", "30-39", "40-49") # , "50-59", "60-69")
+
+wk_df_group <- week_df %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  mutate(less_than = ifelse(Aldersgruppe %in% young_group, TRUE, FALSE)) %>%
+  select(-Aldersgruppe) %>%
+  group_by(less_than, Date) %>%
+  summarise_all(sum) %>%
+  mutate(variable = ifelse(less_than, "young", "old")) %>%
+  ungroup() %>%
+  select(-less_than, -date_of_file)
+
+wk_df_group %<>%
+  group_by(variable) %>%
+  mutate(value = c(0, diff(positive))) %>%
+  ungroup() %>%
+  select(-positive, -Antal_testede)
+
+age_data <- bind_rows(week_admitted, wk_df_group)
+
+
+
 # arrange MUNICIPALITY data weekly -----------------------------------------------------
 
 muni_all %<>%

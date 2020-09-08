@@ -85,7 +85,7 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 
 ### Ugentligt antal nye positive tests og antal testede for hver kommune (kommuner med flest smittede)
-Plottet viser det ugentlige antal nye positive tests og antal testede for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
+Plottet viser det ugentlige antal nye positive tests og antal testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
@@ -101,7 +101,7 @@ For at se de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
 
 ### Ugentlig procentdel positive tests for hver kommune (kommuner med flest smittede)
-Plottet viser den ugentlige procentdel af positive tests for kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
+Plottet viser den ugentlige procentdel af positive tests for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
