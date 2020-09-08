@@ -1,8 +1,3 @@
-library(tidyverse)
-library(magrittr)
-library(lubridate)
-library(scales)
-library(colorspace)
 
 today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
