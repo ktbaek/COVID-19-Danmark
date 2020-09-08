@@ -95,7 +95,7 @@ For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/C
 
 For at se dette plot startende 1. april, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_april.png).
 
-For at se de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_daily.png).
+For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_daily.png).
 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
@@ -109,7 +109,7 @@ For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/C
 
 For at se dette plot startende 1. april, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_april.png).
 
-For at se de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_daily.png).
+For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_daily.png).
 
 
 
