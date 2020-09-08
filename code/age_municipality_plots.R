@@ -37,7 +37,7 @@ ggplot(plot_data, aes(Week, value)) +
     sec.axis = sec_axis(~./100, name="Positive"),
     limits = c(0,NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Nye positive og testede per uge for kommuner med flest positive per uge") +
+  labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
   theme_minimal() + 
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
@@ -49,7 +49,7 @@ ggplot(plot_data, aes(Week, value)) +
   
 ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
 
-# Daglige positiv vs testede - kommuner med over 10 smittede fra aug --------
+# Figur: Daglige positiv vs testede - kommuner med over 10 smittede fra aug --------
 
 plot_data <- muni_all %>%
   filter(Date > as.Date("2020-08-01")) %>%
@@ -61,13 +61,13 @@ ggplot(plot_data, aes(Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 0.8, aes(color = variable)) + 
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_date(date_labels = "%d %b", date_breaks = "1 month") +
+  scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~./100, name="Positive"),
     limits = c(0,NA)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for kommuner med flest positive") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for udvalgte kommuner") +
   theme_minimal() + 
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
@@ -96,7 +96,7 @@ ggplot(plot_data, aes(Week, value)) +
     sec.axis = sec_axis(~./100, name="Positive"),
     limits = c(0,NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Nye positive og testede per uge for alle kommuner") +
+  labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for alle kommuner") +
   theme_minimal() + 
   theme(text = element_text(size=9, family="lato"),
         legend.text=element_text(size=12, family="lato"),
@@ -124,7 +124,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     scale_y_continuous(
       limits = c(0,5)
     ) +
-    labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for kommuner med flest positive per uge") +
+    labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positive tests for udvalgte kommuner") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -137,7 +137,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
   ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
   
 
-# Daglige procent - kommuner med over 10 smittede fra aug -----------------
+# Figur: Daglige procent - kommuner med over 10 smittede fra aug -----------------
 
  
   
@@ -150,11 +150,11 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
   ggplot(plot_data, aes(Date, Ratio)) + 
     geom_bar(stat = "identity", position = "stack", fill = pct_col) + 
     facet_wrap(~Kommune, scales = "free") +
-    scale_x_date(date_labels = "%d %b", date_breaks = "1 month") +
+    scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
     scale_y_continuous(
       limits = c(0,5)
     ) +
-    labs(y = "Procent positive", x = "Uge", title = "Daglig procent positive for kommuner med flest positive") +
+    labs(y = "Procent positive", x = "Uge", title = "Daglig procent positive tests for udvalgte kommuner") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -179,7 +179,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     scale_y_continuous(
       limits = c(0,5)
     ) +
-    labs(y = "Procent positive", x = "Uge", title = "Procent positive per uge for alle kommuner") +
+    labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positive tests for alle kommuner") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -211,7 +211,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
       sec.axis = sec_axis(~./100, name="Positive"),
       limits = c(0,NA)
     ) +
-    labs(y = "Positive : Testede", x = "Dato", title = "Nye positive og testede per uge for kommuner med flest positive per uge") +
+    labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -240,7 +240,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
     scale_y_continuous(
       limits = c(0,20)
     ) +
-    labs(y = "Procent positive", x = "Dato", title = "Procent positive per uge for kommuner med flest positive per uge") +
+    labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positive tests udvalgte kommuner") +
     theme_minimal() + 
     theme(text = element_text(size=9, family="lato"),
           legend.text=element_text(size=12, family="lato"),
@@ -305,21 +305,18 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
   # 
   # ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 17, height = 50, units = "cm", dpi = 300)
 
-# read and tidy ADMITTED data --------------------------------------------------
-
-admitted <- read_csv2("../data/SSIdata_200903/Newly_admitted_over_time.csv")
+# arrange ADMITTED data --------------------------------------------------
 
 admitted %<>%
-  mutate(Date = as.Date(Dato)) %>%
   select(Date, Total)
 
-date_week <- admitted %>% mutate(week = epiweek(Date - 4)) %>%
+date_week <- admitted %>% mutate(week = isoweek(Date - 4)) %>%
  mutate(wed = wday(Date) == 4) %>%
  filter(Date > as.Date("2020-03-11")) %>%
   filter(wed) %>%
   select(Date, week)
 
-week_admitted <- admitted %>% mutate(week = epiweek(Date - 4)) %>%
+week_admitted <- admitted %>% mutate(week = isoweek(Date - 4)) %>%
   filter(Date > as.Date("2020-03-11")) %>%
   select(-Date) %>%
   full_join(date_week, by = "week") %>%
@@ -364,7 +361,7 @@ plot_data <- data %>%
 
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) + 
-  scale_fill_manual(name = "", labels = c("Pos over 50 år", "Nyindlagte"), values = c(pos_col, admit_col)) + 
+  scale_fill_manual(name = "", labels = c("Pos over 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) + 
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede ældre vs. total nyindlagte") + 
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 
@@ -385,7 +382,7 @@ plot_data <- data %>%
 
 ggplot(plot_data, aes(Date, value)) + 
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) + 
-  scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = c(pos_col, admit_col)) + 
+  scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) + 
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede yngre vs. total nyindlagte") + 
   scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() + 

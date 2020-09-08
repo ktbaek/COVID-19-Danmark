@@ -242,11 +242,11 @@ mtext(text = "Antal",
       cex = 1.4,
       font = 2)
 
-points(deaths$Dato, deaths$Antal_døde,  type = "b", 
+points(deaths$Date, deaths$Antal_døde,  type = "b", 
        pch = 19, cex = 1.2, col = alpha(death_col, alpha = 0.3))
 
 points(admitted$Date, admitted$running_avg, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-points(deaths$Dato, deaths$running_avg, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
+points(deaths$Date, deaths$running_avg, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-05-02"), y = 65, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = 1.4, font = 2)

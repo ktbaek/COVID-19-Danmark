@@ -76,7 +76,10 @@ tests %<>%
   mutate(pct_confirmed = NewPositive/Tested * 100)
 
 deaths %<>% 
-  mutate(Dato = as.Date(Dato)) 
+  mutate(Date = as.Date(Dato)) 
+
+admitted %<>%
+  mutate(Date = as.Date(Dato))
 
 deaths %<>% slice(1:(n()-1)) #exclude summary row
 tests %<>% slice(1:(n()-4)) #exclude last two days that may not be updated AND summary rows
@@ -86,7 +89,8 @@ tests %<>% mutate(running_avg_pct = ra(pct_confirmed),
                   running_avg_pos = ra(NewPositive),
                   running_avg_total = ra(Tested))
 
-admitted %<>% mutate(running_avg = ra(Total)) %>% rename(Date = Dato)
+admitted %<>% 
+  mutate(running_avg = ra(Total))
 
 deaths %<>% mutate(running_avg = ra(Antal_døde))
 
