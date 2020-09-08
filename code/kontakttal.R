@@ -1,13 +1,16 @@
-library(tidyverse)
-library(magrittr)
 library(runner)
 
-today <- "2020-09-04"
+today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
+
+
+tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
+rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_08.csv"))
+rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_08.csv"))
+
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
-tests <- read_csv2("../data/SSIdata_200904/Test_pos_over_time.csv")
-rt_cases <- read_csv2("../data/SSIdata_200904/Rt_cases_2020_09_01.csv")
+
 
 rt_cases %<>% rename(Date = date_sample)
 

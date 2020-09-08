@@ -115,12 +115,12 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positive tests for hver kommune (heatmap)
-Plottet viser den ugentlige procentdel af positive tests for alle kommuner.  
+### Ugentlig procentdel positive tests og promille positive tests per indbyggertal for hver kommune (heatmap)
+Plottene viser hhv. den ugentlige procentdel af positive tests og den ugentlige promille per indbyggertal for alle kommuner.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/>
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
 
 ### Ugentligt antal nye positive tests og testede for hver aldersgruppe
 Plottet viser det ugentlige antal nye positive tests og antal testede for hver aldersgruppe. 

@@ -17,7 +17,8 @@ saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
 
 read_age_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Cases_by_age.csv"))
-  file %<>% mutate(date_of_file = x)   %>% 
+  file %<>% 
+    mutate(date_of_file = x)   %>% 
     select(-Procent_positive) %>%
     mutate(Date = paste0("2020-", str_sub(date_of_file,3,4), "-", str_sub(date_of_file,5,6))) 
   
@@ -28,6 +29,23 @@ read_age_csv <- function(x) {
 csv_list <- lapply(ssi_filer_date, read_age_csv)
 
 age_df <- bind_rows(csv_list)
+
+read_muni_csv <- function(x) {
+  file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
+  file %<>% 
+    mutate(date_of_file = x)   %>%
+    select(date_of_file, `Kommune_(navn)`, Befolkningstal) %>%
+    mutate(Date = paste0("2020-", str_sub(date_of_file,3,4), "-", str_sub(date_of_file,5,6))) %>%
+    select(-date_of_file) %>%
+    rename(Kommune = `Kommune_(navn)`) 
+
+  return(file)
+
+}
+
+csv_list <- lapply(ssi_filer_date, read_muni_csv)
+
+muni_population <- bind_rows(csv_list)
 
 # download SSI files -----------------------------------------------------------
 
@@ -102,39 +120,6 @@ age_df %<>%
 abs(diff(unique(age_df$Date))) #test
 # tidy MUNICIPALITY data -----------------------------------------
 
-# read_muni_csv <- function(x) {
-#   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
-#   file %<>% mutate(date_of_file = x)   %>%
-#     mutate(Date = paste0("2020-", str_sub(date_of_file,3,4), "-", str_sub(date_of_file,5,6)))
-# 
-#   return(file)
-# 
-# }
-# 
-# csv_list <- lapply(ssi_filer$date, read_muni_csv)
-# 
-# muni_df <- bind_rows(csv_list)
-# 
-# muni_df %<>%
-#   mutate(Positive = ifelse(`Antal_bekræftede_COVID-19` == "<10", 10, `Antal_bekræftede_COVID-19`)) %>%
-#   mutate(Positive = as.numeric(gsub("\\.", "", Positive))) %>%
-#   mutate(Date = as.Date(Date)) %>%
-#   select(-date_of_file) %>%
-#   arrange(Date)
-# 
-# muni_df <- bind_cols(muni_df, data.frame("Dage_siden_sidst" = rep(c(0,abs(diff(unique(muni_df$Date)))), each = 99)))
-# 
-# muni_df %<>%
-#   group_by(`Kommune_(id)`) %>%
-#   mutate(Pos_diff = c(0,diff(Positive)),
-#          Testede_diff = c(0,diff(Antal_testede))) %>%
-#   ungroup()
-# 
-# 
-# muni_df %>% write.csv2("../data/municipality_over_time_combined.csv")
-
-
-
 muni_pos %<>%
   mutate(Date = as.Date(date_sample)) %>%
   select(-date_sample) %>%
@@ -145,6 +130,9 @@ muni_tested %<>%
   mutate(Date = as.Date(PrDate_adjusted)) %>%
   select(-PrDate_adjusted, -X101) %>%
   pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Tested") %>%
+  mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
+
+muni_population %<>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
 muni_all <- muni_tested %>% full_join(muni_pos, by = c("Kommune", "Date")) %>%
@@ -220,12 +208,20 @@ age_data <- bind_rows(week_admitted, wk_df_group)
 
 # arrange MUNICIPALITY data weekly -----------------------------------------------------
 
+muni_pop <- muni_population %>%
+  group_by(Kommune) %>%
+  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>%
+  ungroup()
+
 muni_all %<>%
   filter(Date < as.Date(today)- 1) #remove last two days
 
 muni_wk <- muni_all %>%
   mutate(Week = isoweek(Date)) %>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
+
+muni_wk %<>%
+  full_join(muni_pop, by = c("Kommune"))
 
 muni_wk %<>%
   filter(Week < isoweek(as.Date(today) - 1)) %>% #remove current week

@@ -288,28 +288,30 @@ ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 50, u
 # Figur: Incidens - alle kommuner, heatmap ---------------------------------
 
 
-# plot_data <- muni_wk %>%
-#   filter(Week_end_Date > as.Date("2020-04-07")) %>%
-#   mutate(Ratio = Pos_diff/Befolkningstal * 100000) %>%
-#   mutate(`Kommune_(navn)`=factor(`Kommune_(navn)`,levels=rev(sort(unique(`Kommune_(navn)`)))))
-#
-# ggplot(plot_data, aes(Date, `Kommune_(navn)`, fill = Ratio)) +
-#   geom_tile(colour="white",size=0.25) +
-#   coord_fixed(ratio = 7) +
-#   labs(x="",y="", title="Antal positive tests per 100.000 indbyggere") +
-#   scale_fill_continuous(name = "Antal/100.000",low =  "#00AFBB", high = "#FC4E07") +
-#   theme_light() +
-#   theme(plot.background=element_blank(),
-#         panel.border=element_blank(),
-#         axis.ticks = element_blank(),
-#         plot.title=element_text(size = 14, hjust=0.5, face="bold"),
-#         text = element_text(size=13, family="lato"),
-#         legend.text=element_text(size=12, family="lato"),
-#         axis.title.y = element_text(size=12, family="lato"),
-#         axis.title.x = element_text(size=12, family="lato"))
-#
-#
-# ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 17, height = 50, units = "cm", dpi = 300)
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-04-07")) %>%
+  mutate(Incidens = Positive_wk / Befolkningstal * 1000) %>%
+  mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune)))))
+
+ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Promille positive tests per indbyggertal") +
+  scale_fill_continuous(name = "Promille", na.value = "White", low = lighten(desaturate(color_scale[6], 0.7), 0.7), high = color_scale[4]) +
+  theme_light() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 13, family = "lato"),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato"),
+    axis.title.x = element_text(size = 12, family = "lato")
+  )
+
+
+ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 50, units = "cm", dpi = 300)
 
 # Figur: Pos over 50 vs nyindlagte, fra marts -----------------------------------------------------
 
