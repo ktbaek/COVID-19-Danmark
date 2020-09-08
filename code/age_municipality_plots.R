@@ -16,7 +16,7 @@ ggplot(plot_data, aes(Week, value)) +
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_continuous(extended_breaks()(28:max(plot_data$Week))) +
+  scale_x_continuous(breaks = breaks_width(2)) +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
@@ -80,7 +80,7 @@ ggplot(plot_data, aes(Week, value)) +
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_continuous(extended_breaks()(28:max(plot_data$Week))) +
+  scale_x_continuous(breaks = breaks_width(2)) +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
@@ -113,7 +113,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Kommune, scales = "free") +
-  scale_x_continuous(extended_breaks()(28:max(plot_data$Week))) +
+  scale_x_continuous(breaks = breaks_width(2)) +
   scale_y_continuous(
     limits = c(0, 5)
   ) +
@@ -173,7 +173,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Kommune, scales = "free") +
-  scale_x_continuous(extended_breaks()(28:max(plot_data$Week))) +
+  scale_x_continuous(breaks = breaks_width(2)) +
   scale_y_continuous(
     limits = c(0, 5)
   ) +
