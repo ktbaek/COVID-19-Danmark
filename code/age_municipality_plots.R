@@ -504,6 +504,8 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
 
 ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 10, units = "cm", dpi = 300)
 
+# Figur: Aldersgrupper, pct, heatmap ----------
+
 plot_data <- week_df %>%
   select(-date_of_file) %>%
   filter(!Aldersgruppe == "I alt") %>%
