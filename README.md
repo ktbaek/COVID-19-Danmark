@@ -147,7 +147,9 @@ Plottene viser hhv. den ugentlige procentdel af positive tests og den ugentlige 
 
 ``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
 
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_incidens_tile.png" height="1000"/>
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_incidens_tile.png)
 
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
