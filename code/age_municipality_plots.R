@@ -260,7 +260,7 @@ ggsave("../figures/muni_10_pct_april.png", width = 32, height = 24, units = "cm"
 
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-04-07")) %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune)))))
 
@@ -289,7 +289,7 @@ ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 50, u
 
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-04-07")) %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
   mutate(Incidens = Positive_wk / Befolkningstal * 1000) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune)))))
 

@@ -6,80 +6,94 @@ quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItali
 # Figure 1 ------------------------------------------------------------------
 
 png("../figures/fig_1_test_pos.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests$Date, tests$NewPositive, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,500),
-     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1,
-     col = alpha(pos_col, alpha = 0.3))
+plot(tests$Date, tests$NewPositive,
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 500),
+  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  las = 1,
+  col = alpha(pos_col, alpha = 0.3)
+)
 
-mtext(text = "Dagligt antal nye positive tests",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Dagligt antal nye positive tests",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4, 
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
-#text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
+# text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
 dev.off()
 
 
 # Figure 2 ------------------------------------------------------------------
 
 png("../figures/fig_2_tests.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests$Date, tests$Tested, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,40000),
-     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1,
-     col = alpha(test_col, alpha = 0.3))
+plot(tests$Date, tests$Tested,
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 40000),
+  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  las = 1,
+  col = alpha(test_col, alpha = 0.3)
+)
 
-mtext(text = "Dagligt antal testede",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Dagligt antal testede",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4, 
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 5,
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = 1.4,
+  font = 2
+)
 
 points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
@@ -93,79 +107,93 @@ dev.off()
 # Figure 3 ------------------------------------------------------------------
 
 png("../figures/fig_3_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests_from_may$Date, tests_from_may$pct_confirmed, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,1.2),
-     las = 1, 
-     col = alpha(pct_col, alpha = 0.3))
+plot(tests_from_may$Date, tests_from_may$pct_confirmed,
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 1.2),
+  las = 1,
+  col = alpha(pct_col, alpha = 0.3)
+)
 
-mtext(text = "Daglig procent positive tests",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Daglig procent positive tests",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Procent",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Procent",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 
 
-#text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
+# text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
 dev.off()
 
 # Figure 4 ------------------------------------------------------------------
 
 png("../figures/fig_4_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,6))
+par(family = "lato", mar = c(5, 8, 5, 6))
 
 plot(tests_from_may$Date, tests_from_may$NewPositive,
-     type = "b",
-     pch = 19,
-     ylab = "",
-     xlab = "",
-     axes = TRUE,
-     cex = 1.2,
-     cex.axis = 1.2,
-     ylim = c(0,300),
-     las = 1,
-     col = alpha(pos_col, alpha = 0.3))
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.2,
+  ylim = c(0, 300),
+  las = 1,
+  col = alpha(pos_col, alpha = 0.3)
+)
 
-mtext(text = "Procent vs. antal nye positive tests",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Procent vs. antal nye positive tests",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3,
-      cex = 1.2,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.2,
-      font = 2,
-      col = pos_col)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2,
+  col = pos_col
+)
 
 points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
@@ -178,12 +206,14 @@ text(x = as.Date("2020-05-17"), y = 0.07, labels = "Antal positive", col = pos_c
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-mtext(text = "Procent",
-      side = 4,#side 1 = bottom
-      line = 4,
-      cex = 1.2,
-      col = pct_col,
-      font = 2)
+mtext(
+  text = "Procent",
+  side = 4, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  col = pct_col,
+  font = 2
+)
 
 dev.off()
 
@@ -191,41 +221,50 @@ dev.off()
 # Figure 5 ------------------------------------------------------------------
 
 png("../figures/fig_5_hosp.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(admitted$Date, admitted$Total, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,100),
-     xlim = c(as.Date("2020-02-01"), as.Date(today)),
-     las = 1, 
-     col = alpha(admit_col, alpha = 0.3))
+plot(admitted$Date, admitted$Total,
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 100),
+  xlim = c(as.Date("2020-02-01"), as.Date(today)),
+  las = 1,
+  col = alpha(admit_col, alpha = 0.3)
+)
 
-mtext(text = "Dagligt antal nyindlagte og døde",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Dagligt antal nyindlagte og døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
-points(deaths$Date, deaths$Antal_døde,  type = "b", 
-       pch = 19, cex = 1.2, col = alpha(death_col, alpha = 0.3))
+points(deaths$Date, deaths$Antal_døde,
+  type = "b",
+  pch = 19, cex = 1.2, col = alpha(death_col, alpha = 0.3)
+)
 
 points(admitted$Date, admitted$running_avg, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
 points(deaths$Date, deaths$running_avg, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
@@ -239,38 +278,45 @@ dev.off()
 # Figure 6 ------------------------------------------------------------------
 
 png("../figures/fig_6_postest_hosp.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests$Date, tests$NewPositive, 
-     type = "b", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.2, 
-     ylim = c(0,500),
-     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1,
-     col = alpha(pos_col, alpha = 0.3))
+plot(tests$Date, tests$NewPositive,
+  type = "b",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.2,
+  ylim = c(0, 500),
+  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  las = 1,
+  col = alpha(pos_col, alpha = 0.3)
+)
 
-mtext(text = "Nyindlagte vs. antal positive",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Nyindlagte vs. antal positive",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.2, 
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.2,
-      font = 2)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
 
 points(admitted$Date, admitted$running_avg, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
@@ -285,46 +331,53 @@ dev.off()
 # Rt cases pos ------------------------------------------------------------------
 
 png("../figures/rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(rt_cases$date_sample, rt_cases$estimate, 
-     type = "l", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,2),
-     las = 1, 
-     col = "darkgray",
-     lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
+plot(rt_cases$date_sample, rt_cases$estimate,
+  type = "l",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 2),
+  las = 1,
+  col = "darkgray",
+  lwd = 2,
+  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
+)
 
-mtext(text = "Kontakttal (smittede) vs. antal nye positive",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Kontakttal (smittede) vs. antal nye positive",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Kontakttal-værdi",
-      side = 2,#side 1 = bottom
-      line = 3, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Kontakttal-værdi",
+  side = 2, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
 
-#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+# axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-#points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
-#points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
-points(tests$Date, tests$NewPositive/170, type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
-points(tests$Date, tests$running_avg_pos/170, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
+# points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.2), cex = 1.2)
+# points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = "blue", cex = 1.2, lwd = 2)
+points(tests$Date, tests$NewPositive / 170, type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
+points(tests$Date, tests$running_avg_pos / 170, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-05-23"), y = 0, labels = "Antal positive tests", col = pos_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-06-14"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
@@ -342,46 +395,53 @@ dev.off()
 # Rt cases pct ------------------------------------------------------------
 
 png("../figures/rt_cases_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(rt_cases$date_sample, rt_cases$estimate, 
-     type = "l", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,2),
-     las = 1, 
-     col = "darkgray",
-     lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date(today ) - 1))
+plot(rt_cases$date_sample, rt_cases$estimate,
+  type = "l",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 2),
+  las = 1,
+  col = "darkgray",
+  lwd = 2,
+  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
+)
 
-mtext(text = "Kontakttal (smittede) vs. procent positive",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Kontakttal (smittede) vs. procent positive",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 4, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Kontakttal-værdi",
-      side = 2,#side 1 = bottom
-      line = 4, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Kontakttal-værdi",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
-#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+# axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
 points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, 0.3), cex = 1.2)
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
-#points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
-#points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+# points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+# points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-24"), y = 0.06, labels = "Procent positive tests", col = pct_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-06-15"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
@@ -399,54 +459,61 @@ dev.off()
 
 
 png("../figures/rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(rt_admitted$date_sample, rt_admitted$estimate, 
-     type = "l", 
-     pch = 19, 
-     ylab = "", 
-     xlab = "", 
-     axes = TRUE,
-     cex = 1.2, 
-     cex.axis = 1.4, 
-     ylim = c(0,2),
-     las = 1, 
-     col = "darkgray",
-     lwd = 2,
-     xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
+plot(rt_admitted$date_sample, rt_admitted$estimate,
+  type = "l",
+  pch = 19,
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.4,
+  ylim = c(0, 2),
+  las = 1,
+  col = "darkgray",
+  lwd = 2,
+  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
+)
 
-mtext(text = "Kontakttal (indlagte) vs. nyindlagte",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Kontakttal (indlagte) vs. nyindlagte",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 4, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
-mtext(text = "Kontakttal-værdi",
-      side = 2,#side 1 = bottom
-      line = 4, 
-      cex = 1.4,
-      font = 2)
+mtext(
+  text = "Kontakttal-værdi",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
 
-#axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+# axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
-points(admitted$Date, admitted$Total/24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
-points(admitted$Date, admitted$running_avg/24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-#points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
-#points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
+points(admitted$Date, admitted$Total / 24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
+points(admitted$Date, admitted$running_avg / 24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
+# points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
+# points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-06-20"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1.4, font = 2)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
-abline(v = as.Date("2020-06-12")-0.3, col = "gray", lty = 3)
-abline(v = as.Date("2020-06-18")+0.5, col = "gray", lty = 3)
+abline(v = as.Date("2020-06-12") - 0.3, col = "gray", lty = 3)
+abline(v = as.Date("2020-06-18") + 0.5, col = "gray", lty = 3)
 abline(v = as.Date("2020-07-12"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-09")+0.5, col = "gray", lty = 3)
+abline(v = as.Date("2020-08-09") + 0.5, col = "gray", lty = 3)
 
 dev.off()
 
@@ -455,54 +522,65 @@ dev.off()
 
 
 png("../figures/postest_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests$Date, rep(600, length(tests$Date)), 
-     ylab = "", 
-     xlab = "", 
-     axes = FALSE,
-     cex = 1.2, 
-     cex.axis = 1.2, 
-     ylim = c(-100,500),
-     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1,
-     col = "white")
+plot(tests$Date, rep(600, length(tests$Date)),
+  ylab = "",
+  xlab = "",
+  axes = FALSE,
+  cex = 1.2,
+  cex.axis = 1.2,
+  ylim = c(-100, 500),
+  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  las = 1,
+  col = "white"
+)
 
-mtext(text = "Nye positive tests vs. nyindlagte",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Nye positive tests vs. nyindlagte",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.2, 
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
 
-mtext(text = "Antal",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.2,
-      font = 2)
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
 
 box(which = "plot", lty = "solid")
 
-axis(1, c(as.Date("2020-03-01"),
-          as.Date("2020-05-01"),
-          as.Date("2020-07-01"),
-          as.Date("2020-09-01")), format(c(as.Date("2020-03-01"),
-                                           as.Date("2020-05-01"),
-                                           as.Date("2020-07-01"),
-                                           as.Date("2020-09-01")), "%b") , cex.axis = 1.4)
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
 axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, 100, 200, 300, 400, 500), cex.axis = 1.4, las = 1)
 
 
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col)
-segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col)
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend=1)
+segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
-text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 250, labels = "Nye positive tests", col = pos_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 250, labels = "Nye positive tests", col = pos_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
@@ -511,57 +589,64 @@ dev.off()
 
 
 png("../figures/pct_hosp_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5,8,5,2))
+par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(tests$Date, rep(600, length(tests$Date)), 
-     ylab = "", 
-     xlab = "", 
-     axes = FALSE,
-     cex = 1.2, 
-     cex.axis = 1.2, 
-     ylim = c(-100,200),
-     xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-     las = 1,
-     col = "white")
+plot(tests$Date, rep(600, length(tests$Date)),
+  ylab = "",
+  xlab = "",
+  axes = FALSE,
+  cex = 1.2,
+  cex.axis = 1.2,
+  ylim = c(-100, 200),
+  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  las = 1,
+  col = "white"
+)
 
-mtext(text = "Procent nye positive tests vs. nyindlagte",
-      side = 3,#side 1 = bottom
-      line = 1, 
-      cex = 1.5, 
-      font = 2)
+mtext(
+  text = "Procent nye positive tests vs. nyindlagte",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
 
-mtext(text = "Dato",
-      side = 1,#side 1 = bottom
-      line = 3, 
-      cex = 1.2, 
-      font = 2)
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
 
-mtext(text = "Antal                                      Procent               ",
-      side = 2,#side 1 = bottom
-      line = 4,
-      cex = 1.2,
-      font = 2)
+mtext(
+  text = "Antal                                      Procent               ",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
 
 box(which = "plot", lty = "solid")
 
-axis(1, c(as.Date("2020-03-01"),
-          as.Date("2020-05-01"),
-          as.Date("2020-07-01"),
-          as.Date("2020-09-01")), format(c(as.Date("2020-03-01"),
-                                           as.Date("2020-05-01"),
-                                           as.Date("2020-07-01"),
-                                           as.Date("2020-09-01")), "%b") , cex.axis = 1.4)
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
 axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, "10 %", "20 %", 300, 400, 500), cex.axis = 1.4, las = 1)
 
 
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed*10, lwd = 2, col = pct_col)
-segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 10, lwd = 2, col = pct_col, lend = 1)
+segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
 
-text(x = as.Date(today)-2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today)-2, y = 70, labels = "Andel nye positive tests", col = pct_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 70, labels = "Andel nye positive tests", col = pct_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
-
-
-
-                 
