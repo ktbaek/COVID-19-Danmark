@@ -20,7 +20,7 @@ Procentdel positive tests angiver den procentvise andel af positive tests ud af 
 
 ## Plots
 
-De første seks figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
+De første fem figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
 
 
@@ -32,7 +32,7 @@ Plottet viser antallet af nye positive tests for hele landet. Den optrukne linje
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
 
 ### Dagligt antal testede
-Plottet viser det total antal testede personer og antallet af nye positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+Plottet viser det totale antal testede personer og antallet af nye positive tests for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
@@ -59,12 +59,12 @@ Plottet viser antal nyindlagte og antal døde for hele landet. Den optrukne linj
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_5_hosp.png) 
 
-### Dagligt antal nyindlagte og antal nye positive tests
-Plottet sammenligner hvornår kurven over nyindlagte toppede med hvornår kurven over antal nye positive tests toppede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+### Dagligt antal testede, antal nye positive og procent positive tests
+Plottet viser det totale antal testede personer, antallet af nye positive tests, og procentdelen af positive tests for hele landet. Procentdelen af positive tests er vist som et løbende gennemsnit baseret på et vindue på 7 dage. 
 
-``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
+``SSI datasæt: 'Test_pos_over_time'``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_6_postest_hosp.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pos_tests_pct.png) 
 
 ### Dagligt antal nyindlagte og antal nye positive tests (søjleplot)
 Plottet sammenligner antal nyindlagte med antal positive tests.

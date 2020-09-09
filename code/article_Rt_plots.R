@@ -650,3 +650,78 @@ text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, ce
 text(x = as.Date(today) - 2, y = 70, labels = "Procent positive tests", col = pct_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
+
+# Pos, test, pct combined ------------------------------------------------------------------
+
+png("../figures/pos_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6))
+
+plot(tests$Date, rep(50000, length(tests$Date)),
+  ylab = "",
+  xlab = "",
+  axes = TRUE,
+  cex = 1.2,
+  cex.axis = 1.2,
+  ylim = c(0, 40000),
+  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+  las = 1,
+  col = "white"
+)
+
+mtext(
+  text = "Testede, positive og procent positive",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
+
+mtext(
+  text = "Antal tests, positive",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = 1.2,
+  font = 2
+)
+
+segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = test_col, lend = 1)
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
+
+text(x = as.Date("2020-04-20"), y = 32000, labels = "Procent positive", col = pct_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-07-09"), y = 37500, labels = "Total antal tests", col = test_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-03-12"), y = 8200, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
+arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
+
+par(new = TRUE)
+plot(tests$Date, replace(tests$running_avg_pct, 1:37, NA), 
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1), 
+     type = "l", 
+     pch = 19, 
+     lwd = 3, 
+     col = pct_col, 
+     cex = 1.2, 
+     axes = FALSE, 
+     xlab = "", 
+     ylab = "")
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 5, 10, 15), labels = c("0 %", "5 %", "10 %", "15 %"))
+
+mtext(
+  text = "Procent",
+  side = 4, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
+
+dev.off()
+
+
