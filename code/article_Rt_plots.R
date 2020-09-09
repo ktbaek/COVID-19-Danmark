@@ -531,7 +531,7 @@ plot(tests$Date, rep(600, length(tests$Date)),
   cex = 1.2,
   cex.axis = 1.2,
   ylim = c(-100, 500),
-  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
   las = 1,
   col = "white"
 )
@@ -598,7 +598,7 @@ plot(tests$Date, rep(600, length(tests$Date)),
   cex = 1.2,
   cex.axis = 1.2,
   ylim = c(-100, 200),
-  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
+  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
   las = 1,
   col = "white"
 )

@@ -1,11 +1,13 @@
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
-Senest opdateret 8. september 2020 efter kl 14. 
+Senest opdateret 9. september 2020 efter kl 14. 
 
 ## Data
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
 
-Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.   
+Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
+
+Befolkningstal per aldersgruppe er hentet på [Danmarks Statistik](https://statbank.dk) 
 
 Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
@@ -140,6 +142,12 @@ De ugentlige data er opgjort om onsdagen.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pct.png) 
 
+### Ugentlig procentdel positive tests og promille positive tests per befolkningstal for hver aldersgruppe (heatmap)
+Plottene viser hhv. den ugentlige procentdel af positive tests og den ugentlige promille per befolkningstal for hver aldersgruppe.  
+
+``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
+
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_incidens_tile.png" height="1000"/>
 
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)

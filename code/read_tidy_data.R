@@ -9,6 +9,7 @@ rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_
 muni_pos <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_cases_time_series.csv"))
 muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_tested_persons_time_series.csv"))
 early_data <- read_csv2("../data/early_age_reports.csv")
+dst_age <- read_csv2("../data/DST_age_group_data.csv")
 
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
 ssi_filer_date %<>% c(ssi_filer_date, today_string)
@@ -168,19 +169,11 @@ week_df %<>% bind_rows(early_data) %>% arrange(Date)
 
 # arrange ADMITTED data weekly --------------------------------------------------
 
-date_week <- admitted %>%
-  select(Date, Total) %>%
-  mutate(week = isoweek(Date - 4)) %>%
-  mutate(wed = wday(Date) == 4) %>%
-  filter(Date > as.Date("2020-03-11")) %>%
-  filter(wed) %>%
-  select(Date, week)
-
 week_admitted <- admitted %>%
-  mutate(week = isoweek(Date - 4)) %>%
-  filter(Date > as.Date("2020-03-11")) %>%
-  select(-Date) %>%
-  full_join(date_week, by = "week") %>%
+  mutate(Week_end_Date = ceiling_date(Date +4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
+  select(Week_end_Date, Total) %>%
+  filter(Week_end_Date > as.Date("2020-03-11")) %>%
+  rename(Date = Week_end_Date) %>%
   group_by(Date) %>%
   summarise(value = sum(Total)) %>%
   ungroup() %>%
@@ -205,7 +198,8 @@ wk_df_group %<>%
   group_by(variable) %>%
   mutate(value = c(0, diff(positive))) %>%
   ungroup() %>%
-  select(-positive, -Antal_testede)
+  select(-positive, -Antal_testede) %>%
+  filter(!Date == "2020-03-18")
 
 age_data <- bind_rows(week_admitted, wk_df_group)
 

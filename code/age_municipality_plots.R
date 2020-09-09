@@ -278,6 +278,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
     text = element_text(size = 13, family = "lato"),
     legend.text = element_text(size = 12, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
     axis.title.y = element_text(size = 12, family = "lato"),
     axis.title.x = element_text(size = 12, family = "lato")
   )
@@ -304,6 +305,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
     panel.border = element_blank(),
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
     text = element_text(size = 13, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
     legend.text = element_text(size = 12, family = "lato"),
     axis.title.y = element_text(size = 12, family = "lato"),
     axis.title.x = element_text(size = 12, family = "lato"),
@@ -399,6 +401,10 @@ ggplot(plot_data, aes(Date, value)) +
 
 ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", dpi = 300)
 
+
+# Figur: Aldersgrupper, pos, testede --------------------------------------------------------------
+
+
 plot_data <- week_df %>%
   select(-date_of_file) %>%
   filter(!Aldersgruppe == "I alt") %>%
@@ -431,6 +437,8 @@ ggplot(plot_data, aes(Date, value)) +
 
 ggsave("../figures/age_groups_pos_tested.png", width = 30, height = 15, units = "cm", dpi = 300)
 
+# Figur: Aldersgrupper, pct --------------------------------------------------------------
+
 plot_data <- week_df %>%
   select(-date_of_file) %>%
   filter(!Aldersgruppe == "I alt") %>%
@@ -459,3 +467,73 @@ ggplot(plot_data, aes(Date, Ratio)) +
   )
 
 ggsave("../figures/age_groups_pct.png", width = 22, height = 14, units = "cm", dpi = 300)
+
+# Figur: Aldersgrupper, incidens, heatmap ----------
+
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  full_join(dst_age, by = "Aldersgruppe") %>%
+  rename(Testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
+  group_by(Aldersgruppe, variable) %>%
+  mutate(value = c(0, diff(value))) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  mutate(Ratio = positive / Befolkning * 1000) %>%
+  filter(Date > as.Date("2020-03-18"))
+
+
+ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Promille positive tests per befolkning i aldersgruppen") +
+  scale_fill_continuous(name = "Promille", na.value = "White", low = lighten(desaturate(color_scale[6], 0.7), 0.7), high = color_scale[4]) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 13, family = "lato"),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    axis.title.x = element_text(size = 12, family = "lato")
+  )
+
+ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 10, units = "cm", dpi = 300)
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  rename(Testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
+  group_by(Aldersgruppe, variable) %>%
+  mutate(value = c(0, diff(value))) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  mutate(Ratio = positive / Testede * 100) %>%
+  filter(Date > as.Date("2020-03-18"))
+
+
+ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Procent positive tests per udførte tests i aldersgruppen") +
+  scale_fill_continuous(name = "Procent", na.value = "White", low = lighten(desaturate(color_scale[6], 0.7), 0.7), high = color_scale[4]) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 13, family = "lato"),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    axis.title.x = element_text(size = 12, family = "lato")
+  )
+
+ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 10, units = "cm", dpi = 300)
+
+
