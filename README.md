@@ -142,14 +142,16 @@ De ugentlige data er opgjort om onsdagen.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pct.png) 
 
-### Ugentlig procentdel positive tests og promille positive tests per befolkningstal for hver aldersgruppe (heatmap)
-Plottene viser hhv. den ugentlige procentdel af positive tests og den ugentlige promille per befolkningstal for hver aldersgruppe.  
+### Ugentlig procentdel positive tests for hver aldersgruppe, ugentligt antal positive tests for hver aldersgruppe, og ugentligt antal tests per aldersgruppe (heatmaps)
+Plottene viser hhv. den ugentlige procentdel af positive tests i hver aldersgruppe, det ugentlige antal positive tests som promille af befolkningstallet i hver aldersgruppe, og det ugentlige antal udførte tests som procent af befolkningstallet i hver aldersgruppe .  
 
 ``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_incidens_tile.png)
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_tests_tile.png)
 
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
