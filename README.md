@@ -1,5 +1,5 @@
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
-Senest opdateret 9. september 2020 efter kl 14. 
+Senest opdateret 10. september 2020 efter kl 14. 
 
 ## Data
 
@@ -122,7 +122,7 @@ Plottene viser hhv. den ugentlige procentdel af positive tests og den ugentlige 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="1000"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="1000"/>
+<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="950"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="950"/>
 
 ### Ugentligt antal nye positive tests og testede for hver aldersgruppe
 Plottet viser det ugentlige antal nye positive tests og antal testede for hver aldersgruppe. 
