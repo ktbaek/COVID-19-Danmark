@@ -29,7 +29,7 @@ De første fem figurer er opdaterede versioner af figurerne fra artiklen [Kurven
 
 
 
-### Dagligt antal nye positive testede personer
+### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
@@ -64,7 +64,7 @@ Plottet viser antal nyindlagte og antal døde for hele landet. Den optrukne linj
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_5_hosp.png) 
 
-### Dagligt antal testede, antal nye positive og procent positive tests
+### Dagligt antal testede, antal nye positive og procent positive testede
 Plottet viser det totale antal testede personer, antallet af nye positivt testede personer, og procentdelen af positivt testede personer for hele landet. Procentdelen af positivt testede er vist som et løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
@@ -78,7 +78,7 @@ Plottet sammenligner antal nyindlagte med antal positive tests.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_hosp_barplot.png) 
 
-### Dagligt antal nyindlagte og procent positive tests (søjleplot)
+### Dagligt antal nyindlagte og procent positive testede (søjleplot)
 Plottet sammenligner antal nyindlagte med procentdelen af positivt testede.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
@@ -89,7 +89,7 @@ Plottet sammenligner antal nyindlagte med procentdelen af positivt testede.
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pos.png), [procent positive tests](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/rt_admitted.png). 
 
 
-### Ugentligt antal nye positive tests og antal testede for hver kommune
+### Ugentligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det ugentlige antal nye positivt testede og antal total testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
@@ -105,7 +105,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pos_vs_test_july.png) 
 
-### Ugentlig procentdel positive tests for hver kommune
+### Ugentlig procentdel positivt testede for hver kommune
 Plottet viser den ugentlige procentdel af positivt testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
@@ -120,7 +120,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positive tests og promille positive tests per indbyggertal for hver kommune (heatmap)
+### Ugentlig procentdel positivt testede og promille positivt testede per indbyggertal for hver kommune (heatmap)
 Plottene viser hhv. den ugentlige procentdel af positivt testede og den ugentlige promille positivt testede per indbyggertal for alle kommuner.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
@@ -128,7 +128,7 @@ Plottene viser hhv. den ugentlige procentdel af positivt testede og den ugentlig
 <img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="950"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="950"/>
 
 <!--
-### Ugentligt antal nye positive tests og testede for hver aldersgruppe
+### Ugentligt antal nye positivt testede og total antal testede for hver aldersgruppe
 Plottet viser det ugentlige antal nye positivt testede og antal testede for hver aldersgruppe. 
 
 De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
@@ -137,7 +137,7 @@ De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pos_tested.png)
 
-### Ugentlig procentdel positive tests for hver aldersgruppe
+### Ugentlig procentdel positivt testede for hver aldersgruppe
 Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
 
 De ugentlige data er opgjort om onsdagen.

@@ -165,7 +165,7 @@ plot(tests_from_may$Date, tests_from_may$NewPositive,
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.2,
-  ylim = c(0, 300),
+  ylim = c(0, 400),
   las = 1,
   col = alpha(pos_col, alpha = 0.3)
 )
