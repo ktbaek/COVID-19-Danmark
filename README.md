@@ -127,17 +127,17 @@ De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_incidens.png)
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_incidens_tile.png)
 
-For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens.png). 
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png). 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_tests.png)
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_tests_tile.png)
 
-For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_tests.png).
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_tests_tile.png).
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_pct.png)
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_pct_tile.png)
 
-For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct.png).
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png).
 
 <!--
 ### Ugentligt antal nye positivt testede og total antal testede for hver aldersgruppe
