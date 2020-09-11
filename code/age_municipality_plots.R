@@ -268,7 +268,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Procent positivt testede per udførte tests") +
+  labs(x = "", y = "", title = "Ugentligt antal positive per antal testede") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(
@@ -297,7 +297,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Promille positivt testede per indbyggertal") +
+  labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   theme_tufte() +
   theme(
@@ -314,6 +314,127 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
 
 
 ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 44, units = "cm", dpi = 300)
+
+# Figur: Total test incidens - alle kommuner, heatmap ---------------------------------
+
+
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
+  mutate(Incidens = Tested_wk / Befolkningstal * 100) %>%
+  mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
+  
+
+ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Ugentligt antal testede per indbyggertal") +
+  scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 13, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato"),
+    axis.title.x = element_text(size = 12, family = "lato"),
+    axis.ticks = element_blank()
+  )
+
+
+ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 44, units = "cm", dpi = 300)
+
+# Figur: Total test incidens - kommuner med over 10 smittede, heatmap ---------------------------------
+biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningstal)) %>% arrange(desc(x)) %>% slice(1:10) %>% pull(Kommune)
+
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
+  mutate(Incidens = Tested_wk / Befolkningstal * 100) %>%
+  filter(Kommune %in% muni_10) %>%
+  mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
+
+
+ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Ugentligt antal testede per indbyggertal for udvalgte kommuner") +
+  scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 14, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato"),
+    axis.title.x = element_text(size = 12, family = "lato"),
+    axis.ticks = element_blank()
+  )
+
+
+ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
+
+# Figur: Incidens - kommuner med over 10 smittede, heatmap ---------------------------------
+biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningstal)) %>% arrange(desc(x)) %>% slice(1:10) %>% pull(Kommune)
+
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
+  mutate(Incidens = Positive_wk / Befolkningstal * 1000) %>%
+  filter(Kommune %in% muni_10) %>%
+  mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
+
+ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal for udvalgte kommuner") +
+  scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 14, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.title.y = element_text(size = 12, family = "lato"),
+    axis.title.x = element_text(size = 12, family = "lato"),
+    axis.ticks = element_blank()
+  )
+
+
+ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
+
+# Figur: Procent - kommuner med over 10 smittede, heatmap ----------
+biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningstal)) %>% arrange(desc(x)) %>% slice(1:10) %>% pull(Kommune)
+
+plot_data <- muni_wk %>%
+  filter(Week_end_Date > as.Date("2020-04-01")) %>%
+  mutate(Ratio = Positive_wk / Tested_wk * 100) %>%
+  filter(Kommune %in% muni_10) %>%
+  mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
+
+
+ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Ugentligt antal positive per antal testede for udvalgte kommuner") +
+  scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 14, family = "lato"),
+    legend.text = element_text(size = 12, family = "lato"),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    axis.title.y = element_text(size = 12, family = "lato"),
+    axis.title.x = element_text(size = 12, family = "lato")
+  )
+
+ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
 
 # Figur: Pos over 50 vs nyindlagte, fra marts -----------------------------------------------------
 
@@ -495,7 +616,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     panel.border = element_blank(),
     axis.ticks = element_blank(),
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
+    text = element_text(size = 14, family = "lato"),
     legend.text = element_text(size = 12, family = "lato"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
@@ -531,7 +652,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     panel.border = element_blank(),
     axis.ticks = element_blank(),
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
+    text = element_text(size = 14, family = "lato"),
     legend.text = element_text(size = 12, family = "lato"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
@@ -566,7 +687,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     panel.border = element_blank(),
     axis.ticks = element_blank(),
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
+    text = element_text(size = 14, family = "lato"),
     legend.text = element_text(size = 12, family = "lato"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),

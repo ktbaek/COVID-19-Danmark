@@ -120,12 +120,24 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positivt testede og promille positivt testede per indbyggertal for hver kommune (heatmap)
-Plottene viser hhv. den ugentlige procentdel af positivt testede og den ugentlige promille positivt testede per indbyggertal for alle kommuner.  
+### Ugentlig procentdel positivt testede, antal positivt testede per indbyggertal, og antal total testede for hver kommune (heatmaps)
+Plottene viser hhv. den ugentlige procentdel af positivt testede, den ugentlige promille positivt testede per indbyggertal, og den ugentlige procent total testede per indbyggertal for udvalgte kommuner.  
+
+De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-<img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png" height="950"/><img src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png" height="950"/>
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_incidens.png)
+
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens.png). 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_tests.png)
+
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_tests.png).
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_pct.png)
+
+For at se dette plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct.png).
 
 <!--
 ### Ugentligt antal nye positivt testede og total antal testede for hver aldersgruppe
