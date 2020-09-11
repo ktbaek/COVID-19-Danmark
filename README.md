@@ -120,8 +120,8 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig procentdel positivt testede, antal positivt testede per indbyggertal, og antal total testede for hver kommune (heatmaps)
-Plottene viser hhv. den ugentlige procentdel af positivt testede, den ugentlige promille positivt testede per indbyggertal, og den ugentlige procent total testede per indbyggertal for udvalgte kommuner.  
+### Ugentlig antal positivt testede per indbyggertal og procentdel positivt testede (heatmaps)
+Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
 De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
 
@@ -130,10 +130,6 @@ De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_incidens_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_incidens_tile.png). 
-
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_tests_tile.png)
-
-For at se ovenstående plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_tests_tile.png).
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_weekly_pct_tile.png)
 
