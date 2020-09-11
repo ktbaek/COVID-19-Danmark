@@ -117,7 +117,7 @@ ggplot(plot_data, aes(Week, Ratio)) +
   scale_y_continuous(
     limits = c(0, 5)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positive tests for udvalgte kommuner") +
+  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -149,7 +149,7 @@ ggplot(plot_data, aes(Date, Ratio)) +
   scale_y_continuous(
     limits = c(0, 5)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Daglig procent positive tests for udvalgte kommuner") +
+  labs(y = "Procent positive", x = "Uge", title = "Daglig procent positivt testede for udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -177,7 +177,7 @@ ggplot(plot_data, aes(Week, Ratio)) +
   scale_y_continuous(
     limits = c(0, 5)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positive tests for alle kommuner") +
+  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for alle kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -211,7 +211,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal positive og testede for udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -242,7 +242,7 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   scale_y_continuous(
     limits = c(0, 20)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positive tests udvalgte kommuner") +
+  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -268,7 +268,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Procent positive tests per udførte tests") +
+  labs(x = "", y = "", title = "Procent positivt testede per udførte tests") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(
@@ -297,7 +297,7 @@ plot_data <- muni_wk %>%
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Promille positive tests per indbyggertal") +
+  labs(x = "", y = "", title = "Promille positivt testede per indbyggertal") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   theme_tufte() +
   theme(

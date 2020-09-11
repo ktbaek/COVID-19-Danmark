@@ -1,4 +1,4 @@
-
+# Read data files
 today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
@@ -11,11 +11,13 @@ muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality
 early_data <- read_csv2("../data/early_age_reports.csv")
 dst_age <- read_csv2("../data/DST_age_group_data.csv")
 
+#Update list of SSI file dates
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
 ssi_filer_date %<>% c(ssi_filer_date, today_string)
 ssi_filer_date %<>% unique()
 saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
 
+#Read AGE data files
 read_age_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Cases_by_age.csv"))
   file %<>%
@@ -30,6 +32,7 @@ csv_list <- lapply(ssi_filer_date, read_age_csv)
 
 age_df <- bind_rows(csv_list)
 
+#Read MUNICIPALITY data for population numbers. Test data read from files read above (they don't include population data)
 read_muni_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
   file %<>%
@@ -46,7 +49,7 @@ csv_list <- lapply(ssi_filer_date, read_muni_csv)
 
 muni_population <- bind_rows(csv_list)
 
-# download SSI files -----------------------------------------------------------
+# Download SSI files from SSI website. Done once. -----------------------------------------------------------
 
 # ssi_filer <-  read_csv("../data/ssifiler.txt", col_names = FALSE) #liste over links til filer fra SSI
 #
@@ -81,7 +84,7 @@ muni_population <- bind_rows(csv_list)
 # saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
 
 
-# tidy NATIONAL data ------------------------------------------------
+# Tidy NATIONAL data ------------------------------------------------
 
 tests %<>%
   mutate(Date = as.Date(Date)) %>%
@@ -112,7 +115,7 @@ deaths %<>% mutate(running_avg = ra(Antal_døde))
 
 tests_from_may <- tests %>% slice(96:(n())) # exclude data before May
 
-# tidy AGE data --------------------------------------------------
+# Tidy AGE data --------------------------------------------------
 
 age_df %<>%
   mutate(date_of_file = as.integer(date_of_file)) %>%
@@ -122,7 +125,7 @@ age_df %<>%
 
 abs(diff(unique(age_df$Date))) # test
 
-# tidy MUNICIPALITY data -----------------------------------------
+# Tidy MUNICIPALITY data -----------------------------------------
 
 muni_pos %<>%
   mutate(Date = as.Date(date_sample)) %>%
@@ -145,9 +148,13 @@ muni_all <- muni_tested %>%
 
 abs(diff(unique(muni_all$Date))) # test for daily continuity
 
-# test that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municaplity files from SSI
+# Tests -------------------------------------------------------------------
+#that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municipality files from SSI
+
+length(unique(muni_all$Kommune)) # 99 kommuner as it should be
+
 tests_check <- tests %>%
-  select(Date, NewPositive, Tested)
+  select(Date, NewPositive, Tested, PrevPos)
 
 muni_tests_check <- muni_all %>%
   group_by(Date) %>%
@@ -156,9 +163,16 @@ muni_tests_check <- muni_all %>%
     Tested_total = sum(Tested, na.rm = TRUE)
   ) %>%
   ungroup() %>%
-  full_join(tests_check, by = "Date")
+  full_join(tests_check, by = "Date") %>%
+  mutate(Pos_diff = NewPositive - Pos_total,
+         Test_diff = Tested - Tested_total)
 
-# Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases. I don't know why, ask SSI.
+muni_tests_check %>%
+  select(-Date) %>%
+  colSums(na.rm = TRUE)
+  
+
+# Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases and tests. I don't know why, ask SSI.
 
 # arrange AGE data weekly ------------------------------------------------------
 
