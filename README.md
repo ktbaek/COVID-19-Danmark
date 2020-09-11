@@ -120,7 +120,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](https://github.c
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/muni_10_pct_july.png) 
 
-### Ugentlig antal positivt testede per indbyggertal og procentdel positivt testede (heatmaps)
+### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
 De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft over 10 ugentlige positive. 
