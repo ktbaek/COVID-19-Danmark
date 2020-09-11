@@ -242,7 +242,7 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   scale_y_continuous(
     limits = c(0, 20)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede udvalgte kommuner") +
+  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
