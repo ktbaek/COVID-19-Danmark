@@ -1,4 +1,5 @@
-# Read data files
+# Read data files ---------------------------------------------------------
+
 today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
@@ -11,13 +12,13 @@ muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality
 early_data <- read_csv2("../data/early_age_reports.csv")
 dst_age <- read_csv2("../data/DST_age_group_data.csv")
 
-#Update list of SSI file dates
+# Update list of SSI file dates
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
 ssi_filer_date %<>% c(ssi_filer_date, today_string)
 ssi_filer_date %<>% unique()
 saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
 
-#Read AGE data files
+# Read AGE data files
 read_age_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Cases_by_age.csv"))
   file %<>%
@@ -32,7 +33,7 @@ csv_list <- lapply(ssi_filer_date, read_age_csv)
 
 age_df <- bind_rows(csv_list)
 
-#Read MUNICIPALITY data for population numbers. Test data read from files read above (they don't include population data)
+# Read MUNICIPALITY data for population numbers. Test data read from files read above (they don't include population data)
 read_muni_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
   file %<>%
@@ -88,13 +89,15 @@ muni_population <- bind_rows(csv_list)
 
 tests %<>%
   mutate(Date = as.Date(Date)) %>%
-  mutate(pct_confirmed = NewPositive / Tested * 100)
+  mutate(pct_confirmed = NewPositive / NotPrevPos * 100)
 
 deaths %<>%
-  mutate(Date = as.Date(Dato))
+  mutate(Date = as.Date(Dato)) %>%
+  select(-Dato)
 
 admitted %<>%
-  mutate(Date = as.Date(Dato))
+  mutate(Date = as.Date(Dato)) %>%
+  select(-Dato)
 
 deaths %<>% slice(1:(n() - 1)) # exclude summary row
 tests %<>% slice(1:(n() - 4)) # exclude last two days that may not be updated AND summary rows
@@ -146,15 +149,18 @@ muni_all <- muni_tested %>%
   full_join(muni_pos, by = c("Kommune", "Date")) %>%
   filter(Date > as.Date("2020-02-29"))
 
-abs(diff(unique(muni_all$Date))) # test for daily continuity
-
 # Tests -------------------------------------------------------------------
-#that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municipality files from SSI
 
-length(unique(muni_all$Kommune)) # 99 kommuner as it should be
+cat("Muni continuity:", 1 == unique(abs(diff(unique(muni_all$Date)))), "\n") # test for daily continuity in municipality data from march 1
+cat("Test continuity:", 1 == unique(abs(diff(unique(tests$Date)))), "\n") # test for daily continuity in test_pos_over_time data
+cat("Muni # pos:", length(unique(muni_pos$Kommune)), "\n") # # test that number of kommuner is 99
+cat("Muni # tested:", length(unique(muni_tested$Kommune)), "\n") # test that number of kommuner is 99
+cat("Missing muni in pos:", setdiff(unique(muni_tested$Kommune), unique(muni_pos$Kommune)), "\n") # No data for Samsø and Christiansø in pos file
+
+# test that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municipality files from SSI:
 
 tests_check <- tests %>%
-  select(Date, NewPositive, Tested, PrevPos)
+  select(Date, NewPositive, Tested, NotPrevPos, PrevPos)
 
 muni_tests_check <- muni_all %>%
   group_by(Date) %>%
@@ -164,27 +170,28 @@ muni_tests_check <- muni_all %>%
   ) %>%
   ungroup() %>%
   full_join(tests_check, by = "Date") %>%
-  mutate(Pos_diff = NewPositive - Pos_total,
-         Test_diff = Tested - Tested_total)
+  mutate(
+    Pos_diff = NewPositive - Pos_total,
+    Test_diff = NotPrevPos - Tested_total
+  )
 
 muni_tests_check %>%
   select(-Date) %>%
   colSums(na.rm = TRUE)
-  
 
-# Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases and tests. I don't know why, ask SSI.
+# Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases and tests (0.5 - 1% difference). I don't know why, ask SSI.
 
-# arrange AGE data weekly ------------------------------------------------------
+# Arrange AGE data weekly ------------------------------------------------------
 
 week_df <- age_df %>%
   filter(wday(Date) == 4) # wednesday because it consistently appears throughout (e.g mondays can be holidays)
 
 week_df %<>% bind_rows(early_data) %>% arrange(Date)
 
-# arrange ADMITTED data weekly --------------------------------------------------
+# Arrange ADMITTED data weekly --------------------------------------------------
 
 week_admitted <- admitted %>%
-  mutate(Week_end_Date = ceiling_date(Date +4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
+  mutate(Week_end_Date = ceiling_date(Date + 4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
   select(Week_end_Date, Total) %>%
   filter(Week_end_Date > as.Date("2020-03-11")) %>%
   rename(Date = Week_end_Date) %>%
@@ -217,11 +224,11 @@ wk_df_group %<>%
 
 age_data <- bind_rows(week_admitted, wk_df_group)
 
-# arrange MUNICIPALITY data weekly -----------------------------------------------------
+# Arrange MUNICIPALITY data weekly -----------------------------------------------------
 
 muni_pop <- muni_population %>%
   group_by(Kommune) %>%
-  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>%
+  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>% #population numbers change very little over the period so I use the mean.
   ungroup()
 
 muni_all %<>%

@@ -620,14 +620,12 @@ mtext(
 )
 
 mtext(
-  text = "Antal                                      Procent               ",
+  text = "Antal                                     Procent               ",
   side = 2, # side 1 = bottom
   line = 4,
   cex = 1.2,
   font = 2
 )
-
-box(which = "plot", lty = "solid")
 
 axis(1, c(
   as.Date("2020-03-01"),
@@ -648,6 +646,8 @@ segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
 text(x = as.Date(today) - 2, y = 70, labels = "Procent positivt testede", col = pct_col, cex = 1.4, font = 2, adj = 1)
+
+box(which = "plot", lty = "solid")
 
 dev.off()
 
