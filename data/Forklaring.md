@@ -16,6 +16,9 @@ Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
 Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
 
 ### Antal testede og antal nye positive
+
+En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange over hele perioden. 
+
 **Testede** angiver det samlede antal testede personer på en given dag. 
 
 Testede personer kan deles op i to grupper: 
@@ -34,7 +37,7 @@ Begreberne opsummeres på nedenstående figur.
 
 ## Antal testede og antal nye positive for hver kommune
 ### Datafiler
-'Municipality_cases_time_series.csv'
+'Municipality_cases_time_series.csv' og 
 'Municipality_tested_persons_time_series.csv'
 
 ### Prøvedato 
@@ -44,11 +47,14 @@ Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
 Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
 
 ### Antal testede og antal nye positive
+
+En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange over hele perioden.
+
 **Testede** angiver det samlede antal testede personer på en given dag i en given kommune, som ikke har testet positive på en tidligere dato. 
 
 **Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19, på en given dag.
 
-**Procent positive** angiver andelen af personer som er testet positive. Dette er beregnet som **nye positivt testede** divideret med **Testede**. 
+**Procent positive** angiver andelen af personer som er testet positive. Dette er beregnet som **nye positivt testede** divideret med **testede**. 
 
 Bemærk altså at prøver taget på folk, som tidligere har testet positive ikke er medregnet i det kommuneopdelte datasæt.
 
