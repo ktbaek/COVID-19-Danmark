@@ -71,8 +71,8 @@ Plottet viser det totale antal testede personer, antallet af nye positivt tested
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pos_tests_pct.png) 
 
-### Dagligt antal nyindlagte og antal nye positive tests (søjleplot)
-Plottet sammenligner antal nyindlagte med antal positive tests.
+### Dagligt antal nyindlagte og antal nye positivt testede (søjleplot)
+Plottet sammenligner antal nyindlagte med antal positivt testede.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
