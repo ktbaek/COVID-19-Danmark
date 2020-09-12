@@ -30,7 +30,7 @@ Antallet af testede kan udregnes som **ikke tidligere positive** plus **tidliger
 
 Begreberne opsummeres på nedenstående figur.
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/tested_explanation.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/Tested_explanation.png) 
 
 ## Antal testede og antal nye positive for hver kommune
 ### Datafiler
