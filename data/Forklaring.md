@@ -1,6 +1,6 @@
 # Forklaring af datafiler, beregninger og begreber 
 
-SSI's dokument som beskriver variablerne i datafilerne kan læses [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/SSIdata_200911/read_me.txt), og nedenstående forklaringer er baseret herpå.
+SSI's dokument som beskriver variablerne i datafilerne kan læses [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/SSIdata_200911/read_me.txt). Nedenstående tekst gengiver de relevante dele af dette dokument samt forklarer de foretagede beregninger. 
 
 ## Generelt
 
@@ -11,7 +11,7 @@ Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
 Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
 
 
-## Antal testede og antal nye positive for hele landet
+## Testede og positive for hele landet
 
 ### Datafil
 ``'Test_pos_over_time.csv'``
@@ -37,7 +37,7 @@ Begreberne opsummeres på nedenstående figur.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/Tested_explanation.png) 
 
-## Antal testede og antal nye positive for hver kommune
+## Testede og positive for hver kommune
 ### Datafiler
 ``'Municipality_cases_time_series.csv'`` og 
 ``'Municipality_tested_persons_time_series.csv'``
@@ -48,11 +48,46 @@ En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange ove
 
 **Testede** angiver det samlede antal testede personer på en given dag i en given kommune, som ikke har testet positive på en tidligere dato. 
 
-**Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19, på en given dag.
+**Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19, på en given dag i en given kommune.
 
-**Procent positive** angiver andelen af personer som er testet positive. Dette er beregnet som **nye positivt testede** divideret med **testede**. 
+**Procent positive** angiver andelen af personer som er testet positive  på en given dag i en given kommune. Dette er beregnet som **nye positivt testede** divideret med **testede**. 
 
 Bemærk altså at prøver taget på folk, som tidligere har testet positive ikke er medregnet i det kommuneopdelte datasæt.
+
+### Ugentligt opgjorte antal testede og positive
+Det ugentlige antal testede har jeg beregnet som summen af det daglige antal testede fra mandag til og med søndag. 
+
+Det ugentlige antal nye positive har jeg beregnet som summen af det daglige antal nye positive fra mandag til og med søndag.
+
+Den seneste uges data opgøres tidligst tirsdage kl 14.
+
+Eftersom en person kan bidrage flere gange over hele perioden (men kun én gang per dag), vil en person der er testet to gange i samme uge tælle som to personer hvis første test er negativ. Dette tal udgør formentlig en meget lille det af det samlede antal testede på en uge. 
+
+## Testede og positive for hver aldersgruppe
+### Datafiler
+``'Cases_by_age.csv'``
+
+### Antal testede og antal nye positive
+En person kan kun bidrage én gang i hele perioden.
+
+SSI's datafil angiver det kumulerede antal testede personer og det kumulerede antal nye positivt testede personer i hver aldersgruppe. Det ugentlige antal testede og nye positive i hver aldersgruppe har jeg beregnet som differencen mellem de kumulerede antal med en uges mellemrum (opgjort på onsdage).   
+
+**Nye testede** angiver det samlede antal testede personer i en given uge i en given aldersgruppe, som ikke er testet i en tidligere uge. 
+
+**Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19 i en given uge i en given aldersgruppe. 
+
+**Procent positive** angiver andelen af personer som for første gang er testet positive i en given uge i en given aldersgruppe. Dette har jeg beregnet som **nye positivt testede** i en given aldersgruppe divideret med **nye testede** i en given aldersgruppe. 
+
+Bemærk altså forskellen i den måde de aldersopdelte testdata er beregnet på i forhold til de øvrige testdata. 
+Det vil formentlig have den effekt, at positivprocenten i slutningen af perioden, alt andet lige, vil være højere end i starten af perioden, eftersom en højere og højere andel af de testede vil være testet tidligere. 
+
+
+
+
+
+
+
+
 
 ## Nyindlagte
 ### Datafil
