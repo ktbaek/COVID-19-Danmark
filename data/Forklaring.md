@@ -14,7 +14,7 @@ Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påv
 ## Antal testede og antal nye positive for hele landet
 
 ### Datafil
-'Test_pos_over_time.csv'.
+``'Test_pos_over_time.csv'``
 
 
 ### Antal testede og antal nye positive
@@ -39,8 +39,8 @@ Begreberne opsummeres på nedenstående figur.
 
 ## Antal testede og antal nye positive for hver kommune
 ### Datafiler
-'Municipality_cases_time_series.csv' og 
-'Municipality_tested_persons_time_series.csv'
+``'Municipality_cases_time_series.csv'`` og 
+``'Municipality_tested_persons_time_series.csv'``
 
 ### Antal testede og antal nye positive
 
@@ -56,7 +56,7 @@ Bemærk altså at prøver taget på folk, som tidligere har testet positive ikke
 
 ## Nyindlagte
 ### Datafil
-'Newly_admitted_over_time.csv'
+``'Newly_admitted_over_time.csv'``
 
 ### COVID-19-relateret indlæggelse
 En indlæggelse, hvor patienten blev indlagt inden for 14 dage efter prøvetagningsdato for den første positive SARS-CoV-2-prøve. Data baseres på de daglige øjebliksbilleder fra regionernes IT-systemer, som sendes hver dag kl. 7 og 15 og Landspatientregistret (LPR). Indlæggelser omfatter patienter, der har været registreret i mindst ét øjebliksbillede, eller som ifølge LPR er eller har været indlagt mere end 12 timer. Indlæggelser registeret i LPR på intensivafdeling inkluderes også når de varer mindre end 12 timer.
@@ -67,7 +67,7 @@ Indlægges en person mere end 48 timer før deres første positive test for COVI
 ## Døde
 
 ### Datafil
-'Deaths_over_time.csv'
+``'Deaths_over_time.csv'``
 
 ### Dødsdato
 Dagen hvor en person er registreret død.
