@@ -33,7 +33,7 @@ csv_list <- lapply(ssi_filer_date, read_age_csv)
 
 age_df <- bind_rows(csv_list)
 
-# Read MUNICIPALITY data for population numbers. Test data read from files read above (they don't include population data)
+# Read MUNICIPALITY data for population numbers. Test data are used from files read above (they don't include population data).
 read_muni_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
   file %<>%
@@ -245,8 +245,8 @@ muni_wk %<>%
   filter(Week < isoweek(as.Date(today) - 1)) %>% # remove current week
   group_by(Week, Kommune) %>%
   mutate(
-    Positive_wk = sum(Positive, na.rm = TRUE),
-    Tested_wk = sum(Tested, na.rm = TRUE)
+    Positive_wk = sum(Positive, na.rm = FALSE),
+    Tested_wk = sum(Tested, na.rm = FALSE)
   ) %>%
   ungroup() %>%
   select(-Date, -Positive, -Tested) %>%
