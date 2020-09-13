@@ -1,19 +1,21 @@
 # Forklaring af datafiler, beregninger og begreber 
 
-Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
-
 SSI's dokument som beskriver variablerne i datafilerne kan læses [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/SSIdata_200911/read_me.txt), og nedenstående forklaringer er baseret herpå.
 
-## Antal testede og antal nye positive for hele landet
-
-### Datafil
-'Test_pos_over_time.csv'.
+## Generelt
 
 ### Prøvedato 
 Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
 
 ### Typer af tests
 Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
+
+
+## Antal testede og antal nye positive for hele landet
+
+### Datafil
+'Test_pos_over_time.csv'.
+
 
 ### Antal testede og antal nye positive
 
@@ -39,12 +41,6 @@ Begreberne opsummeres på nedenstående figur.
 ### Datafiler
 'Municipality_cases_time_series.csv' og 
 'Municipality_tested_persons_time_series.csv'
-
-### Prøvedato 
-Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
-
-### Typer af tests
-Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
 
 ### Antal testede og antal nye positive
 
