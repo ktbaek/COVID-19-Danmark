@@ -44,9 +44,7 @@ Begreberne opsummeres på nedenstående figur.
 
 ### Antal testede og antal nye positive
 
-En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange over hele perioden.
-
-**Testede** angiver det samlede antal testede personer på en given dag i en given kommune, som ikke har testet positive på en tidligere dato. 
+**Testede** angiver antal testede personer på en given dag i en given kommune, som ikke har testet positive på en tidligere dato. En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange over hele perioden.
 
 **Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19, på en given dag i en given kommune.
 
@@ -55,9 +53,11 @@ En person kan kun bidrage én gang per dag, men kan godt bidrage flere gange ove
 Bemærk altså at prøver taget på folk, som tidligere har testet positive ikke er medregnet i det kommuneopdelte datasæt.
 
 ### Ugentligt opgjorte antal testede og positive
-Det ugentlige antal testede har jeg beregnet som summen af det daglige antal testede fra mandag til og med søndag. 
+Det **ugentlige antal testede** har jeg beregnet som summen af det daglige antal testede fra mandag til og med søndag. 
 
-Det ugentlige antal nye positive har jeg beregnet som summen af det daglige antal nye positive fra mandag til og med søndag.
+Det **ugentlige antal nye positive** har jeg beregnet som summen af det daglige antal nye positive fra mandag til og med søndag.
+
+**Procent positive** angiver andelen af personer som er testet positive i en given uge i en given kommune. Dette er beregnet som det **ugentlige antal nye positivt testede** divideret med **det ugentlige antal testede**.
 
 Den seneste uges data opgøres tidligst tirsdage kl 14.
 
@@ -68,18 +68,16 @@ Eftersom en person kan bidrage flere gange over hele perioden (men kun én gang 
 ``'Cases_by_age.csv'``
 
 ### Antal testede og antal nye positive
-En person kan kun bidrage én gang i hele perioden.
 
 SSI's datafil angiver det kumulerede antal testede personer og det kumulerede antal nye positivt testede personer i hver aldersgruppe. Det ugentlige antal testede og nye positive i hver aldersgruppe har jeg beregnet som differencen mellem de kumulerede antal med en uges mellemrum (opgjort på onsdage).   
 
-**Nye testede** angiver det samlede antal testede personer i en given uge i en given aldersgruppe, som ikke er testet i en tidligere uge. 
+**Nye testede** angiver antal testede personer i en given uge i en given aldersgruppe, som ikke er testet i en tidligere uge. En person kan kun bidrage én gang i hele perioden.
 
-**Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19 i en given uge i en given aldersgruppe. 
+**Nye positivt testede** angiver personer, som for første gang er testet positive for COVID-19 i en given uge i en given aldersgruppe. En person kan kun bidrage én gang i hele perioden.
 
 **Procent positive** angiver andelen af personer som for første gang er testet positive i en given uge i en given aldersgruppe. Dette har jeg beregnet som **nye positivt testede** i en given aldersgruppe divideret med **nye testede** i en given aldersgruppe. 
 
-Bemærk altså forskellen i den måde de aldersopdelte testdata er beregnet på i forhold til de øvrige testdata. 
-Det vil formentlig have den effekt, at positivprocenten i slutningen af perioden, alt andet lige, vil være højere end i starten af perioden, eftersom en højere og højere andel af de testede vil være testet tidligere. 
+Bemærk altså forskellen i den måde de aldersopdelte testdata er beregnet i forhold til de øvrige testdata. Det vil formentlig have den effekt, at positivprocenten i slutningen af perioden, *alt andet lige*, vil være højere end i starten af perioden, eftersom en højere og højere andel af testede vil være testet tidligere. 
 
 
 
