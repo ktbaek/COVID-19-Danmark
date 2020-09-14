@@ -77,7 +77,7 @@ SSI's datafil angiver det kumulerede antal testede personer og det kumulerede an
 
 **Procent positive** angiver andelen af personer som for første gang er testet positive i en given uge i en given aldersgruppe. Dette har jeg beregnet som **nye positivt testede** i en given aldersgruppe divideret med **nye testede** i en given aldersgruppe. 
 
-Bemærk altså forskellen i den måde antal testede er beregnet i de aldersopdelte testdata i forhold til i de øvrige testdata. Det vil formentlig have den effekt, at de beregnede positivandele i slutningen af perioden, *alt andet lige*, vil være højere end i starten af perioden, eftersom personer som er testet tidligere vil udgøre en stadig større andel af det samlede antal testede efterhånden som tiden skrider frem. 
+Bemærk altså forskellen i den måde antal testede er beregnet i de aldersopdelte testdata i forhold til i de øvrige testdata. Det vil formentlig have den effekt, at de beregnede positivandele i slutningen af perioden, *alt andet lige*, vil være højere end i starten af perioden, eftersom personer som tidligere er testet vil udgøre en stadig større andel af det samlede antal testede efterhånden som tiden skrider frem. 
 
 
 
