@@ -686,7 +686,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Procent positivt testede per nye testede i aldersgruppen") +
+  labs(x = "", y = "", title = "Positivt testede per nye testede (procent positive) i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(

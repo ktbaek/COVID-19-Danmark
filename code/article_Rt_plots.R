@@ -65,7 +65,7 @@ plot(tests$Date, tests$Tested,
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.4,
-  ylim = c(0, 50000),
+  ylim = c(0, 52000),
   xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
   las = 1,
   col = alpha(test_col, alpha = 0.3)
@@ -380,7 +380,7 @@ points(tests$Date, tests$NewPositive / 170, type = "b", pch = 19, col = alpha(po
 points(tests$Date, tests$running_avg_pos / 170, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-05-26"), y = 0, labels = "Antal positivt testede", col = pos_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-06-14"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2, adj = 1)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
@@ -444,7 +444,7 @@ points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, c
 # points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 # points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-28"), y = 0.02, labels = "Procent positivt testede", col = pct_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-06-15"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2, adj = 1)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
@@ -509,7 +509,7 @@ points(admitted$Date, admitted$running_avg / 24, type = "l", pch = 19, col = adm
 # points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 # points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
 text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-06-20"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1.4, font = 2)
+text(x = as.Date("2020-07-10"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = 1.4, font = 2, adj = 1)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
 abline(v = as.Date("2020-06-12") - 0.3, col = "gray", lty = 3)
@@ -582,7 +582,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 360, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 400, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
@@ -664,7 +664,7 @@ plot(tests$Date, rep(50000, length(tests$Date)),
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.2,
-  ylim = c(0, 50000),
+  ylim = c(0, 52000),
   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
   las = 1,
   col = "white"
