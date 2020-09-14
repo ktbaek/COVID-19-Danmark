@@ -251,3 +251,4 @@ muni_wk %<>%
   ungroup() %>%
   select(-Date, -Positive, -Tested) %>%
   distinct()
+

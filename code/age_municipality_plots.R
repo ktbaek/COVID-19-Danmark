@@ -706,6 +706,45 @@ ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 12, units = "c
 
 
 
+# Figur: test cases_by_age vs test_pos_over_time  -------------------------------------
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(Aldersgruppe == "I alt") %>%
+  select(Date, positive) %>%
+  rename(Pos_agedata = positive) %>%
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value") %>%
+  group_by(variable) %>%
+  mutate(value = c(0, diff(value))) 
+
+test_1 <- tests %>%
+  mutate(Week_end_Date = ceiling_date(Date + 4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
+  select(Week_end_Date, NewPositive) %>%
+  filter(Week_end_Date > as.Date("2020-03-11")) %>%
+  rename(Date = Week_end_Date, Pos_testdata = NewPositive) %>%
+  group_by(Date) %>%
+  summarise_all(sum) %>%
+  ungroup() %>%
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value")  %>%
+  filter(!Date == "2020-03-18", Date <= max(plot_data$Date))
+
+plot_data <- bind_rows(plot_data, test_1)
+
+ggplot(plot_data, aes(Date, value)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = variable)) +
+  scale_fill_discrete(name = "Datasæt", labels = c("Cases_by_age", "Test_pos_over_time")) +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive") +
+  # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 11, family = "lato"),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
+  )
+
+ggsave("../figures/dataset_comparison.png", width = 25, height = 15, units = "cm", dpi = 300)
+
 # Experiments --------
 
 ra <- function(x, n = 7) {
