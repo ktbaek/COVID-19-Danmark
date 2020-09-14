@@ -562,7 +562,7 @@ ggplot(plot_data, aes(Date, value)) +
     axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/age_groups_pos_tested.png", width = 30, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/age_groups_pos_tested.png", width = 31, height = 15, units = "cm", dpi = 300)
 
 # Figur: Aldersgrupper, pct --------------------------------------------------------------
 
