@@ -86,7 +86,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal positive og testede for udvalgte kommuner") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -544,13 +544,13 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
   facet_wrap(~Aldersgruppe, scales = "free") +
-  scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
+  scale_color_manual(name = "", labels = c("Positive", "Nye testede"), values = c(pos_col, test_col)) +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, 50000)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Positive og testede per uge for hver aldersgruppe") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Positive og nye testede per uge for hver aldersgruppe") +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
@@ -615,7 +615,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Positive tests per befolkningstal i aldersgruppen") +
+  labs(x = "", y = "", title = "Positivt testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   theme_tufte() +
   theme(
@@ -651,7 +651,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Udførte tests per befolkningstal i aldersgruppen") +
+  labs(x = "", y = "", title = "Antal nye testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
   theme_tufte() +
   theme(
@@ -686,7 +686,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Procent positive tests per udførte tests i aldersgruppen") +
+  labs(x = "", y = "", title = "Procent positivt testede per nye testede i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(

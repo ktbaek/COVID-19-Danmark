@@ -582,7 +582,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 360, labels = "Nye positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 360, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 
@@ -606,7 +606,7 @@ plot(tests$Date, rep(600, length(tests$Date)),
 )
 
 mtext(
-  text = "Procent nye positivt testede vs. nyindlagte",
+  text = "Procent positivt testede vs. nyindlagte",
   side = 3, # side 1 = bottom
   line = 1,
   cex = 1.5,

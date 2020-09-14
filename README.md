@@ -11,8 +11,11 @@ Befolkningstal per aldersgruppe er hentet på [Danmarks Statistik](https://statb
 
 Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
-*Update: Plots over tests for forskellige aldersgrupper er indtil videre fjernet fra forsiden, da SSIs aldersopdelte datasæt, i modsætning til de øvrige datasæt brugt her, ikke tillader en præcis beregning af tidsserier. Tendensen som ses i disse plots holder dog stadig, og plotsene kan derfor stadig findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures). Jeg overvejer en anden måde at plotte disse data på.*
+Læs en uddybende forklaring af datafiler, begreber og beregninger [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/Forklaring.md).
 
+<!--
+*Update: Plots over tests for forskellige aldersgrupper er indtil videre fjernet fra forsiden, da SSIs aldersopdelte datasæt, i modsætning til de øvrige datasæt brugt her, ikke tillader en præcis beregning af tidsserier. Tendensen som ses i disse plots holder dog stadig, og plotsene kan derfor stadig findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures). Jeg overvejer en anden måde at plotte disse data på.*
+-->
 
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.* 
 
@@ -20,8 +23,10 @@ Kode i R for databehandling og generering af plots findes [her](https://github.c
 #### Antal positivt testede
 Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
 
+Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**. De to begreber beskriver det samme.
+
 #### Procentdel positivt testede
-Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten eller positivandelen.
+Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
 
 ## Plots
 
@@ -50,7 +55,7 @@ Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3_pct.png) 
 
-### Dagligt antal nye positive tests og procentdelen af  positive tests
+### Dagligt antal positive tests og procentdelen af  positive tests
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
@@ -135,9 +140,10 @@ For at se ovenstående plot for *alle* kommuner, klik [her](https://github.com/k
 
 For at se ovenstående plot for *alle* kommuner, klik [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/all_muni_weekly_pos_pct_tile.png).
 
-<!--
-### Ugentligt antal nye positivt testede og total antal testede for hver aldersgruppe
-Plottet viser det ugentlige antal nye positivt testede og antal testede for hver aldersgruppe. 
+### Ugentligt antal nye positivt testede og antal *nye* testede for hver aldersgruppe
+Plottet viser det ugentlige antal nye positivt testede og antal nye testede for hver aldersgruppe. 
+
+Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
 
 De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
@@ -148,23 +154,30 @@ De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på
 ### Ugentlig procentdel positivt testede for hver aldersgruppe
 Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
 
+Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette vil påvirke positivprocenten. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
+
 De ugentlige data er opgjort om onsdagen.
 
 ``SSI datasæt: 'Cases_by_age'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_groups_pct.png) 
 
-### Ugentlig procentdel positive tests for hver aldersgruppe, ugentligt antal positive tests for hver aldersgruppe, og ugentligt antal tests per aldersgruppe (heatmaps)
-Plottene viser hhv. den ugentlige procentdel af positive tests i hver aldersgruppe, det ugentlige antal positive tests som promille af befolkningstallet i hver aldersgruppe, og det ugentlige antal udførte tests som procent af befolkningstallet i hver aldersgruppe .  
+### Ugentligt antal positivt testede for hver aldersgruppe, ugentlig procentdel positivt testede for hver aldersgruppe, og ugentligt antal nye testede per aldersgruppe (heatmaps)
+Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe, den ugentlige procentdel af positivt testede i hver aldersgruppe, og det ugentlige antal nye testede som procent af befolkningstallet i hver aldersgruppe .  
+
+Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette vil påvirke positivprocenten og antal testede. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
 
 ``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_incidens_tile.png)
 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
+
+
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_tests_tile.png)
 
+<!--
 
 ### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
 Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser andelen. 
@@ -196,7 +209,6 @@ De ugentlige data er opgjort om onsdagen.
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_young.png)
 
 -->
-
 
 
 
