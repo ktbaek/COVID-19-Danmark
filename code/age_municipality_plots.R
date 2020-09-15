@@ -452,7 +452,7 @@ plot_data <- age_data %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) +
   scale_fill_manual(name = "", labels = c("Pos over 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede ældre vs. total nyindlagte") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre vs. total nyindlagte") +
   scale_y_continuous(breaks = c(-500, 0, 500, 1000), labels = as.character(c("500", "0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -475,7 +475,7 @@ plot_data <- age_data %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) +
   scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive testede yngre vs. total nyindlagte") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede yngre vs. total nyindlagte") +
   scale_y_continuous(breaks = c(-500, 0, 500, 1000), labels = as.character(c("500", "0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -495,7 +495,7 @@ plot_data <- age_data %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive tests for ældre og yngre") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede for ældre og yngre") +
   # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -515,7 +515,7 @@ plot_data <- age_data %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
-  labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positive tests mellem ældre og yngre") +
+  labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positivt testede mellem ældre og yngre") +
   # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -743,7 +743,7 @@ ggplot(plot_data, aes(Date, value)) +
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/dataset_comparison.png", width = 25, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/dataset_comparison.png", width = 25, height = 12, units = "cm", dpi = 300)
 
 # Figur: Previously tested vs never before tested  -------------------------------------
 

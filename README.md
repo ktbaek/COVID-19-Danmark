@@ -177,10 +177,10 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_tests_tile.png)
 
-<!--
 
-### Ugentligt antal positive tests for hhv. ældre (> 50 år) og yngre (< 50 år)
-Plottene viser fordelingen af positive tests på ældre (> 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser andelen. 
+
+### Ugentligt antal positivt testede ældre (> 50 år) vs. yngre (< 50 år)
+Plottene viser fordelingen af positivt testede ældre (> 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper. 
 
 De ugentlige data er opgjort om onsdagen.
 
@@ -190,7 +190,7 @@ De ugentlige data er opgjort om onsdagen.
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_fill.png)
 
 
-### Ugentligt antal nyindlagte og antal nye positive tests for ældre (> 50 år)
+### Ugentligt antal nyindlagte og antal nye positivt testede ældre (> 50 år)
 Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over 50 år.
 
 De ugentlige data er opgjort om onsdagen.
@@ -199,7 +199,7 @@ De ugentlige data er opgjort om onsdagen.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_old.png)
 
-### Ugentligt antal nyindlagte og antal nye positive tests for yngre (< 50 år)
+### Ugentligt antal nyindlagte og antal nye positivt testede yngre (< 50 år)
 Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under 50 år.
 
 De ugentlige data er opgjort om onsdagen.
@@ -208,7 +208,7 @@ De ugentlige data er opgjort om onsdagen.
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_young.png)
 
--->
+
 
 
 

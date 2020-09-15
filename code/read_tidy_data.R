@@ -198,8 +198,7 @@ week_admitted <- admitted %>%
   group_by(Date) %>%
   summarise(value = sum(Total)) %>%
   ungroup() %>%
-  mutate(variable = "admitted") %>%
-  filter(!Date == "2020-03-18")
+  mutate(variable = "admitted") 
 
 # Combine AGE, ADMITTED and group into old and young --------------------------------
 
@@ -221,6 +220,9 @@ wk_df_group %<>%
   ungroup() %>%
   select(-positive, -Antal_testede) %>%
   filter(!Date == "2020-03-18")
+
+week_admitted %<>%
+  filter(!Date == "2020-03-18", Date <= max(wk_df_group$Date))
 
 age_data <- bind_rows(week_admitted, wk_df_group)
 

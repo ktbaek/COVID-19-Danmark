@@ -95,6 +95,13 @@ En indlæggelse, hvor patienten blev indlagt inden for 14 dage efter prøvetagni
 ### COVID-19-relaterede indlæggelsesdatoer
 Indlægges en person mere end 48 timer før deres første positive test for COVID-19 er taget, så tæller deres prøvetagningsdato som COVID-19-indlæggelsesdatoen. I alle andre tilfælde er det indlæggelsesdatoen, som er angivet.
 
+### Ugentligt opgjorte antal nyindlagte
+Det **ugentlige antal nyindlagte** har jeg beregnet som summen af det daglige antal nyindlagte fra torsdag til og med onsdag. 
+
+
+
+
+
 ## Døde
 
 ### Datafil
