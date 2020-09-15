@@ -9,7 +9,7 @@ library(ggthemes)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-09-14"
+today <- "2020-09-15"
 
 source("read_tidy_data.R")
 source("plot_colors.R")

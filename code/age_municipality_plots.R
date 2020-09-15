@@ -203,7 +203,7 @@ plot_data <- muni_all %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
 ggplot(plot_data, aes(Date, value)) +
-  geom_line(stat = "identity", position = "identity", size = 0.8, aes(color = variable)) +
+  geom_line(stat = "identity", position = "identity", size = 0.6, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
@@ -242,7 +242,7 @@ ggplot(plot_data, aes(Date, Ratio)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
   scale_y_continuous(
-    limits = c(0, 5)
+    limits = c(0, 6)
   ) +
   labs(y = "Procent positive", x = "Uge", title = "Daglig procent positivt testede for udvalgte kommuner") +
   theme_minimal() +
