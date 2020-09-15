@@ -752,7 +752,8 @@ plot_data <- week_df %>%
   filter(Aldersgruppe == "I alt") %>%
   select(Date, Antal_testede) %>%
   rename(Tested_kum_unique = Antal_testede) %>%
-  pivot_longer(cols = -Date, names_to = "variable", values_to = "value") 
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value") %>%
+  mutate(diff = c(0, diff(value))) 
   
 
 test_1 <- tests %>%
@@ -760,8 +761,11 @@ test_1 <- tests %>%
   select(Week_end_Date, Tested_kumulativ) %>%
   filter(Week_end_Date > as.Date("2020-03-11")) %>%
   rename(Date = Week_end_Date, Tested_kum_total = Tested_kumulativ) %>%
+  group_by(Date) %>%
+  mutate(Tested_kum_total = max(Tested_kum_total))
   pivot_longer(cols = -Date, names_to = "variable", values_to = "value")  %>%
-  filter(!Date == "2020-03-18", Date <= max(plot_data$Date)) 
+  filter(!Date == "2020-03-18", Date <= max(plot_data$Date)) %>%
+  mutate(diff = c(0, diff(value))) 
 
 plot_data <- bind_rows(plot_data, test_1)
 
