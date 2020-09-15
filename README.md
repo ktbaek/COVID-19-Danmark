@@ -180,7 +180,7 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 
 ### Ugentligt antal positivt testede ældre (&ge; 50 år) vs. yngre (< 50 år)
-Plottene viser fordelingen af positivt testede ældre (> 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper. 
+Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper. 
 
 De ugentlige data er opgjort om onsdagen.
 
