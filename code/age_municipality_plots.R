@@ -706,7 +706,7 @@ ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 12, units = "c
 
 
 
-# Figur: test cases_by_age vs test_pos_over_time  -------------------------------------
+# Figur: Test: cases_by_age vs test_pos_over_time  -------------------------------------
 
 plot_data <- week_df %>%
   select(-date_of_file) %>%
@@ -745,6 +745,40 @@ ggplot(plot_data, aes(Date, value)) +
 
 ggsave("../figures/dataset_comparison.png", width = 25, height = 15, units = "cm", dpi = 300)
 
+# Figur: Previously tested vs never before tested  -------------------------------------
+
+plot_data <- week_df %>%
+  select(-date_of_file) %>%
+  filter(Aldersgruppe == "I alt") %>%
+  select(Date, Antal_testede) %>%
+  rename(Tested_kum_unique = Antal_testede) %>%
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value") 
+  
+
+test_1 <- tests %>%
+  mutate(Week_end_Date = ceiling_date(Date + 4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
+  select(Week_end_Date, Tested_kumulativ) %>%
+  filter(Week_end_Date > as.Date("2020-03-11")) %>%
+  rename(Date = Week_end_Date, Tested_kum_total = Tested_kumulativ) %>%
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value")  %>%
+  filter(!Date == "2020-03-18", Date <= max(plot_data$Date)) 
+
+plot_data <- bind_rows(plot_data, test_1)
+
+ggplot(plot_data, aes(Date, value/1000000)) +
+  geom_bar(stat = "identity", position = "dodge", aes(fill = variable)) +
+  scale_fill_discrete(name = "Kategori", labels = c("Testede (inkl gengangere)", "Unikke testede personer")) +
+  labs(y = "Antal (millioner)", x = "Dato", title = "Antal testede (kumulativ)") +
+  # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
+  theme_minimal() +
+  theme(
+    text = element_text(size = 11, family = "lato"),
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
+  )
+
+ggsave("../figures/prev_tested_new_tested.png", width = 25, height = 15, units = "cm", dpi = 300)
 # Experiments --------
 
 ra <- function(x, n = 7) {

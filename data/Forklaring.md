@@ -81,7 +81,7 @@ Bemærk altså forskellen i den måde det samlede antal testede er beregnet i de
 
 Note: SSI anbefaler ikke at gemme filer og lave tidsserier på basis af gamle filer, idet data nogle gange opdateres tilbage i tiden. En sammenligning mellem de beregnede ugentlige antal positive baseret på Cases_by_age datafilerne og den seneste Test_pos_over_time fil, viser dog at der er stor overenstemmelse mellem de beregnede ugentlige værdier.
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/dataset_comparison.png)
+![](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/dataset_comparison.png)
 
 
 
