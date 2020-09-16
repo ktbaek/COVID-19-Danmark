@@ -5,7 +5,7 @@ color_scale <- c(
   desaturate("#FC4E07", 0.1),
   desaturate(lighten("#293352", 0.15), 0.1),
   desaturate(lighten("#FC4E07", 0.3), 0.2),
-  desaturate(darken("#E83B3B", 0.2), 0.2))
+  desaturate(darken("#E83B3B", 0.1), 0.2))
 
 specplot(color_scale)
 
