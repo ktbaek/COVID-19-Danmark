@@ -762,17 +762,23 @@ test_1 <- tests %>%
   filter(Week_end_Date > as.Date("2020-03-11")) %>%
   rename(Date = Week_end_Date, Tested_kum_total = Tested_kumulativ) %>%
   group_by(Date) %>%
-  mutate(Tested_kum_total = max(Tested_kum_total))
+  summarize(Tested_kum_total = max(Tested_kum_total)) %>% 
+  ungroup() %>%
   pivot_longer(cols = -Date, names_to = "variable", values_to = "value")  %>%
-  filter(!Date == "2020-03-18", Date <= max(plot_data$Date)) %>%
   mutate(diff = c(0, diff(value))) 
 
-plot_data <- bind_rows(plot_data, test_1)
+plot_data <- bind_rows(plot_data, test_1) %>% 
+  filter(!Date == as.Date("2020-03-18"), !Date == as.Date("2020-09-16")) %>%
+  select(-value) %>%
+  pivot_wider(names_from = variable, values_from = diff) %>%
+  mutate(new_tested = Tested_kum_total - Tested_kum_unique) %>%
+  select(-Tested_kum_total) %>%
+  pivot_longer(cols = -Date, names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(Date, value/1000000)) +
-  geom_bar(stat = "identity", position = "dodge", aes(fill = variable)) +
-  scale_fill_discrete(name = "Kategori", labels = c("Testede (inkl gengangere)", "Unikke testede personer")) +
-  labs(y = "Antal (millioner)", x = "Dato", title = "Antal testede (kumulativ)") +
+ggplot(plot_data, aes(Date,value)) +
+  geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
+  scale_fill_discrete(name = "Kategori", labels = c("Testet tidligere", "Førstegangstestede")) +
+  labs(y = "Andel", x = "Dato", title = "Ugentlig andel af førstegangstestede vs. testede tidligere") +
   # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -782,7 +788,7 @@ ggplot(plot_data, aes(Date, value/1000000)) +
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/prev_tested_new_tested.png", width = 25, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/prev_tested_new_tested.png", width = 25, height = 12, units = "cm", dpi = 300)
 # Experiments --------
 
 ra <- function(x, n = 7) {

@@ -4,7 +4,8 @@ color_scale <- c(
   lighten("#3087B7", 0.1),
   desaturate("#FC4E07", 0.1),
   desaturate(lighten("#293352", 0.15), 0.1),
-  "#89D9CF"
+  desaturate(lighten("#FC4E07", 0.2), 0.2),
+  darken("#FC4E07", 0.3)
 )
 
 specplot(color_scale)
@@ -14,4 +15,5 @@ test_col <- color_scale[5]
 pct_col <- color_scale[2]
 admit_col <- color_scale[3]
 death_col <- color_scale[1]
-binary_col <- c(color_scale[1], color_scale[2])
+binary_col <- c(color_scale[6], color_scale[7])
+#89D9CF
