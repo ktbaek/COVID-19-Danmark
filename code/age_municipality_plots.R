@@ -13,7 +13,7 @@ muni_10 <- plot_data %>%
   unique() # for later daily use
 
 ggplot(plot_data, aes(Week, value)) +
-  geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
+  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
   scale_x_continuous(breaks = breaks_width(2)) +
