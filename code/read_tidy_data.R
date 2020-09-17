@@ -183,11 +183,28 @@ muni_tests_check %>%
 
 # Arrange AGE data weekly ------------------------------------------------------
 
-week_df <- age_df %>%
-  filter(wday(Date) == 4) # wednesday because it consistently appears throughout (e.g mondays can be holidays)
+week_df_1 <- age_df %>%
+  filter(Date < as.Date("2020-07-02")) %>%
+  filter(wday(Date) == 4)# wednesday because it consistently appears throughout in the beginning of the period
+
+week_df_2 <- age_df %>%
+  filter(Date > as.Date("2020-07-02")) %>%
+  filter(wday(Date) == 5) # thursday because it consistently appears throughout later in the period
+
+week_df <- bind_rows(early_data, week_df_1, week_df_2) %>% arrange(Date) %>% select(-date_of_file)
+
+week_df %<>%
+  mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0))  -4)  %>% #adjust end-date to get equally separated bars on plots
+  select(-Date) %>%
+  rename(Date = Week_end_Date) 
 
 
-week_df %<>% bind_rows(early_data) %>% arrange(Date)
+
+
+#tests
+abs(diff(unique(week_df$Date)))
+as_date(min(week_df$Date))
+as_date(max(week_df$Date))
 
 # Arrange ADMITTED data weekly --------------------------------------------------
 
@@ -213,7 +230,7 @@ wk_df_group <- week_df %>%
   summarise_all(sum) %>%
   mutate(variable = ifelse(less_than, "young", "old")) %>%
   ungroup() %>%
-  select(-less_than, -date_of_file)
+  select(-less_than)
 
 wk_df_group %<>%
   group_by(variable) %>%

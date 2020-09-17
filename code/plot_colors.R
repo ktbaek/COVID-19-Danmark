@@ -7,7 +7,7 @@ color_scale <- c(
   desaturate(lighten("#FC4E07", 0.4), 0),
   desaturate(darken("#FC4E07", 0.1), 0))
 
-specplot(color_scale)
+#specplot(color_scale)
 
 pos_col <- color_scale[4]
 test_col <- color_scale[5]

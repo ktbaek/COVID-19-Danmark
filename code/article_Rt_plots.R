@@ -582,7 +582,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 400, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 420, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
 
 dev.off()
 

@@ -69,7 +69,7 @@ Eftersom en person kan bidrage flere gange over hele perioden (men kun én gang 
 
 ### Antal testede og antal nye positive
 
-SSI's datafil angiver det kumulerede antal testede personer og det kumulerede antal nye positivt testede personer i hver aldersgruppe. Det ugentlige antal testede og nye positive i hver aldersgruppe har jeg beregnet som differencen mellem de kumulerede værdier med én uges mellemrum (opgjort på onsdage).   
+SSI's datafil angiver det kumulerede antal testede personer og det kumulerede antal nye positivt testede personer i hver aldersgruppe. Det ugentlige antal testede og nye positive i hver aldersgruppe har jeg beregnet som differencen mellem de kumulerede værdier med én uges mellemrum. De ugentlige data er opgjort om onsdagen fra marts til og med 1. juli, derefter om torsdagen.  
 
 **Nye testede** angiver antal testede personer i en given uge i en given aldersgruppe, *som ikke er testet i en tidligere uge*. En person kan kun bidrage én gang i hele perioden.
 

@@ -1,8 +1,6 @@
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
 Senest opdateret 17. september 2020 efter kl 14. 
 
-*Aldersopdelte data indtil videre ikke opdateret for seneste uge pga manglende data i går.*
-
 ## Data
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
@@ -147,7 +145,7 @@ Plottet viser det ugentlige antal nye positivt testede og antal nye testede for 
 
 Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
 
-De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
+Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
 ``SSI datasæt: 'Cases_by_age'``
 
@@ -157,8 +155,6 @@ De ugentlige data er opgjort om onsdagen. Bemærk at antal positive aflæses på
 Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
 
 Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette vil påvirke positivprocenten. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
-
-De ugentlige data er opgjort om onsdagen.
 
 ``SSI datasæt: 'Cases_by_age'``
 
@@ -184,8 +180,6 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 ### Ugentligt antal positivt testede ældre (&ge; 50 år) vs. yngre (< 50 år)
 Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper. 
 
-De ugentlige data er opgjort om onsdagen.
-
 ``SSI datasæt: 'Cases_by_age'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_stack.png) 
@@ -195,16 +189,12 @@ De ugentlige data er opgjort om onsdagen.
 ### Ugentligt antal nyindlagte og antal nye positivt testede ældre (&ge; 50 år)
 Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over 50 år.
 
-De ugentlige data er opgjort om onsdagen.
-
 ``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_group_admitted_pos_old.png)
 
 ### Ugentligt antal nyindlagte og antal nye positivt testede yngre (< 50 år)
 Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under 50 år.
-
-De ugentlige data er opgjort om onsdagen.
 
 ``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
