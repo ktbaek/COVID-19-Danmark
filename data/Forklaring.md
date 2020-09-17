@@ -10,6 +10,8 @@ Dette er datoen testen blev taget og ikke datoen, hvor prøvesvaret forelå.
 ### Typer af tests
 Filerne bygger udelukkende på PCR-test, som er den test, der bruges til at påvise COVID-19-smitte under et aktivt sygdomsforløb. Data indeholder ikke serologitest, som er den test, der udføres, når man skal undersøge, om raske mennesker tidligere har haft COVID-19.
 
+### Bemærkning til SSI's dashboard
+I modsætning til de datasæt der benyttes her, angiver det aktuelle tal for antal bekræftede tilfælde på SSI's dashboard  antal positive prøvesvar i dag, hvor der ikke tages hensyn til datoen hvor prøven er taget.  
 
 ## Testede og positive for hele landet
 
