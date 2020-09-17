@@ -358,6 +358,8 @@ plot_data <- muni_wk %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
 
+num_muni <- length(unique(plot_data$Kommune))
+
 
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   geom_tile(colour = "white", size = 0.25) +
@@ -378,7 +380,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   )
 
 
-ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 3.4 * ceiling(sqrt(num_muni)), units = "cm", dpi = 300)
 
 # Figur: Incidens - kommuner med over 10 smittede, heatmap ---------------------------------
 biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningstal)) %>% arrange(desc(x)) %>% slice(1:10) %>% pull(Kommune)
@@ -408,7 +410,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   )
 
 
-ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 3.4 * ceiling(sqrt(num_muni)), units = "cm", dpi = 300)
 
 # Figur: Procent - kommuner med over 10 smittede, heatmap ----------
 biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningstal)) %>% arrange(desc(x)) %>% slice(1:10) %>% pull(Kommune)
@@ -438,7 +440,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 25, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 3.4 * ceiling(sqrt(num_muni)), units = "cm", dpi = 300)
 
 
 # Figur: Pos over 50 vs nyindlagte, fra marts -----------------------------------------------------
