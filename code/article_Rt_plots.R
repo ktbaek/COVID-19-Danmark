@@ -65,7 +65,7 @@ plot(tests$Date, tests$Tested,
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.4,
-  ylim = c(0, 52000),
+  ylim = c(0, 55000),
   xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
   las = 1,
   col = alpha(test_col, alpha = 0.3)
@@ -664,7 +664,7 @@ plot(tests$Date, rep(50000, length(tests$Date)),
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.2,
-  ylim = c(0, 52000),
+  ylim = c(0, 55000),
   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
   las = 1,
   col = "white"
@@ -697,7 +697,7 @@ mtext(
 segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = test_col, lend = 1)
 segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-04-20"), y = 34000, labels = "Procent positive", col = pct_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-04-20"), y = 40000, labels = "Procent positive", col = pct_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-08-02"), y = 45000, labels = "Antal testede", col = test_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-03-12"), y = 8200, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)

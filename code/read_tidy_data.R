@@ -186,6 +186,7 @@ muni_tests_check %>%
 week_df <- age_df %>%
   filter(wday(Date) == 4) # wednesday because it consistently appears throughout (e.g mondays can be holidays)
 
+
 week_df %<>% bind_rows(early_data) %>% arrange(Date)
 
 # Arrange ADMITTED data weekly --------------------------------------------------

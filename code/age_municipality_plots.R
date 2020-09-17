@@ -3,12 +3,12 @@
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-07-07")) %>%
   group_by(Kommune) %>%
-  filter(max(Positive_wk) > 10) %>%
+  filter(max(Positive_wk) > 20) %>%
   ungroup() %>%
   mutate(Positive_wk = Positive_wk * 100) %>%
   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-muni_10 <- plot_data %>%
+muni_subset <- plot_data %>%
   pull(Kommune) %>%
   unique() # for later daily use
 
@@ -72,7 +72,7 @@ ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, unit
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-07")) %>%
   group_by(Kommune) %>%
-  filter(max(Positive_wk) > 10) %>%
+  filter(Kommune %in% muni_subset) %>%
   ungroup() %>%
   mutate(Positive_wk = Positive_wk * 100) %>%
   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
@@ -106,7 +106,7 @@ ggsave("../figures/muni_10_pos_vs_test_april.png", width = 42, height = 27, unit
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-07-07")) %>%
   group_by(Kommune) %>%
-  filter(max(Positive_wk) > 10) %>%
+  filter(Kommune %in% muni_subset) %>%
   ungroup() %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100)
 
@@ -168,7 +168,7 @@ ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm"
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-07")) %>%
   group_by(Kommune) %>%
-  filter(max(Positive_wk) > 10) %>%
+  filter(Kommune %in% muni_subset) %>%
   ungroup() %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100)
 
@@ -198,7 +198,7 @@ ggsave("../figures/muni_10_pct_april.png", width = 32, height = 24, units = "cm"
 
 plot_data <- muni_all %>%
   filter(Date > as.Date("2020-08-01")) %>%
-  filter(Kommune %in% muni_10) %>%
+  filter(Kommune %in% muni_subset) %>%
   mutate(Positive = Positive * 100) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
@@ -233,7 +233,7 @@ ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 30, height = 20, unit
 
 plot_data <- muni_all %>%
   filter(Date > as.Date("2020-08-01")) %>%
-  filter(Kommune %in% muni_10) %>%
+  filter(Kommune %in% muni_subset) %>%
   mutate(Ratio = Positive / Tested * 100)
 
 
@@ -355,7 +355,7 @@ biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningsta
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-01")) %>%
   #mutate(Incidens = Tested_wk / Befolkningstal * 100) %>%
-  filter(Kommune %in% muni_10) %>%
+  filter(Kommune %in% muni_subset) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
 
 
@@ -386,7 +386,7 @@ biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningsta
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-01")) %>%
   mutate(Incidens = Positive_wk / Befolkningstal * 1000) %>%
-  filter(Kommune %in% muni_10) %>%
+  filter(Kommune %in% muni_subset) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
 
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
@@ -416,7 +416,7 @@ biggest_10 <- muni_wk %>% group_by(Kommune) %>% summarize(x = mean(Befolkningsta
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-01")) %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100) %>%
-  filter(Kommune %in% muni_10) %>%
+  filter(Kommune %in% muni_subset) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
 
 
