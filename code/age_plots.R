@@ -255,7 +255,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
 
 ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 12, units = "cm", dpi = 300)
 
-# Figur: Aldersgrupper, pct, heatmap fra 1 juli ----------
+# Figur: Aldersgrupper, pct, heatmap fra maj ----------
 
 plot_data <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
@@ -278,15 +278,16 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     plot.background = element_blank(),
     panel.border = element_blank(),
     axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
+    plot.title = element_text(size = 15, hjust = 0.5, face = "bold"),
+    text = element_text(size = 15, family = "lato"),
     legend.text = element_text(size = 13, family = "lato"),
-    axis.title.y = element_text(size = 13, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    axis.title.x = element_text(size = 132, family = "lato")
+    axis.title.y = element_text(size = 17, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.text.y = element_text(margin = margin(t = 0, r = -10, b = 0, l = 0)),
+    axis.title.x = element_text(size = 17, family = "lato")
   )
 
-ggsave("../figures/age_weekly_pct_tile_july.png", width = 20, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_pct_tile_may.png", width = 21, height = 12, units = "cm", dpi = 250)
+
 
 
 # Figur: Test: cases_by_age vs test_pos_over_time  -------------------------------------
