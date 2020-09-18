@@ -255,7 +255,38 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
 
 ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 12, units = "cm", dpi = 300)
 
+# Figur: Aldersgrupper, pct, heatmap fra 1 juli ----------
 
+plot_data <- week_df %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  rename(Testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
+  group_by(Aldersgruppe, variable) %>%
+  mutate(value = c(0, diff(value))) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  mutate(Ratio = positive / Testede * 100) %>%
+  filter(Date > as.Date("2020-05-15"))
+
+
+ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
+  geom_tile(colour = "white", size = 0.25) +
+  coord_fixed(ratio = 7) +
+  labs(x = "", y = "", title = "Positivt testede per nye testede (procent positive) i aldersgruppen") +
+  scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
+  theme_tufte() +
+  theme(
+    plot.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
+    text = element_text(size = 13, family = "lato"),
+    legend.text = element_text(size = 13, family = "lato"),
+    axis.title.y = element_text(size = 13, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
+    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
+    axis.title.x = element_text(size = 132, family = "lato")
+  )
+
+ggsave("../figures/age_weekly_pct_tile_july.png", width = 20, height = 12, units = "cm", dpi = 300)
 
 
 # Figur: Test: cases_by_age vs test_pos_over_time  -------------------------------------
