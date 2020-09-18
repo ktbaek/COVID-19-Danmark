@@ -172,6 +172,9 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile_may.png)
+
+
 
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_tests_tile.png)
