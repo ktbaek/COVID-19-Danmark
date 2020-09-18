@@ -154,7 +154,7 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 ### Ugentlig procentdel positivt testede for hver aldersgruppe
 Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
 
-Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette vil påvirke positivprocenten. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
+Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette kan påvirke positivprocenten. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe). 
 
 ``SSI datasæt: 'Cases_by_age'``
 
@@ -163,7 +163,7 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 ### Ugentligt antal positivt testede for hver aldersgruppe, ugentlig procentdel positivt testede for hver aldersgruppe, og ugentligt antal nye testede per aldersgruppe (heatmaps)
 Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe, den ugentlige procentdel af positivt testede i hver aldersgruppe, og det ugentlige antal nye testede som procent af befolkningstallet i hver aldersgruppe .  
 
-Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette vil påvirke positivprocenten og antal testede. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
+Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså personer som ikke tidligere er testet. Dette kan påvirke positivprocenten og antal testede. Læs uddybende forklaring [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
 
 ``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
 
