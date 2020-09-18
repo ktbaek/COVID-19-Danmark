@@ -281,6 +281,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     plot.title = element_text(size = 15, hjust = 0.5, face = "bold"),
     text = element_text(size = 15, family = "lato"),
     legend.text = element_text(size = 13, family = "lato"),
+    legend.box.margin=margin(10,10,10,10),
     axis.title.y = element_text(size = 17, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.text.y = element_text(margin = margin(t = 0, r = -10, b = 0, l = 0)),
     axis.title.x = element_text(size = 17, family = "lato")
