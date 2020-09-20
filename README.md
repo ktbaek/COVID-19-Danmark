@@ -172,13 +172,14 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile.png)
 
-<img align="right" width="630"  src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile_may.png">
 
-
-
-
+Ugentlig procentdel positivt testede per aldersgruppe siden maj:
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_tests_tile.png)
+
+
+<img align="right" width="630"  src="https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/age_weekly_pct_tile_may.png">
+
 
 
 
