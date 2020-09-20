@@ -30,7 +30,7 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 ## Plots
 
-De første fem figurer er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
+Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
 
 
@@ -53,9 +53,11 @@ Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3A_pct.png) 
+
+
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3_pct.png) 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3A_pct.png) 
 
 ### Dagligt antal positive tests og procentdelen af  positive tests
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
