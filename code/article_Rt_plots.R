@@ -152,6 +152,54 @@ points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, c
 # text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
 dev.off()
 
+# Figure 3A ------------------------------------------------------------------
+
+png("../figures/fig_3A_pct.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 2))
+
+plot(tests$Date, tests$pct_confirmed,
+     type = "b",
+     pch = 19,
+     ylab = "",
+     xlab = "",
+     axes = TRUE,
+     cex = 1.2,
+     cex.axis = 1.4,
+     ylim = c(0, 40),
+     las = 1,
+     col = alpha(pct_col, alpha = 0.3)
+)
+
+mtext(
+  text = "Daglig procent positivt testede",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.4,
+  font = 2
+)
+
+mtext(
+  text = "Procent",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.4,
+  font = 2
+)
+
+points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
+
+
+# text(x = as.Date("2020-06-25"), y = 0.6, labels = "Procent positive tests", col = "blue", cex = 1.5, font = 2)
+dev.off()
+
 # Figure 4 ------------------------------------------------------------------
 
 png("../figures/fig_4_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
