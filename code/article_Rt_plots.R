@@ -100,7 +100,7 @@ points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, c
 points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-07-28"), y = 45000, labels = "Antal testede", col = test_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-06-18"), y = 2500, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-06-18"), y = 3000, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
 dev.off()
 
 
