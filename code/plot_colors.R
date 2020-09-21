@@ -15,4 +15,3 @@ pct_col <- color_scale[2]
 admit_col <- color_scale[3]
 death_col <- color_scale[1]
 binary_col <- c(color_scale[6], color_scale[7])
-#89D9CF
