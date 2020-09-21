@@ -41,14 +41,14 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
 
-### Dagligt antal testede
+### Dagligt antal testede personer
 Plottet viser det totale antal testede personer og antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_2_tests.png) 
 
-### Daglig procentdel positive tests
+### Daglig procentdel positivt testede personer
 Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
@@ -59,7 +59,7 @@ Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_3_pct.png) 
 
 
-### Dagligt antal positive tests og procentdelen af  positive tests
+### Dagligt antal positivt testede og procentdelen af  positivt testede
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
