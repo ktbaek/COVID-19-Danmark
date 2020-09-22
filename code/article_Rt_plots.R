@@ -491,7 +491,7 @@ points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = alpha(pct_co
 points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 # points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
 # points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
-text(x = as.Date("2020-05-28"), y = 0.02, labels = "Procent positivt testede", col = pct_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-08-20"), y = 0.02, labels = "Procent positivt testede", col = pct_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = 1.4, font = 2, adj = 1)
 abline(h = 1, col = "gray")
 abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
