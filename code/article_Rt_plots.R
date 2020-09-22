@@ -754,7 +754,7 @@ axis(1, c(
   as.Date("2020-07-01"),
   as.Date("2020-09-01")
 ), "%b"), cex.axis = 1.4)
-axis(2, at = c(-25, 0, 50, 100), label = c(50, 0, "10 %", "20 %"), cex.axis = 1.4, las = 1)
+axis(2, at = c(-25, 0, 50, 100), label = c(25, 0, "10 %", "20 %"), cex.axis = 1.4, las = 1)
 
 
 segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 5, lwd = 2, col = pct_col, lend = 1)
