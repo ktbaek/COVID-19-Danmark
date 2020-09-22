@@ -701,6 +701,140 @@ box(which = "plot", lty = "solid")
 
 dev.off()
 
+# Pct deaths barplot ----------------------------------------------------
+
+
+png("../figures/pct_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 2))
+
+plot(tests$Date, rep(600, length(tests$Date)),
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = 1.2,
+     ylim = c(-25, 100),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+     las = 1,
+     col = "white"
+)
+
+mtext(
+  text = "Procent positivt testede vs. døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
+
+mtext(
+  text = "Antal                                 Procent                           ",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
+
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
+axis(2, at = c(-25, 0, 50, 100), label = c(50, 0, "10 %", "20 %"), cex.axis = 1.4, las = 1)
+
+
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 5, lwd = 2, col = pct_col, lend = 1)
+segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
+
+text(x = as.Date(today) - 2, y = -18, labels = "Døde", col = death_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 20, labels = "Procent positivt testede", col = pct_col, cex = 1.4, font = 2, adj = 1)
+
+box(which = "plot", lty = "solid")
+
+dev.off()
+
+
+# positive deaths barplot -----------------------------------------------
+
+
+png("../figures/postest_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 2))
+
+plot(tests$Date, rep(600, length(tests$Date)),
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = 1.2,
+     ylim = c(-100, 700),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+     las = 1,
+     col = "white"
+)
+
+mtext(
+  text = "Nye positivt testede vs. døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
+
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 4,
+  cex = 1.2,
+  font = 2
+)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
+axis(2, at = c(-100, 0, 100, 200, 300, 400, 500, 600), label = c(100, 0, 100, 200, 300, 400, 500, 600), cex.axis = 1.4, las = 1)
+
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend=1)
+segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend=1)
+
+text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = 1.4, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 600, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2, adj = 1)
+
+dev.off()
+
+
 # Pos, test, pct combined ------------------------------------------------------------------
 
 png("../figures/pos_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)

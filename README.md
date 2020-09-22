@@ -80,19 +80,25 @@ Plottet viser det totale antal testede personer, antallet af nye positivt tested
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pos_tests_pct.png) 
 
-### Dagligt antal nyindlagte og antal nye positivt testede (søjleplot)
-Plottet sammenligner antal nyindlagte med antal positivt testede.
+### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede (søjleplot)
+Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procentdelen af positivt testede.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_hosp_barplot.png) 
 
-### Dagligt antal nyindlagte og procent positive testede (søjleplot)
-Plottet sammenligner antal nyindlagte med procentdelen af positivt testede.
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png)
 
-``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
+### Dagligt antal døde vs. hhv. antal nye positivt testede og procent positivt testede (søjleplot)
+Plottene sammenligner antal døde med hhv. antal positivt testede og procentdelen af positivt testede.
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png) 
+``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time'``
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_deaths_barplot.png) 
+
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot.png)
+
+ 
 
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 
