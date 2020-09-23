@@ -99,7 +99,7 @@ points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = alpha(pos_col,
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-07-28"), y = 45000, labels = "Antal testede", col = test_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-08-02"), y = 50000, labels = "Antal testede", col = test_col, cex = 1.4, font = 2)
 text(x = as.Date("2020-06-18"), y = 3000, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
 dev.off()
 
@@ -876,11 +876,11 @@ mtext(
   font = 2
 )
 
-segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = test_col, lend = 1)
+segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
 text(x = as.Date("2020-04-20"), y = 40000, labels = "Procent positive", col = pct_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-08-02"), y = 45000, labels = "Antal testede", col = test_col, cex = 1.4, font = 2)
+text(x = as.Date("2020-08-02"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2)
 text(x = as.Date("2020-03-12"), y = 8200, labels = "Antal positive", col = pos_col, cex = 1.4, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
 
@@ -911,6 +911,188 @@ mtext(
   cex = 1.2,
   font = 2
 )
+
+dev.off()
+
+
+
+# positive deaths barplot 2 ------------------------------------------------------------------
+
+png("../figures/postest_death_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6))
+
+plot(tests$Date, rep(1000, length(tests$Date)),
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = 1.2,
+     ylim = c(0, 600),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+     las = 1,
+     col = "white"
+)
+
+mtext(
+  text = "Dagligt antal positivt testede og døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
+
+mtext(
+  text = "Antal positivt testede",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = 1.2,
+  font = 2
+)
+
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde * 10, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
+
+points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pos_col)
+
+points(deaths$Date, deaths$running_avg * 10,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = darken(death_col, 0.4))
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 100, 200, 300, 400, 500, 600), labels = c(0, 10, 20, 30, 40, 50, 60))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 100, 200, 300, 400, 500, 600), labels = c(0, 100, 200, 300, 400, 500, 600))
+
+
+text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = 1.2, font = 2)
+
+
+legend(as.Date("2020-02-15"), 600, legend=c("Positivt testede", "Døde"),
+       col=c(pos_col, darken(death_col, 0.4)), lty=1, cex=1.2,
+       box.lty=0, lwd = 3)
+
+
+dev.off()
+
+
+
+# pct deaths barplot 2 ------------------------------------------------------------------
+
+png("../figures/pct_death_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6))
+
+plot(tests$Date, rep(1000, length(tests$Date)),
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = 1.2,
+     ylim = c(0, 20),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+     las = 1,
+     col = "white"
+)
+
+mtext(
+  text = "Daglig positivprocent og antal døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = 1.2,
+  font = 2
+)
+
+mtext(
+  text = "Positivprocent",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = 1.2,
+  font = 2
+)
+
+#segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = alpha(test_col, 0.4), lend = 1)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde/5, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
+
+points(tests$Date, tests$running_avg_pct,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pct_col)
+
+points(deaths$Date, deaths$running_avg/5,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = darken(death_col, 0.4))
+
+legend(as.Date("2020-06-25"), 20, legend=c("Positivprocent", "Døde"),
+       col=c(pct_col, darken(death_col, 0.4)), lty=1, cex=1.2,
+       box.lty=0, lwd = 3)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = 1.4)
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 5, 10, 15, 20), labels = c(0, 25, 50, 75, 100))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 5, 10, 15, 20), labels = c(0, "5 %", "10 %", "15 %", "20 %"))
+
+
+text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = 1.2, font = 2)
+
+
+
+# mtext(
+#   text = "Antal døde",
+#   side = 4, # side 1 = bottom
+#   line = 4,
+#   cex = 1.2,
+#   font = 2
+# )
 
 dev.off()
 

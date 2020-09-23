@@ -4,8 +4,8 @@ today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today
 
 
 tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
-rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_08.csv"))
-rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_08.csv"))
+rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_22.csv"))
+rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_22.csv"))
 
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
@@ -67,10 +67,6 @@ R2 <- function(window, l, df) {
 
 }
 
-#combos <- expand(data.frame("window" = c(7:14), "delay" = c(0:7)), window,delay)
-
-#combos %<>% rowwise() %>% mutate(R2 = R2(window, delay, tests)) %>% data.frame %>% arrange(desc(R2))
-
 
 tests %<>%
   mutate(x1 = Date - window + 1,
@@ -112,45 +108,6 @@ mtext(text = "Antal positive tests",
       col = "black")
 
 dev.off()
-
-
-
-
-
-# res <- as.double(summary(lm(estimate ~ slope, tests))$residual)
-# par(family = "lato", mar = c(5,8,1,2))
-# plot(tests$Date, tests$estimate - 1,
-#      type = "l",
-#      pch = 19,
-#      ylab = "", 
-#      xlab = "", 
-#      axes = TRUE,
-#      cex = 1.2, 
-#      cex.axis = 1.4, 
-#      las = 1,
-#      lwd = 2, 
-#      col = "darkgray",
-#      ylim = c(-0.5, 0.5),
-#      xlim = c(as.Date("2020-05-01"), as.Date(today) - 1))
-# 
-# mtext(text = "Hældning (positive tests per dag)",
-#       side = 1,#side 1 = bottom
-#       line = 3, 
-#       cex = 1.4,
-#       font = 2)
-# 
-# mtext(text = "Kontakttal",
-#       side = 2,#side 1 = bottom
-#       line = 4,
-#       cex = 1.4,
-#       font = 2)
-# 
-# 
-# arrows(tests$Date,0, tests$Date, res, lwd = 2, col = "lightgray", code = 0)
-# 
-# 
-# 
-
 
 
 
@@ -248,7 +205,6 @@ dev.off()
 
 
 df <- data.frame("dag" = c(0:11), "antal" = rep(100, 12))
-#df <- data.frame("dag" = c(0:11), "antal" = c(100, 120, 160, 170, 180, 220, 280, 300, 240, 180, 125, 102))
 
 
 png("../figures/rt_eksempel_2.png", width = 20, height = 14, units = "cm", res = 300)

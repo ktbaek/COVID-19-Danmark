@@ -272,6 +272,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal positive per antal testede") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(
@@ -301,6 +302,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   theme_tufte() +
   theme(
@@ -331,6 +333,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal testede per indbyggertal") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
   theme_tufte() +
   theme(
@@ -365,6 +368,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal testede i udvalgte kommuner") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Antal", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
   theme_tufte() +
   theme(
@@ -395,6 +399,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal for udvalgte kommuner") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   theme_tufte() +
   theme(
@@ -426,6 +431,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Ugentligt antal positive per antal testede for udvalgte kommuner") +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   theme_tufte() +
   theme(
