@@ -1,5 +1,5 @@
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
-Senest opdateret 23. september 2020 efter kl 14. 
+Senest opdateret 24. september 2020 efter kl 14. 
 
 ## Data
 
@@ -81,24 +81,29 @@ Plottet viser det totale antal testede personer, antallet af nye positivt tested
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pos_tests_pct.png) 
 
 ### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede (søjleplot)
-Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procentdelen af positivt testede.
+Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procentdelen af positivt testede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_hosp_barplot.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_admitted_barplot_2.png) 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_hosp_barplot.png)
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_admitted_barplot_2.png)
+
+Se "omvendte" plots uden løbende gennemsnit for [antal positive](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_admitted_barplot.png) og [positivprocent](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_admitted_barplot.png).
+
+
+
 
 ### Dagligt antal døde vs. hhv. antal nye positivt testede og procent positivt testede (søjleplot)
-Plottene sammenligner antal døde med hhv. antal positivt testede og procentdelen af positivt testede.
+Plottene sammenligner antal døde med hhv. antal positivt testede og procentdelen af positivt testede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time'``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_deaths_barplot.png) 
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_deaths_barplot_2.png) 
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot.png)
+![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot_2.png)
 
- 
+Se "omvendte" plots uden løbende gennemsnit for [antal positive](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_deaths_barplot.png) og [positivprocent](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot.png).
 
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 

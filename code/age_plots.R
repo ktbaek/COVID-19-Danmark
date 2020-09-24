@@ -33,7 +33,7 @@ ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", width = 6, aes(fill = variable)) +
   scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede yngre vs. total nyindlagte") +
-  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500), labels = as.character(c("500", "0", "500", "1000", "1500"))) +
+  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500, 2000, 2500), labels = as.character(c("500", "0", "500", "1000", "1500", "2000", "2500"))) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
@@ -151,6 +151,11 @@ ggplot(plot_data, aes(Date, Ratio)) +
 ggsave("../figures/age_groups_pct.png", width = 22, height = 14, units = "cm", dpi = 300)
 
 
+
+
+# -------------------------------------------------------------------------
+
+
 # Figur: Aldersgrupper, incidens, heatmap ----------
 
 
@@ -171,6 +176,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Positivt testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   theme_tufte() +
   theme(
     plot.background = element_blank(),
@@ -206,6 +212,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Antal nye testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   theme_tufte() +
   theme(
     plot.background = element_blank(),
@@ -240,6 +247,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Positivt testede per nye testede (procent positive) i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
+  scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   theme_tufte() +
   theme(
     plot.background = element_blank(),
@@ -273,6 +281,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   coord_fixed(ratio = 7) +
   labs(x = "", y = "", title = "Positivt testede per nye testede (procent positive) i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   theme_tufte() +
   theme(
     plot.background = element_blank(),
@@ -289,6 +298,11 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
 
 ggsave("../figures/age_weekly_pct_tile_may.png", width = 21, height = 12, units = "cm", dpi = 250)
 
+
+
+
+
+# -------------------------------------------------------------------------
 
 
 # Figur: Test: cases_by_age vs test_pos_over_time  -------------------------------------
@@ -350,7 +364,8 @@ test_1 <- tests %>%
   pivot_longer(cols = -Date, names_to = "variable", values_to = "value")  %>%
   mutate(diff = c(0, diff(value))) 
 
-plot_data <- bind_rows(plot_data, test_1) %>% 
+plot_data <- plot_data %>%
+  bind_rows(test_1) %>% 
   filter(!Date == as.Date("2020-03-18"), !Date == as.Date("2020-09-16")) %>%
   select(-value) %>%
   pivot_wider(names_from = variable, values_from = diff) %>%
@@ -362,7 +377,6 @@ ggplot(plot_data, aes(Date,value)) +
   geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
   scale_fill_discrete(name = "Kategori", labels = c("Testet tidligere", "Førstegangstestede")) +
   labs(y = "Andel", x = "Dato", title = "Ugentlig andel af førstegangstestede vs. testede tidligere") +
-  # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
