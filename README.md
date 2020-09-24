@@ -89,7 +89,7 @@ Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procen
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_admitted_barplot_2.png)
 
-Se "omvendte" plots uden løbende gennemsnit for [antal positive](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_admitted_barplot.png) og [positivprocent](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_admitted_barplot.png).
+Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/postest_admitted_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/pct_admitted_barplot.png).
 
 
 
@@ -103,7 +103,7 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot_2.png)
 
-Se "omvendte" plots uden løbende gennemsnit for [antal positive](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/postest_deaths_barplot.png) og [positivprocent](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/pct_deaths_barplot.png).
+Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/postest_deaths_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/pct_deaths_barplot.png).
 
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 
