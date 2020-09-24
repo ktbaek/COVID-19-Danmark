@@ -366,7 +366,7 @@ test_1 <- tests %>%
 
 plot_data <- plot_data %>%
   bind_rows(test_1) %>% 
-  filter(!Date == as.Date("2020-03-18"), !Date == as.Date("2020-09-16")) %>%
+  filter(!Date == as.Date("2020-03-18")) %>%
   select(-value) %>%
   pivot_wider(names_from = variable, values_from = diff) %>%
   mutate(new_tested = Tested_kum_total - Tested_kum_unique) %>%

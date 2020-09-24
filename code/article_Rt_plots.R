@@ -729,7 +729,7 @@ plot(0,
 )
 
 mtext(
-  text = "Antal positivt testede vs. døde",
+  text = "Antal positivt testede vs. nyindlagte",
   side = 3, # side 1 = bottom
   line = 1,
   cex = 1.5,
