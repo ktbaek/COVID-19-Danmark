@@ -707,7 +707,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 600, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 630, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
 
 dev.off()
 
@@ -1022,7 +1022,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 600, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = 630, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
 
 dev.off()
 
