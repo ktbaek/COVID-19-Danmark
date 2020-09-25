@@ -1,9 +1,9 @@
 dashboard_data <- data.frame(
-  "Date" = c("2020-09-23", "2020-09-24"),
-  "NewPositive" = c(558, 559),
-  "NotPrevPos" = c(57707, 53885),
+  "Date" = c("2020-09-24", "2020-09-25"),
+  "NewPositive" = c(559, 678),
+  "NotPrevPos" = c(53885, 57368),
   "Antal_døde" = c(2, 2),
-  "Indlæggelser" = c(9, 22)
+  "Indlæggelser" = c(22, 21)
 )
 
 dashboard_data %<>%
@@ -155,6 +155,99 @@ text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd 
 
 
 dev.off()
+
+# positive deaths barplot 2 ------------------------------------------------------------------
+
+png("../figures/postest_deaths_with_dashboard.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6))
+
+plot(0,
+     type = "n",
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = cex_axis,
+     ylim = c(0, 700),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+)
+
+mtext(
+  text = "Antal positivt testede vs. døde",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = cex_labels,
+  font = 2
+)
+
+mtext(
+  text = "Antal positivt testede",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = cex_labels,
+  font = 2
+)
+
+
+segments(temp_tests$Date, 0, temp_tests$Date, temp_tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
+segments(temp_deaths$Date, 0, temp_deaths$Date, temp_deaths$Antal_døde * 10, lwd = 2, col = "white", lend = 1)
+segments(temp_deaths$Date, 0, temp_deaths$Date, temp_deaths$Antal_døde * 10, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
+
+points(temp_tests$Date, replace(temp_tests$running_avg_pos, 1:25, NA),
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pos_col)
+
+points(temp_deaths$Date, temp_deaths$running_avg * 10,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = darken(death_col, 0.4))
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-03-01"),
+  as.Date("2020-05-01"),
+  as.Date("2020-07-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = cex_axis)
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 100, 200, 300, 400, 500, 600, 700), labels = c(0, 10, 20, 30, 40, 50, 60, 70))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 100, 200, 300, 400, 500, 600, 700), labels = c(0, 100, 200, 300, 400, 500, 600, 700))
+
+
+text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
+
+
+legend("topleft",
+       inset = 0.04,
+       legend=c("Positivt testede", "Døde"),
+       col=c(pos_col, darken(death_col, 0.4)), 
+       lty=1, 
+       cex=1.2,
+       box.lty=0, 
+       lwd = 4)
+
+
+dev.off()
+
+
+
 
 
 
