@@ -9,7 +9,7 @@ Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der vise
 
 Befolkningstal per aldersgruppe er hentet på [Danmarks Statistik](https://statbank.dk) 
 
-Kode i R for databehandling og generering af plots findes [her](/code/).
+Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
 
 Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/data/Forklaring.md).
 
@@ -191,7 +191,7 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 Ugentlig procentdel positivt testede per aldersgruppe siden maj:
 
-<img align="right" width="645"  src="/figures/age_weekly_pct_tile_may.png">
+<img align="right" width="645"  src="https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/age_weekly_pct_tile_may.png">
 
 <br clear="right"/>
 
