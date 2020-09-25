@@ -1,3 +1,5 @@
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
 Senest opdateret 25. september 2020 efter kl 14. 
 
