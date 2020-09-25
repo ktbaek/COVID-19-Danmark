@@ -9,9 +9,9 @@ Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der vise
 
 Befolkningstal per aldersgruppe er hentet på [Danmarks Statistik](https://statbank.dk) 
 
-Kode i R for databehandling og generering af plots findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/code).
+Kode i R for databehandling og generering af plots findes [her](/code/).
 
-Læs en uddybende forklaring af datafiler, begreber og beregninger [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/Forklaring.md).
+Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/data/Forklaring.md).
 
 <!--
 *Update: Plots over tests for forskellige aldersgrupper er indtil videre fjernet fra forsiden, da SSIs aldersopdelte datasæt, i modsætning til de øvrige datasæt brugt her, ikke tillader en præcis beregning af tidsserier. Tendensen som ses i disse plots holder dog stadig, og plotsene kan derfor stadig findes [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures). Jeg overvejer en anden måde at plotte disse data på.*
