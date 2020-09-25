@@ -39,7 +39,7 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](https://github.com/ktbaek/COVID-19-Danmark/blob/master/figures/fig_1_test_pos.png)
+![](/figures/fig_1_test_pos.png)
 
 ### Dagligt antal testede personer
 Plottet viser det totale antal testede personer og antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
