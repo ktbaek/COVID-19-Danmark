@@ -1,4 +1,4 @@
-theme: jekyll-theme-slate
+remote_theme: mmistakes/minimal-mistakes
 title: Covid-19 i Danmark
 description: Figurer for smitteudvikling i Danmark baseret på data fra SSI
 author: Kristoffer T. Bæk
