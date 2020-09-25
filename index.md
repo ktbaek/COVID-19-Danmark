@@ -1,12 +1,3 @@
-<head>
-<script src="/assets/likely.js"></script>
-</head>
-
-<div class="likely">
-    <div class="facebook">Share</div>
-    <div class="twitter">Tweet</div>
-    <div class="linkedin">Share</div>
-</div>
 
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
 Senest opdateret 25. september 2020 efter kl 14. 
