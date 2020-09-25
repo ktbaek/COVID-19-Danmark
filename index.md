@@ -1,3 +1,7 @@
+<head>
+<script src="/assets/likely.js"></script>
+</head>
+
 <div class="likely">
     <div class="facebook">Share</div>
     <div class="twitter">Tweet</div>
