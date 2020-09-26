@@ -1,5 +1,6 @@
 ---
 image: /figures/twitter_card.png
+title: Covid-19 smitteudvikling i Danmark 
 ---
 
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI

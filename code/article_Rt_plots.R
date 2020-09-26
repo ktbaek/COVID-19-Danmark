@@ -1281,3 +1281,30 @@ dev.off()
 
 
 
+
+
+# Figure 3A ------------------------------------------------------------------
+
+png("../figures/twitter_card.png", width = 15, height = 8, units = "cm", res = 300)
+par(family = "lato", mar = c(2, 2, 2, 2))
+
+plot(tests$Date, tests$pct_confirmed,
+     type = "b",
+     pch = 19,
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = cex_axis,
+     ylim = c(0, 40),
+     las = 1,
+     col = alpha(pct_col, alpha = 0.3)
+)
+
+
+
+points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
+
+
+
+dev.off()
