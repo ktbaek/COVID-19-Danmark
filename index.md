@@ -192,7 +192,7 @@ Bemærk at antal testede i de aldersopdelte data er *nye* testede, altså person
 
 Ugentlig procentdel positivt testede per aldersgruppe siden maj:
 
-![](/figures/age_weekly_tests_tile_may.png)
+![](/figures/age_weekly_pct_tile_may.png)
 
 
 
