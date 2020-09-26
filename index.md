@@ -48,7 +48,7 @@ Plottet viser det totale antal testede personer og antallet af nye positivt test
 ![](/figures/fig_2_tests.png) 
 
 ### Daglig procentdel positivt testede personer
-Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
