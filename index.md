@@ -27,7 +27,7 @@ Positivt testede angiver personer, som *for første gang er testet positive* for
 #### Procentdel positivt testede
 Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
 
-## Plots
+## Plots: hele landet
 
 Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
@@ -109,7 +109,7 @@ Plottet sammenligner forløbet af kurven over antal positivt testede personer me
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 
 
-
+## Plots: kommuner
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det ugentlige antal nye positivt testede og antal total testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 20 ugentlige positive. 
 
@@ -155,6 +155,8 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/all_muni_we
 ![](/figures/muni_10_weekly_pct_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/all_muni_weekly_pos_pct_tile.png).
+
+## Plots: aldersgrupper
 
 ### Ugentligt antal nye positivt testede og antal *nye* testede for hver aldersgruppe
 Plottet viser det ugentlige antal nye positivt testede og antal nye testede for hver aldersgruppe. 
