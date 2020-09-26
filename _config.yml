@@ -1,8 +1,9 @@
 
 title: Covid-19 i Danmark
-description: Figurer for smitteudvikling i Danmark baseret på data fra SSI
+description: Grafer over Covid-19 smitteudvikling i Danmark
 author: Kristoffer T. Bæk
 twitter:
   username: KT_baek
 github:
   username: ktbaek
+image: /figures/twitter_card.png
