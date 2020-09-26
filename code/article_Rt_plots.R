@@ -1288,22 +1288,37 @@ dev.off()
 png("../figures/twitter_card.png", width = 15, height = 8, units = "cm", res = 300)
 par(family = "lato", mar = c(2, 2, 2, 2))
 
-plot(tests$Date, tests$pct_confirmed,
-     type = "b",
-     pch = 19,
+plot(0,
+     type = "n",
      ylab = "",
      xlab = "",
      axes = FALSE,
      cex = 1.2,
      cex.axis = cex_axis,
-     ylim = c(0, 40),
-     las = 1,
-     col = alpha(pct_col, alpha = 0.3)
+     ylim = c(0, 600),
+     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
 )
 
 
 
-points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = "white", lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
+
+points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pos_col)
+
+points(admitted$Date, admitted$running_avg,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = admit_col)
+
+
 
 
 
