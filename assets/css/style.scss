@@ -12,17 +12,216 @@ body {
   font-family: 'Lato', sans-serif !important;
 }
 
-#forkme_banner {
-  display: block;
+.likely,
+.likely__widget {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  text-indent: 0 !important;
+  list-style: none !important;
+  font-weight: 400;
+  font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
+  font-size: inherit;
+}
+
+.likely {
+  opacity: 0;
+  font-size: 0 !important;
+}
+
+.likely_visible {
+  opacity: 1;
+  transition: opacity .1s ease-in;
+}
+
+.likely>* {
+  display: inline-block;
+  visibility: hidden;
+}
+
+.likely_visible>* {
+  visibility: inherit;
+}
+
+.likely__widget {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+}
+
+.likely__button,
+.likely__counter {
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  display: inline-block;
+  margin: 0;
+  outline: 0;
+}
+
+.likely__button {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -webkit-user-select--moz-user-select: none;
+  -webkit-user-select--ms-user-select: none;
+  -webkit-user-select--ms-user-select-user-select: none;
+}
+
+.likely__counter {
+  display: none;
+  position: relative;
+  font-weight: 400;
+}
+
+.likely_ready .likely__counter {
+  display: inline-block;
+}
+
+.likely_ready .likely__counter_empty {
+  display: none;
+}
+
+.likely__button,
+.likely__counter,
+.likely__icon,
+.likely__widget {
+  vertical-align: top;
+}
+
+.likely__widget {
+  transition: all 0.15s cubic-bezier(0.25, 0.85, 0.7, 0.75);
+}
+
+.likely__widget:active,
+.likely__widget:focus,
+.likely__widget:hover {
+  transition: all 0.15s cubic-bezier(0.25, 0.85, 0.7, 0.75);
+  cursor: pointer;
+}
+
+@media (hover: none) {
+
+  .likely__widget:active,
+  .likely__widget:focus,
+  .likely__widget:hover {
+    transition: all 0.15s cubic-bezier(0.25, 0.85, 0.7, 0.75);
+    cursor: unset;
+  }
+}
+
+.likely__icon {
+  position: relative;
+  text-align: left;
+  display: inline-block;
+}
+
+.likely svg {
   position: absolute;
-  bottom:0;
-  right: 10px;
-  z-index: 10;
-  padding: 10px 50px 10px 10px;
-  color: #fff;
-  background: url('../GitHub-Mark-Light-32px.png') #0366D6 no-repeat 95% 50%;
-  font-weight: 700;
-  box-shadow: 0 0 0px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+}
+
+.likely__button,
+.likely__counter {
+  line-height: inherit;
+  cursor: inherit;
+}
+
+.likely__button:empty {
+  display: none;
+}
+
+.likely__counter {
+  text-align: center;
+}
+
+.likely .likely__widget {
+  color: #000000;
+  background: rgba(245, 245, 245, 1);
+}
+
+.likely .likely__counter {
+  background-size: 1px 1px;
+  background-repeat: repeat-y;
+  background-image: linear-gradient(90deg, rgba(34, 68, 102, 0.25) 0, transparent 0.5px, transparent);
+}
+
+.likely__widget_facebook,
+.likely__widget_linkedin,
+.likely__widget_twitter, {
+  fill: #0366D6;
+}
+
+.likely__widget_facebook:active,
+.likely__widget_facebook:focus,
+.likely__widget_facebook:hover,
+.likely__widget_linkedin:active,
+.likely__widget_linkedin:focus,
+.likely__widget_linkedin:hover,
+.likely__widget_twitter:active,
+.likely__widget_twitter:focus,
+.likely__widget_twitter:hover,
+.likely__widget_vkontakte:active,
+.likely__widget_vkontakte:focus,
+.likely__widget_vkontakte:hover {
+  background: #0366D6;
+  fill: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(0px) scaleY(1.1);
+  transform-origin: bottom;
+}
+
+@media (hover: none) {
+
+  .likely__widget_facebook:active,
+  .likely__widget_facebook:focus,
+  .likely__widget_facebook:hover,
+  .likely__widget_linkedin:active,
+  .likely__widget_linkedin:focus,
+  .likely__widget_linkedin:hover,
+  .likely__widget_twitter:active,
+  .likely__widget_twitter:focus,
+  .likely__widget_twitter:hover,
+  .likely__widget_vkontakte:active,
+  .likely__widget_vkontakte:focus,
+  .likely__widget_vkontakte:hover {
+    background: #0366D6;
+    fill: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(0px) scaleY(1.1);
+    transform-origin: bottom;
+  }
+}
+
+.likely {
+  margin: 0 -5px -10px;
+}
+
+.likely .likely__widget {
+  line-height: 11px;
+  font-size: 14px;
+  border-radius: 3px;
+  height: 20px;
+  margin: 0 5px 10px;
+}
+
+.likely .likely__icon {
+  width: 18px;
+  height: 18px;
+  margin: 1px 5px 2px 6px;
+}
+
+.likely .likely__button {
+  padding: 5px 8px 5px 1px;
+}
+
+.likely .likely__counter {
+  padding: 5px 8px;
+}
+
+.likely svg {
+  left: 3px;
+  top: 3px;
+  width: 13px;
+  height: 13px;
 }
