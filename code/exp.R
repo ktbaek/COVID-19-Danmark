@@ -97,7 +97,7 @@ ggplot(plot_data, aes(Date, value)) +
     axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/rt_vs_calculated_rt.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/exp_rt_vs_calculated_rt.png", width = 25, height = 12, units = "cm", dpi = 300)
 
 
 
@@ -129,7 +129,7 @@ ggplot(plot_data, aes(Date, value)) +
     axis.title.x = element_text(size = 14, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/rt_vs_calculated_rt_2.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/exp_rt_vs_calculated_rt_2.png", width = 25, height = 12, units = "cm", dpi = 300)
 ###############
 
 plot_data <- tests_x %>%

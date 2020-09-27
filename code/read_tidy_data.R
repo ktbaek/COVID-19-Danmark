@@ -99,7 +99,7 @@ admitted %<>%
   mutate(Date = as.Date(Dato)) %>%
   select(-Dato)
 
-deaths %<>% slice(1:(n() - 1)) # exclude summary row
+deaths %<>% slice(1:(n() - 2)) # exclude summary row and last day that may not be updated
 tests %<>% slice(1:(n() - 4)) # exclude last two days that may not be updated AND summary rows
 
 ra <- function(x, n = 7) {

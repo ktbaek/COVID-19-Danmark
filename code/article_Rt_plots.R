@@ -5,6 +5,9 @@ cex_axis <- 1.4
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
 
+max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
+max_test <- ceiling(max(tests$Tested) / 5000) * 5000
+
 # Figure 1 ------------------------------------------------------------------
 
 png("../figures/fig_1_test_pos.png", width = 20, height = 16, units = "cm", res = 300)
@@ -18,7 +21,7 @@ plot(tests$Date, tests$NewPositive,
   axes = TRUE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(0, 600),
+  ylim = c(0, max_pos),
   xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
   las = 1,
   col = alpha(pos_col, alpha = 0.3)
@@ -50,7 +53,6 @@ mtext(
 
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
-# text(x = as.Date("2020-06-01"), y = 300, labels = "Antal positive tests", col = "red", cex = 1.5, font = 2)
 dev.off()
 
 
@@ -67,7 +69,7 @@ plot(tests$Date, tests$Tested,
   axes = TRUE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(0, 60000),
+  ylim = c(0, max_test),
   xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
   las = 1,
   col = alpha(test_col, alpha = 0.3)
@@ -215,7 +217,7 @@ plot(tests_from_may$Date, tests_from_may$NewPositive,
   axes = TRUE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(0, 600),
+  ylim = c(0, max_pos),
   las = 1,
   col = alpha(pos_col, alpha = 0.3)
 )
@@ -331,7 +333,7 @@ plot(tests$Date, tests$NewPositive,
   axes = TRUE,
   cex = 1.2,
   cex.axis = 1.2,
-  ylim = c(0, 500),
+  ylim = c(0, max_pos),
   xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
   las = 1,
   col = alpha(pos_col, alpha = 0.3)
@@ -383,7 +385,7 @@ plot(c(as.Date("2020-02-15"), as.Date("2020-09-15")), rep(100000,2),
      axes = TRUE,
      cex = 1.2,
      cex.axis = cex_axis,
-     ylim = c(0, 60000),
+     ylim = c(0, max_test),
      xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
      las = 1
 )
@@ -659,7 +661,7 @@ plot(0,
   axes = FALSE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(-100, 700),
+  ylim = c(-100, max_pos + 100),
   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
 )
 
@@ -700,7 +702,7 @@ axis(1, c(
   as.Date("2020-07-01"),
   as.Date("2020-09-01")
 ), "%b"), cex.axis = cex_axis)
-axis(2, at = c(-100, 0, 100, 200, 300, 400, 500, 600), label = c(100, 0, 100, 200, 300, 400, 500, 600), cex.axis = cex_axis, las = 1)
+axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
 
 
 segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend=1)
@@ -724,7 +726,7 @@ plot(0,
      axes = FALSE,
      cex = 1.2,
      cex.axis = cex_axis,
-     ylim = c(0, 600),
+     ylim = c(0, max_pos),
      xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
 )
 
@@ -783,7 +785,7 @@ axis(1, c(
   as.Date("2020-09-01")
 ), "%b"), cex.axis = cex_axis)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 100, 200, 300, 400, 500, 600), labels = c(0, 100, 200, 300, 400, 500, 600))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
 
 
 legend("topleft",
@@ -974,7 +976,7 @@ plot(0,
      axes = FALSE,
      cex = 1.2,
      cex.axis = cex_axis,
-     ylim = c(-100, 700),
+     ylim = c(-100, max_pos + 100),
      xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
 )
 
@@ -1015,7 +1017,7 @@ axis(1, c(
   as.Date("2020-07-01"),
   as.Date("2020-09-01")
 ), "%b"), cex.axis = cex_axis)
-axis(2, at = c(-100, 0, 100, 200, 300, 400, 500, 600), label = c(100, 0, 100, 200, 300, 400, 500, 600), cex.axis = cex_axis, las = 1)
+axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
 
 
 segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend=1)
@@ -1040,7 +1042,7 @@ plot(0,
      axes = FALSE,
      cex = 1.2,
      cex.axis = cex_axis,
-     ylim = c(0, 600),
+     ylim = c(0, max_pos),
      xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
 )
 
@@ -1099,8 +1101,8 @@ axis(1, c(
   as.Date("2020-09-01")
 ), "%b"), cex.axis = cex_axis)
 
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 100, 200, 300, 400, 500, 600), labels = c(0, 10, 20, 30, 40, 50, 60))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 100, 200, 300, 400, 500, 600), labels = c(0, 100, 200, 300, 400, 500, 600))
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos/10, by = 10))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
 
 
 text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
@@ -1283,7 +1285,7 @@ dev.off()
 
 
 
-# Figure 3A ------------------------------------------------------------------
+# Twitter card ------------------------------------------------------------------
 
 png("../figures/twitter_card.png", width = 15, height = 8, units = "cm", res = 300)
 par(family = "lato", mar = c(2, 2, 2, 2))
