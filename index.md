@@ -31,7 +31,7 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-Download PDF med alle plots for hele landet [her](/figures/Covid-19-Danmark.pdf).
+Download PDF (A4) med alle plots for hele landet [her](/figures/Covid-19-Danmark.pdf).
 
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
