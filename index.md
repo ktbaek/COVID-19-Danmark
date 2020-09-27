@@ -31,7 +31,7 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-
+Download PDF med alle plots for hele landet [her](/figures/Covid-19-Danmark.pdf).
 
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
@@ -179,7 +179,7 @@ Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså 
 ![](/figures/age_groups_pct.png) 
 
 ### Ugentligt antal positivt testede for hver aldersgruppe, ugentlig procentdel positivt testede for hver aldersgruppe, og ugentligt antal førstegangstestede per aldersgruppe (heatmaps)
-Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe, den ugentlige procentdel af positivt testede i hver aldersgruppe, og det ugentlige antal førstegangstestede som procent af befolkningstallet i hver aldersgruppe .  
+Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe, den ugentlige procentdel af positivt testede i hver aldersgruppe, og det ugentlige antal førstegangstestede som procent af befolkningstallet i hver aldersgruppe.  
 
 Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Dette kan påvirke positivprocenten og antal testede. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
 
