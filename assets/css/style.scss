@@ -194,7 +194,7 @@ body {
 }
 
 .likely {
-  margin: -10px -5px -10px;
+  margin: 0 -5px -10px;
 }
 
 .likely .likely__widget {
@@ -202,7 +202,7 @@ body {
     font-size: 14px;
     border-radius: 3px;
     height: 30px;
-    margin:0 5px 10px
+    margin:-10px 5px 10px
 }
 
 .likely .likely__icon {
