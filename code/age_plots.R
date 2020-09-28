@@ -190,7 +190,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 
 # Figur: Aldersgrupper, total test incidens, heatmap ----------
 
@@ -226,7 +226,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/age_weekly_tests_tile.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_tests_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 
 
 # Figur: Aldersgrupper, pct, heatmap ----------
@@ -261,7 +261,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 
 # Figur: Aldersgrupper, pct, heatmap fra maj ----------
 
