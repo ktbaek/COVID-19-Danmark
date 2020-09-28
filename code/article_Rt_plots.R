@@ -452,6 +452,7 @@ dev.off()
 
 
 
+
 # -------------------------------------------------------------------------
 
 
@@ -499,8 +500,8 @@ mtext(
   font = 2
 )
 
-points(tests$Date, tests$NewPositive / 350, type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
-points(tests$Date, tests$running_avg_pos / 350, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
+points(tests$Date, tests$NewPositive / (max_pos / 2), type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
+points(tests$Date, tests$running_avg_pos / (max_pos / 2), type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-06-15"), y = 0.4, labels = "Antal positivt testede", col = pos_col, cex = cex_labels, font = 2)
 text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = cex_labels, font = 2, adj = 1)

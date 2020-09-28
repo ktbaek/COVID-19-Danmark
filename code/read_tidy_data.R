@@ -153,9 +153,9 @@ muni_all <- muni_tested %>%
 
 cat("Muni continuity:", 1 == unique(abs(diff(unique(muni_all$Date)))), "\n") # test for daily continuity in municipality data from march 1
 cat("Test continuity:", 1 == unique(abs(diff(unique(tests$Date)))), "\n") # test for daily continuity in test_pos_over_time data
-cat("Muni # pos:", length(unique(muni_pos$Kommune)), "\n") # # test that number of kommuner is 99
-cat("Muni # tested:", length(unique(muni_tested$Kommune)), "\n") # test that number of kommuner is 99
-cat("Missing muni in pos:", setdiff(unique(muni_tested$Kommune), unique(muni_pos$Kommune)), "\n") # No data for Samsø and Christiansø in pos file
+cat("Muni # pos:", length(unique(muni_pos$Kommune)), "\n") #test number of kommuner
+cat("Muni # tested:", length(unique(muni_tested$Kommune)), "\n") #test number of kommuner
+cat("Missing muni in pos:", setdiff(unique(muni_tested$Kommune), unique(muni_pos$Kommune)), "\n") # test missing kommuner
 
 # test that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municipality files from SSI:
 

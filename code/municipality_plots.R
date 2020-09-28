@@ -364,6 +364,7 @@ ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 44, unit
 
 
 
+
 # -------------------------------------------------------------------------
 
 # Figur: Incidens - kommuner med over 10 smittede, heatmap ---------------------------------
