@@ -9,9 +9,6 @@ Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
 today <- "2020-09-25"
 
-date_txt <- str_to_lower(format(as.Date(today), "%d. %B, %Y"))
-writeLines(date_txt, "../data/today.txt")
-
 source("read_tidy_data.R")
 cat("Read and tidy DONE\n")
 

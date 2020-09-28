@@ -103,8 +103,8 @@ points(tests$Date, tests$NewPositive, type = "b", pch = 19, col = alpha(pos_col,
 points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 points(tests$Date, tests$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-08-02"), y = 50000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-06-18"), y = 3000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
+text(x = as.Date("2020-09-01"), y = 52000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-09-01"), y = 3000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
 dev.off()
 
 
@@ -253,8 +253,8 @@ par(new = TRUE)
 plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2, axes = FALSE, xlab = "", ylab = "")
 points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-06-16"), y = 0.6, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-05-17"), y = 0.05, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
+text(x = as.Date("2020-05-25"), y = 0.6, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-08-01"), y = 0.10, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
@@ -314,7 +314,7 @@ points(deaths$Date, deaths$Antal_døde,
 points(admitted$Date, admitted$running_avg, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
 points(deaths$Date, deaths$running_avg, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-05-02"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2)
+text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
 
 dev.off()
@@ -418,9 +418,9 @@ mtext(
 segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-04-20"), y = 40000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-08-02"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2)
-text(x = as.Date("2020-03-12"), y = 8200, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
+text(x = as.Date("2020-03-15"), y = 42000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-09-04"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
+text(x = as.Date("2020-03-12"), y = 8800, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
 
 par(new = TRUE)
@@ -709,7 +709,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 630, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
 
 dev.off()
 
@@ -1024,7 +1024,7 @@ segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, l
 segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend=1)
 
 text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 630, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
 
 dev.off()
 
