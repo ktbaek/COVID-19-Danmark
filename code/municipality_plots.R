@@ -36,8 +36,9 @@ ggplot(plot_data, aes(Week, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -67,6 +68,7 @@ ggplot(plot_data, aes(Week, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
     plot.title = element_text(size = 14, face = "bold"),
     strip.text = element_text(face = "bold"),
@@ -101,8 +103,9 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -134,8 +137,9 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -174,8 +178,9 @@ ggplot(plot_data, aes(Week, Ratio)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -205,6 +210,7 @@ ggplot(plot_data, aes(Week, Ratio)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
     plot.title = element_text(size = 14, face = "bold"),
     strip.text = element_text(face = "bold"),
@@ -239,8 +245,9 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -273,8 +280,9 @@ ggplot(plot_data, aes(Date, Ratio)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(face = "bold"),
+    plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
@@ -317,7 +325,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   )
 
 
-ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 44, units = "cm", dpi = 300)
+ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
 
 # Figur: Procent - alle kommuner, heatmap ----------
 
@@ -347,7 +355,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 44, units = "cm", dpi = 300)
+ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 38, units = "cm", dpi = 300)
 
 
 # Figur: Total test - alle kommuner, heatmap ---------------------------------
@@ -379,7 +387,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   )
 
 
-ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 44, units = "cm", dpi = 300)
+ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
 
 
 
@@ -395,7 +403,6 @@ plot_data <- muni_wk %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune))))) 
 
-num_muni <- length(unique(plot_data$Kommune))
 
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
@@ -417,7 +424,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   )
 
 
-ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
 
 # Figur: Procent - udvalgte kommuner, heatmap ----------
 
@@ -447,7 +454,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
     axis.title.x = element_text(size = 12, family = "lato")
   )
 
-ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
 
 
 
@@ -480,4 +487,4 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   )
 
 
-ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
