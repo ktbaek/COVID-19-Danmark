@@ -134,7 +134,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10
 ![](/figures/muni_10_pos_vs_test_july.png) 
 
 ### Ugentlig procentdel positivt testede for hver kommune
-Plottet viser den ugentlige procentdel af positivt testede for de 30 kommuner der har haft flest positivt testede den seneste måned. 
+Plottet viser den ugentlige procentdel af positivt testede for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -151,7 +151,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
-De udvalgte kommuner er de 30 kommuner der har haft flest positivt testede den seneste måned.  
+De udvalgte kommuner er de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
