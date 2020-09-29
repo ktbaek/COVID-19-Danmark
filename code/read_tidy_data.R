@@ -5,8 +5,8 @@ today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
 deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
 tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
-rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_22.csv"))
-rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_22.csv"))
+rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_2020_09_29.csv"))
+rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_2020_09_29.csv"))
 muni_pos <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_cases_time_series.csv"))
 muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_tested_persons_time_series.csv"))
 early_data <- read_csv2("../data/early_age_reports.csv")
@@ -89,7 +89,7 @@ muni_population <- bind_rows(csv_list)
 
 tests %<>%
   mutate(Date = as.Date(Date)) %>%
-  mutate(pct_confirmed = NewPositive / NotPrevPos * 100)
+  mutate(pct_confirmed = ifelse(NotPrevPos > 0, NewPositive / NotPrevPos * 100, NA))
 
 deaths %<>%
   mutate(Date = as.Date(Dato)) %>%

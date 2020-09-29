@@ -7,7 +7,7 @@ library(ggthemes)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-09-28"
+today <- "2020-09-29"
 
 source("read_tidy_data.R")
 cat("Read and tidy DONE\n")

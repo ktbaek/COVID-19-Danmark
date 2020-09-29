@@ -4,7 +4,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
-Senest opdateret 28. september 2020 efter kl 14. 
+Senest opdateret 29. september 2020 efter kl 14. 
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -37,8 +37,9 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
-Download PDF (A4) med alle plots for hele landet [her](/figures/Covid-19-Danmark.pdf).
-
+ [Download PDF (A4)](/figures/Covid-19-Danmark.pdf)
+ med de vigtigste plots for hele landet.
+ 
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
@@ -117,7 +118,7 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 ## Plots: kommuner
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
-Plottet viser det ugentlige antal nye positivt testede og antal total testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 20 ugentlige positive. 
+Plottet viser det ugentlige antal nye positivt testede og antal total testede for de 30 kommuner der har haft flest positivt testede den seneste måned. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
@@ -133,7 +134,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10
 ![](/figures/muni_10_pos_vs_test_july.png) 
 
 ### Ugentlig procentdel positivt testede for hver kommune
-Plottet viser den ugentlige procentdel af positivt testede for de kommuner som på et tidspunkt i perioden fra 1. juli til nu har haft over 20 ugentlige positive. 
+Plottet viser den ugentlige procentdel af positivt testede for de 30 kommuner der har haft flest positivt testede den seneste måned. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -150,7 +151,7 @@ For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
-De udvalgte kommuner har på et tidspunkt i perioden fra 1. juli til nu har haft over 20 ugentlige positive. 
+De udvalgte kommuner er de kommuner der har haft flest positivt testede den seneste måned.  
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 

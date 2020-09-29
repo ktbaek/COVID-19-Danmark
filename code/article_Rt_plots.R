@@ -7,6 +7,7 @@ quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItali
 
 max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
 max_test <- ceiling(max(tests$Tested) / 5000) * 5000
+max_pct <- ceiling(max(tests_from_may$pct_confirmed, na.rm = TRUE) * 5) / 5
 
 # Figure 1 ------------------------------------------------------------------
 
@@ -121,7 +122,7 @@ plot(tests_from_may$Date, tests_from_may$pct_confirmed,
   axes = TRUE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(0, 1.2),
+  ylim = c(0, max_pct),
   las = 1,
   col = alpha(pct_col, alpha = 0.3)
 )
@@ -250,7 +251,15 @@ mtext(
 points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
 par(new = TRUE)
-plot(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2, axes = FALSE, xlab = "", ylab = "")
+plot(tests_from_may$Date, tests_from_may$pct_confirmed, 
+     type = "b", 
+     pch = 19, 
+     col = alpha(pct_col, alpha = 0.3), 
+     cex = 1.2, 
+     axes = FALSE, 
+     xlab = "", 
+     ylab = "")
+
 points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-05-25"), y = 0.6, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
