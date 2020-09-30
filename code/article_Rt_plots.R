@@ -1335,3 +1335,262 @@ points(admitted$Date, admitted$running_avg,
 
 
 dev.off()
+
+
+
+# -------------------------------------------------------------------------
+
+# tiltag plot fra juli -------------------------------------------------------------
+
+
+png("../figures/tiltag_july.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6), lheight = 0.9)
+
+plot(0,
+     type = "n",
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = cex_axis,
+     ylim = c(0, max_pos + 100),
+     xlim = c(as.Date("2020-07-01"), as.Date(today) - 1)
+)
+
+mtext(
+  text = "Epidemi-indikatorer og restriktioner",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = cex_labels,
+  font = 2
+)
+
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = cex_labels,
+  font = 2
+)
+
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 5, col = alpha(pos_col,0.5), lend = 1)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 100, lwd = 5, col = "white", lend = 1)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 100, lwd = 5, alpha(pct_col, 0.7), lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 5, col = "white", lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 5, col = alpha(admit_col, 0.7), lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 5, col = "white", lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 5, col = alpha(death_col, 0.7), lend = 1)
+
+points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pos_col)
+
+points(deaths$Date, deaths$running_avg,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = darken(death_col, 0.4))
+
+points(admitted$Date, admitted$running_avg,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = admit_col)
+
+points(tests$Date, tests$running_avg_pct * 100,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pct_col)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-07-01"),
+  as.Date("2020-08-01"),
+  as.Date("2020-09-01")
+), format(c(
+  as.Date("2020-07-01"),
+  as.Date("2020-08-01"),
+  as.Date("2020-09-01")
+), "%b"), cex.axis = cex_axis)
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = paste0(seq(0, max_pos + 100, by = 200)/100, " %"))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
+
+
+text(par("usr")[2]* 1.0008,mean(par("usr")[3:4]), "Procent positive", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
+
+arrows(as.Date("2020-08-22"), 220, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-22"), 270, "Mundbind i\noffentlig transport", cex = 0.9)
+
+arrows(as.Date("2020-09-09"), 500, as.Date("2020-09-09"), 400, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-08"), 470, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)
+
+#arrows(as.Date("2020-09-17"), 650, as.Date("2020-09-17"), 570, lwd = 1, lend = 1, length = 0.1)
+#text(as.Date("2020-09-16"), 620, "Restriktioner\nrestauranter mv.\København", cex = 0.9, adj = 1)
+
+arrows(as.Date("2020-09-18"), 650, as.Date("2020-09-18"), 550, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-17"), 620, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
+
+arrows(as.Date("2020-09-26"), 760, as.Date("2020-09-26"), 660, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-25"), 730, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
+
+
+
+
+
+legend("topleft",
+       inset = 0.04,
+       legend=c("Positivt testede", "Positivprocent", "Nyindlagte", "Døde"),
+       col=c(pos_col, pct_col, admit_col, darken(death_col, 0.4)), 
+       lty=1, 
+       cex=1.2,
+       box.lty=0, 
+       lwd = 4)
+
+
+dev.off()
+
+
+
+# tiltag plot fra april -------------------------------------------------------------
+
+
+png("../figures/tiltag_april.png", width = 22, height = 16, units = "cm", res = 300)
+par(family = "lato", mar = c(5, 8, 5, 6), lheight = 0.9)
+
+plot(0,
+     type = "n",
+     ylab = "",
+     xlab = "",
+     axes = FALSE,
+     cex = 1.2,
+     cex.axis = cex_axis,
+     ylim = c(0, 600),
+     xlim = c(as.Date("2020-04-01"), as.Date("2020-08-01"))
+)
+
+mtext(
+  text = "Epidemi-indikatorer og genåbningsfaser",
+  side = 3, # side 1 = bottom
+  line = 1,
+  cex = 1.5,
+  font = 2
+)
+
+mtext(
+  text = "Dato",
+  side = 1, # side 1 = bottom
+  line = 3,
+  cex = cex_labels,
+  font = 2
+)
+
+mtext(
+  text = "Antal",
+  side = 2, # side 1 = bottom
+  line = 5,
+  cex = cex_labels,
+  font = 2
+)
+
+
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 3.7, col = alpha(pos_col,0.5), lend = 1)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 40, lwd = 3.7, col = "white", lend = 1)
+segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 40, lwd =3.7, alpha(pct_col, 0.7), lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 3.7, col = "white", lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 3.7, col = alpha(admit_col, 0.7), lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 3.7, col = "white", lend = 1)
+segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 3.7, col = alpha(death_col, 0.7), lend = 1)
+
+points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pos_col)
+
+points(deaths$Date, deaths$running_avg,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = darken(death_col, 0.4))
+
+points(admitted$Date, admitted$running_avg,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = admit_col)
+
+points(tests$Date, tests$running_avg_pct * 40,
+       type = "l", 
+       pch = 19, 
+       lwd = 3, 
+       col = pct_col)
+
+box(which = "plot", lty = "solid")
+
+axis(1, c(
+  as.Date("2020-04-01"),
+  as.Date("2020-06-01"),
+  as.Date("2020-08-01")
+), format(c(
+  as.Date("2020-04-01"),
+  as.Date("2020-06-01"),
+  as.Date("2020-08-01")
+), "%b"), cex.axis = cex_axis)
+
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 200), labels = paste0(seq(0, 600, by = 200)/40, " %"))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 100), labels = seq(0, 600, by = 100))
+
+
+text(par("usr")[2]* 1.0012,mean(par("usr")[3:4]), "Procent positive", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
+
+arrows(as.Date("2020-04-15"), 420, as.Date("2020-04-15"), 320, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-04-16"), 400, "Små klasser,\nliberale erhverv", cex = 0.9, adj = 0)
+
+arrows(as.Date("2020-05-07"), 250, as.Date("2020-05-07"), 150, lwd = 1, lend = 1, length = 0.1)
+arrows(as.Date("2020-05-11"), 170, as.Date("2020-05-11"), 150, lwd = 1, lend = 1, length = 0.1)
+arrows(as.Date("2020-05-18"), 170, as.Date("2020-05-18"), 150, lwd = 1, lend = 1, length = 0.1)
+arrows(as.Date("2020-05-21"), 170, as.Date("2020-05-21"), 150, lwd = 1, lend = 1, length = 0.1)
+arrows(as.Date("2020-05-27"), 170, as.Date("2020-05-27"), 150, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-05-08"), 217, "Store klasser, gymnasier,\ndetailhandel, kultur,\nidræt, restauranter", cex = 0.9, adj = 0)
+
+arrows(as.Date("2020-06-08"), 160, as.Date("2020-06-08"), 60, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-06-09"), 127, "Forsamling: 50\nsvømmehaller\nfitness", cex = 0.9, adj = 0)
+
+arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
+
+
+
+
+
+
+
+legend("topright",
+       inset = 0.04,
+       legend=c("Positivt testede", "Positivprocent", "Nyindlagte", "Døde"),
+       col=c(pos_col, pct_col, admit_col, darken(death_col, 0.4)), 
+       lty=1, 
+       cex=1.2,
+       box.lty=0, 
+       lwd = 4)
+
+
+dev.off()
+
+
+
+

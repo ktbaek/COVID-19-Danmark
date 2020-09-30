@@ -109,9 +109,25 @@ Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw
 ### Dagligt antal positivt testede og procentdelen af  positivt testede
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
-``SSI datasæt: 'Test_pos_over_time'``
+SSI datasæt: ``'Test_pos_over_time'`` 
 
 ![](/figures/fig_4_tests_pct.png) 
+
+### Daglige epidemi-indikatorer og politiske tiltag
+Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april til 1. august, det nederste plot viser perioden fra 1. juli til nu. 
+
+``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
+
+Se [liste](/tiltag.md) over tiltag.
+
+![](/figures/tiltag_april.png) 
+
+![](/figures/tiltag_july.png) 
+
+
+
+
+
 
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 
