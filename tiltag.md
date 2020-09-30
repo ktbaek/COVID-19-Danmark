@@ -18,6 +18,6 @@
 | 14. august | Lukketider for barer/restauranter udvides til kl. 2 |
 | **Nye restriktioner** | 
 | 22. august | Mundbind offentlig transport |
-| 9. september | Indskrænkede lukkettider for natteliv i Københavnsområdet og Odense |
+| 9. september | Indskrænkede lukketider for natteliv i Københavnsområdet og Odense |
 | 18. september | Mundbind og indskrænkede lukketider for restauranter mv. i hele landet |
 | 25. september | Forsamlingsloft indskrænkes for private fester
