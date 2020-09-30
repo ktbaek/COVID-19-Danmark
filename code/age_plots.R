@@ -14,6 +14,7 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
@@ -37,6 +38,7 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
@@ -57,6 +59,7 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
@@ -77,6 +80,7 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
@@ -110,6 +114,7 @@ ggplot(plot_data, aes(Date, value)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12, family = "lato"),
     plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
@@ -141,6 +146,7 @@ ggplot(plot_data, aes(Date, Ratio)) +
   theme_minimal() +
   theme(
     text = element_text(size = 9, family = "lato"),
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(size = 12, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
