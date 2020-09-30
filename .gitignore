@@ -5,7 +5,6 @@
 .DS_Store
 Thumbs.db
 
-# project specific ignores
 .ipynb_checkpoints
 .ipynb
 .py
