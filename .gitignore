@@ -5,7 +5,7 @@
 .DS_Store
 Thumbs.db
 
-.ipynb_checkpoints
-.ipynb
-.py
+*.ipynb_checkpoints
+*.ipynb
+*.py
 exp*.*
