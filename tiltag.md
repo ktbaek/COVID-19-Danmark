@@ -21,3 +21,11 @@
 | 9. september | Indskrænkede lukketider for natteliv i Københavnsområdet og Odense |
 | 18. september | Mundbind og indskrænkede lukketider for restauranter mv. i hele landet |
 | 25. september | Forsamlingsloft indskrænkes for private fester
+
+### Kilder:
+
+[https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07](https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07)
+
+[https://jv.dk/artikel/fakta-her-er-faserne-i-genåbningen-af-samfundet-2020-6-8](https://jv.dk/artikel/fakta-her-er-faserne-i-genåbningen-af-samfundet-2020-6-8)
+
+[https://www.dr.dk/nyheder/indland/her-er-hovedpunkterne-i-genaabningens-fase-4](https://www.dr.dk/nyheder/indland/her-er-hovedpunkterne-i-genaabningens-fase-4)
