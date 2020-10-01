@@ -1344,7 +1344,7 @@ dev.off()
 
 
 png("../figures/tiltag_july.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 6), lheight = 0.9)
+par(family = "lato", mar = c(5, 7, 5, 7), lheight = 0.9)
 
 plot(0,
      type = "n",
@@ -1469,7 +1469,7 @@ dev.off()
 
 
 png("../figures/tiltag_april.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 6), lheight = 0.9)
+par(family = "lato", mar = c(5, 7, 5, 7), lheight = 0.9)
 
 plot(0,
      type = "n",

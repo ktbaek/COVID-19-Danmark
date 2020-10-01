@@ -92,6 +92,7 @@ ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", d
 
 # Figur: Aldersgrupper, pos, testede --------------------------------------------------------------
 
+left_right_axis_ratio <- 50
 
 plot_data <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
@@ -99,16 +100,18 @@ plot_data <- week_df %>%
   pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
   group_by(Aldersgruppe, variable) %>%
   mutate(value = c(0, diff(value))) %>%
-  mutate(value = ifelse(variable == "positive", value * 100, value))
+  mutate(value = ifelse(variable == "positive", value * left_right_axis_ratio, value))
+
+max_y_value <- ceiling(max(plot_data$value) / 10000) * 10000
 
 ggplot(plot_data, aes(Date, value)) +
-  geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
+  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
   facet_wrap(~Aldersgruppe, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Nye testede"), values = c(pos_col, test_col)) +
   scale_y_continuous(
     name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
-    limits = c(0, 50000)
+    sec.axis = sec_axis(~ . / left_right_axis_ratio, name = "Positive"),
+    limits = c(0, max_y_value)
   ) +
   labs(y = "Positive : Testede", x = "Dato", title = "Positive og nye testede per uge for hver aldersgruppe") +
   theme_minimal() +
@@ -135,6 +138,8 @@ plot_data <- week_df %>%
   mutate(value = c(0, diff(value))) %>%
   pivot_wider(names_from = variable, values_from = value) %>%
   mutate(Ratio = positive / Testede * 100)
+
+max_y_value <- ceiling(max(plot_data$Ratio))
 
 ggplot(plot_data, aes(Date, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
