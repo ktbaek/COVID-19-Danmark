@@ -11,14 +11,7 @@ ggplot(plot_data, aes(Date, value)) +
   scale_fill_manual(name = "", labels = c("Pos over 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre vs. total nyindlagte") +
   scale_y_continuous(breaks = c(-500, 0, 500, 1000), labels = as.character(c("500", "0", "500", "1000"))) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 11, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  standard_theme
 
 ggsave("../figures/age_group_admitted_pos_old.png", width = 17, height = 12, units = "cm", dpi = 300)
 
@@ -35,14 +28,7 @@ ggplot(plot_data, aes(Date, value)) +
   scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede yngre vs. total nyindlagte") +
   scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500, 2000, 2500), labels = as.character(c("500", "0", "500", "1000", "1500", "2000", "2500"))) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 11, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  standard_theme
 
 ggsave("../figures/age_group_admitted_pos_young.png", width = 17, height = 12, units = "cm", dpi = 300)
 
@@ -55,15 +41,7 @@ ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", aes(fill = variable)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre og yngre") +
-  # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 11, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  standard_theme
 
 ggsave("../figures/age_group_stack.png", width = 17, height = 12, units = "cm", dpi = 300)
 
@@ -76,15 +54,7 @@ ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
   labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positivt testede: ældre vs. yngre") +
-  # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 11, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    plot.title = element_text(face = "bold", hjust = 0.5),
-    axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  standard_theme
 
 ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", dpi = 300)
 
@@ -114,17 +84,7 @@ ggplot(plot_data, aes(Date, value)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Positive : Testede", x = "Dato", title = "Positive og nye testede per uge for hver aldersgruppe") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/age_groups_pos_tested.png", width = 31, height = 15, units = "cm", dpi = 300)
 
@@ -148,16 +108,7 @@ ggplot(plot_data, aes(Date, Ratio)) +
   scale_y_continuous(
     limits = c(0, 17)
   ) +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/age_groups_pct.png", width = 22, height = 14, units = "cm", dpi = 300)
 
@@ -188,18 +139,8 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   labs(x = "", y = "", title = "Positivt testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    axis.title.x = element_text(size = 12, family = "lato")
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 
@@ -224,18 +165,8 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   labs(x = "", y = "", title = "Antal nye testede per befolkningstal i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    axis.title.x = element_text(size = 12, family = "lato")
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 ggsave("../figures/age_weekly_tests_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 
@@ -259,18 +190,8 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   labs(x = "", y = "", title = "Positivt testede per nye testede (procent positive) i aldersgruppen") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    axis.title.x = element_text(size = 12, family = "lato")
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 ggsave("../figures/age_weekly_pct_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
 

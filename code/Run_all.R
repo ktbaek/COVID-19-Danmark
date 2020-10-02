@@ -12,7 +12,7 @@ today <- "2020-10-02"
 source("read_tidy_data.R")
 cat("Read and tidy DONE\n")
 
-source("plot_colors.R")
+source("plot_styles.R")
 
 source("article_Rt_plots.R")
 cat("Whole country plots DONE\n")

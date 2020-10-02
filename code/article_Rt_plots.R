@@ -3,8 +3,6 @@ ra_lwd <- 3
 cex_labels <- 1.4
 cex_axis <- 1.4
 
-quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Italic", "Lato-BoldItalic"))
-
 max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
 max_test <- ceiling(max(tests$Tested) / 5000) * 5000
 max_pct <- ceiling(max(tests_from_may$pct_confirmed, na.rm = TRUE) * 5) / 5

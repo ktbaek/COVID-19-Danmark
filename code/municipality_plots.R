@@ -10,8 +10,6 @@ muni_subset <- muni_wk %>%
   pull(Kommune)
 
 
-# -------------------------------------------------------------------------
-
 # Figur: Positiv vs testede - udvalgte kommuner, ugenumre------------------
 
 plot_data <- muni_wk %>%
@@ -33,17 +31,7 @@ ggplot(plot_data, aes(Week, value)) +
     limits = c(0, NA)
   ) +
   labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
 
@@ -65,17 +53,7 @@ ggplot(plot_data, aes(Week, value)) +
     limits = c(0, NA)
   ) +
   labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for alle kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 14, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, units = "cm", dpi = 300)
 
@@ -100,17 +78,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
     limits = c(0, NA)
   ) +
   labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pos_vs_test_april.png", width = 30, height = 20, units = "cm", dpi = 300)
 
@@ -134,24 +102,9 @@ ggplot(plot_data, aes(Date, value)) +
     limits = c(0, NA)
   ) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 30, height = 20, units = "cm", dpi = 300)
-
-
-
-
-
 
 
 # -------------------------------------------------------------------------
@@ -175,17 +128,7 @@ ggplot(plot_data, aes(Week, Ratio)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
 
@@ -207,17 +150,7 @@ ggplot(plot_data, aes(Week, Ratio)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for alle kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 14, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm", dpi = 300)
 
@@ -242,17 +175,7 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pct_april.png", width = 27, height = 20, units = "cm", dpi = 300)
 
@@ -277,22 +200,9 @@ ggplot(plot_data, aes(Date, Ratio)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for udvalgte kommuner") +
-  theme_minimal() +
-  theme(
-    text = element_text(size = 9, family = "lato"),
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    legend.text = element_text(size = 12, family = "lato"),
-    plot.title = element_text(size = 12, face = "bold"),
-    strip.text = element_text(face = "bold"),
-    axis.title.y = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 20, b = 0, l = 0)),
-    axis.title.y.right = element_text(size = 12, family = "lato", margin = margin(t = 0, r = 0, b = 0, l = 20)),
-    axis.title.x = element_text(size = 12, family = "lato", margin = margin(t = 20, r = 0, b = 0, l = 0))
-  )
+  facet_theme
 
 ggsave("../figures/muni_10_pct_daily.png", width = 27, height = 20, units = "cm", dpi = 300)
-
-
-
 
 
 # -------------------------------------------------------------------------
@@ -311,18 +221,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato"),
-    axis.ticks = element_blank()
-  )
+  tile_theme + 
+  theme(text = element_text(size = 12))
 
 
 ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
@@ -342,18 +242,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   labs(x = "", y = "", title = "Ugentligt antal positive per antal testede") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato")
-  )
+  tile_theme + 
+  theme(text = element_text(size = 12))
 
 ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 38, units = "cm", dpi = 300)
 
@@ -373,18 +263,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   labs(x = "", y = "", title = "Ugentligt antal testede per indbyggertal") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 13, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -5, b = 0, l = 0)),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato"),
-    axis.ticks = element_blank()
-  )
+  tile_theme + 
+  theme(text = element_text(size = 12))
 
 
 ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
@@ -410,18 +290,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal for udvalgte kommuner") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato"),
-    axis.ticks = element_blank()
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
 ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
@@ -441,18 +311,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   labs(x = "", y = "", title = "Ugentligt antal positive per antal testede for udvalgte kommuner") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato")
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 ggsave("../figures/muni_10_weekly_pct_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
 
@@ -473,18 +333,8 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   labs(x = "", y = "", title = "Ugentligt antal testede i udvalgte kommuner") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Antal", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
-  theme_tufte() +
-  theme(
-    plot.background = element_blank(),
-    panel.border = element_blank(),
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
-    text = element_text(size = 14, family = "lato"),
-    axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)),
-    legend.text = element_text(size = 12, family = "lato"),
-    axis.title.y = element_text(size = 12, family = "lato"),
-    axis.title.x = element_text(size = 12, family = "lato"),
-    axis.ticks = element_blank()
-  )
+  tile_theme + 
+  theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
 ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 19, units = "cm", dpi = 300)
