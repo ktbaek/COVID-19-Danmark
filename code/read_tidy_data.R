@@ -112,9 +112,9 @@ tests %<>% mutate(
 )
 
 admitted %<>%
-  mutate(running_avg = ra(Total))
+  mutate(running_avg_admit = ra(Total))
 
-deaths %<>% mutate(running_avg = ra(Antal_døde))
+deaths %<>% mutate(running_avg_deaths = ra(Antal_døde))
 
 tests_from_may <- tests %>% slice(96:(n())) # exclude data before May
 
