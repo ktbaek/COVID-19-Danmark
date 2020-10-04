@@ -26,6 +26,7 @@ standard_theme <-
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),
+    panel.grid.minor.x = element_blank(),
     plot.margin = margin(1, 1, 1, 1, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)),
