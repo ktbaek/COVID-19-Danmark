@@ -109,13 +109,13 @@ standard_plot <- function(title,
     font = 2
   )
 
-  mtext("ktbaek.github.io/COVID-19-Danmark",
-    side = 1,
-    line = 3.7,
-    cex = cex_labels / 1.8,
-    adj = 1,
-    font = 3
-  )
+  # mtext("ktbaek.github.io/COVID-19-Danmark",
+  #   side = 1,
+  #   line = 3.7,
+  #   cex = cex_labels / 1.8,
+  #   adj = 1,
+  #   font = 3
+  # )
 
   box(which = "plot", lty = "solid")
 
@@ -171,13 +171,13 @@ double_plot <- function(title,
     font = 2
   )
 
-  mtext("ktbaek.github.io/COVID-19-Danmark",
-    side = 1,
-    line = 3.7,
-    cex = cex_labels / 1.8,
-    adj = 1,
-    font = 3
-  )
+  # mtext("ktbaek.github.io/COVID-19-Danmark",
+  #   side = 1,
+  #   line = 3.7,
+  #   cex = cex_labels / 1.8,
+  #   adj = 1,
+  #   font = 3
+  # )
 
   box(which = "plot", lty = "solid")
 

@@ -297,14 +297,6 @@ mtext(
   font = 2
 )
 
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
 points(tests$Date, tests$NewPositive / (max_pos / 2), type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
 points(tests$Date, tests$running_avg_pos / (max_pos / 2), type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
@@ -358,21 +350,6 @@ mtext(
   font = 2
 )
 
-mtext(
-  text = "Kontakttal-værdi",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 # axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
@@ -430,22 +407,6 @@ mtext(
   cex = cex_labels,
   font = 2
 )
-
-mtext(
-  text = "Kontakttal-værdi",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 points(admitted$Date, admitted$Total / 24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
 points(admitted$Date, admitted$running_avg_admit / 24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
@@ -509,14 +470,6 @@ mtext(
   cex = cex_labels,
   font = 2
 )
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 box(which = "plot", lty = "solid")
 
@@ -624,14 +577,6 @@ mtext(
   cex = cex_labels,
   font = 2
 )
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 axis(1, c(
   as.Date("2020-03-01"),
@@ -746,14 +691,6 @@ mtext(
   cex = cex_labels,
   font = 2
 )
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 box(which = "plot", lty = "solid")
 
@@ -872,14 +809,6 @@ mtext(
   cex = cex_labels,
   font = 2
 )
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
 
 axis(1, c(
   as.Date("2020-03-01"),

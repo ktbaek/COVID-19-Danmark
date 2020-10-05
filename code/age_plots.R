@@ -12,13 +12,6 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre vs. total nyindlagte") +
   scale_y_continuous(breaks = c(-500, 0, 500, 1000), labels = as.character(c("500", "0", "500", "1000"))) +
   standard_theme 
-
-  # grid.text("ktbaek.github.io/COVID-19-Danmark",
-  #         x = unit(0.99, "npc"), 
-  #         y = unit(0.01, "npc"), 
-  #         just = c("right", "bottom"),
-  #         gp = gpar(fontfamily = "lato", font = 3)) 
-  
   
 
 ggsave("../figures/age_group_admitted_pos_old.png", width = 17, height = 12, units = "cm", dpi = 300)
