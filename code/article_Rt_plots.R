@@ -210,14 +210,14 @@ double_plot(
   title = "Testede, positive og procent positive",
   y_label = "Antal testede, positive",
   y2_label = "Procent",
-  y_label_dist = 5.4,
+  y_label_dist = 5.8,
   max_y_value = max_test,
   x_by = "2 months",
   start_date = "2020-02-15"
 )
 
-segments(tests$Date, 0, tests$Date, tests$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
 text(x = as.Date("2020-03-15"), y = 42000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-09-04"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
@@ -237,7 +237,8 @@ plot(NULL,
      xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
 )
 
-points(tests$Date, replace(tests$running_avg_pct, 1:37, NA), type = "l", pch = 19, lwd = 3, col = pct_col)
+points(plot_data$Date, replace(plot_data$running_avg_pct, 1:17, NA), type = "l", pch = 19, lwd = 5, col = "white")
+points(plot_data$Date, replace(plot_data$running_avg_pct, 1:17, NA), type = "l", pch = 19, lwd = 3, col = pct_col)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 5, 10, 15), labels = c("0 %", "5 %", "10 %", "15 %"))
 
@@ -545,84 +546,29 @@ dev.off()
 # positive admitted barplot 2 ------------------------------------------------------------------
 
 png("../figures/postest_admitted_barplot_2.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, max_pos),
-     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
-)
+standard_plot(title = "Antal positivt testede vs. nyindlagte", 
+              y_label_dist = 4,
+              max_y_value = max_pos,
+              x_by = "2 months")
 
-mtext(
-  text = "Antal positivt testede vs. nyindlagte",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 2, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
-
-points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+points(plot_data$Date, plot_data$running_avg_pos,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pos_col)
 
-points(admitted$Date, admitted$running_avg_admit,
+points(plot_data$Date, plot_data$running_avg_admit,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = admit_col)
 
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
-
 
 legend("topleft",
        inset = 0.04,
@@ -632,7 +578,6 @@ legend("topleft",
        cex=1.2,
        box.lty=0, 
        lwd = 4)
-
 
 dev.off()
 
@@ -715,62 +660,28 @@ dev.off()
 # pct admitted barplot 2 ------------------------------------------------------------------
 
 png("../figures/pct_admitted_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 6))
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, 20),
-     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+double_plot(
+  title = "Procent positivt testede vs. nyindlagte",
+  y_label = "Positivprocent",
+  y2_label = "Antal nyindlagte",
+  y_label_dist = 5,
+  max_y_value = 20,
+  x_by = "2 months",
+  start_date = "2020-02-15"
 )
 
-mtext(
-  text = "Procent positivt testede vs. nyindlagte",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total/15, lwd = 2, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total/15, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Positivprocent",
-  side = 2, # side 1 = bottom
-  line = 5,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total/15, lwd = 2, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total/15, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
-
-points(tests$Date, tests$running_avg_pct,
+points(plot_data$Date, plot_data$running_avg_pct,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pct_col)
 
-points(admitted$Date, admitted$running_avg_admit/15,
+points(plot_data$Date, plot_data$running_avg_admit/15,
        type = "l", 
        pch = 19, 
        lwd = 3, 
@@ -785,31 +696,11 @@ legend("topright",
        box.lty=0, 
        lwd = 4)
 
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 6.7, 13.3, 20), labels = c(0, 100,  200, 300))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, "5 %", "10 %", "15 %", "20 %"))
 
 
-text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal nyindlagte", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
-
-
 dev.off()
-
-
-
 
 
 # -------------------------------------------------------------------------
@@ -893,87 +784,38 @@ dev.off()
 # positive deaths barplot 2 ------------------------------------------------------------------
 
 png("../figures/postest_deaths_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 6))
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, max_pos),
-     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+double_plot(
+  title = "Antal positivt testede vs. døde",
+  y_label = "Antal positivt testede",
+  y2_label = "Antal døde",
+  y_label_dist = 5,
+  max_y_value = max_pos,
+  x_by = "2 months",
+  start_date = "2020-02-15"
 )
 
-mtext(
-  text = "Antal positivt testede vs. døde",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = 2, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
 
-mtext(
-  text = "Antal positivt testede",
-  side = 2, # side 1 = bottom
-  line = 5,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde * 10, lwd = 2, col = "white", lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde * 10, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
-
-points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+points(plot_data$Date, plot_data$running_avg_pos,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pos_col)
 
-points(deaths$Date, deaths$running_avg_deaths * 10,
+points(plot_data$Date, plot_data$running_avg_deaths * 10,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = darken(death_col, 0.4))
 
-box(which = "plot", lty = "solid")
 
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos/10, by = 10))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
-
-
-text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
 
 
 legend("topleft",
@@ -1069,62 +911,28 @@ dev.off()
 # pct deaths barplot 2 ------------------------------------------------------------------
 
 png("../figures/pct_deaths_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 6))
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, 20),
-     xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+double_plot(
+  title = "Procent positivt testede vs. døde",
+  y_label = "Positivprocent",
+  y2_label = "Antal døde",
+  y_label_dist = 5,
+  max_y_value = 20,
+  x_by = "2 months",
+  start_date = "2020-02-15"
 )
 
-mtext(
-  text = "Procent positivt testede vs. døde",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde/5, lwd = 2, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde/5, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Positivprocent",
-  side = 2, # side 1 = bottom
-  line = 5,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde/5, lwd = 2, col = "white", lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde/5, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
-
-points(tests$Date, tests$running_avg_pct,
+points(plot_data$Date, plot_data$running_avg_pct,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pct_col)
 
-points(deaths$Date, deaths$running_avg_deaths/5,
+points(plot_data$Date, plot_data$running_avg_deaths/5,
        type = "l", 
        pch = 19, 
        lwd = 3, 
@@ -1140,32 +948,12 @@ legend("topright",
        lwd = 4
       )
 
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, 25,  50, 75, 100))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, "5 %", "10 %", "15 %", "20 %"))
 
 
-text(par("usr")[2]* 1.0021,mean(par("usr")[3:4]), "Antal døde", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
-
-
 dev.off()
-
-
-
-
 
 
 
@@ -1187,10 +975,9 @@ plot(0,
 
 
 
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col,0.5), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 1, col = alpha(pos_col,0.5), lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 1, col = "white", lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 1, col = alpha(admit_col, 0.7), lend = 1)
 
 points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
        type = "l", 
@@ -1203,9 +990,6 @@ points(admitted$Date, admitted$running_avg_admit,
        pch = 19, 
        lwd = 3, 
        col = admit_col)
-
-
-
 
 
 dev.off()
@@ -1218,101 +1002,53 @@ dev.off()
 
 
 png("../figures/tiltag_july.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 7, 5, 7), lheight = 0.9)
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, max_pos + 100),
-     xlim = c(as.Date("2020-07-01"), as.Date(today) - 1)
+double_plot(
+  title = "Epidemi-indikatorer og restriktioner",
+  y_label = "Antal",
+  y2_label = "Positivprocent",
+  y_label_dist = 5,
+  max_y_value = max_pos + 100,
+  x_by = "1 month",
+  start_date = "2020-07-01"
 )
 
-mtext(
-  text = "Epidemi-indikatorer og restriktioner",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 5, col = alpha(pos_col,0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 5, alpha(pct_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 5, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 5, col = alpha(death_col, 0.7), lend = 1)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 5,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 5, col = alpha(pos_col,0.5), lend = 1)
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 100, lwd = 5, col = "white", lend = 1)
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 100, lwd = 5, alpha(pct_col, 0.7), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 5, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 5, col = alpha(admit_col, 0.7), lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 5, col = "white", lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 5, col = alpha(death_col, 0.7), lend = 1)
-
-points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pos_col)
 
-points(deaths$Date, deaths$running_avg_deaths,
+points(plot_data$Date, plot_data$running_avg_deaths,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = darken(death_col, 0.4))
 
-points(admitted$Date, admitted$running_avg_admit,
+points(plot_data$Date, plot_data$running_avg_admit,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = admit_col)
 
-points(tests$Date, tests$running_avg_pct * 100,
+points(plot_data$Date, plot_data$running_avg_pct * 100,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pct_col)
 
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-07-01"),
-  as.Date("2020-08-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-07-01"),
-  as.Date("2020-08-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = paste0(seq(0, max_pos + 100, by = 200)/100, " %"))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
 
-
-text(par("usr")[2]* 1.0008,mean(par("usr")[3:4]), "Procent positive", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
 
 arrows(as.Date("2020-08-22"), 220, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-08-22"), 270, "Mundbind i\noffentlig transport", cex = 0.9)
@@ -1320,17 +1056,11 @@ text(as.Date("2020-08-22"), 270, "Mundbind i\noffentlig transport", cex = 0.9)
 arrows(as.Date("2020-09-09"), 500, as.Date("2020-09-09"), 400, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-08"), 470, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)
 
-#arrows(as.Date("2020-09-17"), 650, as.Date("2020-09-17"), 570, lwd = 1, lend = 1, length = 0.1)
-#text(as.Date("2020-09-16"), 620, "Restriktioner\nrestauranter mv.\København", cex = 0.9, adj = 1)
-
 arrows(as.Date("2020-09-18"), 650, as.Date("2020-09-18"), 550, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-17"), 620, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
 
 arrows(as.Date("2020-09-26"), 760, as.Date("2020-09-26"), 660, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-25"), 730, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
-
-
-
 
 
 legend("topleft",
@@ -1351,101 +1081,57 @@ dev.off()
 
 
 png("../figures/tiltag_april.png", width = 22, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 7, 5, 7), lheight = 0.9)
 
-plot(0,
-     type = "n",
-     ylab = "",
-     xlab = "",
-     axes = FALSE,
-     cex = 1.2,
-     cex.axis = cex_axis,
-     ylim = c(0, 600),
-     xlim = c(as.Date("2020-04-01"), as.Date("2020-08-01"))
+par(lheight = 0.9)
+
+double_plot(
+  title = "Epidemi-indikatorer og genåbningsfaser",
+  y_label = "Antal",
+  y2_label = "Positivprocent",
+  y_label_dist = 5,
+  max_y_value = 600,
+  x_by = "1 month",
+  start_date = "2020-04-01",
+  end_date = "2020-08-02"
 )
 
-mtext(
-  text = "Epidemi-indikatorer og genåbningsfaser",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
 
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 3.7, col = alpha(pos_col,0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 40, lwd = 3.7, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 40, lwd =3.7, alpha(pct_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3.7, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3.7, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3.7, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3.7, col = alpha(death_col, 0.7), lend = 1)
 
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 5,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext("ktbaek.github.io/COVID-19-Danmark", 
-      side = 1, 
-      line = 3.7, 
-      # at = as.Date(today) + 20,
-      cex = cex_labels/1.8,
-      adj = 1,
-      font = 3)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 3.7, col = alpha(pos_col,0.5), lend = 1)
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 40, lwd = 3.7, col = "white", lend = 1)
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 40, lwd =3.7, alpha(pct_col, 0.7), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 3.7, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 3.7, col = alpha(admit_col, 0.7), lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 3.7, col = "white", lend = 1)
-segments(deaths$Date, 0, deaths$Date, deaths$Antal_døde, lwd = 3.7, col = alpha(death_col, 0.7), lend = 1)
-
-points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
+points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pos_col)
 
-points(deaths$Date, deaths$running_avg_deaths,
+points(plot_data$Date, plot_data$running_avg_deaths,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = darken(death_col, 0.4))
 
-points(admitted$Date, admitted$running_avg_admit,
+points(plot_data$Date, plot_data$running_avg_admit,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = admit_col)
 
-points(tests$Date, tests$running_avg_pct * 40,
+points(plot_data$Date, plot_data$running_avg_pct * 40,
        type = "l", 
        pch = 19, 
        lwd = 3, 
        col = pct_col)
 
-box(which = "plot", lty = "solid")
 
-axis(1, c(
-  as.Date("2020-04-01"),
-  as.Date("2020-06-01"),
-  as.Date("2020-08-01")
-), format(c(
-  as.Date("2020-04-01"),
-  as.Date("2020-06-01"),
-  as.Date("2020-08-01")
-), "%b"), cex.axis = cex_axis)
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 200), labels = paste0(seq(0, 600, by = 200)/40, " %"))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 100), labels = seq(0, 600, by = 100))
-
-
-text(par("usr")[2]* 1.0012,mean(par("usr")[3:4]), "Procent positive", srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
 
 arrows(as.Date("2020-04-15"), 420, as.Date("2020-04-15"), 320, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-04-16"), 400, "Små klasser,\nliberale erhverv", cex = 0.9, adj = 0)
@@ -1458,15 +1144,10 @@ arrows(as.Date("2020-05-27"), 170, as.Date("2020-05-27"), 150, lwd = 1, lend = 1
 text(as.Date("2020-05-08"), 217, "Store klasser, gymnasier,\ndetailhandel, kultur,\nidræt, restauranter", cex = 0.9, adj = 0)
 
 arrows(as.Date("2020-06-08"), 160, as.Date("2020-06-08"), 60, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-06-09"), 127, "Forsamling: 50\nsvømmehaller\nfitness", cex = 0.9, adj = 0)
+text(as.Date("2020-06-09"), 127, "Forsamling: 50,\nsvømmehaller,\nfitness", cex = 0.9, adj = 0)
 
 arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
-
-
-
-
-
 
 
 legend("topright",
