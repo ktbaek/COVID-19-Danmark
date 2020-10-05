@@ -149,59 +149,6 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 100
 dev.off()
 
 
-# Figure 6 ------------------------------------------------------------------
-
-png("../figures/fig_6_postest_hosp.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(tests$Date, tests$NewPositive,
-  type = "b",
-  pch = 19,
-  ylab = "",
-  xlab = "",
-  axes = TRUE,
-  cex = 1.2,
-  cex.axis = 1.2,
-  ylim = c(0, max_pos),
-  xlim = c(as.Date("2020-02-01"), as.Date(today) - 1),
-  las = 1,
-  col = alpha(pos_col, alpha = 0.3)
-)
-
-mtext(
-  text = "Nyindlagte vs. antal positive",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = 1.2,
-  font = 2
-)
-
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = 1.2,
-  font = 2
-)
-
-points(admitted$Date, admitted$running_avg_admit, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-points(tests$Date, tests$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
-points(admitted$Date, admitted$Total, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
-text(x = as.Date("2020-04-05"), y = -2, labels = "Nyindlagte", col = admit_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-05-14"), y = 400, labels = "Positivt testede", col = pos_col, cex = 1.4, font = 2)
-text(x = as.Date("2020-04-05"), y = 110, labels = "25. marts", col = admit_col, cex = 0.8, font = 4)
-text(x = as.Date("2020-04-13"), y = 485, labels = "3. april", col = pos_col, cex = 0.8, font = 4)
-
-dev.off()
-
 # Pos, test, pct combined ------------------------------------------------------------------
 
 png("../figures/pos_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
