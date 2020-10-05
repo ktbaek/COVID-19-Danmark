@@ -4,6 +4,7 @@ library(lubridate)
 library(scales)
 library(colorspace)
 library(ggthemes)
+library(magick)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
@@ -22,3 +23,7 @@ cat("Municipality plots DONE\n")
 
 source("age_plots.R")
 cat("Age plots DONE\n")
+
+source("add_image_text.R")
+cat("Image text added\n")
+
