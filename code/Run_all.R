@@ -8,7 +8,7 @@ library(magick)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-10-05"
+today <- "2020-10-06"
 
 source("read_tidy_data.R")
 cat("Read and tidy DONE\n")

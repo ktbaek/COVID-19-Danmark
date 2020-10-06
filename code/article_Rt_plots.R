@@ -257,6 +257,7 @@ abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-30"), col = "gray", lty = 3)
+abline(v = as.Date("2020-09-28"), col = "gray", lty = 3)
 
 dev.off()
 
@@ -314,6 +315,7 @@ abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
 abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
 abline(v = as.Date("2020-08-30"), col = "gray", lty = 3)
+abline(v = as.Date("2020-09-28"), col = "gray", lty = 3)
 
 dev.off()
 
