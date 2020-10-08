@@ -68,11 +68,12 @@ Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange de
 
 
 ### Dagligt antal nyindlagte og dødsfald
-Plottet viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
+Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
 
 ![](/figures/fig_5_hosp.png) 
+![](/figures/fig_5A_deaths.png) 
 
 ### Dagligt antal testede, antal nye positive og procent positive testede
 Plottet viser det totale antal testede personer, antallet af nye positivt testede personer, og procentdelen af positivt testede personer for hele landet. Procentdelen af positivt testede er vist som et løbende gennemsnit baseret på et vindue på 7 dage. 
