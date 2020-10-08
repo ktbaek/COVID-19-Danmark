@@ -15,7 +15,7 @@ add_image_text <- function(filename) {
   
   img <- image_read(paste0("../figures/", filename))
   
-  img %<>% image_annotate("Kristoffer T. Bæk, COVID19Danmark.dk, datakilde: SSI", 
+  img %<>% image_annotate("Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", 
                  size = 34, 
                  gravity = "southwest", 
                  font = "lato", 
