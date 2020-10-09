@@ -78,7 +78,7 @@ Plottet viser det estimerede antal dagligt nye smittede (smittetidspunkt) for Sc
 ### Antal aktivt smittede vs. dagligt antal nye positivt testede.
 Plottet viser det estimerede antal aktive smittede for Scenarie 2 (IFR = 0.37%) sammenlignet med det daglige antal positivt testede. 
 
-![](/figures/BK_active_infected_pos.png)
+![](/figures/BK_active_infected_cases.png)
 
 ### Antal aktivt smittede vs. positivprocent.
 Kurven viser det estimerede antal aktive smittede for Scenarie 2 (IFR = 0.37%) sammenlignet med positivprocenten (antal positivt testede ifht antal testede). 
