@@ -131,7 +131,7 @@ double_plot <- function(title,
                         start_date = "2020-02-15",
                         end_date = today) {
   
-  y2_label_pos <- as.double(0.17 * (as.Date(end_date) - as.Date(start_date)))
+  y2_label_pos <- as.double(0.18 * (as.Date(end_date) - as.Date(start_date)))
 
   par(family = "lato", mar = c(5, 8, 5, 6))
 
