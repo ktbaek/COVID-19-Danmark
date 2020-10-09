@@ -11,7 +11,7 @@ Kristoffer T. Bæk og Kasper P. Kepp
     <div class="twitter">Tweet</div>
     <div class="linkedin">Del</div>
 </div>
-
+<br>
 
 
 
