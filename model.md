@@ -1,6 +1,7 @@
 ---
 image: /figures/model_twitter_card.png
-title: Model for Covid-19 smitteudvikling i Danmark 
+title: Model for Covid-19 smitteudvikling i Danmark
+description: Model for estimering af antallet af SARS-CoV-2 smittede
 ---
 
 # Model for Covid-19 smitteudviklingen i Danmark
