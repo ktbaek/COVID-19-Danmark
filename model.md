@@ -12,6 +12,7 @@ Kristoffer T. Bæk og Kasper P. Kepp
     <div class="linkedin">Del</div>
 </div>
 \
+\
 
 
 Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede fra februar til nu. Modellen baseres på antallet af Covid-19 relaterede dødsfald og estimeret dødelighed (*infection fatality rate*, IFR).
@@ -55,33 +56,33 @@ Det mest sandsynlige scenarie vurderes at have samlet IFR = 0.37%.
 ### Antal dagligt nye smittede
 Kurverne angiver det estimerede antal dagligt nye smittede og angiver smittetidspunktet (eksponering). 
 
-![](/figures/BK_model_new_infected.png)
+![](/figures/BK_new_infected.png)
 
 ### Antal aktivt smittede
 Kurverne angiver det estimerede antal aktivt smittede beregnet udfra en aktiv smitteperiode på 10 dage startende fra dag 5 efter eksponering. 
 
-![](/figures/BK_model_active_infected.png)
+![](/figures/BK_active_infected.png)
 
 ### Kumuleret antal smittede
 Kurverne angiver det estimerede kumulerede antal smittede.
 
-![](/figures/BK_model_cumulated.png)
+![](/figures/BK_cumulated.png)
 
 
 ### Dagligt antal nye smittede vs. dagligt antal nyindlæggelser.
 Plottet viser det estimerede antal dagligt nye smittede (smittetidspunkt) for Scenarie 2 (IFR = 0.37%) sammenlignet med det observerede antal nyindlæggelser. 
 
-![](/figures/BK_model_new_infected_admitted.png)
+![](/figures/BK_new_infected_admitted.png)
 
 ### Antal aktivt smittede vs. dagligt antal nye positivt testede.
 Plottet viser det estimerede antal aktive smittede for Scenarie 2 (IFR = 0.37%) sammenlignet med det daglige antal positivt testede. 
 
-![](/figures/BK_model_active_infected_pos.png)
+![](/figures/BK_active_infected_pos.png)
 
 ### Antal aktivt smittede vs. positivprocent.
 Kurven viser det estimerede antal aktive smittede for Scenarie 2 (IFR = 0.37%) sammenlignet med positivprocenten (antal positivt testede ifht antal testede). 
 
-![](/figures/BK_model_active_infected_pct.png)
+![](/figures/BK_active_infected_pct.png)
 
 ## Implikationer
 - Hvis modellen estimerer antal smittede siden juni korrekt, betyder det at den daglige positivprocent i samme periode overvurderer det reelle antal smittede. Dette kan bl.a. skyldes 1) at kontaktopsporing og test af symptomatiske beriger den daglige *sample* med smittede og/eller 2) at antallet af potentielt PCR positive er større end det reelle antal aktivt smittede. 
