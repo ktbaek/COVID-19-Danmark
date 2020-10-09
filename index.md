@@ -11,6 +11,9 @@ Senest opdateret 9. oktober 2020 efter kl 14.
     <div class="twitter">Tweet</div>
     <div class="linkedin">Del</div>
 </div>
+<br>
+
+*Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
 ## Data
 
