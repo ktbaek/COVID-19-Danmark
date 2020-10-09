@@ -12,7 +12,7 @@ Kristoffer T. Bæk og Kasper P. Kepp
     <div class="linkedin">Del</div>
 </div>
 \
-\
+
 
 
 Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede fra februar til nu. Modellen baseres på antallet af Covid-19 relaterede dødsfald og estimeret dødelighed (*infection fatality rate*, IFR).
