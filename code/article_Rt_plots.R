@@ -931,7 +931,7 @@ dev.off()
 png("../figures/tiltag_july.png", width = 22, height = 16, units = "cm", res = 300)
 
 double_plot(
-  title = "Epidemi-indikatorer og restriktioner",
+  title = "Epidemi-indikatorer og politiske tiltag",
   y_label = "Antal",
   y2_label = "Positivprocent",
   y_label_dist = 5,
@@ -992,6 +992,12 @@ text(as.Date("2020-09-17"), 620, "Restriktioner\nrestauranter mv.", cex = 0.9, a
 
 arrows(as.Date("2020-09-26"), 760, as.Date("2020-09-26"), 660, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-25"), 730, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
+
+arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
+
+arrows(as.Date("2020-08-14"), 220, as.Date("2020-08-14"), 170, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-13"), 210, "Lukketid udvides", cex = 0.9, adj = 1)
 
 
 legend("topleft",

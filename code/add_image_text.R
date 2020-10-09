@@ -2,14 +2,16 @@
 image_files <- list.files(path="../figures/")
 
 image_files <- image_files[!image_files %in% c("twitter_card.png",
-                                               "Covid-19-Danmark.pdf",
-                                               "Tested_explanation.png",
-                                               "begreber.ai"
+                                               "model_twitter_card.png",
+                                               "Tested_explanation.png"
                                                )
                            ]
 
 
 image_files <- image_files[!str_detect(image_files, "^exp")] 
+image_files <- image_files[!str_detect(image_files, "^BK")] 
+image_files <- image_files[!str_detect(image_files, "pdf$")] 
+image_files <- image_files[!str_detect(image_files, "ai$")] 
 
 add_image_text <- function(filename) {
   
