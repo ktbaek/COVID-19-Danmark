@@ -16,17 +16,31 @@ Kristoffer T. Bæk og Kasper P. Kepp
 
 
 
-Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede fra februar til nu. Modellen baseres på antallet af Covid-19 relaterede dødsfald og estimeret dødelighed (*infection fatality rate*, IFR).
+Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede i Danmark fra februar til nu. Modellen er baseret på antallet af Covid-19 relaterede dødsfald og tre forskellige estimater for dødeligheden (*infection fatality rate*, IFR). Modellen er empirisk, vil korrelere tæt til dødsfald, og kan ikke bruges til forudsigelse. 
+
+## Beregningsmetode
+
+Antal nye smittede er beregnet udfra et 7-dages bagudrettet gennemsnit af antal daglige dødsfald. Det gennemsnitlige antal døde per dag deles med IFR for det pågældende scenarie og tilbagedateres 23 dage, som er den antagede periode fra smittetidspunkt til død.  
+
 
 ## Modellens antagelser:
 
-1) Baseret på 7-dages bagudrettet gennemsnit af antal daglige dødsfald (modellen vil derfor korrelere tæt til dødsfald).
+1) Der er korrelation mellem antal dødsfald og antal smittede. 
 
-2) Benytter tre effektive IFR-værdier for de faktiske smittede:
+2) IFR har ikke ændret sig væsentligt over tid. 
+
+3) Tid fra smittetidspunkt til død: 23 dage. Inkubationstid: 5 dage. Aktiv smitteperiode: 10 dage. 
+
+4) Modellen antager tre forskellige effektive IFR-værdier for de faktiske smittede:
 
 0,6%, 0,37%, og 0,29%.  
 
-De tre scenarier kan fortolkes på flere måder (f.eks. bedre behandling og diagnose, underestimeret seroprævalens, skærmning af sårbare grupper). Vi mener ikke at IFR for befolkningen som helhed har ændret sig væsentligt over tid, men eksponeringen af ældre kan have ændret sig. Vi forventer, at de ældre har skærmet sig tidligt i forløbet bedre end gennemsnitsbefolkningen, og ikke har ændret adfærd markant siden da. En meget forsimplet fortolkning  for denne hypotese er:
+IFR estimaterne er baseret på seroprævalensstudier, altså studier der måler hvor mange personer der *har været* smittet. 
+
+
+## Fortolkning af IFR-værdierne:
+
+De tre scenarier kan fortolkes på flere måder, f.eks. bedre behandling og diagnose, underestimeret seroprævalens, skærmning af sårbare grupper. Vi mener ikke at IFR for befolkningen som helhed har ændret sig væsentligt over tid, men eksponeringen af ældre kan have ændret sig. Vi forventer, at de ældre har skærmet sig tidligt i forløbet bedre end gennemsnitsbefolkningen, og ikke har ændret adfærd markant siden da. En meget forsimplet fortolkning  for denne hypotese er:
 
 - Scenarie 1: Danskere over 70 år har eksponering som resten af befolkningen (effektiv IFR = 0.6%)
 - Scenarie 2: Danskere over 70 år har ca. dobbelt så god skærmning (samlet effektiv IFR = 0.37%)
@@ -40,10 +54,7 @@ Dette giver en samlet IFR = 0.6% hvis udbredelsen var konstant på tidspunktet d
 
 Mere rimeligt kan de lavere IFR-værdier betragtes som en konsekvens af både dette og flere andre effekter, og det er derfor ikke rimeligt at lave modellen mere præcis end de usikkerheder, der p.t. eksisterer i IFR-estimaterne.
 
-3) Tid fra smittetidspunkt til død: 23 dage. Inkubationstid: 5 dage. Aktiv smitteperiode: 10 dage.  
-
- 
-### Forbehold:
+## Forbehold:
 Vi tager forbehold for brugen af en simpel konstant IFR over tid; i virkeligheden korrelerer dødsfald og IFR med det faktiske antal smittede i hver aldersgruppe over tid, hvilket er data, der ikke kendes og derfor ikke med rimelighed kan modelleres. 
 
 Vi tager forbehold for, at verdens mange IFR estimater kan være forkerte hvis den målte seroprævalens ikke er præcis, eller hvis personer har været smittet uden at have dannet målbare antistoffer.
