@@ -27,11 +27,9 @@ Antal nye smittede er beregnet udfra et 7-dages bagudrettet gennemsnit af antal 
 
 1) Der er korrelation mellem antal dødsfald og antal smittede. 
 
-2) IFR har ikke ændret sig væsentligt over tid. 
+2) Tid fra smittetidspunkt til død: 23 dage. Inkubationstid: 5 dage. Aktiv smitteperiode: 10 dage. 
 
-3) Tid fra smittetidspunkt til død: 23 dage. Inkubationstid: 5 dage. Aktiv smitteperiode: 10 dage. 
-
-4) Modellen antager tre forskellige effektive IFR-værdier for de faktiske smittede:
+3) Modellen antager tre forskellige effektive IFR-værdier for de faktiske smittede:
 
 0,6%, 0,37%, og 0,29%.  
 
