@@ -15,9 +15,6 @@ Senest opdateret 9. oktober 2020 efter kl 14.
 
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
-|[Plots hele landet](#plots-hele-landet)|
-|---|
-
 ## Data
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
