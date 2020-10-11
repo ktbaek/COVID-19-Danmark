@@ -1,7 +1,7 @@
 ---
 image: /figures/model_twitter_card.png
 title: Model for Covid-19 smitteudvikling i Danmark
-description: Model for estimering af antallet af SARS-CoV-2 smittede
+description: Estimering af det faktiske antal SARS-CoV-2 smittede
 ---
 
 # Model for Covid-19 smitteudviklingen i Danmark
@@ -45,8 +45,8 @@ De tre scenarier kan fortolkes på flere måder, f.eks. bedre behandling og diag
 - Scenarie 3: Danskere over 70 år har ca. tre gange så god skærmning (samlet effektiv IFR = 0.29%)
 
 Baseret på den simple antagelse at:
-- mennesker under 70 år har IFR = 0.1%. Udgør 85% af befolkningen. 
-- mennesker over 70 år har IFR = 3.4%. Udgør 15% af befolkningen.
+- Mennesker under 70 år har IFR = 0.1%. Udgør 85% af befolkningen. 
+- Mennesker over 70 år har IFR = 3.4%. Udgør 15% af befolkningen.
 
 Dette giver en samlet IFR = 0.6% hvis udbredelsen var konstant på tidspunktet da dødsfaldene blev registreret til IFR beregningen, hvilket de fleste store IFR-studier antager, da dødsfaldene typisk ikke vægtes med prævalensen i smittelommerne (heterogenitet). 
 

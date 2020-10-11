@@ -16,6 +16,8 @@ Senest opdateret 9. oktober 2020 efter kl 14.
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
 ## Data
+<details>
+<summary>Hvordan er data behandlet?</summary>
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
 
@@ -27,7 +29,12 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.* 
 
+</details>
+
 ## Terminologi
+<details>
+<summary>Hvad betyder begreberne?</summary>
+
 #### Antal positivt testede
 Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests). 
 
@@ -35,6 +42,8 @@ Positivt testede angiver personer, som *for første gang er testet positive* for
 
 #### Procentdel positivt testede
 Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
+
+</details>
 
 ## Plots: hele landet
 

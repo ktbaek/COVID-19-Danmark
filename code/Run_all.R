@@ -10,6 +10,9 @@ Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
 today <- "2020-10-09"
 
+source("update_dashboard_data.R")
+cat("Dashboard data updated\n")
+
 source("read_tidy_data.R")
 cat("Read and tidy DONE\n")
 
@@ -26,4 +29,11 @@ cat("Age plots DONE\n")
 
 source("add_image_text.R")
 cat("Image text added\n")
+
+source("update_index_md.R")
+cat("Index file updated\n")
+
+
+
+
 
