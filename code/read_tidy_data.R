@@ -2,7 +2,7 @@
 
 today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
-last_tuesday <- floor_date(as.Date(today), "week", 2)
+last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 2), "-", "_")
 
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
 deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))

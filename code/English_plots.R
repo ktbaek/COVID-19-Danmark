@@ -162,7 +162,7 @@ dev.off()
 png("../figures/en_postest_admitted_barplot_2.png", width = 20, height = 16, units = "cm", res = 300)
 
 standard_plot(
-  title = "Daily admissions vs. cases",
+  title = "Daily cases vs. admissions",
   x_label = "Date", 
   y_label_dist = 4,
   y_label = "Number",
