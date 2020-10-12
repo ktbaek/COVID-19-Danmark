@@ -106,7 +106,7 @@ dev.off()
 png("../figures/en_hosp.png", width = 20, height = 16, units = "cm", res = 300)
 
 standard_plot(
-  title = "Daily admitted",
+  title = "Daily hospital admissions",
   y_label = "Number",
   x_label = "Date", 
   y_label_dist = 4,
@@ -162,7 +162,7 @@ dev.off()
 png("../figures/en_postest_admitted_barplot_2.png", width = 20, height = 16, units = "cm", res = 300)
 
 standard_plot(
-  title = "Daily admitted vs. cases",
+  title = "Daily admissions vs. cases",
   x_label = "Date", 
   y_label_dist = 4,
   y_label = "Number",
@@ -192,7 +192,7 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max
 
 legend("topleft",
   inset = 0.04,
-  legend = c("Cases", "Admitted"),
+  legend = c("Cases", "Admissions"),
   col = c(pos_col, admit_col),
   lty = 1,
   cex = 1.2,
@@ -210,10 +210,10 @@ dev.off()
 png("../figures/en_pct_admitted_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
 
 double_plot(
-  title = "Daily percentage positives vs. admitted",
+  title = "Daily percentage positives vs. admissions",
   y_label = "Percentage",
   x_label = "Date", 
-  y2_label = "Number of admitted",
+  y2_label = "Number of admissions",
   y_label_dist = 5,
   max_y_value = 20,
   x_by = "2 months",
@@ -240,7 +240,7 @@ points(plot_data$Date, plot_data$running_avg_admit / 15,
 
 legend("topright",
   inset = 0.04,
-  legend = c("Percentage positives", "Admitted"),
+  legend = c("Percentage positives", "Admissions"),
   col = c(pct_col, admit_col),
   lty = 1,
   cex = 1.2,
@@ -443,7 +443,7 @@ text(as.Date("2020-08-13"), 210, "Extended closing hrs", cex = 0.9, adj = 1)
 
 legend("topleft",
   inset = 0.04,
-  legend = c("Cases", "Percentage positives", "Admitted", "Deaths"),
+  legend = c("Cases", "Percentage positives", "Admissions", "Deaths"),
   col = c(pos_col, pct_col, admit_col, darken(death_col, 0.4)),
   lty = 1,
   cex = 1.2,
@@ -536,7 +536,7 @@ text(as.Date("2020-07-08"), 150, "Gathering limit:\n100", cex = 0.9, adj = 0)
 
 legend("topright",
   inset = 0.04,
-  legend = c("Cases", "Percentage positives", "Admitted", "Deaths"),
+  legend = c("Cases", "Percentage positives", "Admissions", "Deaths"),
   col = c(pos_col, pct_col, admit_col, darken(death_col, 0.4)),
   lty = 1,
   cex = 1.2,

@@ -8,7 +8,7 @@ library(magick)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-10-09"
+today <- "2020-10-12"
 
 source("update_dashboard_data.R")
 cat("Dashboard data updated\n")
@@ -26,6 +26,9 @@ cat("Municipality plots DONE\n")
 
 source("age_plots.R")
 cat("Age plots DONE\n")
+
+source("English_plots.R")
+cat("English plots DONE\n")
 
 source("add_image_text.R")
 cat("Image text added\n")

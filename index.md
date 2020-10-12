@@ -13,6 +13,8 @@ Senest opdateret 9. oktober 2020 efter kl 14.
 </div>
 <br>
 
+[🇬🇧](/en.md)
+
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
 ## Data

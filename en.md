@@ -7,7 +7,7 @@ Description: Plots showing the Covid-19 epidemic in Denmark
 # Plots showing the development of the Covid-19 epidemic in Denmark.
 Last update 9 October 2020 after 2 pm. 
 
-[Danish site](/index.md)
+[🇩🇰](/index.md) (more plots)
 
 <div class="likely">
     <div class="facebook">Share</div>
@@ -43,7 +43,7 @@ Lines show running 7-day average.
 ![](/figures/en_tests.png) 
 
 ### Daily percentage of positives
-Upper plots shows the whole time period, lower plot shows from May 1. 
+Upper plot shows the whole time period, lower plot shows from May 1. 
 
 ``SSI dataset: 'Test_pos_over_time'``
 
