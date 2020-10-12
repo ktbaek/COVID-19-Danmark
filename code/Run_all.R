@@ -31,7 +31,7 @@ source("add_image_text.R")
 cat("Image text added\n")
 
 source("update_index_md.R")
-cat("Index file updated\n")
+cat("Index files updated\n")
 
 
 
