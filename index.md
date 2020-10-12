@@ -6,6 +6,8 @@ title: Covid-19 smitteudvikling i Danmark
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
 Senest opdateret 9. oktober 2020 efter kl 14. 
 
+[🇬🇧](/en.md)
+
 <div class="likely">
     <div class="facebook">Del</div>
     <div class="twitter">Tweet</div>
@@ -13,7 +15,7 @@ Senest opdateret 9. oktober 2020 efter kl 14.
 </div>
 <br>
 
-[🇬🇧](/en.md)
+
 
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
