@@ -28,7 +28,7 @@ Lines show running 7-day average.
 
 *Cases* indicate people tested positive. 
 
-
+## Plots
  
 ### Daily new cases (positive tests) 
 
