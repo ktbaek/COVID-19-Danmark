@@ -1,6 +1,7 @@
 ---
 image: /figures/twitter_card.png
-title: Covid-19 in Danmark 
+title: Covid-19 in Denmark 
+Description: Plots showing the Covid-19 epidemic in Denmark
 ---
 
 # Plots showing the development of the Covid-19 epidemic in Denmark.
