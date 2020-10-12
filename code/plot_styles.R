@@ -66,6 +66,7 @@ tile_theme <-
 standard_plot <- function(title,
                           max_y_value,
                           y_label = "Antal",
+                          x_label = "Dato",
                           y_label_dist = 4,
                           x_by = "2 months",
                           start_date = "2020-02-15",
@@ -94,7 +95,7 @@ standard_plot <- function(title,
   )
 
   mtext(
-    text = "Dato",
+    text = x_label,
     side = 1, # side 1 = bottom
     line = 3,
     cex = cex_labels,
@@ -125,6 +126,7 @@ standard_plot <- function(title,
 double_plot <- function(title,
                         max_y_value,
                         y_label = "Antal",
+                        x_label = "Dato",
                         y2_label,
                         y_label_dist = 4,
                         x_by = "2 months",
@@ -156,7 +158,7 @@ double_plot <- function(title,
   )
 
   mtext(
-    text = "Dato",
+    text = x_label,
     side = 1, # side 1 = bottom
     line = 3,
     cex = cex_labels,

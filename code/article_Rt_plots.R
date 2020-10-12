@@ -1104,3 +1104,28 @@ legend("topright",
 
 
 dev.off()
+
+# test_pos vs dashboard ---------------------------------------------------
+
+
+x <- tests %>% select(Date, NewPositive, NotPrevPos)
+x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
+x %<>% mutate(dataset = "test_pos")
+y <- dashboard_data %>% mutate(dataset = "dashboard")
+plot_data <- bind_rows(x,y)
+plot_data %<>% filter(Date > as.Date("2020-09-20"),
+              !variable %in% c("Antal_døde", "Indlæggelser", "NotPrevPos"))
+
+
+ggplot(plot_data, aes(Date, values)) +
+  geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
+  geom_point(aes(color = dataset), size = 1.7) +
+  labs(y = "Antal", x = "Dato", title = "Positivt testede baseret på prøvetagning vs. prøvesvar") +
+  scale_color_manual(name = "", labels = c("Prøvesvar", "Prøvetagning"), values = binary_col) +
+  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+  scale_y_continuous(
+    limits = c(0, 700)
+  ) +
+  standard_theme
+
+ggsave("../figures/test_pos_vs_dashboard.png", width = 16, height = 12, units = "cm", dpi = 300)
