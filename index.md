@@ -6,7 +6,7 @@ title: Covid-19 smitteudvikling i Danmark
 # Figurer for smitteudvikling i Danmark baseret på data fra SSI
 Senest opdateret 12. oktober efter kl 14.
 
-[🇬🇧](/en.md)
+[![English](/assets/UKflag.svg)](/en.md)
 
 <div class="likely">
     <div class="facebook">Del</div>
