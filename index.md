@@ -242,14 +242,14 @@ Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 
 
 
 ### Ugentligt antal nyindlagte og antal nye positivt testede ældre (&ge; 50 år)
-Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over 50 år.
+Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over hhv. 50, 60, eller 70 år.
 
 ``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
 ![](/figures/age_group_admitted_pos_old.png)
 
 ### Ugentligt antal nyindlagte og antal nye positivt testede yngre (< 50 år)
-Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under 50 år.
+Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under hhv. 50, 60, eller 70 år.
 
 ``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
