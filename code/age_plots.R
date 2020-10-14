@@ -4,17 +4,18 @@
 plot_data <- age_data %>%
   mutate(value = ifelse(variable == "admitted", -value, value)) %>%
   mutate(variable = ifelse(variable == "admitted", "z_admitted", variable)) %>%
-  filter(variable %in% c("old", "z_admitted"))
+  filter(where == "Over")
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", width = 6, aes(fill = variable)) +
-  scale_fill_manual(name = "", labels = c("Pos over 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre vs. total nyindlagte") +
-  scale_y_continuous(breaks = c(-500, 0, 500, 1000), labels = as.character(c("500", "0", "500", "1000"))) +
-  standard_theme 
+  facet_wrap(~age_limit, scales = "free") +
+  scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede over 50, 60 eller 70 år vs. total nyindlagte") +
+  scale_y_continuous(breaks = c(-500, 0, 500, 1000), limits = c(-500, 1250), labels = as.character(c("500", "0", "500", "1000"))) +
+  facet_theme 
   
 
-ggsave("../figures/age_group_admitted_pos_old.png", width = 17, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_group_admitted_pos_old.png", width = 25, height = 12, units = "cm", dpi = 300)
 
 
 # Figur: Pos under 50 vs nyindlagte, fra marts -----------------------------------
@@ -22,24 +23,25 @@ ggsave("../figures/age_group_admitted_pos_old.png", width = 17, height = 12, uni
 plot_data <- age_data %>%
   mutate(value = ifelse(variable == "admitted", -value, value)) %>%
   mutate(variable = ifelse(variable == "admitted", "z_admitted", variable)) %>%
-  filter(variable %in% c("young", "z_admitted"))
+  filter(where == "Under")
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", width = 6, aes(fill = variable)) +
-  scale_fill_manual(name = "", labels = c("Pos under 50 år", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede yngre vs. total nyindlagte") +
-  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500, 2000, 2500), labels = as.character(c("500", "0", "500", "1000", "1500", "2000", "2500"))) +
-  standard_theme
+  facet_wrap(~age_limit, scales = "free") +
+  scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede under 50, 60 eller 70 år vs. total nyindlagte") +
+  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500, 2000, 2500, 3000, 4000), limits = c(-500, 3500), labels = as.character(c("500", "0", "500", "1000", "1500", "2000", "2500", "3000", "4000"))) +
+  facet_theme
 
-ggsave("../figures/age_group_admitted_pos_young.png", width = 17, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_group_admitted_pos_young.png", width = 25, height = 12, units = "cm", dpi = 300)
 
 # Figur: Andel ung vs gammel stack, fra marts ----------------------------
 
 plot_data <- age_data %>%
-  filter(variable %in% c("young", "old"))
+  filter(variable == "positive", age_limit == "50")
 
 ggplot(plot_data, aes(Date, value)) +
-  geom_bar(stat = "identity", position = "stack", aes(fill = variable)) +
+  geom_bar(stat = "identity", position = "stack", aes(fill = where)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre og yngre") +
   standard_theme
@@ -49,10 +51,10 @@ ggsave("../figures/age_group_stack.png", width = 17, height = 12, units = "cm", 
 # Figur: Andel ung vs gammel fill, fra marts ----------------------------
 
 plot_data <- age_data %>%
-  filter(variable %in% c("young", "old"))
+  filter(variable == "positive", age_limit == "50")
 
 ggplot(plot_data, aes(Date, value)) +
-  geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
+  geom_bar(stat = "identity", position = "fill", aes(fill = where)) +
   scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
   labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positivt testede: ældre vs. yngre") +
   standard_theme

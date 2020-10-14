@@ -222,27 +222,35 @@ week_admitted <- admitted %>%
 
 # Combine AGE, ADMITTED and group into old and young --------------------------------
 
-young_group <- c("0-9", "10-19", "20-29", "30-39", "40-49") # , "50-59", "60-69")
+over_50 <- c("50-59", "60-69", "70-79", "80-89", "90+")
+over_60 <- c("60-69", "70-79", "80-89", "90+")
+over_70 <- c("70-79", "80-89", "90+")
 
 wk_df_group <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
-  mutate(less_than = ifelse(Aldersgruppe %in% young_group, TRUE, FALSE)) %>%
-  select(-Aldersgruppe) %>%
-  group_by(less_than, Date) %>%
-  summarise_all(sum) %>%
-  mutate(variable = ifelse(less_than, "young", "old")) %>%
-  ungroup() %>%
-  select(-less_than)
+  mutate("50" = ifelse(Aldersgruppe %in% over_50, "Over", "Under"),
+         "60" = ifelse(Aldersgruppe %in% over_60, "Over", "Under"),
+         "70" = ifelse(Aldersgruppe %in% over_70, "Over", "Under")) %>%
+  select(-Aldersgruppe, -Antal_testede) %>%
+  pivot_longer(-c(Date, positive), names_to = "age_limit", values_to = "where") %>%
+  group_by(age_limit, where, Date) %>%
+  summarise_all(sum) %>% 
+  ungroup()
 
 wk_df_group %<>%
-  group_by(variable) %>%
+  group_by(age_limit, where) %>%
   mutate(value = c(0, diff(positive))) %>%
   ungroup() %>%
-  select(-positive, -Antal_testede) %>%
+  select(-positive) %>%
+  mutate(variable = "positive") %>%
   filter(!Date == "2020-03-18")
 
 week_admitted %<>%
-  filter(!Date == "2020-03-18", Date <= max(wk_df_group$Date))
+  filter(!Date == "2020-03-18", Date <= max(wk_df_group$Date)) 
+
+week_admitted %<>%
+  full_join(expand_grid("age_limit" = c("50", "60", "70"), "where" = c("Under", "Over"), "Date" = week_admitted$Date), by = "Date") 
+            
 
 age_data <- bind_rows(week_admitted, wk_df_group)
 

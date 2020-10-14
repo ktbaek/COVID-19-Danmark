@@ -5,7 +5,7 @@ writeLines(index_file, con="../index.md")
 
 Sys.setlocale("LC_ALL", "en_US.UTF-8")
 index_en_file  <- readLines("../en.md")
-dateline  <- paste0("Last updated ", format(as.Date(today), "%e. %B"), " after 2 pm.")
-index_en_file[7] <- dateline
+dateline  <- paste0("Last updated ", format(as.Date(today), "%e %B"))
+index_en_file[9] <- dateline
 writeLines(index_en_file, con="../en.md")
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
