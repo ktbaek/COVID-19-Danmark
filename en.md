@@ -1,12 +1,12 @@
 ---
 image: /figures/twitter_card.png
-title: Covid-19 in Denmark 
+title: Covid-19 in Denmark
 Description: Plots showing the Covid-19 epidemic in Denmark
 ---
 
 # Plots showing the development of the Covid-19 epidemic in Denmark.
 
-Last updated 15 October
+Last updated 15 October 2020.
 
 [🇩🇰](/index.md) (more plots)
 
@@ -25,13 +25,13 @@ Data is from the [SSI COVID-19 surveillance site](https://www.ssi.dk/sygdomme-be
 
 On plots showing daily test data, the last two days are not included. On plots showing admitted and deaths, the last day is not included.
 
-Lines show running 7-day average. 
+Lines show running 7-day average.
 
-*Cases* indicate people tested positive. 
+*Cases* indicate people tested positive.
 
 ## Plots
- 
-### Daily new cases (positive tests) 
+
+### Daily new cases (positive tests)
 
 ``SSI dataset: 'Test_pos_over_time'``
 
@@ -41,17 +41,17 @@ Lines show running 7-day average.
 
 ``SSI dataset: 'Test_pos_over_time'``
 
-![](/figures/en_tests.png) 
+![](/figures/en_tests.png)
 
 ### Daily percentage of positives
-Upper plot shows the whole time period, lower plot shows from May 1. 
+Upper plot shows the whole time period, lower plot shows from May 1.
 
 ``SSI dataset: 'Test_pos_over_time'``
 
-![](/figures/en_pct_2.png) 
+![](/figures/en_pct_2.png)
 
 
-![](/figures/en_pct.png) 
+![](/figures/en_pct.png)
 
 
 
@@ -60,14 +60,14 @@ Upper plot shows the whole time period, lower plot shows from May 1.
 
 ``SSI dataset: 'Deaths_over_time', 'Newly_admitted_over_time'``
 
-![](/figures/en_hosp.png) 
-![](/figures/en_deaths.png) 
+![](/figures/en_hosp.png)
+![](/figures/en_deaths.png)
 
 ### Daily admitted vs. cases and percent positives, respectively
 
 ``SSI dataset: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
-![](/figures/en_postest_admitted_barplot_2.png) 
+![](/figures/en_postest_admitted_barplot_2.png)
 
 ![](/figures/en_pct_admitted_barplot_2.png)
 
@@ -76,23 +76,18 @@ Upper plot shows the whole time period, lower plot shows from May 1.
 
 ``SSI dataset: 'Test_pos_over_time', 'Deaths_over_time'``
 
-![](/figures/en_postest_deaths_barplot_2.png) 
+![](/figures/en_postest_deaths_barplot_2.png)
 
 ![](/figures/en_pct_deaths_barplot_2.png)
 
 
 ### Daily indicators vs. reopening/restrictions
-Upper plots shows the time period from April 1 to August 1, lower plot the time period from July 1 to now. 
+Upper plots shows the time period from April 1 to August 1, lower plot the time period from July 1 to now.
 
 ``SSI dataset: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
 
 See [list](/tiltag.md) of reopening/restrictions (in Danish).
 
-![](/figures/en_tiltag_april.png) 
+![](/figures/en_tiltag_april.png)
 
-![](/figures/en_tiltag_july.png) 
-
-
-
-
-
+![](/figures/en_tiltag_july.png)
