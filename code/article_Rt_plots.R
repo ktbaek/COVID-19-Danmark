@@ -23,10 +23,12 @@ standard_plot(
   y_label_dist = 4
 )
 
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+
 points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
 points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+
 
 dev.off()
 
@@ -990,8 +992,8 @@ text(as.Date("2020-09-08"), 470, "Restriktioner natteliv\nKøbenhavn/Odense", ce
 arrows(as.Date("2020-09-18"), 650, as.Date("2020-09-18"), 550, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-17"), 620, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
 
-arrows(as.Date("2020-09-26"), 760, as.Date("2020-09-26"), 660, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-25"), 730, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
+arrows(as.Date("2020-09-26"), 710, as.Date("2020-09-26"), 610, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-27"), 690, "Restriktioner\nprivate fester", cex = 0.9, adj = 0)
 
 arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
