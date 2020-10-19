@@ -1122,7 +1122,7 @@ plot_data %<>% filter(Date > as.Date("2020-09-20"),
 ggplot(plot_data, aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
   geom_point(aes(color = dataset), size = 1.7) +
-  labs(y = "Antal", x = "Dato", title = "Positivt testede baseret på prøvetagning vs. prøvesvar") +
+  labs(y = "Antal", x = "Dato", title = "Positivt testede: dato for prøvetagning vs. dato for prøvesvar") +
   scale_color_manual(name = "", labels = c("Prøvesvar", "Prøvetagning"), values = binary_col) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(

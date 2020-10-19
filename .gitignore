@@ -9,3 +9,6 @@ Thumbs.db
 *.ipynb
 *.py
 exp*.*
+app.R
+www/
+rsconnect/
