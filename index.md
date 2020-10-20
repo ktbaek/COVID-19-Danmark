@@ -3,7 +3,7 @@ image: /figures/twitter_card.png
 title: Covid-19 smitteudvikling i Danmark 
 ---
 
-# Figurer for smitteudvikling i Danmark baseret på data fra SSI
+# Grafer over Covid-19 smitteudvikling i Danmark
 Senest opdateret 19. oktober 2020 efter kl 14.
 
 [🇬🇧](/en.md)

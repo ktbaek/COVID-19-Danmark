@@ -110,17 +110,11 @@ standard_plot <- function(title,
     font = 2
   )
 
-  # mtext("ktbaek.github.io/COVID-19-Danmark",
-  #   side = 1,
-  #   line = 3.7,
-  #   cex = cex_labels / 1.8,
-  #   adj = 1,
-  #   font = 3
-  # )
-
   box(which = "plot", lty = "solid")
 
   axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, x_by), format = "%b", cex.axis = cex_axis)
+  
+
 }
 
 double_plot <- function(title,

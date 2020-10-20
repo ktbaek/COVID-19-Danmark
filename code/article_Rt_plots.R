@@ -20,6 +20,7 @@ png("../figures/fig_1_test_pos.png", width = 20, height = 16, units = "cm", res 
 standard_plot(
   title = "Dagligt antal nye positivt testede",
   max_y_value = max_pos,
+  x_by = "1 month",
   y_label_dist = 4
 )
 
@@ -40,6 +41,7 @@ png("../figures/fig_2_tests.png", width = 20, height = 16, units = "cm", res = 3
 standard_plot(
   title = "Dagligt antal testede",
   max_y_value = max_test,
+  x_by = "1 month",
   y_label_dist = 5
 )
 
@@ -84,6 +86,7 @@ standard_plot(
   title = "Daglig procent positivt testede",
   max_y_value = 40,
   y_label_dist = 4,
+  x_by = "1 month",
   y_label = "Procent"
 )
 
@@ -144,7 +147,7 @@ standard_plot(
   title = "Dagligt antal nyindlagte",
   y_label_dist = 4,
   max_y_value = 100,
-  x_by = "2 months",
+  x_by = "1 month",
   start_date = "2020-02-15"
 )
 
@@ -169,7 +172,7 @@ standard_plot(
   title = "Dagligt antal døde",
   y_label_dist = 4,
   max_y_value = 25,
-  x_by = "2 months",
+  x_by = "1 month",
   start_date = "2020-02-15"
 )
 
@@ -196,7 +199,7 @@ double_plot(
   y2_label = "Procent",
   y_label_dist = 5.8,
   max_y_value = max_test,
-  x_by = "2 months",
+  x_by = "1 month",
   start_date = "2020-02-15"
 )
 
@@ -490,7 +493,7 @@ standard_plot(
   title = "Antal positivt testede vs. nyindlagte",
   y_label_dist = 4,
   max_y_value = max_pos,
-  x_by = "2 months"
+  x_by = "1 months"
 )
 
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
@@ -603,7 +606,7 @@ double_plot(
   y2_label = "Antal nyindlagte",
   y_label_dist = 5,
   max_y_value = 20,
-  x_by = "2 months",
+  x_by = "1 months",
   start_date = "2020-02-15"
 )
 
@@ -722,7 +725,7 @@ double_plot(
   y2_label = "Antal døde",
   y_label_dist = 5,
   max_y_value = max_pos,
-  x_by = "2 months",
+  x_by = "1 months",
   start_date = "2020-02-15"
 )
 
@@ -843,7 +846,7 @@ double_plot(
   y2_label = "Antal døde",
   y_label_dist = 5,
   max_y_value = 20,
-  x_by = "2 months",
+  x_by = "1 months",
   start_date = "2020-02-15"
 )
 
@@ -1107,7 +1110,7 @@ legend("topright",
 
 dev.off()
 
-# test_pos vs dashboard ---------------------------------------------------
+# zip vs dashboard ---------------------------------------------------
 
 
 x <- tests %>% select(Date, NewPositive, NotPrevPos)
@@ -1115,19 +1118,40 @@ x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
 x %<>% mutate(dataset = "test_pos")
 y <- dashboard_data %>% mutate(dataset = "dashboard")
 plot_data <- bind_rows(x,y)
-plot_data %<>% filter(Date > as.Date("2020-09-20"),
+plot_data %<>% filter(Date > as.Date(today) - weeks(4),
               !variable %in% c("Antal_døde", "Indlæggelser", "NotPrevPos"))
 
 
 ggplot(plot_data, aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
-  geom_point(aes(color = dataset), size = 1.7) +
   labs(y = "Antal", x = "Dato", title = "Positivt testede: dato for prøvetagning vs. dato for prøvesvar") +
-  scale_color_manual(name = "", labels = c("Prøvesvar", "Prøvetagning"), values = binary_col) +
+  scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
     limits = c(0, 700)
   ) +
   standard_theme
 
-ggsave("../figures/test_pos_vs_dashboard.png", width = 16, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/test_pos_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
+
+x <- tests %>% select(Date, NewPositive, NotPrevPos)
+x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
+x %<>% mutate(dataset = "test_pos")
+y <- dashboard_data %>% mutate(dataset = "dashboard")
+plot_data <- bind_rows(x,y)
+plot_data %<>% filter(Date > as.Date(today) - weeks(4),
+                      variable %in% c("NotPrevPos"))
+
+ggplot(plot_data, aes(Date, values)) +
+  geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
+  labs(y = "Antal", x = "Dato", title = "Testede: 'Prøver' vs. testede personer") +
+  scale_color_manual(name = "", labels = c("Prøver (SSI's dashboard)", "Unikke testede personer"), values = c(darken(test_col, 0.6), lighten(test_col, 0.6))) +
+  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+  scale_y_continuous(
+    limits = c(0, 60000)
+  ) +
+  standard_theme
+
+ggsave("../figures/test_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
+
+
