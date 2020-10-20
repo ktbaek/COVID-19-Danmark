@@ -8,7 +8,7 @@ library(magick)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-10-19"
+today <- "2020-10-20"
 
 source("update_dashboard_data.R")
 cat("Dashboard data updated\n")
