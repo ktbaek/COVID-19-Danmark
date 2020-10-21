@@ -8,6 +8,7 @@ Thumbs.db
 *.ipynb_checkpoints
 *.ipynb
 *.py
+*.sh
 exp*.*
 app.R
 www/

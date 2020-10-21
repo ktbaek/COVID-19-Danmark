@@ -8,7 +8,11 @@ library(magick)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-today <- "2020-10-21"
+SSI_files <- list.files(path="../data/")
+last_file <- tail(SSI_files[str_starts(SSI_files, "SSIdata_")], 1)
+today_string <- str_sub(last_file, 9, 15)
+
+today <- paste0("20", str_sub(today_string, 1, 2), "-", str_sub(today_string, 3, 4), "-", str_sub(today_string, 5, 6))
 
 source("update_dashboard_data.R")
 cat("Dashboard data updated\n")

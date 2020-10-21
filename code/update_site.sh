@@ -6,9 +6,9 @@ DOW=$(date +%u)
 
 if [ $DOW -ge 1 ] && [ $DOW -le 5 ]; then
 
-#    Rscript Run_all.R
+    Rscript Run_all.R
 
-#    echo "R scripts run"
+    echo "R scripts run"
 
     (cd ../ && git add .)
     echo "git added"

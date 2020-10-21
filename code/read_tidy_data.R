@@ -1,6 +1,6 @@
 # Read data files ---------------------------------------------------------
 
-today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
+#today_string <- paste0(str_sub(today, 3, 4), str_sub(today, 6, 7), str_sub(today, 9, 10))
 
 last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 2), "-", "_")
 
