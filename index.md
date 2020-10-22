@@ -5,16 +5,14 @@ title: Covid-19 smitteudvikling i Danmark
 
 # Grafer over Covid-19 smitteudvikling i Danmark
 Senest opdateret 22. oktober 2020 efter kl 14.
-<p class = "langselector"> da | <a href="/en.md">en</a> </p>
 
 <div class="likely">
     <div class="facebook">Del</div>
     <div class="twitter">Tweet</div>
     <div class="linkedin">Del</div>
 </div>
-<br>
 
-
+<p class = "langselector"> da | <a href="/en.md">en</a> </p>
 
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
