@@ -8,7 +8,7 @@ Description: Plots showing the Covid-19 epidemic in Denmark
 
 Last updated 22 October 2020.
 
-[🇩🇰](/index.md) (more plots)
+en | [da](/index.md) (more plots on Danish site)
 
 <div class="likely">
     <div class="facebook">Share</div>
