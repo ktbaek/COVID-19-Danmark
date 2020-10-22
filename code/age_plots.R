@@ -234,9 +234,6 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
 ggsave("../figures/age_weekly_pct_tile_may.png", width = 21, height = 12, units = "cm", dpi = 250)
 
 
-
-
-
 # -------------------------------------------------------------------------
 
 
@@ -276,7 +273,7 @@ ggplot(plot_data, aes(Date, value)) +
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/dataset_comparison.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_dataset_comparison.png", width = 25, height = 12, units = "cm", dpi = 300)
 
 # Figur: Previously tested vs never before tested  -------------------------------------
 
@@ -320,4 +317,4 @@ ggplot(plot_data, aes(Date,value)) +
     axis.title.x = element_text(margin = margin(t = 20, r = 0, b = 0, l = 0))
   )
 
-ggsave("../figures/prev_tested_new_tested.png", width = 25, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/age_prev_tested_new_tested.png", width = 25, height = 12, units = "cm", dpi = 300)

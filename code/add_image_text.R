@@ -1,31 +1,27 @@
-
-image_files <- list.files(path="../figures/")
-
-image_files <- image_files[!image_files %in% c("twitter_card.png",
-                                               "model_twitter_card.png",
-                                               "Tested_explanation.png"
-                                               )
-                           ]
-
-
-image_files <- image_files[!str_detect(image_files, "^exp")] 
-image_files <- image_files[!str_detect(image_files, "^BK")] 
-image_files <- image_files[!str_detect(image_files, "pdf$")] 
-image_files <- image_files[!str_detect(image_files, "ai$")] 
-
-add_image_text <- function(filename) {
+add_image_text <- function(path,filename, language) {
   
-  img <- image_read(paste0("../figures/", filename))
+  img <- image_read(paste0(path, filename))
   
-  img %<>% image_annotate("Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", 
-                 size = 34, 
-                 gravity = "southwest", 
-                 font = "lato", 
-                 location = geometry_point(30, 30), 
-                 weight = 300)
+  if(language == "en") text <- "Kristoffer T. Bæk, covid19danmark.dk, data source: SSI"
+  if(language == "dk") text <- "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI"
   
-  image_write(img, path = paste0("../figures/", filename), format = "png")
+  img %<>% image_annotate(text, 
+                          size = 34, 
+                          gravity = "southwest", 
+                          font = "lato", 
+                          location = geometry_point(30, 30), 
+                          weight = 300)
+  
+  image_write(img, path = paste0(path, filename), format = "png")
 }
 
 
-lapply(image_files, function(x) add_image_text(x))
+add_text_to_images <- function(path, startswith, language = "dk"){
+
+   image_files <- list.files(path=path)
+
+   image_files <- image_files[str_starts(image_files, startswith)] 
+
+   lapply(image_files, function(x) add_image_text(path, x, language))
+
+}

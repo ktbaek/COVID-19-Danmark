@@ -225,7 +225,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(text = element_text(size = 12))
 
 
-ggsave("../figures/all_muni_weekly_incidens_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_incidens_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
 
 # Figur: Procent - alle kommuner, heatmap ----------
 
@@ -245,7 +245,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   tile_theme + 
   theme(text = element_text(size = 12))
 
-ggsave("../figures/all_muni_weekly_pos_pct_tile.png", width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_pos_pct_tile.png", width = 16, height = 38, units = "cm", dpi = 300)
 
 
 # Figur: Total test - alle kommuner, heatmap ---------------------------------
@@ -267,7 +267,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(text = element_text(size = 12))
 
 
-ggsave("../figures/all_muni_weekly_tests_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_tests_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
 
 
 

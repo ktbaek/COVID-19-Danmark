@@ -4,7 +4,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 
 # Grafer over Covid-19 smitteudvikling i Danmark
-Senest opdateret 21. oktober 2020 efter kl 14.
+Senest opdateret 22. oktober 2020 efter kl 14.
 
 [🇬🇧](/en.md)
 
@@ -54,24 +54,24 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](/figures/fig_1_test_pos.png)
+![](/figures/ntl_pos.png)
 
 ### Dagligt antal testede personer
 Plottet viser det totale antal testede personer og antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](/figures/fig_2_tests.png) 
+![](/figures/ntl_tests.png) 
 
 ### Daglig procentdel positivt testede personer
 Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](/figures/fig_3A_pct.png) 
+![](/figures/ntl_pct_1.png) 
 
 
-![](/figures/fig_3_pct.png) 
+![](/figures/ntl_pct_2.png) 
 
 
 
@@ -81,26 +81,26 @@ Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne lin
 
 ``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
 
-![](/figures/fig_5_hosp.png) 
-![](/figures/fig_5A_deaths.png) 
+![](/figures/ntl_hosp.png) 
+![](/figures/ntl_deaths.png) 
 
 ### Dagligt antal testede, antal nye positive og procent positive testede
 Plottet viser det totale antal testede personer, antallet af nye positivt testede personer, og procentdelen af positivt testede personer for hele landet. Procentdelen af positivt testede er vist som et løbende gennemsnit baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](/figures/pos_tests_pct.png) 
+![](/figures/ntl_pos_tests_pct.png) 
 
 ### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede (søjleplot)
 Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procentdelen af positivt testede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
-![](/figures/postest_admitted_barplot_2.png) 
+![](/figures/ntl_postest_admitted_barplot_2.png) 
 
-![](/figures/pct_admitted_barplot_2.png)
+![](/figures/ntl_pct_admitted_barplot_2.png)
 
-Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/postest_admitted_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/pct_admitted_barplot.png).
+Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_admitted_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_admitted_barplot.png).
 
 
 
@@ -110,18 +110,18 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time'``
 
-![](/figures/postest_deaths_barplot_2.png) 
+![](/figures/ntl_postest_deaths_barplot_2.png) 
 
-![](/figures/pct_deaths_barplot_2.png)
+![](/figures/ntl_pct_deaths_barplot_2.png)
 
-Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/postest_deaths_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/pct_deaths_barplot.png).
+Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_deaths_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_deaths_barplot.png).
 
 ### Dagligt antal positivt testede og procentdelen af  positivt testede
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. 
 
 SSI datasæt: ``'Test_pos_over_time'`` 
 
-![](/figures/fig_4_tests_pct.png) 
+![](/figures/ntl_pos_pct.png) 
 
 ### Daglige epidemi-indikatorer og politiske tiltag
 Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april til 1. august, det nederste plot viser perioden fra 1. juli til nu. 
@@ -130,9 +130,9 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 
 Se [liste](/tiltag.md) over tiltag.
 
-![](/figures/tiltag_april.png) 
+![](/figures/ntl_tiltag_april.png) 
 
-![](/figures/tiltag_july.png) 
+![](/figures/ntl_tiltag_july.png) 
 
 
 
@@ -140,7 +140,7 @@ Se [liste](/tiltag.md) over tiltag.
 
 
 ### Kontakttallet
-SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/rt_admitted.png). 
+SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_admitted.png). 
 
 ## Plots: kommuner
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
@@ -183,11 +183,11 @@ De udvalgte kommuner er de 30 kommuner der har haft flest positivt testede inden
 
 ![](/figures/muni_10_weekly_incidens_tile.png)
 
-For at se ovenstående plot for *alle* kommuner, klik [her](/figures/all_muni_weekly_incidens_tile.png). 
+For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_incidens_tile.png). 
 
 ![](/figures/muni_10_weekly_pct_tile.png)
 
-For at se ovenstående plot for *alle* kommuner, klik [her](/figures/all_muni_weekly_pos_pct_tile.png).
+For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
 
 ## Plots: aldersgrupper
 

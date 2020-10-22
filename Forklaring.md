@@ -81,11 +81,11 @@ SSI's datafil angiver det kumulerede antal testede personer og det kumulerede an
 
 Bemærk altså forskellen i den måde det samlede antal testede er beregnet i de aldersopdelte testdata i forhold til i de øvrige testdata. Det vil formentlig have den effekt, at de beregnede positivandele i slutningen af perioden, *alt andet lige*, vil være højere end i starten af perioden, eftersom personer som aldrig før er testet vil udgøre en stadig mindre andel af det samlede antal testede efterhånden som tiden skrider frem. 
 
-![](/figures/prev_tested_new_tested.png)
+![](/figures/age_prev_tested_new_tested.png)
 
 Note: SSI anbefaler ikke at gemme filer og lave tidsserier på basis af gamle filer, idet data nogle gange opdateres tilbage i tiden. En sammenligning mellem de beregnede ugentlige antal positive baseret på Cases_by_age datafilerne og den seneste Test_pos_over_time fil, viser dog at der er stor overenstemmelse mellem de beregnede ugentlige værdier.
 
-![](/figures/dataset_comparison.png)
+![](/figures/age_dataset_comparison.png)
 
 
 
