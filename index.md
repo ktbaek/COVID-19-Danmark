@@ -12,7 +12,7 @@ Senest opdateret 22. oktober 2020 efter kl 14.
     <div class="linkedin">Del</div>
 </div>
 
-<div class = "langselector"> da | <a href="/en.md">en</a> </div>
+<div class = "langselector"> da | <a href="https://covid19danmark.dk/en.html">en</a> </div>
 
 *Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
 
