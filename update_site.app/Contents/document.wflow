@@ -72,24 +72,6 @@ cd ~/Documents/Projekter/Dataanalyse/Covid/Covid-19-Danmark &amp;&amp; ./update_
 					<key>source</key>
 					<string></string>
 				</dict>
-				<key>ActionRuntimeParameters</key>
-				<dict>
-					<key>COMMAND_STRING</key>
-					<string>source ~/.bash_profile
-exec 2&gt;&amp;1
-cd ~/Documents/Projekter/Dataanalyse/Covid/Covid-19-Danmark &amp;&amp; ./update_site.sh
-</string>
-					<key>CheckedForUserDefaultShell</key>
-					<true/>
-					<key>inputMethod</key>
-					<integer>1</integer>
-					<key>shell</key>
-					<string>/bin/bash</string>
-					<key>source</key>
-					<string></string>
-					<key>temporary items path</key>
-					<string>/var/folders/w2/yy9b03ts0473944z3l5t7_p40000gn/T/50D09F04-65E8-404C-A237-EDECE5F9237E/1/com.apple.RunShellScript</string>
-				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.RunShellScript</string>
 				<key>CFBundleVersion</key>
@@ -240,11 +222,6 @@ cd ~/Documents/Projekter/Dataanalyse/Covid/Covid-19-Danmark &amp;&amp; ./update_
 				<string>Nyt TextEdit-dokument</string>
 				<key>ActionParameters</key>
 				<dict/>
-				<key>ActionRuntimeParameters</key>
-				<dict>
-					<key>temporary items path</key>
-					<string>/var/folders/w2/yy9b03ts0473944z3l5t7_p40000gn/T/50D09F04-65E8-404C-A237-EDECE5F9237E/1/com.apple.Automator.CreateNewTextEditDocument</string>
-				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.CreateNewTextEditDocument</string>
 				<key>CFBundleVersion</key>
@@ -735,13 +712,6 @@ cd ~/Documents/Projekter/Dataanalyse/Covid/Covid-19-Danmark &amp;&amp; ./update_
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>1DFE3EED-5C71-414F-B7FE-4C960DE2E136</key>
-		<dict>
-			<key>from</key>
-			<string>CD978CF9-5681-4F22-8181-C8E0557BEC4E - CD978CF9-5681-4F22-8181-C8E0557BEC4E</string>
-			<key>to</key>
-			<string>F74CE7B3-C6EA-4570-8356-06C4EF086FE5 - F74CE7B3-C6EA-4570-8356-06C4EF086FE5</string>
-		</dict>
 		<key>65393509-336E-485E-95FF-BE5B8888488E</key>
 		<dict>
 			<key>from</key>
@@ -760,6 +730,13 @@ cd ~/Documents/Projekter/Dataanalyse/Covid/Covid-19-Danmark &amp;&amp; ./update_
 		<dict>
 			<key>from</key>
 			<string>861BA6D9-5128-48B2-95FA-13A08A6207EA - 861BA6D9-5128-48B2-95FA-13A08A6207EA</string>
+		</dict>
+		<key>DEFDBC18-7F71-475A-9198-716688B777B8</key>
+		<dict>
+			<key>from</key>
+			<string>CD978CF9-5681-4F22-8181-C8E0557BEC4E - CD978CF9-5681-4F22-8181-C8E0557BEC4E</string>
+			<key>to</key>
+			<string>F74CE7B3-C6EA-4570-8356-06C4EF086FE5 - F74CE7B3-C6EA-4570-8356-06C4EF086FE5</string>
 		</dict>
 		<key>EDD5BE14-9382-4E60-8356-58EBB64F6A77</key>
 		<dict>
