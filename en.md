@@ -8,14 +8,13 @@ Description: Plots showing the Covid-19 epidemic in Denmark
 
 Last updated 22 October 2020.
 
-en | [da](/index.md) (more plots on Danish site)
-
 <div class="likely">
     <div class="facebook">Share</div>
     <div class="twitter">Tweet</div>
     <div class="linkedin">Share</div>
 </div>
-<br>
+
+<div class = "langselector"> en | <a href="https://covid19danmark.dk">da</a> </div>
 
 *New*: See [model](/model.md) for an estimation of the real number of infected (in Danish).
 
