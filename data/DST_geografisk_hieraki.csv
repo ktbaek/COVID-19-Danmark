@@ -1,0 +1,116 @@
+SEKVENS;KODE;NIVEAU;TITEL;Region;Landsdel
+1;84;1;Region Hovedstaden;Hovedstaden;
+2;1;2;Landsdel Byen København;Hovedstaden;København
+3;101;3;København;Hovedstaden;København
+4;147;3;Frederiksberg;Hovedstaden;København
+5;155;3;Dragør;Hovedstaden;København
+6;185;3;Tårnby;Hovedstaden;København
+7;2;2;Landsdel Københavns omegn;Hovedstaden;Københavns omegn
+8;165;3;Albertslund;Hovedstaden;Københavns omegn
+9;151;3;Ballerup;Hovedstaden;Københavns omegn
+10;153;3;Brøndby;Hovedstaden;Københavns omegn
+11;157;3;Gentofte;Hovedstaden;Københavns omegn
+12;159;3;Gladsaxe;Hovedstaden;Københavns omegn
+13;161;3;Glostrup;Hovedstaden;Københavns omegn
+14;163;3;Herlev;Hovedstaden;Københavns omegn
+15;167;3;Hvidovre;Hovedstaden;Københavns omegn
+16;169;3;Høje-Taastrup;Hovedstaden;Københavns omegn
+17;183;3;Ishøj;Hovedstaden;Københavns omegn
+18;173;3;Lyngby-Taarbæk;Hovedstaden;Københavns omegn
+19;175;3;Rødovre;Hovedstaden;Københavns omegn
+20;187;3;Vallensbæk;Hovedstaden;Københavns omegn
+21;3;2;Landsdel Nordsjælland;Hovedstaden;Nordsjælland
+22;201;3;Allerød;Hovedstaden;Nordsjælland
+23;240;3;Egedal;Hovedstaden;Nordsjælland
+24;210;3;Fredensborg;Hovedstaden;Nordsjælland
+25;250;3;Frederikssund;Hovedstaden;Nordsjælland
+26;190;3;Furesø;Hovedstaden;Nordsjælland
+27;270;3;Gribskov;Hovedstaden;Nordsjælland
+28;260;3;Halsnæs;Hovedstaden;Nordsjælland
+29;217;3;Helsingør;Hovedstaden;Nordsjælland
+30;219;3;Hillerød;Hovedstaden;Nordsjælland
+31;223;3;Hørsholm;Hovedstaden;Nordsjælland
+32;230;3;Rudersdal;Hovedstaden;Nordsjælland
+33;4;2;Landsdel Bornholm;Hovedstaden;Bornholm
+34;400;3;Bornholm;Hovedstaden;Bornholm
+35;411;3;Christiansø;Hovedstaden;Bornholm
+36;85;1;Region Sjælland;Sjælland;
+37;5;2;Landsdel Østsjælland;Sjælland;Østsjælland
+38;253;3;Greve;Sjælland;Østsjælland
+39;259;3;Køge;Sjælland;Østsjælland
+40;350;3;Lejre;Sjælland;Østsjælland
+41;265;3;Roskilde;Sjælland;Østsjælland
+42;269;3;Solrød;Sjælland;Østsjælland
+43;6;2;Landsdel Vest- og Sydsjælland;Sjælland;Vest- og Sydsjælland
+44;320;3;Faxe;Sjælland;Vest- og Sydsjælland
+45;376;3;Guldborgsund;Sjælland;Vest- og Sydsjælland
+46;316;3;Holbæk;Sjælland;Vest- og Sydsjælland
+47;326;3;Kalundborg;Sjælland;Vest- og Sydsjælland
+48;360;3;Lolland;Sjælland;Vest- og Sydsjælland
+49;370;3;Næstved;Sjælland;Vest- og Sydsjælland
+50;306;3;Odsherred;Sjælland;Vest- og Sydsjælland
+51;329;3;Ringsted;Sjælland;Vest- og Sydsjælland
+52;330;3;Slagelse;Sjælland;Vest- og Sydsjælland
+53;340;3;Sorø;Sjælland;Vest- og Sydsjælland
+54;336;3;Stevns;Sjælland;Vest- og Sydsjælland
+55;390;3;Vordingborg;Sjælland;Vest- og Sydsjælland
+56;83;1;Region Syddanmark;Syddanmark;
+57;7;2;Landsdel Fyn;Syddanmark;Fyn
+58;420;3;Assens;Syddanmark;Fyn
+59;430;3;Faaborg-Midtfyn;Syddanmark;Fyn
+60;440;3;Kerteminde;Syddanmark;Fyn
+61;482;3;Langeland;Syddanmark;Fyn
+62;410;3;Middelfart;Syddanmark;Fyn
+63;480;3;Nordfyns;Syddanmark;Fyn
+64;450;3;Nyborg;Syddanmark;Fyn
+65;461;3;Odense;Syddanmark;Fyn
+66;479;3;Svendborg;Syddanmark;Fyn
+67;492;3;Ærø;Syddanmark;Fyn
+68;8;2;Landsdel Sydjylland;Syddanmark;Sydjylland
+69;530;3;Billund;Syddanmark;Sydjylland
+70;561;3;Esbjerg;Syddanmark;Sydjylland
+71;563;3;Fanø;Syddanmark;Sydjylland
+72;607;3;Fredericia;Syddanmark;Sydjylland
+73;510;3;Haderslev;Syddanmark;Sydjylland
+74;621;3;Kolding;Syddanmark;Sydjylland
+75;540;3;Sønderborg;Syddanmark;Sydjylland
+76;550;3;Tønder;Syddanmark;Sydjylland
+77;573;3;Varde;Syddanmark;Sydjylland
+78;575;3;Vejen;Syddanmark;Sydjylland
+79;630;3;Vejle;Syddanmark;Sydjylland
+80;580;3;Aabenraa;Syddanmark;Sydjylland
+81;82;1;Region Midtjylland;Midtjylland;
+82;9;2;Landsdel Østjylland;Midtjylland;Østjylland
+83;710;3;Favrskov;Midtjylland;Østjylland
+84;766;3;Hedensted;Midtjylland;Østjylland
+85;615;3;Horsens;Midtjylland;Østjylland
+86;707;3;Norddjurs;Midtjylland;Østjylland
+87;727;3;Odder;Midtjylland;Østjylland
+88;730;3;Randers;Midtjylland;Østjylland
+89;741;3;Samsø;Midtjylland;Østjylland
+90;740;3;Silkeborg;Midtjylland;Østjylland
+91;746;3;Skanderborg;Midtjylland;Østjylland
+92;706;3;Syddjurs;Midtjylland;Østjylland
+93;751;3;Aarhus;Midtjylland;Østjylland
+94;10;2;Landsdel Vestjylland;Midtjylland;Vestjylland
+95;657;3;Herning;Midtjylland;Vestjylland
+96;661;3;Holstebro;Midtjylland;Vestjylland
+97;756;3;Ikast-Brande;Midtjylland;Vestjylland
+98;665;3;Lemvig;Midtjylland;Vestjylland
+99;760;3;Ringkøbing-Skjern;Midtjylland;Vestjylland
+100;779;3;Skive;Midtjylland;Vestjylland
+101;671;3;Struer;Midtjylland;Vestjylland
+102;791;3;Viborg;Midtjylland;Vestjylland
+103;81;1;Region Nordjylland;Nordjylland;
+104;11;2;Landsdel Nordjylland;Nordjylland;Nordjylland
+105;810;3;Brønderslev;Nordjylland;Nordjylland
+106;813;3;Frederikshavn;Nordjylland;Nordjylland
+107;860;3;Hjørring;Nordjylland;Nordjylland
+108;849;3;Jammerbugt;Nordjylland;Nordjylland
+109;825;3;Læsø;Nordjylland;Nordjylland
+110;846;3;Mariagerfjord;Nordjylland;Nordjylland
+111;773;3;Morsø;Nordjylland;Nordjylland
+112;840;3;Rebild;Nordjylland;Nordjylland
+113;787;3;Thisted;Nordjylland;Nordjylland
+114;820;3;Vesthimmerlands;Nordjylland;Nordjylland
+115;851;3;Aalborg;Nordjylland;Nordjylland

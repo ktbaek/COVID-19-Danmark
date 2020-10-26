@@ -16,7 +16,7 @@ dashboard_new_data <- read_csv(paste0("../data/Dashboard/Dashboard_", date, ".cs
 dashboard_new_data %<>% 
   slice(1:5) %>%
   select(-X1) %>%
-  mutate(values = as.integer(str_remove(values, "[.]"))) %>%
+  mutate(values = as.integer(str_remove(values, "[.,]"))) %>%
   mutate(variable = ifelse(variable == "Prøver", "NotPrevPos", variable),
          variable = ifelse(variable == "Bekræftede tilfælde", "NewPositive", variable),
          variable = ifelse(variable == "Dødsfald", "Antal_døde", variable),

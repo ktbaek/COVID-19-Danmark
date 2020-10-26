@@ -33,17 +33,16 @@ source("add_image_text.R")
 add_text_to_images(path = "../figures/", startswith = "ntl", language = "dk")
 add_text_to_images(path = "../figures/", startswith = "en", language = "en")
 
-if(wday(as.Date(today)) == 3){ 
 
-  source("Read_tidy_muni.R")
-  cat("Read and tidy, municipality DONE\n")
+source("Read_tidy_muni.R")
+cat("Read and tidy, municipality DONE\n")
 
-  source("municipality_plots.R")
-  cat("Municipality plots DONE\n")
+source("municipality_plots.R")
+cat("Municipality plots DONE\n")
   
-  add_text_to_images(path = "../figures/", startswith = "muni", language = "dk")
+add_text_to_images(path = "../figures/", startswith = "muni", language = "dk")
 
-}
+
 
 if(wday(as.Date(today)) == 5){ 
   
