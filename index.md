@@ -141,7 +141,7 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 ## Plots: kommuner og landsdele
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
-Plottet viser det ugentlige antal nye positivt testede og antal total testede for de 30 kommuner der har haft flest positivt testede den seneste måned. 
+Plottet viser det ugentlige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
@@ -151,13 +151,13 @@ For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pos_vs_te
 
 For at se dette plot startende 1. april, klik [her](/figures/muni_10_pos_vs_test_april.png).
 
-For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10_pos_vs_test_daily.png).
+For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pos_vs_test_daily.png).
 
 
 ![](/figures/muni_10_pos_vs_test_july.png) 
 
 ### Ugentlig procentdel positivt testede for hver kommune
-Plottet viser den ugentlige procentdel af positivt testede for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned. 
+Plottet viser den ugentlige procentdel af positivt testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned. 
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -165,7 +165,7 @@ For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pct_july.
 
 For at se dette plot startende 1. april, klik [her](/figures/muni_10_pct_april.png).
 
-For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10_pct_daily.png).
+For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pct_daily.png).
 
 ![](/figures/muni_10_pct_july.png) 
 
@@ -185,7 +185,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
 
 ### Ugentligt antal nye positivt testede og antal testede for hver landsdel
-Plottet viser det ugentlige antal nye positivt testede og antal total testede for hver landsdel. 
+Plottet viser det ugentlige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel. 
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
@@ -196,7 +196,7 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 ![](/figures/muni_pos_vs_test_landsdele.png) 
 
 ### Ugentlig procentdel positivt testede for hver landsdel
-Plottet viser den ugentlige procentdel af positivt testede for hver landsdel. 
+Plottet viser den ugentlige procentdel af positivt testede for de seneste tre måneder for hver landsdel. 
 
 [Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
 

@@ -10,49 +10,49 @@ muni_subset <- muni_wk %>%
   pull(Kommune)
 
 
-# Figur: Positiv vs testede - udvalgte kommuner, ugenumre------------------
+# Figur: Positiv vs testede - udvalgte kommuner, 3 mdr------------------
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   group_by(Kommune) %>%
   filter(Kommune %in% muni_subset) %>%
   ungroup() %>%
   mutate(Positive_wk = Positive_wk * 100) %>%
   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(Week, value)) +
+ggplot(plot_data, aes(Week_end_Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
   facet_theme
 
 ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
 
-# Figur: Positiv vs testede - alle kommuner, ugenumre------------------
+# Figur: Positiv vs testede - alle kommuner, 3 mdr-----------------
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   mutate(Positive_wk = Positive_wk * 100) %>%
   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(Week, value)) +
+ggplot(plot_data, aes(Week_end_Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free") +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for alle kommuner") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for alle kommuner") +
   facet_theme
 
 ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, units = "cm", dpi = 300)
@@ -83,10 +83,10 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
 ggsave("../figures/muni_10_pos_vs_test_april.png", width = 30, height = 20, units = "cm", dpi = 300)
 
 
-# Figur: Daglige positiv vs testede - udvalgte kommuner fra aug --------
+# Figur: Daglige positiv vs testede - udvalgte kommuner 3 mdr --------
 
 plot_data <- muni_all %>%
-  filter(Date > as.Date("2020-08-01")) %>%
+  filter(Date > as.Date(today) - months(3)) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Positive = Positive * 100) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
@@ -95,7 +95,7 @@ ggplot(plot_data, aes(Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 0.6, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
@@ -112,7 +112,7 @@ ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 30, height = 20, unit
 # Figur: Procent - udvalgte kommuner, ugenumre --------
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   group_by(Kommune) %>%
   filter(Kommune %in% muni_subset) %>%
   ungroup() %>%
@@ -120,14 +120,14 @@ plot_data <- muni_wk %>%
 
 max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
 
-ggplot(plot_data, aes(Week, Ratio)) +
+ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
+  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for udvalgte kommuner") +
   facet_theme
 
 ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
@@ -136,20 +136,20 @@ ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm",
 # Figur: Procent - alle kommuner fra juli, ugenumre --------
 
 plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100)
 
 max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
 
 
-ggplot(plot_data, aes(Week, Ratio)) +
+ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Kommune, scales = "free") +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for alle kommuner") +
+  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for alle kommuner") +
   facet_theme
 
 ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm", dpi = 300)
@@ -185,7 +185,7 @@ ggsave("../figures/muni_10_pct_april.png", width = 27, height = 20, units = "cm"
 
 
 plot_data <- muni_all %>%
-  filter(Date > as.Date("2020-08-01")) %>%
+  filter(Date > as.Date(today) - months(3)) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Ratio = Positive / Tested * 100)
 
@@ -195,7 +195,7 @@ max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
 ggplot(plot_data, aes(Date, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
-  scale_x_date(date_labels = "%e. %b", date_breaks = "1 month") +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
@@ -347,41 +347,41 @@ ggsave("../figures/muni_10_weekly_tests_tile.png", width = 20, height = 19, unit
 # Figur: Positiv vs testede - landsdele -----------------------------------
 
 plot_data <- landsdele_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   mutate(Positive_wk = Positive_wk * 100) %>%
   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(Week, value)) +
+ggplot(plot_data, aes(Week_end_Date, value)) +
   geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
   facet_wrap(~Landsdel, scales = "free", ncol = 5) +
   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Uge", title = "Ugentligt antal nye positive og testede for landsdele") +
+  labs(y = "Positive : Testede", x = "Date", title = "Ugentligt antal nye positive og testede for landsdele") +
   facet_theme
 
-ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 31, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
 
 # Figur: Procent - landsdele -----------------------------------
 
 plot_data <- landsdele_wk %>%
-  filter(Week_end_Date > as.Date("2020-07-07")) %>%
+  filter(Week_end_Date > as.Date(today) - months(3)) %>%
   mutate(Ratio = Positive_wk / Tested_wk * 100)
 
 max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
 
-ggplot(plot_data, aes(Week, Ratio)) +
+ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
   facet_wrap(~Landsdel, scales = "free", ncol = 5) +
-  scale_x_continuous(breaks = breaks_width(2)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Uge", title = "Ugentlig procent positivt testede for landsdele") +
+  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for landsdele") +
   facet_theme
 
-ggsave("../figures/muni_pct_landsdele.png", width = 31, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/muni_pct_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
