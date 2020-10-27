@@ -139,7 +139,7 @@ Se [liste](/tiltag.md) over tiltag.
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_admitted.png). 
 
-## Plots: kommuner
+## Plots: kommuner og landsdele
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det ugentlige antal nye positivt testede og antal total testede for de 30 kommuner der har haft flest positivt testede den seneste måned. 
 
@@ -167,8 +167,6 @@ For at se dette plot startende 1. april, klik [her](/figures/muni_10_pct_april.p
 
 For at se plot med de **daglige** tal fra 1. august, klik [her](/figures/muni_10_pct_daily.png).
 
-
-
 ![](/figures/muni_10_pct_july.png) 
 
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
@@ -185,6 +183,24 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 ![](/figures/muni_10_weekly_pct_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
+
+### Ugentligt antal nye positivt testede og antal testede for hver landsdel
+Plottet viser det ugentlige antal nye positivt testede og antal total testede for hver landsdel. 
+
+Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+![](/figures/muni_pos_vs_test_landsdele.png) 
+
+### Ugentlig procentdel positivt testede for hver landsdel
+Plottet viser den ugentlige procentdel af positivt testede for hver landsdel. 
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_pct_landsdele.png) 
+
 
 ## Plots: aldersgrupper
 

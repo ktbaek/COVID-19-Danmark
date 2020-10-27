@@ -101,3 +101,33 @@ muni_wk %<>%
   ungroup() %>%
   select(-Date, -Positive, -Tested) %>%
   distinct()
+# Arrange by LANDSDELE ----------------------------------------------------
+
+geo <- read_csv2("../data/DST_geografisk_hieraki.csv")
+
+landsdele_order <- geo %>%
+  select(KODE, NIVEAU, Landsdel) %>%
+  filter(NIVEAU == 2) %>%
+  select(-NIVEAU, -KODE) %>%
+  pull(Landsdel)
+
+geo %<>%
+  select(NIVEAU,TITEL, Region, Landsdel) %>%
+  filter(NIVEAU == 3) %>%
+  select(-NIVEAU) %>%
+  rename(Kommune = TITEL)
+
+landsdele_wk <- muni_wk %>%
+  full_join(geo, by = "Kommune") %>%
+  group_by(Landsdel, Week) %>%
+  mutate(Tested_wk = sum(Tested_wk, na.rm = TRUE),
+            Positive_wk = sum(Positive_wk, na.rm = TRUE)) %>%
+  ungroup() %>%
+  select(-Kommune, -Befolkningstal) %>%
+  distinct()
+
+landsdele_wk$Landsdel <- factor(landsdele_wk$Landsdel, levels = landsdele_order)
+
+
+
+
