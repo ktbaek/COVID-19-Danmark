@@ -189,12 +189,16 @@ Plottet viser det ugentlige antal nye positivt testede og antal total testede fo
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse. 
 
+[Liste](/geo_opdeling.md) over geografisk opdeling af Danmark.
+
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
 ![](/figures/muni_pos_vs_test_landsdele.png) 
 
 ### Ugentlig procentdel positivt testede for hver landsdel
 Plottet viser den ugentlige procentdel af positivt testede for hver landsdel. 
+
+[Liste](/geo_opdeling.md) over geografisk opdeling af Danmark.
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
