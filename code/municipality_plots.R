@@ -361,7 +361,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Date", title = "Ugentligt antal nye positive og testede for landsdele") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for landsdele") +
   facet_theme
 
 ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
