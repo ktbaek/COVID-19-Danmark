@@ -231,3 +231,89 @@ body {
   width: 17px;
   height: 17px;
 }
+
+.SideNav {
+	background-color: #fafbfc
+}
+
+.SideNav-item {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 12px 16px;
+	color: #1b1f23;
+	text-align: left;
+	background-color: transparent;
+	border: 0;
+	border-top: 1px solid #eaecef
+}
+
+.SideNav-item:first-child {
+	border-top: 0
+}
+
+.SideNav-item:last-child {
+	box-shadow: 0 1px 0 #e1e4e8
+}
+
+.SideNav-item::before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	width: 2px;
+	pointer-events: none;
+	content: ""
+}
+
+.SideNav-item:hover,
+.SideNav-item:focus {
+	text-decoration: none;
+	background-color: #f6f8fa;
+	outline: none
+}
+
+.SideNav-item:active {
+	background-color: #fafbfc
+}
+
+.SideNav-item[aria-current]:not([aria-current=false]),
+.SideNav-item[aria-selected="true"] {
+	background-color: #fff
+}
+
+.SideNav-item[aria-current]:not([aria-current=false])::before,
+.SideNav-item[aria-selected="true"]::before {
+	background-color: #f9826c
+}
+
+.SideNav-icon {
+	width: 16px;
+	margin-right: 8px;
+	color: #6a737d
+}
+
+.SideNav-subItem {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 4px 0;
+	color: #0366d6;
+	text-align: left;
+	background-color: transparent;
+	border: 0
+}
+
+.SideNav-subItem:hover,
+.SideNav-subItem:focus {
+	color: #24292e;
+	text-decoration: none;
+	outline: none
+}
+
+.SideNav-subItem[aria-current]:not([aria-current=false]),
+.SideNav-subItem[aria-selected="true"] {
+	font-weight: 500;
+	color: #24292e
+}

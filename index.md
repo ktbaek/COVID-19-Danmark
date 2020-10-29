@@ -3,6 +3,15 @@ image: /figures/twitter_card.png
 title: Covid-19 smitteudvikling i Danmark 
 ---
 
+<div class="SideNav">
+  <a href="#plots-hele-landet">Plots for hele landet</a>
+  <a href="#plots-kommuner-og-landsdele">Plots for kommuner og landsdele</a>
+  <a href="#plots-aldersgrupper">Plots for aldersgrupper</a>
+  <a href="/Forklaring.md">Forklaring af data og begreber</a>
+  <a href="/model.md">Model for antal smittede</a>
+
+</div>
+
 # Grafer over Covid-19 smitteudvikling i Danmark
 Senest opdateret 29. oktober 2020 efter kl 14.
 
