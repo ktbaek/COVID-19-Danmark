@@ -206,7 +206,7 @@ double_plot(
 segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-03-15"), y = 42000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-03-15"), y = 50000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-09-04"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
 text(x = as.Date("2020-03-12"), y = 8800, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
@@ -986,8 +986,8 @@ axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
 
 
-arrows(as.Date("2020-08-22"), 220, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-22"), 270, "Mundbind i\noffentlig transport", cex = 0.9)
+arrows(as.Date("2020-08-22"), 260, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-22"), 310, "Mundbind i\noffentlig transport", cex = 0.9)
 
 arrows(as.Date("2020-09-09"), 500, as.Date("2020-09-09"), 400, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-08"), 470, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)

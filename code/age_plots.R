@@ -11,7 +11,7 @@ ggplot(plot_data, aes(Date, value)) +
   facet_wrap(~age_limit, scales = "free") +
   scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede over 50, 60 eller 70 år vs. total nyindlagte") +
-  scale_y_continuous(breaks = c(-500, 0, 500, 1000), limits = c(-500, 1250), labels = as.character(c("500", "0", "500", "1000"))) +
+  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500), limits = c(-500, 1750), labels = as.character(c("500", "0", "500", "1000", "1500"))) +
   facet_theme 
   
 
@@ -30,7 +30,7 @@ ggplot(plot_data, aes(Date, value)) +
   facet_wrap(~age_limit, scales = "free") +
   scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
   labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede under 50, 60 eller 70 år vs. total nyindlagte") +
-  scale_y_continuous(breaks = c(-500, 0, 500, 1000, 1500, 2000, 2500, 3000, 4000), limits = c(-500, 3500), labels = as.character(c("500", "0", "500", "1000", "1500", "2000", "2500", "3000", "4000"))) +
+  scale_y_continuous(breaks = c(-500, 0, 1000, 2000, 3000, 4000, 5000, 6000), limits = c(-500, 6000), labels = as.character(c("500", "0", "1000", "2000", "3000", "4000", "5000", "6000"))) +
   facet_theme
 
 ggsave("../figures/age_group_admitted_pos_young.png", width = 25, height = 12, units = "cm", dpi = 300)

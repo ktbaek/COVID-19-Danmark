@@ -422,8 +422,8 @@ axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
 
 
-arrows(as.Date("2020-08-22"), 220, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-22"), 270, "Mask mandate\npublic transport", cex = 0.9)
+arrows(as.Date("2020-08-22"), 260, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-22"), 310, "Mask mandate\npublic transport", cex = 0.9)
 
 arrows(as.Date("2020-09-09"), 500, as.Date("2020-09-09"), 400, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-08"), 470, "Restrictions night life\nCopenhagen/Odense", cex = 0.9, adj = 1)
@@ -431,8 +431,8 @@ text(as.Date("2020-09-08"), 470, "Restrictions night life\nCopenhagen/Odense", c
 arrows(as.Date("2020-09-18"), 650, as.Date("2020-09-18"), 550, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-09-17"), 620, "Restrictions\nrestaurants etc.", cex = 0.9, adj = 1)
 
-arrows(as.Date("2020-09-26"), 760, as.Date("2020-09-26"), 660, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-25"), 730, "Restrictions\nprivate parties", cex = 0.9, adj = 1)
+arrows(as.Date("2020-09-26"), 710, as.Date("2020-09-26"), 610, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-27"), 690, "Restrictions\nprivate parties", cex = 0.9, adj = 0)
 
 arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-07-08"), 150, "Gathering limit: 100", cex = 0.9, adj = 0)
