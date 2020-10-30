@@ -32,6 +32,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-title" property="apple-mobile-web-app-title" content="Covid-19 DK">
     <script src="/assets/likely.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
@@ -42,6 +43,21 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<!-- Sidebar -->
+
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+    <header></header>
+  <ul>
+<li><a href="#plots-hele-landet">Plots for hele landet</a></li>
+
+</ul>
+</div>
+<!-- End sidebar -->
 
     <div class="container-lg px-3 my-5 markdown-body">
       {% if site.title and site.title != page.title %}
