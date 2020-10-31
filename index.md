@@ -4,7 +4,6 @@ image: /figures/twitter_card.png
 title: Covid-19 smitteudvikling i Danmark 
 ---
 
-# Grafer over Covid-19 smitteudvikling i Danmark
 Senest opdateret 30. oktober 2020 efter kl 14.
 
 <div class="likely">
@@ -124,16 +123,30 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 
 ## Plots: politiske tiltag
+
+Se [liste](/tiltag.md) over tiltag.
+
 ### Daglige epidemi-indikatorer og tiltag
 Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april til 1. august, det nederste plot viser perioden fra 1. juli til nu. 
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
 
-Se [liste](/tiltag.md) over tiltag.
-
 ![](/figures/ntl_tiltag_april.png) 
 
 ![](/figures/ntl_tiltag_july.png) 
+
+### Relative ændringer i epidemi-indikatorer efter tiltag
+Plottene viser den relative ændring i antal positive, positivprocent, og antal nyindlæggelser i perioden fra 14 dage før til 28 dage efter et tiltag trådte i kraft. 
+
+Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage. 
+
+``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
+
+![](/figures/ntl_tiltag_pos.png) 
+
+![](/figures/ntl_tiltag_pct.png) 
+
+![](/figures/ntl_tiltag_admitted.png) 
 
 [Tilbage til toppen](#)
 

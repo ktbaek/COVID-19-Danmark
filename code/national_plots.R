@@ -50,7 +50,7 @@ points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(
 points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 points(plot_data$Date, plot_data$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-09-01"), y = 52000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-10-14"), y = 64000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
 text(x = as.Date("2020-09-01"), y = 3000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 10000), labels = seq(0, max_test, by = 10000))
@@ -290,14 +290,7 @@ points(tests$Date, tests$running_avg_pos / (max_pos / 2), type = "l", pch = 19, 
 text(x = as.Date("2020-06-15"), y = 0.4, labels = "Antal positivt testede", col = pos_col, cex = cex_labels, font = 2)
 text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
 abline(h = 1, col = "gray")
-abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
-abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-30"), col = "gray", lty = 3)
-abline(v = as.Date("2020-09-28"), col = "gray", lty = 3)
+
 
 dev.off()
 
@@ -348,14 +341,7 @@ points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, c
 text(x = as.Date("2020-08-20"), y = 0.02, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2)
 text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
 abline(h = 1, col = "gray")
-abline(v = as.Date("2020-06-13"), col = "gray", lty = 3)
-abline(v = as.Date("2020-06-23"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-09"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-23"), col = "gray", lty = 3)
-abline(v = as.Date("2020-07-27"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-15"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-30"), col = "gray", lty = 3)
-abline(v = as.Date("2020-09-28"), col = "gray", lty = 3)
+
 
 dev.off()
 
@@ -403,11 +389,7 @@ points(admitted$Date, admitted$running_avg_admit / 24, type = "l", pch = 19, col
 text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2)
 text(x = as.Date("2020-07-10"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
 abline(h = 1, col = "gray")
-abline(v = as.Date("2020-05-28"), col = "gray", lty = 3)
-abline(v = as.Date("2020-06-12") - 0.3, col = "gray", lty = 3)
-abline(v = as.Date("2020-06-18") + 0.5, col = "gray", lty = 3)
-abline(v = as.Date("2020-07-12"), col = "gray", lty = 3)
-abline(v = as.Date("2020-08-09") + 0.5, col = "gray", lty = 3)
+
 
 dev.off()
 
@@ -1109,6 +1091,124 @@ legend("topright",
 
 
 dev.off()
+
+
+# tiltag relative plots ---------------------------------------------------
+
+index_plot <- function(dataframe, name, date, type) {
+  df <- dataframe %>%
+    select(Date, running_avg_pos, running_avg_pct, running_avg_admit) %>%
+    mutate(day = Date - as.Date(date)) %>%
+    select(-Date) %>%
+    mutate(running_avg_pct = as.double(running_avg_pct),
+           running_avg_admit = as.double(running_avg_admit),
+           running_avg_pos = as.double(running_avg_pos)) %>%
+    mutate(pct_index = 100 * (running_avg_pct/running_avg_pct[which(day == 0)]),
+           admit_index = 100 * (running_avg_admit/running_avg_admit[which(day == 0)]),
+           pos_index = 100 * (running_avg_pos/running_avg_pos[which(day == 0)])) %>%
+    select(-running_avg_pct, -running_avg_pos, -running_avg_admit) %>%
+    filter(day > -15, day < 29) %>%
+    pivot_longer(-day, names_to = "variable", values_to = "value") %>%
+    mutate(tiltag = name, type = type)
+  
+  return(df)
+}
+
+df <- tests %>%
+  full_join(admitted, by = "Date")
+
+plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restrict")
+plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Masker alle steder mv", "2020-10-29", "restrict"))
+
+plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
+plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
+plot_data %<>% bind_rows(index_plot(df, "Fase 2, del 1", "2020-05-09", "open"))
+plot_data %<>% bind_rows(index_plot(df, "Fase 2, del 2", "2020-05-22", "open"))
+plot_data %<>% bind_rows(index_plot(df, "Fase 1", "2020-04-17", "open"))
+
+baseplot <- function(data, text_positions) {
+  ggplot(data, aes(day, value)) +
+    geom_vline(xintercept = 0) +
+    geom_segment(aes(x = -14, y = 100, xend = 28, yend = 100)) +
+    geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = tiltag)) +
+    coord_cartesian(xlim = c(-14, 28), # This focuses the x-axis on the range of interest
+                    clip = 'off') +
+    geom_text(data = text_positions,  size = 4, aes(x = 29, y = value, color = tiltag, label = str_wrap(tiltag, 25)), hjust = "outward", lineheight = 0.8) +
+    facet_wrap(~type, scales = "free") +
+    scale_color_discrete(guide = FALSE) +
+    scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
+    scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
+    labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage")
+  
+}
+
+theme <- standard_theme + 
+  theme(strip.text = element_blank(),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12),
+        plot.title = element_text(size = 16),
+        plot.margin = margin(1, 5, 1, 1, "cm"),
+        panel.spacing.x = unit(4, "cm"),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.minor.x = element_blank())
+
+subset_data <- plot_data %>% filter(variable == "pos_index")
+
+max_day <- subset_data %>% 
+  filter(!is.na(value)) %>%
+  group_by(tiltag) %>%
+  mutate(max = day == max(day)) %>%
+  filter(max)
+
+max_day$value[which(max_day$tiltag == "Fase 1")] <- 34
+max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 165
+
+baseplot(subset_data, max_day) +
+  labs(title = "Hvad sker der med antal positive efter et tiltag?") +
+  theme
+
+ggsave("../figures/ntl_tiltag_pos.png", width = 30, height = 14, units = "cm", dpi = 300)
+
+subset_data <- plot_data %>% filter(variable == "pct_index")
+
+max_day <- subset_data %>% 
+  filter(!is.na(value)) %>%
+  group_by(tiltag) %>%
+  mutate(max = day == max(day)) %>%
+  filter(max)
+
+max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
+
+baseplot(subset_data, max_day) +
+  labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
+  theme
+
+ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
+
+
+subset_data <- plot_data %>% filter(variable == "admit_index")
+
+max_day <- subset_data %>% 
+  filter(!is.na(value)) %>%
+  group_by(tiltag) %>%
+  mutate(max = day == max(day)) %>%
+  filter(max)
+
+max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 135
+max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 102
+max_day$value[which(max_day$tiltag == "Forsamling op til 50")] <- 53
+
+baseplot(subset_data, max_day) +
+  labs(title = "Hvad sker der med nyindlæggelser efter et tiltag?") +
+  theme
+
+ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "cm", dpi = 300)
+
 
 # zip vs dashboard ---------------------------------------------------
 
