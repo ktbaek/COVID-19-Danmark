@@ -232,88 +232,93 @@ body {
   height: 17px;
 }
 
+/*
+a {
+  color: inherit;
+    text-decoration-style: solid;
+    text-decoration-line: underline;
+    text-decoration-color: #0366D6;
+}
+
+a:hover {
+  color: #0366D6;
+
+}
+
+h1 a {
+  color: #0366D6;
+  text-decoration: none;
+}
+
+h1 a:hover {
+  color: #0366D6;
+  text-decoration: none;
+}
+*/
+.nav-menu a {
+color:inherit;
+text-decoration: none;
+}
+
+.nav-menu a:hover {
+color: #0366D6;
+text-decoration: none;
+}
+
+.nav-menu h5{
+text-transform: uppercase;
+font-weight: 300;
+margin-bottom: 10px;
+margin-top: 0px;
+}
+.nav-menu p + h5{
+
+
+margin-top: 30px;
+}
 
 
 .sidebar {
-  position: fixed;
-  left: -250px;
-  width: 250px;
-  height: 100%;
-  background: #fff;
-  transition: all .5s ease;
-  z-index: 1;
+height: 100%;
+width: 200px;
+position: fixed;
+left: 0;
+top: 0;
+padding-top: 40px;
+padding-left: 20px;
+color: inherit;
+background: #F9F9F9;
 }
-.sidebar header {
-  font-size: 22px;
-  color: white;
-  line-height: 70px;
-  text-align: center;
-  background: #fff;
-  user-select: none;
+
+.sidebar div {
+padding: 8px;
+display: block;
 }
-.sidebar ul a{
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  font-size: 20px;
-  color: white;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-bottom: 1px solid black;
-  border-top: 1px solid rgba(255,255,255,.1);
-  transition: .4s;
+
+.with_sidebar {
+margin-left: 200px;
 }
-ul li:hover a{
-  padding-left: 50px;
+/*
+@media screen and (max-width: 799px) {
+   .sidebar {
+     width: 100%;
+  height: auto;
+  position: relative;
+  margin-left: auto;
+  padding-left: 20px;
+   }
+
+   .container-lg {
+   margin-left: auto;
+   }
 }
-.sidebar ul a i{
-  margin-right: 16px;
-}
-#check{
-  display: none;
-}
-label #btn,label #cancel{
-  position: absolute;
-  background: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-}
-label #btn{
-  left: 40px;
-  top: 25px;
-  font-size: 20px;
-  color: #24292e;
-  padding: 6px 12px;
-  transition: all .5s;
-}
-label #cancel{
-  z-index: 1111;
-  left: -195px;
-  top: 17px;
-  font-size: 20px;
-  color: #24292e;
-  padding: 4px 9px;
-  transition: all .5s ease;
-}
-#check:checked ~ .sidebar{
-  left: 0;
-}
-#check:checked ~ label #btn{
-  left: 250px;
-  opacity: 0;
-  pointer-events: none;
-}
-#check:checked ~ label #cancel{
-  left: 195px;
-}
-#check:checked ~ section{
-  margin-left: 250px;
-}
-section{
-  background: url(bg.jpeg) no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  transition: all .5s;
+*/
+@media screen and (max-width: 799px) {
+   .sidebar {
+     display: none;
+   }
+
+   .with_sidebar {
+   margin-left: auto;
+   }
 }

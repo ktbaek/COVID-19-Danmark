@@ -1,4 +1,5 @@
 ---
+id: home
 image: /figures/twitter_card.png
 title: Covid-19 smitteudvikling i Danmark 
 ---
@@ -139,6 +140,8 @@ Se [liste](/tiltag.md) over tiltag.
 ### Kontakttallet
 SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_admitted.png). 
 
+[Tilbage til toppen](#)
+
 ## Plots: kommuner og landsdele
 ### Ugentligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det ugentlige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned. 
@@ -205,6 +208,7 @@ Plottet viser den ugentlige procentdel af positivt testede for de seneste tre m�
 
 ![](/figures/muni_pct_landsdele.png) 
 
+[Tilbage til toppen](#)
 
 ## Plots: aldersgrupper
 
@@ -271,6 +275,8 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 ``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
 
 ![](/figures/age_group_admitted_pos_young.png)
+
+[Tilbage til toppen](#)
 
 
 
