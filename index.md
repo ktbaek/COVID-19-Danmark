@@ -13,10 +13,6 @@ Senest opdateret 30. oktober 2020 efter kl 14.
     <div class="linkedin">Del</div>
 </div>
 
-<div class = "langselector"> da | <a href="https://covid19danmark.dk/en.html">en</a> </div>
-
-*Nyt*: Se [model](/model.md) for estimering af det faktiske antal smittede.
-
 ## Data
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
