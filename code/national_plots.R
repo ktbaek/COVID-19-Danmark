@@ -24,7 +24,7 @@ standard_plot(
   y_label_dist = 4
 )
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
 
 points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
 points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
@@ -115,7 +115,8 @@ double_plot(
 points(tests_from_may$Date, tests_from_may$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
 points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
+text(x = as.Date("2020-08-01"), y = 0, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
 
 par(new = TRUE)
 
@@ -131,8 +132,8 @@ plot(NULL,
 points(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2)
 points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-05-25"), y = 0.6, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
-text(x = as.Date("2020-08-01"), y = 0.06, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-05-25"), y = max_pct/3, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+
 
 axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
 
@@ -496,7 +497,7 @@ points(plot_data$Date, plot_data$running_avg_admit,
   col = admit_col
 )
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
 
 legend("topleft",
   inset = 0.04,
@@ -731,8 +732,8 @@ points(plot_data$Date, plot_data$running_avg_deaths * 10,
 
 
 
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos / 10, by = 10))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos, by = 100), labels = seq(0, max_pos, by = 100))
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos)/10)
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
 
 
 legend("topleft",
@@ -967,24 +968,37 @@ points(plot_data$Date, plot_data$running_avg_pct * 100,
 axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = paste0(seq(0, max_pos + 100, by = 200) / 100, " %"))
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
 
+y <- 60
+arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-07-08"), y + max_pos/16, "Forsamling: 100", cex = 0.9, adj = 0)
 
-arrows(as.Date("2020-08-22"), 260, as.Date("2020-08-22"), 120, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-22"), 310, "Mundbind i\noffentlig transport", cex = 0.9)
+y <- 170
+arrows(as.Date("2020-08-14"), y + max_pos/13, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-13"), y + max_pos/15, "Lukketid udvides", cex = 0.9, adj = 1)
 
-arrows(as.Date("2020-09-09"), 500, as.Date("2020-09-09"), 400, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-08"), 470, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)
+y <- 120
+arrows(as.Date("2020-08-22"), y + max_pos/7, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noffentlig transport", cex = 0.9)
 
-arrows(as.Date("2020-09-18"), 650, as.Date("2020-09-18"), 550, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-17"), 620, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
+y <- 400
+arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-08"), y + max_pos/10, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)
 
-arrows(as.Date("2020-09-26"), 710, as.Date("2020-09-26"), 610, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-27"), 690, "Restriktioner\nprivate fester", cex = 0.9, adj = 0)
+y <- 600
+arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-17"), y + max_pos/10, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
 
-arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
+y <- 680
+arrows(as.Date("2020-09-26"), y + max_pos/7, as.Date("2020-09-26"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-27"), y + max_pos/10, "Restriktioner\nprivate fester", cex = 0.9, adj = 0)
 
-arrows(as.Date("2020-08-14"), 220, as.Date("2020-08-14"), 170, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-13"), 210, "Lukketid udvides", cex = 0.9, adj = 1)
+y <- 1230
+arrows(as.Date("2020-10-29"), y + max_pos/7, as.Date("2020-10-29"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-10-28"), y + max_pos/10, "Masker alle off. steder,\nforsamling 10 mv.", cex = 0.9, adj = 1)
+
+
+
+
 
 
 legend("topleft",
@@ -1091,7 +1105,6 @@ legend("topright",
 
 
 dev.off()
-
 
 # tiltag relative plots ---------------------------------------------------
 
