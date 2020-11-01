@@ -40,7 +40,6 @@ facet_theme <-
     text = element_text(size = 9, family = "lato"),
     plot.margin = margin(1, 1, 1, 1, "cm"),
     legend.text = element_text(size = 12),
-    legend.position="bottom",
     plot.title = element_text(size = 14, face = "bold"),
     strip.text = element_text(face = "bold"),
     axis.title.y = element_text(size = 12, margin = margin(t = 0, r = 20, b = 0, l = 0)),

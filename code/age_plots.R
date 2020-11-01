@@ -87,7 +87,8 @@ ggplot(plot_data, aes(Date, value)) +
     limits = c(0, max_y_value)
   ) +
   labs(y = "Positive : Testede", x = "Dato", title = "Positive og førstegangstestede per uge for hver aldersgruppe") +
-  facet_theme
+  facet_theme +
+  theme(legend.position="bottom")
 
 ggsave("../figures/age_groups_pos_tested.png", width = 22, height = 15, units = "cm", dpi = 300)
 
