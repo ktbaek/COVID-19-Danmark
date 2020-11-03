@@ -1,15 +1,14 @@
 ,variable,values
-0,Ændringer siden seneste opdatering (hele landet) opgjort på svardato,Prøver
-1," 58,871",Førstegangstestede
-2," 16,988",Bekræftede tilfælde
-3, 942,Dødsfald
-4, 1,Nye indlæggelser
-5,31,Overstået infektion
-6, 452,Ændringer siden den 27. januar 2020 (hele landet)
-7,Prøver," 5,385,115"
-8,Testede personer," 2,901,124"
-9,Bekræftede tilfælde," 48,241"
-10,Dødsfald,724 (1.5%)
-11,Indlæggelser,"3,977"
-12,Overstået infektion," 35,411"
-13,Ændring i antal indlæggelser, +18
+0,Prøver," 58,871"
+1,Førstegangstestede," 16,988"
+2,Bekræftede tilfælde, 942
+3,Dødsfald, 1
+4,Nye indlæggelser,31
+5,Overstået infektion, 452
+6,Prøver," 5,385,115"
+7,Testede personer," 2,901,124"
+8,Bekræftede tilfælde," 48,241"
+9,Dødsfald,724 (1.5%)
+10,Indlæggelser,"3,977"
+11,Overstået infektion," 35,411"
+12,Ændring i antal indlæggelser, +18

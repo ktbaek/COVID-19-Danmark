@@ -139,23 +139,23 @@ Date;variable;values
 2020-10-29;NewPositive;  860
 2020-10-29;Antal_døde;    1
 2020-10-29;Indlæggelser;   21
-2020-10-30;Ændringer siden seneste opdatering (hele landet) opgjort på svardato;NA
-2020-10-30;71,059;NA
-2020-10-30;21,544;NA
-2020-10-30;1,191;NA
-2020-10-30;3;NA
-2020-10-31;Ændringer siden seneste opdatering (hele landet) opgjort på svardato;NA
-2020-10-31;69,770;NA
-2020-10-31;20,285;NA
-2020-10-31;1,126;NA
-2020-10-31;2;NA
-2020-11-01;Ændringer siden seneste opdatering (hele landet) opgjort på svardato;NA
-2020-11-01;61,985;NA
-2020-11-01;17,606;NA
-2020-11-01;948;NA
-2020-11-01;2;NA
-2020-11-02;Ændringer siden seneste opdatering (hele landet) opgjort på svardato;NA
-2020-11-02;58,871;NA
-2020-11-02;16,988;NA
-2020-11-02;942;NA
-2020-11-02;1;NA
+2020-10-30;NotPrevPos;71059
+2020-10-30;NewPositive; 1191
+2020-10-30;Antal_døde;    3
+2020-10-30;Indlæggelser;   33
+2020-10-31;NotPrevPos;69770
+2020-10-31;NewPositive; 1126
+2020-10-31;Antal_døde;    2
+2020-10-31;Indlæggelser;    4
+2020-11-01;NotPrevPos;61985
+2020-11-01;NewPositive;  948
+2020-11-01;Antal_døde;    2
+2020-11-01;Indlæggelser;   30
+2020-11-02;NotPrevPos;58871
+2020-11-02;NewPositive;  942
+2020-11-02;Antal_døde;    1
+2020-11-02;Indlæggelser;   31
+2020-11-03;NotPrevPos;73710
+2020-11-03;NewPositive; 1353
+2020-11-03;Antal_døde;    4
+2020-11-03;Indlæggelser;   35

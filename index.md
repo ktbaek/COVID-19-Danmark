@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  2. november 2020 efter kl 14.
+Senest opdateret  3. november 2020 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -43,6 +43,25 @@ Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven ove
  [Download PDF (A4)](/figures/Covid-19-Danmark.pdf)
  med de vigtigste plots for hele landet.
 
+
+### Dagligt antal nyindlagte og dødsfald
+Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+
+``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
+
+![](/figures/ntl_hosp.png)
+![](/figures/ntl_deaths.png)
+
+### Daglig procentdel positivt testede personer
+Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+
+``SSI datasæt: 'Test_pos_over_time'``
+
+![](/figures/ntl_pct_1.png)
+
+
+![](/figures/ntl_pct_2.png)
+
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
@@ -57,26 +76,8 @@ Plottet viser det totale antal testede personer og antallet af nye positivt test
 
 ![](/figures/ntl_tests.png)
 
-### Daglig procentdel positivt testede personer
-Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
-
-``SSI datasæt: 'Test_pos_over_time'``
-
-![](/figures/ntl_pct_1.png)
 
 
-![](/figures/ntl_pct_2.png)
-
-
-
-
-### Dagligt antal nyindlagte og dødsfald
-Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
-
-``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
-
-![](/figures/ntl_hosp.png)
-![](/figures/ntl_deaths.png)
 
 ### Dagligt antal testede, antal nye positive og procent positive testede
 Plottet viser det totale antal testede personer, antallet af nye positivt testede personer, og procentdelen af positivt testede personer for hele landet. Procentdelen af positivt testede er vist som et løbende gennemsnit baseret på et vindue på 7 dage.
