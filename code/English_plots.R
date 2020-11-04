@@ -426,7 +426,7 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max
 
 y <- 60
 arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-07-08"), y + max_pos/16, "Gathering limit: 100", cex = 0.9, adj = 0)
+text(as.Date("2020-07-08"), y + max_pos/16, "Gathering limit:\n100", cex = 0.9, adj = 0)
 
 y <- 170
 arrows(as.Date("2020-08-14"), y + max_pos/13, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
@@ -450,7 +450,7 @@ text(as.Date("2020-09-27"), y + max_pos/10, "Restrictions\nprivate parties", cex
 
 y <- 1230
 arrows(as.Date("2020-10-29"), y + max_pos/7, as.Date("2020-10-29"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-10-28"), y + max_pos/10, "Masks all public indoors,\ngathering limit 10 etc.", cex = 0.9, adj = 1)
+text(as.Date("2020-10-28"), y + max_pos/10, "Masks all public indoors,\ngathering limit: 10 etc.", cex = 0.9, adj = 1)
 
 
 
