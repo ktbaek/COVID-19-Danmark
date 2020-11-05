@@ -385,3 +385,57 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
   facet_theme
 
 ggsave("../figures/muni_pct_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
+
+
+# Figur: Positiv vs testede - udvalgte kommuner, 3 mdr------------------
+
+nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
+
+plot_data <- muni_all %>%
+  filter(Date > as.Date(today) - months(1)) %>%
+  group_by(Kommune) %>%
+  filter(Kommune %in% nj7) %>%
+  ungroup() %>%
+  mutate(Positive = Positive * 100) %>%
+  pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
+
+ggplot(plot_data, aes(Date, value)) +
+  geom_bar(data = subset(plot_data, variable = "Positive"), stat = "identity", position = "identity", size = 1, aes(fill = variable)) +
+  geom_line(stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+  facet_wrap(~Kommune, scales = "free", ncol = 4) +
+  scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_y_continuous(
+    name = "Testede",
+    sec.axis = sec_axis(~ . / 100, name = "Positive"),
+    limits = c(0, NA)
+  ) +
+  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for 7 nordjyske kommuner") +
+  facet_theme
+
+ggsave("../figures/muni_NJ7_pos_vs_test.png", width = 28, height = 15, units = "cm", dpi = 300)
+
+# Figur: Procent - udvalgte kommuner, ugenumre --------
+
+plot_data <- muni_all %>%
+  filter(Date > as.Date(today) - months(3)) %>%
+  group_by(Kommune) %>%
+  filter(Kommune %in% nj7) %>%
+  ungroup() %>%
+  mutate(Ratio = Positive / Tested * 100)
+
+max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
+
+ggplot(plot_data, aes(Date, Ratio)) +
+  geom_bar(stat = "identity", position = "stack", fill = pct_col) +
+  facet_wrap(~Kommune, scales = "free", ncol = 4) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_y_continuous(
+    limits = c(0, max_y_value)
+  ) +
+  labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for 7 nordjyske kommuner") +
+  facet_theme
+
+ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 15, units = "cm", dpi = 300)
+
+
