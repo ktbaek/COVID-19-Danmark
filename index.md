@@ -182,6 +182,17 @@ For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pct_daily.png
 
 ![](/figures/muni_10_pct_july.png)
 
+### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
+
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede for de syv nordjyske kommuner
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_NJ7_pos_vs_test.png)
+
+![](/figures/muni_NJ7_pct.png)
+
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
