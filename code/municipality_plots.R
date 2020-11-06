@@ -387,7 +387,7 @@ ggplot(plot_data, aes(Week_end_Date, Ratio)) +
 ggsave("../figures/muni_pct_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
 
 
-# Figur: Positiv vs testede - udvalgte kommuner, 3 mdr------------------
+# Figur: Positiv vs testede - NJ kommuner, 1 md------------------
 
 nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
 
@@ -400,10 +400,11 @@ plot_data <- muni_all %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
 ggplot(plot_data, aes(Date, value)) +
-  geom_bar(data = subset(plot_data, variable = "Positive"), stat = "identity", position = "identity", size = 1, aes(fill = variable)) +
-  geom_line(stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+  geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable)) +
+  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free", ncol = 4) +
-  scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
+  scale_fill_manual(name = "", labels = c("Positive"), values = pos_col) +
+  scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
@@ -415,10 +416,10 @@ ggplot(plot_data, aes(Date, value)) +
 
 ggsave("../figures/muni_NJ7_pos_vs_test.png", width = 28, height = 15, units = "cm", dpi = 300)
 
-# Figur: Procent - udvalgte kommuner, ugenumre --------
+# Figur: Procent - NJ kommuner, 1 md --------
 
 plot_data <- muni_all %>%
-  filter(Date > as.Date(today) - months(3)) %>%
+  filter(Date > as.Date(today) - months(1)) %>%
   group_by(Kommune) %>%
   filter(Kommune %in% nj7) %>%
   ungroup() %>%
@@ -436,6 +437,6 @@ ggplot(plot_data, aes(Date, Ratio)) +
   labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for 7 nordjyske kommuner") +
   facet_theme
 
-ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 15, units = "cm", dpi = 300)
+ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi = 300)
 
 
