@@ -928,13 +928,13 @@ double_plot(
   start_date = "2020-07-01"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 4, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 4, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 4, alpha(pct_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 4, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 4, col = alpha(admit_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 4, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 4, col = alpha(death_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 3, col = alpha(pos_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 3, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 3, alpha(pct_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3, col = alpha(death_col, 0.7), lend = 1)
 
 points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
   type = "l",
