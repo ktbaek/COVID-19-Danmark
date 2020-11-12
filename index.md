@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 11. november 2020 efter kl 14.
+Senest opdateret 12. november 2020 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -61,6 +61,14 @@ Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange de
 
 
 ![](/figures/ntl_pct_2.png)
+
+### Daglig procentdel positivt testede personer med/uden Nordjylland
+Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for 1) hele landet og 2) hele landet undtagen syv nordjyske kommuner (Frederikshavn, Hjørring, Vesthimmerland, Brønderslev, Jammerbugt, Thisted, og Læsø). 
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+![](/figures/muni_pct_stratified.png)
+
 
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.

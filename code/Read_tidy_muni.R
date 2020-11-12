@@ -4,6 +4,8 @@
 muni_pos <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_cases_time_series.csv"))
 muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_tested_persons_time_series.csv"))
 
+geo <- read_csv2("../data/DST_geografisk_hieraki.csv")
+
 # Read MUNICIPALITY data for population numbers. Test data are used from files read above (they don't include population data).
 read_muni_csv <- function(x) {
   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
@@ -102,8 +104,6 @@ muni_wk %<>%
   select(-Date, -Positive, -Tested) %>%
   distinct()
 # Arrange by LANDSDELE ----------------------------------------------------
-
-geo <- read_csv2("../data/DST_geografisk_hieraki.csv")
 
 landsdele_order <- geo %>%
   select(KODE, NIVEAU, Landsdel) %>%

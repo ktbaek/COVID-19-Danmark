@@ -439,4 +439,34 @@ ggplot(plot_data, aes(Date, Ratio)) +
 
 ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi = 300)
 
+# procent med og uden nordjylland -----------------------------------------
+nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
+
+
+muni_all %>%
+  full_join(geo, by = "Kommune") %>%
+  filter(Date > as.Date(today)- months(1)) %>%
+  mutate(nj7 = ifelse(Kommune %in% nj7, TRUE, FALSE)) %>%
+  group_by(Date) %>%
+  mutate(pct_total = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
+  ungroup() %>%
+  group_by(nj7, Date) %>%
+  mutate(pct_stratified = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
+  ungroup() %>%
+  filter(!nj7) %>%
+  select(Date, pct_stratified, pct_total) %>%
+  distinct() %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "values") %>%
+  ggplot(aes(Date, values)) +
+  geom_line(aes(color = variable), size = 2) + 
+  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+  labs(y = "Positivprocent", x = "Dato", title = "Positivprocent med og uden de 7 nordjyske kommuner") +
+  scale_color_manual(name = "", labels = c("Uden nordjylland", "Hele landet"), values = c(lighten(pct_col, 0.2), darken(pct_col, 0.2))) +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  standard_theme
+
+ggsave("../figures/muni_pct_stratified.png", width = 20, height = 12, units = "cm", dpi = 300)
+
 

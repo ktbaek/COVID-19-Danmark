@@ -1134,7 +1134,7 @@ plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restric
 plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-#plot_data %<>% bind_rows(index_plot(df, "Masker alle steder mv", "2020-10-29", "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
 
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
@@ -1221,6 +1221,36 @@ baseplot(subset_data, max_day) +
   theme
 
 ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "cm", dpi = 300)
+
+
+### Kun maskepåbud 29. okt:
+subset_data <- plot_data %>% filter(variable == "pct_index",
+                                    tiltag == "Masker alle off. steder mv")
+
+max_day <- subset_data %>% 
+  filter(!is.na(value)) %>%
+  group_by(tiltag) %>%
+  mutate(max = day == max(day)) %>%
+  filter(max)
+
+max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
+
+ggplot(subset_data, aes(day, value)) +
+  geom_vline(xintercept = 0) +
+  geom_segment(aes(x = -14, y = 100, xend = 28, yend = 100)) +
+  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = tiltag)) +
+  coord_cartesian(xlim = c(-14, 28), # This focuses the x-axis on the range of interest
+                  clip = 'off') +
+  geom_text(data = max_day,  size = 4, aes(x = 29, y = value, color = tiltag, label = str_wrap(tiltag, 25)), hjust = "outward", lineheight = 0.8) +
+  scale_color_discrete(guide = FALSE) +
+  scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
+  scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
+  labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage") +
+  labs(title = "Hvad sker der med positivprocenten efter ?") +
+  theme
+
+ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
+
 
 
 # zip vs dashboard ---------------------------------------------------
