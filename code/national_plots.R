@@ -207,9 +207,9 @@ double_plot(
 segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-03-15"), y = 50000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
-text(x = as.Date("2020-09-04"), y = 50000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
-text(x = as.Date("2020-03-12"), y = 8800, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2)
+text(x = as.Date("2020-03-15"), y = 58000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-10-20"), y = 70000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
+text(x = as.Date("2020-03-12"), y = 9200, labels = "Antal positive", col = pos_col, cex = cex_labels * 0.9, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 10000), labels = seq(0, max_test, by = 10000))
@@ -1134,7 +1134,7 @@ plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restric
 plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
+#plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
 
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
@@ -1224,32 +1224,32 @@ ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "c
 
 
 ### Kun maskepåbud 29. okt:
-subset_data <- plot_data %>% filter(variable == "pct_index",
-                                    tiltag == "Masker alle off. steder mv")
-
-max_day <- subset_data %>% 
-  filter(!is.na(value)) %>%
-  group_by(tiltag) %>%
-  mutate(max = day == max(day)) %>%
-  filter(max)
-
-max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
-
-ggplot(subset_data, aes(day, value)) +
-  geom_vline(xintercept = 0) +
-  geom_segment(aes(x = -14, y = 100, xend = 28, yend = 100)) +
-  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = tiltag)) +
-  coord_cartesian(xlim = c(-14, 28), # This focuses the x-axis on the range of interest
-                  clip = 'off') +
-  geom_text(data = max_day,  size = 4, aes(x = 29, y = value, color = tiltag, label = str_wrap(tiltag, 25)), hjust = "outward", lineheight = 0.8) +
-  scale_color_discrete(guide = FALSE) +
-  scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
-  scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
-  labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage") +
-  labs(title = "Hvad sker der med positivprocenten efter ?") +
-  theme
-
-ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
+# subset_data <- plot_data %>% filter(variable == "pct_index",
+#                                     tiltag == "Masker alle off. steder mv")
+# 
+# max_day <- subset_data %>% 
+#   filter(!is.na(value)) %>%
+#   group_by(tiltag) %>%
+#   mutate(max = day == max(day)) %>%
+#   filter(max)
+# 
+# max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
+# 
+# ggplot(subset_data, aes(day, value)) +
+#   geom_vline(xintercept = 0) +
+#   geom_segment(aes(x = -14, y = 100, xend = 28, yend = 100)) +
+#   geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = tiltag)) +
+#   coord_cartesian(xlim = c(-14, 28), # This focuses the x-axis on the range of interest
+#                   clip = 'off') +
+#   geom_text(data = max_day,  size = 4, aes(x = 29, y = value, color = tiltag, label = str_wrap(tiltag, 25)), hjust = "outward", lineheight = 0.8) +
+#   scale_color_discrete(guide = FALSE) +
+#   scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
+#   scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
+#   labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage") +
+#   labs(title = "Hvad sker der med positivprocenten efter ?") +
+#   theme
+# 
+# ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
 
 
 
