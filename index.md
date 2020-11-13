@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 12. november 2020 efter kl 14.
+Senest opdateret 13. november 2020 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -63,7 +63,7 @@ Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange de
 ![](/figures/ntl_pct_2.png)
 
 ### Daglig procentdel positivt testede personer med/uden Nordjylland
-Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for 1) hele landet og 2) hele landet undtagen syv nordjyske kommuner (Frederikshavn, Hjørring, Vesthimmerland, Brønderslev, Jammerbugt, Thisted, og Læsø). 
+Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for 1) hele landet og 2) hele landet undtagen syv nordjyske kommuner (Frederikshavn, Hjørring, Vesthimmerland, Brønderslev, Jammerbugt, Thisted, og Læsø).
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -192,7 +192,7 @@ For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pct_daily.png
 
 ### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
 
-Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede for de syv nordjyske kommuner
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -200,6 +200,17 @@ Plottene viser det daglige antal nye positivt testede, antal total testede og pr
 ![](/figures/muni_NJ7_pos_vs_test.png)
 
 ![](/figures/muni_NJ7_pct.png)
+
+### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
+
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_kbharea_pos_vs_test.png)
+
+![](/figures/muni_kbharea_pct.png)
 
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
