@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 16. november 2020 efter kl 14.
+Senest opdateret 17. november 2020 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -15,7 +15,7 @@ Senest opdateret 16. november 2020 efter kl 14.
 
 ## Data
 
-Data er hentet på [SSI's COVID-19 overvågningsside](https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/c/covid19-overvaagning) hvor de data der kan downloades opdateres mandag-fredag.
+Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) hvor de data der kan downloades opdateres mandag-fredag.
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
 

@@ -145,7 +145,7 @@ dev.off()
 png("../figures/ntl_hosp.png", width = 20, height = 16, units = "cm", res = 300)
 
 standard_plot(
-  title = "Dagligt antal nyindlagte",
+  title = "Dagligt antal nyindlagte med positiv test",
   y_label_dist = 4,
   max_y_value = 100,
   x_by = "1 month",
@@ -420,7 +420,7 @@ plot(0,
 )
 
 mtext(
-  text = "Nye positivt testede vs. nyindlagte",
+  text = "Nye positivt testede vs. nyindlagte med positiv test",
   side = 3, # side 1 = bottom
   line = 1,
   cex = 1.5,
@@ -532,7 +532,7 @@ plot(0,
 )
 
 mtext(
-  text = "Procent positivt testede vs. nyindlagte",
+  text = "Procent positivt testede vs. nyindlagte med positiv test",
   side = 3, # side 1 = bottom
   line = 1,
   cex = 1.5,
