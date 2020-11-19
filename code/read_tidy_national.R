@@ -1,7 +1,7 @@
 # Read data files ---------------------------------------------------------
 
-#last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 2), "-", "_")
-last_tuesday <- str_replace_all(today, "-", "_")
+last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 3), "-", "_")
+#last_tuesday <- str_replace_all(today, "-", "_")
 
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
 deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
