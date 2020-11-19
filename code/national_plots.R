@@ -989,8 +989,8 @@ arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, 
 text(as.Date("2020-09-17"), y + max_pos/10, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
 
 y <- 680
-arrows(as.Date("2020-09-26"), y + max_pos/7, as.Date("2020-09-26"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-27"), y + max_pos/10, "Restriktioner\nprivate fester", cex = 0.9, adj = 0)
+arrows(as.Date("2020-09-26"), y + max_pos/5, as.Date("2020-09-26"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-09-25"), y + max_pos/6, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
 
 y <- 1230
 arrows(as.Date("2020-10-29"), y + max_pos/7, as.Date("2020-10-29"), y, lwd = 1, lend = 1, length = 0.1)
