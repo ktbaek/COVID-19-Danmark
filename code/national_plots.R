@@ -1134,7 +1134,7 @@ plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restric
 plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
+#plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
 
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
@@ -1196,9 +1196,6 @@ max_day <- subset_data %>%
   filter(max)
 
 max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
-
-subset_data %<>% filter(tiltag == "Masker alle off. steder mv")
-max_day %<>% filter(tiltag == "Masker alle off. steder mv")
 
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
