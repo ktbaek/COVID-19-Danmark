@@ -20,7 +20,7 @@ png("../figures/ntl_pos.png", width = 20, height = 16, units = "cm", res = 300)
 standard_plot(
   title = "Dagligt antal nye positivt testede",
   max_y_value = max_pos,
-  x_by = "1 month",
+  x_by = "2 months",
   y_label_dist = 4
 )
 
@@ -41,7 +41,7 @@ png("../figures/ntl_tests.png", width = 20, height = 16, units = "cm", res = 300
 standard_plot(
   title = "Dagligt antal testede",
   max_y_value = max_test,
-  x_by = "1 month",
+  x_by = "2 months",
   y_label_dist = 5
 )
 
@@ -67,7 +67,7 @@ standard_plot(
   y_label_dist = 4,
   y_label = "Procent",
   max_y_value = max_pct,
-  x_by = "1 month",
+  x_by = "2 months",
   start_date = "2020-05-01"
 )
 
@@ -86,7 +86,7 @@ standard_plot(
   title = "Daglig procent positivt testede",
   max_y_value = 40,
   y_label_dist = 4,
-  x_by = "1 month",
+  x_by = "2 months",
   y_label = "Procent"
 )
 
@@ -148,7 +148,7 @@ standard_plot(
   title = "Dagligt antal nyindlagte med positiv test",
   y_label_dist = 4,
   max_y_value = 100,
-  x_by = "1 month",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -173,7 +173,7 @@ standard_plot(
   title = "Dagligt antal døde",
   y_label_dist = 4,
   max_y_value = 25,
-  x_by = "1 month",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -200,7 +200,7 @@ double_plot(
   y2_label = "Procent",
   y_label_dist = 5.8,
   max_y_value = max_test,
-  x_by = "1 month",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -405,68 +405,68 @@ dev.off()
 # positive admitted barplot -----------------------------------------------
 
 
-png("../figures/ntl_postest_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(0,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(-100, max_pos + 100),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Nye positivt testede vs. nyindlagte med positiv test",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
-segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
-
-text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
-
-dev.off()
-
+# png("../figures/ntl_postest_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5, 8, 5, 2))
+# 
+# plot(0,
+#   type = "n",
+#   ylab = "",
+#   xlab = "",
+#   axes = FALSE,
+#   cex = 1.2,
+#   cex.axis = cex_axis,
+#   ylim = c(-100, max_pos + 100),
+#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+# )
+# 
+# mtext(
+#   text = "Nye positivt testede vs. nyindlagte med positiv test",
+#   side = 3, # side 1 = bottom
+#   line = 1,
+#   cex = 1.5,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Dato",
+#   side = 1, # side 1 = bottom
+#   line = 3,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Antal",
+#   side = 2, # side 1 = bottom
+#   line = 4,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# box(which = "plot", lty = "solid")
+# 
+# axis(1, c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), format(c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), "%b"), cex.axis = cex_axis)
+# axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
+# 
+# 
+# segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
+# segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
+# 
+# text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
+# text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+# 
+# dev.off()
+# 
 
 # positive admitted barplot 2 ------------------------------------------------------------------
 
@@ -476,7 +476,7 @@ standard_plot(
   title = "Antal positivt testede vs. nyindlagte",
   y_label_dist = 4,
   max_y_value = max_pos,
-  x_by = "1 months"
+  x_by = "2 months",
 )
 
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
@@ -517,67 +517,67 @@ dev.off()
 # Pct admitted barplot ----------------------------------------------------
 
 
-png("../figures/ntl_pct_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(0,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(-100, 200),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Procent positivt testede vs. nyindlagte med positiv test",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal                            Procent            ",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, "10 %", "20 %", 300, 400, 500), cex.axis = cex_axis, las = 1)
-
-
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 10, lwd = 2, col = pct_col, lend = 1)
-segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
-
-text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 70, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
-
-box(which = "plot", lty = "solid")
-
-dev.off()
+# png("../figures/ntl_pct_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5, 8, 5, 2))
+# 
+# plot(0,
+#   type = "n",
+#   ylab = "",
+#   xlab = "",
+#   axes = FALSE,
+#   cex = 1.2,
+#   cex.axis = cex_axis,
+#   ylim = c(-100, 200),
+#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+# )
+# 
+# mtext(
+#   text = "Procent positivt testede vs. nyindlagte med positiv test",
+#   side = 3, # side 1 = bottom
+#   line = 1,
+#   cex = 1.5,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Dato",
+#   side = 1, # side 1 = bottom
+#   line = 3,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Antal                            Procent            ",
+#   side = 2, # side 1 = bottom
+#   line = 4,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# axis(1, c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), format(c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), "%b"), cex.axis = cex_axis)
+# axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, "10 %", "20 %", 300, 400, 500), cex.axis = cex_axis, las = 1)
+# 
+# 
+# segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 10, lwd = 2, col = pct_col, lend = 1)
+# segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
+# 
+# text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
+# text(x = as.Date(today) - 2, y = 70, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
+# 
+# box(which = "plot", lty = "solid")
+# 
+# dev.off()
 
 # pct admitted barplot 2 ------------------------------------------------------------------
 
@@ -589,7 +589,7 @@ double_plot(
   y2_label = "Antal nyindlagte",
   y_label_dist = 5,
   max_y_value = 20,
-  x_by = "1 months",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -634,67 +634,67 @@ dev.off()
 # positive deaths barplot -----------------------------------------------
 
 
-png("../figures/ntl_postest_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(0,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(-100, max_pos + 100),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Antal positivt testede vs. døde",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-box(which = "plot", lty = "solid")
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
-segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
-
-text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
-
-dev.off()
+# png("../figures/ntl_postest_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5, 8, 5, 2))
+# 
+# plot(0,
+#   type = "n",
+#   ylab = "",
+#   xlab = "",
+#   axes = FALSE,
+#   cex = 1.2,
+#   cex.axis = cex_axis,
+#   ylim = c(-100, max_pos + 100),
+#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+# )
+# 
+# mtext(
+#   text = "Antal positivt testede vs. døde",
+#   side = 3, # side 1 = bottom
+#   line = 1,
+#   cex = 1.5,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Dato",
+#   side = 1, # side 1 = bottom
+#   line = 3,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Antal",
+#   side = 2, # side 1 = bottom
+#   line = 4,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# box(which = "plot", lty = "solid")
+# 
+# axis(1, c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), format(c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), "%b"), cex.axis = cex_axis)
+# axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
+# 
+# 
+# segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
+# segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
+# 
+# text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
+# text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
+# 
+# dev.off()
 
 
 
@@ -708,7 +708,7 @@ double_plot(
   y2_label = "Antal døde",
   y_label_dist = 5,
   max_y_value = max_pos,
-  x_by = "1 months",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -754,68 +754,68 @@ dev.off()
 # Pct deaths barplot ----------------------------------------------------
 
 
-png("../figures/ntl_pct_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(0,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(-25, 100),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Procent positivt testede vs. døde",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Antal                             Procent                        ",
-  side = 2, # side 1 = bottom
-  line = 4,
-  cex = cex_labels,
-  font = 2
-)
-
-axis(1, c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), format(c(
-  as.Date("2020-03-01"),
-  as.Date("2020-05-01"),
-  as.Date("2020-07-01"),
-  as.Date("2020-09-01")
-), "%b"), cex.axis = cex_axis)
-axis(2, at = c(-25, 0, 50, 100), label = c(25, 0, "10 %", "20 %"), cex.axis = cex_axis, las = 1)
-
-
-segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 5, lwd = 2, col = pct_col, lend = 1)
-segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
-
-text(x = as.Date(today) - 2, y = -18, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-text(x = as.Date(today) - 2, y = 20, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
-
-box(which = "plot", lty = "solid")
-
-dev.off()
-
+# png("../figures/ntl_pct_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5, 8, 5, 2))
+# 
+# plot(0,
+#   type = "n",
+#   ylab = "",
+#   xlab = "",
+#   axes = FALSE,
+#   cex = 1.2,
+#   cex.axis = cex_axis,
+#   ylim = c(-25, 100),
+#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
+# )
+# 
+# mtext(
+#   text = "Procent positivt testede vs. døde",
+#   side = 3, # side 1 = bottom
+#   line = 1,
+#   cex = 1.5,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Dato",
+#   side = 1, # side 1 = bottom
+#   line = 3,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Antal                             Procent                        ",
+#   side = 2, # side 1 = bottom
+#   line = 4,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# axis(1, c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), format(c(
+#   as.Date("2020-03-01"),
+#   as.Date("2020-05-01"),
+#   as.Date("2020-07-01"),
+#   as.Date("2020-09-01")
+# ), "%b"), cex.axis = cex_axis)
+# axis(2, at = c(-25, 0, 50, 100), label = c(25, 0, "10 %", "20 %"), cex.axis = cex_axis, las = 1)
+# 
+# 
+# segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 5, lwd = 2, col = pct_col, lend = 1)
+# segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
+# 
+# text(x = as.Date(today) - 2, y = -18, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
+# text(x = as.Date(today) - 2, y = 20, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
+# 
+# box(which = "plot", lty = "solid")
+# 
+# dev.off()
+# 
 
 
 
@@ -829,7 +829,7 @@ double_plot(
   y2_label = "Antal døde",
   y_label_dist = 5,
   max_y_value = 20,
-  x_by = "1 months",
+  x_by = "2 months",
   start_date = "2020-02-15"
 )
 
@@ -1134,7 +1134,7 @@ plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restric
 plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-#plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
 
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
@@ -1197,6 +1197,9 @@ max_day <- subset_data %>%
 
 max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
 
+subset_data %<>% filter(tiltag == "Masker alle off. steder mv")
+max_day %<>% filter(tiltag == "Masker alle off. steder mv")
+
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
   theme
@@ -1223,33 +1226,7 @@ baseplot(subset_data, max_day) +
 ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "cm", dpi = 300)
 
 
-### Kun maskepåbud 29. okt:
-# subset_data <- plot_data %>% filter(variable == "pct_index",
-#                                     tiltag == "Masker alle off. steder mv")
-# 
-# max_day <- subset_data %>% 
-#   filter(!is.na(value)) %>%
-#   group_by(tiltag) %>%
-#   mutate(max = day == max(day)) %>%
-#   filter(max)
-# 
-# max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
-# 
-# ggplot(subset_data, aes(day, value)) +
-#   geom_vline(xintercept = 0) +
-#   geom_segment(aes(x = -14, y = 100, xend = 28, yend = 100)) +
-#   geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = tiltag)) +
-#   coord_cartesian(xlim = c(-14, 28), # This focuses the x-axis on the range of interest
-#                   clip = 'off') +
-#   geom_text(data = max_day,  size = 4, aes(x = 29, y = value, color = tiltag, label = str_wrap(tiltag, 25)), hjust = "outward", lineheight = 0.8) +
-#   scale_color_discrete(guide = FALSE) +
-#   scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
-#   scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
-#   labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage") +
-#   labs(title = "Hvad sker der med positivprocenten efter ?") +
-#   theme
-# 
-# ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
+
 
 
 

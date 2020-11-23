@@ -113,6 +113,7 @@ standard_plot <- function(title,
   box(which = "plot", lty = "solid")
 
   axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, x_by), format = "%b", cex.axis = cex_axis)
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, "1 month"), labels = FALSE, cex.axis = cex_axis)
   
 
 }
@@ -178,6 +179,7 @@ double_plot <- function(title,
   box(which = "plot", lty = "solid")
 
   axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, x_by), format = "%b", cex.axis = cex_axis)
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, "1 month"), labels = FALSE, cex.axis = cex_axis)
 
   text(par("usr")[2] + y2_label_pos, mean(par("usr")[3:4]), y2_label, srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
 }

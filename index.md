@@ -103,8 +103,9 @@ Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procen
 
 ![](/figures/ntl_pct_admitted_barplot_2.png)
 
+<!--
 Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_admitted_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_admitted_barplot.png).
-
+-->
 
 
 
@@ -117,7 +118,9 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ![](/figures/ntl_pct_deaths_barplot_2.png)
 
+<!--
 Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_deaths_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_deaths_barplot.png).
+-->
 
 ### Dagligt antal positivt testede og procentdelen af  positivt testede
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
