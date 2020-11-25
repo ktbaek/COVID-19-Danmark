@@ -1245,7 +1245,7 @@ ggplot(plot_data, aes(Date, values)) +
   scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 1100)
+    limits = c(0, 1500)
   ) +
   standard_theme
 
@@ -1265,7 +1265,7 @@ ggplot(plot_data, aes(Date, values)) +
   scale_color_manual(name = "", labels = c("Prøver (SSI's dashboard)", "Unikke testede personer"), values = c(darken(test_col, 0.6), lighten(test_col, 0.6))) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 70000)
+    limits = c(0, 90000)
   ) +
   standard_theme
 
