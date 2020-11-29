@@ -51,7 +51,7 @@ I samme periode var der 1032 COVID-19 relaterede indlæggelser.
 
 ## Estimering af hvor mange COVID-19 indlæggelser der skyldtes COVID-19 sygdom
 
-Hvis alle 736 indlagte personer *med* positiv SARS-CoV-2 test men *uden* COVID-19 sygdom talte som COVID-19 relaterede indlæggelser ville det betyde 736 ud af 1032 (71%) var indlagt på grund af noget andet end COVID-19.
+Hvis alle 736 indlagte personer *med* positiv SARS-CoV-2 test men *uden* COVID-19 sygdom talte som COVID-19 relaterede indlæggelser ville det betyde at mindst 736 ud af 1032 (71%) var indlagt på grund af noget andet end COVID-19.
 
 Tallene opgøres dog lidt forskelligt. 
 
