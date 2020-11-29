@@ -72,7 +72,7 @@ Baseret på disse overvejelser vil et konservativt bud lyde på at omkring 500 a
 
 SSI har optalt personer som i perioden 1. juni til 16. oktober blev indlagt på hospital med positiv SARS-CoV-2 test men uden COVID-19 sygdom. 
 
-Ved at sammenligne denne optælling med det offentliggjorte tal for COVID-19 relaterede indlæggelser vurderer jeg at omkring halvdelen af dem som i perioden blev registreret som COVID-19 indlagte ikke var indlagt med respiratorisk sygdom, og dermed ikke var indlagt på grund af sygdommen COVID-19.  
+Ved at sammenligne denne optælling med det offentliggjorte tal for COVID-19 relaterede indlæggelser vurderer jeg at omkring halvdelen af dem som i perioden blev registreret som COVID-19 indlagte ikke var indlagt med respiratorisk sygdom, og dermed **ikke var indlagt på grund af sygdommen COVID-19**.  
 
 Hvor mange der aktuelt bliver indlagt med en positiv test, men uden at have COVID-19, vides ikke, da der ikke offentliggøres data som muliggør en aktuel analyse. Muligvis ligger andelen i samme størrelsesorden, altså omkring halvdelen. Men vi kunne undgå at bruge tid på den slags spekulationer hvis SSI skelnede mellem 1) indlagte med positiv SARS-CoV-2 test og 2) indlagte med COVID-19 sygdom. 
 
