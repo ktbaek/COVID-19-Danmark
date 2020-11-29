@@ -35,7 +35,7 @@ Men hvor mange *"brækkede ben"* gemmer der sig i indlæggelsestallet?
 
 ## SSI's analyse af indlæggelser som *ikke* skyldes COVID-19 sygdom
 
-SSI offentliggjorde 23. oktober 2020 en [rapport](https://covid19.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da) hvori de bl.a. udarbejdede en *referencegruppe* der defineres som "*patienter med et indlæggelsesforløb der ikke er relateret til en respiratorisk lidelse, eller graviditet og fødsel*". Referencegruppen afgrænses altså således, at hospitalsforløb relateret til respiratorisk sygdom ekskluderes, for at undgå at inkludere patienter der er indlagt pga. COVID-19.
+SSI offentliggjorde 23. oktober 2020 en [rapport](https://covid19.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da) hvori de bl.a. udarbejdede en *referencegruppe* der defineres som "*patienter med et indlæggelsesforløb der ikke er relateret til en respiratorisk lidelse, eller graviditet og fødsel*". Referencegruppen afgrænses altså således, at hospitalsforløb relateret til respiratorisk sygdom ekskluderes, "*for at undgå at inkludere patienter der er indlagt pga. COVID-19*".
 
 Selvom referencegruppen er udarbejdet med det formål at kunne vurdere udbredelsen af SARS-CoV-2 virus i samfundet uafhængigt af f.eks. hvor mange der testes, kan data fra gruppen også bruges til at estimere hvor mange COVID-19 relaterede indlæggelser der skyldes COVID-19 sygdom.
 
