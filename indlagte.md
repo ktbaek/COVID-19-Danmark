@@ -44,7 +44,7 @@ I samme periode var der 1032 COVID-19 relaterede indlæggelser.
 
 **Figur 1**: COVID-19 relaterede indlæggelser. Perioden 1. juni til 16. oktober er fremhævet. 
 
-![](ntl_hosp_post_1.png)
+![](/figures/ntl_hosp_post_1.png)
  
 
 ## Estimering af hvor mange COVID-19 indlæggelser der skyldtes COVID-19 sygdom
@@ -57,7 +57,7 @@ De 1032 er – som beskrevet i definitionen ovenfor – indlagte som er testet p
 
 **Figur 2**: Sammenligning af de to måder at opgøre indlagte med SARS-CoV-2 positiv test.  
 
-![](post_1_fig_2.png)
+![](/figures/post_1_fig_2.png)
 
 Hvordan påvirker den forskel vurderingen af hvor mange der indlægges med, men ikke på grund af, COVID-19?
 
