@@ -39,7 +39,7 @@ SSI offentliggjorde 23. oktober 2020 en [rapport](https://covid19.ssi.dk/-/media
 
 Selvom referencegruppen er udarbejdet med det formål at kunne vurdere udbredelsen af SARS-CoV-2 virus i samfundet uafhængigt af f.eks. hvor mange der testes, kan data fra gruppen også bruges til at estimere hvor mange COVID-19 relaterede indlæggelser der skyldes COVID-19 sygdom.
 
-I SSIs rapport er analyseret 248.289 indlæggelsesforløb i perioden 1. juni til 16. oktober 2020 som altså **ekskluderer** patienter der er indlagt pga. COVID-19 sygdom. Ud af disse fandtes 736 indlagte med en positiv SARS-CoV-2 PCR test.
+I rapporten er analyseret 248.289 indlæggelsesforløb i perioden 1. juni til 16. oktober 2020 som altså **ekskluderer** patienter der er indlagt pga. COVID-19 sygdom. Ud af disse fandtes 736 indlagte med en positiv SARS-CoV-2 PCR test.
 
 I samme periode var der 1032 COVID-19 relaterede indlæggelser.  
 
