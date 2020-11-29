@@ -64,7 +64,7 @@ De 1032 er – som beskrevet i definitionen ovenfor – indlagte som er testet p
 Hvordan påvirker den forskel vurderingen af hvor mange der indlægges med, men ikke på grund af, COVID-19?
 
 1. Hvis SSI i deres rapport havde medtaget indlagte som er testet positive op til 14 dage før, ville de nok have fundet flere positive end 736. 
-2. SARS-CoV-2 positive som blev testet i perioden fra dag 1 til dag 5 efter indlæggelse, men som nåede at blive udskrevet inden test, vil ikke tælle med i de 1032 COVID-19 indlæggelser. Det er formentligt rimeligt at antage at mindst 75% af de 736 blev testet før de blev udskrevet. Denne antagelse kan selvfølgelig diskuteres, men det virker mærkeligt at antage at mange af dem som blev testet i forbindelse med en indlæggelse først blev testet lige *efter* udskrivelse. 
+2. SARS-CoV-2 positive som blev testet i perioden fra dag 1 til dag 5 efter indlæggelse, men som nåede at blive udskrevet inden test, vil ikke tælle med i de 1032 COVID-19 indlæggelser. Det er formentligt rimeligt at antage at mindst 75% af de 736 blev testet før de blev udskrevet. Denne antagelse kan selvfølgelig diskuteres, men det virker mærkeligt at antage at mange af dem som blev testet i forbindelse med et indlæggelsesforløb først blev testet lige *efter* udskrivelse. 
 
 Baseret på disse overvejelser vil et konservativt bud lyde på at omkring 500 af de 1032 personer (ca. 50%) der blev registreret som 'COVID-19 indlagte' i perioden 1. juni til 16. oktober **ikke** blev indlagt pga. COVID-19 sygdom.
 
