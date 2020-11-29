@@ -8,6 +8,8 @@ description: Estimering af COVID-19 indlagte uden COVID-19 sygdom
 
 Kristoffer T. Bæk, PhD - december 2020
 
+<br>
+
 Antallet af COVID-19 indlagte er en af de indikatorer folk bruger til at vurdere epidemiens alvor og udvikling. Derudover er antallet af COVID-19 indlagte vigtigt når man vil vurdere hvor meget epidemien belaster hospitalsvæsenet.
 
 Det er en positiv SARS-CoV-2 PCR test der afgør om en indlæggelse tæller som en COVID-19 indlæggelse. Det er ikke et krav at den indlagtes symptomer er forenelige med COVID-19 sygdom.
