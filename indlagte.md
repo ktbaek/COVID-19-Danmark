@@ -55,7 +55,7 @@ Hvis alle 736 indlagte personer *med* positiv SARS-CoV-2 test men *uden* COVID-1
 
 Tallene opgøres dog lidt forskelligt. 
 
-De 1032 er – som beskrevet i definitionen ovenfor – indlagte som er testet positive op til 14 dage før, eller under, indlæggelse. De 736 fra SSI's rapport er indlagte som er testet positive i perioden fra 2 dage før til 5 dage efter indlæggelse.  
+De 1032 er – som beskrevet i definitionen ovenfor – indlagte, som er testet positive op til 14 dage før, eller under, indlæggelse. De 736 fra SSI's rapport er indlagte som er testet positive i perioden fra 2 dage før til 5 dage efter indlæggelse.  
 
 **Figur 2**: Sammenligning af de to måder at opgøre indlagte med SARS-CoV-2 positiv test.  
 
