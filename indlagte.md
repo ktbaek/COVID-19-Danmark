@@ -16,7 +16,7 @@ Det er en positiv SARS-CoV-2 PCR test der afgør om en indlæggelse tæller som 
 
 Hvis man vil vurdere hvor meget COVID-19 indlagte belaster hospitalsvæsenet, er det mindre afgørende om symptomerne er forenelige med COVID-19, da patienter med en positiv SARS-CoV-2 test optager isolationspladser uanset om de har COVID-19 sygdom eller ej.  
 
-Hvis man derimod vil bruge antallet af COVID-19 indlagte som indikator for epidemiens alvor, og måske endda som argument for indførelsen af restriktioner, er det afgørende at rense tallet for patienter der er indlagt af anden årsag, men som alligevel indgår i indlæggelsestallet på grund af en positiv PCR test.
+Hvis man derimod vil bruge antallet af COVID-19 indlagte som indikator for epidemiens alvor, og måske endda som argument for indførelsen af restriktioner, er det afgørende at tallet renses for patienter der er indlagt af anden årsag, men som alligevel indgår i indlæggelsestallet på grund af en positiv PCR test.
 
 
 ## Hvordan defineres en COVID-19 relateret indlæggelse?
