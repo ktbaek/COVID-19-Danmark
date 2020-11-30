@@ -1134,7 +1134,7 @@ plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restric
 plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
 plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Masker alle off. steder mv", "2020-10-29", "restrict"))
+plot_data %<>% bind_rows(index_plot(df, "Masker off. steder mv", "2020-10-29", "restrict"))
 
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
 plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
@@ -1180,6 +1180,8 @@ max_day <- subset_data %>%
 
 max_day$value[which(max_day$tiltag == "Fase 1")] <- 34
 max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 165
+max_day$value[which(max_day$tiltag == "Masker off. steder mv")] <- 122
+max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 92
 
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med antal positive efter et tiltag?") +
@@ -1201,6 +1203,8 @@ baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
   theme
 
+
+
 ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
 
 
@@ -1212,9 +1216,10 @@ max_day <- subset_data %>%
   mutate(max = day == max(day)) %>%
   filter(max)
 
-max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 135
-max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 102
+max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 140
+max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 107
 max_day$value[which(max_day$tiltag == "Forsamling op til 50")] <- 53
+max_day$value[which(max_day$tiltag == "Masker off. steder mv")] <- 82
 
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med nyindlæggelser efter et tiltag?") +
