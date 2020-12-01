@@ -1199,6 +1199,8 @@ max_day <- subset_data %>%
 
 max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
 
+
+
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
   theme
@@ -1220,6 +1222,7 @@ max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 140
 max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 107
 max_day$value[which(max_day$tiltag == "Forsamling op til 50")] <- 53
 max_day$value[which(max_day$tiltag == "Masker off. steder mv")] <- 82
+
 
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med nyindlæggelser efter et tiltag?") +
