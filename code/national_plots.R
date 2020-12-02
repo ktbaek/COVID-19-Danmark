@@ -1199,9 +1199,13 @@ max_day <- subset_data %>%
 
 max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
 
-
+#subset_data %<>% filter(tiltag == "Masker off. steder mv")
+#max_day %<>% filter(tiltag == "Masker off. steder mv")
 
 baseplot(subset_data, max_day) +
+#  geom_line(stat = "identity", position = "identity", size = 3, color = "#00B0F6") +
+#  geom_text(data = max_day,  size = 4, aes(x = 29, y = value, label = str_wrap(tiltag, 25)), color = "#00B0F6", hjust = "outward", lineheight = 0.8) +
+#  scale_y_continuous(trans = "log10", limits = c(50, 200)) + 
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
   theme
 
