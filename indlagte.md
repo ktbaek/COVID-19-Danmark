@@ -6,7 +6,7 @@ description: Estimering af COVID-19 indlagte uden COVID-19 sygdom
 
 # En stor del af registrerede COVID-19 indlæggelser skyldes ikke COVID-19 sygdom
 
-Kristoffer T. Bæk, PhD - december 2020
+Kristoffer T. Bæk, PhD<br>December 2020
 
 <div class="likely">
     <div class="facebook">Del</div>
