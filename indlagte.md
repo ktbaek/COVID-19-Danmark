@@ -14,6 +14,7 @@ Kristoffer T. Bæk, PhD - december 2020
     <div class="linkedin">Del</div>
 </div>
 
+<br>
 
 Antallet af COVID-19 indlagte er en af de indikatorer folk bruger til at vurdere epidemiens alvor og udvikling. Derudover er antallet af COVID-19 indlagte vigtigt når man vil vurdere hvor meget epidemien belaster hospitalsvæsenet.
 
