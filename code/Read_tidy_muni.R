@@ -42,6 +42,7 @@ muni_population %<>%
 
 muni_all <- muni_tested %>%
   full_join(muni_pos, by = c("Kommune", "Date")) %>%
+  filter(!Kommune == "X100") %>%
   filter(Date > as.Date("2020-02-29"))
 
 

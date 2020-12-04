@@ -164,8 +164,8 @@ Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage.
 [Tilbage til toppen](#)
 
 ## Plots: kommuner og landsdele
-### Ugentligt antal nye positivt testede og antal testede for hver kommune
-Plottet viser det ugentlige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned.
+### Dagligt antal nye positivt testede og antal testede for hver kommune
+Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned.
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse.
 
@@ -175,13 +175,13 @@ For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pos_vs_te
 
 For at se dette plot startende 1. april, klik [her](/figures/muni_10_pos_vs_test_april.png).
 
-For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pos_vs_test_daily.png).
+For at se plot med de **ugentlige** tal, klik [her](/figures/muni_10_pos_vs_test_july.png).
 
 
-![](/figures/muni_10_pos_vs_test_july.png)
+![](/figures/muni_10_pos_vs_test_daily.png)
 
-### Ugentlig procentdel positivt testede for hver kommune
-Plottet viser den ugentlige procentdel af positivt testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.
+### Daglig procentdel positivt testede for hver kommune
+Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit) for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -189,9 +189,9 @@ For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pct_july.
 
 For at se dette plot startende 1. april, klik [her](/figures/muni_10_pct_april.png).
 
-For at se plot med de **daglige** tal, klik [her](/figures/muni_10_pct_daily.png).
+For at se plot med de **ugentlige** tal, klik [her](/figures/muni_10_pct_july.png).
 
-![](/figures/muni_10_pct_july.png)
+![](/figures/muni_10_pct_daily.png)
 
 ### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
 
