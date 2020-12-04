@@ -8,7 +8,12 @@ description: Estimering af COVID-19 indlagte uden COVID-19 sygdom
 
 Kristoffer T. Bæk, PhD - december 2020
 
-<br>
+<div class="likely">
+    <div class="facebook">Del</div>
+    <div class="twitter">Tweet</div>
+    <div class="linkedin">Del</div>
+</div>
+
 
 Antallet af COVID-19 indlagte er en af de indikatorer folk bruger til at vurdere epidemiens alvor og udvikling. Derudover er antallet af COVID-19 indlagte vigtigt når man vil vurdere hvor meget epidemien belaster hospitalsvæsenet.
 
