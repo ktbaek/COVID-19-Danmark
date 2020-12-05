@@ -420,7 +420,7 @@ max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 0.7, color = darken(pct_col, 0.3)) +
+  geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.3)) +
   facet_wrap(~Kommune, scales = "free") +
   facet_wrap(~Landsdel, scales = "free", ncol = 5) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
