@@ -243,6 +243,7 @@ ggsave("../figures/muni_10_pct_daily.png", width = 27, height = 20, units = "cm"
 
 # Figur: Incidens - alle kommuner, heatmap ---------------------------------
 
+no_weeks <- length(unique(muni_wk$Week))
 
 plot_data <- muni_wk %>%
   filter(Week_end_Date > as.Date("2020-04-01")) %>%
@@ -259,7 +260,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(text = element_text(size = 12))
 
 
-ggsave("../figures/muni_all_weekly_incidens_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_incidens_tile.png", width = no_weeks * 0.5, height = 38, units = "cm", dpi = 300)
 
 # Figur: Procent - alle kommuner, heatmap ----------
 
@@ -279,7 +280,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   tile_theme + 
   theme(text = element_text(size = 12))
 
-ggsave("../figures/muni_all_weekly_pos_pct_tile.png", width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_pos_pct_tile.png", width = no_weeks * 0.5, height = 38, units = "cm", dpi = 300)
 
 
 # Figur: Total test - alle kommuner, heatmap ---------------------------------
@@ -301,7 +302,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(text = element_text(size = 12))
 
 
-ggsave("../figures/muni_all_weekly_tests_tile.png",width = 16, height = 38, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_weekly_tests_tile.png",width = no_weeks * 0.5, height = 38, units = "cm", dpi = 300)
 
 
 
@@ -328,7 +329,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
-ggsave("../figures/muni_10_weekly_incidens_tile.png", width = 24, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_incidens_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 # Figur: Procent - udvalgte kommuner, heatmap ----------
 
@@ -348,7 +349,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   tile_theme + 
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
-ggsave("../figures/muni_10_weekly_pct_tile.png", width = 24, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_pct_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 
 
@@ -371,7 +372,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
-ggsave("../figures/muni_10_weekly_tests_tile.png", width = 24, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_weekly_tests_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 
 
@@ -380,15 +381,17 @@ ggsave("../figures/muni_10_weekly_tests_tile.png", width = 24, height = 19, unit
 
 # Figur: Positiv vs testede - landsdele -----------------------------------
 
-plot_data <- landsdele_wk %>%
-  filter(Week_end_Date > as.Date(today) - months(3)) %>%
-  mutate(Positive_wk = Positive_wk * 100) %>%
-  pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
+plot_data <- landsdele %>%
+  filter(Date > as.Date(today) - months(3)) %>%
+  mutate(Positive = Positive * 100) %>%
+  pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
-ggplot(plot_data, aes(Week_end_Date, value)) +
-  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
+ggplot(plot_data, aes(Date, value)) +
+  geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
+  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
   facet_wrap(~Landsdel, scales = "free", ncol = 5) +
-  scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
+  scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
+  scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
@@ -402,14 +405,23 @@ ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 29, height = 14, uni
 
 # Figur: Procent - landsdele -----------------------------------
 
-plot_data <- landsdele_wk %>%
-  filter(Week_end_Date > as.Date(today) - months(3)) %>%
-  mutate(Ratio = Positive_wk / Tested_wk * 100)
+ra <- function(x, n = 7) {
+  stats::filter(x, rep(1 / n, n), sides = 1)
+}
 
-max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
+plot_data <- landsdele %>%
+  filter(Date > as.Date(today) - months(3)) %>%
+  mutate(pct = Positive / Tested * 100) %>%
+  group_by(Landsdel) %>%
+  mutate(ra_pct = ra(pct)) %>%
+  ungroup()
 
-ggplot(plot_data, aes(Week_end_Date, Ratio)) +
-  geom_bar(stat = "identity", position = "stack", fill = pct_col) +
+max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
+
+ggplot(plot_data) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
+  geom_line(aes(Date, ra_pct), size = 0.7, color = darken(pct_col, 0.3)) +
+  facet_wrap(~Kommune, scales = "free") +
   facet_wrap(~Landsdel, scales = "free", ncol = 5) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(

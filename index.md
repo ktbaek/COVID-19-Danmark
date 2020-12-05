@@ -215,6 +215,28 @@ Plottene viser det daglige antal nye positivt testede, antal total testede og pr
 
 ![](/figures/muni_kbharea_pct.png)
 
+### Dagligt antal nye positivt testede og antal testede for hver landsdel
+Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel.
+
+Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse.
+
+[Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+![](/figures/muni_pos_vs_test_landsdele.png)
+
+### Daglig procentdel positivt testede for hver landsdel
+Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit) for de seneste tre måneder for hver landsdel.
+
+[Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_pct_landsdele.png)
+
+
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
 
@@ -230,26 +252,6 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
 
-### Ugentligt antal nye positivt testede og antal testede for hver landsdel
-Plottet viser det ugentlige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel.
-
-Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse.
-
-[Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-![](/figures/muni_pos_vs_test_landsdele.png)
-
-### Ugentlig procentdel positivt testede for hver landsdel
-Plottet viser den ugentlige procentdel af positivt testede for de seneste tre måneder for hver landsdel.
-
-[Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-
-![](/figures/muni_pct_landsdele.png)
 
 [Tilbage til toppen](#)
 

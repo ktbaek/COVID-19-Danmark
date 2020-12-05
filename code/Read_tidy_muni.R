@@ -118,16 +118,16 @@ geo %<>%
   select(-NIVEAU) %>%
   rename(Kommune = TITEL)
 
-landsdele_wk <- muni_wk %>%
+landsdele <- muni_all %>%
   full_join(geo, by = "Kommune") %>%
-  group_by(Landsdel, Week) %>%
-  mutate(Tested_wk = sum(Tested_wk, na.rm = TRUE),
-            Positive_wk = sum(Positive_wk, na.rm = TRUE)) %>%
+  group_by(Landsdel, Date) %>%
+  mutate(Tested = sum(Tested, na.rm = TRUE),
+            Positive = sum(Positive, na.rm = TRUE)) %>%
   ungroup() %>%
-  select(-Kommune, -Befolkningstal) %>%
+  select(-Kommune) %>%
   distinct()
 
-landsdele_wk$Landsdel <- factor(landsdele_wk$Landsdel, levels = landsdele_order)
+landsdele$Landsdel <- factor(landsdele$Landsdel, levels = landsdele_order)
 
 
 
