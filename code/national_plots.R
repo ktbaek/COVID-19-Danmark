@@ -982,7 +982,7 @@ text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noffentlig transport", cex 
 
 y <- 400
 arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-08"), y + max_pos/10, "Restriktioner natteliv\nKøbenhavn/Odense", cex = 0.9, adj = 1)
+text(as.Date("2020-09-08"), y + max_pos/10, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
 
 y <- 600
 arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)

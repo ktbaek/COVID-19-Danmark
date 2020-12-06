@@ -193,28 +193,6 @@ For at se plot med de **ugentlige** tal, klik [her](/figures/muni_10_pct_july.pn
 
 ![](/figures/muni_10_pct_daily.png)
 
-### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
-
-Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-
-![](/figures/muni_NJ7_pos_vs_test.png)
-
-![](/figures/muni_NJ7_pct.png)
-
-### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
-
-Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-
-![](/figures/muni_kbharea_pos_vs_test.png)
-
-![](/figures/muni_kbharea_pct.png)
-
 ### Dagligt antal nye positivt testede og antal testede for hver landsdel
 Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel.
 
@@ -235,6 +213,31 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 
 ![](/figures/muni_pct_landsdele.png)
+
+### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
+
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_kbharea_pos_vs_test.png)
+
+![](/figures/muni_kbharea_pct.png)
+
+
+
+### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
+
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
+
+``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
+
+
+![](/figures/muni_NJ7_pos_vs_test.png)
+
+![](/figures/muni_NJ7_pct.png)
+
 
 
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
