@@ -74,7 +74,7 @@ standard_plot(
 points(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2)
 points(plot_data$Date, plot_data$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pct, by = 0.2), labels = seq(0, max_pct, by = 0.2))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pct, by = 0.5), labels = seq(0, max_pct, by = 0.5))
 
 dev.off()
 
@@ -116,7 +116,7 @@ points(tests_from_may$Date, tests_from_may$NewPositive, type = "b", pch = 19, co
 points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
-text(x = as.Date("2020-08-01"), y = 0, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-09-08"), y = 100, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
 
 par(new = TRUE)
 
