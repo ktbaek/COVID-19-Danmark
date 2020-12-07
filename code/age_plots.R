@@ -146,7 +146,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   tile_theme + 
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
-ggsave("../figures/age_weekly_incidens_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_incidens_tile.png", width = 30, height = 11, units = "cm", dpi = 300)
 
 # Figur: Aldersgrupper, total test incidens, heatmap ----------
 
@@ -172,7 +172,7 @@ ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   tile_theme + 
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
-ggsave("../figures/age_weekly_tests_tile.png", width = 25, height = 11, units = "cm", dpi = 300)
+ggsave("../figures/age_weekly_tests_tile.png", width = 30, height = 11, units = "cm", dpi = 300)
 
 
 # Figur: Aldersgrupper, pct, heatmap ----------

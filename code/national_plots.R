@@ -51,7 +51,7 @@ points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = po
 points(plot_data$Date, plot_data$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-10-14"), y = 64000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
-text(x = as.Date("2020-09-01"), y = 3000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-09-01"), y = 3500, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 10000), labels = seq(0, max_test, by = 10000))
 
@@ -965,8 +965,8 @@ points(plot_data$Date, plot_data$running_avg_pct * 100,
 )
 
 
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = paste0(seq(0, max_pos + 100, by = 200) / 100, " %"))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 200), labels = seq(0, max_pos + 100, by = 200))
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 500), labels = paste0(seq(0, max_pos + 100, by = 500) / 100, " %"))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 500), labels = seq(0, max_pos + 100, by = 500))
 
 y <- 60
 arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1, lend = 1, length = 0.1)
@@ -980,9 +980,9 @@ y <- 120
 arrows(as.Date("2020-08-22"), y + max_pos/7, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noff. transport", cex = 0.9)
 
-y <- 400
-arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-08"), y + max_pos/8, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
+#y <- 400
+#arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
+#text(as.Date("2020-09-08"), y + max_pos/8, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
 
 y <- 600
 arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)
