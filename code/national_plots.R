@@ -978,11 +978,11 @@ text(as.Date("2020-08-13"), y + max_pos/15, "Lukketid udvides", cex = 0.9, adj =
 
 y <- 120
 arrows(as.Date("2020-08-22"), y + max_pos/7, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noffentlig transport", cex = 0.9)
+text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noff. transport", cex = 0.9)
 
 y <- 400
 arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-08"), y + max_pos/10, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
+text(as.Date("2020-09-08"), y + max_pos/8, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
 
 y <- 600
 arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)
@@ -1257,7 +1257,7 @@ ggplot(plot_data, aes(Date, values)) +
   scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 1500)
+    limits = c(0, 2500)
   ) +
   standard_theme
 
@@ -1277,7 +1277,7 @@ ggplot(plot_data, aes(Date, values)) +
   scale_color_manual(name = "", labels = c("Prøver (SSI's dashboard)", "Unikke testede personer"), values = c(darken(test_col, 0.6), lighten(test_col, 0.6))) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 90000)
+    limits = c(0, 120000)
   ) +
   standard_theme
 
