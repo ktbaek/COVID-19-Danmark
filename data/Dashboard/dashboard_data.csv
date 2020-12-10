@@ -1,281 +1,285 @@
 Date;variable;values
-2020-09-24;NewPositive;  559
-2020-09-24;NotPrevPos;53885
-2020-09-24;Antal_døde;    2
-2020-09-24;Indlæggelser;   22
-2020-09-25;NewPositive;  678
-2020-09-25;NotPrevPos;57368
-2020-09-25;Antal_døde;    2
-2020-09-25;Indlæggelser;   21
-2020-09-26;NewPositive;  619
-2020-09-26;NotPrevPos;52161
-2020-09-26;Antal_døde;    1
-2020-09-26;Indlæggelser;   13
-2020-09-27;NewPositive;  424
-2020-09-27;NotPrevPos;46828
-2020-09-27;Antal_døde;    1
-2020-09-27;Indlæggelser;   13
-2020-09-28;NotPrevPos;49143
-2020-09-28;NewPositive;  435
-2020-09-28;Antal_døde;    0
-2020-09-28;Indlæggelser;   18
-2020-09-29;NotPrevPos;45226
-2020-09-29;NewPositive;  392
-2020-09-29;Antal_døde;    1
-2020-09-29;Indlæggelser;   16
-2020-09-30;NotPrevPos;54946
-2020-09-30;NewPositive;  534
-2020-09-30;Antal_døde;    0
-2020-09-30;Indlæggelser;   12
-2020-10-01;NotPrevPos;49136
-2020-10-01;NewPositive;  398
-2020-10-01;Antal_døde;    1
-2020-10-01;Indlæggelser;   19
-2020-10-02;NotPrevPos;56080
-2020-10-02;NewPositive;  536
-2020-10-02;Antal_døde;    1
-2020-10-02;Indlæggelser;   22
-2020-10-03;NotPrevPos;41167
-2020-10-03;NewPositive;  370
-2020-10-03;Antal_døde;    2
-2020-10-03;Indlæggelser;   14
-2020-10-04;NotPrevPos;41791
-2020-10-04;NewPositive;  378
-2020-10-04;Antal_døde;    4
-2020-10-04;Indlæggelser;   11
-2020-10-05;NotPrevPos;36389
-2020-10-05;NewPositive;  377
-2020-10-05;Antal_døde;    1
-2020-10-05;Indlæggelser;   18
-2020-10-06;NotPrevPos;39326
-2020-10-06;NewPositive;  322
-2020-10-06;Antal_døde;    4
-2020-10-06;Indlæggelser;   23
-2020-10-07;NotPrevPos;42279
-2020-10-07;NewPositive;  331
-2020-10-07;Antal_døde;    0
-2020-10-07;Indlæggelser;    6
-2020-10-08;NotPrevPos;52623
-2020-10-08;NewPositive;  446
-2020-10-08;Antal_døde;    2
-2020-10-08;Indlæggelser;   14
-2020-10-09;NotPrevPos;55079
-2020-10-09;NewPositive;  482
-2020-10-09;Antal_døde;    0
-2020-10-09;Indlæggelser;    7
-2020-10-10;NotPrevPos;47934
-2020-10-10;NewPositive;  444
-2020-10-10;Antal_døde;    2
-2020-10-10;Indlæggelser;   12
-2020-10-11;NotPrevPos;35253
-2020-10-11;NewPositive;  340
-2020-10-11;Antal_døde;    2
-2020-10-11;Indlæggelser;   15
-2020-10-12;NotPrevPos;36534
-2020-10-12;NewPositive;  389
-2020-10-12;Antal_døde;    2
-2020-10-12;Indlæggelser;    2
-2020-10-13;NotPrevPos;29670
-2020-10-13;NewPositive;  290
-2020-10-13;Antal_døde;    3
-2020-10-13;Indlæggelser;   21
-2020-10-14;NotPrevPos;41865
-2020-10-14;NewPositive;  492
-2020-10-14;Antal_døde;    1
-2020-10-14;Indlæggelser;   18
-2020-10-15;NotPrevPos;34286
-2020-10-15;NewPositive;  430
-2020-10-15;Antal_døde;    2
-2020-10-15;Indlæggelser;   19
-2020-10-16;NotPrevPos;34831
-2020-10-16;NewPositive;  418
-2020-10-16;Antal_døde;    0
-2020-10-16;Indlæggelser;   20
-2020-10-17;NotPrevPos;37518
-2020-10-17;NewPositive;  500
-2020-10-17;Antal_døde;    2
-2020-10-17;Indlæggelser;   17
-2020-10-19;NotPrevPos;29654
-2020-10-19;NewPositive;  452
-2020-10-19;Antal_døde;    6
-2020-10-19;Indlæggelser;   20
-2020-10-20;NotPrevPos;37028
-2020-10-20;NewPositive;  529
-2020-10-20;Antal_døde;    2
-2020-10-20;Indlæggelser;    1
-2020-10-21;NotPrevPos;43693
-2020-10-21;NewPositive;  630
-2020-10-21;Antal_døde;    2
-2020-10-21;Indlæggelser;    1
-2020-10-22;NotPrevPos;43018
-2020-10-22;NewPositive;  760
-2020-10-22;Antal_døde;    4
-2020-10-22;Indlæggelser;   17
-2020-10-23;NotPrevPos;44244
-2020-10-23;NewPositive;  859
-2020-10-23;Antal_døde;    3
-2020-10-23;Indlæggelser;    4
-2020-10-24;NotPrevPos;46906
-2020-10-24;NewPositive;  789
-2020-10-24;Antal_døde;    3
-2020-10-24;Indlæggelser;   24
-2020-10-25;NotPrevPos;57902
-2020-10-25;NewPositive;  945
-2020-10-25;Antal_døde;    2
-2020-10-25;Indlæggelser;   12
-2020-10-26;NotPrevPos;59536
-2020-10-26;NewPositive; 1056
-2020-10-26;Antal_døde;    6
-2020-10-26;Indlæggelser;    0
-2020-10-27;NotPrevPos;45757
-2020-10-27;NewPositive;  745
-2020-10-27;Antal_døde;    1
-2020-10-27;Indlæggelser;   26
-2020-10-28;NotPrevPos;63659
-2020-10-28;NewPositive; 1017
-2020-10-28;Antal_døde;    6
-2020-10-28;Indlæggelser;   24
-2020-10-29;NotPrevPos;48661
-2020-10-29;NewPositive;  860
-2020-10-29;Antal_døde;    1
-2020-10-29;Indlæggelser;   21
-2020-10-30;NotPrevPos;71059
-2020-10-30;NewPositive; 1191
-2020-10-30;Antal_døde;    3
-2020-10-30;Indlæggelser;   33
-2020-10-31;NotPrevPos;69770
-2020-10-31;NewPositive; 1126
-2020-10-31;Antal_døde;    2
-2020-10-31;Indlæggelser;    4
-2020-11-01;NotPrevPos;61985
-2020-11-01;NewPositive;  948
-2020-11-01;Antal_døde;    2
-2020-11-01;Indlæggelser;   30
-2020-11-02;NotPrevPos;58871
-2020-11-02;NewPositive;  942
-2020-11-02;Antal_døde;    1
-2020-11-02;Indlæggelser;   31
-2020-11-03;NotPrevPos;73710
-2020-11-03;NewPositive; 1353
-2020-11-03;Antal_døde;    4
-2020-11-03;Indlæggelser;   35
-2020-11-04;NotPrevPos;54876
-2020-11-04;NewPositive;  936
-2020-11-04;Antal_døde;    1
-2020-11-04;Indlæggelser;   37
-2020-11-05;NotPrevPos;65062
-2020-11-05;NewPositive; 1223
-2020-11-05;Antal_døde;    4
-2020-11-05;Indlæggelser;   38
-2020-11-06;NotPrevPos;88080
-2020-11-06;NewPositive; 1427
-2020-11-06;Antal_døde;    5
-2020-11-06;Indlæggelser;    2
-2020-11-08;NotPrevPos;67156
-2020-11-08;NewPositive;  891
-2020-11-08;Antal_døde;    3
-2020-11-08;Indlæggelser;   26
-2020-11-09;NotPrevPos;56131
-2020-11-09;NewPositive;  771
-2020-11-09;Antal_døde;    4
-2020-11-09;Indlæggelser;   29
-2020-11-10;NotPrevPos;82162
-2020-11-10;NewPositive; 1066
-2020-11-10;Antal_døde;    3
-2020-11-10;Indlæggelser;   42
-2020-11-12;NotPrevPos;75315
-2020-11-12;NewPositive; 1011
-2020-11-12;Antal_døde;    2
-2020-11-12;Indlæggelser;   41
-2020-11-13;NotPrevPos;71073
-2020-11-13;NewPositive; 1037
-2020-11-13;Antal_døde;    1
-2020-11-13;Indlæggelser;   24
-2020-11-14;NotPrevPos;79860
-2020-11-14;NewPositive; 1078
-2020-11-14;Antal_døde;    1
-2020-11-14;Indlæggelser;   32
-2020-11-15;NotPrevPos;73690
-2020-11-15;NewPositive; 1058
-2020-11-15;Antal_døde;    3
-2020-11-15;Indlæggelser;   28
-2020-11-16;NotPrevPos;70096
-2020-11-16;NewPositive; 1195
-2020-11-16;Antal_døde;    4
-2020-11-16;Indlæggelser;   26
-2020-11-17;NotPrevPos;68750
-2020-11-17;NewPositive; 1220
-2020-11-17;Antal_døde;    4
-2020-11-17;Indlæggelser;   42
-2020-11-18;NotPrevPos;81300
-2020-11-18;NewPositive; 1257
-2020-11-18;Antal_døde;    2
-2020-11-18;Indlæggelser;   50
-2020-11-19;NotPrevPos;79304
-2020-11-19;NewPositive; 1297
-2020-11-19;Antal_døde;    3
-2020-11-19;Indlæggelser;   37
-2020-11-20;NotPrevPos;73876
-2020-11-20;NewPositive; 1257
-2020-11-20;Antal_døde;    5
-2020-11-20;Indlæggelser;   28
-2020-11-23;NotPrevPos;71047
-2020-11-23;NewPositive; 1169
-2020-11-23;Antal_døde;    5
-2020-11-23;Indlæggelser;   32
-2020-11-24;NotPrevPos;81621
-2020-11-24;NewPositive; 1367
-2020-11-24;Antal_døde;    8
-2020-11-24;Indlæggelser;   37
-2020-11-25;NotPrevPos;75856
-2020-11-25;NewPositive; 1183
-2020-11-25;Antal_døde;    5
-2020-11-25;Indlæggelser;   39
-2020-11-26;NotPrevPos;75091
-2020-11-26;NewPositive; 1191
-2020-11-26;Antal_døde;    9
-2020-11-26;Indlæggelser;   38
-2020-11-27;NotPrevPos;84409
-2020-11-27;NewPositive; 1323
-2020-11-27;Antal_døde;    5
-2020-11-27;Indlæggelser;   39
-2020-11-30;NotPrevPos;59994
-2020-11-30;NewPositive; 1129
-2020-11-30;Antal_døde;    8
-2020-11-30;Indlæggelser;   27
-2020-12-01;NotPrevPos;71322
-2020-12-01;NewPositive; 1468
-2020-12-01;Antal_døde;    9
-2020-12-01;Indlæggelser;   44
-2020-12-02;NotPrevPos;78281
-2020-12-02;NewPositive; 1586
-2020-12-02;Antal_døde;    6
-2020-12-02;Indlæggelser;   39
-2020-12-03;NotPrevPos;77754
-2020-12-03;NewPositive; 1605
-2020-12-03;Antal_døde;    6
-2020-12-03;Indlæggelser;   44
-2020-12-04;NotPrevPos;77419
-2020-12-04;NewPositive; 1603
-2020-12-04;Antal_døde;    9
-2020-12-04;Indlæggelser;   42
-2020-12-05;NotPrevPos;93809
-2020-12-05;NewPositive; 2115
-2020-12-05;Antal_døde;   11
-2020-12-05;Indlæggelser;   46
-2020-12-06;NotPrevPos;72831
-2020-12-06;NewPositive; 1745
-2020-12-06;Antal_døde;    7
-2020-12-06;Indlæggelser;   51
-2020-12-07;NotPrevPos;78626
-2020-12-07;NewPositive; 2046
-2020-12-07;Antal_døde;    9
-2020-12-07;Indlæggelser;   64
-2020-12-08;NotPrevPos;77373
-2020-12-08;NewPositive; 2150
-2020-12-08;Antal_døde;    7
-2020-12-08;Indlæggelser;   82
-2020-12-09;NotPrevPos;91417
-2020-12-09;NewPositive; 2558
-2020-12-09;Antal_døde;    3
-2020-12-09;Indlæggelser;   51
+2020-09-24;NewPositive;   559
+2020-09-24;NotPrevPos; 53885
+2020-09-24;Antal_døde;     2
+2020-09-24;Indlæggelser;    22
+2020-09-25;NewPositive;   678
+2020-09-25;NotPrevPos; 57368
+2020-09-25;Antal_døde;     2
+2020-09-25;Indlæggelser;    21
+2020-09-26;NewPositive;   619
+2020-09-26;NotPrevPos; 52161
+2020-09-26;Antal_døde;     1
+2020-09-26;Indlæggelser;    13
+2020-09-27;NewPositive;   424
+2020-09-27;NotPrevPos; 46828
+2020-09-27;Antal_døde;     1
+2020-09-27;Indlæggelser;    13
+2020-09-28;NotPrevPos; 49143
+2020-09-28;NewPositive;   435
+2020-09-28;Antal_døde;     0
+2020-09-28;Indlæggelser;    18
+2020-09-29;NotPrevPos; 45226
+2020-09-29;NewPositive;   392
+2020-09-29;Antal_døde;     1
+2020-09-29;Indlæggelser;    16
+2020-09-30;NotPrevPos; 54946
+2020-09-30;NewPositive;   534
+2020-09-30;Antal_døde;     0
+2020-09-30;Indlæggelser;    12
+2020-10-01;NotPrevPos; 49136
+2020-10-01;NewPositive;   398
+2020-10-01;Antal_døde;     1
+2020-10-01;Indlæggelser;    19
+2020-10-02;NotPrevPos; 56080
+2020-10-02;NewPositive;   536
+2020-10-02;Antal_døde;     1
+2020-10-02;Indlæggelser;    22
+2020-10-03;NotPrevPos; 41167
+2020-10-03;NewPositive;   370
+2020-10-03;Antal_døde;     2
+2020-10-03;Indlæggelser;    14
+2020-10-04;NotPrevPos; 41791
+2020-10-04;NewPositive;   378
+2020-10-04;Antal_døde;     4
+2020-10-04;Indlæggelser;    11
+2020-10-05;NotPrevPos; 36389
+2020-10-05;NewPositive;   377
+2020-10-05;Antal_døde;     1
+2020-10-05;Indlæggelser;    18
+2020-10-06;NotPrevPos; 39326
+2020-10-06;NewPositive;   322
+2020-10-06;Antal_døde;     4
+2020-10-06;Indlæggelser;    23
+2020-10-07;NotPrevPos; 42279
+2020-10-07;NewPositive;   331
+2020-10-07;Antal_døde;     0
+2020-10-07;Indlæggelser;     6
+2020-10-08;NotPrevPos; 52623
+2020-10-08;NewPositive;   446
+2020-10-08;Antal_døde;     2
+2020-10-08;Indlæggelser;    14
+2020-10-09;NotPrevPos; 55079
+2020-10-09;NewPositive;   482
+2020-10-09;Antal_døde;     0
+2020-10-09;Indlæggelser;     7
+2020-10-10;NotPrevPos; 47934
+2020-10-10;NewPositive;   444
+2020-10-10;Antal_døde;     2
+2020-10-10;Indlæggelser;    12
+2020-10-11;NotPrevPos; 35253
+2020-10-11;NewPositive;   340
+2020-10-11;Antal_døde;     2
+2020-10-11;Indlæggelser;    15
+2020-10-12;NotPrevPos; 36534
+2020-10-12;NewPositive;   389
+2020-10-12;Antal_døde;     2
+2020-10-12;Indlæggelser;     2
+2020-10-13;NotPrevPos; 29670
+2020-10-13;NewPositive;   290
+2020-10-13;Antal_døde;     3
+2020-10-13;Indlæggelser;    21
+2020-10-14;NotPrevPos; 41865
+2020-10-14;NewPositive;   492
+2020-10-14;Antal_døde;     1
+2020-10-14;Indlæggelser;    18
+2020-10-15;NotPrevPos; 34286
+2020-10-15;NewPositive;   430
+2020-10-15;Antal_døde;     2
+2020-10-15;Indlæggelser;    19
+2020-10-16;NotPrevPos; 34831
+2020-10-16;NewPositive;   418
+2020-10-16;Antal_døde;     0
+2020-10-16;Indlæggelser;    20
+2020-10-17;NotPrevPos; 37518
+2020-10-17;NewPositive;   500
+2020-10-17;Antal_døde;     2
+2020-10-17;Indlæggelser;    17
+2020-10-19;NotPrevPos; 29654
+2020-10-19;NewPositive;   452
+2020-10-19;Antal_døde;     6
+2020-10-19;Indlæggelser;    20
+2020-10-20;NotPrevPos; 37028
+2020-10-20;NewPositive;   529
+2020-10-20;Antal_døde;     2
+2020-10-20;Indlæggelser;     1
+2020-10-21;NotPrevPos; 43693
+2020-10-21;NewPositive;   630
+2020-10-21;Antal_døde;     2
+2020-10-21;Indlæggelser;     1
+2020-10-22;NotPrevPos; 43018
+2020-10-22;NewPositive;   760
+2020-10-22;Antal_døde;     4
+2020-10-22;Indlæggelser;    17
+2020-10-23;NotPrevPos; 44244
+2020-10-23;NewPositive;   859
+2020-10-23;Antal_døde;     3
+2020-10-23;Indlæggelser;     4
+2020-10-24;NotPrevPos; 46906
+2020-10-24;NewPositive;   789
+2020-10-24;Antal_døde;     3
+2020-10-24;Indlæggelser;    24
+2020-10-25;NotPrevPos; 57902
+2020-10-25;NewPositive;   945
+2020-10-25;Antal_døde;     2
+2020-10-25;Indlæggelser;    12
+2020-10-26;NotPrevPos; 59536
+2020-10-26;NewPositive;  1056
+2020-10-26;Antal_døde;     6
+2020-10-26;Indlæggelser;     0
+2020-10-27;NotPrevPos; 45757
+2020-10-27;NewPositive;   745
+2020-10-27;Antal_døde;     1
+2020-10-27;Indlæggelser;    26
+2020-10-28;NotPrevPos; 63659
+2020-10-28;NewPositive;  1017
+2020-10-28;Antal_døde;     6
+2020-10-28;Indlæggelser;    24
+2020-10-29;NotPrevPos; 48661
+2020-10-29;NewPositive;   860
+2020-10-29;Antal_døde;     1
+2020-10-29;Indlæggelser;    21
+2020-10-30;NotPrevPos; 71059
+2020-10-30;NewPositive;  1191
+2020-10-30;Antal_døde;     3
+2020-10-30;Indlæggelser;    33
+2020-10-31;NotPrevPos; 69770
+2020-10-31;NewPositive;  1126
+2020-10-31;Antal_døde;     2
+2020-10-31;Indlæggelser;     4
+2020-11-01;NotPrevPos; 61985
+2020-11-01;NewPositive;   948
+2020-11-01;Antal_døde;     2
+2020-11-01;Indlæggelser;    30
+2020-11-02;NotPrevPos; 58871
+2020-11-02;NewPositive;   942
+2020-11-02;Antal_døde;     1
+2020-11-02;Indlæggelser;    31
+2020-11-03;NotPrevPos; 73710
+2020-11-03;NewPositive;  1353
+2020-11-03;Antal_døde;     4
+2020-11-03;Indlæggelser;    35
+2020-11-04;NotPrevPos; 54876
+2020-11-04;NewPositive;   936
+2020-11-04;Antal_døde;     1
+2020-11-04;Indlæggelser;    37
+2020-11-05;NotPrevPos; 65062
+2020-11-05;NewPositive;  1223
+2020-11-05;Antal_døde;     4
+2020-11-05;Indlæggelser;    38
+2020-11-06;NotPrevPos; 88080
+2020-11-06;NewPositive;  1427
+2020-11-06;Antal_døde;     5
+2020-11-06;Indlæggelser;     2
+2020-11-08;NotPrevPos; 67156
+2020-11-08;NewPositive;   891
+2020-11-08;Antal_døde;     3
+2020-11-08;Indlæggelser;    26
+2020-11-09;NotPrevPos; 56131
+2020-11-09;NewPositive;   771
+2020-11-09;Antal_døde;     4
+2020-11-09;Indlæggelser;    29
+2020-11-10;NotPrevPos; 82162
+2020-11-10;NewPositive;  1066
+2020-11-10;Antal_døde;     3
+2020-11-10;Indlæggelser;    42
+2020-11-12;NotPrevPos; 75315
+2020-11-12;NewPositive;  1011
+2020-11-12;Antal_døde;     2
+2020-11-12;Indlæggelser;    41
+2020-11-13;NotPrevPos; 71073
+2020-11-13;NewPositive;  1037
+2020-11-13;Antal_døde;     1
+2020-11-13;Indlæggelser;    24
+2020-11-14;NotPrevPos; 79860
+2020-11-14;NewPositive;  1078
+2020-11-14;Antal_døde;     1
+2020-11-14;Indlæggelser;    32
+2020-11-15;NotPrevPos; 73690
+2020-11-15;NewPositive;  1058
+2020-11-15;Antal_døde;     3
+2020-11-15;Indlæggelser;    28
+2020-11-16;NotPrevPos; 70096
+2020-11-16;NewPositive;  1195
+2020-11-16;Antal_døde;     4
+2020-11-16;Indlæggelser;    26
+2020-11-17;NotPrevPos; 68750
+2020-11-17;NewPositive;  1220
+2020-11-17;Antal_døde;     4
+2020-11-17;Indlæggelser;    42
+2020-11-18;NotPrevPos; 81300
+2020-11-18;NewPositive;  1257
+2020-11-18;Antal_døde;     2
+2020-11-18;Indlæggelser;    50
+2020-11-19;NotPrevPos; 79304
+2020-11-19;NewPositive;  1297
+2020-11-19;Antal_døde;     3
+2020-11-19;Indlæggelser;    37
+2020-11-20;NotPrevPos; 73876
+2020-11-20;NewPositive;  1257
+2020-11-20;Antal_døde;     5
+2020-11-20;Indlæggelser;    28
+2020-11-23;NotPrevPos; 71047
+2020-11-23;NewPositive;  1169
+2020-11-23;Antal_døde;     5
+2020-11-23;Indlæggelser;    32
+2020-11-24;NotPrevPos; 81621
+2020-11-24;NewPositive;  1367
+2020-11-24;Antal_døde;     8
+2020-11-24;Indlæggelser;    37
+2020-11-25;NotPrevPos; 75856
+2020-11-25;NewPositive;  1183
+2020-11-25;Antal_døde;     5
+2020-11-25;Indlæggelser;    39
+2020-11-26;NotPrevPos; 75091
+2020-11-26;NewPositive;  1191
+2020-11-26;Antal_døde;     9
+2020-11-26;Indlæggelser;    38
+2020-11-27;NotPrevPos; 84409
+2020-11-27;NewPositive;  1323
+2020-11-27;Antal_døde;     5
+2020-11-27;Indlæggelser;    39
+2020-11-30;NotPrevPos; 59994
+2020-11-30;NewPositive;  1129
+2020-11-30;Antal_døde;     8
+2020-11-30;Indlæggelser;    27
+2020-12-01;NotPrevPos; 71322
+2020-12-01;NewPositive;  1468
+2020-12-01;Antal_døde;     9
+2020-12-01;Indlæggelser;    44
+2020-12-02;NotPrevPos; 78281
+2020-12-02;NewPositive;  1586
+2020-12-02;Antal_døde;     6
+2020-12-02;Indlæggelser;    39
+2020-12-03;NotPrevPos; 77754
+2020-12-03;NewPositive;  1605
+2020-12-03;Antal_døde;     6
+2020-12-03;Indlæggelser;    44
+2020-12-04;NotPrevPos; 77419
+2020-12-04;NewPositive;  1603
+2020-12-04;Antal_døde;     9
+2020-12-04;Indlæggelser;    42
+2020-12-05;NotPrevPos; 93809
+2020-12-05;NewPositive;  2115
+2020-12-05;Antal_døde;    11
+2020-12-05;Indlæggelser;    46
+2020-12-06;NotPrevPos; 72831
+2020-12-06;NewPositive;  1745
+2020-12-06;Antal_døde;     7
+2020-12-06;Indlæggelser;    51
+2020-12-07;NotPrevPos; 78626
+2020-12-07;NewPositive;  2046
+2020-12-07;Antal_døde;     9
+2020-12-07;Indlæggelser;    64
+2020-12-08;NotPrevPos; 77373
+2020-12-08;NewPositive;  2150
+2020-12-08;Antal_døde;     7
+2020-12-08;Indlæggelser;    82
+2020-12-09;NotPrevPos; 91417
+2020-12-09;NewPositive;  2558
+2020-12-09;Antal_døde;     3
+2020-12-09;Indlæggelser;    51
+2020-12-10;NotPrevPos;111358
+2020-12-10;NewPositive;  3132
+2020-12-10;Antal_døde;    14
+2020-12-10;Indlæggelser;    70

@@ -13,7 +13,7 @@ plot_data <-
   full_join(deaths, by = "Date") %>%
   filter(Date > as.Date("2020-02-14"))
 
-# Figure 1 ------------------------------------------------------------------
+# Pos ------------------------------------------------------------------
 
 png("../figures/ntl_pos.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -34,7 +34,7 @@ points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = po
 dev.off()
 
 
-# Figure 2 ------------------------------------------------------------------
+# Tests ------------------------------------------------------------------
 
 png("../figures/ntl_tests.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -51,14 +51,14 @@ points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = po
 points(plot_data$Date, plot_data$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
 text(x = as.Date("2020-10-14"), y = 64000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
-text(x = as.Date("2020-09-01"), y = 3500, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-10-01"), y = 4500, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 10000), labels = seq(0, max_test, by = 10000))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 20000), labels = format(seq(0, max_test, by = 20000), scientific = FALSE ))
 
 dev.off()
 
 
-# Figure 3 ------------------------------------------------------------------
+# Pos% maj ------------------------------------------------------------------
 
 png("../figures/ntl_pct_2.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -78,7 +78,7 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max
 
 dev.off()
 
-# Figure 3A ------------------------------------------------------------------
+# Pos% ------------------------------------------------------------------
 
 png("../figures/ntl_pct_1.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -98,7 +98,7 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 40,
 
 dev.off()
 
-# Figure 4 ------------------------------------------------------------------
+# Pos vs pos% ------------------------------------------------------------------
 
 png("../figures/ntl_pos_pct.png", width = 22, height = 16, units = "cm", res = 300)
 
@@ -140,7 +140,7 @@ axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(te
 dev.off()
 
 
-# Figure 5 ------------------------------------------------------------------
+# Nyindlagte ------------------------------------------------------------------
 
 png("../figures/ntl_hosp.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -165,7 +165,7 @@ axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 100
 dev.off()
 
 
-# Figure 5A ------------------------------------------------------------------
+# Døde ------------------------------------------------------------------
 
 png("../figures/ntl_deaths.png", width = 20, height = 16, units = "cm", res = 300)
 
@@ -207,12 +207,12 @@ double_plot(
 segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-03-15"), y = 58000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
-text(x = as.Date("2020-10-20"), y = 70000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
+text(x = as.Date("2020-03-15"), y = 70000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-11-20"), y = 90000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
 text(x = as.Date("2020-03-12"), y = 9200, labels = "Antal positive", col = pos_col, cex = cex_labels * 0.9, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 10000), labels = seq(0, max_test, by = 10000))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 20000), labels = format(seq(0, max_test, by = 20000), scientific = FALSE ))
 
 par(new = TRUE)
 
@@ -973,12 +973,12 @@ arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1,
 text(as.Date("2020-07-08"), y + max_pos/16, "Forsamling: 100", cex = 0.9, adj = 0)
 
 y <- 170
-arrows(as.Date("2020-08-14"), y + max_pos/13, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-13"), y + max_pos/15, "Lukketid udvides", cex = 0.9, adj = 1)
+arrows(as.Date("2020-08-14"), y + max_pos/12, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-13"), y + max_pos/14, "Lukketid udvides", cex = 0.9, adj = 1)
 
-y <- 120
-arrows(as.Date("2020-08-22"), y + max_pos/7, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-22"), y + max_pos/5, "Masker i\noff. transport", cex = 0.9)
+y <- 140
+arrows(as.Date("2020-08-22"), y + max_pos/6, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-21"), y + max_pos/7, "Masker i off. transport", cex = 0.9, adj = 1)
 
 #y <- 400
 #arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
