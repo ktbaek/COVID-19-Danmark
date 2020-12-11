@@ -50,8 +50,8 @@ points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(
 points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
 points(plot_data$Date, plot_data$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
 
-text(x = as.Date("2020-10-14"), y = 64000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
-text(x = as.Date("2020-10-01"), y = 4500, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-11-28"), y = 96000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
+text(x = as.Date("2020-10-25"), y = 6000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 20000), labels = format(seq(0, max_test, by = 20000), scientific = FALSE ))
 
@@ -207,7 +207,7 @@ double_plot(
 segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-03-15"), y = 70000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-03-15"), y = 77000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-11-20"), y = 90000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
 text(x = as.Date("2020-03-12"), y = 9200, labels = "Antal positive", col = pos_col, cex = cex_labels * 0.9, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
