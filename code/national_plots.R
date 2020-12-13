@@ -1257,7 +1257,7 @@ ggplot(plot_data, aes(Date, values)) +
   scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 2500)
+    limits = c(0, ceiling(max(plot_data$values) / 1000) * 1000)
   ) +
   standard_theme
 
@@ -1274,13 +1274,49 @@ plot_data %<>% filter(Date > as.Date(today) - weeks(4),
 ggplot(plot_data, aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
   labs(y = "Antal", x = "Dato", title = "Testede: 'Prøver' vs. testede personer") +
-  scale_color_manual(name = "", labels = c("Prøver (SSI's dashboard)", "Unikke testede personer"), values = c(darken(test_col, 0.6), lighten(test_col, 0.6))) +
+  scale_color_manual(name = "", labels = c("Prøvesvar", "Prøvetagning"), values = c(darken(test_col, 0.6), lighten(test_col, 0.6))) +
   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
   scale_y_continuous(
-    limits = c(0, 120000)
+    limits = c(0, ceiling(max(plot_data$values) / 10000) * 10000)
   ) +
   standard_theme
 
 ggsave("../figures/ntl_test_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 
+
+
+# Deaths all vs covid -----------------------------------------------------
+
+cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
+
+dst_deaths_5yr %>%
+  mutate(Date = paste0("2020M", sprintf("%02d", Month), Day)) %>%
+  select(-Month, -Day) %>%
+  pivot_longer(-Date, names_to = "year", values_to = "Deaths") %>%
+  mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
+         Deaths = as.double(Deaths)) %>%
+  group_by(Date) %>%
+  summarize(avg_5yr = mean(Deaths, na.rm = TRUE),
+            max_5yr = max(Deaths, na.rm = TRUE),
+            min_5yr = min(Deaths, na.rm = TRUE)) %>%
+  ungroup() %>%
+  full_join(dst_deaths, by = "Date") %>%
+  filter(!is.na(Y2020)) %>%
+  mutate(Date = as.Date(paste0("2020-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+  full_join(deaths, by = "Date") %>%
+  ggplot() +
+  geom_bar(stat="identity",position = "identity", aes(Date, Y2020, fill = "all"), width = 1) +
+  geom_bar(stat="identity",position = "identity", aes(Date, Antal_døde, fill = "covid"), width = 1) +
+  #geom_ribbon(aes(x=Date, ymax=max_5yr, ymin=min_5yr, fill="average"), alpha=.4) +
+  #geom_line(aes(Date, ra(avg_5yr)), color = "red") +
+  stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) +  #, color = variable))+
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark") + #, caption = "Graf: covid19danmark.dk\nData: Danmarks Statistik og SSI") +
+  scale_fill_manual(name = "", labels = c("Alle i 2020", "COVID-19"), values = cols[1:2]) +
+  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "Gennemsnit alle 2020"), values = cols[3:4]) +
+  standard_theme + 
+  theme(legend.position = "top",
+        plot.caption = element_text(color = "gray"))
+
+ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 14, units = "cm", dpi = 300)

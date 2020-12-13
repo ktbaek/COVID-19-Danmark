@@ -40,9 +40,10 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
 
+<!--
  [Download PDF (A4)](/figures/Covid-19-Danmark.pdf)
  med de vigtigste plots for hele landet.
-
+-->
 
 ### Dagligt antal nyindlagte og dødsfald
 Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
@@ -330,3 +331,13 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 ![](/figures/age_group_admitted_pos_young.png)
 
 [Tilbage til toppen](#)
+
+## Plots: Øvrige sammenligninger
+
+### Dagligt antal dødsfald i Danmark
+Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit). 
+
+``SSI datasæt: 'Deaths_over_time', Danmarks Statistik: DODC1``
+
+![](/figures/dst_deaths_covid_all.png)
+

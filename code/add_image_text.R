@@ -4,6 +4,7 @@ add_image_text <- function(path,filename, language) {
   
   if(language == "en") text <- "Kristoffer T. Bæk, covid19danmark.dk, data source: SSI"
   if(language == "dk") text <- "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI"
+  if(language == "dk_dst") text <- "Kristoffer T. Bæk, covid19danmark.dk, datakilder: Danmarks Statistik og SSI"
   
   img %<>% image_annotate(text, 
                           size = 34, 

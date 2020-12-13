@@ -32,6 +32,7 @@ source("add_image_text.R")
 
 add_text_to_images(path = "../figures/", startswith = "ntl", language = "dk")
 add_text_to_images(path = "../figures/", startswith = "en", language = "en")
+add_text_to_images(path = "../figures/", startswith = "dst", language = "dk_dst")
 
 
 source("Read_tidy_muni.R")
