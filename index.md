@@ -292,7 +292,7 @@ Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkn
 
 Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
 
-``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: FOLK1A``
+``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
 
 ![](/figures/age_weekly_incidens_tile.png)
