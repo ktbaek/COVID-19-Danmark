@@ -332,7 +332,7 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 
 [Tilbage til toppen](#)
 
-## Plots: Øvrige sammenligninger
+## Plots: øvrige sammenligninger
 
 ### Dagligt antal dødsfald i Danmark
 Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit). 
@@ -340,4 +340,6 @@ Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid
 ``SSI datasæt: 'Deaths_over_time', Danmarks Statistik: DODC1``
 
 ![](/figures/dst_deaths_covid_all.png)
+
+[Tilbage til toppen](#)
 
