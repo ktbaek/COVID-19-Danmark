@@ -292,7 +292,7 @@ Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkn
 
 Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
 
-``SSI datasæt: 'Cases_by_age', DST datasæt: Befolkningsfordeling på aldersgrupper``
+``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: FOLK1A``
 
 
 ![](/figures/age_weekly_incidens_tile.png)
@@ -337,7 +337,9 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 ### Dagligt antal dødsfald i Danmark
 Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit). 
 
-``SSI datasæt: 'Deaths_over_time', Danmarks Statistik: 'DODC1'``
+Total antal daglige dødsfald opdateres fredage.
+
+``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
 
 ![](/figures/dst_deaths_covid_all.png)
 

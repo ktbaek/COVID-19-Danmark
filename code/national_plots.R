@@ -1285,7 +1285,6 @@ ggsave("../figures/ntl_test_vs_dashboard.png", width = 18, height = 12, units = 
 
 
 
-
 # Deaths all vs covid -----------------------------------------------------
 
 cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
