@@ -5,6 +5,7 @@ cex_axis <- 1.4
 
 max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
 max_test <- ceiling(max(tests$Tested) / 5000) * 5000
+max_admit <- ceiling(max(admitted$Total) / 20) * 20
 max_pct <- ceiling(max(tests_from_may$pct_confirmed, na.rm = TRUE) * 5) / 5
 
 plot_data <-
@@ -147,7 +148,7 @@ png("../figures/ntl_hosp.png", width = 20, height = 16, units = "cm", res = 300)
 standard_plot(
   title = "Dagligt antal nyindlagte med positiv test",
   y_label_dist = 4,
-  max_y_value = 100,
+  max_y_value = max_admit,
   x_by = "2 months",
   start_date = "2020-02-15"
 )
@@ -160,7 +161,7 @@ points(plot_data$Date, plot_data$running_avg_admit, type = "l", pch = 19, col = 
 # text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
 # text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 100, by = 20), labels = seq(0, 100, by = 20))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_admit, by = 20), labels = seq(0, max_admit, by = 20))
 
 dev.off()
 
