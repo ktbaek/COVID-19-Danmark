@@ -47,12 +47,22 @@ week_df %<>%
   rename(Date = Week_end_Date) 
 
 
-
-
 #tests
 abs(diff(unique(week_df$Date)))
 as_date(min(week_df$Date))
 as_date(max(week_df$Date))
+
+#export csv age group data file
+week_df %>%
+  filter(!Aldersgruppe == "I alt") %>%
+  rename(testede = Antal_testede) %>%
+  pivot_longer(cols = c(positive, testede), names_to = "Variable", values_to = "Value") %>%
+  group_by(Aldersgruppe, Variable) %>%
+  mutate(Weekly_diff = c(0, diff(Value))) %>% 
+  write_csv2("../data/age_groups_weekly.csv")
+
+
+
 
 # Arrange ADMITTED data weekly --------------------------------------------------
 
