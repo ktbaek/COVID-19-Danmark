@@ -7,7 +7,7 @@ description: Estimering af det faktiske antal SARS-CoV-2 smittede
 # Model for Covid-19 smitteudviklingen i Danmark
 Kristoffer T. Bæk og Kasper P. Kepp
 
-Senest opdateret 14. december 2020.
+Senest opdateret 15. december 2020.
 
 <div class="likely">
     <div class="facebook">Del</div>
