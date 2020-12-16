@@ -1,5 +1,6 @@
 
 ra_lwd <- 3
+seg_lwd <- 1.5
 cex_labels <- 1.4
 cex_axis <- 1.4
 
@@ -205,8 +206,8 @@ double_plot(
   start_date = "2020-02-15"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = 2, col = alpha(test_col, 0.6), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = pos_col, lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = seg_lwd, col = alpha(test_col, 0.6), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = pos_col, lend = 1)
 
 text(x = as.Date("2020-03-15"), y = 77000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-11-20"), y = 90000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
@@ -480,9 +481,9 @@ standard_plot(
   x_by = "2 months",
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 2, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = alpha(pos_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd, col = alpha(admit_col, 0.7), lend = 1)
 
 points(plot_data$Date, plot_data$running_avg_pos,
   type = "l",
@@ -594,9 +595,9 @@ double_plot(
   start_date = "2020-02-15"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = 2, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = seg_lwd, col = alpha(pct_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = seg_lwd, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = seg_lwd, col = alpha(admit_col, 0.7), lend = 1)
 
 points(plot_data$Date, plot_data$running_avg_pct,
   type = "l",
@@ -713,9 +714,9 @@ double_plot(
   start_date = "2020-02-15"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = 2, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = alpha(pos_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = seg_lwd, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = seg_lwd, col = alpha(death_col, 0.7), lend = 1)
 
 points(plot_data$Date, plot_data$running_avg_pos,
   type = "l",
@@ -834,9 +835,9 @@ double_plot(
   start_date = "2020-02-15"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = 2, col = alpha(pct_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = 2, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = 2, col = alpha(death_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = seg_lwd, col = alpha(pct_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = seg_lwd, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = seg_lwd, col = alpha(death_col, 0.7), lend = 1)
 
 points(plot_data$Date, plot_data$running_avg_pct,
   type = "l",

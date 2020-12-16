@@ -154,7 +154,7 @@ max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
   geom_line(aes(Date, ra_pct), size = 0.7, color = darken(pct_col, 0.3)) +
-  facet_wrap(~Kommune, scales = "free") +
+  facet_wrap(~Kommune, scales = "free", ncol = 8) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
@@ -162,7 +162,7 @@ ggplot(plot_data) +
   labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for alle kommuner") +
   facet_theme
 
-ggsave("../figures/muni_all_pct_july.png", width = 46, height = 34, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_pct_july.png", width = 42, height = 47, units = "cm", dpi = 300)
 
 
 # Figur: Procent - uge, udvalgte kommuner fra april --------
