@@ -39,11 +39,7 @@ Begreberne opsummeres på nedenstående figur.
 
 ![](/figures/Tested_explanation.png) 
 
-### Bagudrettet opdatering af data
 
-SSI foretager typisk omfattende opdatering af testdata 2 dage tilbage i tiden. 
-
-![](/figures/retrospective_data.png) 
 
 
 
@@ -112,12 +108,6 @@ Indlægges en person mere end 48 timer før deres første positive test for COVI
 Det **ugentlige antal nyindlagte** har jeg beregnet som summen af det daglige antal nyindlagte fra torsdag til og med onsdag. 
 
 
-### Bagudrettet opdatering af data
-
-SSI foretager typisk omfattende opdatering af data for nyindlæggelser 1 dag tilbage i tiden. 
-
-![](/figures/retrospective_admit.png) 
-
 
 ## Døde
 
@@ -130,14 +120,28 @@ Dagen hvor en person er registreret død.
 ### Antal døde
 Antal døde registreret på en given dag. En person indgår, hvis de er registreret i enten CPR eller Dødsårsagsregisteret. Er en person registreret både i CPR og Dødsårsagsregisteret med forskellige dødsdatoer, bruges datoen angivet i CPR.
 
-### Bagudrettet opdatering af data
+## Bagudrettet opdatering af data
+
+### Tests
+
+SSI foretager typisk omfattende opdatering af testdata 2 dage tilbage i tiden. 
+
+![](/figures/retrospective_data.png) 
+
+
+### Nyindlæggelser
+
+SSI foretager typisk omfattende opdatering af data for nyindlæggelser 1 dag tilbage i tiden. 
+
+![](/figures/retrospective_admit.png) 
+
+
+
+### Døde
 
 SSI foretager typisk omfattende opdatering af data for dødsfald 1-2 dage tilbage i tiden, nogle gange længere tilbage, men i mindre grad. 
 
 ![](/figures/retrospective_deaths.png) 
-
-
-
 
 
 
