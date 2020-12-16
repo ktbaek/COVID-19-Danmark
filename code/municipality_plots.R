@@ -110,6 +110,7 @@ ggplot(plot_data, aes(Date, value)) +
 ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 
+
 # -------------------------------------------------------------------------
 
 # Figur: Procent - uge, udvalgte kommuner 3 mdr --------

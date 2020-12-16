@@ -884,15 +884,15 @@ plot(0,
   axes = FALSE,
   cex = 1.2,
   cex.axis = cex_axis,
-  ylim = c(0, 600),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
+  ylim = c(0, 3500),
+  xlim = c(as.Date("2020-08-15"), as.Date(today) - 1),
 )
 
 
 
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 1, col = alpha(pos_col, 0.5), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 1, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 1, col = alpha(admit_col, 0.7), lend = 1)
+segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = "white", lend = 1)
+segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
 
 points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
   type = "l",
