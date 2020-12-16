@@ -23,7 +23,7 @@ standard_plot(
   title = "Dagligt antal nye positivt testede",
   max_y_value = max_pos,
   x_by = "2 months",
-  y_label_dist = 4
+  y_label_dist = 5
 )
 
 axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
@@ -108,7 +108,7 @@ double_plot(
   title = "Procent vs. antal nye positivt testede",
   y_label = "Antal",
   y2_label = "Procent",
-  y_label_dist = 4,
+  y_label_dist = 5,
   max_y_value = max_pos,
   x_by = "1 month",
   start_date = "2020-05-01"
@@ -476,7 +476,7 @@ png("../figures/ntl_postest_admitted_barplot_2.png", width = 20, height = 16, un
 
 standard_plot(
   title = "Antal positivt testede vs. nyindlagte",
-  y_label_dist = 4,
+  y_label_dist = 5,
   max_y_value = max_pos,
   x_by = "2 months",
 )
