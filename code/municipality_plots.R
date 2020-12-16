@@ -33,7 +33,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
   facet_theme
 
-ggsave("../figures/muni_10_pos_vs_test_july.png", width = 30, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_pos_vs_test_july.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 # Figur: Positiv vs testede - alle kommuner, 3 mdr-----------------
 plot_data <- muni_all %>%
@@ -44,7 +44,7 @@ plot_data <- muni_all %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
   geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
-  facet_wrap(~Kommune, scales = "free") +
+  facet_wrap(~Kommune, scales = "free", ncol = 8) +
   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
@@ -56,25 +56,7 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for alle kommuner") +
   facet_theme
 
-# plot_data <- muni_wk %>%
-#   filter(Week_end_Date > as.Date(today) - months(3)) %>%
-#   mutate(Positive_wk = Positive_wk * 100) %>%
-#   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
-# 
-# ggplot(plot_data, aes(Week_end_Date, value)) +
-#   geom_line(stat = "identity", position = "identity", size = 2, aes(color = variable)) +
-#   facet_wrap(~Kommune, scales = "free") +
-#   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-#   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-#   scale_y_continuous(
-#     name = "Testede",
-#     sec.axis = sec_axis(~ . / 100, name = "Positive"),
-#     limits = c(0, NA)
-#   ) +
-#   labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for alle kommuner") +
-#   facet_theme
-
-ggsave("../figures/muni_all_pos_vs_test_july.png", width = 54, height = 36, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_pos_vs_test_july.png", width = 42, height = 48, units = "cm", dpi = 300)
 
 # Figur: Positiv vs testede - udvalgte kommuner fra april ------------------
 
@@ -99,7 +81,7 @@ ggplot(plot_data, aes(Week_end_Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for udvalgte kommuner") +
   facet_theme
 
-ggsave("../figures/muni_10_pos_vs_test_april.png", width = 30, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_pos_vs_test_april.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 
 # Figur: Daglige positiv vs testede - udvalgte kommuner 3 mdr --------
@@ -125,7 +107,7 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for udvalgte kommuner") +
   facet_theme
 
-ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 30, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 
 # -------------------------------------------------------------------------
@@ -389,7 +371,7 @@ plot_data <- landsdele %>%
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
   geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
-  facet_wrap(~Landsdel, scales = "free", ncol = 5) +
+  facet_wrap(~Landsdel, scales = "free", ncol = 4) +
   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
@@ -398,10 +380,10 @@ ggplot(plot_data, aes(Date, value)) +
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal nye positive og testede for landsdele") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for landsdele") +
   facet_theme
 
-ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
+ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 23, height = 15, units = "cm", dpi = 300)
 
 # Figur: Procent - landsdele -----------------------------------
 
@@ -422,15 +404,15 @@ ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
   geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.3)) +
   facet_wrap(~Kommune, scales = "free") +
-  facet_wrap(~Landsdel, scales = "free", ncol = 5) +
+  facet_wrap(~Landsdel, scales = "free", ncol = 4) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Ugentlig procent positivt testede for landsdele") +
+  labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for landsdele") +
   facet_theme
 
-ggsave("../figures/muni_pct_landsdele.png", width = 29, height = 14, units = "cm", dpi = 300)
+ggsave("../figures/muni_pct_landsdele.png", width = 23, height = 14, units = "cm", dpi = 300)
 
 
 # Figur: Positiv vs testede - NJ kommuner, 1 md------------------
@@ -515,7 +497,7 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for Københavnsområdet") +
   facet_theme
 
-ggsave("../figures/muni_kbharea_pos_vs_test.png", width = 28, height = 16, units = "cm", dpi = 300)
+ggsave("../figures/muni_kbharea_pos_vs_test.png", width = 26, height = 17, units = "cm", dpi = 300)
 
 
 # Figur: Procent - København og omegn, 1 md --------
@@ -545,7 +527,7 @@ ggplot(plot_data) +
   labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for Københavnsområdet") +
   facet_theme
 
-ggsave("../figures/muni_kbharea_pct.png", width = 25, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_kbharea_pct.png", width = 25, height = 17, units = "cm", dpi = 300)
 
 # procent med og uden nordjylland -----------------------------------------
 nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
