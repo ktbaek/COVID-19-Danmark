@@ -216,14 +216,6 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 ![](/figures/muni_pct_landsdele.png)
 
-### Dagligt antal nyindlæggelser for hver region
-
-Plottet viser det daglige antal nyindlæggelser i hver region (inkl. 7-dages bagudrettet gennemsnit).
-
-``SSI datasæt: 'Newly_admitted_over_time'``
-
-
-![](/figures/muni_admit_region.png)
 
 
 
@@ -267,6 +259,17 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 ![](/figures/muni_10_weekly_pct_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
+
+### Daglige epidemi-indikatorer for hver region
+
+Plottet viser det daglige antal nyindlæggelser, procent positivt testede, og antal positivt testede for de seneste tre måneder.
+
+``SSI datasæt: 'Newly_admitted_over_time', 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series'``
+
+
+![](/figures/muni_region_all.png)
+
+
 
 
 [Tilbage til toppen](#)
