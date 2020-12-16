@@ -216,6 +216,17 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 ![](/figures/muni_pct_landsdele.png)
 
+### Dagligt antal nyindlæggelser for hver region
+
+Plottet viser det daglige antal nyindlæggelser i hver region (inkl. 7-dages bagudrettet gennemsnit).
+
+``SSI datasæt: 'Newly_admitted_over_time'``
+
+
+![](/figures/muni_admit_region.png)
+
+
+
 ### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
 
 Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
