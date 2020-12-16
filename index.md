@@ -15,11 +15,9 @@ Senest opdateret 16. december 2020 efter kl 14.
 
 ## Data
 
-Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) hvor de data der kan downloades opdateres mandag-fredag.
+Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
-
-Befolkningstal per aldersgruppe er hentet på [Danmarks Statistik](https://statbank.dk)
 
 Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forklaring.md).
 
