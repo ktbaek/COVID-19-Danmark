@@ -603,18 +603,22 @@ muni_all %>%
 
 ggsave("../figures/muni_region_all.png", width = 23, height = 14, units = "cm", dpi = 300)
 
+region_pop <- geo %>%
+  full_join(muni_pop, by = "Kommune") %>%
+  group_by(Region) %>%
+  summarize(Pop = sum(Befolkningstal, na.rm = TRUE))
+
 muni_all %>%
   full_join(geo, by = "Kommune") %>%
-  full_join(muni_pop, by = "Kommune") %>%
   group_by(Region, Date) %>%
   mutate(Tested = sum(Tested, na.rm = TRUE),
-         Positive = sum(Positive, na.rm = TRUE),
-         Pop = sum(Befolkningstal, na.rm = TRUE)) %>%
+         Positive = sum(Positive, na.rm = TRUE)) %>%
   ungroup() %>%
-  select(-Kommune, -Landsdel, -Befolkningstal) %>%
+  select(-Kommune, -Landsdel) %>%
   distinct() %>%
   select(-Tested) %>%
   full_join(x, by = c("Region", "Date")) %>%
+  full_join(region_pop, by = "Region") %>%
   mutate(Positive = Positive / Pop * 100000,
          Admitted = Admitted / Pop * 100000) %>%
   select(-Pop) %>%
