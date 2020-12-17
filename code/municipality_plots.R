@@ -561,3 +561,69 @@ muni_all %>%
 ggsave("../figures/muni_pct_stratified.png", width = 20, height = 12, units = "cm", dpi = 300)
 
 
+
+
+
+
+# indlagte per region -----------------------------------------------------
+
+ra <- function(x, n = 7) {
+  stats::filter(x, rep(1 / n, n), sides = 1)
+}
+
+plot_data <- admitted %>%
+  select(-running_avg_admit, -Total, -`Ukendt Region`) %>%
+  filter(Date > as.Date(today) - months(3)) %>%
+  pivot_longer(-Date, names_to = "Region", values_to = "value") %>%
+  group_by(Region) %>%
+  mutate(ra_admitted = ra(value)) %>%
+  ungroup()
+
+max_y_value <- ceiling(max(plot_data$value, na.rm = TRUE))
+
+
+ggplot(plot_data) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value), fill = alpha(admit_col, 0.8), width = 1) +
+  geom_line(aes(Date, ra_admitted), size = 1, color = darken(admit_col, 0.3)) +
+  facet_wrap(~Region, scales = "free", ncol = 5) +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_y_continuous(
+    limits = c(0, max_y_value)
+  ) +
+  labs(y = "Antal indlæggelser", x = "Dato", title = "Dagligt antal nyindlæggelser for hver region") +
+  facet_theme
+
+ggsave("../figures/muni_admit_region.png", width = 25, height = 8, units = "cm", dpi = 300)
+
+x <- admitted %>%
+  select(-running_avg_admit, -Total, -`Ukendt Region`) %>%
+  pivot_longer(-Date, names_to = "Region", values_to = "Admitted") 
+
+muni_all %>%
+  full_join(geo, by = "Kommune") %>%
+  group_by(Region, Date) %>%
+  mutate(Tested = sum(Tested, na.rm = TRUE),
+         Positive = sum(Positive, na.rm = TRUE)) %>%
+  ungroup() %>%
+  select(-Kommune, -Landsdel) %>%
+  distinct() %>%
+  mutate(pct = Positive / Tested * 100) %>%
+  select(-Tested) %>%
+  full_join(x, by = c("Region", "Date")) %>%
+  pivot_longer(c(-Date, -Region), names_to = "variable", values_to = "value") %>%
+  filter(Date > as.Date(today) - months(3)) %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable),  width = 1) +
+  #geom_line(aes(Date, ra_admitted), size = 1, color = darken(admit_col, 0.3)) +
+  facet_grid(variable ~ Region, scales = "free") +
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positivprocent", "Positive"), values = c(admit_col, pct_col, pos_col)) +
+  labs(y = "Værdi", x = "Dato", title = "Daglige indikatorer for hver region") +
+  facet_theme +
+  theme(strip.text.y = element_blank(),
+        legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'),
+        panel.grid.minor.x = element_blank())
+
+ggsave("../figures/muni_region_all.png", width = 23, height = 14, units = "cm", dpi = 300)
+
