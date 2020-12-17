@@ -360,14 +360,6 @@ Total antal daglige dødsfald opdateres fredage.
 
 ![](/figures/dst_deaths_covid_all.png)
 
-### Dagligt antal dødsfald i Danmark
-Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit). 
-
-Total antal daglige dødsfald opdateres fredage.
-
-``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
-
-![](/figures/dst_deaths_covid_all.png)
 
 ### Dagligt antal akutindlæggelser i Danmark
 Plottet viser: 
