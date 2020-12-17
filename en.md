@@ -6,7 +6,7 @@ Description: Plots showing the Covid-19 epidemic in Denmark
 
 # Plots showing the development of the Covid-19 epidemic in Denmark.
 
-Last updated 16 December 2020.
+Last updated 17 December 2020.
 
 <div class="likely">
     <div class="facebook">Share</div>
