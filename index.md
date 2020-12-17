@@ -377,7 +377,9 @@ Plottet viser:
 
 Data for 2008-18 stammer fra Danmarks Statistik (Susanne Brondbjerg via Ulrik Gerdes) og omfatter ikke indlæggelser på privathospitaler eller på psykiatriske afdelinger.
 
-Det skal bemærkes at der er ca. dobbelt så mange *indlæggelser* (akut + ikke-akut) som *indlagte personer* i løbet af et år. 
+Det skal bemærkes at der er ca. dobbelt så mange *indlæggelser* (akut + ikke-akut) som *indlagte personer* i løbet af et år.
+
+``SSI datasæt: 'Newly_admitted_over_time'``
 
 ![](/figures/dst_admissions_covid_all.png)
 
