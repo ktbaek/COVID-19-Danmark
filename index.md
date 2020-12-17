@@ -262,12 +262,17 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 ### Daglige epidemi-indikatorer for hver region
 
-Plottet viser det daglige antal nyindlæggelser, procent positivt testede, og antal positivt testede for de seneste tre måneder.
+Øverste plot viser det daglige antal nyindlæggelser, procent positivt testede, og antal positivt testede for de seneste tre måneder for hver region.
+
+Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede per 100.000 indbyggere for de seneste tre måneder for hver region.
 
 ``SSI datasæt: 'Newly_admitted_over_time', 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series'``
 
 
 ![](/figures/muni_region_all.png)
+
+![](/figures/muni_region_incidens.png)
+
 
 
 
