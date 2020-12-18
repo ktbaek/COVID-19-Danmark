@@ -231,17 +231,8 @@ Plottene viser det daglige antal nye positivt testede, antal total testede og pr
 ![](/figures/muni_kbharea_pct.png)
 
 
-
-### Dagligt antal positive, testede og procentdel positivt testede i syv nordjyske kommuner
-
-Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-
-![](/figures/muni_NJ7_pos_vs_test.png)
-
-![](/figures/muni_NJ7_pct.png)
+Se tilsvarende grafer for de syv nordjyske kommuner der var nedlukket i november 
+[her](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/muni_NJ7_pos_vs_test.png) og [her](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/muni_NJ7_pct.png).
 
 
 
