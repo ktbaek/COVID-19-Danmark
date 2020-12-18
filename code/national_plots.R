@@ -352,52 +352,52 @@ dev.off()
 # Rt admitted -------------------------------------------------------------
 
 
-png("../figures/ntl_rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(rt_admitted$date_sample, rt_admitted$estimate,
-  type = "l",
-  pch = 19,
-  ylab = "",
-  xlab = "",
-  axes = TRUE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(0, 2),
-  las = 1,
-  col = "darkgray",
-  lwd = 2,
-  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Kontakttal (indlagte) vs. nyindlagte",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-points(admitted$Date, admitted$Total / 24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
-points(admitted$Date, admitted$running_avg_admit / 24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-
-text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-07-10"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
-abline(h = 1, col = "gray")
-
-
-dev.off()
-
-
-
+# png("../figures/ntl_rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
+# par(family = "lato", mar = c(5, 8, 5, 2))
+# 
+# plot(rt_admitted$date_sample, rt_admitted$estimate,
+#   type = "l",
+#   pch = 19,
+#   ylab = "",
+#   xlab = "",
+#   axes = TRUE,
+#   cex = 1.2,
+#   cex.axis = cex_axis,
+#   ylim = c(0, 2),
+#   las = 1,
+#   col = "darkgray",
+#   lwd = 2,
+#   xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
+# )
+# 
+# mtext(
+#   text = "Kontakttal (indlagte) vs. nyindlagte",
+#   side = 3, # side 1 = bottom
+#   line = 1,
+#   cex = 1.5,
+#   font = 2
+# )
+# 
+# mtext(
+#   text = "Dato",
+#   side = 1, # side 1 = bottom
+#   line = 3,
+#   cex = cex_labels,
+#   font = 2
+# )
+# 
+# points(admitted$Date, admitted$Total / 24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
+# points(admitted$Date, admitted$running_avg_admit / 24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
+# 
+# text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2)
+# text(x = as.Date("2020-07-10"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
+# abline(h = 1, col = "gray")
+# 
+# 
+# dev.off()
+# 
+# 
+# 
 
 
 
@@ -1321,3 +1321,41 @@ dst_deaths_5yr %>%
         plot.caption = element_text(color = "gray"))
 
 ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 14, units = "cm", dpi = 300)
+
+
+plot_data <- dst_deaths_5yr %>%
+  mutate(Date = paste0("2020M", sprintf("%02d", Month), Day)) %>%
+  select(-Month, -Day) %>%
+  pivot_longer(-Date, names_to = "year", values_to = "Deaths") %>%
+  mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
+         Deaths = as.double(Deaths)) %>%
+  group_by(Date) %>%
+  summarize(avg_5yr = mean(Deaths, na.rm = TRUE)) %>%
+  ungroup() %>%
+  full_join(dst_deaths, by = "Date") %>%
+  filter(!is.na(Y2020)) %>%
+  mutate(Date = as.Date(paste0("2020-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+  full_join(deaths, by = "Date") %>%
+  group_by(Date=floor_date(Date + 4, "1 week")) %>%
+  summarize(across(where(is.numeric), sum)) %>%
+  filter(!is.na(Y2020)) %>%
+  mutate(Antal_døde = ifelse(is.na(Antal_døde), 0, Antal_døde)) %>%
+  mutate(Non_covid = Y2020 - Antal_døde) %>%
+  select(-Y2020) %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "value") 
+
+cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
+
+  ggplot(plot_data) +
+  geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable)) +
+  geom_line(data = subset(plot_data, variable == "avg_5yr"), aes(Date, value, color = "average"), size = 1) + 
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  labs(x = "Dato", y = "Antal døde", title = "Ugentlige dødsfald i Danmark 2020") + 
+  scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
+  scale_color_manual(name = "", labels = "Gennemsnit 2015-19", values = cols[3]) +
+  standard_theme + 
+  theme(legend.position = "top",
+        plot.caption = element_text(color = "gray"))
+
+  ggsave("../figures/dst_deaths_covid_all_wk.png", width = 18, height = 14, units = "cm", dpi = 300)
+  
