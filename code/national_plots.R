@@ -209,7 +209,7 @@ double_plot(
 segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = seg_lwd, col = alpha(test_col, 0.6), lend = 1)
 segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = pos_col, lend = 1)
 
-text(x = as.Date("2020-03-15"), y = 77000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
+text(x = as.Date("2020-03-15"), y = 100000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
 text(x = as.Date("2020-11-20"), y = 90000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
 text(x = as.Date("2020-03-12"), y = 9200, labels = "Antal positive", col = pos_col, cex = cex_labels * 0.9, font = 2)
 arrows(as.Date("2020-03-10"), 6300, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
