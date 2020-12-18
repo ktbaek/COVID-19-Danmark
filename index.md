@@ -361,7 +361,7 @@ Total antal daglige dødsfald opdateres fredage.
 ![](/figures/dst_deaths_covid_all.png)
 
 ### Ugenligt antal dødsfald i Danmark
-Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises gennemsnitlige antal ugentlige dødsfald for perioden 2015-19. 
+Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19. 
 
 ``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
 
