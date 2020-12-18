@@ -24,11 +24,13 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.*
 
 
-## Terminologi
+## Begreber
 #### Antal positivt testede
+<!--
 Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests).
+-->
 
-Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**. De to begreber beskriver det samme.
+Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**. 
 
 #### Procentdel positivt testede
 Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
@@ -351,7 +353,7 @@ Total antal daglige dødsfald opdateres fredage.
 
 ![](/figures/dst_deaths_covid_all.png)
 
-### Ugenligt antal dødsfald i Danmark
+### Ugentligt antal dødsfald i Danmark
 Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19. 
 
 ``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
