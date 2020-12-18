@@ -25,13 +25,9 @@ cat("Read and tidy, national DONE\n")
 source("national_plots.R")
 cat("Whole country plots DONE\n")
 
-source("English_plots.R")
-cat("English plots DONE\n")
-
 source("add_image_text.R")
 
 add_text_to_images(path = "../figures/", startswith = "ntl", language = "dk")
-add_text_to_images(path = "../figures/", startswith = "en", language = "en")
 add_text_to_images(path = "../figures/", startswith = "dst", language = "dk_dst")
 
 
