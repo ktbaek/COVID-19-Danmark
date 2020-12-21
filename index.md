@@ -63,12 +63,6 @@ Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange de
 
 ![](/figures/ntl_pct_2.png)
 
-### Daglig procentdel positivt testede personer med/uden Nordjylland
-Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for 1) hele landet og 2) hele landet undtagen syv nordjyske kommuner (Frederikshavn, Hjørring, Vesthimmerland, Brønderslev, Jammerbugt, Thisted, og Læsø).
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-![](/figures/muni_pct_stratified.png)
 
 
 ### Dagligt antal nye positivt testede personer
