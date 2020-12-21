@@ -33,7 +33,7 @@ add_text_to_images(path = "../figures/", startswith = "dst", language = "dk_dst"
 
 source("Read_tidy_muni.R")
 cat("Read and tidy, municipality DONE\n")
-
+ 
 source("municipality_plots.R")
 cat("Municipality plots DONE\n")
   

@@ -1330,10 +1330,11 @@ plot_data <- dst_deaths_5yr %>%
   mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
          Deaths = as.double(Deaths)) %>%
   group_by(Date) %>%
-  summarize(avg_5yr = mean(Deaths, na.rm = TRUE)) %>%
+  summarize(avg_5yr = mean(Deaths, na.rm = TRUE),
+            max_5yr = max(Deaths, na.rm = TRUE),
+            min_5yr = min(Deaths, na.rm = TRUE)) %>%
   ungroup() %>%
   full_join(dst_deaths, by = "Date") %>%
-  filter(!is.na(Y2020)) %>%
   mutate(Date = as.Date(paste0("2020-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
   group_by(Date=floor_date(Date + 4, "1 week")) %>%
@@ -1348,11 +1349,12 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
 
   ggplot(plot_data) +
   geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable)) +
+  #geom_line(data = subset(plot_data, variable %in% c("max_5yr", "min_5yr")), aes(Date, value, color = variable), size = 0.5) + 
   geom_line(data = subset(plot_data, variable == "avg_5yr"), aes(Date, value, color = "average"), size = 1) + 
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   labs(x = "Dato", y = "Antal døde", title = "Ugentlige dødsfald i Danmark 2020") + 
   scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
-  scale_color_manual(name = "", labels = "Gennemsnit 2015-19", values = cols[3]) +
+  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3],3)) +
   standard_theme + 
   theme(legend.position = "top",
         plot.caption = element_text(color = "gray"))
