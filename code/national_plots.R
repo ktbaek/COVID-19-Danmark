@@ -930,13 +930,13 @@ double_plot(
   start_date = "2020-07-01"
 )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 3, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 3, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = 3, alpha(pct_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3, col = alpha(admit_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3, col = alpha(death_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd * 1.5, col = alpha(pos_col, 0.5), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = seg_lwd * 1.5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = seg_lwd * 1.5, alpha(pct_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd * 1.5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd * 1.5, col = alpha(admit_col, 0.7), lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = seg_lwd * 1.5, col = "white", lend = 1)
+segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = seg_lwd * 1.5, col = alpha(death_col, 0.7), lend = 1)
 
 points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
   type = "l",
@@ -967,16 +967,16 @@ points(plot_data$Date, plot_data$running_avg_pct * 100,
 )
 
 
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 500), labels = paste0(seq(0, max_pos + 100, by = 500) / 100, " %"))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 500), labels = seq(0, max_pos + 100, by = 500))
+axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 1000), labels = paste0(seq(0, max_pos + 100, by = 1000) / 100, " %"))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 1000), labels = seq(0, max_pos + 100, by = 1000))
 
 y <- 60
 arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1, lend = 1, length = 0.1)
 text(as.Date("2020-07-08"), y + max_pos/16, "Forsamling: 100", cex = 0.9, adj = 0)
 
 y <- 170
-arrows(as.Date("2020-08-14"), y + max_pos/12, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-13"), y + max_pos/14, "Lukketid udvides", cex = 0.9, adj = 1)
+arrows(as.Date("2020-08-14"), y + max_pos/10, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
+text(as.Date("2020-08-13"), y + max_pos/12, "Lukketid udvides", cex = 0.9, adj = 1)
 
 y <- 140
 arrows(as.Date("2020-08-22"), y + max_pos/6, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
@@ -988,15 +988,15 @@ text(as.Date("2020-08-21"), y + max_pos/7, "Masker i off. transport", cex = 0.9,
 
 y <- 600
 arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-17"), y + max_pos/10, "Restriktioner\nrestauranter mv.", cex = 0.9, adj = 1)
+text(as.Date("2020-09-17"), y + max_pos/8, "Restriktioner restauranter mv.", cex = 0.9, adj = 1)
 
 y <- 680
 arrows(as.Date("2020-09-26"), y + max_pos/5, as.Date("2020-09-26"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-25"), y + max_pos/6, "Restriktioner\nprivate fester", cex = 0.9, adj = 1)
+text(as.Date("2020-09-25"), y + max_pos/4.5, "Restriktioner private fester", cex = 0.9, adj = 0.5)
 
 y <- 1230
 arrows(as.Date("2020-10-29"), y + max_pos/7, as.Date("2020-10-29"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-10-28"), y + max_pos/10, "Masker alle off. steder,\nforsamling 10 mv.", cex = 0.9, adj = 1)
+text(as.Date("2020-10-28"), y + max_pos/6, "Masker alle off. steder mv.", cex = 0.9, adj = 0.5)
 
 
 
