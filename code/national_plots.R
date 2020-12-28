@@ -8,6 +8,7 @@ max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
 max_test <- ceiling(max(tests$Tested) / 5000) * 5000
 max_admit <- ceiling(max(admitted$Total) / 20) * 20
 max_pct <- ceiling(max(tests_from_may$pct_confirmed, na.rm = TRUE) * 5) / 5
+max_death <- ceiling(max(deaths$Antal_døde) / 5) * 5
 
 plot_data <-
   tests %>%
@@ -174,7 +175,7 @@ png("../figures/ntl_deaths.png", width = 20, height = 16, units = "cm", res = 30
 standard_plot(
   title = "Dagligt antal døde",
   y_label_dist = 4,
-  max_y_value = 25,
+  max_y_value = max_death,
   x_by = "2 months",
   start_date = "2020-02-15"
 )
