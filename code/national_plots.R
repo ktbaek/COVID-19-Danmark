@@ -45,7 +45,7 @@ standard_plot(
   title = "Dagligt antal testede",
   max_y_value = max_test,
   x_by = "2 months",
-  y_label_dist = 5
+  y_label_dist = 6
 )
 
 points(plot_data$Date, plot_data$Tested, type = "b", pch = 19, col = alpha(test_col, alpha = 0.3), cex = 1.2)
@@ -188,7 +188,7 @@ points(plot_data$Date, plot_data$running_avg_deaths, type = "l", pch = 19, col =
 # text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
 # text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 25, by = 5), labels = seq(0, 25, by = 5))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_death, by = 5), labels = seq(0, max_death, by = 5))
 
 dev.off()
 
