@@ -21,9 +21,17 @@
 | 22. august | Mundbind offentlig transport |
 | 9. september | Indskrænkede lukketider for natteliv i Københavnsområdet og Odense |
 | 18. september | Mundbind og indskrænkede lukketider for restauranter mv. i hele landet |
+| 19. september | Forsamlingsloft sænkes til 50
 | 25. september | Forsamlingsloft indskrænkes for private fester |
 | 26. oktober | Forsamlingsloft sænkes til 10, forbud mod alkoholsalg efter kl 22, m.fl. |
 | 29. oktober | Mundbind alle indendørs steder i det offentlige rum |
+| 9. november | Nedlukning af Nordjylland (cluster-5) |
+| 7. december | Ensretning af butik/centre. Forsamlingsloft sænkes til 10 for unge i hovedstaden |
+| 17. december | Nedlukning af storcentre, stormagasiner og butiksarkader |
+| 21. december | Nedlukning af liberale erhverv |
+| 25. december | Nedlukning af detailhandlen. Apoteker og dagligvarebutikker holdes åbent |
+
+
 
 ### Kilder:
 
@@ -32,3 +40,7 @@
 [https://jv.dk/artikel/fakta-her-er-faserne-i-genåbningen-af-samfundet-2020-6-8](https://jv.dk/artikel/fakta-her-er-faserne-i-genåbningen-af-samfundet-2020-6-8)
 
 [https://www.dr.dk/nyheder/indland/her-er-hovedpunkterne-i-genaabningens-fase-4](https://www.dr.dk/nyheder/indland/her-er-hovedpunkterne-i-genaabningens-fase-4)
+
+[Faktaark-om-restriktioner-NJ-09112020x.pdf (SUM)](https://sum.dk/Aktuelt/Nyheder/Coronavirus/2020/November/~/media/Filer%20-%20dokumenter/01-corona/Faktaark-om-restriktioner-NJ-09112020x.pdf)
+
+[https://www.altinget.dk/artikel/storcentre-og-frisoerer-skal-lukke-her-er-regeringens-julerestriktioner](https://www.altinget.dk/artikel/storcentre-og-frisoerer-skal-lukke-her-er-regeringens-julerestriktioner)
