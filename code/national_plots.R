@@ -163,7 +163,7 @@ points(plot_data$Date, plot_data$running_avg_admit, type = "l", pch = 19, col = 
 # text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
 # text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_admit, by = 20), labels = seq(0, max_admit, by = 20))
+axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_admit, by = 50), labels = seq(0, max_admit, by = 50))
 
 dev.off()
 
