@@ -2,6 +2,8 @@
 
 | Dato | Tiltag |
 |:--|:--|
+| 14. marts | Danmarks grænser lukker kl. 12 |
+| 18. marts | Forsamlingsloft på 10 personer, nedlukning af liberale erhverv, indendørs sports- og idrætsfaciliteter, fitnesscentre, storcentre, kulturliv |
 | **Fase 1** |
 | 15. april | Genåbning af skoler 0.-5. kl og daginstitutioner |
 | 20. april | Genåbning af liberale erhverv |
@@ -16,7 +18,7 @@
 | 8. juni | Forsamlingsloft hæves til 50, genåbning af svømmehaller og fitnesscentre |
 | **Fase 4** | 
 | 7. juli | Forsamlingsloft hæves til 100 |
-| 14. august | Lukketider for barer/restauranter udvides til kl. 2 |
+| 14. august | Lukketider for barer/restauranter udvides til kl. 02 (ingen nye gæster efter 23) |
 | **Nye restriktioner** | 
 | 22. august | Mundbind offentlig transport |
 | 9. september | Indskrænkede lukketider for natteliv i Københavnsområdet og Odense |
@@ -34,6 +36,8 @@
 
 
 ### Kilder:
+
+[Statsministeren: Danmarks grænser lukker fra klokken 12 i morgen](https://www.dr.dk/nyheder/indland/statsministeren-danmarks-graenser-lukker-fra-klokken-12-i-morgen)
 
 [https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07](https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07)
 
