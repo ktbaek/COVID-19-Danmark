@@ -82,15 +82,6 @@ Plottet viser det totale antal testede personer og antallet af nye positivt test
 ![](/figures/ntl_tests.png)
 
 
-
-
-### Dagligt antal testede, antal nye positive og procent positive testede
-Plottet viser det totale antal testede personer, antallet af nye positivt testede personer, og procentdelen af positivt testede personer for hele landet. Procentdelen af positivt testede er vist som et løbende gennemsnit baseret på et vindue på 7 dage.
-
-``SSI datasæt: 'Test_pos_over_time'``
-
-![](/figures/ntl_pos_tests_pct.png)
-
 ### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede
 Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procentdelen af positivt testede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
