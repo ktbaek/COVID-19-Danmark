@@ -10,11 +10,11 @@ ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", width = 6, aes(fill = variable)) +
   facet_wrap(~age_limit, scales = "free") +
   scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede over 50, 60 eller 70 år vs. total nyindlagte") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede over 50, 60 eller 70 år vs. total nyindlagte", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_y_continuous(breaks = c(-2000, 0, 2000, 4000, 6000, 8000), limits = c(-2000, 8000), labels = as.character(c("2000", "0", "2000", "4000", "6000", "8000"))) +
   facet_theme +
   theme(panel.grid.minor.y = element_blank()) 
-  
+    
 
 ggsave("../figures/age_group_admitted_pos_old.png", width = 25, height = 12, units = "cm", dpi = 300)
 
@@ -30,7 +30,7 @@ ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", width = 6, aes(fill = variable)) +
   facet_wrap(~age_limit, scales = "free") +
   scale_fill_manual(name = "", labels = c("Positive", "Nyindlagte"), values = alpha(c(pos_col, admit_col), 0.9)) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede under 50, 60 eller 70 år vs. total nyindlagte") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede under 50, 60 eller 70 år vs. total nyindlagte", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_y_continuous(breaks = c(-2000, 0, 5000, 10000, 15000, 20000, 25000), limits = c(-2000, 25000), labels = as.character(c("2000", "0", "5000", "10000", "15000", "20000", "25000"))) +
   facet_theme +
   theme(panel.grid.minor.y = element_blank())
@@ -44,8 +44,8 @@ plot_data <- age_data %>%
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "stack", aes(fill = where)) +
-  scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre og yngre") +
+  scale_fill_manual(name = "", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positivt testede ældre og yngre", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 
 ggsave("../figures/age_group_stack.png", width = 17, height = 12, units = "cm", dpi = 300)
@@ -57,8 +57,8 @@ plot_data <- age_data %>%
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "fill", aes(fill = where)) +
-  scale_fill_manual(name = "Alder", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
-  labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positivt testede: ældre vs. yngre") +
+  scale_fill_manual(name = "", labels = c("Over 50 år", "Under 50 år"), values = binary_col) +
+  labs(y = "Andel", x = "Dato", title = "Ugentlig fordeling af positivt testede: ældre vs. yngre", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 
 ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", dpi = 300)
@@ -88,7 +88,7 @@ ggplot(plot_data, aes(Date, value)) +
     sec.axis = sec_axis(~ . / left_right_axis_ratio, name = "Positive"),
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Positive og førstegangstestede per uge for hver aldersgruppe") +
+  labs(y = "Positive : Testede", x = "Dato", title = "Positive og førstegangstestede per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme +
   theme(legend.position="bottom")
 
@@ -142,7 +142,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Positivt testede per befolkningstal i aldersgruppen") +
+  labs(x = "", y = "", title = "Positivt testede per befolkningstal i aldersgruppen", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   tile_theme + 
@@ -168,7 +168,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Antal førstegangstestede per befolkningstal i aldersgruppen") +
+  labs(x = "", y = "", title = "Antal førstegangstestede per befolkningstal i aldersgruppen", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = test_col) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   tile_theme + 
@@ -193,7 +193,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Positivt testede per førstegangstestede i aldersgruppen") +
+  labs(x = "", y = "", title = "Positivt testede per førstegangstestede i aldersgruppen", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   tile_theme + 
@@ -217,7 +217,7 @@ plot_data <- week_df %>%
 ggplot(plot_data, aes(Date, Aldersgruppe, fill = Ratio)) +
   geom_tile(colour = "white", size = 0.25) +
   coord_fixed(ratio = 7) +
-  labs(x = "", y = "", title = "Positivt testede per førstegangstestede i aldersgruppen") +
+  labs(x = "", y = "", title = "Positivt testede per førstegangstestede i aldersgruppen", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_fill_continuous(name = "Procent", na.value = "White", low = lighten("#999999", 0.8), high = darken(pct_col, 0.1)) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   theme_tufte() +
@@ -266,7 +266,7 @@ plot_data <- bind_rows(plot_data, test_1)
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(stat = "identity", position = "dodge", aes(fill = variable)) +
   scale_fill_discrete(name = "Datasæt", labels = c("Cases_by_age", "Test_pos_over_time")) +
-  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive") +
+  labs(y = "Antal", x = "Dato", title = "Ugentligt antal positive", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   # scale_y_continuous(breaks = c(-500,0, 500, 1000),labels=as.character(c("500","0", "500", "1000"))) +
   theme_minimal() +
   theme(
@@ -311,7 +311,7 @@ plot_data <- plot_data %>%
 ggplot(plot_data, aes(Date,value)) +
   geom_bar(stat = "identity", position = "fill", aes(fill = variable)) +
   scale_fill_discrete(name = "Kategori", labels = c("Testet tidligere", "Førstegangstestede")) +
-  labs(y = "Andel", x = "Dato", title = "Ugentlig andel af førstegangstestede vs. testede tidligere") +
+  labs(y = "Andel", x = "Dato", title = "Ugentlig andel af førstegangstestede vs. testede tidligere", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   theme_minimal() +
   theme(
     text = element_text(size = 11, family = "lato"),

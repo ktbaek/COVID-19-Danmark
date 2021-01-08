@@ -5,10 +5,10 @@ last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 2), "-", "_")
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
 deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
 tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
-rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_", last_tuesday, ".csv"))
+#rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_", last_tuesday, ".csv"))
 #rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_", last_tuesday, ".csv"))
 
-dst_deaths <- read_csv2("../data/DST_daily_deaths_2020.csv", col_names = FALSE)
+dst_deaths <- read_csv2("../data/DST_daily_deaths.csv", col_names = FALSE)
 dst_deaths_5yr <- read_csv2("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
 
 # Update list of SSI file dates
@@ -86,14 +86,14 @@ deaths %<>% mutate(running_avg_deaths = ra(Antal_døde))
 tests_from_may <- tests %>% slice(96:(n())) # exclude data before May
 
 dst_deaths %<>%
-  rename(Date = X1,
-         Y2020 = X2)
+  select(-X1) %>%
+  rename(Date = X2, current = X3)
 
 # Tests -------------------------------------------------------------------
 
 cat("Test continuity:", 1 == unique(abs(diff(unique(tests$Date)))), "\n") # test for daily continuity in test_pos_over_time data
 
-
+  
 
 
 

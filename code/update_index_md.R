@@ -8,3 +8,4 @@ dateline  <- paste0("Senest opdateret ", str_to_lower(format(as.Date(today), "%e
 model_file[10] <- dateline
 writeLines(model_file, con="../model.md")
 
+  

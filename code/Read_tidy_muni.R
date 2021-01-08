@@ -83,20 +83,19 @@ muni_pop <- muni_population %>%
   group_by(Kommune) %>%
   summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>% #population numbers change very little over the period so I use the mean.
   ungroup()
-
+  
 muni_all %<>%
   filter(Date < as.Date(today) - 1) # remove last two days
 
 muni_wk <- muni_all %>%
-  mutate(Week = isoweek(Date)) %>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
 
 muni_wk %<>%
   full_join(muni_pop, by = c("Kommune"))
 
 muni_wk %<>%
-  filter(Week < isoweek(as.Date(today) - 1)) %>% # remove current week
-  group_by(Week, Kommune) %>%
+  filter(Week_end_Date < today) %>% # remove current week
+  group_by(Week_end_Date, Kommune) %>%
   mutate(
     Positive_wk = sum(Positive, na.rm = FALSE),
     Tested_wk = sum(Tested, na.rm = FALSE)

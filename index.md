@@ -5,9 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-**Siden opdateres igen fra fredag 8. januar 2021.**
-
-Senest opdateret 30. december 2020 efter kl 14.
+Senest opdateret  8. januar 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -18,6 +16,8 @@ Senest opdateret 30. december 2020 efter kl 14.
 ## Data
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
+
+Graferne viser ikke testresultater fra private udbydere.
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
 
@@ -32,7 +32,7 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests).
 -->
 
-Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**. 
+Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**.
 
 #### Procentdel positivt testede
 Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
@@ -163,6 +163,18 @@ Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage.
 
 [Tilbage til toppen](#)
 
+## Plots: vaccinationsstatus
+
+### Total antal vaccinerede
+
+Øverste plot viser det kumulerede antal vaccinerede indtil nu. Nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu.
+
+![](/figures/ntl_vax_cum.png)
+
+![](/figures/ntl_vax_age.png)
+
+[Tilbage til toppen](#)
+
 ## Plots: kommuner og landsdele
 ### Dagligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned.
@@ -228,9 +240,20 @@ Plottene viser det daglige antal nye positivt testede, antal total testede og pr
 
 ![](/figures/muni_kbharea_pct.png)
 
+### Daglige epidemi-indikatorer for hver region
 
-Se tilsvarende grafer for de syv nordjyske kommuner der var nedlukket i november 
-[her](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/muni_NJ7_pos_vs_test.png) og [her](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/muni_NJ7_pct.png).
+Øverste plot viser det daglige antal nyindlæggelser, procent positivt testede, og antal positivt testede for de seneste tre måneder for hver region.
+
+Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede per 100.000 indbyggere for de seneste tre måneder for hver region.
+
+``SSI datasæt: 'Newly_admitted_over_time', 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series'``
+
+
+![](/figures/muni_region_all.png)
+
+![](/figures/muni_region_incidens.png)
+
+
 
 
 
@@ -248,19 +271,6 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 ![](/figures/muni_10_weekly_pct_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
-
-### Daglige epidemi-indikatorer for hver region
-
-Øverste plot viser det daglige antal nyindlæggelser, procent positivt testede, og antal positivt testede for de seneste tre måneder for hver region.
-
-Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede per 100.000 indbyggere for de seneste tre måneder for hver region.
-
-``SSI datasæt: 'Newly_admitted_over_time', 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series'``
-
-
-![](/figures/muni_region_all.png)
-
-![](/figures/muni_region_incidens.png)
 
 
 
@@ -341,7 +351,7 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 ## Plots: øvrige sammenligninger
 
 ### Dagligt antal dødsfald i Danmark
-Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit). 
+Plottet viser det totale antal daglige dødsfald i 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit).
 
 Total antal daglige dødsfald opdateres fredage.
 
@@ -350,7 +360,7 @@ Total antal daglige dødsfald opdateres fredage.
 ![](/figures/dst_deaths_covid_all.png)
 
 ### Ugentligt antal dødsfald i Danmark
-Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19. 
+Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19.
 
 ``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
 
@@ -360,9 +370,9 @@ Plottet viser det ugentlige antal dødsfald i 2020, opdelt på Covid-19- og ikke
 
 
 ### Dagligt antal akutindlæggelser i Danmark
-Plottet viser: 
+Plottet viser:
 
-- det gennemsnitlige daglige antal akutindlæggelser for hver uge i løbet af et år for perioden 2008-18. Data for 2008-17 er justeret til befolkningstallet for 2018. 
+- det gennemsnitlige daglige antal akutindlæggelser for hver uge i løbet af et år for perioden 2008-18. Data for 2008-17 er justeret til befolkningstallet for 2018.
 - det daglige antal Covid-19 relaterede indlæggelser.
 
 Data for 2008-18 stammer fra Danmarks Statistik (Susanne Brondbjerg via Ulrik Gerdes) og omfatter ikke indlæggelser på privathospitaler eller på psykiatriske afdelinger.
@@ -375,4 +385,3 @@ Det skal bemærkes at én person kan stå for flere indlæggelser, og at der er 
 
 
 [Tilbage til toppen](#)
-

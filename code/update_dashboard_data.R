@@ -12,7 +12,7 @@ new_dates <- setdiff(dates, already_dates)
 tidy_data <- function(dashboard_data, date){
   
 dashboard_new_data <- read_csv(paste0("../data/Dashboard/Dashboard_", date, ".csv"))
-
+  
 dashboard_new_data %<>% 
   slice(1:5) %>%
   select(-X1) %>%
@@ -22,7 +22,7 @@ dashboard_new_data %<>%
          variable = ifelse(variable == "Dødsfald", "Antal_døde", variable),
          variable = ifelse(variable == "Nye indlæggelser", "Indlæggelser", variable)) %>%
   filter(!variable == "Førstegangstestede") %>%
-  mutate(Date = as.Date(paste0("2020-", str_sub(date, 3, 4), "-", str_sub(date, 5, 6))))
+  mutate(Date = as.Date(paste0("20", str_sub(date, 1, 2), "-", str_sub(date, 3, 4), "-", str_sub(date, 5, 6))))
 
 dashboard_data <- bind_rows(dashboard_data, dashboard_new_data)
 

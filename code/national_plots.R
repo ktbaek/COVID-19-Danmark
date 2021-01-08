@@ -1,1120 +1,411 @@
 
-ra_lwd <- 3
-seg_lwd <- 1.5
-cex_labels <- 1.4
-cex_axis <- 1.4
-
-max_pos <- ceiling(max(tests$NewPositive) / 100) * 100
-max_test <- ceiling(max(tests$Tested) / 5000) * 5000
-max_admit <- ceiling(max(admitted$Total) / 20) * 20
-max_pct <- ceiling(max(tests_from_may$pct_confirmed, na.rm = TRUE) * 5) / 5
-max_death <- ceiling(max(deaths$Antal_døde) / 5) * 5
-
 plot_data <-
   tests %>%
   full_join(admitted, by = "Date") %>%
   full_join(deaths, by = "Date") %>%
   filter(Date > as.Date("2020-02-14"))
 
+my_date_labels <- function(breaks) {
+  
+  labels <- sapply(breaks, function(x) {
+    
+    if(!is.na(x) && month(x) == 1) {
+      str_to_lower(strftime(x, "%e. %b %y"))
+    }else{
+      str_to_lower(strftime(x, "%e. %b"))
+      }
+  })
+
+  return(labels)
+  }
+  
 # Pos ------------------------------------------------------------------
 
-png("../figures/ntl_pos.png", width = 20, height = 16, units = "cm", res = 300)
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = alpha(pos_col, 0.6), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Antal positive", x = "Dato", title = "Dagligt antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme  
 
-standard_plot(
-  title = "Dagligt antal nye positivt testede",
-  max_y_value = max_pos,
-  x_by = "2 months",
-  y_label_dist = 5
-)
+ggsave("../figures/ntl_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
-
-points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
-points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
-
-
-
-dev.off()
 
 
 # Tests ------------------------------------------------------------------
 
-png("../figures/ntl_tests.png", width = 20, height = 16, units = "cm", res = 300)
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Tested, fill = test_col), width = 1) +
+  geom_line(aes(Date, running_avg_total), size = 1, color = darken(test_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = pos_col), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  scale_fill_manual(name = "", labels = c("Testede", "Positive"), values = c(alpha(test_col, 0.6), alpha(pos_col, 0.6))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = scales::number
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'))
 
-standard_plot(
-  title = "Dagligt antal testede",
-  max_y_value = max_test,
-  x_by = "2 months",
-  y_label_dist = 6
-)
+ggsave("../figures/ntl_tests.png", width = 18, height = 12, units = "cm", dpi = 300)
 
-points(plot_data$Date, plot_data$Tested, type = "b", pch = 19, col = alpha(test_col, alpha = 0.3), cex = 1.2)
-points(plot_data$Date, plot_data$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
-points(plot_data$Date, plot_data$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
-points(plot_data$Date, plot_data$running_avg_total, type = "l", pch = 19, col = test_col, cex = 1.2, lwd = ra_lwd)
-
-text(x = as.Date("2020-12-10"), y = 140000, labels = "Antal testede", col = test_col, cex = cex_labels, font = 2, pos = 2)
-text(x = as.Date("2020-11-14"), y = 8000, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 2)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 20000), labels = format(seq(0, max_test, by = 20000), scientific = FALSE ))
-
-dev.off()
 
 
 # Pos% maj ------------------------------------------------------------------
 
-png("../figures/ntl_pct_2.png", width = 20, height = 16, units = "cm", res = 300)
+plot_data %>%
+  filter(Date > as.Date("2020-04-30")) %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = alpha(pct_col, 0.6), width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = function(x) paste0(x, " %")
+  ) +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(panel.grid.minor.x = element_blank())
 
-standard_plot(
-  title = "Daglig procent positivt testede",
-  y_label_dist = 4,
-  y_label = "Procent",
-  max_y_value = max_pct,
-  x_by = "2 months",
-  start_date = "2020-05-01"
-)
-
-points(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2)
-points(plot_data$Date, plot_data$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pct, by = 0.5), labels = seq(0, max_pct, by = 0.5))
-
-dev.off()
+ggsave("../figures/ntl_pct_2.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 # Pos% ------------------------------------------------------------------
 
-png("../figures/ntl_pct_1.png", width = 20, height = 16, units = "cm", res = 300)
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = alpha(pct_col, 0.6), width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = function(x) paste0(x, " %")
+  ) +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme
 
-standard_plot(
-  title = "Daglig procent positivt testede",
-  max_y_value = 40,
-  y_label_dist = 4,
-  x_by = "2 months",
-  y_label = "Procent"
-)
+ggsave("../figures/ntl_pct_1.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-points(plot_data$Date, plot_data$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2)
-points(plot_data$Date, plot_data$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 40, by = 10), labels = seq(0, 40, by = 10))
-
-
-dev.off()
 
 # Pos vs pos% ------------------------------------------------------------------
 
-png("../figures/ntl_pos_pct.png", width = 22, height = 16, units = "cm", res = 300)
+plot_data %>%
+  filter(Date > as.Date("2020-04-30")) %>%
+  ggplot() +
+  geom_point(aes(Date, pct_confirmed * 1000), size = 2, color = alpha(pct_col, 0.3)) +
+  geom_point(aes(Date, NewPositive), size = 2, color = alpha(pos_col, 0.3)) +
+  geom_line(aes(Date, running_avg_pct * 1000), size = 1, color = pct_col) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    name = "Antal",
+    sec.axis = sec_axis(~ . / 1000, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+  ) +
+  labs(y = "Positivprocent", x = "Dato", title = "Procent vs. antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(panel.grid.minor.x = element_blank())
 
-double_plot(
-  title = "Procent vs. antal nye positivt testede",
-  y_label = "Antal",
-  y2_label = "Procent",
-  y_label_dist = 5,
-  max_y_value = max_pos,
-  x_by = "1 month",
-  start_date = "2020-05-01"
-)
-
-points(tests_from_may$Date, tests_from_may$NewPositive, type = "b", pch = 19, col = alpha(pos_col, alpha = 0.3), cex = 1.2)
-points(tests_from_may$Date, tests_from_may$running_avg_pos, type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
-text(x = as.Date("2020-09-08"), y = 100, labels = "Antal positive", col = pos_col, cex = cex_labels, font = 2, pos = 4)
-
-par(new = TRUE)
-
-plot(NULL,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  ylim = c(0, max_pct),
-  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1),
-)
-
-points(tests_from_may$Date, tests_from_may$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, alpha = 0.3), cex = 1.2)
-points(tests_from_may$Date, tests_from_may$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
-
-text(x = as.Date("2020-05-25"), y = max_pct/3, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
-
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
-
-dev.off()
-
+ggsave("../figures/ntl_pos_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 # Nyindlagte ------------------------------------------------------------------
 
-png("../figures/ntl_hosp.png", width = 20, height = 16, units = "cm", res = 300)
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = alpha(admit_col, 0.6), width = 1) +
+  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Dagligt antal nyindlagte med positiv SARS-CoV-2 test", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme
 
-standard_plot(
-  title = "Dagligt antal nyindlagte med positiv test",
-  y_label_dist = 4,
-  max_y_value = max_admit,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
-
-# points(plot_data$Date, plot_data$Antal_døde, type = "b", pch = 19, cex = 1.2, col = alpha(death_col, alpha = 0.3))
-points(plot_data$Date, plot_data$Total, type = "b", pch = 19, cex = 1.2, col = alpha(admit_col, alpha = 0.3))
-points(plot_data$Date, plot_data$running_avg_admit, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-# points(plot_data$Date, plot_data$running_avg_deaths, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
-
-# text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
-# text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_admit, by = 50), labels = seq(0, max_admit, by = 50))
-
-dev.off()
+ggsave("../figures/ntl_hosp.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 # Døde ------------------------------------------------------------------
 
-png("../figures/ntl_deaths.png", width = 20, height = 16, units = "cm", res = 300)
 
-standard_plot(
-  title = "Dagligt antal døde",
-  y_label_dist = 4,
-  max_y_value = max_death,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = alpha(death_col, 0.6), width = 1) +
+  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Daglig antal døde med positiv SARS-CoV-2 test", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme
 
-points(plot_data$Date, plot_data$Antal_døde, type = "b", pch = 19, cex = 1.2, col = alpha(death_col, alpha = 0.3))
-# points(plot_data$Date, plot_data$Total, type = "b", pch = 19, cex = 1.2, col = alpha(admit_col, alpha = 0.3))
-# points(plot_data$Date, plot_data$running_avg_admit, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-points(plot_data$Date, plot_data$running_avg_deaths, type = "l", pch = 19, col = death_col, cex = 1.2, lwd = ra_lwd)
-
-# text(x = as.Date("2020-04-06"), y = 65, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, pos = 4)
-# text(x = as.Date("2020-04-09"), y = 2, labels = "Døde", col = death_col, cex = cex_labels, font = 2)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_death, by = 5), labels = seq(0, max_death, by = 5))
-
-dev.off()
-
-
-# Pos, test, pct combined ------------------------------------------------------------------
-
-png("../figures/ntl_pos_tests_pct.png", width = 22, height = 16, units = "cm", res = 300)
-
-double_plot(
-  title = "Testede, positive og procent positive",
-  y_label = "Antal testede, positive",
-  y2_label = "Procent",
-  y_label_dist = 5.8,
-  max_y_value = max_test,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Tested, lwd = seg_lwd, col = alpha(test_col, 0.6), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = pos_col, lend = 1)
-
-text(x = as.Date("2020-03-15"), y = 120000, labels = "Procent positive", col = pct_col, cex = cex_labels, font = 2, pos = 4)
-text(x = as.Date("2020-11-20"), y = 90000, labels = "Antal testede", col = alpha(test_col, 0.9), cex = 1.4, font = 2, pos = 2)
-text(x = as.Date("2020-03-12"), y = 14000, labels = "Antal positive", col = pos_col, cex = cex_labels * 0.9, font = 2)
-arrows(as.Date("2020-03-10"), 8000, as.Date("2020-03-10"), 1500, lwd = 1, col = pos_col, lend = 1, length = 0.1)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_test, by = 20000), labels = format(seq(0, max_test, by = 20000), scientific = FALSE ))
-
-par(new = TRUE)
-
-plot(NULL,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  ylim = c(0, 19),
-  xlim = c(as.Date("2020-02-15"), as.Date(today) - 1),
-)
-
-points(plot_data$Date, replace(plot_data$running_avg_pct, 1:17, NA), type = "l", pch = 19, lwd = 5, col = "white")
-points(plot_data$Date, replace(plot_data$running_avg_pct, 1:17, NA), type = "l", pch = 19, lwd = 3, col = pct_col)
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = c(0, 5, 10, 15), labels = c("0 %", "5 %", "10 %", "15 %"))
-
-dev.off()
-
-
-
-
-
+ggsave("../figures/ntl_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 # -------------------------------------------------------------------------
 
+# -------------------------------------------------------------------------
 
-# Rt cases pos ------------------------------------------------------------------
-
-png("../figures/ntl_rt_cases_pos.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(rt_cases$date_sample, rt_cases$estimate,
-  type = "l",
-  pch = 19,
-  ylab = "",
-  xlab = "",
-  axes = TRUE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(0, 2),
-  las = 1,
-  col = "darkgray",
-  lwd = 2,
-  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Kontakttal (smittede) vs. antal nye positive",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-mtext(
-  text = "Kontakttal-værdi",
-  side = 2, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
-
-points(tests$Date, tests$NewPositive / (max_pos / 2), type = "b", pch = 19, col = alpha(pos_col, 0.3), cex = 1.2)
-points(tests$Date, tests$running_avg_pos / (max_pos / 2), type = "l", pch = 19, col = pos_col, cex = 1.2, lwd = ra_lwd)
-
-text(x = as.Date("2020-06-15"), y = 0.4, labels = "Antal positivt testede", col = pos_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
-abline(h = 1, col = "gray")
+# positive admitted barplot ------------------------------------------------------------------
 
 
-dev.off()
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = pos_col), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = admit_col), width = 1) +
+  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+  scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positive"), values = c(alpha(admit_col, 0.6), alpha(pos_col, 0.6))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Nyindlagte med positiv SARS-CoV-2 test vs. positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'))
+
+ggsave("../figures/ntl_postest_admitted_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300 )
 
 
-# Rt cases pct ------------------------------------------------------------
-
-png("../figures/ntl_rt_cases_pct.png", width = 20, height = 16, units = "cm", res = 300)
-par(family = "lato", mar = c(5, 8, 5, 2))
-
-plot(rt_cases$date_sample, rt_cases$estimate,
-  type = "l",
-  pch = 19,
-  ylab = "",
-  xlab = "",
-  axes = TRUE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(0, 2),
-  las = 1,
-  col = "darkgray",
-  lwd = 2,
-  xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
-)
-
-mtext(
-  text = "Kontakttal (smittede) vs. procent positive",
-  side = 3, # side 1 = bottom
-  line = 1,
-  cex = 1.5,
-  font = 2
-)
-
-mtext(
-  text = "Dato",
-  side = 1, # side 1 = bottom
-  line = 3,
-  cex = cex_labels,
-  font = 2
-)
 
 
-# axis(side = 4, col.axis = "black", las = 1, cex.axis = 1.2, at = pretty(range(tests_from_may$pct_confirmed)))
+# pct admitted barplot ------------------------------------------------------------------
 
-points(tests$Date, tests$pct_confirmed, type = "b", pch = 19, col = alpha(pct_col, 0.3), cex = 1.2)
-points(tests$Date, tests$running_avg_pct, type = "l", pch = 19, col = pct_col, cex = 1.2, lwd = ra_lwd)
-# points(tests$Date, tests$NewPositive/100, type = "b", pch = 19, col = rgb(red = 1, green = 0, blue = 0, alpha = 0.2), cex = 1.2)
-# points(tests$Date, tests$running_avg_pos/100, type = "l", pch = 19, col = "red", cex = 1.2, lwd = 2)
-text(x = as.Date("2020-08-20"), y = 0.02, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2)
-text(x = as.Date("2020-07-10"), y = 1.4, labels = "Kontakttal: smittede", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
-abline(h = 1, col = "gray")
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed, fill = alpha(pct_col, 0.6)), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total / 20), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total / 20, fill = alpha(admit_col, 0.6)), width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  geom_line(aes(Date, running_avg_admit / 20), size = 1, color = darken(admit_col, 0)) +
+  scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positivprocent"), values = c(alpha(admit_col, 0.6), alpha(pct_col, 0.6))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    name = "Positivprocent",
+    labels = function(x) paste0(x, " %"),
+    sec.axis = sec_axis(~ . * 20, name = "Nyindlæggelser")
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Nyindlagte med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'))
 
-
-dev.off()
-
-
-# Rt admitted -------------------------------------------------------------
-
-
-# png("../figures/ntl_rt_admitted.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5, 8, 5, 2))
-# 
-# plot(rt_admitted$date_sample, rt_admitted$estimate,
-#   type = "l",
-#   pch = 19,
-#   ylab = "",
-#   xlab = "",
-#   axes = TRUE,
-#   cex = 1.2,
-#   cex.axis = cex_axis,
-#   ylim = c(0, 2),
-#   las = 1,
-#   col = "darkgray",
-#   lwd = 2,
-#   xlim = c(as.Date("2020-05-01"), as.Date(today) - 1)
-# )
-# 
-# mtext(
-#   text = "Kontakttal (indlagte) vs. nyindlagte",
-#   side = 3, # side 1 = bottom
-#   line = 1,
-#   cex = 1.5,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Dato",
-#   side = 1, # side 1 = bottom
-#   line = 3,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# points(admitted$Date, admitted$Total / 24, type = "b", pch = 19, col = alpha(admit_col, 0.3), cex = 1.2)
-# points(admitted$Date, admitted$running_avg_admit / 24, type = "l", pch = 19, col = admit_col, cex = 1.2, lwd = ra_lwd)
-# 
-# text(x = as.Date("2020-05-15"), y = 0.01, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2)
-# text(x = as.Date("2020-07-10"), y = 1.5, labels = "Kontakttal: indlagte", col = "darkgray", cex = cex_labels, font = 2, adj = 1)
-# abline(h = 1, col = "gray")
-# 
-# 
-# dev.off()
-# 
-# 
-# 
-
+ggsave("../figures/ntl_pct_admitted_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 
 # -------------------------------------------------------------------------
 
-
-# positive admitted barplot -----------------------------------------------
-
-
-# png("../figures/ntl_postest_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5, 8, 5, 2))
-# 
-# plot(0,
-#   type = "n",
-#   ylab = "",
-#   xlab = "",
-#   axes = FALSE,
-#   cex = 1.2,
-#   cex.axis = cex_axis,
-#   ylim = c(-100, max_pos + 100),
-#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-# )
-# 
-# mtext(
-#   text = "Nye positivt testede vs. nyindlagte med positiv test",
-#   side = 3, # side 1 = bottom
-#   line = 1,
-#   cex = 1.5,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Dato",
-#   side = 1, # side 1 = bottom
-#   line = 3,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Antal",
-#   side = 2, # side 1 = bottom
-#   line = 4,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# box(which = "plot", lty = "solid")
-# 
-# axis(1, c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), format(c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), "%b"), cex.axis = cex_axis)
-# axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
-# 
-# 
-# segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
-# segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
-# 
-# text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-# text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
-# 
-# dev.off()
-# 
-
-# positive admitted barplot 2 ------------------------------------------------------------------
-
-png("../figures/ntl_postest_admitted_barplot_2.png", width = 20, height = 16, units = "cm", res = 300)
-
-standard_plot(
-  title = "Antal positivt testede vs. nyindlagte",
-  y_label_dist = 5,
-  max_y_value = max_pos,
-  x_by = "2 months",
-)
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd, col = alpha(admit_col, 0.7), lend = 1)
-
-points(plot_data$Date, plot_data$running_avg_pos,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pos_col
-)
-
-points(plot_data$Date, plot_data$running_avg_admit,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = admit_col
-)
-
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
-
-legend("topleft",
-  inset = 0.04,
-  legend = c("Positivt testede", "Nyindlagte"),
-  col = c(pos_col, admit_col),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-dev.off()
-
-
-
-
-# Pct admitted barplot ----------------------------------------------------
-
-
-# png("../figures/ntl_pct_admitted_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5, 8, 5, 2))
-# 
-# plot(0,
-#   type = "n",
-#   ylab = "",
-#   xlab = "",
-#   axes = FALSE,
-#   cex = 1.2,
-#   cex.axis = cex_axis,
-#   ylim = c(-100, 200),
-#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-# )
-# 
-# mtext(
-#   text = "Procent positivt testede vs. nyindlagte med positiv test",
-#   side = 3, # side 1 = bottom
-#   line = 1,
-#   cex = 1.5,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Dato",
-#   side = 1, # side 1 = bottom
-#   line = 3,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Antal                            Procent            ",
-#   side = 2, # side 1 = bottom
-#   line = 4,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# axis(1, c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), format(c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), "%b"), cex.axis = cex_axis)
-# axis(2, at = c(-100, 0, 100, 200, 300, 400, 500), label = c(100, 0, "10 %", "20 %", 300, 400, 500), cex.axis = cex_axis, las = 1)
-# 
-# 
-# segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 10, lwd = 2, col = pct_col, lend = 1)
-# segments(admitted$Date, 0, admitted$Date, -admitted$Total, lwd = 2, col = admit_col, lend = 1)
-# 
-# text(x = as.Date(today) - 2, y = -70, labels = "Nyindlagte", col = admit_col, cex = cex_labels, font = 2, adj = 1)
-# text(x = as.Date(today) - 2, y = 70, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
-# 
-# box(which = "plot", lty = "solid")
-# 
-# dev.off()
-
-# pct admitted barplot 2 ------------------------------------------------------------------
-
-png("../figures/ntl_pct_admitted_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-
-double_plot(
-  title = "Procent positivt testede vs. nyindlagte",
-  y_label = "Positivprocent",
-  y2_label = "Antal nyindlagte",
-  y_label_dist = 5,
-  max_y_value = 20,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = seg_lwd, col = alpha(pct_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = seg_lwd, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total / 15, lwd = seg_lwd, col = alpha(admit_col, 0.7), lend = 1)
-
-points(plot_data$Date, plot_data$running_avg_pct,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pct_col
-)
-
-points(plot_data$Date, plot_data$running_avg_admit / 15,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = admit_col
-)
-
-legend("topright",
-  inset = 0.04,
-  legend = c("Positivprocent", "Nyindlagte"),
-  col = c(pct_col, admit_col),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 6.7, 13.3, 20), labels = c(0, 100, 200, 300))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, "5 %", "10 %", "15 %", "20 %"))
-
-
-dev.off()
-
-
-# -------------------------------------------------------------------------
-
-
-# positive deaths barplot -----------------------------------------------
-
-
-# png("../figures/ntl_postest_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5, 8, 5, 2))
-# 
-# plot(0,
-#   type = "n",
-#   ylab = "",
-#   xlab = "",
-#   axes = FALSE,
-#   cex = 1.2,
-#   cex.axis = cex_axis,
-#   ylim = c(-100, max_pos + 100),
-#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-# )
-# 
-# mtext(
-#   text = "Antal positivt testede vs. døde",
-#   side = 3, # side 1 = bottom
-#   line = 1,
-#   cex = 1.5,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Dato",
-#   side = 1, # side 1 = bottom
-#   line = 3,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Antal",
-#   side = 2, # side 1 = bottom
-#   line = 4,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# box(which = "plot", lty = "solid")
-# 
-# axis(1, c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), format(c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), "%b"), cex.axis = cex_axis)
-# axis(2, at = seq(-100, max_pos + 100, by = 100), label = c(100, seq(0, max_pos + 100, by = 100)), cex.axis = cex_axis, las = 1)
-# 
-# 
-# segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = pos_col, lend = 1)
-# segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
-# 
-# text(x = as.Date(today) - 2, y = -70, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-# text(x = as.Date(today) - 2, y = max_pos + 30, labels = "Positivt testede", col = pos_col, cex = cex_labels, font = 2, adj = 1)
-# 
-# dev.off()
-
-
-
-# positive deaths barplot 2 ------------------------------------------------------------------
-
-png("../figures/ntl_postest_deaths_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-
-double_plot(
-  title = "Antal positivt testede vs. døde",
-  y_label = "Antal positivt testede",
-  y2_label = "Antal døde",
-  y_label_dist = 5,
-  max_y_value = max_pos,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = seg_lwd, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde * 10, lwd = seg_lwd, col = alpha(death_col, 0.7), lend = 1)
-
-points(plot_data$Date, plot_data$running_avg_pos,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pos_col
-)
-
-points(plot_data$Date, plot_data$running_avg_deaths * 10,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = darken(death_col, 0.4)
-)
-
-
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos)/10)
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = pretty(0:max_pos), labels = pretty(0:max_pos))
-
-
-legend("topleft",
-  inset = 0.04,
-  legend = c("Positivt testede", "Døde"),
-  col = c(pos_col, darken(death_col, 0.4)),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-
-dev.off()
-
-
-
-# Pct deaths barplot ----------------------------------------------------
-
-
-# png("../figures/ntl_pct_deaths_barplot.png", width = 20, height = 16, units = "cm", res = 300)
-# par(family = "lato", mar = c(5, 8, 5, 2))
-# 
-# plot(0,
-#   type = "n",
-#   ylab = "",
-#   xlab = "",
-#   axes = FALSE,
-#   cex = 1.2,
-#   cex.axis = cex_axis,
-#   ylim = c(-25, 100),
-#   xlim = c(as.Date("2020-02-15"), as.Date(today) - 1)
-# )
-# 
-# mtext(
-#   text = "Procent positivt testede vs. døde",
-#   side = 3, # side 1 = bottom
-#   line = 1,
-#   cex = 1.5,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Dato",
-#   side = 1, # side 1 = bottom
-#   line = 3,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# mtext(
-#   text = "Antal                             Procent                        ",
-#   side = 2, # side 1 = bottom
-#   line = 4,
-#   cex = cex_labels,
-#   font = 2
-# )
-# 
-# axis(1, c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), format(c(
-#   as.Date("2020-03-01"),
-#   as.Date("2020-05-01"),
-#   as.Date("2020-07-01"),
-#   as.Date("2020-09-01")
-# ), "%b"), cex.axis = cex_axis)
-# axis(2, at = c(-25, 0, 50, 100), label = c(25, 0, "10 %", "20 %"), cex.axis = cex_axis, las = 1)
-# 
-# 
-# segments(tests$Date, 0, tests$Date, tests$pct_confirmed * 5, lwd = 2, col = pct_col, lend = 1)
-# segments(deaths$Date, 0, deaths$Date, -deaths$Antal_døde, lwd = 2, col = death_col, lend = 1)
-# 
-# text(x = as.Date(today) - 2, y = -18, labels = "Døde", col = death_col, cex = cex_labels, font = 2, adj = 1)
-# text(x = as.Date(today) - 2, y = 20, labels = "Procent positivt testede", col = pct_col, cex = cex_labels, font = 2, adj = 1)
-# 
-# box(which = "plot", lty = "solid")
-# 
-# dev.off()
-# 
-
-
-
-# pct deaths barplot 2 ------------------------------------------------------------------
-
-png("../figures/ntl_pct_deaths_barplot_2.png", width = 22, height = 16, units = "cm", res = 300)
-
-double_plot(
-  title = "Procent positivt testede vs. døde",
-  y_label = "Positivprocent",
-  y2_label = "Antal døde",
-  y_label_dist = 5,
-  max_y_value = 20,
-  x_by = "2 months",
-  start_date = "2020-02-15"
-)
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed, lwd = seg_lwd, col = alpha(pct_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = seg_lwd, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde / 5, lwd = seg_lwd, col = alpha(death_col, 0.7), lend = 1)
-
-points(plot_data$Date, plot_data$running_avg_pct,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pct_col
-)
-
-points(plot_data$Date, plot_data$running_avg_deaths / 5,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = darken(death_col, 0.4)
-)
-
-legend("topright",
-  inset = 0.04,
-  legend = c("Positivprocent", "Døde"),
-  col = c(pct_col, darken(death_col, 0.4)),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, 25, 50, 75, 100))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = c(0, 5, 10, 15, 20), labels = c(0, "5 %", "10 %", "15 %", "20 %"))
-
-
-dev.off()
-
+# positive deaths barplot ------------------------------------------------------------------
+
+
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = alpha(pos_col, 0.7)), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 10), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 10, fill = alpha(death_col, 0.7)), width = 1) +
+  geom_line(aes(Date, running_avg_deaths * 10), size = 1, color = darken(death_col, 0)) +
+  scale_fill_manual(name = "", labels = c("Døde", "Positive"), values = c(alpha(death_col, 0.6), alpha(pos_col, 0.6))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    name = "Positive",
+    sec.axis = sec_axis(~ . / 10, name = "Døde")
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Døde med positiv SARS-CoV-2 test vs. antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'))
+
+ggsave("../figures/ntl_postest_deaths_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
+
+# pct deaths barplot ------------------------------------------------------------------
+
+plot_data %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed, fill = pct_col), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde / 5), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde / 5, fill = death_col), width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  geom_line(aes(Date, running_avg_deaths / 5), size = 1, color = darken(death_col, 0)) +
+  scale_fill_manual(name = "", labels = c("Døde", "Positivprocent"), values = c(alpha(death_col, 0.6), alpha(pct_col, 0.6))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    name = "Procent",
+    labels = function(x) paste0(x, " %"),
+    sec.axis = sec_axis(~ . * 5, name = "Døde")
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Døde med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(legend.text = element_text(size = 11),
+        legend.key.size = unit(0.4, 'cm'))
+
+ggsave("../figures/ntl_pct_deaths_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 
 # Twitter card ------------------------------------------------------------------
 
-png("../figures/twitter_card.png", width = 15, height = 8, units = "cm", res = 300)
-par(family = "lato", mar = c(2, 2, 2, 2))
-
-plot(0,
-  type = "n",
-  ylab = "",
-  xlab = "",
-  axes = FALSE,
-  cex = 1.2,
-  cex.axis = cex_axis,
-  ylim = c(0, 3500),
-  xlim = c(as.Date("2020-08-15"), as.Date(today) - 1),
-)
-
-
-
-segments(tests$Date, 0, tests$Date, tests$NewPositive, lwd = 2, col = alpha(pos_col, 0.5), lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = "white", lend = 1)
-segments(admitted$Date, 0, admitted$Date, admitted$Total, lwd = 2, col = alpha(admit_col, 0.7), lend = 1)
-
-points(tests$Date, replace(tests$running_avg_pos, 1:25, NA),
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pos_col
-)
-
-points(admitted$Date, admitted$running_avg_admit,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = admit_col
-)
-
-
-dev.off()
-
-
+plot_data %>%
+  filter(Date > as.Date("2020-04-30")) %>%
+  ggplot() +
+  geom_point(aes(Date, pct_confirmed * 1000), size = 2, color = alpha(pct_col, 0.3)) +
+  geom_point(aes(Date, NewPositive), size = 2, color = alpha(pos_col, 0.3)) +
+  geom_line(aes(Date, running_avg_pct * 1000), size = 1, color = pct_col) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    name = "Antal",
+    sec.axis = sec_axis(~ . / 1000, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+  ) +
+  theme_void()
+ 
+ggsave("../figures/twitter_card.png", width = 15, height = 8, units = "cm", dpi = 300) 
 
 # -------------------------------------------------------------------------
 
 # tiltag plot fra juli -------------------------------------------------------------
 
+tiltag <- tribble(~Date, ~tiltag, ~type,
+                  as.Date("2020-03-12"), "Nedlukning 1", "restrict",
+                  as.Date("2020-04-17"), "Fase 1", "open",
+                  as.Date("2020-05-09"), "Fase 2, del 1", "open",
+                  as.Date("2020-05-22"), "Fase 2, del 2", "open",
+                  as.Date("2020-06-08"), "Fase 3", "open",
+                  as.Date("2020-07-07"), "Forsamling op til 100", "open", 
+                  as.Date("2020-08-14"), "Lukketid udvides", "open",
+                  as.Date("2020-08-22"), "Masker i off. transport", "restrict",
+                  as.Date("2020-09-18"), "Masker + lukketid restauranter", "restrict",
+                  as.Date("2020-09-19"), "Forsamling ned til 50", "restrict",
+                  as.Date("2020-09-25"), "Privat forsamling: 50", "restrict",
+                  as.Date("2020-10-26"), "Forsamling ned til 10 mv.", "restrict",
+                  as.Date("2020-10-29"), "Masker alle off. steder", "restrict",
+                  as.Date("2020-12-17"), "Nedlukning 2-1", "restrict",
+                  as.Date("2020-12-21"), "Nedlukning 2-2", "restrict",
+                  as.Date("2020-12-25"), "Nedlukning 2-3", "restrict")
 
-png("../figures/ntl_tiltag_july.png", width = 22, height = 16, units = "cm", res = 300)
+cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
 
-double_plot(
-  title = "Epidemi-indikatorer og politiske tiltag",
-  y_label = "Antal",
-  y2_label = "Positivprocent",
-  y_label_dist = 5,
-  max_y_value = max_pos + 100,
-  x_by = "1 month",
-  start_date = "2020-07-01"
-)
+x <- plot_data %>%
+  full_join(tiltag, by = "Date")  %>%
+  filter(Date > as.Date("2020-06-20"))
+  
+x %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200, fill = "B"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_line(aes(Date, running_avg_pct * 200), size = 1, color = darken(pct_col, 0)) +
+  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+  geom_label_repel(
+    aes(Date, 0, label = tiltag),
+    color = "white", 
+    verbose = TRUE,
+    fill = "grey40", 
+    size = 2.5, 
+    ylim = c(0, NA), 
+    xlim = c(-Inf, Inf),
+    nudge_y = x$running_avg_pos * 1.3 + 2000,
+    direction = "y",
+    force_pull = 0, 
+    box.padding = 0.1, 
+    max.overlaps = Inf, 
+    segment.size = 0.32,
+    segment.color = "grey40"
+  ) +
+  scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_y_continuous(
+    limits = c(0, 6000),
+    name = "Antal",
+    sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og politiske tiltag", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, "cm")
+  )
 
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = seg_lwd * 1.5, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = seg_lwd * 1.5, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 100, lwd = seg_lwd * 1.5, alpha(pct_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd * 1.5, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = seg_lwd * 1.5, col = alpha(admit_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = seg_lwd * 1.5, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = seg_lwd * 1.5, col = alpha(death_col, 0.7), lend = 1)
-
-points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pos_col
-)
-
-points(plot_data$Date, plot_data$running_avg_deaths,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = darken(death_col, 0.4)
-)
-
-points(plot_data$Date, plot_data$running_avg_admit,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = admit_col
-)
-
-points(plot_data$Date, plot_data$running_avg_pct * 100,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pct_col
-)
-
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 1000), labels = paste0(seq(0, max_pos + 100, by = 1000) / 100, " %"))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, max_pos + 100, by = 1000), labels = seq(0, max_pos + 100, by = 1000))
-
-y <- 60
-arrows(as.Date("2020-07-07"), y + max_pos/14, as.Date("2020-07-07"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-07-08"), y + max_pos/16, "Forsamling: 100", cex = 0.9, adj = 0)
-
-y <- 170
-arrows(as.Date("2020-08-14"), y + max_pos/10, as.Date("2020-08-14"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-13"), y + max_pos/12, "Lukketid udvides", cex = 0.9, adj = 1)
-
-y <- 140
-arrows(as.Date("2020-08-22"), y + max_pos/6, as.Date("2020-08-22"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-08-21"), y + max_pos/7, "Masker i off. transport", cex = 0.9, adj = 1)
-
-#y <- 400
-#arrows(as.Date("2020-09-09"), y + max_pos/7, as.Date("2020-09-09"), y, lwd = 1, lend = 1, length = 0.1)
-#text(as.Date("2020-09-08"), y + max_pos/8, "Restriktioner natteliv, Kbh/Odense", cex = 0.9, adj = 1)
-
-y <- 600
-arrows(as.Date("2020-09-18"), y + max_pos/7, as.Date("2020-09-18"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-17"), y + max_pos/8, "Restriktioner restauranter mv.", cex = 0.9, adj = 1)
-
-y <- 680
-arrows(as.Date("2020-09-26"), y + max_pos/5, as.Date("2020-09-26"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-09-25"), y + max_pos/4.5, "Restriktioner private fester", cex = 0.9, adj = 0.5)
-
-y <- 1230
-arrows(as.Date("2020-10-29"), y + max_pos/7, as.Date("2020-10-29"), y, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-10-28"), y + max_pos/6, "Masker alle off. steder mv.", cex = 0.9, adj = 0.5)
-
-
-
-
-
-
-legend("topleft",
-  inset = 0.04,
-  legend = c("Positivt testede", "Positivprocent", "Nyindlagte", "Døde"),
-  col = c(pos_col, pct_col, admit_col, darken(death_col, 0.4)),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-
-dev.off()
-
-
+  ggsave("../figures/ntl_tiltag_july.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 # tiltag plot fra april -------------------------------------------------------------
 
+x <- plot_data %>%
+  full_join(tiltag, by = "Date") %>%
+  filter(
+    Date > as.Date("2020-03-31"),
+    Date < as.Date("2020-08-02")
+  )
+  
+x %>%
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 100, fill = "B"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_line(aes(Date, running_avg_pct * 100), size = 1, color = darken(pct_col, 0)) +
+  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+  geom_label_repel(
+    aes(Date, 0, label = tiltag),
+    color = "white",
+    fill = "grey40",
+    size = 2.5,
+    ylim = c(0, NA),
+    nudge_y = x$running_avg_pct * 200 + 100,
+    direction = "y",
+    force_pull = 0,
+    box.padding = 0.2,
+    max.overlaps = Inf,
+    segment.size = 0.32,
+    segment.color = "grey40"
+  ) +
+  scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_y_continuous(
+    limits = c(0, 1000),
+    name = "Antal",
+    sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbningen (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, "cm")
+  )
 
-png("../figures/ntl_tiltag_april.png", width = 22, height = 16, units = "cm", res = 300)
-
-par(lheight = 0.9)
-
-double_plot(
-  title = "Epidemi-indikatorer og genåbningsfaser",
-  y_label = "Antal",
-  y2_label = "Positivprocent",
-  y_label_dist = 5,
-  max_y_value = 600,
-  x_by = "1 month",
-  start_date = "2020-04-01",
-  end_date = "2020-08-02"
-)
-
-
-segments(plot_data$Date, 0, plot_data$Date, plot_data$NewPositive, lwd = 3.7, col = alpha(pos_col, 0.5), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 40, lwd = 3.7, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$pct_confirmed * 40, lwd = 3.7, alpha(pct_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3.7, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Total, lwd = 3.7, col = alpha(admit_col, 0.7), lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3.7, col = "white", lend = 1)
-segments(plot_data$Date, 0, plot_data$Date, plot_data$Antal_døde, lwd = 3.7, col = alpha(death_col, 0.7), lend = 1)
-
-points(plot_data$Date, replace(plot_data$running_avg_pos, 1:25, NA),
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pos_col
-)
-
-points(plot_data$Date, plot_data$running_avg_deaths,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = darken(death_col, 0.4)
-)
-
-points(plot_data$Date, plot_data$running_avg_admit,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = admit_col
-)
-
-points(plot_data$Date, plot_data$running_avg_pct * 40,
-  type = "l",
-  pch = 19,
-  lwd = 3,
-  col = pct_col
-)
-
-
-
-axis(side = 4, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 200), labels = paste0(seq(0, 600, by = 200) / 40, " %"))
-axis(side = 2, col.axis = "black", las = 1, cex.axis = cex_axis, at = seq(0, 600, by = 100), labels = seq(0, 600, by = 100))
-
-arrows(as.Date("2020-04-15"), 420, as.Date("2020-04-15"), 320, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-04-16"), 400, "Små klasser,\nliberale erhverv", cex = 0.9, adj = 0)
-
-arrows(as.Date("2020-05-07"), 250, as.Date("2020-05-07"), 150, lwd = 1, lend = 1, length = 0.1)
-arrows(as.Date("2020-05-11"), 170, as.Date("2020-05-11"), 150, lwd = 1, lend = 1, length = 0.1)
-arrows(as.Date("2020-05-18"), 170, as.Date("2020-05-18"), 150, lwd = 1, lend = 1, length = 0.1)
-arrows(as.Date("2020-05-21"), 170, as.Date("2020-05-21"), 150, lwd = 1, lend = 1, length = 0.1)
-arrows(as.Date("2020-05-27"), 170, as.Date("2020-05-27"), 150, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-05-08"), 217, "Store klasser, gymnasier,\ndetailhandel, kultur,\nidræt, restauranter", cex = 0.9, adj = 0)
-
-arrows(as.Date("2020-06-08"), 160, as.Date("2020-06-08"), 60, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-06-09"), 127, "Forsamling: 50,\nsvømmehaller,\nfitness", cex = 0.9, adj = 0)
-
-arrows(as.Date("2020-07-07"), 160, as.Date("2020-07-07"), 60, lwd = 1, lend = 1, length = 0.1)
-text(as.Date("2020-07-08"), 150, "Forsamling: 100", cex = 0.9, adj = 0)
-
-
-legend("topright",
-  inset = 0.04,
-  legend = c("Positivt testede", "Positivprocent", "Nyindlagte", "Døde"),
-  col = c(pos_col, pct_col, admit_col, darken(death_col, 0.4)),
-  lty = 1,
-  cex = 1.2,
-  box.lty = 0,
-  lwd = 4
-)
-
-
-dev.off()
+ggsave("../figures/ntl_tiltag_april.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 # tiltag relative plots ---------------------------------------------------
 
-index_plot <- function(dataframe, name, date, type) {
+index_plot <- function(dataframe, tiltag_df) {
   df <- dataframe %>%
     select(Date, running_avg_pos, running_avg_pct, running_avg_admit) %>%
-    mutate(day = Date - as.Date(date)) %>%
+    mutate(day = Date - as.Date(tiltag_df$Date)) %>%
     select(-Date) %>%
     mutate(running_avg_pct = as.double(running_avg_pct),
            running_avg_admit = as.double(running_avg_admit),
@@ -1125,7 +416,7 @@ index_plot <- function(dataframe, name, date, type) {
     select(-running_avg_pct, -running_avg_pos, -running_avg_admit) %>%
     filter(day > -15, day < 29) %>%
     pivot_longer(-day, names_to = "variable", values_to = "value") %>%
-    mutate(tiltag = name, type = type)
+    mutate(tiltag = tiltag_df$tiltag, type = tiltag_df$type)
   
   return(df)
 }
@@ -1133,17 +424,17 @@ index_plot <- function(dataframe, name, date, type) {
 df <- tests %>%
   full_join(admitted, by = "Date")
 
-plot_data <- index_plot(df, "Masker offentlig transport", "2020-08-22", "restrict")
-plot_data %<>% bind_rows(index_plot(df, "Nedlukning", "2020-03-12",  "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Masker + lukketid restauranter mv.", "2020-09-18",  "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Privat forsamling 50", "2020-09-25", "restrict"))
-plot_data %<>% bind_rows(index_plot(df, "Masker off. steder mv", "2020-10-29", "restrict"))
+plot_data <- index_plot(df, filter(tiltag, tiltag == "Masker i off. transport"))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Nedlukning 1")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Masker + lukketid restauranter")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Privat forsamling: 50")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Masker alle off. steder")))
 
-plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 100", "2020-07-07", "open"))
-plot_data %<>% bind_rows(index_plot(df, "Forsamling op til 50", "2020-06-08", "open"))
-plot_data %<>% bind_rows(index_plot(df, "Fase 2, del 1", "2020-05-09", "open"))
-plot_data %<>% bind_rows(index_plot(df, "Fase 2, del 2", "2020-05-22", "open"))
-plot_data %<>% bind_rows(index_plot(df, "Fase 1", "2020-04-17", "open"))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Forsamling op til 100")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Fase 3")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Fase 2, del 2")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Fase 2, del 1")))
+plot_data %<>% bind_rows(index_plot(df, filter(tiltag, tiltag == "Fase 1")))
 
 baseplot <- function(data, text_positions) {
   ggplot(data, aes(day, value)) +
@@ -1157,7 +448,7 @@ baseplot <- function(data, text_positions) {
     scale_color_discrete(guide = FALSE) +
     scale_x_continuous(breaks = c(-14,-7,0,7,14,21,28), limits = c(-14, 44)) +
     scale_y_continuous(trans = "log10", limits = c(12, 700)) + 
-    labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage")
+    labs(y = "Procent af værdi da tiltaget trådte i kraft", x = "Dage", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI")
   
 }
 
@@ -1169,6 +460,7 @@ theme <- standard_theme +
         axis.title.y = element_text(size = 12),
         plot.title = element_text(size = 16),
         plot.margin = margin(1, 5, 1, 1, "cm"),
+        plot.caption = element_text(size = 10),
         panel.spacing.x = unit(4, "cm"),
         panel.grid.minor.y = element_blank(),
         panel.grid.minor.x = element_blank())
@@ -1182,9 +474,9 @@ max_day <- subset_data %>%
   filter(max)
 
 max_day$value[which(max_day$tiltag == "Fase 1")] <- 34
-max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 165
-max_day$value[which(max_day$tiltag == "Masker off. steder mv")] <- 122
-max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 92
+max_day$value[which(max_day$tiltag == "Privat forsamling: 50")] <- 165
+max_day$value[which(max_day$tiltag == "Masker alle off. steder")] <- 122
+max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter")] <- 92
 
 baseplot(subset_data, max_day) +
   labs(title = "Hvad sker der med antal positive efter et tiltag?") +
@@ -1200,18 +492,11 @@ max_day <- subset_data %>%
   mutate(max = day == max(day)) %>%
   filter(max)
 
-max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 190
-
-#subset_data %<>% filter(tiltag == "Masker off. steder mv")
-#max_day %<>% filter(tiltag == "Masker off. steder mv")
+max_day$value[which(max_day$tiltag == "Privat forsamling: 50")] <- 190
 
 baseplot(subset_data, max_day) +
-#  geom_line(stat = "identity", position = "identity", size = 3, color = "#00B0F6") +
-#  geom_text(data = max_day,  size = 4, aes(x = 29, y = value, label = str_wrap(tiltag, 25)), color = "#00B0F6", hjust = "outward", lineheight = 0.8) +
-#  scale_y_continuous(trans = "log10", limits = c(50, 200)) + 
   labs(title = "Hvad sker der med positivprocenten efter et tiltag?") +
   theme
-
 
 
 ggsave("../figures/ntl_tiltag_pct.png", width = 30, height = 14, units = "cm", dpi = 300)
@@ -1225,10 +510,10 @@ max_day <- subset_data %>%
   mutate(max = day == max(day)) %>%
   filter(max)
 
-max_day$value[which(max_day$tiltag == "Privat forsamling 50")] <- 140
-max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter mv.")] <- 107
-max_day$value[which(max_day$tiltag == "Forsamling op til 50")] <- 53
-max_day$value[which(max_day$tiltag == "Masker off. steder mv")] <- 82
+max_day$value[which(max_day$tiltag == "Privat forsamling: 50")] <- 140
+max_day$value[which(max_day$tiltag == "Masker + lukketid restauranter")] <- 107
+max_day$value[which(max_day$tiltag == "Fase 3")] <- 53
+max_day$value[which(max_day$tiltag == "Masker alle off. steder")] <- 82
 
 
 baseplot(subset_data, max_day) +
@@ -1236,10 +521,6 @@ baseplot(subset_data, max_day) +
   theme
 
 ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "cm", dpi = 300)
-
-
-
-
 
 
 # zip vs dashboard ---------------------------------------------------
@@ -1292,58 +573,50 @@ ggsave("../figures/ntl_test_vs_dashboard.png", width = 18, height = 12, units = 
 
 cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
 
-dst_deaths_5yr %>%
-  mutate(Date = paste0("2020M", sprintf("%02d", Month), Day)) %>%
+dst_deaths_5yr %<>%
+  mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>%
   select(-Month, -Day) %>%
-  pivot_longer(-Date, names_to = "year", values_to = "Deaths") %>%
+  pivot_longer(-md, names_to = "year", values_to = "Deaths") %>%
   mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
          Deaths = as.double(Deaths)) %>%
-  group_by(Date) %>%
+  group_by(md) %>%
   summarize(avg_5yr = mean(Deaths, na.rm = TRUE),
             max_5yr = max(Deaths, na.rm = TRUE),
             min_5yr = min(Deaths, na.rm = TRUE)) %>%
-  ungroup() %>%
-  full_join(dst_deaths, by = "Date") %>%
-  filter(!is.na(Y2020)) %>%
-  mutate(Date = as.Date(paste0("2020-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+  ungroup()
+
+dst_deaths %>%
+  mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
+  mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
+  full_join(dst_deaths_5yr, by = "md") %>%
   ggplot() +
-  geom_bar(stat="identity",position = "identity", aes(Date, Y2020, fill = "all"), width = 1) +
+  geom_bar(stat="identity",position = "identity", aes(Date, current, fill = "all"), width = 1) +
   geom_bar(stat="identity",position = "identity", aes(Date, Antal_døde, fill = "covid"), width = 1) +
   #geom_ribbon(aes(x=Date, ymax=max_5yr, ymin=min_5yr, fill="average"), alpha=.4) +
   #geom_line(aes(Date, ra(avg_5yr)), color = "red") +
   stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) +  #, color = variable))+
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark") + #, caption = "Graf: covid19danmark.dk\nData: Danmarks Statistik og SSI") +
-  scale_fill_manual(name = "", labels = c("Alle i 2020", "COVID-19"), values = cols[1:2]) +
+  scale_x_date(labels = my_date_labels, breaks = "1 months") +
+  labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
+  scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
   scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "Gennemsnit alle 2020"), values = cols[3:4]) +
-  standard_theme + 
-  theme(legend.position = "top",
-        plot.caption = element_text(color = "gray"))
+  standard_theme +
+  theme(panel.grid.minor.x = element_blank())
 
 ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 14, units = "cm", dpi = 300)
 
 
-plot_data <- dst_deaths_5yr %>%
-  mutate(Date = paste0("2020M", sprintf("%02d", Month), Day)) %>%
-  select(-Month, -Day) %>%
-  pivot_longer(-Date, names_to = "year", values_to = "Deaths") %>%
-  mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
-         Deaths = as.double(Deaths)) %>%
-  group_by(Date) %>%
-  summarize(avg_5yr = mean(Deaths, na.rm = TRUE),
-            max_5yr = max(Deaths, na.rm = TRUE),
-            min_5yr = min(Deaths, na.rm = TRUE)) %>%
-  ungroup() %>%
-  full_join(dst_deaths, by = "Date") %>%
-  mutate(Date = as.Date(paste0("2020-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+plot_data <- dst_deaths %>%
+  mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
+  mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
+  full_join(dst_deaths_5yr, by = "md") %>%
   group_by(Date=floor_date(Date + 4, "1 week")) %>%
   summarize(across(where(is.numeric), sum)) %>%
-  filter(!is.na(Y2020)) %>%
   mutate(Antal_døde = ifelse(is.na(Antal_døde), 0, Antal_døde)) %>%
-  mutate(Non_covid = Y2020 - Antal_døde) %>%
-  select(-Y2020) %>%
+  mutate(Non_covid = current - Antal_døde) %>%
+  select(-current) %>%
+  filter(!is.na(Non_covid)) %>%
   pivot_longer(-Date, names_to = "variable", values_to = "value") 
 
 cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
@@ -1352,13 +625,12 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable)) +
   #geom_line(data = subset(plot_data, variable %in% c("max_5yr", "min_5yr")), aes(Date, value, color = variable), size = 0.5) + 
   geom_line(data = subset(plot_data, variable == "avg_5yr"), aes(Date, value, color = "average"), size = 1) + 
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  labs(x = "Dato", y = "Antal døde", title = "Ugentlige dødsfald i Danmark 2020") + 
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+  labs(x = "Dato", y = "Antal døde", title = "Ugentlige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
   scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
   scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3],3)) +
-  standard_theme + 
-  theme(legend.position = "top",
-        plot.caption = element_text(color = "gray"))
+  standard_theme  +
+    theme(panel.grid.minor.x = element_blank())
 
   ggsave("../figures/dst_deaths_covid_all_wk.png", width = 18, height = 14, units = "cm", dpi = 300)
   

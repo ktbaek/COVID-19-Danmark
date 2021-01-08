@@ -10,7 +10,7 @@ read_age_csv <- function(x) {
   file %<>%
     mutate(date_of_file = x) %>%
     select(-Procent_positive) %>%
-    mutate(Date = paste0("2020-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6)))
+    mutate(Date = paste0("20", str_sub(date_of_file, 1, 2), "-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6)))
   
   return(file)
 }
@@ -77,7 +77,7 @@ week_admitted <- admitted %>%
   mutate(variable = "admitted") 
 
 # Combine AGE, ADMITTED and group into old and young --------------------------------
-
+  
 over_50 <- c("50-59", "60-69", "70-79", "80-89", "90+")
 over_60 <- c("60-69", "70-79", "80-89", "90+")
 over_70 <- c("70-79", "80-89", "90+")
