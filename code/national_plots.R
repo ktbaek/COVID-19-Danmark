@@ -593,9 +593,7 @@ dst_deaths %>%
   ggplot() +
   geom_bar(stat="identity",position = "identity", aes(Date, current, fill = "all"), width = 1) +
   geom_bar(stat="identity",position = "identity", aes(Date, Antal_døde, fill = "covid"), width = 1) +
-  #geom_ribbon(aes(x=Date, ymax=max_5yr, ymin=min_5yr, fill="average"), alpha=.4) +
-  #geom_line(aes(Date, ra(avg_5yr)), color = "red") +
-  stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) +  #, color = variable))+
+  stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) + 
   scale_x_date(labels = my_date_labels, breaks = "1 months") +
   labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
   scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
@@ -603,7 +601,7 @@ dst_deaths %>%
   standard_theme +
   theme(panel.grid.minor.x = element_blank())
 
-ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 14, units = "cm", dpi = 300)
+ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 
 plot_data <- dst_deaths %>%
@@ -632,5 +630,33 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   standard_theme  +
     theme(panel.grid.minor.x = element_blank())
 
-  ggsave("../figures/dst_deaths_covid_all_wk.png", width = 18, height = 14, units = "cm", dpi = 300)
+  ggsave("../figures/dst_deaths_covid_all_wk.png", width = 18, height = 12, units = "cm", dpi = 300)
+  
+  
+  plot_data <- dst_deaths %>%
+    mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
+    mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+    full_join(deaths, by = "Date") %>%
+    full_join(dst_deaths_5yr, by = "md") %>%
+    mutate(Antal_døde = ifelse(is.na(Antal_døde), 0, Antal_døde)) %>%
+    mutate(Non_covid = current - Antal_døde) %>%
+    select(-current, -md) %>%
+    filter(!is.na(Non_covid)) %>%
+    pivot_longer(-Date, names_to = "variable", values_to = "value") 
+  
+  cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
+  
+  ggplot(plot_data) +
+    geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable), width = 1) +
+    #geom_line(data = subset(plot_data, variable == "avg_5yr"), aes(Date, value, color = "average"), size = 1) + 
+    stat_smooth(data = subset(plot_data, variable == "avg_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05) +
+    scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+    labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
+    scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
+    scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3],3)) +
+    standard_theme  +
+    theme(panel.grid.minor.x = element_blank())
+  
+  ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)
+  
   
