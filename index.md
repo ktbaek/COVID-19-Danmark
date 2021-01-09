@@ -158,7 +158,7 @@ Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage.
 
 ### Total antal vaccinerede
 
-Øverste plot viser det kumulerede antal vaccinerede indtil nu. Nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu.
+Øverste plot viser det kumulerede antal vaccinerede. Nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu.
 
 ![](/figures/ntl_vax_cum.png)
 
