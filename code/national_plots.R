@@ -100,10 +100,11 @@ ggsave("../figures/ntl_pct_1.png", width = 18, height = 10, units = "cm", dpi = 
 plot_data %>%
   filter(Date > as.Date("2020-04-30")) %>%
   ggplot() +
-  geom_point(aes(Date, pct_confirmed * 1000), size = 2, color = alpha(pct_col, 0.3)) +
-  geom_point(aes(Date, NewPositive), size = 2, color = alpha(pos_col, 0.3)) +
+  geom_point(aes(Date, pct_confirmed * 1000, color = alpha(pct_col, 0.3)), size = 2) +
+  geom_point(aes(Date, NewPositive, color = alpha(pos_col, 0.3)), size = 2) +
   geom_line(aes(Date, running_avg_pct * 1000), size = 1, color = pct_col) +
   geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_color_manual(name = "", labels = c("Positivprocent", "Positive"), values = c(alpha(pct_col, 0.3), alpha(pos_col, 0.3))) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
   scale_y_continuous(
     limits = c(0, NA),
@@ -648,8 +649,11 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   
   ggplot(plot_data) +
     geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable), width = 1) +
-    #geom_line(data = subset(plot_data, variable == "avg_5yr"), aes(Date, value, color = "average"), size = 1) + 
+    #geom_line(data = subset(plot_data, variable == "max_5yr"), aes(Date, value, color = "average"), size = 0.3) + 
+    #geom_line(data = subset(plot_data, variable == "min_5yr"), aes(Date, value, color = "average"), size = 0.3) +
     stat_smooth(data = subset(plot_data, variable == "avg_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05) +
+    #stat_smooth(data = subset(plot_data, variable == "min_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
+    #stat_smooth(data = subset(plot_data, variable == "max_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
     scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
     labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
     scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
