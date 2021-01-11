@@ -1,23 +1,28 @@
-vax <- pdf_text("../data/vax.pdf") %>%
+vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", today_string, ".pdf")) %>%
   read_lines()
 
 tabel_4 <- which(str_detect(vax, "Tabel 4"))[2]
 
 age_vax <- vax[(tabel_4 + 2):(tabel_4 + 10)]
+age_vax_colnames <- vax[(tabel_4 + 1)]
 
 age_vax %<>%
   str_squish() %>%
   strsplit(split = " ")
 
+age_vax_colnames %<>%
+  str_squish() %>%
+  strsplit(split = " ")
+
 age_vax_df <- data.frame(matrix(unlist(age_vax), nrow=length(age_vax), byrow=T))
 
-colnames(age_vax_df) <- c("Aldersgruppe", "Male", "Female", "Total")
+colnames(age_vax_df) <- c(unlist(age_vax_colnames)[1:3], "Total")
 
 age_vax_df %>%
   as_tibble %>%
   mutate_all(str_replace_all, "\\.", "") %>%
-  mutate(across(c(Male, Female, Total), as.double)) %>%
-  select(-Total) %>%
+  mutate(across(c(Kvinder, Mænd, Total), as.double)) %>%
+  select(-Total, Aldersgruppe, Mænd, Kvinder) %>%
   pivot_longer(-Aldersgruppe, names_to = "sex", values_to = "value") %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, value, fill = sex), stat = "identity", position = "dodge") +

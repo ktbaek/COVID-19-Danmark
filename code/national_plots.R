@@ -115,7 +115,7 @@ plot_data %>%
   standard_theme + 
   theme(panel.grid.minor.x = element_blank())
 
-ggsave("../figures/ntl_pos_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
+ggsave("../figures/ntl_pos_pct.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 # Nyindlagte ------------------------------------------------------------------
 
