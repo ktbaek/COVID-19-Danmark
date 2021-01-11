@@ -40,7 +40,7 @@ tabel_2 <- max(which(str_detect(vax, "Tabel 2")))
 
 days_since_start <- as.integer(as.Date(today) - as.Date("2020-12-27"))
 
-time_vax <- vax[(tabel_2 + 4):(tabel_2 + 4 + days_since_start)]
+time_vax <- vax[(tabel_2 + 4):(tabel_2 + 3 + days_since_start)]
 
 time_vax %<>%
   str_squish() %>%
