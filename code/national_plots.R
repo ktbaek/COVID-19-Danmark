@@ -4,20 +4,6 @@ plot_data <-
   full_join(admitted, by = "Date") %>%
   full_join(deaths, by = "Date") %>%
   filter(Date > as.Date("2020-02-14"))
-
-my_date_labels <- function(breaks) {
-  
-  labels <- sapply(breaks, function(x) {
-    
-    if(!is.na(x) && month(x) == 1) {
-      str_to_lower(strftime(x, "%e. %b %y"))
-    }else{
-      str_to_lower(strftime(x, "%e. %b"))
-      }
-  })
-
-  return(labels)
-  }
   
 # Pos ------------------------------------------------------------------
 
@@ -295,7 +281,7 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   as.Date("2020-12-17"), "Nedlukning 2-1", "restrict",
                   as.Date("2020-12-21"), "Nedlukning 2-2", "restrict",
                   as.Date("2020-12-25"), "Nedlukning 2-3", "restrict",
-                  as.Date("2020-01-0"), "Forsamling ned til 5", "restrict")
+                  as.Date("2021-01-05"), "Forsamling 5", "restrict")
 
 cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
 

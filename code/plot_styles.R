@@ -17,6 +17,24 @@ death_col <- color_scale[1]
 binary_col <- c(color_scale[6], color_scale[7])
 
 
+
+# Date labels -------------------------------------------------------------
+
+my_date_labels <- function(breaks) {
+  
+  labels <- sapply(breaks, function(x) {
+    
+    if(!is.na(x) && month(x) == 1) {
+      str_to_lower(strftime(x, "%e. %b %y"))
+    }else{
+      str_to_lower(strftime(x, "%e. %b"))
+    }
+  })
+  
+  return(labels)
+}
+
+
 # Typeface ----------------------------------------------------------------
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Light", "Lato-BoldItalic"))
