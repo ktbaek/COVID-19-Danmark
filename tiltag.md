@@ -28,7 +28,10 @@
 | 26. oktober | Forsamlingsloft sænkes til 10, forbud mod alkoholsalg efter kl 22, m.fl. |
 | 29. oktober | Mundbind alle indendørs steder i det offentlige rum |
 | 9. november | Nedlukning af Nordjylland (cluster-5) |
-| 7. december | Ensretning af butik/centre. Forsamlingsloft sænkes til 10 for unge i hovedstaden |
+| 7. december | Restriktioner i 17 hovedstadskommuner: Ensretning af gågader/butik/centre,  forsamlingsloft sænkes til 10 for børn- og ungeaktiviteter, opfordring til at unge testes, m.fl.  |
+| 9. december | Restriktioner i 38 kommuner: Hovedstadsrestriktioner + lukning af serveringssteder og kultur- og idrætsfaciliteter + fjernundervisning af store elever.  |
+| 11. december | Restriktioner i 69 kommuner: Som ovenstående.  |
+| 16. december | Restriktioner i alle kommuner: Som ovenstående.  |
 | 17. december | Nedlukning af storcentre, stormagasiner og butiksarkader |
 | 21. december | Nedlukning af liberale erhverv |
 | 25. december | Nedlukning af detailhandlen. Apoteker og dagligvarebutikker holdes åbent |

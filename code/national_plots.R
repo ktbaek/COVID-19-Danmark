@@ -278,10 +278,13 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   as.Date("2020-09-25"), "Privat forsamling: 50", "restrict",
                   as.Date("2020-10-26"), "Forsamling ned til 10 mv.", "restrict",
                   as.Date("2020-10-29"), "Masker alle off. steder", "restrict",
+                  as.Date("2020-12-07"), "Restriktioner Hovedstaden", "restrict",
+                  as.Date("2020-12-09"), "Delvis nedluk 38 komm.", "restrict",
+                  as.Date("2020-12-11"), "Delvis nedluk 69 komm.", "restrict",
                   as.Date("2020-12-17"), "Nedlukning 2-1", "restrict",
                   as.Date("2020-12-21"), "Nedlukning 2-2", "restrict",
                   as.Date("2020-12-25"), "Nedlukning 2-3", "restrict",
-                  as.Date("2021-01-05"), "Forsamling 5", "restrict")
+                  as.Date("2021-01-05"), "Forsamling: 5", "restrict")
 
 cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
 
