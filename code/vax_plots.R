@@ -3,7 +3,7 @@ vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", today_string, ".pdf")) %>%
 
 tabel_4 <- which(str_detect(vax, "Tabel 4"))[2]
 
-age_vax <- vax[(tabel_4 + 2):(tabel_4 + 10)]
+age_vax <- vax[(tabel_4 + 2):(tabel_4 + 11)]
 age_vax_colnames <- vax[(tabel_4 + 1)]
 
 age_vax %<>%
@@ -40,7 +40,7 @@ tabel_2 <- max(which(str_detect(vax, "Tabel 2")))
 
 days_since_start <- as.integer(as.Date(today) - as.Date("2020-12-27"))
 
-time_vax <- vax[(tabel_2 + 4):(tabel_2 + 3 + days_since_start)]
+time_vax <- vax[(tabel_2 + 5):(tabel_2 + 4 + days_since_start)]
 
 time_vax %<>%
   str_squish() %>%

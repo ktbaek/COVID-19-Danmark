@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 13. januar 2021 efter kl 14.
+Senest opdateret 15. januar 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -123,8 +123,20 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 -->
 
-[Tilbage til toppen](#)
 
+
+### Plots: B.1.1.7 Varianten
+
+Plottet viser det ugentlige antal positivt testede (højden på søjlerne) samt en estimeret fordeling på B.1.1.7 varianten og andre varianter. Estimatet for hvor mange der er testet positiv for B.1.1.7 varianten er beregnet som det samlede antal positivt testede x procentdelen af genomsekventerede prøver der er tilhører B.1.1.7 clusteret.
+
+Hvor præcist dette estimat er, afhænger af i hvor høj grad de genomsekventerede prøver er tilfældigt udvalgt fra puljen af positive prøver.
+
+Data for B.1.1.7 er hentet på https://covid19genomics.dk/statistics.
+
+![](/figures/ntl_b117.png)
+
+
+[Tilbage til toppen](#)
 
 ## Plots: politiske tiltag
 

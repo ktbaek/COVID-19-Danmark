@@ -313,7 +313,7 @@ x %>%
     size = 2.5, 
     ylim = c(0, NA), 
     xlim = c(-Inf, Inf),
-    nudge_y = x$running_avg_pos * 1.3 + 2000,
+    nudge_y = x$running_avg_pos * 1.4 + 2000,
     direction = "y",
     force_pull = 0, 
     box.padding = 0.1, 
@@ -324,7 +324,7 @@ x %>%
   scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
   scale_y_continuous(
-    limits = c(0, 6000),
+    limits = c(0, 8000),
     name = "Antal",
     sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
   ) +
@@ -576,15 +576,23 @@ dst_deaths_5yr %<>%
             min_5yr = min(Deaths, na.rm = TRUE)) %>%
   ungroup()
 
-dst_deaths %>%
+plot_data <- dst_deaths %>%
   mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
   mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
   full_join(dst_deaths_5yr, by = "md") %>%
+  group_by(Date_wk = floor_date(Date + 4, "1 week")) %>%
+  mutate(smooth_avg = mean(avg_5yr, na.rm = TRUE)) %>%
+  mutate(smooth_avg = ifelse(Date == Date_wk, smooth_avg, NA)) %>%
+  ungroup() %>%
+  select(-Date_wk)
+
+plot_data %>%
   ggplot() +
   geom_bar(stat="identity",position = "identity", aes(Date, current, fill = "all"), width = 1) +
   geom_bar(stat="identity",position = "identity", aes(Date, Antal_døde, fill = "covid"), width = 1) +
-  stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) + 
+  geom_line(data = plot_data[!is.na(plot_data$smooth_avg), ], aes(Date, smooth_avg, color = "average"), size = 1) +
+  #stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) + 
   scale_x_date(labels = my_date_labels, breaks = "1 months") +
   labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
   scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
@@ -629,6 +637,11 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
     mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
     full_join(deaths, by = "Date") %>%
     full_join(dst_deaths_5yr, by = "md") %>%
+    group_by(Date_wk = floor_date(Date + 4, "1 week")) %>%
+    mutate(smooth_avg = mean(avg_5yr, na.rm = TRUE)) %>%
+    mutate(smooth_avg = ifelse(Date == Date_wk, smooth_avg, NA)) %>%
+    ungroup() %>%
+    select(-Date_wk) %>%
     mutate(Antal_døde = ifelse(is.na(Antal_døde), 0, Antal_døde)) %>%
     mutate(Non_covid = current - Antal_døde) %>%
     select(-current, -md) %>%
@@ -639,9 +652,9 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   
   ggplot(plot_data) +
     geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable), width = 1) +
-    #geom_line(data = subset(plot_data, variable == "max_5yr"), aes(Date, value, color = "average"), size = 0.3) + 
-    #geom_line(data = subset(plot_data, variable == "min_5yr"), aes(Date, value, color = "average"), size = 0.3) +
-    stat_smooth(data = subset(plot_data, variable == "avg_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05) +
+    #geom_line(data = subset(plot_data, variable == "ra_avg"), aes(Date, value, color = "average"), size = 1) + 
+    geom_line(data = plot_data[plot_data$variable == "smooth_avg" & !is.na(plot_data$value), ], aes(Date, value, color = "average"), size = 1) +
+    #stat_smooth(data = subset(plot_data, variable == "avg_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05) +
     #stat_smooth(data = subset(plot_data, variable == "min_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
     #stat_smooth(data = subset(plot_data, variable == "max_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
     scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
@@ -652,5 +665,41 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
     theme(panel.grid.minor.x = element_blank())
   
   ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)
+  
+# b117 --------------------------------------------------------------------
+  
+  library(ISOweek)
+  b117 <- read_csv2("../data/b117_data.csv")
+  
+  b117 %<>%
+    mutate(Date = ISOweek2date(paste0(Week, "-1"))) %>%
+    filter(Region == "Whole Denmark")
+  
+  plot_data <- tests %>%
+    group_by(Date=floor_date(Date, "1 week") + 1) %>%
+    summarize(positive = sum(NewPositive, na.rm = TRUE)) %>% 
+    full_join(b117, by = "Date") %>%
+    filter(Date > as.Date("2020-11-01")) %>%
+    filter(!is.na(Week)) %>%
+    mutate(share = positive * percent / 100) %>%
+    select(Date, positive, share) %>%
+    pivot_longer(-Date, names_to = "variable", values_to = "value") 
+  
+  plot_data %>%
+    ggplot() +
+    geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
+    geom_text(data = subset(plot_data, variable == "share"), aes(Date, value + 400  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
+    scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray80",'#E69F00'))+
+    scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+    scale_y_continuous(
+      limits = c(0, NA)
+    ) +
+    labs(y = "Antal positive", x = "Uge (startdato)", title = "Ugentligt antal positivt testede og estimeret antal positive for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: covid19genomics.dk og SSI", subtitle = "Estimeret antal B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom") +
+    standard_theme  +
+    theme(plot.caption.position = "plot",
+          axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+  
+  ggsave("../figures/ntl_b117.png", width = 18, height = 12, units = "cm", dpi = 300)
+  
   
   
