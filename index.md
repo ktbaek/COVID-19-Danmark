@@ -125,7 +125,7 @@ SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret
 
 
 
-### B.1.1.7 Varianten
+### B.1.1.7 varianten
 
 Plottet viser det ugentlige antal positivt testede (højden på søjlerne) samt en estimeret fordeling på B.1.1.7 varianten og andre varianter. Estimatet for hvor mange der er testet positiv for B.1.1.7 varianten er beregnet som det samlede antal positivt testede x procentdelen af genomsekventerede prøver der tilhører B.1.1.7 clusteret.
 
