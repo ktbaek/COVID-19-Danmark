@@ -23,8 +23,8 @@ table_1_df %<>%
   mutate(year = ifelse(Week %in% seq(46,53), 2020, 2021)) %>%
   mutate(Week = sprintf("%02d", Week)) %>%
   mutate(Date = ISOweek2date(paste0(year, "-W", Week, "-1"))) %>%
-  select(-year) %>%
-  slice(1:nrow(.)-1) 
+  select(-year) 
+  #slice(1:nrow(.)-1) 
   
 plot_data <- tests %>%
   group_by(Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
