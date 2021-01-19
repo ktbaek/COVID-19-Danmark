@@ -180,7 +180,7 @@ Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage.
 
 ## Plots: vaccinationsstatus
 
-### Total antal påbegyndt vaccinerede
+### Total antal vaccinerede
 
 Øverste plot viser det kumulerede antal vaccinerede. Nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu.
 
