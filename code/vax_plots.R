@@ -54,17 +54,19 @@ time_vax_df <- data.frame(matrix(unlist(time_vax), nrow=length(time_vax), byrow=
 
 time_vax_df %>%
   as_tibble %>%
-  select(X1, X3) %>%
-  set_colnames(c("Date", "Antal")) %>%
+  select(X1, X3, X6) %>%
+  set_colnames(c("Date", "Begun", "Done")) %>%
   mutate_all(str_replace_all, "\\.", "") %>%
   mutate_all(str_replace_all, "\\,", ".") %>%
-  mutate(across(c(Antal), as.double)) %>%
+  mutate(across(c(Begun, Done), as.double)) %>%
   mutate(Date = dmy(Date)) %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "value") %>%
   ggplot() +
-  geom_line(aes(Date, Antal), color = "#11999e", size = 2) +
+  geom_line(aes(Date, value, color = variable), size = 2) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 week") +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
-  labs(y = "Antal", title = "Kumuleret antal påbegyndt COVID-19 vaccinerede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_color_manual(name = "", labels = c("Påbegyndt", "Færdigvaccineret"), values=c("#11999e", "#30e3ca")) +
+  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)
