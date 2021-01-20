@@ -5,7 +5,7 @@ b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
 
 tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
-table_1 <- b117[(tabel_1 + 6):(tabel_1 + 15)]
+table_1 <- b117[(tabel_1 + 9):(tabel_1 + 18)]
 
 table_1 %<>%
   str_squish() %>%
