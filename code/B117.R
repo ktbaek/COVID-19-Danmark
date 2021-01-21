@@ -83,9 +83,11 @@ plot_data %>%
   filter(variable %in% c("share_pct", "share_pct_lo", "share_pct_hi")) %>%
   pivot_wider(names_from = variable, values_from = value) %>%
   ggplot() +
+  geom_ribbon(aes(Date, ymin=share_pct_lo, ymax=share_pct_hi), fill = alpha('#E69F00', 0.4)) +
   geom_line(aes(Date, share_pct), color = '#E69F00', size = 1.3) +
-  geom_point(aes(Date, share_pct), color = '#E69F00', size = 2.5) +
-  geom_errorbar(aes(Date, share_pct, ymin=share_pct_lo, ymax=share_pct_hi), size = 0.5, width=1, color = '#E69F00') +
+  #geom_point(aes(Date, share_pct), color = '#E69F00', size = 2.5) +
+  #geom_errorbar(aes(Date, share_pct, ymin=share_pct_lo, ymax=share_pct_hi), size = 0.5, width=1, color = '#E69F00') +
+  
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
     limits = c(0, NA),
