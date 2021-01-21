@@ -40,7 +40,7 @@ week_df_2 <- age_df %>%
   filter(wday(Date) == 5) # thursday because it consistently appears throughout later in the period
 
 week_df_3 <- age_df %>%
-  filter(Date == as.Date("2021-01-13")) %>%
+  filter(Date == as.Date("2021-01-15")) %>%
   mutate(Date = as.Date("2021-01-14")) #14 jan was missing so using 13 jan and setting as 14th. 
 
 week_df <- bind_rows(early_data, week_df_1, week_df_2, week_df_3) %>% arrange(Date) %>% select(-date_of_file)
