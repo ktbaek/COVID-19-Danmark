@@ -407,7 +407,11 @@ Date;variable;values
 2021-01-20;NewPositive;   724
 2021-01-20;Antal_døde;    32
 2021-01-20;Indlæggelser;   111
-2021-01-21;NotPrevPos; 83705
-2021-01-21;NewPositive;   724
-2021-01-21;Antal_døde;    32
-2021-01-21;Indlæggelser;   111
+2021-01-21;NotPrevPos;114074
+2021-01-21;NewPositive;   760
+2021-01-21;Antal_døde;    37
+2021-01-21;Indlæggelser;    68
+2021-01-22;NotPrevPos; 83705
+2021-01-22;NewPositive;   724
+2021-01-22;Antal_døde;    32
+2021-01-22;Indlæggelser;   111

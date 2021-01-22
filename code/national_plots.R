@@ -593,12 +593,11 @@ plot_data %>%
   geom_bar(stat="identity",position = "identity", aes(Date, Antal_døde, fill = "covid"), width = 1) +
   geom_line(data = plot_data[!is.na(plot_data$smooth_avg), ], aes(Date, smooth_avg, color = "average"), size = 1) +
   #stat_smooth(se = FALSE, aes(Date, avg_5yr, color = "average"), span = 0.05) + 
-  scale_x_date(labels = my_date_labels, breaks = "1 months") +
+  scale_x_date(labels = my_date_labels, breaks = "2 months") +
   labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
   scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
   scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "Gennemsnit alle 2020"), values = cols[3:4]) +
-  standard_theme +
-  theme(panel.grid.minor.x = element_blank())
+  standard_theme 
 
 ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -657,12 +656,11 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
     #stat_smooth(data = subset(plot_data, variable == "avg_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05) +
     #stat_smooth(data = subset(plot_data, variable == "min_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
     #stat_smooth(data = subset(plot_data, variable == "max_5yr"), se = FALSE, aes(Date, value, color = "average"), span = 0.05, size = 0.3) +
-    scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+    scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
     labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
     scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
     scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3],3)) +
-    standard_theme  +
-    theme(panel.grid.minor.x = element_blank())
+    standard_theme  
   
   ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)
   
