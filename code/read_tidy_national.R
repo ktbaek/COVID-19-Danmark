@@ -5,6 +5,7 @@ last_tuesday <- str_replace_all(floor_date(as.Date(today), "week", 2), "-", "_")
 admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
 deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
 tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
+
 #rt_cases <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_cases_", last_tuesday, ".csv"))
 #rt_admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Rt_indlagte_", last_tuesday, ".csv"))
 

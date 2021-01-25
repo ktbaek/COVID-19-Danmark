@@ -5,7 +5,7 @@ b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
 
 tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
-table_1 <- b117[(tabel_1 + 6):(tabel_1 + 15)]
+table_1 <- b117[(tabel_1 + 6):(tabel_1 + 16)]
 
 table_1 %<>%
   str_squish() %>%
@@ -19,6 +19,7 @@ table_1_df %<>%
   select(X2, X4, X6) %>%
   set_colnames(c("Week", "total", "yes")) %>%
   mutate_all(str_replace_all, "\\.", "") %>%
+  mutate_all(str_replace_all, "\\*", "") %>%
   mutate_all(as.double) %>%
   mutate(year = ifelse(Week %in% seq(46,53), 2020, 2021)) %>%
   mutate(Week = sprintf("%02d", Week)) %>%
@@ -43,6 +44,8 @@ plot_data <- tests %>%
          share_pct_hi = positive * CI_hi / tested) %>%
   select(Date, positive, share, share_pct, pos_pct, share_pct_lo, share_pct_hi) %>%
   pivot_longer(-Date, names_to = "variable", values_to = "value") 
+
+
 
 plot_data %>%
   filter(variable %in% c("share", "positive")) %>%
