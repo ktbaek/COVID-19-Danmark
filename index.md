@@ -139,7 +139,7 @@ Midterste plot viser den ugentlige procent positivt testede (højden på søjler
 
 Nederste plot viser kun den estimerede positivprocent for B.1.1.7 varianten - altså antal positive for B.1.1.7 ud af alle testede (samme data som i det midterste plot).
 
-Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/overvagningsdata/status_b117).
+Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter).
 
 ![](/figures/ntl_b117.png)
 
