@@ -102,3 +102,8 @@ plot_data %>%
         axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
 
 ggsave("../figures/ntl_b117_pct_alone.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
+
