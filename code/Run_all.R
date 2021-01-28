@@ -30,13 +30,13 @@ cat("Whole country plots DONE\n")
 source("vax_plots.R")
 cat("Vaxxxxxx plots DONE\n")
 
-#source("B117.R")
+source("B117.R")
 cat("Bri'ish mu'ant DONE\n")
 
-source("Read_tidy_muni.R")
+#source("Read_tidy_muni.R")
 cat("Read and tidy, municipality DONE\n")
  
-source("municipality_plots.R")
+#source("municipality_plots.R")
 cat("Municipality plots DONE\n")
   
 #add_text_to_images(path = "../figures/", startswith = "muni", language = "dk")
