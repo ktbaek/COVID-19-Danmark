@@ -202,7 +202,7 @@ standard_plot(
   x_by = "1 month"
 )
 
-abline(h=seq(100000,500000, by = 100000) , col="gray", lty=3)
+abline(h=seq(100000,800000, by = 100000) , col="gray", lty=3)
 points(plot_data$Date, plot_data$sum_1, type = "l", col = alpha(pos_col, alpha = 0.6), cex = 1.2, lwd = ra_lwd, lend = 1)
 points(plot_data$Date, plot_data$sum_2, type = "l", col = alpha(pos_col, alpha = 0.8), cex = 1.2, lwd = ra_lwd, lend = 1)
 points(plot_data$Date, plot_data$sum_3, type = "l", col = alpha(pos_col, alpha = 1), cex = 1.2, lwd = ra_lwd, lend = 1)

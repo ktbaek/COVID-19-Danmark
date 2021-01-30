@@ -5,7 +5,7 @@ b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
 
 tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
-table_1 <- b117[(tabel_1 + 6):(tabel_1 + 16)]
+table_1 <- b117[(tabel_1 + 10):(tabel_1 + 20)]
 
 table_1 %<>%
   str_squish() %>%
@@ -34,24 +34,26 @@ plot_data <- tests %>%
   full_join(table_1_df, by = "Date") %>%
   filter(Date > as.Date("2020-11-01")) %>%
   filter(!is.na(Week)) %>%
-  mutate(share = positive * yes / total,
-         share_pct = positive * yes / total / tested * 100,
+  mutate(share_est = positive * yes / total,
+         pct_est = positive * yes / total / tested * 100,
          pos_pct = positive / tested * 100) %>%
   rowwise() %>%
-  mutate(CI_lo = prop.test(yes, total)$conf.int[1] * 100,
-         CI_hi = prop.test(yes, total)$conf.int[2] * 100) %>%
-  mutate(share_pct_lo = positive * CI_lo / tested,
-         share_pct_hi = positive * CI_hi / tested) %>%
-  select(Date, positive, share, share_pct, pos_pct, share_pct_lo, share_pct_hi) %>%
+  mutate(CI_lo = prop.test(yes, total)$conf.int[1],
+         CI_hi = prop.test(yes, total)$conf.int[2]) %>%
+  mutate(pct_lo = positive * CI_lo / tested * 100,
+         pct_hi = positive * CI_hi / tested * 100) %>%
+  mutate(share_lo = positive * CI_lo,
+         share_hi = positive * CI_hi) %>%
+  select(Date, positive, share_est, pct_est, pos_pct, pct_lo, pct_hi, share_lo, share_hi) %>%
   pivot_longer(-Date, names_to = "variable", values_to = "value") 
 
 
 
 plot_data %>%
-  filter(variable %in% c("share", "positive")) %>%
+  filter(variable %in% c("share_est", "positive")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "share"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
+  geom_text(data = subset(plot_data, variable == "share_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
@@ -65,10 +67,11 @@ plot_data %>%
 ggsave("../figures/ntl_b117.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>%
-  filter(variable %in% c("share_pct", "pos_pct")) %>%
+  mutate(variable = ifelse(variable == "pct_est", "x_pct_est", variable)) %>%
+  filter(variable %in% c("x_pct_est", "pos_pct")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "share_pct"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
+  geom_text(data = subset(plot_data, variable == "pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
@@ -83,14 +86,11 @@ plot_data %>%
 ggsave("../figures/ntl_b117_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>%
-  filter(variable %in% c("share_pct", "share_pct_lo", "share_pct_hi")) %>%
+  filter(variable %in% c("pct_est", "pct_lo", "pct_hi")) %>%
   pivot_wider(names_from = variable, values_from = value) %>%
   ggplot() +
-  geom_ribbon(aes(Date, ymin=share_pct_lo, ymax=share_pct_hi), fill = alpha('#E69F00', 0.4)) +
-  geom_line(aes(Date, share_pct), color = '#E69F00', size = 1.3) +
-  #geom_point(aes(Date, share_pct), color = '#E69F00', size = 2.5) +
-  #geom_errorbar(aes(Date, share_pct, ymin=share_pct_lo, ymax=share_pct_hi), size = 0.5, width=1, color = '#E69F00') +
-  
+  geom_ribbon(aes(Date, ymin=pct_lo, ymax=pct_hi), fill = alpha('#E69F00', 0.4)) +
+  geom_line(aes(Date, pct_est), color = '#E69F00', size = 1.3) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
     limits = c(0, NA),
@@ -103,7 +103,33 @@ plot_data %>%
 
 ggsave("../figures/ntl_b117_pct_alone.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+type <- c("Positivprocent", "Antal positivt testede")
+names(type) <- c("x_pct", "share")
 
+plot_data %>%
+  filter(variable %in% c("pct_est", "pct_lo", "pct_hi", "share_est", "share_hi", "share_lo")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  pivot_longer(-Date, names_to = c("variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_wider(names_from = variable_2, values_from = value) %>%
+  mutate(variable_1 = ifelse(variable_1 == "pct", "x_pct", variable_1)) %>%
+  ggplot() +
+  geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
+  geom_line(aes(Date, est, color = variable_1), size = 1.3) +
+  scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
+  scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
+  facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(
+    limits = c(0, NA)#,
+    #labels = function(x) paste0(x, " %")
+  ) +
+  labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
+  facet_theme  +
+  theme(
+    legend.position = "none",
+    plot.caption = element_text(size = 8),
+    plot.subtitle = element_text(size = 8),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
 
-
-
+ggsave("../figures/ntl_b117_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)

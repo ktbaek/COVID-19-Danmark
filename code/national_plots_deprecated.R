@@ -1249,13 +1249,30 @@ ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "c
 # zip vs dashboard ---------------------------------------------------
 
 
-x <- tests %>% select(Date, NewPositive, NotPrevPos)
-x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
-x %<>% mutate(dataset = "test_pos")
+x <- tests %>% select(Date, NewPositive, NotPrevPos) %>%
+  full_join(deaths, by = "Date") %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "values") %>%
+  mutate(dataset = "zip")
+
 y <- dashboard_data %>% mutate(dataset = "dashboard")
+
 plot_data <- bind_rows(x,y)
-plot_data %<>% filter(Date > as.Date(today) - weeks(4),
-              !variable %in% c("Antal_døde", "Indlæggelser", "NotPrevPos"))
+
+
+plot_data %>%
+  filter(Date > as.Date(today) - weeks(4),
+         variable %in% c("Antal_døde")) %>%
+  ggplot() +
+  geom_line(aes(Date, values, color = dataset), size = 1.2) +
+  labs(y = "Antal", x = "Dato", title = "Positivt testede: dato for prøvetagning vs. dato for prøvesvar") +
+  scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
+  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+  scale_y_continuous(
+    limits = c(0, 50)
+  ) +
+  standard_theme
+
+ggsave("../figures/ntl_test_pos_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 
 ggplot(plot_data, aes(Date, values)) +
@@ -1268,7 +1285,8 @@ ggplot(plot_data, aes(Date, values)) +
   ) +
   standard_theme
 
-ggsave("../figures/ntl_test_pos_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
+
+
 
 x <- tests %>% select(Date, NewPositive, NotPrevPos)
 x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
