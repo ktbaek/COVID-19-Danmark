@@ -137,7 +137,7 @@ Data for den seneste uge er muligivis ikke komplet, og derudover kan der løbend
 
 Midterste plot viser den ugentlige procent positivt testede (højden på søjlerne) samt en estimeret fordeling på B.1.1.7 varianten og andre varianter.
 
-Nederste plot viser kun det estimerede antal positive og positivprocent for B.1.1.7 varianten.
+Nederste plot viser kun det estimerede antal positive og positivprocent for B.1.1.7 varianten, samt konfidensintervaller der angiver usikkerheden på antallet af B.1.1.7 genomsekvenser. 
 
 Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter).
 
