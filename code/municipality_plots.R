@@ -416,6 +416,7 @@ ggplot(plot_data) +
 ggsave("../figures/muni_pct_landsdele.png", width = 23, height = 14, units = "cm", dpi = 300)
 
 
+
 # Figur: Positiv vs testede - NJ kommuner, 1 md------------------
 
 nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
@@ -472,6 +473,7 @@ ggplot(plot_data) +
   facet_theme
 
 ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi = 300)
+
 
 # Figur: Positiv vs testede - København og omegn, 1 md------------------
 
@@ -530,6 +532,7 @@ ggplot(plot_data) +
 
 ggsave("../figures/muni_kbharea_pct.png", width = 24, height = 15, units = "cm", dpi = 300)
 
+
 # procent med og uden nordjylland -----------------------------------------
 nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
 
@@ -559,6 +562,7 @@ muni_all %>%
   standard_theme
 
 ggsave("../figures/muni_pct_stratified.png", width = 20, height = 12, units = "cm", dpi = 300)
+
 
 
 

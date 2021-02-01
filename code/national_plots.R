@@ -515,22 +515,29 @@ ggsave("../figures/ntl_tiltag_admitted.png", width = 30, height = 14, units = "c
 
 
 # zip vs dashboard ---------------------------------------------------
+plot_data <-
+  tests %>%
+  full_join(admitted, by = "Date") %>%
+  full_join(deaths, by = "Date") %>%
+  filter(Date > as.Date("2020-02-14"))
 
+x <- plot_data %>% select(Date, NewPositive, NotPrevPos, Total, Antal_døde) %>%
+  rename(Indlæggelser = Total) %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "values") %>%
+  mutate(dataset = "zip")
 
-x <- tests %>% select(Date, NewPositive, NotPrevPos)
-x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
-x %<>% mutate(dataset = "test_pos")
 y <- dashboard_data %>% mutate(dataset = "dashboard")
+
 plot_data <- bind_rows(x,y)
-plot_data %<>% filter(Date > as.Date(today) - weeks(4),
-              !variable %in% c("Antal_døde", "Indlæggelser", "NotPrevPos"))
 
-
-ggplot(plot_data, aes(Date, values)) +
+plot_data %>%
+  filter(variable == "Indlæggelser") %>%
+  filter(Date > as.Date(today) - weeks(4)) %>%
+  ggplot(aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
   labs(y = "Antal", x = "Dato", title = "Positivt testede: dato for prøvetagning vs. dato for prøvesvar") +
-  scale_color_manual(name = "", labels = c("Svar (SSI's dashboard)", "Prøvetagning"), values = binary_col) +
-  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+  scale_color_manual(name = "", labels = c("SSI's dashboard", "datafiler"), values = binary_col) +
+  scale_x_date(date_labels = "%e", date_breaks = "2 day") +
   scale_y_continuous(
     limits = c(0, ceiling(max(plot_data$values) / 1000) * 1000)
   ) +

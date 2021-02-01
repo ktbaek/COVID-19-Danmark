@@ -1,5 +1,7 @@
 library(ISOweek)
 
+today_string <- "210131"
+
 b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
   read_lines()
 

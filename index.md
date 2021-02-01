@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 29. januar 2021 efter kl 14.
+Senest opdateret  1. februar 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -137,7 +137,7 @@ Data for den seneste uge er muligivis ikke komplet, og derudover kan der løbend
 
 Midterste plot viser den ugentlige procent positivt testede (højden på søjlerne) samt en estimeret fordeling på B.1.1.7 varianten og andre varianter.
 
-Nederste plot viser kun den estimerede positivprocent for B.1.1.7 varianten - altså antal positive for B.1.1.7 ud af alle testede (samme data som i det midterste plot).
+Nederste plot viser kun det estimerede antal positive og positivprocent for B.1.1.7 varianten.
 
 Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter).
 
@@ -145,7 +145,7 @@ Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter).
 
 ![](/figures/ntl_b117_pct.png)
 
-![](/figures/ntl_b117_pct_alone.png)
+![](/figures/ntl_b117_pct_pos.png)
 
 
 [Tilbage til toppen](#)

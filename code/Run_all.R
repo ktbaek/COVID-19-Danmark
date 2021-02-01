@@ -30,7 +30,7 @@ cat("Whole country plots DONE\n")
 source("vax_plots.R")
 cat("Vaxxxxxx plots DONE\n")
 
-source("B117.R")
+#source("B117.R")
 cat("Bri'ish mu'ant DONE\n")
 
 source("Read_tidy_muni.R")
