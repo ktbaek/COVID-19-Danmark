@@ -137,7 +137,7 @@ Data for den seneste uge er muligivis ikke komplet, og derudover kan der løbend
 
 Midterste plot viser den ugentlige procent positivt testede (højden på søjlerne) samt en estimeret fordeling på B.1.1.7 varianten og andre varianter.
 
-Nederste plot viser kun det estimerede antal positive og positivprocent for B.1.1.7 varianten, samt konfidensintervaller der angiver usikkerheden på antallet af B.1.1.7 genomsekvenser. 
+Nederste plot viser kun det estimerede antal positive og positivprocent for B.1.1.7 varianten, samt konfidensintervaller der angiver usikkerheden på antallet af B.1.1.7 genomsekvenser.
 
 Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter).
 
@@ -163,30 +163,21 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 
 ![](/figures/ntl_tiltag_july.png)
 
-### Relative ændringer i epidemi-indikatorer efter tiltag
-Plottene viser den relative ændring i antal positive, positivprocent, og antal nyindlæggelser i perioden fra 14 dage før til 28 dage efter et tiltag trådte i kraft.
-
-Kurverne viser løbende gennemsnit baseret på et vindue på 7 dage.
-
-``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
-
-![](/figures/ntl_tiltag_pos.png)
-
-![](/figures/ntl_tiltag_pct.png)
-
-![](/figures/ntl_tiltag_admitted.png)
-
 [Tilbage til toppen](#)
 
 ## Plots: vaccinationsstatus
 
 ### Total antal vaccinerede
 
-Øverste plot viser det kumulerede antal vaccinerede. Nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu.
+Øverste plot viser det kumulerede antal vaccinerede.
+
+De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, enten som absolut antal, eller som procentdel af antal personer i køn- og aldersgruppen.
 
 ![](/figures/ntl_vax_cum.png)
 
 ![](/figures/ntl_vax_age.png)
+
+![](/figures/ntl_vax_age_pct.png)
 
 [Tilbage til toppen](#)
 
