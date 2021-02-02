@@ -38,6 +38,39 @@ age_vax_df %>%
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+dst_age_sex <- read_csv2("../data/DST_age_sex_group_data.csv")
+
+
+age_vax_df %>%
+  as_tibble %>%
+  set_colnames(c("Aldersgruppe", "Female_start", "Female_done", "Male_start", "Male_done", "Total")) %>%
+  mutate_all(str_replace_all, "\\.", "") %>%
+  mutate(across(-Aldersgruppe, as.double)) %>%
+  select(-Total) %>%
+  full_join(dst_age_sex, by = "Aldersgruppe") %>%
+  mutate(Female_start_pct = Female_start / Female * 100,
+         Female_done_pct = Female_done / Female * 100,
+         Male_start_pct = Male_start / Male * 100,
+         Male_done_pct = Male_done / Male * 100) %>%
+  pivot_longer(-Aldersgruppe, names_to = "sex", values_to = "value") %>%
+  filter(sex %in% c("Female_start_pct", "Male_start_pct")) %>%
+  ggplot() +
+  geom_bar(aes(Aldersgruppe, value, fill = sex), stat = "identity", position = "dodge") +
+  scale_y_continuous(labels = function(x) paste0(x, " %")) +
+  labs(y = "Andel", 
+       title = "Andel af personer som er påbegyndt COVID-19 vaccination", 
+       caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI",
+       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(today)-1, "%e. %b %Y")))) +
+  scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
+  standard_theme
+
+ggsave("../figures/ntl_vax_age_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
+
+
 
 tabel_2 <- max(which(str_detect(vax, "Tabel 2")))
 
@@ -70,3 +103,7 @@ time_vax_df %>%
   standard_theme
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
