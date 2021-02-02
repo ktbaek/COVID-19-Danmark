@@ -1,9 +1,9 @@
 vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", today_string, ".pdf")) %>%
   read_lines()
 
-tabel_4 <- which(str_detect(vax, "Tabel 4"))[2]
+tabel_3 <- which(str_detect(vax, "Tabel 3"))[2]
 
-age_vax <- vax[(tabel_4 + 4):(tabel_4 + 13)]
+age_vax <- vax[(tabel_3 + 4):(tabel_3 + 13)]
 #age_vax_colnames <- vax[(tabel_4 + 1)]
 
 age_vax %<>%
