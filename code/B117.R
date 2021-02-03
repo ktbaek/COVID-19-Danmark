@@ -1,13 +1,12 @@
 library(ISOweek)
 
-today_string <- "210131"
 
 b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
   read_lines()
 
 tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
-table_1 <- b117[(tabel_1 + 10):(tabel_1 + 20)]
+table_1 <- b117[(tabel_1 + 6):(tabel_1 + 17)]
 
 table_1 %<>%
   str_squish() %>%
