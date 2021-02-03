@@ -22,14 +22,15 @@ binary_col <- c(color_scale[6], color_scale[7])
 
 my_date_labels <- function(breaks) {
   
-  labels <- sapply(breaks, function(x) {
-    
-    if(!is.na(x) && month(x) == 1) {
+  d <- c(0, replace_na(diff(year(breaks)), 0))
+  
+  labels <- mapply(function(x, y) {
+    if(y == 1) {
       str_to_lower(strftime(x, "%e. %b %y"))
     }else{
       str_to_lower(strftime(x, "%e. %b"))
     }
-  })
+  }, breaks, d)
   
   return(labels)
 }
