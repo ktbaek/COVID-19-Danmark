@@ -198,16 +198,17 @@ ggsave("../figures/ntl_pct_admitted_barplot_2.png", width = 18, height = 12, uni
 plot_data %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = alpha(pos_col, 0.7)), width = 1) +
+  
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 100), fill = "white", width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 100, fill = alpha(death_col, 0.7)), width = 1) +
+  geom_line(aes(Date, running_avg_deaths * 100), size = 1, color = darken(death_col, 0)) +
   geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 10), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 10, fill = alpha(death_col, 0.7)), width = 1) +
-  geom_line(aes(Date, running_avg_deaths * 10), size = 1, color = darken(death_col, 0)) +
   scale_fill_manual(name = "", labels = c("Døde", "Positive"), values = c(alpha(death_col, 0.6), alpha(pos_col, 0.6))) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
-    sec.axis = sec_axis(~ . / 10, name = "Døde")
+    sec.axis = sec_axis(~ . / 100, name = "Døde")
   ) +
   labs(y = "Antal", x = "Dato", title = "Døde med positiv SARS-CoV-2 test vs. antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme + 
