@@ -120,10 +120,7 @@ plot_data %>%
   scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
-  scale_y_continuous(
-    limits = c(0, NA)#,
-    #labels = function(x) paste0(x, " %")
-  ) +
+  scale_y_continuous(limits = c(0, NA)) +
   labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
   facet_theme  +
   theme(
@@ -131,6 +128,7 @@ plot_data %>%
     plot.caption = element_text(size = 8),
     plot.subtitle = element_text(size = 8),
     axis.title.y = element_blank(),
+    strip.text = element_text(size = 9),
     axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
 
 ggsave("../figures/ntl_b117_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
