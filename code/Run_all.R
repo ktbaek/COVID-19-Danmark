@@ -27,6 +27,8 @@ cat("Read and tidy, national DONE\n")
 source("national_plots.R")
 cat("Whole country plots DONE\n")
 
+today_string <- "210206"
+
 source("vax_plots.R")
 cat("Vaxxxxxx plots DONE\n")
 
