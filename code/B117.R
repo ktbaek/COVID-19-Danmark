@@ -132,3 +132,27 @@ plot_data %>%
     axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
 
 ggsave("../figures/ntl_b117_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data <- tests %>%
+  group_by(Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  summarize(positive = sum(NewPositive, na.rm = TRUE),
+            tested = sum(NotPrevPos, na.rm = TRUE)) %>% 
+  full_join(table_1_df, by = "Date") %>%
+  filter(Date > as.Date("2020-11-29")) %>%
+  filter(!is.na(Week)) %>%
+  mutate(share_est = yes / total) %>%
+  rowwise() %>%
+  mutate(lo = prop.test(yes, total)$conf.int[1],
+         hi = prop.test(yes, total)$conf.int[2]) 
+
+plot_data %>%  
+ggplot() +
+  geom_point(aes(Date, share_est), size = 4, color = alpha(pos_col, 0.4)) +
+  geom_smooth(aes(Date, share_est), method="glm", method.args = list(family = "binomial"), se = FALSE, color = pos_col, fullrange=TRUE) + 
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week", limits = c(as.Date("2020-11-29"), as.Date("2021-04-01"))) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0,1, by = .10)) +
+  labs(y = "Andel", x = "Uge (startdato)", title = "Andel af B.1.1.7 af alle varianter", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme + 
+  theme(axis.title.x = element_text(face = "bold", margin = margin(t = 8, r = 0, b = 3, l = 0)))
+
+ggsave("../figures/ntl_b117_share.png", width = 18, height = 10, units = "cm", dpi = 300)
