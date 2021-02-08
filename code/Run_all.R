@@ -27,12 +27,13 @@ cat("Read and tidy, national DONE\n")
 source("national_plots.R")
 cat("Whole country plots DONE\n")
 
-today_string <- "210206"
+#today_string <- "210207"
+#today <- "2021-02-07"
 
 source("vax_plots.R")
 cat("Vaxxxxxx plots DONE\n")
 
-source("B117.R")
+#source("B117.R")
 cat("Bri'ish mu'ant DONE\n")
 
 source("Read_tidy_muni.R")
