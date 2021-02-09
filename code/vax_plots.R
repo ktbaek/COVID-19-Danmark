@@ -69,9 +69,6 @@ ggsave("../figures/ntl_vax_age_pct.png", width = 18, height = 10, units = "cm", 
 
 
 
-
-
-
 tabel_2 <- max(which(str_detect(vax, "Tabel 2")))
 
 days_since_start <- as.integer(as.Date(today) - as.Date("2020-12-27"))

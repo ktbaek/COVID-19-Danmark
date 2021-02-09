@@ -5,7 +5,9 @@ b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
 
 tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
-table_1 <- b117[(tabel_1 + 6):(tabel_1 + 17)]
+weeks_since_start <- isoweek(today) - 1 + 53 - 46
+
+table_1 <- b117[(tabel_1 + 6):(tabel_1 + 6 + weeks_since_start)]
 
 table_1 %<>%
   str_squish() %>%
@@ -170,72 +172,164 @@ ggsave("../figures/ntl_b117_share.png", width = 18, height = 10, units = "cm", d
 
 
 
-# # Delta PCR ---------------------------------------------------------------
-# 
-# delta <- pdf_text(paste0("../data/B117_SSI/DeltaPCR_", today_string, ".pdf")) %>%
-#   read_lines()
-# 
-# tabel_start <- which(str_detect(delta, "Prøvedato"))[1]
-# tabel_slut <- which(str_detect(delta, "19-01-2021"))[1]
-# 
-# table_d <- delta[(tabel_start + 1):(tabel_slut)]
-# 
-# table_d %<>%
-#   str_squish() %>%
-#   strsplit(split = " ")
-# 
-# table_d <- lapply(table_d, function(x) x[1:3])
-# 
-# table_d_df <- tibble(data.frame(matrix(unlist(table_d), nrow = length(table_d), byrow=T)))
-# 
-# table_d_df %<>%
-#   set_colnames(c("Date", "total", "yes")) %>%
-#   mutate_all(str_replace_all, "\\.", "") %>%
-#   mutate_all(str_replace_all, "\\*", "") %>%
-#   mutate(Date = dmy(Date)) %>%
-#   mutate(across(c(total, yes), as.double))
-# 
-# plot_data <- tests %>%
-#   full_join(table_d_df, by = "Date") %>%
-#   filter(Date > as.Date("2021-01-18")) %>%
-#   mutate(share_est = NewPositive * yes / total,
-#          pct_est = NewPositive * yes / total / NotPrevPos * 100,
-#          pos_pct = NewPositive / NotPrevPos * 100) %>%
-#   rowwise() %>%
-#   mutate(CI_lo = prop.test(yes, total)$conf.int[1],
-#          CI_hi = prop.test(yes, total)$conf.int[2]) %>%
-#   mutate(pct_lo = NewPositive * CI_lo / NotPrevPos * 100,
-#          pct_hi = NewPositive * CI_hi / NotPrevPos * 100) %>%
-#   mutate(share_lo = NewPositive * CI_lo,
-#          share_hi = NewPositive * CI_hi) %>%
-#   select(Date, NewPositive, share_est, pct_est, pos_pct, pct_lo, pct_hi, share_lo, share_hi) %>%
-#   pivot_longer(-Date, names_to = "variable", values_to = "value") 
-# 
-# type <- c("Positivprocent", "Antal positivt testede")
-# names(type) <- c("x_pct", "share")
-# 
-# plot_data %>%
-#   filter(variable %in% c("pct_est", "pct_lo", "pct_hi", "share_est", "share_hi", "share_lo")) %>%
-#   pivot_wider(names_from = variable, values_from = value) %>%
-#   pivot_longer(-Date, names_to = c("variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
-#   pivot_wider(names_from = variable_2, values_from = value) %>%
-#   mutate(variable_1 = ifelse(variable_1 == "pct", "x_pct", variable_1)) %>%
-#   ggplot() +
-#   geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
-#   geom_line(aes(Date, est, color = variable_1), size = 1.3) +
-#   scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
-#   scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
-#   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
-#   scale_x_date(labels = my_date_labels, date_breaks = "1 week") +
-#   scale_y_continuous(limits = c(0, NA)) +
-#   labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret daglig udbredelse af B.1.1.7 og lignende varianter (S:69-70del)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med S:69-70del = antal positive \u00D7 antal med S:69-70del / antal testet for S:69-70del\nPositivprocent for S:69-70del = antal positive med S:69-70del / antal testede \u00D7 100") +
-#   facet_theme  +
-#   theme(
-#     legend.position = "none",
-#     plot.caption = element_text(size = 8),
-#     plot.subtitle = element_text(size = 8),
-#     axis.title.y = element_blank(),
-#     strip.text = element_text(size = 9),
-#     axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
-# 
-# ggsave("../figures/ntl_deltaPCR_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
+# Regionale plots (covid19genomics.dk data) -------------------------------
+
+b117_c19g <- read_csv2("../data/B117_SSI/C19G_B117_210207.csv")
+
+b117_c19g %<>%
+  separate(Week, c("Year", "Week"), "-W") %>%
+  mutate(Date = ISOweek2date(paste0(Year, "-W", Week, "-1"))) %>% 
+  select(-Year) 
+
+plot_data <- muni_all %>%
+  full_join(geo, by = "Kommune") %>%
+  group_by(Region, Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  mutate(Tested = sum(Tested, na.rm = TRUE),
+         Positive = sum(Positive, na.rm = TRUE)) %>%
+  ungroup() %>%
+  select(-Kommune, -Landsdel) %>%
+  distinct() %>%
+  full_join(b117_c19g, by = c("Date", "Region")) %>%
+  filter(Date > as.Date("2020-11-01")) %>%
+  filter(Region != "Whole Denmark",
+         !is.na(yes)) %>%
+  mutate(share_est = Positive * yes / total,
+         pct_est = Positive * yes / total / Tested * 100,
+         pos_pct = Positive / Tested * 100) %>% #data.frame
+  rowwise() %>%
+  mutate(CI_lo = prop.test(yes, total)$conf.int[1],
+         CI_hi = prop.test(yes, total)$conf.int[2]) %>%
+  mutate(pct_lo = Positive * CI_lo / Tested * 100,
+         pct_hi = Positive * CI_hi / Tested * 100) %>%
+  mutate(share_lo = Positive * CI_lo,
+         share_hi = Positive * CI_hi) %>%
+  select(Date, Region, Positive, share_est, pct_est, pos_pct, pct_lo, pct_hi, share_lo, share_hi, yes) %>%
+  pivot_longer(c(-Date, -Region), names_to = "variable", values_to = "value") 
+
+plot_data %>%
+  filter(variable %in% c("pct_est", "pct_lo", "pct_hi")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  ggplot() +
+  #geom_ribbon(aes(Date, ymin=pct_lo, ymax=pct_hi, fill = Region)) +
+  geom_line(aes(Date, pct_est, color = Region), size = 1.3) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = function(x) paste0(x, " %")
+  ) +
+  labs(y = "Positivprocent", x = "Uge (startdato)", title = "Estimeret positivprocent for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Positivprocent for B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom / antal testede \u00D7 100") +
+  standard_theme  +
+  theme(
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+plot_data %>%
+  filter(variable %in% c("share_est", "share_lo", "share_hi")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  ggplot() +
+  #geom_ribbon(aes(Date, ymin=pct_lo, ymax=pct_hi, fill = Region)) +
+  geom_line(aes(Date, share_est, color = Region), size = 1.3) +
+  scale_color_discrete(name = "") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Estimeret antal positive", x = "Uge (startdato)", title = "Estimeret antal positive for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive for B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom") +
+  standard_theme  +
+  theme(
+    legend.position = "right",
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/ntl_b117_abs_regions.png", width = 20, height = 12, units = "cm", dpi = 300)
+
+plot_data %>%
+  filter(variable %in% c("yes")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  ggplot() +
+  #geom_ribbon(aes(Date, ymin=pct_lo, ymax=pct_hi, fill = Region)) +
+  geom_line(aes(Date, yes, color = Region), size = 1.3) +
+  scale_color_discrete(name = "") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Antal prøver", x = "Uge (startdato)", title = "Antal prøver med B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme  +
+  theme(
+    legend.position = "right",
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/ntl_b117_samples_regions.png", width = 20, height = 11, units = "cm", dpi = 300)
+
+# Delta PCR ---------------------------------------------------------------
+
+delta <- pdf_text(paste0("../data/B117_SSI/DeltaPCR_", today_string, ".pdf")) %>%
+  read_lines()
+
+tabel_start <- which(str_detect(delta, "Prøvedato"))[1]
+tabel_slut <- which(str_detect(delta, "19-01-2021"))[1]
+
+table_d <- delta[(tabel_start + 1):(tabel_slut)]
+
+table_d %<>%
+  str_squish() %>%
+  strsplit(split = " ")
+
+table_d <- lapply(table_d, function(x) x[1:3])
+
+table_d_df <- tibble(data.frame(matrix(unlist(table_d), nrow = length(table_d), byrow=T)))
+
+table_d_df %<>%
+  set_colnames(c("Date", "total", "yes")) %>%
+  mutate_all(str_replace_all, "\\.", "") %>%
+  mutate_all(str_replace_all, "\\*", "") %>%
+  mutate(Date = dmy(Date)) %>%
+  mutate(across(c(total, yes), as.double))
+
+plot_data <- tests %>%
+  full_join(table_d_df, by = "Date") %>%
+  filter(Date > as.Date("2021-01-18")) %>% select(Date, total, NewPositive, yes) %>% mutate(diff = NewPositive - total)
+  mutate(share_est = NewPositive * yes / total,
+         pct_est = NewPositive * yes / total / NotPrevPos * 100,
+         pos_pct = NewPositive / NotPrevPos * 100) %>%
+  rowwise() %>%
+  mutate(CI_lo = prop.test(yes, total)$conf.int[1],
+         CI_hi = prop.test(yes, total)$conf.int[2]) %>%
+  mutate(pct_lo = NewPositive * CI_lo / NotPrevPos * 100,
+         pct_hi = NewPositive * CI_hi / NotPrevPos * 100) %>%
+  mutate(share_lo = NewPositive * CI_lo,
+         share_hi = NewPositive * CI_hi) %>%
+  select(Date, NewPositive, share_est, pct_est, pos_pct, pct_lo, pct_hi, share_lo, share_hi) %>%
+  pivot_longer(-Date, names_to = "variable", values_to = "value")
+
+type <- c("Positivprocent", "Antal positivt testede")
+names(type) <- c("x_pct", "share")
+
+plot_data %>%
+  filter(variable %in% c("pct_est", "pct_lo", "pct_hi", "share_est", "share_hi", "share_lo")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  pivot_longer(-Date, names_to = c("variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_wider(names_from = variable_2, values_from = value) %>%
+  mutate(variable_1 = ifelse(variable_1 == "pct", "x_pct", variable_1)) %>%
+  ggplot() +
+  geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
+  geom_line(aes(Date, est, color = variable_1), size = 1.3) +
+  scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
+  scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
+  facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 week") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret daglig udbredelse af B.1.1.7 og lignende varianter (S:69-70del)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med S:69-70del = antal positive \u00D7 antal med S:69-70del / antal testet for S:69-70del\nPositivprocent for S:69-70del = antal positive med S:69-70del / antal testede \u00D7 100") +
+  facet_theme  +
+  theme(
+    legend.position = "none",
+    plot.caption = element_text(size = 8),
+    plot.subtitle = element_text(size = 8),
+    axis.title.y = element_blank(),
+    strip.text = element_text(size = 9),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/ntl_deltaPCR_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
