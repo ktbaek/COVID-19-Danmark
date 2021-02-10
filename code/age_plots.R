@@ -94,6 +94,25 @@ ggplot(plot_data, aes(Date, value)) +
 
 ggsave("../figures/age_groups_pos_tested.png", width = 22, height = 15, units = "cm", dpi = 300)
 
+# plot_data <- week_df %>%
+#   filter(!Aldersgruppe == "I alt") %>%
+#   select(-Antal_testede) %>%
+#   group_by(Aldersgruppe) %>%
+#   mutate(value = c(0, diff(positive))) 
+# 
+# ggplot(plot_data, aes(Date, value)) +
+#   geom_line(stat = "identity", position = "identity", size = 1, aes(color = Aldersgruppe)) +
+#   scale_color_discrete_sequential(palette = "Purple-Yellow",nmax = 12, order = 3:12, name = "") +
+#   scale_y_continuous(limits = c(0, NA)) +
+#   scale_x_date(labels = my_date_labels, breaks = "2 month") +
+#   labs(y = "Positive", x = "Dato", title = "Ugentligt antal positivt SARS-CoV-2 testede for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   standard_theme +
+#   theme(legend.text = element_text(size = 10),
+#   legend.key.size = unit(0.4, 'cm'))
+# 
+# ggsave("../figures/age_groups_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
 # Figur: Aldersgrupper, pct --------------------------------------------------------------
 
 plot_data <- week_df %>%
