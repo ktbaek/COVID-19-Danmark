@@ -7,7 +7,7 @@ tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
 
 weeks_since_start <- isoweek(today) - 1 + 53 - 46
 
-table_1 <- b117[(tabel_1 + 7):(tabel_1 + 7 + weeks_since_start)]
+table_1 <- b117[(tabel_1 + 9):(tabel_1 + 9 + weeks_since_start)]
 
 table_1 %<>%
   str_squish() %>%
