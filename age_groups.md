@@ -16,15 +16,17 @@ Kristoffer T. Bæk, februar 2021
 
 # Baggrund
 
-Det er mange gange i løbet af efteråret blevet meldt ud fra myndighederne (f.eks. her, her, og her), at smitten med SARS-CoV-2 er særligt udbredt blandt de unge.
+Det er mange gange i løbet af efteråret blevet meldt ud fra myndighederne (f.eks. [her](), [her](), og [her]()), at smitten med SARS-CoV-2 er særligt udbredt blandt de unge.
 
 Men passer det?
 
-Det er rigtigt at både det absolutte antal positive og incidensen (altså positivt testede set i forhold til hvor mange der er i aldersgruppen, angivet som positive per 100.000) i løbet af efteråret og særligt op til jul har været klart højest blandt de 10-29 årige (Figur 1). Men som det efterhånden er velkendt, er det helt afgørende at se de tal i lyset af hvor mange, og hvem, man tester. Jo flere man tester, jo flere smittede finder man, alt andet lige. Statens Serum Institut (SSI) beskriver dette forhold i bl.a. denne rapport.
+Det er rigtigt at både det absolutte antal positive og incidensen (altså positivt testede set i forhold til hvor mange der er i aldersgruppen, angivet som positive per 100.000) i løbet af efteråret og særligt op til jul har været klart højest blandt de 10-29 årige (Figur 1). Men som det efterhånden er velkendt, er det helt afgørende at se de tal i lyset af hvor mange, og hvem, man tester. Jo flere man tester, jo flere smittede finder man, alt andet lige. Statens Serum Institut (SSI) beskriver dette forhold i bl.a. [denne rapport](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
+
+![](/figures/BK_active_infected.png)
 
 SSI har indtil d. 9. feb, 2021 ikke offentliggjort data for hvor mange man testede i hver aldersgruppe, og det har derfor været umuligt at beregne positivprocenten og dermed få en idé om hvor udbredt smitten er i forskellige aldersgrupper.
 
-Nu er de data så offenliggjort at kan ses i figur 10.1 i SSI's ugentlige opgørelser, og jeg har brugt de data til at beregne hvor udbredt smitten er i de forskellige aldersgrupper, og om det passer at smitten er særlig udbredt blandt unge.
+Nu er de data så offenliggjort at kan ses i figur 10.1 i SSI's [ugentlige opgørelser](https://covid19.ssi.dk/overvagningsdata/ugentlige-opgorelser-med-overvaagningsdata), og jeg har brugt de data til at beregne positivprocenten og et smitteindex for hvor udbredt smitten er i de forskellige aldersgrupper, for at finde ud af om det passer at smitten er særlig udbredt blandt unge.
 
 # Metode
 
