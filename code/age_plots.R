@@ -81,7 +81,6 @@ plot_data <- week_df %>%
 
 
 plot_data %>%
-  #filter(Date > ymd("2020-09-06")) %>%
   ggplot() +
   geom_line(aes(Date, value, color = variable), stat = "identity", position = "identity", size = 1) +
   facet_wrap(~Aldersgruppe, scales = "free") +

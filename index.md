@@ -289,7 +289,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 ### Ugentligt antal positivt testede for hver aldersgruppe
 Plottet viser det ugentlige antal positivt testede (som absolut antal og antal per 100.000 personer) for hver aldersgruppe.
 
-Bemærk at absolut antal positive aflæses på venstre akse mens antal positive per 100.000 aflæses på venstre akse.
+Bemærk at absolut antal positive aflæses på venstre akse mens antal positive per 100.000 aflæses på højre akse.
 
 ``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
