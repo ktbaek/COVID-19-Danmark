@@ -16,7 +16,7 @@ Senest opdateret 12. februar 2021.
 </div>
 <br>
 
-
+TEST
 
 Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede i Danmark fra februar 2020 til nu. Modellen er baseret på antallet af Covid-19 relaterede dødsfald og tre forskellige estimater for dødeligheden (*infection fatality rate*, IFR). Modellen er empirisk, vil korrelere tæt til dødsfald, og kan ikke bruges til forudsigelse.
 
