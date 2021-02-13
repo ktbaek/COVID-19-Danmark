@@ -80,5 +80,5 @@ Men bortset fra juleperioden er positivprocenten dog langt tættere på virkelig
 
 - Der er stor forskel på hvor mange der testes i de forskellige aldersgrupper.
 - Når man justerer smittetallene i de forskellige aldersgrupper for antal testede er der ikke længere nogen aldersgrupper der stikker væsentligt ud fra de andre, set over hele perioden.
-- Der var en kraftig midlertidig stigning, både i positive per 100.000 og positivprocent blandt 80+ årige fra lige før jul til kort efter nytår.
-- Påstanden om at smitten i efteråret var særligt udbredt blandt unge understøttes ikke af de tilgængelige data.    
+- Der var en kraftig midlertidig stigning, både i positive per 100.000 og positivprocent blandt 80+ årige fra midt december til kort efter nytår.
+- Påstanden om at smitten i efteråret var særligt udbredt blandt unge understøttes ikke af de tilgængelige data.
