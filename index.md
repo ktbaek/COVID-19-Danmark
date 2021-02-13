@@ -286,46 +286,25 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 ## Plots: aldersgrupper
 
-### Ugentligt antal nye positivt testede og antal førstegangstestede for hver aldersgruppe
-Plottet viser det ugentlige antal nye positivt testede og antal førstegangstestede for hver aldersgruppe.
+### Ugentligt antal positivt testede for hver aldersgruppe
+Plottet viser det ugentlige antal positivt testede (som absolut antal og antal per 100.000 personer) for hver aldersgruppe.
 
-Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
+Bemærk at absolut antal positive aflæses på venstre akse mens antal positive per 100.000 aflæses på venstre akse.
 
-Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse.
+``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
-``SSI datasæt: 'Cases_by_age'``
+![](/figures/age_groups_pos.png)
 
-![](/figures/age_groups_pos_tested.png)
-
-<!--
-### Ugentlig procentdel positivt testede for hver aldersgruppe
-Plottet viser den ugentlige procentdel af positive tests for hver aldersgruppe.
-
-Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Dette kan påvirke positivprocenten. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
-
-``SSI datasæt: 'Cases_by_age'``
-
-![](/figures/age_groups_pct.png)
-
--->
 
 ### Ugentligt antal positivt testede for hver aldersgruppe og ugentligt antal førstegangstestede per aldersgruppe (heatmaps)
-Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe, og det ugentlige antal førstegangstestede som procent af befolkningstallet i hver aldersgruppe.  
-
-Bemærk at antal testede i de aldersopdelte data er førstegangstestede, altså personer som ikke tidligere er testet. Læs uddybende forklaring [her](/Forklaring.md#testede-og-positive-for-hver-aldersgruppe).
+Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe.
 
 ``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
 
 ![](/figures/age_weekly_incidens_tile.png)
 
-![](/figures/age_weekly_tests_tile.png)
 
-<!--
-Ugentlig procentdel positivt testede per aldersgruppe siden maj:
-
-![](/figures/age_weekly_pct_tile_may.png)
--->
 
 
 

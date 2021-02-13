@@ -67,50 +67,38 @@ ggsave("../figures/age_group_fill.png", width = 17, height = 12, units = "cm", d
 
 # Figur: Aldersgrupper, pos, testede --------------------------------------------------------------
 
-left_right_axis_ratio <- 50
+left_right_axis_ratio <- 10
 
 plot_data <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
-  rename(Testede = Antal_testede) %>%
-  pivot_longer(cols = c(positive, Testede), names_to = "variable", values_to = "value") %>%
-  group_by(Aldersgruppe, variable) %>%
-  mutate(value = c(0, diff(value))) %>%
-  mutate(value = ifelse(variable == "positive", value * left_right_axis_ratio, value))
+  group_by(Aldersgruppe) %>%
+  mutate(Positive = c(0, diff(positive))) %>%
+  full_join(dst_age_groups_10, by = "Aldersgruppe") %>%
+  mutate(Incidens = Positive / Befolkning * 100000) %>%
+  mutate(Incidens = Incidens * left_right_axis_ratio) %>%
+  select(Date, Aldersgruppe, Positive, Incidens) %>%
+  pivot_longer(c(-Date, -Aldersgruppe), "variable")
 
-max_y_value <- ceiling(max(plot_data$value) / 10000) * 10000
 
-ggplot(plot_data, aes(Date, value)) +
-  geom_line(stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+plot_data %>%
+  #filter(Date > ymd("2020-09-06")) %>%
+  ggplot() +
+  geom_line(aes(Date, value, color = variable), stat = "identity", position = "identity", size = 1) +
   facet_wrap(~Aldersgruppe, scales = "free") +
-  scale_color_manual(name = "", labels = c("Positive", "Førstegangstestede"), values = c(pos_col, test_col)) +
+  scale_color_manual(name = "", labels = c("Positive pr. 100.000","Positive"), values = c(lighten(pos_col, 0.3), darken(pos_col, 0.3))) +
   scale_y_continuous(
-    name = "Testede",
-    sec.axis = sec_axis(~ . / left_right_axis_ratio, name = "Positive"),
-    limits = c(0, max_y_value)
+    name = "Positive",
+    sec.axis = sec_axis(~ . / left_right_axis_ratio, name = "Positive pr. 100.000"),
+    limits = c(0, 6500)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Positive og førstegangstestede per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-  facet_theme +
-  theme(legend.position="bottom")
+  labs(y = "Positive : Positive pr. 100.000", x = "Dato", title = "Positive per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  facet_theme 
 
-ggsave("../figures/age_groups_pos_tested.png", width = 22, height = 15, units = "cm", dpi = 300)
 
-# plot_data <- week_df %>%
-#   filter(!Aldersgruppe == "I alt") %>%
-#   select(-Antal_testede) %>%
-#   group_by(Aldersgruppe) %>%
-#   mutate(value = c(0, diff(positive))) 
-# 
-# ggplot(plot_data, aes(Date, value)) +
-#   geom_line(stat = "identity", position = "identity", size = 1, aes(color = Aldersgruppe)) +
-#   scale_color_discrete_sequential(palette = "Purple-Yellow",nmax = 12, order = 3:12, name = "") +
-#   scale_y_continuous(limits = c(0, NA)) +
-#   scale_x_date(labels = my_date_labels, breaks = "2 month") +
-#   labs(y = "Positive", x = "Dato", title = "Ugentligt antal positivt SARS-CoV-2 testede for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-#   standard_theme +
-#   theme(legend.text = element_text(size = 10),
-#   legend.key.size = unit(0.4, 'cm'))
-# 
-# ggsave("../figures/age_groups_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+ggsave("../figures/age_groups_pos.png", width = 22, height = 15, units = "cm", dpi = 300)
+
 
 
 # Figur: Aldersgrupper, pct --------------------------------------------------------------

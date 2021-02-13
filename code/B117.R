@@ -3,11 +3,11 @@ library(ISOweek)
 b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
   read_lines()
 
-tabel_1 <- which(str_detect(b117, "Tabel 1"))[1]
+tabel_1 <- which(str_detect(b117, "Tabel 1"))[2]
 
 weeks_since_start <- isoweek(today) - 1 + 53 - 46
 
-table_1 <- b117[(tabel_1 + 9):(tabel_1 + 9 + weeks_since_start)]
+table_1 <- b117[(tabel_1 + 8):(tabel_1 + 8 + weeks_since_start)]
 
 table_1 %<>%
   str_squish() %>%
