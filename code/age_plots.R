@@ -73,7 +73,7 @@ plot_data <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
   group_by(Aldersgruppe) %>%
   mutate(Positive = c(0, diff(positive))) %>%
-  full_join(dst_age_groups_10, by = "Aldersgruppe") %>%
+  full_join(dst_age, by = "Aldersgruppe") %>%
   mutate(Incidens = Positive / Befolkning * 100000) %>%
   mutate(Incidens = Incidens * left_right_axis_ratio) %>%
   select(Date, Aldersgruppe, Positive, Incidens) %>%
