@@ -18,7 +18,7 @@ Kristoffer T. Bæk, februar 2021
 
 # Baggrund
 
-Det er flere gange i løbet af efteråret blevet meldt ud fra myndighederne (f.eks. [her](), [her]()), at smitten med SARS-CoV-2 er særligt udbredt blandt de unge.
+Det er flere gange i løbet af efteråret blevet meldt ud fra myndighederne (f.eks. [her](https://jv.dk/artikel/de-unge-driver-smitten-i-både-danmark-og-europa), [her](https://www.regionh.dk/presse-og-nyt/pressemeddelelser-og-nyheder/Sider/Smitten-skal-dæmpes-inden-jul-Massetest-af-unge-mellem-15-og-25-år-i-hovedstadsområdet.aspx)), at smitten med SARS-CoV-2 er særligt udbredt blandt de unge.
 
 Men passer det?
 
