@@ -40,12 +40,6 @@ Procentdel positivt testede angiver den procentvise andel af personer der er tes
 
 ## Plots: hele landet
 
-Nogle af figurerne er opdaterede versioner af figurerne fra artiklen [Kurven over smittede i Danmark er misvisende](https://link.medium.com/Ldu11b9IQ8).
-
-<!--
- [Download PDF (A4)](/figures/Covid-19-Danmark.pdf)
- med de vigtigste plots for hele landet.
--->
 
 ### Dagligt antal nyindlagte og dødsfald
 Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
