@@ -290,8 +290,8 @@ Bemærk at absolut antal positive aflæses på venstre akse mens antal positive 
 ![](/figures/age_groups_pos.png)
 
 
-### Ugentligt antal positivt testede for hver aldersgruppe og ugentligt antal førstegangstestede per aldersgruppe (heatmaps)
-Plottene viser hhv. det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe.
+### Ugentligt antal positivt testede for hver aldersgruppe  (heatmap)
+Plottet viser det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe.
 
 ``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
