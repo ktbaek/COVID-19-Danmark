@@ -71,6 +71,6 @@ Desuden ses to toppe i december, én i første tredjedel af måneden for 13-64 �
 
 ![](/figures/SSI_read_graph_pct_together.png)
 
-Med de ovennævnte forbehold i baghovedet er positivprocenten tættere på at beskrive smitteudbredelsen end de absolutte positivtal fordi den tager hensyn til, at antallet af testede er meget forskelligt i de forskellige aldersgrupper.
+Med de ovennævnte forbehold i baghovedet er positivprocenten tættere på at beskrive den reelle smitteudbredelsen end de absolutte positivtal, fordi den tager hensyn til at antallet af testede er meget forskelligt i de forskellige aldersgrupper.
 
 Forskellen i smitteudbredelse mellem aldersgrupperne er derfor nok ikke så stor som de rene smittetal giver anledning til at tro.  Det betyder imidlertid ikke at der ikke er forskel, idet både positivprocent og [seroprævalensstudier](https://bloddonor.dk/coronavirus/) viser at smitteudbredelsen har været størst blandt yngre og mindst blandt ældre (70+ årige opdeles dog ikke i seroprævalensstudierne, så det er muligt at der er forskelle i denne gruppe som ikke opdages på denne måde).
