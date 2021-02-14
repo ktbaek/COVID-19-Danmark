@@ -28,7 +28,7 @@ Antallet af SARS-CoV-2 positivt testede har i løbet af efteråret og særligt o
 
 SSI har indtil d. 9. feb, 2021 ikke offentliggjort data for hvor mange man tester i hver aldersgruppe, og det har derfor været umuligt at beregne positivprocenten og dermed få en idé om hvor udbredt smitten er i forskellige aldersgrupper.
 
-Nu er de data så offenliggjort og kan ses i figur 10.1 i SSI's [ugentlige opgørelser](https://covid19.ssi.dk/overvagningsdata/ugentlige-opgorelser-med-overvaagningsdata), og jeg har brugt de data til at beregne positivprocenten for at vurdere hvor smitteudbredelsen over tid i de forskellige aldersgrupper.
+Nu er de data så offenliggjort og kan ses i figur 10.1 i SSI's [ugentlige opgørelser](https://covid19.ssi.dk/overvagningsdata/ugentlige-opgorelser-med-overvaagningsdata), og jeg har brugt de data til at beregne positivprocenten for at vurdere smitteudbredelsen fra september til februar i de forskellige aldersgrupper.
 
 ## Metode
 
