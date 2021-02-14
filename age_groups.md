@@ -56,7 +56,7 @@ De aflæste data for testede per 100.000 personer fremgår af Figur 4. Her kan m
 
 ![](/figures/SSI_read_graph_test_incidense_together.png)
 
-De aflæste data for positive per 100.000 personer fremgår af Figur 5. Her kan man, ligesom på Figur 1, se at unge ligger klart i top gennem det meste af perioden, men en positiv-incidens for 13-19 årige der er ca. 3-4 gange højere end 65+ årige. Derudover ses et forhøjet niveau blandt 80+ årige, som topper kort før nytår, i modsætning til niveauet for 0-64 årige der topper i midten af december.
+De aflæste data for positive per 100.000 personer fremgår af Figur 5. Her kan man, ligesom på Figur 1, se at unge ligger klart i top gennem det meste af perioden, med en positiv-incidens for 13-19 årige der er ca. 3-4 gange højere end 65+ årige. Derudover ses et forhøjet niveau blandt 80+ årige, som topper kort før nytår, i modsætning til niveauet for 0-64 årige der topper i midten af december.
 
 *Figur 5: Positiv-incidens for hver aldersgruppe*
 
