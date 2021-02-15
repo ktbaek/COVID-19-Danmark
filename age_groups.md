@@ -6,7 +6,7 @@ description: Analyse af SARS-CoV-2 smittetal i forskellige aldersgrupper
 ---
 
 # Analyse af SARS-CoV-2 smittetal i forskellige aldersgrupper
-Kristoffer T. Bæk, februar 2021
+Kristoffer T. Bæk<br>Februar 2021
 
 <div class="likely">
     <div class="facebook">Del</div>
