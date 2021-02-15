@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 12. februar 2021 efter kl 14.
+Senest opdateret 15. februar 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -28,6 +28,7 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 
 ## Begreber
 #### Antal positivt testede
+
 <!--
 Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests).
 -->
