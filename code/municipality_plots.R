@@ -685,9 +685,7 @@ plot_kommuner_pct <- function(muni_df, kommune) {
     #geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
     geom_segment(aes(y = 0, x = as.Date(today) - months(3) + 0.5, yend = 0, xend = as.Date(today) - 1.5), color = alpha(pct_col, 0.5), size = 0.1) +
     scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
-    scale_y_continuous(
-      limits = c(0, NA)
-    ) +
+    scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
     labs(y = "Positivprocent", x = "Dato", title = paste0("Dagligt procent positivt SARS-CoV-2 testede for ", kommune), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
     standard_theme
   
