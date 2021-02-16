@@ -12,28 +12,28 @@ muni_subset <- muni_wk %>%
 
 # Figur: Positiv vs testede - udvalgte kommuner, 3 mdr------------------
 
-plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date(today) - months(3)) %>%
-  group_by(Kommune) %>%
-  filter(Kommune %in% muni_subset) %>%
-  ungroup() %>%
-  mutate(Positive_wk = Positive_wk * 100) %>%
-  pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
-
-ggplot(plot_data, aes(Week_end_Date, value)) +
-  geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
-  facet_wrap(~Kommune, scales = "free", ncol = 5) +
-  scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_y_continuous(
-    name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
-    limits = c(0, NA)
-  ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal SARS-CoV-2 testede og positive for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-  facet_theme
-
-ggsave("../figures/muni_10_pos_vs_test_july.png", width = 28, height = 22, units = "cm", dpi = 300)
+# plot_data <- muni_wk %>%
+#   filter(Week_end_Date > as.Date(today) - months(3)) %>%
+#   group_by(Kommune) %>%
+#   filter(Kommune %in% muni_subset) %>%
+#   ungroup() %>%
+#   mutate(Positive_wk = Positive_wk * 100) %>%
+#   pivot_longer(cols = c(Positive_wk, Tested_wk), names_to = "variable", values_to = "value")
+# 
+# ggplot(plot_data, aes(Week_end_Date, value)) +
+#   geom_line(stat = "identity", position = "identity", size = 1.5, aes(color = variable)) +
+#   facet_wrap(~Kommune, scales = "free", ncol = 5) +
+#   scale_color_manual(name = "", labels = c("Positive", "Testede"), values = c(pos_col, test_col)) +
+#   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+#   scale_y_continuous(
+#     name = "Testede",
+#     sec.axis = sec_axis(~ . / 100, name = "Positive"),
+#     limits = c(0, NA)
+#   ) +
+#   labs(y = "Positive : Testede", x = "Dato", title = "Ugentligt antal SARS-CoV-2 testede og positive for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   facet_theme
+# 
+# ggsave("../figures/muni_10_pos_vs_test_july.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 # Figur: Positiv vs testede - alle kommuner, 3 mdr-----------------
 plot_data <- muni_all %>%
@@ -115,26 +115,26 @@ ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 28, height = 21, unit
 
 # Figur: Procent - uge, udvalgte kommuner 3 mdr --------
   
-plot_data <- muni_wk %>%
-  filter(Week_end_Date > as.Date(today) - months(3)) %>%
-  group_by(Kommune) %>%
-  filter(Kommune %in% muni_subset) %>%
-  ungroup() %>%
-  mutate(Ratio = Positive_wk / Tested_wk * 100)
-
-max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
-
-ggplot(plot_data, aes(Week_end_Date, Ratio)) +
-  geom_bar(stat = "identity", position = "stack", fill = pct_col) +
-  facet_wrap(~Kommune, scales = "free", ncol = 5) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_y_continuous(
-    limits = c(0, max_y_value)
-  ) +
-  labs(y = "Positivprocent", x = "Dato", title = "Ugentlig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-  facet_theme
-
-ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
+# plot_data <- muni_wk %>%
+#   filter(Week_end_Date > as.Date(today) - months(3)) %>%
+#   group_by(Kommune) %>%
+#   filter(Kommune %in% muni_subset) %>%
+#   ungroup() %>%
+#   mutate(Ratio = Positive_wk / Tested_wk * 100)
+# 
+# max_y_value <- ceiling(max(plot_data$Ratio, na.rm = TRUE))
+# 
+# ggplot(plot_data, aes(Week_end_Date, Ratio)) +
+#   geom_bar(stat = "identity", position = "stack", fill = pct_col) +
+#   facet_wrap(~Kommune, scales = "free", ncol = 5) +
+#   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+#   scale_y_continuous(
+#     limits = c(0, max_y_value)
+#   ) +
+#   labs(y = "Positivprocent", x = "Dato", title = "Ugentlig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   facet_theme
+# 
+# ggsave("../figures/muni_10_pct_july.png", width = 27, height = 20, units = "cm", dpi = 300)
 
 
 # Figur: Procent - daglig, alle kommuner 3 mdr --------
@@ -643,3 +643,57 @@ muni_all %>%
         panel.grid.minor.x = element_blank())
 
 ggsave("../figures/muni_region_incidens.png", width = 23, height = 12, units = "cm", dpi = 300)
+
+
+# Individual plots --------------------------------------------------------
+
+plot_kommuner_pos <- function(muni_df, kommune) {
+  
+  plot_data <- muni_df %>%
+    filter(Date > as.Date(today) - months(3)) %>%
+    filter(Kommune == kommune) %>%
+    mutate(Positive = Positive * 100) %>%
+    pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value") 
+  
+  plot_data %>%
+    ggplot(aes(Date, value)) +
+    geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
+    geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+    geom_segment(aes(y = 0, x = as.Date(today) - months(3) + 0.5, yend = 0, xend = as.Date(today) - 1.5), color = alpha(pos_col, 0.5), size = 0.1) +
+    scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
+    scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
+    scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+    scale_y_continuous(
+      name = "Testede",
+      sec.axis = sec_axis(~ . / 100, name = "Positive"),
+      limits = c(0, NA)
+    ) +
+    labs(y = "Positive : Testede", x = "Dato", title = paste0("Dagligt antal SARS-CoV-2 testede og positive for ", kommune), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+    standard_theme
+  
+  ggsave(paste0("../figures/Kommuner/", kommune, "_pos_test_daily.png"), width = 18, height = 10, units = "cm", dpi = 300)
+  
+}
+plot_kommuner_pct <- function(muni_df, kommune) {
+  
+  muni_df %>%
+    filter(Date > as.Date(today) - months(3)) %>%
+    filter(Kommune == kommune) %>%
+    mutate(pct = Positive / Tested * 100) %>%
+    ggplot() +
+    geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
+    #geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
+    geom_segment(aes(y = 0, x = as.Date(today) - months(3) + 0.5, yend = 0, xend = as.Date(today) - 1.5), color = alpha(pct_col, 0.5), size = 0.1) +
+    scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+    scale_y_continuous(
+      limits = c(0, NA)
+    ) +
+    labs(y = "Positivprocent", x = "Dato", title = paste0("Dagligt procent positivt SARS-CoV-2 testede for ", kommune), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+    standard_theme
+  
+  ggsave(paste0("../figures/Kommuner/", kommune, "_pct_daily.png"), width = 18, height = 10, units = "cm", dpi = 300)
+  
+}
+
+walk(unique(muni_all$Kommune), ~ plot_kommuner_pos(muni_all, .x))
+walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
