@@ -233,9 +233,10 @@ plot_data <- muni_wk %>%
   mutate(Incidens = Positive_wk / Befolkningstal * 1000) %>%
   mutate(Kommune = factor(Kommune, levels = rev(sort(unique(Kommune)))))
 
+
 ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   geom_tile(colour = "white", size = 0.25) +
-  coord_fixed(ratio = 7) +
+  coord_fixed(ratio = 1) +
   labs(x = "", y = "", title = "Ugentligt antal positive per indbyggertal", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_x_date(date_labels = "%b", date_breaks = "2 months") +
   scale_fill_continuous(name = "Promille", na.value = "White", low = lighten("#999999", 0.8), high = pos_col) +

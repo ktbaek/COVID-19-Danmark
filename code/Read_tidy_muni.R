@@ -12,7 +12,7 @@ read_muni_csv <- function(x) {
   file %<>%
     mutate(date_of_file = x) %>%
     select(date_of_file, `Kommune_(navn)`, Befolkningstal) %>%
-    mutate(Date = paste0("2020-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6))) %>%
+    mutate(Date = paste0("20", str_sub(date_of_file, 1, 2), "-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6))) %>%
     select(-date_of_file) %>%
     rename(Kommune = `Kommune_(navn)`)
   

@@ -88,6 +88,7 @@ tile_theme <-
   theme(
     text = element_text(size = 13, family = "lato"),
     plot.background = element_blank(),
+    plot.margin = margin(1, 0, 0.3, 0, "cm"),
     panel.border = element_blank(),
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold"),
     plot.caption = element_text(color = "gray60", hjust = 0),
