@@ -3,11 +3,11 @@ library(ISOweek)
 b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
   read_lines()
 
-tabel_1 <- which(str_detect(b117, "Tabel 1"))[2]
+tabel_1 <- which(str_detect(b117, "Tabel 1"))
 
 weeks_since_start <- isoweek(today) - 1 + 53 - 46
 
-table_1 <- b117[(tabel_1 + 8):(tabel_1 + 8 + weeks_since_start)]
+table_1 <- b117[(tabel_1 + 9):(tabel_1 + 9 + weeks_since_start)]
 
 table_1 %<>%
   str_squish() %>%
@@ -55,7 +55,7 @@ plot_data %>%
   filter(variable %in% c("share_est", "positive")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "share_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
+  geom_text(data = subset(plot_data, variable == "share_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
@@ -76,7 +76,7 @@ plot_data %>%
   filter(variable %in% c("x_pct_est", "pos_pct")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 3) +
+  geom_text(data = subset(plot_data, variable == "pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(

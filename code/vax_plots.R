@@ -84,16 +84,16 @@ time_vax_df <- data.frame(matrix(unlist(time_vax), nrow=length(time_vax), byrow=
 
 time_vax_df %>%
   as_tibble %>%
-  select(X2, X5) %>%
-  mutate(Date = as.Date(seq(from = ymd("2020-12-27"), to = ymd("2021-02-15"), by = 1))) %>%
-  select(Date, X2, X5) %>%
-  #select(X1, X3, X6) %>%
+  # select(X2, X5) %>%
+  # mutate(Date = as.Date(seq(from = ymd("2020-12-27"), to = ymd("2021-02-15"), by = 1))) %>%
+  # select(Date, X2, X5) %>%
+  select(X1, X3, X6) %>%
   set_colnames(c("Date", "Begun", "Done")) %>%
   mutate_all(str_replace_all, "\\.", "") %>%
   mutate_all(str_replace_all, "\\,", ".") %>%
   mutate(across(c(Begun, Done), as.double)) %>%
-  mutate(Date = ymd(Date)) %>%
-  #mutate(Date = dmy(Date)) %>%
+  #mutate(Date = ymd(Date)) %>%
+  mutate(Date = dmy(Date)) %>%
   pivot_longer(-Date, names_to = "variable", values_to = "value") %>%
   ggplot() +
   geom_line(aes(Date, value, color = variable), size = 2) +

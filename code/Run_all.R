@@ -26,8 +26,8 @@ cat("Read and tidy, national DONE\n")
 source("national_plots.R")
 cat("Whole country plots DONE\n")
 
-#source("vax_plots.R")
-#cat("Vaxxxxxx plots DONE\n")
+source("vax_plots.R")
+cat("Vaxxxxxx plots DONE\n")
 
 if(wday(as.Date(today)) %in% c(1, 4:7)){ 
   

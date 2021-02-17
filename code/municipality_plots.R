@@ -595,7 +595,6 @@ muni_all %>%
   filter(Date > as.Date(today) - months(3)) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable),  width = 1) +
-  #geom_line(aes(Date, ra_admitted), size = 1, color = darken(admit_col, 0.3)) +
   facet_grid(variable ~ Region, scales = "free") +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positivprocent", "Positive"), values = c(admit_col, pct_col, pos_col)) +
@@ -631,7 +630,6 @@ muni_all %>%
   filter(Date > as.Date(today) - months(3)) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable),  width = 1) +
-  #geom_line(aes(Date, ra_admitted), size = 1, color = darken(admit_col, 0.3)) +
   facet_grid(variable ~ Region, scales = "free") +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positive"), values = c(admit_col, pos_col)) +
