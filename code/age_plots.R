@@ -84,6 +84,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(Date, value, color = variable), stat = "identity", position = "identity", size = 1) +
   facet_wrap(~Aldersgruppe, scales = "free") +
+  scale_x_date(date_labels = "%b", breaks = "4 months") +
   scale_color_manual(name = "", labels = c("Positive pr. 100.000","Positive"), values = c(lighten(pos_col, 0.3), darken(pos_col, 0.3))) +
   scale_y_continuous(
     name = "Positive",

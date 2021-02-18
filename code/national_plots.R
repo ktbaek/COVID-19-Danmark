@@ -384,7 +384,7 @@ x %>%
     name = "Antal",
     sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %")),
   ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbningen (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #1 (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme +
   theme(
     panel.grid.minor.x = element_blank(),
