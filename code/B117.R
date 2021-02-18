@@ -30,32 +30,52 @@ table_1_df %<>%
   
 plot_data <- tests %>%
   group_by(Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
-  summarize(positive = sum(NewPositive, na.rm = TRUE),
+  summarize(total_pos = sum(NewPositive, na.rm = TRUE),
             tested = sum(NotPrevPos, na.rm = TRUE)) %>% 
   full_join(table_1_df, by = "Date") %>%
   filter(Date > as.Date("2020-11-01")) %>%
   filter(!is.na(Week)) %>%
-  mutate(share_est = positive * yes / total,
-         pct_est = positive * yes / total / tested * 100,
-         pos_pct = positive / tested * 100) %>%
+  mutate(variant_abs_est = total_pos * yes / total,
+         normal_abs_est = total_pos * (1 - yes / total),
+         total_pos_pct = total_pos / tested * 100,
+         variant_pct_est = total_pos_pct * yes / total,
+         normal_pct_est = total_pos_pct * (1 - yes / total)) %>%
   rowwise() %>%
   mutate(CI_lo = prop.test(yes, total)$conf.int[1],
          CI_hi = prop.test(yes, total)$conf.int[2]) %>%
-  mutate(pct_lo = positive * CI_lo / tested * 100,
-         pct_hi = positive * CI_hi / tested * 100) %>%
-  mutate(share_lo = positive * CI_lo,
-         share_hi = positive * CI_hi) %>%
-  select(Date, positive, share_est, pct_est, pos_pct, pct_lo, pct_hi, share_lo, share_hi) %>%
+  mutate(variant_pct_lo = total_pos_pct * CI_lo,
+         variant_pct_hi = total_pos_pct * CI_hi,
+         normal_pct_lo = total_pos_pct * (1 - CI_hi),
+         normal_pct_hi = total_pos_pct * (1 - CI_lo)) %>%
+  mutate(variant_abs_lo = total_pos * CI_lo,
+         variant_abs_hi = total_pos * CI_hi,
+         normal_abs_lo = total_pos * (1 - CI_hi),
+         normal_abs_hi = total_pos * (1 - CI_lo)) %>%
+  select(Date,
+         total_pos,
+         total_pos_pct,
+         variant_abs_est,
+         variant_pct_est,
+         normal_abs_est,
+         normal_pct_est,
+         variant_pct_lo,
+         variant_pct_hi,
+         variant_abs_lo,
+         variant_abs_hi,
+         normal_pct_lo,
+         normal_pct_hi,
+         normal_abs_lo,
+         normal_abs_hi) %>%
   pivot_longer(-Date, names_to = "variable", values_to = "value") 
 
 
 # Plot 1 ------------------------------------------------------------------
 
 plot_data %>%
-  filter(variable %in% c("share_est", "positive")) %>%
+  filter(variable %in% c("variant_abs_est", "total_pos")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "share_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
+  geom_text(data = subset(plot_data, variable == "variant_abs_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
@@ -72,11 +92,10 @@ ggsave("../figures/ntl_b117.png", width = 18, height = 10, units = "cm", dpi = 3
 # Plot 2 ------------------------------------------------------------------
 
 plot_data %>%
-  mutate(variable = ifelse(variable == "pct_est", "x_pct_est", variable)) %>%
-  filter(variable %in% c("x_pct_est", "pos_pct")) %>%
+  filter(variable %in% c("variant_pct_est", "total_pos_pct")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
-  geom_text(data = subset(plot_data, variable == "pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
+  geom_text(data = subset(plot_data, variable == "variant_pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85",'#E69F00'))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
@@ -91,45 +110,24 @@ plot_data %>%
 ggsave("../figures/ntl_b117_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
+
 # Plot 3 ------------------------------------------------------------------
 
-plot_data %>%
-  filter(variable %in% c("pct_est", "pct_lo", "pct_hi")) %>%
-  pivot_wider(names_from = variable, values_from = value) %>%
-  ggplot() +
-  geom_ribbon(aes(Date, ymin=pct_lo, ymax=pct_hi), fill = alpha('#E69F00', 0.4)) +
-  geom_line(aes(Date, pct_est), color = '#E69F00', size = 1.3) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
-  scale_y_continuous(
-    limits = c(0, NA),
-    labels = function(x) paste0(x, " %")
-  ) +
-  labs(y = "Positivprocent", x = "Uge (startdato)", title = "Estimeret positivprocent for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Positivprocent for B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom / antal testede \u00D7 100") +
-  standard_theme  +
-  theme(
-        axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
-
-ggsave("../figures/ntl_b117_pct_alone.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-
-# Plot 4 ------------------------------------------------------------------
-
 type <- c("Positivprocent", "Antal positivt testede")
-names(type) <- c("x_pct", "share")
+names(type) <- c("pct", "abs")
 
 plot_data %>%
-  filter(variable %in% c("pct_est", "pct_lo", "pct_hi", "share_est", "share_hi", "share_lo")) %>%
+  filter(variable %in% c("variant_pct_est", "variant_pct_lo", "variant_pct_hi", "variant_abs_est", "variant_abs_hi", "variant_abs_lo")) %>%
   pivot_wider(names_from = variable, values_from = value) %>%
-  pivot_longer(-Date, names_to = c("variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
   pivot_wider(names_from = variable_2, values_from = value) %>%
-  mutate(variable_1 = ifelse(variable_1 == "pct", "x_pct", variable_1)) %>%
   ggplot() +
   geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
   geom_line(aes(Date, est, color = variable_1), size = 1.3) +
   scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
   scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
-  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
   facet_theme  +
@@ -142,6 +140,34 @@ plot_data %>%
     axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
 
 ggsave("../figures/ntl_b117_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+plot_data %>%
+  filter(!variable %in% c("total_pos",
+                         "total_pos_pct")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_wider(names_from = variable_2, values_from = value) %>%
+  unite(variable_3, c(strain, variable_1), remove = FALSE) %>%
+  ggplot() +
+  geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_3)) +
+  geom_line(aes(Date, est, color = variable_3), size = 1.3) +
+  scale_fill_manual(name = "", values = c(alpha("gray85", 0.4), alpha("gray85", 0.4), alpha(pos_col, 0.4),  alpha('#E69F00', 0.4))) +
+  scale_color_manual(name = "", values = c("gray85", "gray85", pos_col,  '#E69F00')) +
+  facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af hhv. B.1.1.7 og normale varianter", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
+  facet_theme  +
+  theme(
+    legend.position = "none",
+    plot.caption = element_text(size = 8),
+    plot.subtitle = element_text(size = 8),
+    axis.title.y = element_blank(),
+    strip.text = element_text(size = 9),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/ntl_b117_pct_pos_2.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 # Logistisk plot af andel -------------------------------------------------
