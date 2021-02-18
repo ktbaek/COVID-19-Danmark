@@ -150,13 +150,15 @@ Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter) og o
 Se [liste](/tiltag.md) over tiltag.
 
 ### Daglige epidemi-indikatorer og tiltag
-Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april til 1. august, det nederste plot viser perioden fra 1. juli til nu.
+Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april 2020 til 1. august, det midterste plot viser perioden fra 1. juli til 1. februar 2021, og det nederste plot viser perioden fra 1. januar til nu.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
 
 ![](/figures/ntl_tiltag_april.png)
 
 ![](/figures/ntl_tiltag_july.png)
+
+![](/figures/ntl_tiltag_januar.png)
 
 [Tilbage til toppen](#)
 

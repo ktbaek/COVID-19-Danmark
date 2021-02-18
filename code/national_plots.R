@@ -287,112 +287,168 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   as.Date("2020-12-17"), "Nedlukning 2-1", "restrict",
                   as.Date("2020-12-21"), "Nedlukning 2-2", "restrict",
                   as.Date("2020-12-25"), "Nedlukning 2-3", "restrict",
-                  as.Date("2021-01-05"), "Forsamling: 5", "restrict")
+                  as.Date("2021-01-05"), "Forsamling ned til 5", "restrict",
+                  as.Date("2021-02-08"), "0-4. kl åbner", "open")
 
 cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
 
+# x <- plot_data %>%
+#   full_join(tiltag, by = "Date")  %>%
+#   filter(Date > as.Date("2020-06-20"),
+#          Date < as.Date("2021-02-02"))
+#   
+# x %>%
+#   ggplot() +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200, fill = "B"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
+#   geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+#   geom_line(aes(Date, running_avg_pct * 200), size = 1, color = darken(pct_col, 0)) +
+#   geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+#   geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+#   geom_label_repel(
+#     aes(Date, 0, label = tiltag),
+#     color = "white", 
+#     verbose = TRUE,
+#     fill = "grey40", 
+#     size = 2.5, 
+#     ylim = c(0, NA), 
+#     xlim = c(-Inf, Inf),
+#     nudge_y = x$running_avg_pos * 1.4 + 2000,
+#     direction = "y",
+#     force_pull = 0, 
+#     box.padding = 0.1, 
+#     max.overlaps = Inf, 
+#     segment.size = 0.32,
+#     segment.color = "grey40"
+#   ) +
+#   scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
+#   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+#   scale_y_continuous(
+#     limits = c(0, 8000),
+#     name = "Antal",
+#     sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+#   ) +
+#   labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og tiltag (juli 2020 - februar 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   standard_theme +
+#   theme(
+#     panel.grid.minor.x = element_blank(),
+#     legend.text = element_text(size = 11),
+#     legend.key.size = unit(0.4, "cm")
+#   )
+# 
+#   ggsave("../figures/ntl_tiltag_july.png", width = 18, height = 12, units = "cm", dpi = 300)
+#   
+  
+
+# Tiltag fra januar -------------------------------------------------------
+
 x <- plot_data %>%
-  full_join(tiltag, by = "Date")  %>%
-  filter(Date > as.Date("2020-06-20"))
+    full_join(tiltag, by = "Date")  %>%
+    filter(Date > as.Date("2021-01-01"))  
   
 x %>%
-  ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200, fill = "B"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  geom_line(aes(Date, running_avg_pct * 200), size = 1, color = darken(pct_col, 0)) +
-  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
-  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
-  geom_label_repel(
-    aes(Date, 0, label = tiltag),
-    color = "white", 
-    verbose = TRUE,
-    fill = "grey40", 
-    size = 2.5, 
-    ylim = c(0, NA), 
-    xlim = c(-Inf, Inf),
-    nudge_y = x$running_avg_pos * 1.4 + 2000,
-    direction = "y",
-    force_pull = 0, 
-    box.padding = 0.1, 
-    max.overlaps = Inf, 
-    segment.size = 0.32,
-    segment.color = "grey40"
-  ) +
-  scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
-  scale_y_continuous(
-    limits = c(0, 8000),
-    name = "Antal",
-    sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
-  ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og politiske tiltag", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-  standard_theme +
-  theme(
-    panel.grid.minor.x = element_blank(),
-    legend.text = element_text(size = 11),
-    legend.key.size = unit(0.4, "cm")
-  )
-
-  ggsave("../figures/ntl_tiltag_july.png", width = 18, height = 12, units = "cm", dpi = 300)
+    ggplot() +
+    geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 500), fill = "white", width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 500, fill = "B"), width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
+    geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
+    geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+    geom_line(aes(Date, running_avg_pct * 500), size = 1, color = darken(pct_col, 0)) +
+    geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+    geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+    geom_label_repel(
+      aes(Date, 0, label = tiltag),
+      color = "white", 
+      verbose = TRUE,
+      fill = "grey40", 
+      size = 2.5, 
+      ylim = c(0, NA), 
+      xlim = c(-Inf, Inf),
+      nudge_y = x$running_avg_pos * 2 + 100,
+      direction = "y",
+      force_pull = 0, 
+      box.padding = 0.1, 
+      max.overlaps = Inf, 
+      segment.size = 0.32,
+      segment.color = "grey40"
+    ) +
+    scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
+    scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+    scale_y_continuous(
+      limits = c(0, 3000),
+      name = "Antal",
+      sec.axis = sec_axis(~ . / 500, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+    ) +
+    labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+    standard_theme +
+    theme(
+      panel.grid.minor.x = element_blank(),
+      legend.text = element_text(size = 11),
+      legend.key.size = unit(0.4, "cm")
+    )
+  
+  ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 # tiltag plot fra april -------------------------------------------------------------
 
-x <- plot_data %>%
-  full_join(tiltag, by = "Date") %>%
-  filter(
-    Date > as.Date("2020-03-31"),
-    Date < as.Date("2020-08-02")
-  )
-  
-x %>%
-  ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 100, fill = "B"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  geom_line(aes(Date, running_avg_pct * 100), size = 1, color = darken(pct_col, 0)) +
-  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
-  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
-  geom_label_repel(
-    aes(Date, 0, label = tiltag),
-    color = "white",
-    fill = "grey40",
-    size = 2.5,
-    ylim = c(0, NA),
-    nudge_y = x$running_avg_pct * 200 + 100,
-    direction = "y",
-    force_pull = 0,
-    box.padding = 0.2,
-    max.overlaps = Inf,
-    segment.size = 0.32,
-    segment.color = "grey40"
-  ) +
-  scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
-  scale_y_continuous(
-    limits = c(0, 1000),
-    name = "Antal",
-    sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %")),
-  ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #1 (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-  standard_theme +
-  theme(
-    panel.grid.minor.x = element_blank(),
-    legend.text = element_text(size = 11),
-    legend.key.size = unit(0.4, "cm")
-  )
-
-ggsave("../figures/ntl_tiltag_april.png", width = 18, height = 12, units = "cm", dpi = 300)
+# x <- plot_data %>%
+#   full_join(tiltag, by = "Date") %>%
+#   filter(
+#     Date > as.Date("2020-03-31"),
+#     Date < as.Date("2020-08-02")
+#   )
+#   
+# x %>%
+#   ggplot() +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 100, fill = "B"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
+#   geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+#   geom_line(aes(Date, running_avg_pct * 100), size = 1, color = darken(pct_col, 0)) +
+#   geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+#   geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+#   geom_label_repel(
+#     aes(Date, 0, label = tiltag),
+#     color = "white",
+#     fill = "grey40",
+#     size = 2.5,
+#     ylim = c(0, NA),
+#     nudge_y = x$running_avg_pct * 200 + 100,
+#     direction = "y",
+#     force_pull = 0,
+#     box.padding = 0.2,
+#     max.overlaps = Inf,
+#     segment.size = 0.32,
+#     segment.color = "grey40"
+#   ) +
+#   scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
+#   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+#   scale_y_continuous(
+#     limits = c(0, 1000),
+#     name = "Antal",
+#     sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+#   ) +
+#   labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #1 (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   standard_theme +
+#   theme(
+#     panel.grid.minor.x = element_blank(),
+#     legend.text = element_text(size = 11),
+#     legend.key.size = unit(0.4, "cm")
+#   )
+# 
+# ggsave("../figures/ntl_tiltag_april.png", width = 18, height = 12, units = "cm", dpi = 300)
 
 # tiltag relative plots ---------------------------------------------------
 
