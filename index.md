@@ -158,7 +158,7 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 
 ![](/figures/ntl_tiltag_july.png)
 
-![](/figures/ntl_tiltag_januar.png)
+![](/figures/ntl_tiltag_january.png)
 
 [Tilbage til toppen](#)
 
