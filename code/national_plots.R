@@ -349,7 +349,7 @@ cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admi
 
 x <- plot_data %>%
     full_join(tiltag, by = "Date")  %>%
-    filter(Date > as.Date("2021-01-01"))  
+    filter(Date > as.Date("2020-12-31"))  
   
 x %>%
     ggplot() +
@@ -390,7 +390,7 @@ x %>%
     labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
     standard_theme +
     theme(
-      panel.grid.minor.x = element_blank(),
+      #panel.grid.minor.x = element_blank(),
       legend.text = element_text(size = 11),
       legend.key.size = unit(0.4, "cm")
     )

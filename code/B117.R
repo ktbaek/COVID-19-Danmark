@@ -72,7 +72,7 @@ plot_data <- tests %>%
 # Plot 1 ------------------------------------------------------------------
 
 plot_data %>%
-  filter(variable %in% c("variant_abs_est", "total_pos")) %>%
+  filter(variable %in% c("variant_abs_est", "normal_abs_est")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
   geom_text(data = subset(plot_data, variable == "variant_abs_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken(pos_col,0.2), fontface = "bold", size = 2.5) +
@@ -92,7 +92,7 @@ ggsave("../figures/ntl_b117.png", width = 18, height = 10, units = "cm", dpi = 3
 # Plot 2 ------------------------------------------------------------------
 
 plot_data %>%
-  filter(variable %in% c("variant_pct_est", "total_pos_pct")) %>%
+  filter(variable %in% c("variant_pct_est", "normal_pct_est")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
   geom_text(data = subset(plot_data, variable == "variant_pct_est"), aes(Date, value + 0.06 ,label = round(value, 3)), vjust=0, family = "lato", color = darken('#E69F00',0.2), fontface = "bold", size = 2.5) +
@@ -142,6 +142,9 @@ plot_data %>%
 ggsave("../figures/ntl_b117_pct_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
+# Plot 4 ------------------------------------------------------------------
+
+
 plot_data %>%
   filter(!variable %in% c("total_pos",
                          "total_pos_pct")) %>%
@@ -150,14 +153,14 @@ plot_data %>%
   pivot_wider(names_from = variable_2, values_from = value) %>%
   unite(variable_3, c(strain, variable_1), remove = FALSE) %>%
   ggplot() +
-  geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_3)) +
+  #geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_3)) +
   geom_line(aes(Date, est, color = variable_3), size = 1.3) +
-  scale_fill_manual(name = "", values = c(alpha("gray85", 0.4), alpha("gray85", 0.4), alpha(pos_col, 0.4),  alpha('#E69F00', 0.4))) +
-  scale_color_manual(name = "", values = c("gray85", "gray85", pos_col,  '#E69F00')) +
+  #scale_fill_manual(name = "", values = c(alpha("gray85", 0.4), alpha("gray85", 0.4), alpha(pos_col, 0.4),  alpha('#E69F00', 0.4))) +
+  scale_color_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4), pos_col,  '#E69F00')) +
   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
-  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
-  labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af hhv. B.1.1.7 og normale varianter", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
+  labs(y = "Positivprocent/Antal positive", x = "Startdato for uge", title = "Estimeret ugentlig udbredelse af hhv. B.1.1.7 og normale varianter", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
   facet_theme  +
   theme(
     legend.position = "none",
