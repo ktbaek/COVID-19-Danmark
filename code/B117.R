@@ -129,7 +129,7 @@ plot_data %>%
   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
-  labs(y = "Positivprocent/Antal positive", x = "Uge (startdato)", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
+  labs(y = "Positivprocent/Antal positive", x = "Startdato for uge", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
   facet_theme  +
   theme(
     legend.position = "none",
