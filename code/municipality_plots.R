@@ -325,7 +325,7 @@ plot_data <- landsdele %>%
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
-  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 0.8, aes(color = variable)) +
   facet_wrap(~Landsdel, scales = "free", ncol = 4) +
   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
@@ -441,7 +441,7 @@ plot_data <- muni_all %>%
 
 ggplot(plot_data, aes(Date, value)) +
   geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
-  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 1, aes(color = variable)) +
+  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 0.8, aes(color = variable)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
