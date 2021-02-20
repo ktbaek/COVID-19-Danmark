@@ -188,12 +188,12 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 
 Individuelle grafer for hver kommune kan ses [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures/Kommuner)
 
-Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pos_vs_test_july.png).
+Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pos_vs_test.png).
 
-Dette plot startende 1. marts 2020 kan ses [her](/figures/muni_10_pos_vs_test_april.png).
+Dette plot startende 1. marts 2020 kan ses [her](/figures/muni_30_pos_vs_test_march.png).
 
 
-![](/figures/muni_10_pos_vs_test_daily.png)
+![](/figures/muni_30_pos_vs_test.png)
 
 ### Daglig procentdel positivt testede for hver kommune
 Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit) for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.
@@ -202,12 +202,12 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 Individuelle grafer for hver kommune kan ses [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures/Kommuner)
 
-Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pct_july.png).
+Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pct.png).
 
-Dette plot startende 1. maj 2020 kan ses [her](/figures/muni_10_pct_april.png).
+Dette plot startende 1. maj 2020 kan ses [her](/figures/muni_30_pct_may.png).
 
 
-![](/figures/muni_10_pct_daily.png)
+![](/figures/muni_30_pct.png)
 
 ### Dagligt antal nye positivt testede og antal testede for hver landsdel
 Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel.
@@ -268,11 +268,11 @@ De udvalgte kommuner er de 30 kommuner der har haft flest positivt testede inden
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
-![](/figures/muni_10_weekly_incidens_tile.png)
+![](/figures/muni_30_weekly_incidens_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_incidens_tile.png).
 
-![](/figures/muni_10_weekly_pct_tile.png)
+![](/figures/muni_30_weekly_pct_tile.png)
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
 

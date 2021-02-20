@@ -31,9 +31,9 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive for alle kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_all_pos_vs_test_july.png", width = 42, height = 48, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_pos_vs_test.png", width = 42, height = 48, units = "cm", dpi = 300)
 
-# Figur: Positiv vs testede - udvalgte kommuner fra april ------------------
+# Figur: Positiv vs testede - udvalgte kommuner fra marts ------------------
 
 plot_data <- muni_all %>%
   filter(Date > as.Date("2020-02-29")) %>%
@@ -56,7 +56,7 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_10_pos_vs_test_april.png", width = 28, height = 22, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_pos_vs_test_march.png", width = 28, height = 22, units = "cm", dpi = 300)
 
 
 # Figur: Positiv vs testede - udvalgte kommuner 3 mdr --------
@@ -82,7 +82,7 @@ ggplot(plot_data, aes(Date, value)) +
   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 28, height = 21, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_pos_vs_test.png", width = 28, height = 21, units = "cm", dpi = 300)
 
 
 
@@ -90,7 +90,7 @@ ggsave("../figures/muni_10_pos_vs_test_daily.png", width = 28, height = 21, unit
 
 # Figur: Procent - alle kommuner 3 mdr --------
 ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 1)
+  stats::filter(x, rep(1 / n, n), sides = 2)
 }
 
 plot_data <- muni_all %>%
@@ -105,50 +105,49 @@ max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 0.7, color = darken(pct_col, 0.2)) +
+  geom_line(aes(Date, ra_pct), size = 0.6, color = darken(pct_col, 0.2)) +
   facet_wrap(~Kommune, scales = "free", ncol = 8) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for alle kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for alle kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_all_pct_july.png", width = 42, height = 47, units = "cm", dpi = 300)
+ggsave("../figures/muni_all_pct.png", width = 42, height = 47, units = "cm", dpi = 300)
 
 
-# Figur: Procent - udvalgte kommuner fra april --------
+# Figur: Procent - udvalgte kommuner fra maj --------
 
 
 plot_data <- muni_all %>%
-  filter(Date > as.Date(today) - months(3)) %>%
+  filter(Date > as.Date("2020-04-30")) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(pct = Positive / Tested * 100) %>%
   group_by(Kommune) %>%
-  mutate(ra_pct = ra(pct)) %>%
-  ungroup()
+  mutate(ra_pct = ra(pct)) 
 
 max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 
 
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
+  geom_line(aes(Date, ra_pct), size = 0.4, color = darken(pct_col, 0.2)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_x_date(date_labels = "%b", date_breaks = "3 month", date_minor_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_10_pct_april.png", width = 27, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_pct_may.png", width = 27, height = 20, units = "cm", dpi = 300)
 
 
 # Figur: procent - udvalgte kommuner 3 mdr -----------------
 
 ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 1)
+  stats::filter(x, rep(1 / n, n), sides = 2)
 }
 
 plot_data <- muni_all %>%
@@ -164,16 +163,16 @@ max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
+  geom_line(aes(Date, ra_pct), size = 0.8, color = darken(pct_col, 0.2)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent SARS-CoV-2 positivt testede for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
-ggsave("../figures/muni_10_pct_daily.png", width = 27, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_pct.png", width = 27, height = 20, units = "cm", dpi = 300)
 
 
 # -------------------------------------------------------------------------
@@ -267,7 +266,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Incidens)) +
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
-ggsave("../figures/muni_10_weekly_incidens_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_weekly_incidens_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 # Figur: Procent - udvalgte kommuner, heatmap ----------
 
@@ -287,7 +286,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Ratio)) +
   tile_theme + 
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
-ggsave("../figures/muni_10_weekly_pct_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_weekly_pct_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 
 
@@ -310,7 +309,7 @@ ggplot(plot_data, aes(Week_end_Date, Kommune, fill = Tested_wk)) +
   theme(axis.text.y = element_text(margin = margin(t = 0, r = -15, b = 0, l = 0)))
 
 
-ggsave("../figures/muni_10_weekly_tests_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
+ggsave("../figures/muni_30_weekly_tests_tile.png", width = no_weeks * 0.6, height = 19, units = "cm", dpi = 300)
 
 
 
@@ -344,7 +343,7 @@ ggsave("../figures/muni_pos_vs_test_landsdele.png", width = 23, height = 15, uni
 # Figur: Procent - landsdele -----------------------------------
 
 ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 1)
+  stats::filter(x, rep(1 / n, n), sides = 2)
 }
 
 plot_data <- landsdele %>%
@@ -365,7 +364,7 @@ ggplot(plot_data) +
   scale_y_continuous(
     limits = c(0, max_y_value)
   ) +
-  labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede for landsdele", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede for landsdele", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   facet_theme
 
 ggsave("../figures/muni_pct_landsdele.png", width = 23, height = 14, units = "cm", dpi = 300)
@@ -435,7 +434,7 @@ ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi
 
 plot_data <- muni_all %>%
   full_join(geo, by = "Kommune") %>%
-  filter(Date > as.Date(today) - months(2)) %>%
+  filter(Date > as.Date(today) - months(3)) %>%
   filter(Landsdel %in% c("København", "Københavns omegn")) %>%
   mutate(Positive = Positive * 100) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
@@ -460,12 +459,12 @@ ggsave("../figures/muni_kbharea_pos_vs_test.png", width = 26, height = 17, units
 
 # Figur: Procent - København og omegn, 1 md --------
 ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 1)
+  stats::filter(x, rep(1 / n, n), sides = 2)
 }
 
 plot_data <- muni_all %>%
   full_join(geo, by = "Kommune") %>%
-  filter(Date > as.Date(today) - months(2)) %>%
+  filter(Date > as.Date(today) - months(3)) %>%
   filter(Landsdel %in% c("København", "Københavns omegn")) %>%
   mutate(pct = Positive / Tested * 100) %>%
   group_by(Kommune) %>%
@@ -476,7 +475,7 @@ max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
 
 ggplot(plot_data) +
   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
+  geom_line(aes(Date, ra_pct), size = 0.9, color = darken(pct_col, 0.2)) +
   facet_wrap(~Kommune, scales = "free", ncol = 5) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
