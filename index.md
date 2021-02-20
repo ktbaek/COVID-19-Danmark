@@ -188,9 +188,9 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 
 Individuelle grafer for hver kommune kan ses [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures/Kommuner)
 
-For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pos_vs_test_july.png).
+Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pos_vs_test_july.png).
 
-For at se dette plot startende 1. april, klik [her](/figures/muni_10_pos_vs_test_april.png).
+Dette plot startende 1. marts 2020 kan ses [her](/figures/muni_10_pos_vs_test_april.png).
 
 
 ![](/figures/muni_10_pos_vs_test_daily.png)
@@ -202,9 +202,9 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 Individuelle grafer for hver kommune kan ses [her](https://github.com/ktbaek/COVID-19-Danmark/tree/master/figures/Kommuner)
 
-For at se dette plot for *alle* kommuner, klik [her](/figures/muni_all_pct_july.png).
+Dette plot for *alle* kommuner kan ses [her](/figures/muni_all_pct_july.png).
 
-For at se dette plot startende 1. april, klik [her](/figures/muni_10_pct_april.png).
+Dette plot startende 1. maj 2020 kan ses [her](/figures/muni_10_pct_april.png).
 
 
 ![](/figures/muni_10_pct_daily.png)
