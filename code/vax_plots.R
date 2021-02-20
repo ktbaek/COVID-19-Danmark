@@ -1,4 +1,9 @@
-vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", today_string, ".pdf")) %>%
+vax_files <- list.files(path="../data/Vax_data/", full.names = FALSE, recursive = FALSE)
+last_file <- tail(vax_files[str_starts(vax_files, "Vaxdata_")], 1)
+vax_today_string <- str_sub(last_file, 9, 14)
+vax_today <- paste0("20", str_sub(vax_today_string, 1, 2), "-", str_sub(vax_today_string, 3, 4), "-", str_sub(vax_today_string, 5, 6))
+
+vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", vax_today_string, ".pdf")) %>%
   read_lines()
 
 tabel_3 <- which(str_detect(vax, "Tabel 3"))[2]
@@ -32,7 +37,7 @@ age_vax_df %>%
   labs(y = "Antal", 
        title = "Antal påbegyndt COVID-19 vaccinerede per køn og alder", 
        caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI",
-       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(today)-1, "%e. %b %Y")))) +
+       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
   scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
   standard_theme
 
@@ -60,7 +65,7 @@ age_vax_df %>%
   labs(y = "Andel", 
        title = "Andel af personer som er påbegyndt COVID-19 vaccination", 
        caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI",
-       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(today)-1, "%e. %b %Y")))) +
+       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
   scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
   standard_theme
 
@@ -71,7 +76,7 @@ ggsave("../figures/ntl_vax_age_pct.png", width = 18, height = 10, units = "cm", 
 
 tabel_2 <- max(which(str_detect(vax, "Tabel 2")))
 
-days_since_start <- as.integer(as.Date(today) - as.Date("2020-12-27"))
+days_since_start <- as.integer(as.Date(vax_today) - as.Date("2020-12-27"))
 
 time_vax <- vax[(tabel_2 + 5):(tabel_2 + 4 + days_since_start)]
 
