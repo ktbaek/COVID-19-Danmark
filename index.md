@@ -196,7 +196,7 @@ Dette plot startende 1. marts 2020 kan ses [her](/figures/muni_30_pos_vs_test_ma
 ![](/figures/muni_30_pos_vs_test.png)
 
 ### Daglig procentdel positivt testede for hver kommune
-Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit) for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.
+Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages gennemsnit) for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
@@ -221,7 +221,7 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 ![](/figures/muni_pos_vs_test_landsdele.png)
 
 ### Daglig procentdel positivt testede for hver landsdel
-Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit) for de seneste tre måneder for hver landsdel.
+Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages gennemsnit) for de seneste tre måneder for hver landsdel.
 
 [Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
 
@@ -235,7 +235,7 @@ Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages bagudret
 
 ### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
 
-Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages bagudrettet gennemsnit).
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages gennemsnit).
 
 ``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
 
