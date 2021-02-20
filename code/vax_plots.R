@@ -110,6 +110,11 @@ time_vax_df %>%
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-
+if(today != vax_today){
+index_file  <- readLines("../index.md")
+dateline  <- paste0("Senest opdateret ", str_to_lower(format(as.Date(today), "%e. %B %Y")), " efter kl 14.<br>*Vaccinationsplots dog opdateret ", str_to_lower(format(as.Date(vax_today), "%e. %B %Y")), "*")
+index_file[8] <- dateline
+writeLines(index_file, con="../index.md")
+}
 
 
