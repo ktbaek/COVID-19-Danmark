@@ -1,8 +1,8 @@
-## Liste over politiske tiltag efter nedlukningen 11. marts
+## Liste over politiske tiltag efter nedlukningen 11. marts 2020
 
 | Dato | Tiltag |
 |:--|:--|
-| 14. marts | Danmarks grænser lukker kl. 12 |
+| 14. marts | Danmarks grænser lukker kl. 12 |
 | 18. marts | Forsamlingsloft på 10 personer, nedlukning af liberale erhverv, indendørs sports- og idrætsfaciliteter, fitnesscentre, storcentre, kulturliv |
 | **Fase 1** |
 | 15. april | Genåbning af skoler 0.-5. kl og daginstitutioner |
@@ -35,7 +35,9 @@
 | 17. december | Nedlukning af storcentre, stormagasiner og butiksarkader |
 | 21. december | Nedlukning af liberale erhverv |
 | 25. december | Nedlukning af detailhandlen. Apoteker og dagligvarebutikker holdes åbent |
+| **2021** |
 | 5. januar | Forsamlingsloft sænkes til 5 |
+| 8. februar | Genåbning af skoler 0.-4. kl |
 
 
 
