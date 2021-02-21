@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 19. februar 2021 efter kl 14.<br>*Vaccinationsplots dog opdateret 20. februar 2021*
+Senest opdateret 19. februar 2021 efter kl 14.<br>*Vaccinationsplots dog opdateret 21. februar 2021*
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -29,9 +29,6 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 ## Begreber
 #### Antal positivt testede
 
-<!--
-Antallet af positivt testede omtales også som 'antallet af påviste/konstaterede/registrerede/bekræftede smittede/tilfælde/smittetilfælde', eller ofte *misvisende* som 'antallet af smittede' eller 'smittetallet' (misvisende fordi vi ikke kender det reelle antal af smittede, kun det antal vi har opdaget ved tests).
--->
 
 Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**.
 
@@ -86,9 +83,6 @@ Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procen
 
 ![](/figures/ntl_pct_admitted_barplot_2.png)
 
-<!--
-Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_admitted_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_admitted_barplot.png).
--->
 
 
 
@@ -101,9 +95,7 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ![](/figures/ntl_pct_deaths_barplot_2.png)
 
-<!--
-Se "spejlvendte" plots uden løbende gennemsnit for [antal positive](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_postest_deaths_barplot.png) og [positivprocent](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_pct_deaths_barplot.png).
--->
+
 
 ### Dagligt antal positivt testede og procentdelen af  positivt testede
 Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
@@ -113,8 +105,7 @@ SSI datasæt: ``'Test_pos_over_time'``
 ![](/figures/ntl_pos_pct.png)
 
 <!--
-### Kontakttallet
-SSI beregner to kontakttal (Rt værdi): ét baseret på smittetal og ét baseret på indlagte. Se plots for kontakttallene sammenlignet med hhv. [antal positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pos.png), [procent positive tests](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_cases_pct.png), og [antal nyindlagte](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_rt_admitted.png).
+
 
 -->
 
