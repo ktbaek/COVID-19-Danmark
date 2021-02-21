@@ -36,7 +36,7 @@ Positivt testede angiver personer, som *for første gang er testet positive* for
 Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
 
 
-## Plots: hele landet
+## Hele landet
 
 
 ### Dagligt antal nyindlagte og dødsfald
@@ -136,7 +136,7 @@ Data for B.1.1.7 er hentet hos [SSI](https://covid19.ssi.dk/virusvarianter) og o
 
 [Tilbage til toppen](#)
 
-## Plots: politiske tiltag
+## Politiske tiltag
 
 Se [liste](/tiltag.md) over tiltag.
 
@@ -153,7 +153,7 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 
 [Tilbage til toppen](#)
 
-## Plots: vaccinationsstatus
+## Vaccinationsstatus
 
 ### Total antal vaccinerede
 
@@ -169,7 +169,7 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, en
 
 [Tilbage til toppen](#)
 
-## Plots: kommuner og landsdele
+## Kommuner, landsdele og regioner
 ### Dagligt antal nye positivt testede og antal testede for hver kommune
 Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for de 30 kommuner der har haft flest positivt testede den seneste måned.
 
@@ -273,7 +273,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 [Tilbage til toppen](#)
 
-## Plots: aldersgrupper
+## Aldersgrupper
 
 ### Ugentligt antal positivt testede for hver aldersgruppe
 Plottet viser det ugentlige antal positivt testede (som absolut antal og antal per 100.000 personer) for hver aldersgruppe.
@@ -323,7 +323,7 @@ Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positiv
 
 [Tilbage til toppen](#)
 
-## Plots: øvrige sammenligninger
+## Øvrige sammenligninger
 
 ### Dagligt antal dødsfald i Danmark
 Øverste plot viser det totale antal daglige dødsfald siden 1. jan 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit).
