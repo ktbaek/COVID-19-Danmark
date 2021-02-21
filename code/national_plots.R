@@ -269,8 +269,8 @@ ggsave("../figures/twitter_card.png", width = 15, height = 8, units = "cm", dpi 
 
 tiltag <- tribble(~Date, ~tiltag, ~type,
                   as.Date("2020-03-12"), "Nedlukning 1", "restrict",
-                  as.Date("2020-04-17"), "Fase 1", "open",
-                  as.Date("2020-05-09"), "Fase 2, del 1", "open",
+                  as.Date("2020-04-17"), "Fase 1: Små klasser,\ndagtilbud, liberale erhverv", "open",
+                  as.Date("2020-05-09"), "Fase 2, del 1: Idræt,\nforeningsliv, detailhandel", "open",
                   as.Date("2020-05-22"), "Fase 2, del 2", "open",
                   as.Date("2020-06-08"), "Fase 3", "open",
                   as.Date("2020-07-07"), "Forsamling op til 100", "open", 
