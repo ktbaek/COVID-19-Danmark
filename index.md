@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 22. februar 2021 efter kl 14.<br>*Vaccinationsplots dog opdateret 21. februar 2021*
+Senest opdateret 22. februar 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -160,6 +160,8 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 Øverste plot viser det kumulerede antal vaccinerede.
 
 De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, enten som absolut antal, eller som procentdel af antal personer i køn- og aldersgruppen.
+
+``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
 
 ![](/figures/ntl_vax_cum.png)
 

@@ -1,9 +1,9 @@
-vax_files <- list.files(path="../data/Vax_data/", full.names = FALSE, recursive = FALSE)
+vax_files <- list.files(path="../data/Vax_data/PDF_rapporter/", full.names = FALSE, recursive = FALSE)
 last_file <- tail(vax_files[str_starts(vax_files, "Vaxdata_")], 1)
 vax_today_string <- str_sub(last_file, 9, 14)
 vax_today <- paste0("20", str_sub(vax_today_string, 1, 2), "-", str_sub(vax_today_string, 3, 4), "-", str_sub(vax_today_string, 5, 6))
 
-vax <- pdf_text(paste0("../data/Vax_data/Vaxdata_", vax_today_string, ".pdf")) %>%
+vax <- pdf_text(paste0("../data/Vax_data/PDF_rapporter/Vaxdata_", vax_today_string, ".pdf")) %>%
   read_lines()
 
 tabel_3 <- which(str_detect(vax, "Tabel 3"))[2]
@@ -19,18 +19,32 @@ age_vax %<>%
 #   str_squish() %>%
 #   strsplit(split = " ")
 
-age_vax_df <- data.frame(matrix(unlist(age_vax), nrow=length(age_vax), byrow=T))
+age_vax_df_2 <- data.frame(matrix(unlist(age_vax), nrow=length(age_vax), byrow=T))
 
 #colnames(age_vax_df) <- c(unlist(age_vax_colnames)[1:3], "Total")
 
 
-age_vax_df %>%
+age_vax_df_2 %<>%
   as_tibble %>%
   set_colnames(c("Aldersgruppe", "Female_start", "Female_done", "Male_start", "Male_done", "Total")) %>%
   mutate_all(str_replace_all, "\\.", "") %>%
   mutate(across(-Aldersgruppe, as.double)) %>%
-  select(-Total) %>%
-  pivot_longer(-Aldersgruppe, names_to = "sex", values_to = "value") %>%
+  select(Aldersgruppe, Female_start, Male_start) %>%
+  rename(K = Female_start,
+         M = Male_start) %>%
+  pivot_longer(-Aldersgruppe, names_to = "Sex", values_to = "Feb_20") %>%
+  
+  age_vax_df_2 %<>%
+  as_tibble %>%
+  set_colnames(c("Aldersgruppe", "Female_start", "Female_done", "Male_start", "Male_done", "Total")) %>%
+  mutate_all(str_replace_all, "\\.", "") %>%
+  mutate(across(-Aldersgruppe, as.double)) %>%
+  select(Aldersgruppe, Female_done, Male_done) %>%
+  rename(K = Female_done,
+         M = Male_done) %>%
+  pivot_longer(-Aldersgruppe, names_to = "Sex", values_to = "Feb_20") %>%
+  
+  
   filter(sex %in% c("Female_start", "Male_start")) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, value, fill = sex), stat = "identity", position = "dodge") +

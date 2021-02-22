@@ -1,0 +1,11 @@
+"dato","Regionsnavn","sex","Paabegyndt vacc. idag","Faerdigvacc. idag","Paabegyndt vacc. igaar","Faerdigvacc. igaar","Paabegyndt vacc. difference","Faerdigvaccineret difference"
+2021-02-22,Hovedstaden,K,62126,39367,60139,39288,1987,79
+2021-02-22,Hovedstaden,M,29549,17935,28221,17914,1328,21
+2021-02-22,Midtjylland,K,51424,29472,50679,29443,745,29
+2021-02-22,Midtjylland,M,20817,10457,20535,10443,282,14
+2021-02-22,Nordjylland,K,24351,14285,23404,14268,947,17
+2021-02-22,Nordjylland,M,11172,4747,10332,4740,840,7
+2021-02-22,Sjælland,K,36839,15973,35960,15896,879,77
+2021-02-22,Sjælland,M,15919,5537,14949,5455,970,82
+2021-02-22,Syddanmark,K,48273,26962,46476,26941,1797,21
+2021-02-22,Syddanmark,M,20435,10820,19311,10807,1124,13
