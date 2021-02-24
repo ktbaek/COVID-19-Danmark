@@ -1,10 +1,12 @@
-private <- pdf_text("../data/antigen.pdf") %>%
+private <- pdf_text("../data/privattest_210223.pdf") %>%
   read_lines()
 
 tabel_1 <- max(which(str_detect(private, "Tabel 1")))
 
 
 table <- private[(tabel_1 + 5):(length(private) - 1)]
+
+table <- table[c(1:39, 44:75)]
 
 table %<>%
   str_squish() %>%
@@ -32,7 +34,7 @@ plot_data %>%
     limits = c(0, NA),
     labels = function(x) paste0(x, " %")
   ) +
-  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede (antigen)", subtitle = "Testresultater fra private udbydere. Positivprocenten er ikke direkte sammenlignelig med PCR data fra SSI",
+  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede (antigen 'lyntest')", subtitle = "Testresultater fra private udbydere. Positivprocenten er ikke direkte sammenlignelig med PCR data fra SSI",
        caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 
@@ -56,7 +58,7 @@ plot_data %>%
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
     limits = c(0, NA)
   ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive (antigen)", subtitle = "Testresultater fra private udbydere",
+  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive (antigen 'lyntest')", subtitle = "Testresultater fra private udbydere",
        caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 

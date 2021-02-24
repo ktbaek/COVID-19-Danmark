@@ -64,3 +64,34 @@ select_countries %>%
   facet_theme  
   
 ggsave("../figures/europe_b117_abs.png", width = 25, height = 13, units = "cm", dpi = 300)
+
+select_countries %>%
+  select(date, confirmed, administrative_area_level_1) %>%
+  rename(Date = date,
+         Positive = confirmed,
+         Country = administrative_area_level_1) %>%
+  bind_rows(select_countries_2) %>%
+  group_by(Country) %>%
+  mutate(Positive = c(0, diff(Positive))) %>%
+  ungroup() %>%
+  group_by(Country, Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  summarize(total_pos = sum(Positive, na.rm = TRUE)) %>%
+  filter(Date > ymd("2020-10-12")) %>%
+  full_join(b117_eu, by = c("Date", "Country")) %>%
+  mutate(variant_abs = total_pos * Share,
+         normal_abs = total_pos - variant_abs) %>%
+  pivot_longer(c(-Date, -Country), "variable", values_to = "value") %>%
+  filter(variable %in% c("variant_abs", "normal_abs")) %>%
+  ggplot() +
+  geom_line(aes(Date, value, color = variable), size = 0.7) +
+  facet_wrap(~Country, scales = "free") +
+  scale_color_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray60", pos_col))+
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month", limits = c(ymd("2020-10-12"), ymd("2021-02-08"))) +
+  scale_y_continuous(
+    limits = c(0, 320000)
+  ) +
+  labs(y = "Antal positive", x = "Dato", title = "Ugentligt antal positivt testede og estimeret antal positive for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: covid19datahub.io, wikipedia.org/wiki/Lineage_B.1.1.7") +
+  facet_theme  
+
+ggsave("../figures/europe_b117_abs_2.png", width = 25, height = 13, units = "cm", dpi = 300)
+ggsave("../figures/europe_b117_abs_3.png", width = 25, height = 13, units = "cm", dpi = 300)
