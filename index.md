@@ -109,8 +109,9 @@ SSI datasæt: ``'Test_pos_over_time'``
 
 -->
 
+[Tilbage til toppen](#)
 
-
+## Virusvarianter
 ### B.1.1.7 varianten
 
 Plottene viser et estimatet af hvor mange der er testet positiv for B.1.1.7 varianten, enten som absolut antal eller som procent af total antal testede (positivprocent). Hvor nøjagtigt dette estimat er, afhænger bl.a. af i hvor høj grad de genomsekventerede prøver er tilfældigt udvalgt fra puljen af positive prøver.
