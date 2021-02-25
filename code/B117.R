@@ -7,7 +7,7 @@ tabel_1 <- which(str_detect(b117, "Tabel 1"))
 
 weeks_since_start <- isoweek(today) - 1 + 53 - 46
 
-table_1 <- b117[(tabel_1 + 9):(tabel_1 + 9 + weeks_since_start)]
+table_1 <- b117[(tabel_1 + 8):(tabel_1 + 8 + weeks_since_start)]
 
 table_1 %<>%
   str_squish() %>%
@@ -75,7 +75,7 @@ plot_data %>%
   filter(variable %in% c("variant_abs_est", "normal_abs_est")) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
- # geom_text(data = subset(plot_data, variable == "variant_abs_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken(pos_col,0.2), fontface = "bold", size = 2.5) +
+ #geom_text(data = subset(plot_data, variable == "variant_abs_est"), aes(Date, value + 500  ,label = round(value, 0)), vjust=0, family = "lato", color = darken(pos_col,0.2), fontface = "bold", size = 2) +
   scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray85", pos_col))+
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
   scale_y_continuous(
