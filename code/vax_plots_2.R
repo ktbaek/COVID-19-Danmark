@@ -11,6 +11,7 @@ done_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", today_string, "/F
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
+  filter(!is.na(Aldersgruppe)) %>%
   group_by(Aldersgruppe, Sex) %>%
   summarize(Begun = sum(Begun, na.rm = TRUE),
             Done = sum(Done, na.rm = TRUE)) %>%
@@ -33,6 +34,7 @@ dst_age_sex %<>%
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
+  filter(!is.na(Aldersgruppe)) %>%
   group_by(Aldersgruppe, Sex) %>%
   summarize(Begun = sum(Begun, na.rm = TRUE),
             Done = sum(Done, na.rm = TRUE)) %>%
