@@ -26,8 +26,8 @@ muni_population <- bind_rows(csv_list)
 # Tidy MUNICIPALITY data -----------------------------------------
 
 muni_pos %<>%
-  mutate(Date = as.Date(date_sample)) %>%
-  select(-date_sample) %>%
+  mutate(Date = as.Date(SampleDate)) %>%
+  select(-SampleDate) %>%
   pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Positive") %>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
