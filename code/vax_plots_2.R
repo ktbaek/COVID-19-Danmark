@@ -3,11 +3,11 @@ last_file <- tail(vax_files[str_starts(vax_files, "Vaccine_")], 1)
 vax_today_string <- str_sub(last_file, 12, 17)
 vax_today <- paste0("20", str_sub(vax_today_string, 1, 2), "-", str_sub(vax_today_string, 3, 4), "-", str_sub(vax_today_string, 5, 6))
 
-age_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", today_string, "/Vaccinationer_region_aldgrp_koen.csv"), locale = locale(encoding = "ISO-8859-1"))
+age_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/Vaccinationer_region_aldgrp_koen.csv"), locale = locale(encoding = "ISO-8859-1"))
 
-begun_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", today_string, "/FoersteVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
+begun_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FoersteVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 
-done_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", today_string, "/FaerdigVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
+done_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FaerdigVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
