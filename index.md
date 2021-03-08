@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  5. marts 2021 efter kl 14.<br>*Vaccinationsplots dog opdateret  7. marts 2021*
+Senest opdateret  8. marts 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>

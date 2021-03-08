@@ -38,6 +38,7 @@
 | **2021** |
 | 5. januar | Forsamlingsloft sænkes til 5 |
 | 8. februar | Genåbning af skoler 0.-4. kl |
+| 1. marts | Udvalgsvarebutikker under 5000 m2 (dog undtaget udvalgsvarebutikker i storcentre) genåbnes med skærpede kvadratmeterkrav. Butikker på over 5000 m2 kan holde åbent for et meget begrænset antal kunder mod tidsbestilling. Udendørs kulturinstitutioner genåbnes (krav om negativ COVID-19-test). Forsamlingsforbuddet hæves til 25 personer for udendørs idræts- og foreningsaktiviteter i organiseret regi.|
 
 
 
