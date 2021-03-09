@@ -289,7 +289,7 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   as.Date("2020-12-25"), "Nedlukning 2-3", "restrict",
                   as.Date("2021-01-05"), "Forsamling ned til 5", "restrict",
                   as.Date("2021-02-08"), "0-4. kl åbner", "open",
-                  as.Date("2021-03-01"), "Detailhandel (med undtagelser),\nudendørs kultur/idræt", "open"
+                  as.Date("2021-03-01"), "Noget detailhandel,\nudendørs kultur/idræt", "open"
                   )
 
 cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
