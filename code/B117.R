@@ -3,21 +3,21 @@ library(ISOweek)
 b117 <- pdf_text(paste0("../data/B117_SSI/B117_", today_string, ".pdf")) %>%
   read_lines()
 
-tabel_1 <- which(str_detect(b117, "Tabel 1"))
+tabel_2 <- which(str_detect(b117, "Tabel 2"))
 
 weeks_since_start <- isoweek(today) - 1 + 53 - 46
 
-table_1 <- b117[(tabel_1 + 8):(tabel_1 + 8 + weeks_since_start)]
+table_2 <- b117[(tabel_2 + 9):(tabel_2 + 9 + weeks_since_start)]
 
-table_1 %<>%
+table_2 %<>%
   str_squish() %>%
   strsplit(split = " ")
 
-table_1 <- lapply(table_1, function(x) x[1:8])
+table_2 <- lapply(table_2, function(x) x[1:8])
 
-table_1_df <- tibble(data.frame(matrix(unlist(table_1), nrow = length(table_1), byrow=T)))
+table_2_df <- tibble(data.frame(matrix(unlist(table_2), nrow = length(table_2), byrow=T)))
 
-table_1_df %<>%
+table_2_df %<>%
   select(X2, X6, X8) %>%
   set_colnames(c("Week", "total", "yes")) %>%
   mutate_all(str_replace_all, "\\.", "") %>%
@@ -32,7 +32,7 @@ plot_data <- tests %>%
   group_by(Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
   summarize(total_pos = sum(NewPositive, na.rm = TRUE),
             tested = sum(NotPrevPos, na.rm = TRUE)) %>% 
-  full_join(table_1_df, by = "Date") %>%
+  full_join(table_2_df, by = "Date") %>%
   filter(Date > as.Date("2020-11-01")) %>%
   filter(!is.na(Week)) %>%
   mutate(variant_abs_est = total_pos * yes / total,
@@ -176,7 +176,7 @@ ggsave("../figures/ntl_b117_pct_pos_2.png", width = 18, height = 10, units = "cm
 # Logistisk plot af andel -------------------------------------------------
 
 
-p <- table_1_df %>%  
+p <- table_2_df %>%  
   mutate(share_est = yes / total) %>%
   ggplot() +
   geom_point(aes(Date, share_est), size = 4, color = alpha(pos_col, 0.4)) +
