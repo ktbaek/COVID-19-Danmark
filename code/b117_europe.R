@@ -5,7 +5,8 @@ library(countrycode)
 world <- covid19(level = 1)
 world_2 <- covid19(level = 2)
 
-country_list <- c("Denmark", "Ireland", "Netherlands","Portugal", "Switzerland", "United Kingdom")
+country_list <- c("Denmark", "Ireland", "Netherlands","Portugal", "Switzerland", "United Kingdom", "Germany", "Belgium", "Norway")
+
 country_list_2 <- c("England", "Wales", "Scotland")
 
 select_countries <- world %>%
@@ -30,10 +31,12 @@ b117_eu %<>%
 
 
 select_countries_2 %<>%
-  select(date, confirmed, administrative_area_level_2) %>%
+  select(date, confirmed, tests, administrative_area_level_2) %>%
   rename(Date = date,
          Positive = confirmed,
          Country = administrative_area_level_2)
+
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
 select_countries %>%
   select(date, confirmed, administrative_area_level_1) %>%
@@ -47,23 +50,30 @@ select_countries %>%
   group_by(Country, Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
   summarize(total_pos = sum(Positive, na.rm = TRUE)) %>%
   filter(Date > ymd("2020-10-12")) %>%
-  full_join(b117_eu, by = c("Date", "Country")) %>%
+  full_join(b117_eu, by = c("Date", "Country")) %>% 
   mutate(variant_abs = total_pos * Share,
-         normal_abs = total_pos - variant_abs) %>%
+         normal_abs = total_pos - variant_abs) %>% 
+  mutate(z_total_pos = ifelse(is.na(Share), total_pos, NA)) %>% #data.frame
   pivot_longer(c(-Date, -Country), "variable", values_to = "value") %>%
-  filter(variable %in% c("variant_abs", "normal_abs")) %>%
+  filter(variable %in% c("variant_abs", "normal_abs", "z_total_pos")) %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 5) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = variable, color = variable), width = 5, size = 0.4) +
   facet_wrap(~Country, scales = "free") +
-  scale_fill_manual(name = "", labels = c("Andre varianter", "B.1.1.7"), values=c("gray70", pos_col))+
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", limits = c(ymd("2020-10-12"), ymd("2021-02-08"))) +
+  scale_fill_manual(name = "", labels = c("Other variants", "B.1.1.7", "All variants (when lacking B.1.1.7 data)"), values=c("gray70", pos_col, "white"))+
+  scale_color_manual(name = "", labels = c("Other variants", "B.1.1.7", "All variants (when lacking B.1.1.7 data)"),values=c(NA, NA, "gray70"))+
+  scale_x_date(date_labels = "%e %b", date_breaks = "2 month", limits = c(ymd("2020-10-12"), ymd("2021-03-06"))) +
   scale_y_continuous(
     limits = c(0, NA)
   ) +
-  labs(y = "Antal positive", x = "Dato", title = "Ugentligt antal positivt testede og estimeret antal positive for B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: covid19datahub.io, wikipedia.org/wiki/Lineage_B.1.1.7") +
+  labs(y = "Cases", x = "Dato", title = "Weekly number of cases and estimated number of B.1.1.7 cases", caption = "Kristoffer T. Bæk, covid19danmark.dk, data sources: covid19datahub.io, wikipedia.org/wiki/Lineage_B.1.1.7") +
   facet_theme  
   
 ggsave("../figures/europe_b117_abs.png", width = 25, height = 13, units = "cm", dpi = 300)
+
+
+
+
+
 
 select_countries %>%
   select(date, confirmed, administrative_area_level_1) %>%
@@ -95,3 +105,26 @@ select_countries %>%
 
 ggsave("../figures/europe_b117_abs_2.png", width = 25, height = 13, units = "cm", dpi = 300)
 ggsave("../figures/europe_b117_abs_3.png", width = 25, height = 13, units = "cm", dpi = 300)
+
+
+
+world %>%
+  ungroup() %>%
+  filter(administrative_area_level_1 %in% c("Denmark", "Czech Republic", "Estonia")) %>%
+  select(date, tests, confirmed, deaths, administrative_area_level_1, population) %>%
+  rename(Date = date,
+         Positive = confirmed,
+         Country = administrative_area_level_1) %>%
+  group_by(Country) %>%
+  mutate(Positive = c(0, diff(Positive)),
+         tests = c(0, diff(tests)),
+         deaths = c(0, diff(deaths))) %>%
+  ungroup() %>%
+  group_by(Country, Date=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  summarize(pos = sum(Positive, na.rm = TRUE),
+            test = sum(tests, na.rm = TRUE),
+            death = sum(deaths, na.rm = TRUE),
+            population = mean(population)) %>%
+  filter(Date > ymd("2020-09-30")) %>%
+  ggplot() +
+  geom_line(aes(Date, death / population * 100000, color = Country))

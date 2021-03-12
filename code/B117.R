@@ -189,90 +189,90 @@ p <- table_2_df %>%
 
 ggsave("../figures/ntl_b117_share.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-#get predicted fraction for week 9
-# frac <- ggplot_build(p)$data[[2]] %>% 
-#   mutate(Date = as.Date(round(x), origin = "1970-01-01")) %>%
-#   filter(Date == ymd("2021-03-01")) %>%
-#   pull(y)
-# 
-# #calculate how positive and tests increase during a week
-# day_mean <- tests %>%
-#   select(Date, NewPositive, NotPrevPos) %>%
-#   filter(Date > ymd(today) - months(2),
-#          Date < ymd("2021-03-01")) %>%
-#   group_by(Monday=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
-#   mutate(poscum = cumsum(NewPositive),
-#          testcum = cumsum(NotPrevPos)) %>%
-#   mutate(fracpos = poscum/max(poscum),
-#          fractest = testcum/max(testcum)) %>%
-#   mutate(day = wday(Date, week_start = getOption("lubridate.week.start", 1))) %>% #ggplot() + geom_point(aes(day, fracpos))
-#   group_by(day) %>%
-#   summarize(meanpos = mean(fracpos),
-#             meantest = mean(fractest))
-# 
-# prediction <- tests %>%
-#   select(Date, NewPositive, NotPrevPos) %>%
-#   filter(Date > ymd(today) - weeks(1)) %>%
-#   group_by(Monday = floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
-#   mutate(poscum = cumsum(NewPositive),
-#          testcum = cumsum(NotPrevPos)) %>%
-#   ungroup() %>%
-#   filter(Date == max(Date)) %>%
-#   mutate(day = wday(Date, week_start = getOption("lubridate.week.start", 1))) %>%
-#   left_join(day_mean, by = "day") %>%
-#   mutate(positive = poscum / meanpos,
-#          tested = testcum / meantest) %>%
-#   select(Monday, positive, tested) %>%
-#   mutate(variant_abs_est = positive * frac,
-#        normal_abs_est = positive * (1 - frac),
-#        total_pos_pct = positive / tested * 100,
-#        variant_pct_est = total_pos_pct * frac,
-#        normal_pct_est = total_pos_pct * (1 - frac)) %>%
-#   rename(Date = Monday) %>%
-#   pivot_longer(-Date, "variable", values_to = "value")
-# 
-# prediction %<>%
-#   bind_rows(plot_data) %>%
-#   filter(variable %in% c("variant_pct_est", "variant_abs_est")) %>%
-#   pivot_wider(names_from = variable, values_from = value) %>%
-#   pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
-#   pivot_wider(names_from = variable_2, values_from = value) %>%
-#   filter(Date >= max(Date) - weeks(1))
-#   
-# 
-# 
-#   
-# 
-# ##
-# 
-# type <- c("Positivprocent", "Antal positivt testede")
-# names(type) <- c("pct", "abs")
-# 
-# plot_data %>%
-#   filter(variable %in% c("variant_pct_est", "variant_pct_lo", "variant_pct_hi", "variant_abs_est", "variant_abs_hi", "variant_abs_lo")) %>%
-#   pivot_wider(names_from = variable, values_from = value) %>%
-#   pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
-#   pivot_wider(names_from = variable_2, values_from = value) %>%
-#   ggplot() +
-#   geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
-#   geom_line(aes(Date, est, color = variable_1), size = 1.3) +
-#   geom_line(data = prediction, aes(Date, est), color = "gray75", size = 1.3) +
-#   scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
-#   scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
-#   facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) + 
-#   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
-#   scale_y_continuous(limits = c(0, NA)) +
-#   labs(y = "Positivprocent/Antal positive", x = "Startdato for uge", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
-#   facet_theme  +
-#   theme(
-#     legend.position = "none",
-#     plot.caption = element_text(size = 8),
-#     plot.subtitle = element_text(size = 8),
-#     axis.title.y = element_blank(),
-#     strip.text = element_text(size = 9),
-#     axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
-# 
-# ggsave("../figures/ntl_b117_pct_pos_predict.png", width = 18, height = 10, units = "cm", dpi = 300)
-# 
-# 
-# 
+#get predicted fraction for week 10
+frac <- ggplot_build(p)$data[[2]] %>%
+  mutate(Date = as.Date(round(x), origin = "1970-01-01")) %>%
+  filter(Date == ymd("2021-03-09")) %>%
+  pull(y)
+
+#calculate how positive and tests increase during a week
+day_mean <- tests %>%
+  select(Date, NewPositive, NotPrevPos) %>%
+  filter(Date > ymd(today) - months(2),
+         Date < ymd("2021-03-08")) %>%
+  group_by(Monday=floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  mutate(poscum = cumsum(NewPositive),
+         testcum = cumsum(NotPrevPos)) %>%
+  mutate(fracpos = poscum/max(poscum),
+         fractest = testcum/max(testcum)) %>%
+  mutate(day = wday(Date, week_start = getOption("lubridate.week.start", 1))) %>% #ggplot() + geom_point(aes(day, fracpos))
+  group_by(day) %>%
+  summarize(meanpos = mean(fracpos),
+            meantest = mean(fractest))
+
+prediction <- tests %>%
+  select(Date, NewPositive, NotPrevPos) %>%
+  filter(Date > ymd(today) - weeks(1)) %>%
+  group_by(Monday = floor_date(Date, "1 week", week_start = getOption("lubridate.week.start", 1))) %>%
+  mutate(poscum = cumsum(NewPositive),
+         testcum = cumsum(NotPrevPos)) %>%
+  ungroup() %>%
+  filter(Date == max(Date)) %>%
+  mutate(day = wday(Date, week_start = getOption("lubridate.week.start", 1))) %>%
+  left_join(day_mean, by = "day") %>%
+  mutate(positive = poscum / meanpos,
+         tested = testcum / meantest) %>%
+  select(Monday, positive, tested) %>%
+  mutate(variant_abs_est = positive * frac,
+       normal_abs_est = positive * (1 - frac),
+       total_pos_pct = positive / tested * 100,
+       variant_pct_est = total_pos_pct * frac,
+       normal_pct_est = total_pos_pct * (1 - frac)) %>%
+  rename(Date = Monday) %>%
+  pivot_longer(-Date, "variable", values_to = "value")
+
+prediction %<>%
+  bind_rows(plot_data) %>%
+  filter(variable %in% c("variant_pct_est", "variant_abs_est")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_wider(names_from = variable_2, values_from = value) %>%
+  filter(Date >= max(Date) - weeks(1))
+
+
+
+
+
+##
+
+type <- c("Positivprocent", "Antal positivt testede")
+names(type) <- c("pct", "abs")
+
+plot_data %>%
+  filter(variable %in% c("variant_pct_est", "variant_pct_lo", "variant_pct_hi", "variant_abs_est", "variant_abs_hi", "variant_abs_lo")) %>%
+  pivot_wider(names_from = variable, values_from = value) %>%
+  pivot_longer(-Date, names_to = c("strain", "variable_1", "variable_2"), names_sep = "_", values_to = "value") %>%
+  pivot_wider(names_from = variable_2, values_from = value) %>%
+  ggplot() +
+  geom_ribbon(aes(Date, ymin=lo, ymax=hi, fill = variable_1)) +
+  geom_line(aes(Date, est, color = variable_1), size = 1.3) +
+  geom_line(data = prediction, aes(Date, est), color = "gray75", size = 1.3) +
+  scale_fill_manual(name = "", values = c(alpha(pos_col, 0.4), alpha('#E69F00', 0.4))) +
+  scale_color_manual(name = "", values = c(pos_col, '#E69F00')) +
+  facet_wrap(~variable_1, scales = "free", labeller = labeller(variable_1 = type)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(y = "Positivprocent/Antal positive", x = "Startdato for uge", title = "Estimeret ugentlig udbredelse af B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = "Antal positive med B.1.1.7 = antal positive \u00D7 antal B.1.1.7 genom / total antal genom\nPositivprocent for B.1.1.7 = antal positive med B.1.1.7 / antal testede \u00D7 100") +
+  facet_theme  +
+  theme(
+    legend.position = "none",
+    plot.caption = element_text(size = 8),
+    plot.subtitle = element_text(size = 8),
+    axis.title.y = element_blank(),
+    strip.text = element_text(size = 9),
+    axis.title.x = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/ntl_b117_pct_pos_predict.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
