@@ -31,7 +31,7 @@ b117_eu %<>%
 
 
 select_countries_2 %<>%
-  select(date, confirmed, tests, administrative_area_level_2) %>%
+  select(date, confirmed, tests, administrative_area_level_2, population) %>%
   rename(Date = date,
          Positive = confirmed,
          Country = administrative_area_level_2)
@@ -39,11 +39,12 @@ select_countries_2 %<>%
 Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
 x <- select_countries %>%
-  select(date, confirmed, administrative_area_level_1) %>%
+  select(date, confirmed, administrative_area_level_1, population) %>%
   rename(Date = date,
          Positive = confirmed,
          Country = administrative_area_level_1) %>%
   bind_rows(select_countries_2) %>%
+  mutate(Positive = Positive / population * 100000) %>% 
   group_by(Country) %>%
   mutate(Positive = c(0, diff(Positive))) %>%
   ungroup() %>%
@@ -65,7 +66,7 @@ x <- select_countries %>%
   scale_y_continuous(
     limits = c(0, NA)
   ) +
-  labs(y = "Cases", x = "Dato", title = "Weekly number of cases and estimated number of B.1.1.7 cases", caption = "Kristoffer T. Bæk, covid19danmark.dk, data sources: covid19datahub.io, wikipedia.org/wiki/Lineage_B.1.1.7") +
+  labs(y = "Cases per 100,000", x = "Dato", title = "Weekly total incidence and estimated incidence of B.1.1.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, data sources: covid19datahub.io, wikipedia.org/wiki/Lineage_B.1.1.7") +
   facet_theme  
   
 ggsave("../figures/europe_b117_abs.png", width = 25, height = 13, units = "cm", dpi = 300)
