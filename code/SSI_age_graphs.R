@@ -301,3 +301,109 @@ plot_data %>%
 ggsave("../figures/SSI_read_graph_test_incidense_together.png", width = 20, height = 11.1, units = "cm", dpi = 300)
 
 
+
+
+
+
+plot_data <- age_graph_2 %>%
+  select(Date, Aldersgruppe_graph, Variable, Incidense) %>%
+  filter(Variable == "Positive") %>%
+  filter(Aldersgruppe_graph %in% c("0-2", "3-6", "7-12", "13-19"))
+
+plot_data$Aldersgruppe_graph = factor(plot_data$Aldersgruppe_graph, levels=c('0-2', '3-6', '7-12','13-19'))
+
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, Incidense, color = Aldersgruppe_graph), size = 1) +
+  scale_x_date(labels = my_date_labels, breaks = "1 month") +
+  scale_colour_brewer(palette = "Set2", name = "") +
+  labs(y = "Procent", x = "Dato", title = "Procent positive per uge for hver aldersgruppe") +
+  scale_y_continuous(
+    labels = scales::number,
+    limits = c(0, NA)
+  ) +
+  labs(y = "Positive pr. 100.000", x = "Startdato for uge", title = "Positive per 100.000 per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(axis.title.x = element_text(face = "bold", margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/SSI_read_graph_incidense_together.png", width = 20, height = 11.1, units = "cm", dpi = 300)
+
+
+
+plot_data <- age_graph_2 %>%
+  select(Date, Aldersgruppe_graph, Variable, Absolute) %>%
+  pivot_wider(names_from = Variable, values_from = Absolute) %>%
+  mutate(Percent = Positive / Tested * 100) %>%
+  filter(Aldersgruppe_graph %in% c("0-2", "3-6", "7-12", "13-19"))
+
+plot_data$Aldersgruppe_graph = factor(plot_data$Aldersgruppe_graph, levels=c('0-2', '3-6', '7-12','13-19'))
+
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, Percent, color = Aldersgruppe_graph), size = 1) +
+  scale_x_date(labels = my_date_labels, breaks = "1 month") +
+  scale_colour_brewer(palette = "Set2", name = "") +
+  labs(y = "Procent", x = "Dato", title = "Procent positive per uge for hver aldersgruppe") +
+  scale_y_continuous(
+    labels = scales::number,
+    limits = c(0, NA)
+  ) +
+  labs(y = "Positivprocent", x = "startdato for uge", title = "Positivprocent per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(axis.title.x = element_text(face = "bold", margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/SSI_read_graph_pct_together.png", width = 20, height = 11.1, units = "cm", dpi = 300)
+
+plot_data <- age_graph_2 %>%
+  select(Date, Aldersgruppe_graph, Variable, Incidense) %>%
+  filter(Variable == "Tested") %>%
+  filter(Aldersgruppe_graph %in% c("0-2", "3-6", "7-12", "13-19"))
+
+plot_data$Aldersgruppe_graph = factor(plot_data$Aldersgruppe_graph, levels=c('0-2', '3-6', '7-12','13-19'))
+
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, Incidense, color = Aldersgruppe_graph), size = 1) +
+  scale_x_date(labels = my_date_labels, breaks = "1 month") +
+  scale_colour_brewer(palette = "Set2", name = "") +
+  labs(y = "Procent", x = "Dato", title = "Procent positive per uge for hver aldersgruppe") +
+  scale_y_continuous(
+    labels = scales::number,
+    limits = c(0, NA)
+  ) +
+  labs(y = "Testede pr. 100.000", x = "Startdato for uge", title = "Testede per 100.000 per uge for hver aldersgruppe", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(axis.title.x = element_text(face = "bold", margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/SSI_read_graph_test_incidense_together.png", width = 20, height = 11.1, units = "cm", dpi = 300)
+
+plot_data <- age_graph_2 %>%
+  select(Date, Aldersgruppe_graph, Variable, Absolute) %>%
+  pivot_wider(names_from = Variable, values_from = Absolute) %>%
+  mutate(Percent = Positive / Tested**0.7) %>%
+  filter(Aldersgruppe_graph %in% c("0-2", "3-6", "7-12", "13-19"))
+
+plot_data$Aldersgruppe_graph = factor(plot_data$Aldersgruppe_graph, levels=c('0-2', '3-6', '7-12','13-19'))
+
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, Percent, color = Aldersgruppe_graph), size = 1) +
+  scale_x_date(labels = my_date_labels, breaks = "1 month") +
+  scale_colour_brewer(palette = "Set2", name = "") +
+  labs(y = "Procent", x = "Dato", title = "Procent positive per uge for hver aldersgruppe") +
+  scale_y_continuous(
+    labels = scales::number,
+    limits = c(0, NA)
+  ) +
+  labs(y = "Index", x = "startdato for uge", title = "Smitteindex per uge for hver aldersgruppe", subtitle = "Index = positive / testede ^0.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme +
+  theme(axis.title.x = element_text(face = "bold", margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0)))
+
+ggsave("../figures/SSI_read_graph_index_together.png", width = 20, height = 11.1, units = "cm", dpi = 300)
+
+
+

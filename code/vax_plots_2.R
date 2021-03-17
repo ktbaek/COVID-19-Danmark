@@ -72,6 +72,7 @@ begun_vax_df %>%
   replace_na(list(value = 0)) %>%
   group_by(name) %>%
   mutate(cum_value = cumsum(value)) %>% 
+  mutate(cum_value = ifelse(cum_value == 0, NA, cum_value)) %>% 
   ggplot() +
   geom_line(aes(Date, cum_value, color = name), size = 2) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
