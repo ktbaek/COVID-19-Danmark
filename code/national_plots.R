@@ -417,20 +417,35 @@ y <- dashboard_data %>% mutate(dataset = "dashboard")
 
 plot_data <- bind_rows(x,y)
 
+DB <- read_csv2("../data/Dashboard/Covid-19_dashboard_210319/Kommunalt_DB/01_noegletal.csv", locale = locale(encoding = "latin1"))
+
+DB %>% 
+  rename(Date = IndberetningDato,
+         Positive = "Antal bekræftede tilfælde",
+         Tested = "Antal prøver siden sidst") %>% 
+  select(Date, Positive, Tested) %>% 
+  mutate(Positive = c(0, diff(Positive))) %>%
+  filter(Date > ymd("2021-01-31")) %>% 
+  pivot_longer(-Date) %>% 
+  ggplot(aes(Date, value, color = name)) +
+  geom_line(size = 1.2) +
+  scale_x_date(labels = my_date_labels, breaks = "1 week") +
+  standard_theme
+  
 plot_data %>%
-  filter(variable == "Indlæggelser") %>%
-  filter(Date > as.Date(today) - weeks(4)) %>%
+  filter(variable == "NewPositive") %>%
+  filter(Date > as.Date(today) - months(2)) %>%
   ggplot(aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
-  labs(y = "Antal", x = "Dato", title = "Positivt testede: dato for prøvetagning vs. dato for prøvesvar") +
+  labs(y = "Antal", x = "Dato", title = "Positivt testede: Antal fra dashboard vs antal fra datafiler") +
   scale_color_manual(name = "", labels = c("SSI's dashboard", "datafiler"), values = binary_col) +
-  scale_x_date(date_labels = "%e", date_breaks = "2 day") +
+  scale_x_date(labels = my_date_labels, breaks = "1 week") +
   scale_y_continuous(
     limits = c(0, ceiling(max(plot_data$values) / 1000) * 1000)
   ) +
   standard_theme
 
-ggsave("../figures/ntl_test_pos_vs_dashboard.png", width = 18, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/ntl_test_pos_vs_dashboard.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 x <- tests %>% select(Date, NewPositive, NotPrevPos)
 x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
