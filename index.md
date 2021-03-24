@@ -55,7 +55,7 @@ Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der
 ![](/figures/ntl_pct_2.png)
 
 ### Dagligt smitteindeks
-Plottet viser det daglige smitteindeks, som er en måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden benyttes af SSI.
+Plottet viser det daglige smitteindeks, som er en måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden [benyttes af SSI](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
