@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 23. marts 2021 efter kl 14.
+Senest opdateret 24. marts 2021 efter kl 14.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -48,14 +48,18 @@ Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne lin
 ![](/figures/ntl_deaths.png)
 
 ### Daglig procentdel positivt testede personer
-Plottene viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet i hhv. hele perioden og fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
-![](/figures/ntl_pct_1.png)
-
-
 ![](/figures/ntl_pct_2.png)
+
+### Dagligt smitteindeks
+Plottet viser det daglige smitteindeks, som er en måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede. Når man tester flere antages det, at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden benyttes af SSI.
+
+``SSI datasæt: 'Test_pos_over_time'``
+
+![](/figures/ntl_index.png)
 
 
 

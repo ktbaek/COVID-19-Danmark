@@ -81,6 +81,25 @@ plot_data %>%
 ggsave("../figures/ntl_pct_1.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
+
+# Smitteindex -------------------------------------------------------------
+
+plot_data %>%
+  mutate(ix = NewPositive / NotPrevPos ** 0.7) %>% 
+  filter(Date > ymd("2020-03-14")) %>% 
+  ggplot() +
+  geom_line(aes(Date, ix), size = 1, color = darken(pct_col, 0.1)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  labs(y = "Index", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindex", subtitle = "Index = positive / testede ^ 0.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme
+
+ggsave("../figures/ntl_index.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
 # Pos vs pos% ------------------------------------------------------------------
 
 plot_data %>%
