@@ -17,7 +17,7 @@ Senest opdateret 25. marts 2021 efter kl 14.
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
 
-Medmindre andet er angivet, viser graferne viser kun resultater for PCR tests.
+Medmindre andet er angivet, viser graferne kun resultater for PCR tests.
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
 
