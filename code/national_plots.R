@@ -106,23 +106,36 @@ ag %>%
   select(Date, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
   pivot_longer(c(-Date)) %>% 
   ggplot() +
-  #geom_bar(stat = "identity", position = "identity", data = subset(ag_plot_data, name == 'AG_pos'), aes(Date, value), fill = alpha(pos_col, 0.6), width = 1) +
-  #geom_line(aes(Date, ra_ag_pos), size = 1, color = darken(pos_col, 0)) +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
-  #geom_line(aes(Date, ra_ag_pos_pos), size = 1, color = darken(pos_col, 0)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
   scale_y_continuous(
     limits = c(0, NA)
   ) +
-  scale_fill_manual(name = "", labels = c("Ikke PCR be- eller afkræftet", "PCR negative", "PCR positive"), values = c(alpha("gray75", 0.8), alpha("#00BA38", 0.6), alpha(pos_col, 0.8))) +
+  scale_fill_manual(name = "Heraf:", labels = c("Ikke PCR testede", "PCR negative", "PCR positive"), values = c(alpha("gray80", 0.7), alpha("gray55", 0.7), alpha(pos_col, 0.9))) +
   labs(y = "Antal positive", x = "Dato", title = "Dagligt antal positive SARS-CoV-2 antigentestede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme  
 
 ggsave("../figures/ntl_ag_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
+ag %>%
+  full_join(tests, by = "Date") %>% 
+  select(Date, AG_testede, Tested) %>% 
+  #rename(zAG_testede = AG_testede) %>% #, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
+  pivot_longer(c(-Date)) %>% 
+ # filter(Date > as.Date("2020-02-14")) %>% 
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = scales::number
+  ) +
+  scale_fill_manual(name = "Heraf:", labels = c("Antigen", "PCR"), values = c(alpha(lighten(test_col, 0.6), 0.8), alpha(darken(test_col, 0), 0.9))) +
+  labs(y = "Antal", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme  
 
-
+ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 # Pos vs pos% ------------------------------------------------------------------
 

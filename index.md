@@ -17,7 +17,7 @@ Senest opdateret 25. marts 2021 efter kl 14.
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
 
-Graferne viser ikke testresultater fra private udbydere.
+Medmindre andet er angivet, viser graferne viser kun resultater for PCR tests.
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
 
@@ -112,6 +112,23 @@ SSI datasæt: ``'Test_pos_over_time'``
 
 
 -->
+
+## Antigentests (lyntests)
+
+### Dagligt antal positivt antigentestede personer
+Plottet viser antallet af nye positivt testede personer for hele landet. Derudover angives det hvor mange personer, som er blevet testet med PCR-test på samme dag eller dagen efter antigen-test og svaret på denne test.
+
+``SSI datasæt: 'Antigentests_pr_dag'``
+
+![](/figures/ntl_ag_pos.png)
+
+### Dagligt antal testede personer
+Plottet viser det totale antal af testede personer for hele landet opdelt på antigen- og PCR tests.  
+
+``SSI datasæt: 'Antigentests_pr_dag', 'Test_pos_over_time'``
+
+![](/figures/ntl_ag_test.png)
+
 
 [Tilbage til toppen](#)
 
