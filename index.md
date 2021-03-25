@@ -123,7 +123,7 @@ Plottet viser antallet af nye positivt testede personer for hele landet siden 1.
 ![](/figures/ntl_ag_pos.png)
 
 ### Dagligt antal testede personer
-Plottet viser det totale antal testede personer for hele landet opdelt på antigen- og PCR tests.  
+Plottet viser det totale antal testede personer for hele landet opdelt på antigen- og PCR tests. Der er ikke data for antigentests før 1. feb 2021.  
 
 ``SSI datasæt: 'Antigentests_pr_dag', 'Test_pos_over_time'``
 
