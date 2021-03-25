@@ -93,10 +93,30 @@ plot_data %>%
   scale_y_continuous(
     limits = c(0, NA)
   ) +
-  labs(y = "Index", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindex", subtitle = "Index = positive / testede ^ 0.7", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Indeks", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindeks", subtitle = bquote('Indeks = positive /' ~testede^0.7), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   standard_theme
 
 ggsave("../figures/ntl_index.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+# plot_data %>%
+#   mutate(real_pos = NewPositive - NotPrevPos * 0.002) %>% 
+#   mutate(ix_real = real_pos / NotPrevPos * 100) %>% 
+#   mutate(ix = NewPositive / NotPrevPos * 100) %>%
+#   filter(Date > ymd("2020-05-14")) %>% 
+#   select(Date, ix_real, ix) %>% 
+#   pivot_longer(-Date) %>% 
+#   ggplot() +
+#   geom_line(aes(Date, value, color = name), size = 1) +
+#   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+#   scale_y_continuous(
+#     limits = c(0, NA)
+#   ) +
+#   labs(y = "Indeks", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindeks", subtitle = bquote('Indeks = positive /' ~testede^0.7), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   standard_theme
+
+
+
 
 
 

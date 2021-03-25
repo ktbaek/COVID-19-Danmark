@@ -1,0 +1,16 @@
+BEMÆRKNINGER
+
+1. Opgørelsen (testaktivitet_unge15-25_DATO.csv) dækker tests udført efter 1.
+december 2020, pr. testspor og pr. hovedstads-/Helsingør-kommune. Personer kan
+gå igen i begge testspor, dvs. totale antal testede personer kan ikke beregnes
+ud fra summen af sporene. *Unge* refererer til 15-25-årige. 
+En separat tabel
+(tidsraekke_testede_unge15-25_DATO.csv) opgør antallet af testede personer på
+hver enkelt dag (en kolonne pr. dag), personer kan optræde på flere dage.
+
+2. Antallene af tests og testede (unge) personer inkluderer
+ugyldige/inkonklusive test-svar, udover de positive/negative, for at give et
+retvisende indblik i 'test-villighed', jf. formålsbeskrivelsen.
+
+3. Personer testet positive allerede før 2. dec. 2020 bidrager ikke til
+antallet af personer eller tests _med_POSITIV_svar_ efter d. 1. dec.
