@@ -99,22 +99,26 @@ plot_data %>%
 ggsave("../figures/ntl_index.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-# plot_data %>%
-#   mutate(real_pos = NewPositive - NotPrevPos * 0.002) %>% 
-#   mutate(ix_real = real_pos / NotPrevPos * 100) %>% 
-#   mutate(ix = NewPositive / NotPrevPos * 100) %>%
-#   filter(Date > ymd("2020-05-14")) %>% 
-#   select(Date, ix_real, ix) %>% 
-#   pivot_longer(-Date) %>% 
-#   ggplot() +
-#   geom_line(aes(Date, value, color = name), size = 1) +
-#   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
-#   scale_y_continuous(
-#     limits = c(0, NA)
-#   ) +
-#   labs(y = "Indeks", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindeks", subtitle = bquote('Indeks = positive /' ~testede^0.7), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-#   standard_theme
 
+# Antigen -----------------------------------------------------------------
+
+ag %>%
+  select(Date, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
+  pivot_longer(c(-Date)) %>% 
+  ggplot() +
+  #geom_bar(stat = "identity", position = "identity", data = subset(ag_plot_data, name == 'AG_pos'), aes(Date, value), fill = alpha(pos_col, 0.6), width = 1) +
+  #geom_line(aes(Date, ra_ag_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
+  #geom_line(aes(Date, ra_ag_pos_pos), size = 1, color = darken(pos_col, 0)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  scale_fill_manual(name = "", labels = c("Ikke PCR be- eller afkræftet", "PCR negative", "PCR positive"), values = c(alpha("gray75", 0.8), alpha("#00BA38", 0.6), alpha(pos_col, 0.8))) +
+  labs(y = "Antal positive", x = "Dato", title = "Dagligt antal positive SARS-CoV-2 antigentestede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  standard_theme  
+
+ggsave("../figures/ntl_ag_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 
