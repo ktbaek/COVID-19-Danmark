@@ -116,7 +116,7 @@ SSI datasæt: ``'Test_pos_over_time'``
 ## Antigentests (lyntests)
 
 ### Dagligt antal positivt antigentestede personer
-Plottet viser antallet af nye positivt testede personer for hele landet. Derudover angives det hvor mange personer, som er blevet testet med PCR-test på samme dag eller dagen efter antigen-test og svaret på denne test.
+Plottet viser antallet af nye positivt testede personer for hele landet. Derudover angives det hvor mange personer, som er blevet testet med PCR-test på samme dag eller dagen efter antigen-test, og svaret på denne test.
 
 ``SSI datasæt: 'Antigentests_pr_dag'``
 
