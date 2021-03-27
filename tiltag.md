@@ -39,6 +39,7 @@
 | 5. januar | Forsamlingsloft sænkes til 5 |
 | 8. februar | Genåbning af skoler 0.-4. kl |
 | 1. marts | Udvalgsvarebutikker under 5000 m2 (dog undtaget udvalgsvarebutikker i storcentre) genåbnes med skærpede kvadratmeterkrav. Butikker på over 5000 m2 kan holde åbent for et meget begrænset antal kunder mod tidsbestilling. Udendørs kulturinstitutioner genåbnes (krav om negativ COVID-19-test). Forsamlingsforbuddet hæves til 25 personer for udendørs idræts- og foreningsaktiviteter i organiseret regi.|
+| 15. marts | Højskoler og efterskoler åbner. Undervisning af afgangselever hver anden uge. Udendørs undervisning af 5-8 kl. og ikke-afgangselever på ungdomsuddannelser én gang om ugen. |
 
 
 
