@@ -120,10 +120,9 @@ ggsave("../figures/ntl_ag_pos.png", width = 18, height = 10, units = "cm", dpi =
 
 ag %>%
   full_join(tests, by = "Date") %>% 
-  select(Date, AG_testede, Tested) %>% 
-  #rename(zAG_testede = AG_testede) %>% #, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
+  mutate(ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos) %>% 
+  select(Date, ag_testede, Tested) %>% 
   pivot_longer(c(-Date)) %>% 
- # filter(Date > as.Date("2020-02-14")) %>% 
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
@@ -136,6 +135,40 @@ ag %>%
   standard_theme  
 
 ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+x <- ag %>%
+  full_join(tests, by = "Date") %>% 
+  mutate(ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
+         total_testede = NotPrevPos + ag_testede,
+         total_positive = NewPositive + AGpos_minusPCRkonf,
+         Total_pct = total_positive / total_testede * 100,
+         Total_zix = total_positive / total_testede ** 0.7,
+         Antigen_pct = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede * 100,
+         Antigen_zix = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede ** 0.7,
+         PCR_pct = NewPositive / NotPrevPos * 100,
+         PCR_zix = NewPositive / NotPrevPos ** 0.7) %>% 
+  select(Date, Total_pct:PCR_zix) %>% 
+  pivot_longer(-Date, names_to = c("type", "variable"), values_to = "value", names_sep = "_") %>% 
+  filter(Date > ymd("2021-01-31"),
+         Date < ymd(today) - 2) %>% 
+  ggplot() +
+  geom_line(aes(Date, value, color = variable), size = 1) +
+  facet_wrap(~ type, ncol = 1, scales = "free") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  scale_y_continuous(
+    limits = c(0, NA)
+  ) +
+  scale_color_manual(name = "", labels = c("Positivprocent", "Smitteindeks"), values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))) +
+  labs(y = "Procent / Indeks", x = "Dato", title = "Antal SARS-CoV-2 positive justeret for antal testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>') +
+  facet_theme + 
+  theme(plot.subtitle = ggtext::element_markdown(hjust = 0.5),
+        plot.title.position = 'plot',
+        plot.title = element_text(hjust = 0.5),
+        #plot.subtitle.position = 'plot',
+        legend.position = "none")
+
+ggsave("../figures/ntl_ag_pct.png", width = 15, height = 20, units = "cm", dpi = 300)
 
 # Pos vs pos% ------------------------------------------------------------------
 
@@ -407,55 +440,62 @@ cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admi
 # Tiltag fra januar -------------------------------------------------------
 
 x <- plot_data %>%
-    full_join(tiltag, by = "Date")  %>%
-    filter(Date > as.Date("2020-12-31"))  
-  
-x %>%
-    ggplot() +
-    geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 500), fill = "white", width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 500, fill = "B"), width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
-    geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
-    geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-    geom_line(aes(Date, running_avg_pct * 500), size = 1, color = darken(pct_col, 0)) +
-    geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
-    geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
-    geom_label_repel(
-      aes(Date, 0, label = tiltag),
-      color = "white", 
-      verbose = TRUE,
-      fill = "grey40", 
-      size = 2.5, 
-      ylim = c(0, NA), 
-      xlim = c(-Inf, Inf),
-      nudge_y = x$running_avg_pos * 2 + 100,
-      direction = "y",
-      force_pull = 0, 
-      box.padding = 0.1, 
-      max.overlaps = Inf, 
-      segment.size = 0.32,
-      segment.color = "grey40"
-    ) +
-    scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
-    scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
-    scale_y_continuous(
-      limits = c(0, 3000),
-      name = "Antal",
-      sec.axis = sec_axis(~ . / 500, name = "Positivprocent", labels = function(x) paste0(x, " %")),
-    ) +
-    labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
-    standard_theme +
-    theme(
-      #panel.grid.minor.x = element_blank(),
-      legend.text = element_text(size = 11),
-      legend.key.size = unit(0.4, "cm")
-    )
-  
-  ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 12, units = "cm", dpi = 300)
+  rename(daily_admit = Total,
+         daily_deaths = Antal_døde,
+         daily_pct = pct_confirmed,
+         ra_admit = running_avg_admit,
+         ra_deaths = running_avg_deaths,
+         ra_pct = running_avg_pct) %>% 
+  mutate(daily_pct = daily_pct * 100,
+         ra_pct = ra_pct * 100) %>% 
+  mutate(daily_ix = NewPositive / NotPrevPos ** 0.7 * 100,
+         ra_ix = ra(daily_ix)) %>% 
+  select(Date, daily_ix, ra_ix, daily_admit, ra_admit, daily_deaths, ra_deaths) %>% 
+  pivot_longer(-Date, names_to = c("type", "variable"), names_sep = "_") %>% 
+  filter(Date > as.Date("2021-01-31")) 
 
+max_values <- x %>%
+  group_by(Date) %>% 
+  summarize(value = max(value)) %>% 
+  semi_join(tiltag, by = "Date")
+
+x %>% 
+  ggplot() +
+  geom_line(data = subset(x, type ==  "daily"), aes(Date, value, color = variable), size = 0.2, alpha = 0.6) +
+  geom_line(data = subset(x, type ==  "ra"), aes(Date, value, color = variable), size = 1.2) +
+  geom_label_repel(data = subset(tiltag, Date >=  ymd("2021-02-01")),
+    aes(Date, 0, label = tiltag),
+    color = "white", 
+    verbose = TRUE,
+    fill = "grey40", 
+    size = 2.5, 
+    ylim = c(0, NA), 
+    xlim = c(-Inf, Inf),
+    nudge_y = max_values$value + 40,
+    direction = "y",
+    force_pull = 0, 
+    box.padding = 0.1, 
+    max.overlaps = Inf, 
+    segment.size = 0.32,
+    segment.color = "grey40"
+  ) +
+  scale_color_manual(name = "", labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), values = c(admit_col, death_col, pct_col)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_y_continuous(
+    limits = c(0, 100),
+    name = "Antal",
+    sec.axis = sec_axis(~ . / 100, name = "Smitteindeks")
+  ) +
+  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
+  standard_theme +
+  theme(
+    plot.subtitle = element_markdown(),
+    legend.position = "none"
+  )
+
+
+ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 10, units = "cm", dpi = 300)
+  
 
 
 # zip vs dashboard ---------------------------------------------------
