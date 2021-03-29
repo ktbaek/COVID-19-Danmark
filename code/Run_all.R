@@ -7,6 +7,7 @@ library(ggthemes)
 library(magick)
 library(ggrepel)
 library(pdftools)
+library(ggtext)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 

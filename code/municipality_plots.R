@@ -2,7 +2,7 @@
 # Subset kommuner by most positives the last month ------------------------
 
 muni_subset <- muni_wk %>% 
-  filter(Week_end_Date > as.Date(today) - months(1)) %>%
+  filter(Week_end_Date > ymd(today) - 1 - months(1)) %>%
   group_by(Kommune) %>% 
   summarize(x = sum(Positive_wk)) %>% 
   arrange(desc(x)) %>%
