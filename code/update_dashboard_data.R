@@ -18,15 +18,19 @@ dashboard_new_data %<>%
   select(-X1) %>%
   mutate(values = as.integer(str_remove(values, "[.,]"))) %>%
   mutate(variable = ifelse(variable == "Prøver", "NotPrevPos", variable),
+         variable = ifelse(variable == "PCR-prøver", "NotPrevPos", variable),
+         variable = ifelse(variable == "Antigenprøver", "NotPrevPos", variable),
          variable = ifelse(variable == "Bekræftede tilfælde", "NewPositive", variable),
          variable = ifelse(variable == "Dødsfald", "Antal_døde", variable),
          variable = ifelse(variable == "Nye indlæggelser", "Indlæggelser", variable)) %>%
   filter(!variable == "Førstegangstestede") %>%
-  mutate(Date = as.Date(paste0("20", str_sub(date, 1, 2), "-", str_sub(date, 3, 4), "-", str_sub(date, 5, 6))))
+  mutate(Date = as.Date(paste0("20", str_sub(date, 1, 2), "-", str_sub(date, 3, 4), "-", str_sub(date, 5, 6)))) %>% 
+  group_by(Date, variable) %>%  
+  summarize_all(sum)
 
 dashboard_data <- bind_rows(dashboard_data, dashboard_new_data)
 
-dashboard_data %<>% distinct()
+dashboard_data %<>% distinct() 
 
 return(dashboard_data)
   

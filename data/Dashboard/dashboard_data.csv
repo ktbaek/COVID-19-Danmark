@@ -647,13 +647,15 @@ Date;variable;values
 2021-03-25;NewPositive;   863
 2021-03-25;Antal_døde;     2
 2021-03-25;Indlæggelser;    23
-2021-03-26;PCR-prøver;175856
-2021-03-26;Antigenprøver;103247
+2021-03-26;Antal_døde;     2
 2021-03-26;Førstegangstestede (PCR);  6398
 2021-03-26;NewPositive;   789
-2021-03-26;Antal_døde;     2
-2021-03-29;PCR-prøver;138662
-2021-03-29;Antigenprøver; 72402
+2021-03-26;NotPrevPos;279103
+2021-03-29;Antal_døde;     1
 2021-03-29;Førstegangstestede (PCR);  5006
 2021-03-29;NewPositive;   679
-2021-03-29;Antal_døde;     1
+2021-03-29;NotPrevPos;211064
+2021-03-30;Antal_døde;     2
+2021-03-30;Førstegangstestede (PCR);  7814
+2021-03-30;NewPositive;  1210
+2021-03-30;NotPrevPos;284844
