@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 31. marts 2021 efter kl 14. Opdateres igen 6. april. God påske!
+Senest opdateret 31. marts 2021 efter kl 14. Opdateres igen 6. april. <b style="color:#E69F00;">God påske!</b>
 
 <div class="likely">
     <div class="facebook">Del</div>
