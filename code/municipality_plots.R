@@ -646,3 +646,66 @@ plot_kommuner_pct <- function(muni_df, kommune) {
 
 walk(unique(muni_all$Kommune), ~ plot_kommuner_pos(muni_all, .x))
 walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
+
+
+
+# Risikerer nedlukning ----------------------------------------------------
+
+
+muni_alert <- muni_all %>% 
+  filter(Date >= ymd(today) - days(8)) %>%
+  full_join(muni_population, by = c("Kommune", "Date")) %>% 
+  group_by(Kommune) %>% 
+  summarize(positive = sum(Positive, na.rm = TRUE),
+            incidens = positive / Befolkningstal * 100000) %>% 
+  filter(!is.na(incidens)) %>% 
+  distinct() %>% 
+  filter(incidens >= 120) %>% 
+  pull(Kommune) %>% 
+  unique()
+
+
+# Figur: Positiv vs testede - alle kommuner 3 mdr-----------------
+plot_data <- muni_all %>%
+  full_join(muni_population, by = c("Kommune", "Date")) %>% 
+  filter(Kommune %in% muni_alert) %>% 
+  filter(Date > ymd(today) - months(2)) %>%
+  group_by(Kommune) %>% 
+  fill(Befolkningstal, .direction = "down") %>% 
+  filter(!is.na(Positive)) %>% 
+  mutate(roll_sum_pos = sum_run(x = Positive, k = 7, idx = Date, na_rm = TRUE),
+         roll_sum_test = sum_run(x = Tested, k = 7, idx = Date, na_rm = TRUE)) %>% 
+  mutate(roll_incidens = roll_sum_pos / Befolkningstal * 100000)  %>% 
+  mutate(roll_pct = roll_sum_pos / roll_sum_test * 100 * 100) %>% 
+  mutate(pct = Positive / Tested * 100 * 100) %>% 
+  select(Date, Kommune, roll_incidens, roll_pct, pct) 
+   #%>% 
+  #pivot_longer(c(-Date, -Kommune), names_to = "variable", values_to = "value")
+
+max_value <- max(c(plot_data$roll_incidens, plot_data$roll_pct))
+
+n_rows <- ceiling(length(muni_alert)/5)
+
+plot_data %>% 
+  filter(Date > ymd(today) + 1 - months(1)) %>%
+  ggplot() +
+  
+  geom_bar(stat = "identity", aes(Date, pct), fill = pct_col, width = 1, alpha = 0.4) +
+  geom_line(aes(Date, roll_incidens), color = pos_col, size = 1) +
+  geom_line(aes(Date, roll_pct), color = pct_col, size = 1) +
+  geom_hline(yintercept = 200, color = pos_col, alpha = 0.8, size = 0.3) +
+  facet_wrap(~Kommune, ncol = 5) +
+  #scale_color_manual(name = "", labels = c("Positivprocent", "7-dages incidens"), values = c(pct_col, pos_col)) +
+  scale_x_date(labels = my_date_labels, breaks = "2 week") +
+  scale_y_continuous(
+    name = "Incidens",
+    limits = c(0, max_value),
+    sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %")),
+    
+  ) +
+  labs(x = "Dato", title = "7-dages incidens og 7-dages positivprocent for udvalgte kommuner", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = paste0('<b style="color:#F5562C;">7-dages incidens</b>: løbende 7-dages sum af positive per 100.000. Seneste dato: ', ymd(today) - days(2))) +
+  facet_theme +
+  theme(legend.position = "none",
+        plot.subtitle = element_markdown())
+
+ggsave("../figures/muni_alert.png", width = 20, height = 4 + n_rows * 3, units = "cm", dpi = 300)
