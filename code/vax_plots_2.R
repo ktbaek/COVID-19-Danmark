@@ -26,10 +26,32 @@ age_vax_df %>%
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-dst_age_sex <- read_csv2("../data/DST_age_sex_group_data.csv")
+#dst_age_sex <- read_csv2("../data/DST_age_sex_group_data.csv")
+
+dst_age_sex <- read_csv2("../data/DST_age_sex_group_1_year.csv", col_names = FALSE)
 
 dst_age_sex %<>%
-  set_colnames(c("Aldersgruppe", "M", "K")) %>%
+  rename(Alder = X1,
+         M = X2,
+         K = X3) %>%
+  mutate_all(str_replace_all, " år", "") %>%
+  mutate_all(as.double) %>%
+  mutate(
+    Aldersgruppe = case_when(
+      Alder %in% c(0:9) ~ "0-9",
+      Alder %in% c(10:19) ~ "10-19",
+      Alder %in% c(20:29) ~ "20-29",
+      Alder %in% c(30:39) ~ "30-39",
+      Alder %in% c(40:49) ~ "40-49",
+      Alder %in% c(50:59) ~ "50-59",
+      Alder %in% c(60:69) ~ "60-69",
+      Alder %in% c(70:79) ~ "70-79",
+      Alder %in% c(80:89) ~ "80-89",
+      Alder > 89 ~ "90+")) %>% 
+  select(-Alder) %>% 
+  group_by(Aldersgruppe) %>% 
+  summarize(M = sum(M, na.rm = TRUE),
+            K = sum(K, na.rm = TRUE)) %>% 
   pivot_longer(-Aldersgruppe, "Sex", values_to = "Population")
 
 age_vax_df %>%

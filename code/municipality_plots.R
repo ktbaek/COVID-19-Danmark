@@ -840,7 +840,7 @@ muni_alert <- muni_all %>%
   unique()
 
 
-# Figur: Positiv vs testede - alle kommuner 3 mdr-----------------
+
 plot_data <- muni_all %>%
   full_join(muni_population, by = c("Kommune", "Date")) %>% 
   filter(Kommune %in% muni_alert) %>% 
