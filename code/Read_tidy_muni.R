@@ -1,6 +1,5 @@
 # Read MUNICIPALITY data ----------------------------------------------------------------
 
-
 muni_pos <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_cases_time_series.csv"))
 muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality_tested_persons_time_series.csv"))
 
@@ -23,18 +22,21 @@ csv_list <- lapply(ssi_filer_date, read_muni_csv)
 
 muni_population <- bind_rows(csv_list)
 
+muni_population %<>%
+  mutate(Date = ymd(Date))
+
 # Tidy MUNICIPALITY data -----------------------------------------
 
 muni_pos %<>%
-  mutate(Date = as.Date(SampleDate)) %>%
+  mutate(Date = ymd(SampleDate)) %>%
   select(-SampleDate) %>%
-  pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Positive") %>%
+  pivot_longer(-Date, names_to = "Kommune", values_to = "Positive") %>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
 muni_tested %<>%
-  mutate(Date = as.Date(PrDate_adjusted)) %>%
+  mutate(Date = ymd(PrDate_adjusted)) %>%
   select(-PrDate_adjusted, -X101) %>%
-  pivot_longer(cols = -(Date), names_to = "Kommune", values_to = "Tested") %>%
+  pivot_longer(-Date, names_to = "Kommune", values_to = "Tested") %>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
 muni_population %<>%
@@ -43,7 +45,7 @@ muni_population %<>%
 muni_all <- muni_tested %>%
   full_join(muni_pos, by = c("Kommune", "Date")) %>%
   filter(!Kommune == "X100") %>%
-  filter(Date > as.Date("2020-02-29"))
+  filter(Date > ymd("2020-02-29"))
 
 
 # Tests -------------------------------------------------------------------
@@ -85,7 +87,7 @@ muni_pop <- muni_population %>%
   ungroup()
   
 muni_all %<>%
-  filter(Date < as.Date(today) - 1) # remove last two days
+  filter(Date < ymd(today) - 1) # remove last two days
 
 muni_wk <- muni_all %>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
@@ -120,14 +122,11 @@ geo %<>%
 landsdele <- muni_all %>%
   full_join(geo, by = "Kommune") %>%
   group_by(Landsdel, Date) %>%
-  mutate(Tested = sum(Tested, na.rm = TRUE),
-            Positive = sum(Positive, na.rm = TRUE)) %>%
+  mutate(
+    Tested = sum(Tested, na.rm = TRUE),
+    Positive = sum(Positive, na.rm = TRUE)) %>%
   ungroup() %>%
   select(-Kommune) %>%
   distinct()
 
 landsdele$Landsdel <- factor(landsdele$Landsdel, levels = landsdele_order)
-
-
-
-

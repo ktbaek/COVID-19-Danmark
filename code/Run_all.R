@@ -8,6 +8,7 @@ library(magick)
 library(ggrepel)
 library(pdftools)
 library(ggtext)
+library(runner)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
@@ -30,11 +31,11 @@ cat("Whole country plots DONE\n")
 source("vax_plots_2.R")
 cat("Vaxxxxxx plots DONE\n")
 
-if(wday(as.Date(today)) %in% c(1, 4:7)){ 
+if(wday(ymd(today)) %in% c(1, 4:7)){ 
   
   source("B117.R")
   cat("Bri'ish mu'ant DONE\n")
-
+  
   }
 
 source("Read_tidy_muni.R")
@@ -46,7 +47,7 @@ cat("Municipality plots DONE\n")
 source("exp_admissions.R")
 cat("admission plot DONE\n")
 
-if(wday(as.Date(today)) == 5){ 
+if(wday(ymd(today)) == 5){ 
   
   source("Read_tidy_age.R")
   cat("Read and tidy, age DONE\n")
@@ -54,8 +55,7 @@ if(wday(as.Date(today)) == 5){
   source("age_plots.R")
   cat("Age plots DONE\n")
   
-  
-}
+  }
 
 source("baekkepp_model.R")
 cat("Model updated\n")

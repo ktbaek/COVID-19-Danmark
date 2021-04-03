@@ -25,25 +25,27 @@ age_df %<>%
   mutate(date_of_file = as.integer(date_of_file)) %>%
   rename(positive = `Antal_bekræftede_COVID-19`) %>%
   arrange(date_of_file) %>%
-  mutate(Date = as.Date(Date))
+  mutate(Date = ymd(Date))
 
 abs(diff(unique(age_df$Date))) # test
 
 # Arrange AGE data weekly ------------------------------------------------------
 
 week_df_1 <- age_df %>%
-  filter(Date < as.Date("2020-07-02")) %>%
+  filter(Date < ymd("2020-07-02")) %>%
   filter(wday(Date) == 4)# wednesday because it consistently appears throughout in the beginning of the period
 
 week_df_2 <- age_df %>%
-  filter(Date > as.Date("2020-07-02")) %>%
+  filter(Date > ymd("2020-07-02")) %>%
   filter(wday(Date) == 5) # thursday because it consistently appears throughout later in the period
 
 week_df_3 <- age_df %>%
-  filter(Date == as.Date("2021-01-15")) %>%
-  mutate(Date = as.Date("2021-01-14")) #14 jan was missing so using 13 jan and setting as 14th. 
+  filter(Date == ymd("2021-01-15")) %>%
+  mutate(Date = ymd("2021-01-14")) #14 jan was missing so using 13 jan and setting as 14th. 
 
-week_df <- bind_rows(early_data, week_df_1, week_df_2, week_df_3) %>% arrange(Date) %>% select(-date_of_file)
+week_df <- bind_rows(early_data, week_df_1, week_df_2, week_df_3) %>% 
+  arrange(Date) %>% 
+  select(-date_of_file)
 
 week_df %<>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0))  -4)  %>% #adjust end-date to get equally separated bars on plots
@@ -73,7 +75,7 @@ week_df %>%
 week_admitted <- admitted %>%
   mutate(Week_end_Date = ceiling_date(Date + 4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
   select(Week_end_Date, Total) %>%
-  filter(Week_end_Date > as.Date("2020-03-11")) %>%
+  filter(Week_end_Date > ymd("2020-03-11")) %>%
   rename(Date = Week_end_Date) %>%
   group_by(Date) %>%
   summarise(value = sum(Total)) %>%
@@ -88,11 +90,12 @@ over_70 <- c("70-79", "80-89", "90+")
 
 wk_df_group <- week_df %>%
   filter(!Aldersgruppe == "I alt") %>%
-  mutate("50" = ifelse(Aldersgruppe %in% over_50, "Over", "Under"),
-         "60" = ifelse(Aldersgruppe %in% over_60, "Over", "Under"),
-         "70" = ifelse(Aldersgruppe %in% over_70, "Over", "Under")) %>%
+  mutate(
+    "50" = ifelse(Aldersgruppe %in% over_50, "Over", "Under"),
+    "60" = ifelse(Aldersgruppe %in% over_60, "Over", "Under"),
+    "70" = ifelse(Aldersgruppe %in% over_70, "Over", "Under")) %>%
   select(-Aldersgruppe, -Antal_testede) %>%
-  pivot_longer(-c(Date, positive), names_to = "age_limit", values_to = "where") %>%
+  pivot_longer(c(-Date, -positive), names_to = "age_limit", values_to = "where") %>%
   group_by(age_limit, where, Date) %>%
   summarise_all(sum) %>% 
   ungroup()
@@ -109,9 +112,12 @@ week_admitted %<>%
   filter(!Date == "2020-03-18", Date <= max(wk_df_group$Date)) 
 
 week_admitted %<>%
-  full_join(expand_grid("age_limit" = c("50", "60", "70"), "where" = c("Under", "Over"), "Date" = week_admitted$Date), by = "Date") 
+  full_join(
+    expand_grid(
+      "age_limit" = c("50", "60", "70"), 
+      "where" = c("Under", "Over"), 
+      "Date" = week_admitted$Date), 
+    by = "Date") 
 
 
 age_data <- bind_rows(week_admitted, wk_df_group)
-
-

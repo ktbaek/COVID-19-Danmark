@@ -55,15 +55,17 @@ ra <- function(x, n = 7) {
 }
 
 tests %<>%
-  mutate(Date = as.Date(Date)) %>%
+  slice(1:(n() - 4)) %>% # exclude last two days that may not be updated AND summary rows
+  mutate(Date = ymd(Date)) %>%
   mutate(pct_confirmed = ifelse(NotPrevPos > 0, NewPositive / NotPrevPos * 100, NA))
 
 deaths %<>%
-  mutate(Date = as.Date(Dato)) %>%
+  slice(1:(n() - 2)) %>% # exclude summary row and last day that may not be updated
+  mutate(Date = ymd(Dato)) %>%
   select(-Dato)
 
 admitted %<>%
-  mutate(Date = as.Date(Dato)) %>%
+  mutate(Date = ymd(Dato)) %>%
   select(-Dato)
 
 ag %<>%
@@ -71,30 +73,29 @@ ag %<>%
   select(-Dato) %>% 
   select(Date, everything()) %>% 
   rename(AGpos_PCRneg = AGposPCRneg) %>% 
-  mutate(ra_ag_pos = ra(AG_pos),
-         ra_ag_test = ra(AG_testede), 
-         ra_ag_pos_pos = ra(AGpos_PCRpos))
+  mutate(
+    ra_ag_pos = ra(AG_pos),
+    ra_ag_test = ra(AG_testede), 
+    ra_ag_pos_pos = ra(AGpos_PCRpos))
   
-
-deaths %<>% slice(1:(n() - 2)) # exclude summary row and last day that may not be updated
-tests %<>% slice(1:(n() - 4)) # exclude last two days that may not be updated AND summary rows
-
-
-
-tests %<>% mutate(
-  running_avg_pct = ra(pct_confirmed),
-  running_avg_pos = ra(NewPositive),
-  running_avg_total = ra(Tested)
+tests %<>% 
+  mutate(
+    running_avg_pct = ra(pct_confirmed),
+    running_avg_pos = ra(NewPositive),
+    running_avg_total = ra(Tested)
 )
 
 admitted %<>%
   mutate(running_avg_admit = ra(Total))
 
-deaths %<>% mutate(running_avg_deaths = ra(Antal_døde))
+deaths %<>% 
+  mutate(running_avg_deaths = ra(Antal_døde))
 
 dst_deaths %<>%
   select(-X1) %>%
-  rename(Date = X2, current = X3)
+  rename(
+    Date = X2, 
+    current = X3)
 
 # Tests -------------------------------------------------------------------
 

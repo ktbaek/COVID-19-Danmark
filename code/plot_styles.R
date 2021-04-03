@@ -16,8 +16,6 @@ admit_col <- color_scale[3]
 death_col <- color_scale[1]
 binary_col <- c(color_scale[6], color_scale[7])
 
-
-
 # Date labels -------------------------------------------------------------
 
 my_date_labels <- function(breaks) {
@@ -35,10 +33,14 @@ my_date_labels <- function(breaks) {
   return(labels)
 }
 
-
 # Typeface ----------------------------------------------------------------
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Light", "Lato-BoldItalic"))
+
+
+# global variables --------------------------------------------------------
+
+standard_caption <- "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI"
 
 # Custom gg themes ------------------------------------------------------------
   

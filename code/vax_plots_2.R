@@ -19,7 +19,7 @@ age_vax_df %>%
   geom_bar(aes(Aldersgruppe, Begun, fill = Sex), stat = "identity", position = "dodge") +
   labs(y = "Antal", 
        title = "Antal påbegyndt COVID-19 vaccinerede per køn og alder", 
-       caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI",
+       caption = standard_caption,
        subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
   scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
   standard_theme
@@ -78,7 +78,7 @@ begun_vax_df %>%
   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   scale_color_manual(name = "", labels = c("Påbegyndt", "Færdigvaccineret"), values=c("#11999e", "#30e3ca")) +
-  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
   standard_theme
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)

@@ -3,19 +3,22 @@ plot_data <-
   tests %>%
   full_join(admitted, by = "Date") %>%
   full_join(deaths, by = "Date") %>%
-  filter(Date > as.Date("2020-02-14"))
+  filter(Date > ymd("2020-02-14"))
   
 # Pos ------------------------------------------------------------------
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = alpha(pos_col, 0.6), width = 1) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = pos_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  labs(y = "Antal positive", x = "Dato", title = "Dagligt antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Antal positive", 
+    x = "Dato", 
+    title = "Dagligt antal positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme  
 
 ggsave("../figures/ntl_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -27,20 +30,31 @@ ggsave("../figures/ntl_pos.png", width = 18, height = 10, units = "cm", dpi = 30
 plot_data %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, Tested, fill = test_col), width = 1) +
-  geom_line(aes(Date, running_avg_total), size = 1, color = darken(test_col, 0)) +
+  geom_line(aes(Date, running_avg_total), size = 1, color = test_col) +
   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = "white", width = 1) +
   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = pos_col), width = 1) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  scale_fill_manual(name = "", labels = c("Testede", "Positive"), values = c(alpha(test_col, 0.6), alpha(pos_col, 0.6))) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_fill_manual(
+    name = "", 
+    labels = c("Testede", "Positive"), 
+    values = c(alpha(test_col, 0.6), alpha(pos_col, 0.6))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
   scale_y_continuous(
     limits = c(0, NA),
     labels = scales::number
   ) +
-  labs(y = "Antal", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede og positive", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Dagligt antal SARS-CoV-2 testede og positive", 
+    caption = standard_caption
+    ) +
   standard_theme + 
-  theme(legend.text = element_text(size = 11),
-        legend.key.size = unit(0.4, 'cm'))
+  theme(
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, 'cm')
+    )
 
 ggsave("../figures/ntl_tests.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -49,16 +63,21 @@ ggsave("../figures/ntl_tests.png", width = 18, height = 12, units = "cm", dpi = 
 # Pos% maj ------------------------------------------------------------------
 
 plot_data %>%
-  filter(Date > as.Date("2020-04-30")) %>%
+  filter(Date > ymd("2020-04-30")) %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = alpha(pct_col, 0.6), width = 1) +
-  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = pct_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = pct_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, NA),
     labels = function(x) paste0(x, " %")
   ) +
-  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Positivprocent", 
+    x = "Dato", 
+    title = "Daglig procent positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
   theme(panel.grid.minor.x = element_blank())
 
@@ -68,14 +87,19 @@ ggsave("../figures/ntl_pct_2.png", width = 18, height = 10, units = "cm", dpi = 
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = alpha(pct_col, 0.6), width = 1) +
-  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = pct_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = pct_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
     labels = function(x) paste0(x, " %")
   ) +
-  labs(y = "Positivprocent", x = "Dato", title = "Daglig procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Positivprocent", 
+    x = "Dato", 
+    title = "Daglig procent positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme
 
 ggsave("../figures/ntl_pct_1.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -90,10 +114,14 @@ plot_data %>%
   ggplot() +
   geom_line(aes(Date, ix), size = 1, color = darken(pct_col, 0.1)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  labs(y = "Indeks", x = "Dato", title = "Dagligt SARS-CoV-2 smitteindeks", subtitle = bquote('Indeks = positive /' ~testede^0.7), caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Indeks", 
+    x = "Dato", 
+    title = "Dagligt SARS-CoV-2 smitteindeks", 
+    subtitle = bquote('Indeks = positive /' ~testede^0.7), 
+    caption = standard_caption
+    ) +
   standard_theme
 
 ggsave("../figures/ntl_index.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -108,11 +136,18 @@ ag %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  scale_fill_manual(name = "Heraf:", labels = c("Ikke PCR testede", "PCR negative", "PCR positive"), values = c(alpha("gray80", 0.7), alpha("gray55", 0.7), alpha(pos_col, 0.9))) +
-  labs(y = "Antal positive", x = "Dato", title = "Dagligt antal positive SARS-CoV-2 antigentestede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_y_continuous(limits = c(0, NA)) +
+  scale_fill_manual(
+    name = "Heraf:", 
+    labels = c("Ikke PCR testede", "PCR negative", "PCR positive"), 
+    values = c(alpha("gray80", 0.7), alpha("gray55", 0.7), alpha(pos_col, 0.9))
+    ) +
+  labs(
+    y = "Antal positive", 
+    x = "Dato", 
+    title = "Dagligt antal positive SARS-CoV-2 antigentestede", 
+    caption = standard_caption
+    ) +
   standard_theme  
 
 ggsave("../figures/ntl_ag_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -130,63 +165,93 @@ ag %>%
     limits = c(0, NA),
     labels = scales::number
   ) +
-  scale_fill_manual(name = "Heraf:", labels = c("Antigen", "PCR"), values = c(alpha(lighten(test_col, 0.6), 0.8), alpha(darken(test_col, 0), 0.9))) +
-  labs(y = "Antal", x = "Dato", title = "Dagligt antal SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_fill_manual(
+    name = "Heraf:", 
+    labels = c("Antigen", "PCR"), 
+    values = c(alpha(lighten(test_col, 0.6), 0.8), alpha(darken(test_col, 0), 0.9))
+    ) +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Dagligt antal SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme  
 
 ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-x <- ag %>%
+ag %>%
   full_join(tests, by = "Date") %>% 
-  mutate(ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
-         total_testede = NotPrevPos + ag_testede,
-         total_positive = NewPositive + AGpos_minusPCRkonf,
-         Total_pct = total_positive / total_testede * 100,
-         Total_zix = total_positive / total_testede ** 0.7,
-         Antigen_pct = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede * 100,
-         Antigen_zix = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede ** 0.7,
-         PCR_pct = NewPositive / NotPrevPos * 100,
-         PCR_zix = NewPositive / NotPrevPos ** 0.7) %>% 
+  mutate(
+    ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
+    total_testede = NotPrevPos + ag_testede,
+    total_positive = NewPositive + AGpos_minusPCRkonf,
+    Total_pct = total_positive / total_testede * 100,
+    Total_zix = total_positive / total_testede ** 0.7,
+    Antigen_pct = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede * 100,
+    Antigen_zix = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede ** 0.7,
+    PCR_pct = NewPositive / NotPrevPos * 100,
+    PCR_zix = NewPositive / NotPrevPos ** 0.7) %>% 
   select(Date, Total_pct:PCR_zix) %>% 
   pivot_longer(-Date, names_to = c("type", "variable"), values_to = "value", names_sep = "_") %>% 
-  filter(Date > ymd("2021-01-31"),
-         Date < ymd(today) - 2) %>% 
+  filter(
+    Date > ymd("2021-01-31"),
+    Date < ymd(today) - 2) %>% 
   ggplot() +
   geom_line(aes(Date, value, color = variable), size = 1) +
   facet_wrap(~ type, ncol = 1, scales = "free") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  scale_color_manual(name = "", labels = c("Positivprocent", "Smitteindeks"), values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))) +
-  labs(y = "Procent / Indeks", x = "Dato", title = "Antal SARS-CoV-2 positive justeret for antal testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>') +
+  scale_y_continuous(limits = c(0, NA)) +
+  scale_color_manual(
+    name = "", 
+    labels = c("Positivprocent", "Smitteindeks"), 
+    values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))
+    ) +
+  labs(
+    y = "Procent / Indeks", 
+    x = "Dato", 
+    title = "Antal SARS-CoV-2 positive justeret for antal testede", 
+    caption = standard_caption, 
+    subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>'
+    ) +
   facet_theme + 
-  theme(plot.subtitle = ggtext::element_markdown(hjust = 0.5),
-        plot.title.position = 'plot',
-        plot.title = element_text(hjust = 0.5),
-        #plot.subtitle.position = 'plot',
-        legend.position = "none")
+  theme(
+    plot.subtitle = ggtext::element_markdown(hjust = 0.5),
+    plot.title.position = 'plot',
+    plot.title = element_text(hjust = 0.5),
+    legend.position = "none"
+    )
 
 ggsave("../figures/ntl_ag_pct.png", width = 15, height = 20, units = "cm", dpi = 300)
 
 # Pos vs pos% ------------------------------------------------------------------
 
 plot_data %>%
-  filter(Date > as.Date("2020-04-30")) %>%
+  filter(Date > ymd("2020-04-30")) %>%
   ggplot() +
-  geom_point(aes(Date, pct_confirmed * 1000, color = alpha(pct_col, 0.3)), size = 2) +
-  geom_point(aes(Date, NewPositive, color = alpha(pos_col, 0.3)), size = 2) +
+  geom_point(aes(Date, pct_confirmed * 1000), color = pct_col, alpha = 0.3, size = 2) +
+  geom_point(aes(Date, NewPositive), color = pos_col, alpha = 0.3, size = 2) +
   geom_line(aes(Date, running_avg_pct * 1000), size = 1, color = pct_col) +
   geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
-  scale_color_manual(name = "", labels = c("Positivprocent", "Positive"), values = c(alpha(pct_col, 0.3), alpha(pos_col, 0.3))) +
+  scale_color_manual(
+    name = "", 
+    labels = c("Positivprocent", "Positive"), 
+    values = c(alpha(pct_col, 0.3), 
+               alpha(pos_col, 0.3))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Antal",
     sec.axis = sec_axis(~ . / 1000, name = "Positivprocent", labels = function(x) paste0(x, " %")),
   ) +
-  labs(y = "Positivprocent", x = "Dato", title = "Procent vs. antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Positivprocent", 
+    x = "Dato", 
+    title = "Procent vs. antal positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
   theme(panel.grid.minor.x = element_blank())
 
@@ -196,13 +261,16 @@ ggsave("../figures/ntl_pos_pct.png", width = 18, height = 12, units = "cm", dpi 
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = alpha(admit_col, 0.6), width = 1) +
-  geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = admit_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_admit), size = 1, color = admit_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  labs(y = "Antal", x = "Dato", title = "Dagligt antal nyindlagte med positiv SARS-CoV-2 test", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Dagligt antal nyindlagte med positiv SARS-CoV-2 test", 
+    caption = standard_caption
+    ) +
   standard_theme
 
 ggsave("../figures/ntl_hosp.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -213,21 +281,19 @@ ggsave("../figures/ntl_hosp.png", width = 18, height = 10, units = "cm", dpi = 3
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = alpha(death_col, 0.6), width = 1) +
-  geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = death_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_deaths), size = 1, color = death_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  labs(y = "Antal", x = "Dato", title = "Daglig antal døde med positiv SARS-CoV-2 test", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Daglig antal døde med positiv SARS-CoV-2 test", 
+    caption = standard_caption
+    ) +
   standard_theme
 
 ggsave("../figures/ntl_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-
-# -------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------
 
 # positive admitted barplot ------------------------------------------------------------------
 
@@ -235,22 +301,32 @@ ggsave("../figures/ntl_deaths.png", width = 18, height = 10, units = "cm", dpi =
 plot_data %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = pos_col), width = 1) +
-  
   geom_bar(stat = "identity", position = "stack", aes(Date, Total * 10), fill = "white", width = 1) +
   geom_bar(stat = "identity", position = "stack", aes(Date, Total * 10, fill = admit_col), width = 1) +
-  geom_line(aes(Date, running_avg_admit * 10), size = 1, color = darken(admit_col, 0)) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positive"), values = c(alpha(admit_col, 0.6), alpha(pos_col, 0.6))) +
+  geom_line(aes(Date, running_avg_admit * 10), size = 1, color = admit_col) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_fill_manual(
+    name = "", 
+    labels = c("Nyindlæggelser", "Positive"), 
+    values = c(alpha(admit_col, 0.6), alpha(pos_col, 0.6))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
     sec.axis = sec_axis(~ . / 10, name = "Nyindlæggelser")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Nyindlagte med positiv SARS-CoV-2 test vs. positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Nyindlagte med positiv SARS-CoV-2 test vs. positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
-  theme(legend.text = element_text(size = 11),
-        legend.key.size = unit(0.4, 'cm'))
+  theme(
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, 'cm')
+    )
 
 ggsave("../figures/ntl_postest_admitted_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300 )
 
@@ -261,12 +337,16 @@ ggsave("../figures/ntl_postest_admitted_barplot_2.png", width = 18, height = 12,
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed, fill = alpha(pct_col, 0.6)), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = pct_col, alpha = 0.6, width = 1) +
   geom_bar(stat = "identity", position = "stack", aes(Date, Total / 20), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Total / 20, fill = alpha(admit_col, 0.6)), width = 1) +
-  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
-  geom_line(aes(Date, running_avg_admit / 20), size = 1, color = darken(admit_col, 0)) +
-  scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positivprocent"), values = c(alpha(admit_col, 0.6), alpha(pct_col, 0.6))) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Total / 20), fill = admit_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = pct_col) +
+  geom_line(aes(Date, running_avg_admit / 20), size = 1, color = admit_col) +
+  scale_fill_manual(
+    name = "", 
+    labels = c("Nyindlæggelser", "Positivprocent"), 
+    values = c(alpha(admit_col, 0.6), alpha(pct_col, 0.6))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
@@ -274,10 +354,17 @@ plot_data %>%
     labels = function(x) paste0(x, " %"),
     sec.axis = sec_axis(~ . * 20, name = "Nyindlæggelser")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Nyindlagte med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Nyindlagte med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
-  theme(legend.text = element_text(size = 11),
-        legend.key.size = unit(0.4, 'cm'))
+  theme(
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, 'cm')
+    )
 
 ggsave("../figures/ntl_pct_admitted_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -289,22 +376,33 @@ ggsave("../figures/ntl_pct_admitted_barplot_2.png", width = 18, height = 12, uni
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = alpha(pos_col, 0.7)), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive), fill = pos_col, alpha = 0.7, width = 1) +
   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 100), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 100, fill = alpha(death_col, 0.7)), width = 1) +
-  geom_line(aes(Date, running_avg_deaths * 100), size = 1, color = darken(death_col, 0)) +
-  geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-  scale_fill_manual(name = "", labels = c("Døde", "Positive"), values = c(alpha(death_col, 0.6), alpha(pos_col, 0.6))) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde * 100), fill = death_col, alpha = 0.7, width = 1) +
+  geom_line(aes(Date, running_avg_deaths * 100), size = 1, color = death_col) +
+  geom_line(aes(Date, running_avg_pos), size = 1, color = pos_col) +
+  scale_fill_manual(
+    name = "", 
+    labels = c("Døde", "Positive"), 
+    values = c(alpha(death_col, 0.6), alpha(pos_col, 0.6))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
     sec.axis = sec_axis(~ . / 100, name = "Døde")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Døde med positiv SARS-CoV-2 test vs. antal positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Døde med positiv SARS-CoV-2 test vs. antal positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
-  theme(legend.text = element_text(size = 11),
-        legend.key.size = unit(0.4, 'cm'))
+  theme(
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, 'cm')
+    )
 
 ggsave("../figures/ntl_postest_deaths_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -312,12 +410,16 @@ ggsave("../figures/ntl_postest_deaths_barplot_2.png", width = 18, height = 12, u
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed, fill = pct_col), width = 1) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed), fill = pct_col, alpha = 0.6, width = 1) +
   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde / 5), fill = "white", width = 1) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde / 5, fill = death_col), width = 1) +
-  geom_line(aes(Date, running_avg_pct), size = 1, color = darken(pct_col, 0)) +
-  geom_line(aes(Date, running_avg_deaths / 5), size = 1, color = darken(death_col, 0)) +
-  scale_fill_manual(name = "", labels = c("Døde", "Positivprocent"), values = c(alpha(death_col, 0.6), alpha(pct_col, 0.6))) +
+  geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde / 5), fill = death_col, alpha = 0.6, width = 1) +
+  geom_line(aes(Date, running_avg_pct), size = 1, color = pct_col) +
+  geom_line(aes(Date, running_avg_deaths / 5), size = 1, color = death_col) +
+  scale_fill_manual(
+    name = "", 
+    labels = c("Døde", "Positivprocent"), 
+    values = c(alpha(death_col, 0.6), alpha(pct_col, 0.6))
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
@@ -325,10 +427,17 @@ plot_data %>%
     labels = function(x) paste0(x, " %"),
     sec.axis = sec_axis(~ . * 5, name = "Døde")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Døde med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Døde med positiv SARS-CoV-2 test vs. procent positivt SARS-CoV-2 testede", 
+    caption = standard_caption
+    ) +
   standard_theme + 
-  theme(legend.text = element_text(size = 11),
-        legend.key.size = unit(0.4, 'cm'))
+  theme(
+    legend.text = element_text(size = 11),
+    legend.key.size = unit(0.4, 'cm')
+    )
 
 ggsave("../figures/ntl_pct_deaths_barplot_2.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -336,7 +445,7 @@ ggsave("../figures/ntl_pct_deaths_barplot_2.png", width = 18, height = 12, units
 # Twitter card ------------------------------------------------------------------
 
 plot_data %>%
-  filter(Date > as.Date("2020-04-30")) %>%
+  filter(Date > ymd("2020-04-30")) %>%
   ggplot() +
   geom_point(aes(Date, pct_confirmed * 1000), size = 2, color = alpha(pct_col, 0.3)) +
   geom_point(aes(Date, NewPositive), size = 2, color = alpha(pos_col, 0.3)) +
@@ -354,40 +463,45 @@ ggsave("../figures/twitter_card.png", width = 15, height = 8, units = "cm", dpi 
 
 # -------------------------------------------------------------------------
 
-# tiltag plot fra juli -------------------------------------------------------------
+# tiltag -------------------------------------------------------------
 
 tiltag <- tribble(~Date, ~tiltag, ~type,
-                  as.Date("2020-03-12"), "Nedlukning 1", "restrict",
-                  as.Date("2020-04-17"), "Fase 1: Små klasser,\ndagtilbud, liberale erhverv", "open",
-                  as.Date("2020-05-09"), "Fase 2, del 1: Idræt,\nforeningsliv, detailhandel", "open",
-                  as.Date("2020-05-22"), "Fase 2, del 2: Alle uddannelser,\nkulturliv, natteliv", "open",
-                  as.Date("2020-06-08"), "Fase 3: Forsamling op til 50,\nindendørs idræt", "open",
-                  as.Date("2020-07-07"), "Forsamling op til 100", "open", 
-                  as.Date("2020-08-14"), "Lukketid udvides", "open",
-                  as.Date("2020-08-22"), "Masker i off. transport", "restrict",
-                  as.Date("2020-09-18"), "Masker + lukketid restauranter", "restrict",
-                  as.Date("2020-09-19"), "Forsamling ned til 50", "restrict",
-                  as.Date("2020-09-25"), "Privat forsamling: 50", "restrict",
-                  as.Date("2020-10-26"), "Forsamling ned til 10 mv.", "restrict",
-                  as.Date("2020-10-29"), "Masker alle off. steder", "restrict",
-                  as.Date("2020-12-07"), "Restriktioner Hovedstaden", "restrict",
-                  as.Date("2020-12-09"), "Delvis nedluk 38 komm.", "restrict",
-                  as.Date("2020-12-11"), "Delvis nedluk 69 komm.", "restrict",
-                  as.Date("2020-12-17"), "Nedlukning 2-1", "restrict",
-                  as.Date("2020-12-21"), "Nedlukning 2-2", "restrict",
-                  as.Date("2020-12-25"), "Nedlukning 2-3", "restrict",
-                  as.Date("2021-01-05"), "Forsamling ned til 5", "restrict",
-                  as.Date("2021-02-08"), "0-4. kl åbner", "open",
-                  as.Date("2021-03-01"), "Noget detailhandel,\nudendørs kultur/idræt", "open",
-                  as.Date("2021-03-15"), "Høj- og efterskoler,\nbegrænset åbning ældre klasser",  "open",
+                  ymd("2020-03-12"), "Nedlukning 1", "restrict",
+                  ymd("2020-04-17"), "Fase 1: Små klasser,\ndagtilbud, liberale erhverv", "open",
+                  ymd("2020-05-09"), "Fase 2, del 1: Idræt,\nforeningsliv, detailhandel", "open",
+                  ymd("2020-05-22"), "Fase 2, del 2: Alle uddannelser,\nkulturliv, natteliv", "open",
+                  ymd("2020-06-08"), "Fase 3: Forsamling op til 50,\nindendørs idræt", "open",
+                  ymd("2020-07-07"), "Forsamling op til 100", "open", 
+                  ymd("2020-08-14"), "Lukketid udvides", "open",
+                  ymd("2020-08-22"), "Masker i off. transport", "restrict",
+                  ymd("2020-09-18"), "Masker + lukketid restauranter", "restrict",
+                  ymd("2020-09-19"), "Forsamling ned til 50", "restrict",
+                  ymd("2020-09-25"), "Privat forsamling: 50", "restrict",
+                  ymd("2020-10-26"), "Forsamling ned til 10 mv.", "restrict",
+                  ymd("2020-10-29"), "Masker alle off. steder", "restrict",
+                  ymd("2020-12-07"), "Restriktioner Hovedstaden", "restrict",
+                  ymd("2020-12-09"), "Delvis nedluk 38 komm.", "restrict",
+                  ymd("2020-12-11"), "Delvis nedluk 69 komm.", "restrict",
+                  ymd("2020-12-17"), "Nedlukning 2-1", "restrict",
+                  ymd("2020-12-21"), "Nedlukning 2-2", "restrict",
+                  ymd("2020-12-25"), "Nedlukning 2-3", "restrict",
+                  ymd("2021-01-05"), "Forsamling ned til 5", "restrict",
+                  ymd("2021-02-08"), "0-4. kl åbner", "open",
+                  ymd("2021-03-01"), "Noget detailhandel,\nudendørs kultur/idræt", "open",
+                  ymd("2021-03-15"), "Høj- og efterskoler,\nbegrænset åbning ældre klasser",  "open",
                   )
 
-cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admit_col, 0.6), "D" = alpha(death_col, 0.6))
+cols <- c(
+  "A" = alpha(pos_col, 0.6), 
+  "B" = alpha(pct_col, 0.6), 
+  "C" = alpha(admit_col, 0.6), 
+  "D" = alpha(death_col, 0.6)
+  )
 
 # x <- plot_data %>%
 #   full_join(tiltag, by = "Date")  %>%
-#   filter(Date > as.Date("2020-06-20"),
-#          Date < as.Date("2021-02-02"))
+#   filter(Date > ymd("2020-06-20"),
+#          Date < ymd("2021-02-02"))
 #   
 # x %>%
 #   ggplot() +
@@ -425,7 +539,7 @@ cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admi
 #     name = "Antal",
 #     sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
 #   ) +
-#   labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og tiltag (juli 2020 - februar 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
+#   labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og tiltag (juli 2020 - februar 2021)", caption = standard_caption) +
 #   standard_theme +
 #   theme(
 #     panel.grid.minor.x = element_blank(),
@@ -440,19 +554,21 @@ cols <- c("A" = alpha(pos_col, 0.6), "B" = alpha(pct_col, 0.6), "C" = alpha(admi
 # Tiltag fra januar -------------------------------------------------------
 
 x <- plot_data %>%
-  rename(daily_admit = Total,
-         daily_deaths = Antal_døde,
-         daily_pct = pct_confirmed,
-         ra_admit = running_avg_admit,
-         ra_deaths = running_avg_deaths,
-         ra_pct = running_avg_pct) %>% 
-  mutate(daily_pct = daily_pct * 100,
-         ra_pct = ra_pct * 100) %>% 
-  mutate(daily_ix = NewPositive / NotPrevPos ** 0.7 * 100,
-         ra_ix = ra(daily_ix)) %>% 
+  rename(
+    daily_admit = Total,
+    daily_deaths = Antal_døde,
+    daily_pct = pct_confirmed,
+    ra_admit = running_avg_admit,
+    ra_deaths = running_avg_deaths,
+    ra_pct = running_avg_pct) %>% 
+  mutate(
+    daily_pct = daily_pct * 100,
+    ra_pct = ra_pct * 100,
+    daily_ix = NewPositive / NotPrevPos ** 0.7 * 100,
+    ra_ix = ra(daily_ix)) %>% 
   select(Date, daily_ix, ra_ix, daily_admit, ra_admit, daily_deaths, ra_deaths) %>% 
   pivot_longer(-Date, names_to = c("type", "variable"), names_sep = "_") %>% 
-  filter(Date > as.Date("2021-01-31")) 
+  filter(Date > ymd("2021-01-31")) 
 
 max_values <- x %>%
   group_by(Date) %>% 
@@ -463,7 +579,8 @@ x %>%
   ggplot() +
   geom_line(data = subset(x, type ==  "daily"), aes(Date, value, color = variable), size = 0.2, alpha = 0.6) +
   geom_line(data = subset(x, type ==  "ra"), aes(Date, value, color = variable), size = 1.2) +
-  geom_label_repel(data = subset(tiltag, Date >=  ymd("2021-02-01")),
+  geom_label_repel(
+    data = subset(tiltag, Date >=  ymd("2021-02-01")),
     aes(Date, 0, label = tiltag),
     color = "white", 
     verbose = TRUE,
@@ -479,14 +596,24 @@ x %>%
     segment.size = 0.32,
     segment.color = "grey40"
   ) +
-  scale_color_manual(name = "", labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), values = c(admit_col, death_col, pct_col)) +
+  scale_color_manual(
+    name = "", 
+    labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), 
+    values = c(admit_col, death_col, pct_col)
+    ) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
   scale_y_continuous(
     limits = c(0, 100),
     name = "Antal",
     sec.axis = sec_axis(~ . / 100, name = "Smitteindeks")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", 
+    caption = standard_caption, 
+    subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)'
+    ) +
   standard_theme +
   theme(
     plot.subtitle = element_markdown(),
@@ -503,7 +630,7 @@ plot_data <-
   tests %>%
   full_join(admitted, by = "Date") %>%
   full_join(deaths, by = "Date") %>%
-  filter(Date > as.Date("2020-02-14"))
+  filter(Date > ymd("2020-02-14"))
 
 x <- plot_data %>% select(Date, NewPositive, NotPrevPos, Total, Antal_døde) %>%
   rename(Indlæggelser = Total) %>%
@@ -531,7 +658,7 @@ DB %>%
   
 plot_data %>%
   filter(variable == "NewPositive") %>%
-  filter(Date > as.Date(today) - months(2)) %>%
+  filter(Date > ymd(today) - months(2)) %>%
   ggplot(aes(Date, values)) +
   geom_line(stat = "identity", position = "identity" , size = 1.2, aes(color = dataset)) +
   labs(y = "Antal", x = "Dato", title = "Positivt testede: Antal fra dashboard vs antal fra datafiler") +
@@ -549,7 +676,7 @@ x %<>% pivot_longer(-Date, names_to = "variable", values_to = "values")
 x %<>% mutate(dataset = "test_pos")
 y <- dashboard_data %>% mutate(dataset = "dashboard")
 plot_data <- bind_rows(x,y)
-plot_data %<>% filter(Date > as.Date(today) - weeks(4),
+plot_data %<>% filter(Date > ymd(today) - weeks(4),
                       variable %in% c("NotPrevPos"))
 
 ggplot(plot_data, aes(Date, values)) +
@@ -574,17 +701,20 @@ dst_deaths_5yr %<>%
   mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>%
   select(-Month, -Day) %>%
   pivot_longer(-md, names_to = "year", values_to = "Deaths") %>%
-  mutate(Deaths = ifelse(Deaths == "..", NA, Deaths),
-         Deaths = as.double(Deaths)) %>%
+  mutate(
+    Deaths = ifelse(Deaths == "..", NA, Deaths),
+    Deaths = as.double(Deaths)) %>%
   group_by(md) %>%
-  summarize(avg_5yr = mean(Deaths, na.rm = TRUE),
-            max_5yr = max(Deaths, na.rm = TRUE),
-            min_5yr = min(Deaths, na.rm = TRUE)) %>%
+  summarize(
+    avg_5yr = mean(Deaths, na.rm = TRUE),
+    max_5yr = max(Deaths, na.rm = TRUE),
+    min_5yr = min(Deaths, na.rm = TRUE)
+    ) %>%
   ungroup()
 
 plot_data <- dst_deaths %>%
   mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
-  mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+  mutate(Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
   full_join(dst_deaths_5yr, by = "md") %>%
   group_by(Date_wk = floor_date(Date + 4, "1 week")) %>%
@@ -610,7 +740,7 @@ ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "
 
 plot_data <- dst_deaths %>%
   mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
-  mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+  mutate(Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
   full_join(deaths, by = "Date") %>%
   full_join(dst_deaths_5yr, by = "md") %>%
   group_by(Date=floor_date(Date + 4, "1 week")) %>%
@@ -639,7 +769,7 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   
   plot_data <- dst_deaths %>%
     mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
-    mutate(Date = as.Date(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
+    mutate(Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
     full_join(deaths, by = "Date") %>%
     full_join(dst_deaths_5yr, by = "md") %>%
     group_by(Date_wk = floor_date(Date + 4, "1 week")) %>%
