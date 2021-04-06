@@ -181,33 +181,74 @@ ag %>%
 ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-ag %>%
+ag_plot_data <- 
+  ag %>%
   full_join(tests, by = "Date") %>% 
-  mutate(
-    ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
-    total_testede = NotPrevPos + ag_testede,
-    total_positive = NewPositive + AGpos_minusPCRkonf,
-    Total_pct = total_positive / total_testede * 100,
-    Total_zix = total_positive / total_testede ** 0.7,
-    Antigen_pct = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede * 100,
-    Antigen_zix = (AGpos_minusPCRkonf + AGnegPCRpos + AGpos_PCRpos) / AG_testede ** 0.7,
-    PCR_pct = NewPositive / NotPrevPos * 100,
-    PCR_zix = NewPositive / NotPrevPos ** 0.7) %>% 
-  select(Date, Total_pct:PCR_zix) %>% 
-  pivot_longer(-Date, names_to = c("type", "variable"), values_to = "value", names_sep = "_") %>% 
   filter(
     Date > ymd("2021-01-31"),
     Date < ymd(today) - 2) %>% 
+  mutate(
+    total_testede = NotPrevPos + AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
+    total_positive = NewPositive + AGpos_minusPCRkonf,
+    PCRonly_testede = NotPrevPos - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRpos - AGnegPCRneg,
+    PCRonly_positive = NewPositive - AGnegPCRpos - AGpos_PCRpos,
+    PCRAgneg_testede = NotPrevPos - AGpos_PCRneg - AGpos_PCRpos,
+    PCRAgneg_positive = NewPositive - AGpos_PCRpos,
+    daily_Antigen_pct = AG_pos / AG_testede * 100,
+    daily_Antigen_zix = AG_pos / AG_testede ** 0.7,
+    daily_PCRonly_pct = PCRonly_positive / PCRonly_testede * 100,
+    daily_PCRonly_zix = PCRonly_positive / PCRonly_testede ** 0.7,
+    daily_PCRAgneg_pct = PCRAgneg_positive / PCRAgneg_testede * 100,
+    daily_PCRAgneg_zix = PCRAgneg_positive / PCRAgneg_testede ** 0.7,
+    daily_PCRall_pct = NewPositive / NotPrevPos * 100,
+    daily_PCRall_zix = NewPositive / NotPrevPos ** 0.7,
+    daily_Total_pct = total_positive / total_testede * 100,
+    daily_Total_zix = total_positive / total_testede ** 0.7) %>% 
+  mutate(
+    ra_Antigen_pct = ra(daily_Antigen_pct),
+    ra_Antigen_zix = ra(daily_Antigen_zix),
+    ra_PCRonly_pct = ra(daily_PCRonly_pct),
+    ra_PCRonly_zix = ra(daily_PCRonly_zix),
+    ra_PCRAgneg_pct = ra(daily_PCRAgneg_pct),
+    ra_PCRAgneg_zix = ra(daily_PCRAgneg_zix),
+    ra_PCRall_pct = ra(daily_PCRall_pct),
+    ra_PCRall_zix = ra(daily_PCRall_zix),
+    ra_Total_pct = ra(daily_Total_pct),
+    ra_Total_zix = ra(daily_Total_zix)) %>% 
+  select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
+  pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
+  mutate(
+    method = case_when(
+      method == "PCRonly" ~ "PCR uden antigen",
+      method == "PCRAgneg" ~ "PCR uden positive antigen",
+      method == "PCRall" ~ "PCR med alle antigen",
+      TRUE ~ method
+    )
+  )
+  
+
+ag_plot_data %>% 
+  filter(str_detect(method, "PCR")) %>% 
   ggplot() +
-  geom_line(aes(Date, value, color = variable), size = 1) +
-  facet_wrap(~ type, ncol = 1, scales = "free") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 week") +
+  geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
+  facet_grid(~ method) +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 week", minor_breaks = "1 week") +
   scale_y_continuous(limits = c(0, NA)) +
   scale_color_manual(
     name = "", 
     labels = c("Positivprocent", "Smitteindeks"), 
     values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))
     ) +
+  scale_size_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.3, 1)
+  ) +
+  scale_alpha_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.6, 1)
+  ) +
   labs(
     y = "Procent / Indeks", 
     x = "Dato", 
@@ -217,13 +258,13 @@ ag %>%
     ) +
   facet_theme + 
   theme(
-    plot.subtitle = ggtext::element_markdown(hjust = 0.5),
-    plot.title.position = 'plot',
-    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = ggtext::element_markdown(),
+    #plot.title.position = 'plot',
+    plot.title = element_text(),
     legend.position = "none"
     )
 
-ggsave("../figures/ntl_ag_pct.png", width = 15, height = 20, units = "cm", dpi = 300)
+ggsave("../figures/ntl_ag_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 # Pos vs pos% ------------------------------------------------------------------
 

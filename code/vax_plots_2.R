@@ -13,20 +13,20 @@ age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
   filter(!is.na(Aldersgruppe)) %>%
   group_by(Aldersgruppe, Sex) %>%
-  summarize(Begun = sum(Begun, na.rm = TRUE),
-            Done = sum(Done, na.rm = TRUE)) %>%
+  summarize(
+    Begun = sum(Begun, na.rm = TRUE),
+    Done = sum(Done, na.rm = TRUE)) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, Begun, fill = Sex), stat = "identity", position = "dodge") +
-  labs(y = "Antal", 
-       title = "Antal påbegyndt COVID-19 vaccinerede per køn og alder", 
-       caption = standard_caption,
-       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
+  labs(
+    y = "Antal", 
+    title = "Antal påbegyndt COVID-19 vaccinerede per køn og alder", 
+    caption = standard_caption,
+    subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
   scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
   standard_theme
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-#dst_age_sex <- read_csv2("../data/DST_age_sex_group_data.csv")
 
 dst_age_sex <- read_csv2("../data/DST_age_sex_group_1_year.csv", col_names = FALSE)
 
@@ -58,17 +58,19 @@ age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
   filter(!is.na(Aldersgruppe)) %>%
   group_by(Aldersgruppe, Sex) %>%
-  summarize(Begun = sum(Begun, na.rm = TRUE),
-            Done = sum(Done, na.rm = TRUE)) %>%
+  summarize(
+    Begun = sum(Begun, na.rm = TRUE),
+    Done = sum(Done, na.rm = TRUE)) %>%
   full_join(dst_age_sex, by = c("Aldersgruppe", "Sex")) %>% 
   mutate(Incidense = Begun / Population * 100) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, Incidense, fill = Sex), stat = "identity", position = "dodge") +
   scale_y_continuous(labels = function(x) paste0(x, " %")) +
-  labs(y = "Andel", 
-       title = "Andel af personer som er påbegyndt COVID-19 vaccination", 
-       caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI",
-       subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
+  labs(
+    y = "Andel", 
+    title = "Andel af personer som er påbegyndt COVID-19 vaccination", 
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI",
+    subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today)-1, "%e. %b %Y")))) +
   scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values=c("#11999e", "#30e3ca")) +
   standard_theme
 
