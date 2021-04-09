@@ -133,6 +133,7 @@ ggsave("../figures/ntl_index.png", width = 18, height = 10, units = "cm", dpi = 
 ag %>%
   select(Date, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
   pivot_longer(c(-Date)) %>% 
+  filter(Date > ymd("2021-01-31")) %>% 
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
