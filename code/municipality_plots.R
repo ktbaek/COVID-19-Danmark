@@ -827,6 +827,11 @@ walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
 # Risikerer nedlukning ----------------------------------------------------
 
 
+
+
+
+
+
 muni_alert <- muni_all %>% 
   filter(Date >= ymd(today) - days(8)) %>%
   full_join(muni_population, by = c("Kommune", "Date")) %>% 
@@ -843,33 +848,34 @@ muni_alert <- muni_all %>%
 
 plot_data <- muni_all %>%
   full_join(muni_population, by = c("Kommune", "Date")) %>% 
-  filter(Kommune %in% muni_alert) %>% 
   filter(Date > ymd(today) - months(2)) %>%
   group_by(Kommune) %>% 
   fill(Befolkningstal, .direction = "down") %>% 
   filter(!is.na(Positive)) %>% 
   mutate(
-    roll_sum_pos = sum_run(x = Positive, k = 7, idx = Date, na_rm = TRUE),
-    roll_sum_test = sum_run(x = Tested, k = 7, idx = Date, na_rm = TRUE),
-    roll_incidens = roll_sum_pos / Befolkningstal * 100000,
-    roll_pct = roll_sum_pos / roll_sum_test * 100 * 100,
-    pct = Positive / Tested * 100 * 100) %>% 
-  select(Date, Kommune, roll_incidens, roll_pct, pct) 
+    test_intensity =  Tested / (0.017 * Befolkningstal),
+    adj_incidens = Positive * (0.017 * Befolkningstal / Tested)**0.58 / Befolkningstal * 100000,
+    roll_sum_adj_inc = sum_run(x = adj_incidens, k = 7, idx = Date, na_rm = TRUE)) 
 
 max_value <- max(c(plot_data$roll_incidens, plot_data$roll_pct))
+
+muni_alert <- plot_data %>% 
+  filter(Date >= ymd(today) - days(8)) %>%
+  group_by(Kommune) %>% 
+  summarize(sum = sum(adj_incidens, na.rm = TRUE)) %>% 
+  filter(sum >= 100) %>% 
+  pull(Kommune)
+  
 
 n_rows <- ceiling(length(muni_alert)/5)
 
 plot_data %>% 
-  filter(Date > ymd(today) + 1 - months(1)) %>%
+  filter(Kommune %in% muni_alert) %>% 
+  filter(Date > ymd(today) - months(1)) %>%
   ggplot() +
   geom_line(
-    aes(Date, roll_incidens), 
+    aes(Date, roll_sum_adj_inc), 
     color = pos_col, 
-    size = 1) +
-  geom_line(
-    aes(Date, roll_pct), 
-    color = pct_col, 
     size = 1) +
   geom_hline(
     yintercept = 200, 
@@ -878,15 +884,13 @@ plot_data %>%
     size = 0.3) +
   facet_wrap(~ Kommune, ncol = 5) +
   scale_x_date(labels = my_date_labels, breaks = "2 week") +
-  scale_y_continuous(
-    name = "Incidens",
-    limits = c(0, max_value),
-    sec.axis = sec_axis(~ . / 100, name = "Positivprocent", labels = function(x) paste0(x, " %"))) +
+  scale_y_continuous(limits = c(0, max_value)) +
   labs(
+    y = "Testjusteret incidens",
     x = "Dato", 
-    title = "7-dages incidens og 7-dages positivprocent for udvalgte kommuner", 
+    title = "Testjusteret incidens", 
     caption = standard_caption, 
-    subtitle = paste0('<b style="color:#F5562C;">7-dages incidens</b>: løbende 7-dages sum af positive per 100.000. Seneste dato: ', ymd(today) - days(2))) +
+    subtitle = paste0('Beregnet som 7-dages løbende sum af daglig testjusteret incidens . Seneste dato: ', ymd(today) - days(2))) +
   facet_theme +
   theme(
     legend.position = "none",

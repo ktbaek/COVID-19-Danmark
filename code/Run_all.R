@@ -31,11 +31,11 @@ cat("Whole country plots DONE\n")
 source("vax_plots_2.R")
 cat("Vaxxxxxx plots DONE\n")
 
-# if(wday(ymd(today)) %in% c(1, 4:7)){ 
-#   
+# if(wday(ymd(today)) %in% c(1, 4:7)){
+# 
 #   source("B117.R")
 #   cat("Bri'ish mu'ant DONE\n")
-#   
+# 
 #   }
 
 source("Read_tidy_muni.R")
