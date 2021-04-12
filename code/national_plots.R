@@ -531,6 +531,7 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   ymd("2021-02-08"), "0-4. kl åbner", "open",
                   ymd("2021-03-01"), "Noget detailhandel,\nudendørs kultur/idræt", "open",
                   ymd("2021-03-15"), "Høj- og efterskoler,\nbegrænset åbning ældre klasser",  "open",
+                  ymd("2021-04-06"), "Mere fysisk fremmøde 5-8. kl\n + andre udd., liberale erhverv",  "open",
                   )
 
 cols <- c(
@@ -540,58 +541,7 @@ cols <- c(
   "D" = alpha(death_col, 0.6)
   )
 
-# x <- plot_data %>%
-#   full_join(tiltag, by = "Date")  %>%
-#   filter(Date > ymd("2020-06-20"),
-#          Date < ymd("2021-02-02"))
-#   
-# x %>%
-#   ggplot() +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, NewPositive, fill = "A"), width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200), fill = "white", width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, pct_confirmed * 200, fill = "B"), width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, Total), fill = "white", width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, Total, fill = "C"), width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde), fill = "white", width = 1) +
-#   geom_bar(stat = "identity", position = "stack", aes(Date, Antal_døde, fill = "D"), width = 1) +
-#   geom_line(aes(Date, running_avg_pos), size = 1, color = darken(pos_col, 0)) +
-#   geom_line(aes(Date, running_avg_pct * 200), size = 1, color = darken(pct_col, 0)) +
-#   geom_line(aes(Date, running_avg_admit), size = 1, color = darken(admit_col, 0)) +
-#   geom_line(aes(Date, running_avg_deaths), size = 1, color = darken(death_col, 0)) +
-#   geom_label_repel(
-#     aes(Date, 0, label = tiltag),
-#     color = "white", 
-#     verbose = TRUE,
-#     fill = "grey40", 
-#     size = 2.5, 
-#     ylim = c(0, NA), 
-#     xlim = c(-Inf, Inf),
-#     nudge_y = x$running_avg_pos * 1.4 + 2000,
-#     direction = "y",
-#     force_pull = 0, 
-#     box.padding = 0.1, 
-#     max.overlaps = Inf, 
-#     segment.size = 0.32,
-#     segment.color = "grey40"
-#   ) +
-#   scale_fill_manual(name = "", labels = c("Positive", "Positivprocent", "Nyindlæggelser", "Døde"), values = cols) +
-#   scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
-#   scale_y_continuous(
-#     limits = c(0, 8000),
-#     name = "Antal",
-#     sec.axis = sec_axis(~ . / 200, name = "Positivprocent", labels = function(x) paste0(x, " %")),
-#   ) +
-#   labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og tiltag (juli 2020 - februar 2021)", caption = standard_caption) +
-#   standard_theme +
-#   theme(
-#     panel.grid.minor.x = element_blank(),
-#     legend.text = element_text(size = 11),
-#     legend.key.size = unit(0.4, "cm")
-#   )
-# 
-#   ggsave("../figures/ntl_tiltag_july.png", width = 18, height = 12, units = "cm", dpi = 300)
-#   
-  
+
 
 # Tiltag fra januar -------------------------------------------------------
 
