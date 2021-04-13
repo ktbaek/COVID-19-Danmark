@@ -593,7 +593,7 @@ x %>%
     labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), 
     values = c(admit_col, death_col, pct_col)
     ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), ymd("2021-04-14"))) +
   scale_y_continuous(
     limits = c(0, 100),
     name = "Antal",
