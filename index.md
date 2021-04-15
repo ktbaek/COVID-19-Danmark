@@ -291,16 +291,13 @@ Bemærk at absolut antal positive aflæses på venstre akse mens antal positive 
 ![](/figures/age_groups_pos.png)
 
 
-### Ugentligt antal positivt testede for hver aldersgruppe  (heatmap)
-Plottet viser det ugentlige antal positivt testede som promille af befolkningstallet i hver aldersgruppe.
+### Dagligt antal døde for hver aldersgruppe
+Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe
 
-``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
-
-
-![](/figures/age_weekly_incidens_tile.png)
+``Danmarks Statistik datasæt: 'DODC1'``
 
 
-
+![](/figures/ntl_deaths_age_total.png)
 
 
 ### Ugentligt antal positivt testede ældre (&ge; 50 år) vs. yngre (< 50 år)
@@ -311,20 +308,7 @@ Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 
 ![](/figures/age_group_stack.png)
 ![](/figures/age_group_fill.png)
 
-<!--
-### Ugentligt antal nyindlagte og antal nye positivt testede ældre (&ge; 50, 60 eller 70 år)
-Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede over hhv. 50, 60, eller 70 år.
 
-``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
-
-![](/figures/age_group_admitted_pos_old.png)
-
-### Ugentligt antal nyindlagte og antal nye positivt testede yngre (< 50, 60 eller 70 år)
-Plottet sammenligner antal nyindlagte (alle aldersgrupper) med antal nye positivt testede under hhv. 50, 60, eller 70 år.
-
-``SSI datasæt: 'Cases_by_age', 'Newly_admitted_over_time'``
-
-![](/figures/age_group_admitted_pos_young.png)
 -->
 
 [Tilbage til toppen](#)
