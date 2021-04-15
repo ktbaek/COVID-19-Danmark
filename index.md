@@ -299,7 +299,7 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe
 
 ![](/figures/ntl_deaths_age_total.png)
 
-
+<!--
 ### Ugentligt antal positivt testede ældre (&ge; 50 år) vs. yngre (< 50 år)
 Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper.
 
@@ -307,7 +307,6 @@ Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 
 
 ![](/figures/age_group_stack.png)
 ![](/figures/age_group_fill.png)
-
 
 -->
 
