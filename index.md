@@ -292,7 +292,7 @@ Bemærk at absolut antal positive aflæses på venstre akse mens antal positive 
 
 
 ### Dagligt antal døde for hver aldersgruppe
-Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe
+Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe fra 1. januar 2020 til nu. 
 
 ``Danmarks Statistik datasæt: 'DODC1'``
 
