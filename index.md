@@ -256,7 +256,7 @@ Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede 
 
 
 
-
+<!--
 
 ### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
 Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
@@ -273,7 +273,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
 
-
+-->
 
 
 
@@ -292,7 +292,7 @@ Bemærk at absolut antal positive aflæses på venstre akse mens antal positive 
 
 
 ### Dagligt antal døde for hver aldersgruppe
-Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe fra 1. januar 2020 til nu. 
+Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe fra 1. januar 2020 til nu.
 
 ``Danmarks Statistik datasæt: 'DODC1'``
 

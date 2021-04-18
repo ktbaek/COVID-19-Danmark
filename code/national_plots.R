@@ -593,7 +593,7 @@ x %>%
     labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), 
     values = c(admit_col, death_col, pct_col)
     ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), ymd("2021-04-14"))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), NA)) +
   scale_y_continuous(
     limits = c(0, 100),
     name = "Antal",
@@ -602,7 +602,7 @@ x %>%
   labs(
     y = "Antal", 
     x = "Dato", 
-    title = "Epidemi-indikatorer og genåbning #2 (vinter/forår 2021)", 
+    title = "Smittens udvikling ved genåbning #2 (vinter/forår 2021)", 
     caption = standard_caption, 
     subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)'
     ) +
@@ -615,6 +615,93 @@ x %>%
 
 ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 10, units = "cm", dpi = 300)
   
+# Tiltag 2020 vs 2021 -------------------------------------------------------
+
+x <- plot_data %>%
+  filter(Date > ymd("2020-03-15")) %>% 
+  rename(
+    daily_admit = Total,
+    daily_deaths = Antal_døde,
+    daily_pct = pct_confirmed,
+    ra_admit = running_avg_admit,
+    ra_deaths = running_avg_deaths,
+    ra_pct = running_avg_pct) %>% 
+  mutate(
+    daily_pct = daily_pct * 100,
+    ra_pct = ra_pct * 100,
+    daily_ix = NewPositive / NotPrevPos ** 0.7,
+    ra_ix = ra(daily_ix),
+    year = as.character(year(ymd(Date))),
+    Date = `year<-`(Date, 2021)) %>% 
+  select(Date, year, daily_ix, ra_admit, daily_admit, ra_ix, daily_deaths, ra_deaths) %>% 
+  pivot_longer(c(-Date, -year), names_to = c("type", "variable"), names_sep = "_") %>% 
+  filter(Date > ymd("2021-01-31")) 
+
+max_values <- x %>%
+  group_by(Date) %>% 
+  summarize(value = max(value)) %>% 
+  semi_join(tiltag, by = "Date")
+
+x %>% 
+  #filter(type == "ra") %>% 
+  filter(Date < ymd("2021-06-30")) %>% 
+  filter(variable == "ix") %>% 
+  ggplot() +
+  geom_line(aes(Date, value, color = year, alpha = type, size = type)) +
+  #facet_wrap(~ variable, scales = "free", labeller = as_labeller(c("deaths" = "Døde", 
+   #                                                                "ix" = "Smitteindeks",
+    #                                                               "admit" = "Nyindlæggelser"))) +
+  # geom_label_repel(
+  #   data = subset(tiltag, Date >=  ymd("2021-02-01")),
+  #   aes(Date, 0, label = tiltag),
+  #   color = "white", 
+  #   verbose = TRUE,
+  #   fill = "grey40", 
+  #   size = 2.5, 
+  #   ylim = c(0, NA), 
+  #   xlim = c(-Inf, Inf),
+  #   nudge_y = max_values$value + 40,
+  #   direction = "y",
+  #   force_pull = 0, 
+  #   box.padding = 0.1, 
+  #   max.overlaps = Inf, 
+  #   segment.size = 0.32,
+  #   segment.color = "grey40"
+  # ) +
+  scale_color_manual(
+   name = "", 
+    labels = c("2020", "2021"), 
+    values = c("#e78ac3", "#66c2a5")
+  ) +
+scale_alpha_manual(
+  name = "", 
+  labels = c("Dagligt", "7-dages gennemsnit"), 
+  values = c(0.5, 1),
+  guide = FALSE
+) +
+  scale_size_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.3, 1), 
+    guide = FALSE
+  ) +
+  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", minor_breaks = "1 month") +s
+  labs(
+    y = "Indeks", 
+    x = "Dato", 
+    title = "Smittens udvikling 2021 vs 2020", 
+    caption = standard_caption, 
+    subtitle = 'Kurven angiver smitteindeks (PCR positive justeret for antal tests = positive / testede<sup>0.7</sup>)'
+  ) +
+  standard_theme +
+theme(
+  plot.subtitle = element_markdown()
+)
+
+
+ggsave("../figures/ntl_tiltag_20v21.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
 
 
 # zip vs dashboard ---------------------------------------------------

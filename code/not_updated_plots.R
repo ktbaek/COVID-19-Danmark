@@ -63,7 +63,7 @@ spring_2020 %>%
     name = "Antal",
     sec.axis = sec_axis(~ . / 100, name = "Smitteindeks")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og genåbning #1 (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
+  labs(y = "Antal", x = "Dato", title = "Smittens udvikling ved genåbning #1 (forår/sommer 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
   standard_theme +
   theme(
     plot.subtitle = element_markdown(),
@@ -111,7 +111,7 @@ fall_2020 %>%
     name = "Antal",
     sec.axis = sec_axis(~ . / 100, name = "Smitteindeks")
   ) +
-  labs(y = "Antal", x = "Dato", title = "Epidemi-indikatorer og restriktioner (efterår 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
+  labs(y = "Antal", x = "Dato", title = "Smittens udvikling og restriktioner (efterår 2020)", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI", subtitle = '<b style="color:#4393C3;">Nyindlæggelser</b>,  <b style="color:#777777;">døde</b>, og <b style="color:#E69F00;">smitteindeks</b> (PCR positive justeret for antal tests: positive / testede<sup>0.7</sup>)') +
   standard_theme +
   theme(
     plot.subtitle = element_markdown(),
