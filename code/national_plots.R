@@ -685,7 +685,7 @@ scale_alpha_manual(
     values = c(0.3, 1), 
     guide = FALSE
   ) +
-  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", minor_breaks = "1 month") +s
+  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", minor_breaks = "1 month") +
   labs(
     y = "Indeks", 
     x = "Dato", 
