@@ -109,12 +109,27 @@ ggsave("../figures/ntl_pct_1.png", width = 18, height = 10, units = "cm", dpi = 
 # Smitteindex -------------------------------------------------------------
 
 plot_data %>%
-  mutate(ix = NewPositive / NotPrevPos ** 0.7) %>% 
+  mutate(daily = NewPositive / NotPrevPos ** 0.7,
+         ra = ra(daily)) %>% 
+  select(Date, daily, ra) %>% 
+  pivot_longer(-Date) %>% 
   filter(Date > ymd("2020-03-14")) %>% 
   ggplot() +
-  geom_line(aes(Date, ix), size = 1, color = darken(pct_col, 0.1)) +
+  geom_line(aes(Date, value, alpha = name, size = name), color = darken(pct_col, 0.1)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA)) +
+  scale_size_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.3, 1),
+    guide = FALSE
+  ) +
+  scale_alpha_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.6, 1),
+    guide = FALSE
+  ) +
   labs(
     y = "Indeks", 
     x = "Dato", 
