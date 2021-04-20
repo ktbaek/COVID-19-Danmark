@@ -50,8 +50,8 @@ if(wday(ymd(today)) == 5){
   
   }
 
-source("baekkepp_model.R")
-cat("Model updated\n")
+#source("baekkepp_model.R")
+#cat("Model updated\n")
 
 source("update_index_md.R")
 cat("Index files updated\n")
