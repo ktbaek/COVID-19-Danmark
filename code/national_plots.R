@@ -658,31 +658,10 @@ max_values <- x %>%
   semi_join(tiltag, by = "Date")
 
 x %>% 
-  #filter(type == "ra") %>% 
   filter(Date < ymd("2021-06-30")) %>% 
   filter(variable == "ix") %>% 
   ggplot() +
   geom_line(aes(Date, value, color = year, alpha = type, size = type)) +
-  #facet_wrap(~ variable, scales = "free", labeller = as_labeller(c("deaths" = "Døde", 
-   #                                                                "ix" = "Smitteindeks",
-    #                                                               "admit" = "Nyindlæggelser"))) +
-  # geom_label_repel(
-  #   data = subset(tiltag, Date >=  ymd("2021-02-01")),
-  #   aes(Date, 0, label = tiltag),
-  #   color = "white", 
-  #   verbose = TRUE,
-  #   fill = "grey40", 
-  #   size = 2.5, 
-  #   ylim = c(0, NA), 
-  #   xlim = c(-Inf, Inf),
-  #   nudge_y = max_values$value + 40,
-  #   direction = "y",
-  #   force_pull = 0, 
-  #   box.padding = 0.1, 
-  #   max.overlaps = Inf, 
-  #   segment.size = 0.32,
-  #   segment.color = "grey40"
-  # ) +
   scale_color_manual(
    name = "", 
     labels = c("2020", "2021"), 

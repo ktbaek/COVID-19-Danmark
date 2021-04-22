@@ -156,7 +156,7 @@ p1 <- plot_data %>%
     labels = c("Observeret", "Forventet"), 
     values = c(0.7, 1) 
   ) +
-  scale_size_manual(
+  scale_size_manual(s
     name = "", 
     labels = c("Observeret", "Forventet"), 
     values = c(0.4, 1)
@@ -166,17 +166,20 @@ p1 <- plot_data %>%
   labs(
     x = "Dato", 
     y = "Antal", 
-    title = "Nedre grænse for antal COVID-19 nyindlæggelser og døde", 
-    caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI",
-    subtitle = "Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test\nkan der registreres nyindlagte og døde selv i et scenarie hvor ingen indlægges eller dør pga. COVID-19.\n\nDe nedre grænser er beregnet udfra antal PCR positive, den gennemsnitlige risiko for hhv. indlæggelse og død,\nog metoden hvormed COVID-19 indlæggelser og døde opgøres.") +
+    title = "<b><span style = 'font-size:14pt'>Nedre grænse for antal COVID-19 nyindlæggelser og døde</span></b><br><br>Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test kan der registreres nyindlagte og døde selv i et scenarie hvor ingen indlægges eller dør pga. COVID-19.<br><br>De <b style='color:#FC8D62;'>nedre grænser</b> er beregnet udfra antal PCR positive, den gennemsnitlige risiko for hhv. indlæggelse og død, og metoden hvormed COVID-19 indlæggelser og døde opgøres.<br> ", 
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_colour_brewer(palette = "Set2", name = "", 
                       labels = c("Observeret 7-dages gennemsnit", "Estimeret nedre grænse")) +
   facet_theme +
   theme(
+    plot.title.position = "plot",
+    plot.title = element_textbox_simple(
+      size = 10, face = "plain", lineheight = 1, padding = margin(0, 0, 5, 0)
+    ),
   strip.text = element_text(size = 10, face = "bold")
   )
   
-#ggsave("../figures/ntl_admit_death_expected.png", width = 20, height = 11, units = "cm", dpi = 300)
+ggsave("../figures/ntl_admit_death_expected.png", width = 20, height = 11, units = "cm", dpi = 300)
 
 p2 <- plot_data %>% 
   rename(
