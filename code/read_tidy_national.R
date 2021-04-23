@@ -8,6 +8,7 @@ ag <- read_csv2(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.c
 dst_deaths <- read_csv2("../data/DST_daily_deaths.csv", col_names = FALSE)
 dst_deaths_5yr <- read_csv2("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
 dst_dd_age <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE)
+dst_dd_age_5yr <- read_csv2("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
 
 # Update list of SSI file dates
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
@@ -127,6 +128,44 @@ dst_dd_age %<>%
     "95-99" = X22,
     "100+" = X23
   ) 
+
+dst_dd_age_5yr %<>% 
+  pivot_longer(-Aldersgruppe, names_to = "Date", values_to = "deaths") %>% 
+  mutate(year = as.double(str_sub(Date, 1, 4)),
+         Month = as.double(str_sub(Date, 6, 7)),
+         Day = str_sub(Date, 8, 10)) %>% 
+  select(-Date) %>% 
+  mutate(
+    Aldersgruppe = case_when(
+      Aldersgruppe == "0-4" ~ "0-49",
+      Aldersgruppe =="5-9" ~ "0-49",
+      Aldersgruppe =="10-14" ~ "0-49",
+      Aldersgruppe =="15-19" ~ "0-49",
+      Aldersgruppe =="20-24" ~ "0-49",
+      Aldersgruppe =="25-29" ~ "0-49",
+      Aldersgruppe =="30-34" ~ "0-49",
+      Aldersgruppe =="35-39" ~ "0-49",
+      Aldersgruppe =="40-44" ~ "0-49",
+      Aldersgruppe =="45-49" ~ "0-49",
+      Aldersgruppe =="50-54" ~ "50-59",
+      Aldersgruppe =="55-59" ~ "50-59",
+      Aldersgruppe =="60-64" ~ "60-69",
+      Aldersgruppe =="65-69" ~ "60-69",
+      Aldersgruppe =="70-74" ~ "70-79",
+      Aldersgruppe =="75-79" ~ "70-79",
+      Aldersgruppe =="80-84" ~ "80-89",
+      Aldersgruppe =="85-89" ~ "80-89",
+      Aldersgruppe =="90-94" ~ "90+",
+      Aldersgruppe =="95-99" ~ "90+",
+      Aldersgruppe =="100+" ~ "90+",
+      TRUE ~ Aldersgruppe
+    )) %>% 
+  group_by(Aldersgruppe, Month, Day) %>% 
+  summarize(deaths = sum(deaths, na.rm = TRUE) / 5) %>% 
+  mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>% 
+  ungroup() %>% 
+  select(-Month, -Day)
+
 
 # Tests -------------------------------------------------------------------
 

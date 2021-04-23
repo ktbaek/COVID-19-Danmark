@@ -874,7 +874,7 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   }
   
   
-  dst_dd_age %>% 
+  x <- dst_dd_age %>% 
     pivot_longer(-Date, names_to = "Aldersgruppe", values_to = "daily_deaths") %>% 
     mutate(
       Aldersgruppe = case_when(
@@ -901,22 +901,26 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
         Aldersgruppe =="100+" ~ "90+",
         TRUE ~ Aldersgruppe
       )) %>% 
-    group_by(Aldersgruppe, Date) %>% 
+    group_by(Aldersgruppe, Date) %>%
     summarize(daily_deaths = sum(daily_deaths, na.rm = TRUE)) %>% 
+    mutate(day = yday(Date)) %>% 
+    full_join(death_age_5yr, by = c("day", "Aldersgruppe")) %>% 
+    select(-day) %>% pivot_longer(-Date) %>% ggplot() + geom_line(aes(Date, value, color = name))
     group_by(Aldersgruppe) %>% 
     mutate(ra_deaths = ra(daily_deaths)) %>% 
-    pivot_longer(c(daily_deaths, ra_deaths), names_to = c("type", "deaths"), names_sep = "_") %>% 
+    mutate(avg_deaths = ra(avg_deaths)) %>% 
+    pivot_longer(c(daily_deaths, avg_deaths, ra_deaths), names_to = c("type", "deaths"), names_sep = "_") 
     
+  x %>% 
     ggplot() +
-    geom_line(aes(Date, value, color = Aldersgruppe, alpha = type, size = type)) +
+    geom_line(data = subset(x, type %in% c("daily", "ra")), aes(Date, value, color = Aldersgruppe, alpha = type, size = type)) +
+    geom_line(data = subset(x, type == "avg"), aes(Date, value), color = "gray25", alpha = 1, size = 0.2) +
     scale_alpha_manual(
       name = "", 
-      labels = c("Dagligt", "7-dages gennemsnit"), 
       values = c(0.5, 1)
     ) +
     scale_size_manual(
       name = "", 
-      labels = c("Dagligt", "7-dages gennemsnit"), 
       values = c(0.3, 1)
     ) +
     facet_wrap(~ Aldersgruppe) +
