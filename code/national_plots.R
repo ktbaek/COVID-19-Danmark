@@ -867,4 +867,66 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
   
   ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)
   
+  # døde i alt alder --------------------------------------------------------
+  
+  ra <- function(x, n = 7) {
+    stats::filter(x, rep(1 / n, n), sides = 2)
+  }
+  
+  
+  dst_dd_age %>% 
+    pivot_longer(-Date, names_to = "Aldersgruppe", values_to = "daily_deaths") %>% 
+    mutate(
+      Aldersgruppe = case_when(
+        Aldersgruppe == "0-4" ~ "0-49",
+        Aldersgruppe =="5-9" ~ "0-49",
+        Aldersgruppe =="10-14" ~ "0-49",
+        Aldersgruppe =="15-19" ~ "0-49",
+        Aldersgruppe =="20-24" ~ "0-49",
+        Aldersgruppe =="25-29" ~ "0-49",
+        Aldersgruppe =="30-34" ~ "0-49",
+        Aldersgruppe =="35-39" ~ "0-49",
+        Aldersgruppe =="40-44" ~ "0-49",
+        Aldersgruppe =="45-49" ~ "0-49",
+        Aldersgruppe =="50-54" ~ "50-59",
+        Aldersgruppe =="55-59" ~ "50-59",
+        Aldersgruppe =="60-64" ~ "60-69",
+        Aldersgruppe =="65-69" ~ "60-69",
+        Aldersgruppe =="70-74" ~ "70-79",
+        Aldersgruppe =="75-79" ~ "70-79",
+        Aldersgruppe =="80-84" ~ "80-89",
+        Aldersgruppe =="85-89" ~ "80-89",
+        Aldersgruppe =="90-94" ~ "90+",
+        Aldersgruppe =="95-99" ~ "90+",
+        Aldersgruppe =="100+" ~ "90+",
+        TRUE ~ Aldersgruppe
+      )) %>% 
+    group_by(Aldersgruppe, Date) %>% 
+    summarize(daily_deaths = sum(daily_deaths, na.rm = TRUE)) %>% 
+    group_by(Aldersgruppe) %>% 
+    mutate(ra_deaths = ra(daily_deaths)) %>% 
+    pivot_longer(c(daily_deaths, ra_deaths), names_to = c("type", "deaths"), names_sep = "_") %>% 
+    
+    ggplot() +
+    geom_line(aes(Date, value, color = Aldersgruppe, alpha = type, size = type)) +
+    scale_alpha_manual(
+      name = "", 
+      labels = c("Dagligt", "7-dages gennemsnit"), 
+      values = c(0.5, 1)
+    ) +
+    scale_size_manual(
+      name = "", 
+      labels = c("Dagligt", "7-dages gennemsnit"), 
+      values = c(0.3, 1)
+    ) +
+    facet_wrap(~ Aldersgruppe) +
+    scale_x_date(labels = my_date_labels, breaks = "4 months", minor_break = "1 month") +
+    labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark per alder", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik") +
+    scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
+    scale_colour_brewer(palette = "Set2", name = "") +
+    standard_theme +
+    theme(legend.position = "none")
+  
+  ggsave("../figures/ntl_deaths_age_total.png", width = 18, height = 10, units = "cm", dpi = 300)
+  
   

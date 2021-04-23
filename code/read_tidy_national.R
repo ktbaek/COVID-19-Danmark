@@ -7,6 +7,7 @@ ag <- read_csv2(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.c
 
 dst_deaths <- read_csv2("../data/DST_daily_deaths.csv", col_names = FALSE)
 dst_deaths_5yr <- read_csv2("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
+dst_dd_age <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE)
 
 # Update list of SSI file dates
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
@@ -96,6 +97,36 @@ dst_deaths %<>%
   rename(
     Date = X2, 
     current = X3)
+
+dst_dd_age %<>%
+  select(-X2) %>% 
+  rename(Date = X1) %>% 
+  mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
+  mutate(Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>% 
+  select(-md) %>% 
+  rename(
+    "0-4" = X3,
+    "5-9" = X4,
+    "10-14" = X5,
+    "15-19" = X6,
+    "20-24" = X7,
+    "25-29" = X8,
+    "30-34" = X9,
+    "35-39" = X10,
+    "40-44" = X11,
+    "45-49" = X12,
+    "50-54" = X13,
+    "55-59" = X14,
+    "60-64" = X15,
+    "65-69" = X16,
+    "70-74" = X17,
+    "75-79" = X18,
+    "80-84" = X19,
+    "85-89" = X20,
+    "90-94" = X21,
+    "95-99" = X22,
+    "100+" = X23
+  ) 
 
 # Tests -------------------------------------------------------------------
 
