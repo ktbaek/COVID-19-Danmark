@@ -770,7 +770,7 @@ ggsave("../figures/ntl_test_vs_dashboard.png", width = 18, height = 12, units = 
 
 cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
 
-dst_deaths_5yr %<>%
+dst_deaths_5yr %>%
   mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>%
   select(-Month, -Day) %>%
   pivot_longer(-md, names_to = "year", values_to = "Deaths") %>%
@@ -902,34 +902,43 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
         TRUE ~ Aldersgruppe
       )) %>% 
     group_by(Aldersgruppe, Date) %>%
-    summarize(daily_deaths = sum(daily_deaths, na.rm = TRUE)) %>% 
-    mutate(day = yday(Date)) %>% 
-    full_join(death_age_5yr, by = c("day", "Aldersgruppe")) %>% 
-    select(-day) %>% pivot_longer(-Date) %>% ggplot() + geom_line(aes(Date, value, color = name))
-    group_by(Aldersgruppe) %>% 
-    mutate(ra_deaths = ra(daily_deaths)) %>% 
-    mutate(avg_deaths = ra(avg_deaths)) %>% 
-    pivot_longer(c(daily_deaths, avg_deaths, ra_deaths), names_to = c("type", "deaths"), names_sep = "_") 
+    summarize(deaths = sum(daily_deaths, na.rm = TRUE)) %>% 
+    mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10)),
+           year = year(Date)) %>%
+    select(-Date) %>% 
+    
+    bind_rows(cbind(dst_dd_age_5yr, year = as.double("2019"))) %>% 
+    group_by(Aldersgruppe, year) %>% 
+    arrange(md) %>% 
+    filter(md != "0229") %>% 
+    mutate(ra_deaths = ra(deaths),
+           year = ifelse(year == 2019, "z2019", as.character(year))) %>% 
+    mutate(Date = ymd(paste("2019", str_sub(md, 1, 2), str_sub(md, 3, 4), sep = "-")))
     
   x %>% 
     ggplot() +
-    geom_line(data = subset(x, type %in% c("daily", "ra")), aes(Date, value, color = Aldersgruppe, alpha = type, size = type)) +
-    geom_line(data = subset(x, type == "avg"), aes(Date, value), color = "gray25", alpha = 1, size = 0.2) +
-    scale_alpha_manual(
-      name = "", 
-      values = c(0.5, 1)
-    ) +
+    geom_area(data = subset(x, year == "z2019"), aes(Date, ra_deaths), fill = hue_pal()(3)[3], alpha = 0.2) +
+    geom_line(aes(Date, ra_deaths, color = year, size = year)) +
     scale_size_manual(
       name = "", 
-      values = c(0.3, 1)
+      values = c(0.2, 0.2, 0.05),
+      guide = FALSE
     ) +
-    facet_wrap(~ Aldersgruppe) +
-    scale_x_date(labels = my_date_labels, breaks = "4 months", minor_break = "1 month") +
-    labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark per alder", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik") +
-    scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
-    scale_colour_brewer(palette = "Set2", name = "") +
-    standard_theme +
-    theme(legend.position = "none")
+    facet_wrap(~ Aldersgruppe, ncol = 6) +
+    scale_x_date(date_labels = "%b", breaks = c(ymd("2019-01-01"), ymd("2019-07-01")), date_minor_breaks = "1 month") +
+    scale_y_continuous(limits = c(0, NA)) +
+    labs(
+      x = "Dato", 
+      y = "Antal døde", 
+      title = "Daglige dødsfald i Danmark per alder", 
+      caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik") +
+    scale_colour_discrete(
+      name = "", 
+      labels = c("2020", "2021", "Gennemsnit 2015-19"))+#,
+     # values = c(admit_col, pct_col, darken("#16697a", .5))) +
+    guides(color = guide_legend(override.aes = list(size = 2)))+
+    standard_theme 
+   
   
   ggsave("../figures/ntl_deaths_age_total.png", width = 18, height = 10, units = "cm", dpi = 300)
   

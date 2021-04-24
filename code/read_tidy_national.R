@@ -129,6 +129,82 @@ dst_dd_age %<>%
     "100+" = X23
   ) 
 
+dst_folk <- read_csv2("../data/DST_FOLK1_2015-21.csv", col_names = FALSE) 
+
+dst_folk %<>% 
+  select(-X2, -X3, -X4) %>% 
+  rename(
+    Kvartal = X1, 
+    "0-4" = X5,
+    "5-9" = X6,
+    "10-14" = X7,
+    "15-19" = X8,
+    "20-24" = X9,
+    "25-29" = X10,
+    "30-34" = X11,
+    "35-39" = X12,
+    "40-44" = X13,   
+    "45-49" = X14,
+    "50-54" = X15,
+    "55-59" = X16,
+    "60-64" = X17,   
+    "65-69" = X18,
+    "70-74" = X19,
+    "75-79" = X20,
+    "80-84" = X21,
+    "85-89" = X22,
+    "90-94" = X23,
+    "95-99" = X24,
+    "100-104" = X25,
+    "105-109" = X26,
+    "110+" = X27
+  ) %>% 
+  pivot_longer(-Kvartal, names_to = "Aldersgruppe", values_to = "Befolkning") %>% 
+  mutate(
+    Aldersgruppe = case_when(
+      Aldersgruppe == "0-4" ~ "0-49",
+      Aldersgruppe =="5-9" ~ "0-49",
+      Aldersgruppe =="10-14" ~ "0-49",
+      Aldersgruppe =="15-19" ~ "0-49",
+      Aldersgruppe =="20-24" ~ "0-49",
+      Aldersgruppe =="25-29" ~ "0-49",
+      Aldersgruppe =="30-34" ~ "0-49",
+      Aldersgruppe =="35-39" ~ "0-49",
+      Aldersgruppe =="40-44" ~ "0-49",
+      Aldersgruppe =="45-49" ~ "0-49",
+      Aldersgruppe =="50-54" ~ "50-59",
+      Aldersgruppe =="55-59" ~ "50-59",
+      Aldersgruppe =="60-64" ~ "60-69",
+      Aldersgruppe =="65-69" ~ "60-69",
+      Aldersgruppe =="70-74" ~ "70-79",
+      Aldersgruppe =="75-79" ~ "70-79",
+      Aldersgruppe =="80-84" ~ "80-89",
+      Aldersgruppe =="85-89" ~ "80-89",
+      Aldersgruppe =="90-94" ~ "90+",
+      Aldersgruppe =="95-99" ~ "90+",
+      Aldersgruppe =="100-104" ~ "90+",
+      Aldersgruppe =="105-109" ~ "90+",
+      Aldersgruppe =="110+" ~ "90+",
+      TRUE ~ Aldersgruppe
+    )) %>% 
+  group_by(Aldersgruppe, Kvartal) %>% 
+  summarize(Befolkning = sum(Befolkning, na.rm = TRUE)) %>% 
+  mutate(year = str_sub(Kvartal, 1, 4)) %>% 
+  select(-Kvartal) %>% 
+  group_by(Aldersgruppe, year) %>% 
+  summarize(Befolkning = mean(Befolkning, na.rm = TRUE)) 
+
+dst_folk_ratio <- dst_folk %>% 
+  mutate(niveau_2020 = ifelse(year == 2020, Befolkning, NA)) %>% 
+  group_by(Aldersgruppe) %>% 
+  fill(niveau_2020, .direction = "updown") %>% 
+  ungroup() %>% 
+  mutate(ratio_2020 = niveau_2020 / Befolkning) %>% 
+  select(Aldersgruppe, year, ratio_2020) %>% 
+  mutate(year = as.double(year))
+
+dst_dd_age_5yr <- read_csv2("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
+
 dst_dd_age_5yr %<>% 
   pivot_longer(-Aldersgruppe, names_to = "Date", values_to = "deaths") %>% 
   mutate(year = as.double(str_sub(Date, 1, 4)),
@@ -160,8 +236,10 @@ dst_dd_age_5yr %<>%
       Aldersgruppe =="100+" ~ "90+",
       TRUE ~ Aldersgruppe
     )) %>% 
+  full_join(dst_folk_ratio, by = c("Aldersgruppe", "year")) %>% 
+  mutate(adj_deaths = deaths * ratio_2020) %>% 
   group_by(Aldersgruppe, Month, Day) %>% 
-  summarize(deaths = sum(deaths, na.rm = TRUE) / 5) %>% 
+  summarize(deaths = sum(adj_deaths, na.rm = TRUE) / 5) %>% 
   mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>% 
   ungroup() %>% 
   select(-Month, -Day)

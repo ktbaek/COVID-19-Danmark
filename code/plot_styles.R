@@ -53,7 +53,7 @@ standard_theme <-
     panel.grid.major.x = element_line(size = 0.2),
     panel.grid.major.y = element_line(size = 0.3),
     legend.position = "top",
-    plot.margin = margin(1, 1, 0.3, 1, "cm"),
+    plot.margin = margin(.6, .6, .3, .6, "cm"),
     plot.title = element_text(face = "bold", hjust = 0.5),
     plot.caption = element_text(color = "gray70", hjust = 0, size = 8),
     plot.subtitle = element_text(color = "gray30", hjust = 0.5, size = 9),
