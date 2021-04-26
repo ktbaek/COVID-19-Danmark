@@ -225,6 +225,11 @@ ggsave("../figures/SSI_read_graph_pct_together.png", width = 20, height = 11.1, 
 
 
 
+
+
+
+
+
 # 
 # 
 # plot_data <- age_graph_2 %>%

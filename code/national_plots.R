@@ -770,7 +770,7 @@ ggsave("../figures/ntl_test_vs_dashboard.png", width = 18, height = 12, units = 
 
 cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
 
-dst_deaths_5yr %>%
+dst_deaths_5yr %<>%
   mutate(md = paste0(sprintf("%02d", Month), str_sub(Day, 2, 3))) %>%
   select(-Month, -Day) %>%
   pivot_longer(-md, names_to = "year", values_to = "Deaths") %>%
@@ -906,7 +906,6 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
     mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10)),
            year = year(Date)) %>%
     select(-Date) %>% 
-    
     bind_rows(cbind(dst_dd_age_5yr, year = as.double("2019"))) %>% 
     group_by(Aldersgruppe, year) %>% 
     arrange(md) %>% 
@@ -934,7 +933,7 @@ cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darke
       caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik") +
     scale_colour_discrete(
       name = "", 
-      labels = c("2020", "2021", "Gennemsnit 2015-19"))+#,
+      labels = c("2020", "2021", "Gennemsnit 2015-19 (justeret til 2020 befolkningstal)"))+#,
      # values = c(admit_col, pct_col, darken("#16697a", .5))) +
     guides(color = guide_legend(override.aes = list(size = 2)))+
     standard_theme 
