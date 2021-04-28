@@ -156,7 +156,7 @@ p1 <- plot_data %>%
     labels = c("Observeret", "Forventet"), 
     values = c(0.7, 1) 
   ) +
-  scale_size_manual(s
+  scale_size_manual(
     name = "", 
     labels = c("Observeret", "Forventet"), 
     values = c(0.4, 1)
