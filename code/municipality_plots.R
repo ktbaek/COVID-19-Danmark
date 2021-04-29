@@ -482,63 +482,63 @@ ggsave("../figures/muni_pct_landsdele.png", width = 23, height = 14, units = "cm
 
 
 
-# Figur: Positiv vs testede - NJ kommuner, 1 md------------------
-
-nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
-
-plot_data <- muni_all %>%
-  filter(Date > ymd(today) - months(2)) %>%
-  group_by(Kommune) %>%
-  filter(Kommune %in% nj7) %>%
-  ungroup() %>%
-  mutate(Positive = Positive * 100) %>%
-  pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
-
-ggplot(plot_data, aes(Date, value)) +
-  geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
-  geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 0.8, aes(color = variable)) +
-  facet_wrap(~Kommune, scales = "free", ncol = 4) +
-  scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
-  scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_y_continuous(
-    name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
-    limits = c(0, NA)
-  ) +
-  labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for 7 nordjyske kommuner") +
-  facet_theme
-
-ggsave("../figures/muni_NJ7_pos_vs_test.png", width = 28, height = 13, units = "cm", dpi = 300)
-
-# Figur: Procent - NJ kommuner, 1 md --------
-ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 1)
-}
-
-plot_data <- muni_all %>%
-  filter(Date > ymd(today) - months(2)) %>%
-  filter(Kommune %in% nj7) %>%
-  mutate(pct = Positive / Tested * 100) %>%
-  group_by(Kommune) %>%
-  mutate(ra_pct = ra(pct)) %>%
-  ungroup()
-
-max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
-
-ggplot(plot_data) +
-  geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
-  geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
-  facet_wrap(~Kommune, scales = "free", ncol = 4) +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
-  scale_y_continuous(
-    limits = c(0, max_y_value)
-  ) +
-  labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for 7 nordjyske kommuner") +
-  facet_theme
-
-ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi = 300)
-
+# # Figur: Positiv vs testede - NJ kommuner, 1 md------------------
+# 
+# nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
+# 
+# plot_data <- muni_all %>%
+#   filter(Date > ymd(today) - months(2)) %>%
+#   group_by(Kommune) %>%
+#   filter(Kommune %in% nj7) %>%
+#   ungroup() %>%
+#   mutate(Positive = Positive * 100) %>%
+#   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
+# 
+# ggplot(plot_data, aes(Date, value)) +
+#   geom_bar(data = subset(plot_data, variable == 'Positive'), stat = "identity", position = "identity", size = 1, aes(fill = variable), width = 1) +
+#   geom_line(data = subset(plot_data, variable == 'Tested'), stat = "identity", position = "identity", size = 0.8, aes(color = variable)) +
+#   facet_wrap(~Kommune, scales = "free", ncol = 4) +
+#   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
+#   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
+#   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+#   scale_y_continuous(
+#     name = "Testede",
+#     sec.axis = sec_axis(~ . / 100, name = "Positive"),
+#     limits = c(0, NA)
+#   ) +
+#   labs(y = "Positive : Testede", x = "Dato", title = "Dagligt antal nye positive og testede for 7 nordjyske kommuner") +
+#   facet_theme
+# 
+# ggsave("../figures/muni_NJ7_pos_vs_test.png", width = 28, height = 13, units = "cm", dpi = 300)
+# 
+# # Figur: Procent - NJ kommuner, 1 md --------
+# ra <- function(x, n = 7) {
+#   stats::filter(x, rep(1 / n, n), sides = 1)
+# }
+# 
+# plot_data <- muni_all %>%
+#   filter(Date > ymd(today) - months(2)) %>%
+#   filter(Kommune %in% nj7) %>%
+#   mutate(pct = Positive / Tested * 100) %>%
+#   group_by(Kommune) %>%
+#   mutate(ra_pct = ra(pct)) %>%
+#   ungroup()
+# 
+# max_y_value <- ceiling(max(plot_data$pct, na.rm = TRUE))
+# 
+# ggplot(plot_data) +
+#   geom_bar(stat = "identity", position = "stack", aes(Date, pct), fill = alpha(pct_col, 0.8), width = 1) +
+#   geom_line(aes(Date, ra_pct), size = 1, color = darken(pct_col, 0.2)) +
+#   facet_wrap(~Kommune, scales = "free", ncol = 4) +
+#   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+#   scale_y_continuous(
+#     limits = c(0, max_y_value)
+#   ) +
+#   labs(y = "Procent positive", x = "Dato", title = "Daglig procent positivt testede for 7 nordjyske kommuner") +
+#   facet_theme
+# 
+# ggsave("../figures/muni_NJ7_pct.png", width = 27, height = 13, units = "cm", dpi = 300)
+# 
 
 # Figur: Positiv vs testede - København og omegn, 1 md------------------
 
@@ -621,41 +621,41 @@ ggplot() +
 ggsave("../figures/muni_kbharea_pct.png", width = 24, height = 15, units = "cm", dpi = 300)
 
 
-# procent med og uden nordjylland -----------------------------------------
-nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
-
-
-muni_all %>%
-  full_join(geo, by = "Kommune") %>%
-  filter(Date > ymd(today)- months(1)) %>%
-  mutate(nj7 = ifelse(Kommune %in% nj7, TRUE, FALSE)) %>%
-  group_by(Date) %>%
-  mutate(pct_total = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
-  ungroup() %>%
-  group_by(nj7, Date) %>%
-  mutate(pct_stratified = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
-  ungroup() %>%
-  filter(!nj7) %>%
-  select(Date, pct_stratified, pct_total) %>%
-  distinct() %>%
-  pivot_longer(-Date, names_to = "variable", values_to = "values") %>%
-  ggplot(aes(Date, values)) +
-  geom_line(aes(color = variable), size = 2) + 
-  scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
-  labs(y = "Positivprocent", x = "Dato", title = "Positivprocent med og uden de 7 nordjyske kommuner", caption = standard_caption) +
-  scale_color_manual(name = "", labels = c("Uden nordjylland", "Hele landet"), values = c(lighten(pct_col, 0.2), darken(pct_col, 0.2))) +
-  scale_y_continuous(
-    limits = c(0, NA)
-  ) +
-  standard_theme
-
-ggsave("../figures/muni_pct_stratified.png", width = 20, height = 12, units = "cm", dpi = 300)
-
-
-
-
-
-
+# # procent med og uden nordjylland -----------------------------------------
+# nj7 <- c("Frederikshavn", "Hjørring", "Vesthimmerlands", "Brønderslev", "Jammerbugt", "Thisted", "Læsø")
+# 
+# 
+# muni_all %>%
+#   full_join(geo, by = "Kommune") %>%
+#   filter(Date > ymd(today)- months(1)) %>%
+#   mutate(nj7 = ifelse(Kommune %in% nj7, TRUE, FALSE)) %>%
+#   group_by(Date) %>%
+#   mutate(pct_total = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
+#   ungroup() %>%
+#   group_by(nj7, Date) %>%
+#   mutate(pct_stratified = sum(Positive, na.rm = TRUE)/sum(Tested, na.rm = TRUE) * 100) %>%
+#   ungroup() %>%
+#   filter(!nj7) %>%
+#   select(Date, pct_stratified, pct_total) %>%
+#   distinct() %>%
+#   pivot_longer(-Date, names_to = "variable", values_to = "values") %>%
+#   ggplot(aes(Date, values)) +
+#   geom_line(aes(color = variable), size = 2) + 
+#   scale_x_date(date_labels = "%e. %b", date_breaks = "1 week") +
+#   labs(y = "Positivprocent", x = "Dato", title = "Positivprocent med og uden de 7 nordjyske kommuner", caption = standard_caption) +
+#   scale_color_manual(name = "", labels = c("Uden nordjylland", "Hele landet"), values = c(lighten(pct_col, 0.2), darken(pct_col, 0.2))) +
+#   scale_y_continuous(
+#     limits = c(0, NA)
+#   ) +
+#   standard_theme
+# 
+# ggsave("../figures/muni_pct_stratified.png", width = 20, height = 12, units = "cm", dpi = 300)
+# 
+# 
+# 
+# 
+# 
+# 
 
 # indikatorer per region -----------------------------------------------------
 
@@ -824,76 +824,76 @@ walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
 
 
 
-# Risikerer nedlukning ----------------------------------------------------
-
-
-
-
-
-
-
-muni_alert <- muni_all %>% 
-  filter(Date >= ymd(today) - days(8)) %>%
-  full_join(muni_population, by = c("Kommune", "Date")) %>% 
-  group_by(Kommune) %>% 
-  summarize(positive = sum(Positive, na.rm = TRUE),
-            incidens = positive / Befolkningstal * 100000) %>% 
-  filter(!is.na(incidens)) %>% 
-  distinct() %>% 
-  filter(incidens >= 120) %>% 
-  pull(Kommune) %>% 
-  unique()
-
-
-
-plot_data <- muni_all %>%
-  full_join(muni_population, by = c("Kommune", "Date")) %>% 
-  filter(Date > ymd(today) - months(2)) %>%
-  group_by(Kommune) %>% 
-  fill(Befolkningstal, .direction = "down") %>% 
-  filter(!is.na(Positive)) %>% 
-  mutate(
-    test_intensity =  Tested / (0.017 * Befolkningstal),
-    adj_incidens = Positive * (0.017 * Befolkningstal / Tested)**0.58 / Befolkningstal * 100000,
-    roll_sum_adj_inc = sum_run(x = adj_incidens, k = 7, idx = Date, na_rm = TRUE)) 
-
-max_value <- max(c(plot_data$roll_incidens, plot_data$roll_pct))
-
-muni_alert <- plot_data %>% 
-  filter(Date >= ymd(today) - days(8)) %>%
-  group_by(Kommune) %>% 
-  summarize(sum = sum(adj_incidens, na.rm = TRUE)) %>% 
-  filter(sum >= 100) %>% 
-  pull(Kommune)
-  
-
-n_rows <- ceiling(length(muni_alert)/5)
-
-plot_data %>% 
-  filter(Kommune %in% muni_alert) %>% 
-  filter(Date > ymd(today) - months(1)) %>%
-  ggplot() +
-  geom_line(
-    aes(Date, roll_sum_adj_inc), 
-    color = pos_col, 
-    size = 1) +
-  geom_hline(
-    yintercept = 200, 
-    color = pos_col, 
-    alpha = 0.8, 
-    size = 0.3) +
-  facet_wrap(~ Kommune, ncol = 5) +
-  scale_x_date(labels = my_date_labels, breaks = "2 week") +
-  scale_y_continuous(limits = c(0, max_value)) +
-  labs(
-    y = "Testjusteret incidens",
-    x = "Dato", 
-    title = "Testjusteret incidens", 
-    caption = standard_caption, 
-    subtitle = paste0('Beregnet som 7-dages løbende sum af daglig testjusteret incidens . Seneste dato: ', ymd(today) - days(2))) +
-  facet_theme +
-  theme(
-    legend.position = "none",
-    plot.subtitle = element_markdown())
-
-ggsave("../figures/muni_alert.png", width = 20, height = 4 + n_rows * 3, units = "cm", dpi = 300)
+# # Risikerer nedlukning ----------------------------------------------------
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# muni_alert <- muni_all %>% 
+#   filter(Date >= ymd(today) - days(8)) %>%
+#   full_join(muni_population, by = c("Kommune", "Date")) %>% 
+#   group_by(Kommune) %>% 
+#   summarize(positive = sum(Positive, na.rm = TRUE),
+#             incidens = positive / Befolkningstal * 100000) %>% 
+#   filter(!is.na(incidens)) %>% 
+#   distinct() %>% 
+#   filter(incidens >= 120) %>% 
+#   pull(Kommune) %>% 
+#   unique()
+# 
+# 
+# 
+# plot_data <- muni_all %>%
+#   full_join(muni_population, by = c("Kommune", "Date")) %>% 
+#   filter(Date > ymd(today) - months(2)) %>%
+#   group_by(Kommune) %>% 
+#   fill(Befolkningstal, .direction = "down") %>% 
+#   filter(!is.na(Positive)) %>% 
+#   mutate(
+#     test_intensity =  Tested / (0.017 * Befolkningstal),
+#     adj_incidens = Positive * (0.017 * Befolkningstal / Tested)**0.58 / Befolkningstal * 100000,
+#     roll_sum_adj_inc = sum_run(x = adj_incidens, k = 7, idx = Date, na_rm = TRUE)) 
+# 
+# max_value <- max(c(plot_data$roll_incidens, plot_data$roll_pct))
+# 
+# muni_alert <- plot_data %>% 
+#   filter(Date >= ymd(today) - days(8)) %>%
+#   group_by(Kommune) %>% 
+#   summarize(sum = sum(adj_incidens, na.rm = TRUE)) %>% 
+#   filter(sum >= 100) %>% 
+#   pull(Kommune)
+#   
+# 
+# n_rows <- ceiling(length(muni_alert)/5)
+# 
+# plot_data %>% 
+#   filter(Kommune %in% muni_alert) %>% 
+#   filter(Date > ymd(today) - months(1)) %>%
+#   ggplot() +
+#   geom_line(
+#     aes(Date, roll_sum_adj_inc), 
+#     color = pos_col, 
+#     size = 1) +
+#   geom_hline(
+#     yintercept = 200, 
+#     color = pos_col, 
+#     alpha = 0.8, 
+#     size = 0.3) +
+#   facet_wrap(~ Kommune, ncol = 5) +
+#   scale_x_date(labels = my_date_labels, breaks = "2 week") +
+#   scale_y_continuous(limits = c(0, max_value)) +
+#   labs(
+#     y = "Testjusteret incidens",
+#     x = "Dato", 
+#     title = "Testjusteret incidens", 
+#     caption = standard_caption, 
+#     subtitle = paste0('Beregnet som 7-dages løbende sum af daglig testjusteret incidens . Seneste dato: ', ymd(today) - days(2))) +
+#   facet_theme +
+#   theme(
+#     legend.position = "none",
+#     plot.subtitle = element_markdown())
+# 
+# ggsave("../figures/muni_alert.png", width = 20, height = 4 + n_rows * 3, units = "cm", dpi = 300)
