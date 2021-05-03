@@ -128,10 +128,6 @@ y <- tests %>%
   pivot_longer(-Date, values_to = "Nyindlagte") %>% 
   filter(Date >= ymd("2021-01-01")) 
 
-ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 2)
-}
-
 p1 <- plot_data %>% 
   rename(
     obs_death = Antal_døde,
