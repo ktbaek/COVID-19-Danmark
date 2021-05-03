@@ -17,6 +17,7 @@ last_file <- tail(SSI_files[str_starts(SSI_files, "SSIdata_")], 1)
 today_string <- str_sub(last_file, 9, 15)
 today <- paste0("20", str_sub(today_string, 1, 2), "-", str_sub(today_string, 3, 4), "-", str_sub(today_string, 5, 6))
 
+source("functions.R")
 source("plot_styles.R")
   
 source("update_dashboard_data.R")
@@ -27,6 +28,9 @@ cat("Read and tidy, national DONE\n")
 
 source("national_plots.R")
 cat("Whole country plots DONE\n")
+
+source("Ag_plots.R")
+cat("Ag plots DONE\n")
 
 source("vax_plots_2.R")
 cat("Vaxxxxxx plots DONE\n")

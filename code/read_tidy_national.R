@@ -1,14 +1,13 @@
 # Read data files ---------------------------------------------------------
+admitted <- read_data(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
+deaths <- read_data(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
+tests <- read_data(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
+ag <- read_data(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.csv"))
 
-admitted <- read_csv2(paste0("../data/SSIdata_", today_string, "/Newly_admitted_over_time.csv"))
-deaths <- read_csv2(paste0("../data/SSIdata_", today_string, "/Deaths_over_time.csv"))
-tests <- read_csv2(paste0("../data/SSIdata_", today_string, "/Test_pos_over_time.csv"))
-ag <- read_csv2(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.csv"))
-
-dst_deaths <- read_csv2("../data/DST_daily_deaths.csv", col_names = FALSE)
-dst_deaths_5yr <- read_csv2("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
-dst_dd_age <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE)
-dst_dd_age_5yr <- read_csv2("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
+dst_deaths <- read_data("../data/DST_daily_deaths.csv", col_names = FALSE)
+dst_deaths_5yr <- read_data("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
+dst_dd_age <- read_data("../data/DST_deaths_daily_age.csv", col_names = FALSE)
+dst_dd_age_5yr <- read_data("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
 
 # Update list of SSI file dates
 ssi_filer_date <- readRDS("../data/ssi_file_date.RDS")
@@ -16,63 +15,68 @@ ssi_filer_date %<>% c(ssi_filer_date, today_string)
 ssi_filer_date %<>% unique()
 saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
 
-# Download SSI files from SSI website. Done once. -----------------------------------------------------------
-
-# ssi_filer <-  read_csv("../data/ssifiler.txt", col_names = FALSE) #liste over links til filer fra SSI
-#
-# #correct messy SSI file names
-# ssi_filer %<>% mutate(files = paste0(X1, ".zip"),
-#                       date = str_sub(X1, str_length(X1)-12, str_length(X1)-5),
-#                       date = paste0(20, str_sub(date, 3, 4), str_sub(date, 1, 2)),
-#                       date = ifelse(date == "2020-2", "200622", date),
-#                       date = ifelse(date == "203.f4", "200728", date),
-#                       date = ifelse(date == "205260", "200516", date),
-#                       date = ifelse(date == "20g.7j", "200727", date),
-#                       date = ifelse(date == "20t.3y", "200813", date),
-#                       date = ifelse(date == "202007", "200707", date))
-#
-# # dl <- function(x, y) {
-# #
-# #   try(download.file(x, paste0("../data/SSIdata_", y, ".zip"), mode="wb"))
-# #
-# #   print(y)
-# #
-# # }
-#
-# # mapply(dl , ssi_filer$files, ssi_filer$date)
-# # unzip("../data/test.zip", "../data/test")
-#
-# ssi_filer <- ssi_filer[!(ssi_filer$date=="200728"),] #indeholder ikke aldersgruppe data
-# ssi_filer <- ssi_filer[!(ssi_filer$date=="200622"),] #indeholder ikke aldersgruppe data
-#
-# ssi_filer_date <- ssi_filer$date
-# ssi_filer_date %<>% c(ssi_filer_date, "200903", "200904", "200907")
-#
-# saveRDS(ssi_filer_date, file = "../data/ssi_file_date.RDS")
-
-
 # Tidy NATIONAL data ------------------------------------------------
-ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 2)
+if(!is.null(tests)) {
+  tests %<>%
+    slice(1:(n() - 4)) %>% # exclude last two days that may not be updated AND summary rows
+    mutate(Date = ymd(Date))
+}
+  
+if(!is.null(deaths)) {
+  deaths %<>%
+    slice(1:(n() - 2)) %>% # exclude summary row and last day that may not be updated
+    rename(
+      Date = Dato,
+      Deaths = Antal_døde
+    ) %>% 
+    mutate(Date = ymd(Date))
 }
 
-tests %<>%
-  slice(1:(n() - 4)) %>% # exclude last two days that may not be updated AND summary rows
-  mutate(Date = ymd(Date)) %>%
-  mutate(pct_confirmed = ifelse(NotPrevPos > 0, NewPositive / NotPrevPos * 100, NA))
+if(!is.null(admitted)) {
+  admitted %<>%
+    rename(
+      Date = Dato,
+      Admitted = Total
+      ) %>% 
+    mutate(Date = ymd(Date))
+}
 
-deaths %<>%
-  slice(1:(n() - 2)) %>% # exclude summary row and last day that may not be updated
-  mutate(Date = ymd(Dato)) %>%
-  select(-Dato)
+if(!any(is.null(c(tests, deaths, admitted)))) {
+  
+  full_data <- 
+    tests %>% 
+    full_join(admitted, by = "Date") %>%
+    full_join(deaths, by = "Date") %>%
+    filter(Date > ymd("2020-02-14"))
 
-admitted %<>%
-  mutate(Date = ymd(Dato)) %>%
-  select(-Dato)
+}
 
+if(!is.null(full_data)) {
+  
+  plot_data <- 
+    full_data %>% 
+    select(-Tested) %>% 
+    rename(
+      Positive = NewPositive,
+      Tested = NotPrevPos,
+      ) %>% 
+    mutate(Percent = Positive / Tested * 100,
+           Index = Positive / Tested**0.7) %>% 
+    select(Date, Positive, Tested, Percent, Index, Admitted, Deaths) %>% 
+    pivot_longer(-Date, values_to = "daily") %>% 
+    group_by(name) %>% 
+    mutate(ra = ra(daily)) %>% 
+    ungroup() %>% 
+    filter(Date > ymd("2020-02-14")) %>% 
+    write_csv2("../data/SSI_plot_data.csv")
+    
+    
+}
+
+if(!is.null(ag)) {
 ag %<>%
-  mutate(Date = ymd(Dato)) %>%
-  select(-Dato) %>% 
+  rename(Date = Dato) %>% 
+  mutate(Date = ymd(Date)) %>%
   select(Date, everything()) %>% 
   rename(AGpos_PCRneg = AGposPCRneg) %>% 
   mutate(
@@ -80,18 +84,7 @@ ag %<>%
     ra_ag_test = ra(AG_testede), 
     ra_ag_pos_pos = ra(AGpos_PCRpos))
   
-tests %<>% 
-  mutate(
-    running_avg_pct = ra(pct_confirmed),
-    running_avg_pos = ra(NewPositive),
-    running_avg_total = ra(Tested)
-)
-
-admitted %<>%
-  mutate(running_avg_admit = ra(Total))
-
-deaths %<>% 
-  mutate(running_avg_deaths = ra(Antal_døde))
+}
 
 dst_deaths %<>%
   select(-X1) %>%

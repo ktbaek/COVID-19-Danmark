@@ -664,7 +664,7 @@ ra <- function(x, n = 7) {
 }
 
 x <- admitted %>%
-  select(-running_avg_admit, -Total, -`Ukendt Region`) %>%
+  select(-`Ukendt Region`) %>%
   pivot_longer(-Date, names_to = "Region", values_to = "Admitted") 
 
 muni_all %>%
