@@ -664,7 +664,7 @@ ra <- function(x, n = 7) {
 }
 
 x <- admitted %>%
-  select(-`Ukendt Region`) %>%
+  select(-`Ukendt Region`, -Admitted) %>%
   pivot_longer(-Date, names_to = "Region", values_to = "Admitted") 
 
 muni_all %>%
