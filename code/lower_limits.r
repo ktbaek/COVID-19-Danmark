@@ -128,19 +128,20 @@ y <- tests %>%
   pivot_longer(-Date, values_to = "Nyindlagte") %>% 
   filter(Date >= ymd("2021-01-01")) 
 
+
+
 p1 <- plot_data %>% 
+  filter(name %in% c("Positive", "Deaths", "Admitted", "Tested")) %>% 
+  pivot_wider(names_from = name, values_from = c(daily, ra), names_sep = "_") %>% 
   rename(
-    obs_death = Antal_døde,
-    obs_admit = Total) %>% 
+    obs_death = ra_Deaths,
+    obs_admit = ra_Admitted) %>% 
   mutate(
-    obs_death = ra(obs_death),
-    obs_admit = ra(obs_admit),
-    pool_30 = rollsum(NewPositive, 30, align = "right", na.pad = TRUE),
-    pool_14 = rollsum(NewPositive, 14, align = "right", na.pad = TRUE),
+    pool_30 = rollsum(daily_Positive, 30, align = "right", na.pad = TRUE),
+    pool_14 = rollsum(daily_Positive, 14, align = "right", na.pad = TRUE),
     pred_death =  pool_30 * 150 / 5800000,
-    pred_admit = (pool_14 * 3000 / 5800000) + (3000 * NewPositive / NotPrevPos),
-    pred_death = ra(pred_death),
-    pred_admit = ra(pred_admit)) %>% 
+    pred_admit = (pool_14 * 3000 / 5800000) + (3000 * daily_Positive / daily_Tested)
+    ) %>% 
   select(Date, obs_death, obs_admit, pred_death, pred_admit) %>% 
   pivot_longer(-Date, names_to = c("type", "variable"), names_sep = "_") %>% 
   filter(Date >= ymd("2021-02-01")) %>% 
@@ -162,7 +163,7 @@ p1 <- plot_data %>%
   labs(
     x = "Dato", 
     y = "Antal", 
-    title = "<b><span style = 'font-size:14pt'>Nedre grænse for antal COVID-19 nyindlæggelser og døde</span></b><br><br>Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test kan der registreres nyindlagte og døde selv i et scenarie hvor ingen indlægges eller dør pga. COVID-19.<br><br>De <b style='color:#FC8D62;'>nedre grænser</b> er beregnet udfra antal PCR positive, den gennemsnitlige risiko for hhv. indlæggelse og død, og metoden hvormed COVID-19 indlæggelser og døde opgøres.<br> ", 
+    title = "<b><span style = 'font-size:14pt'>Nedre grænse for antal COVID-19 nyindlæggelser og døde</span></b><br><br>Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test kan der registreres nyindlagte og døde selv i et scenarie hvor ingen indlægges eller dør pga. COVID-19.<br><br>De <b style='color:#FC8D62;'>nedre grænser</b> er beregnet udfra antal PCR positive, den gennemsnitlige statistiske risiko for hhv. indlæggelse og død, og metoden hvormed COVID-19 indlæggelser og døde opgøres.<br> ", 
     caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_colour_brewer(palette = "Set2", name = "", 
                       labels = c("Observeret 7-dages gennemsnit", "Estimeret nedre grænse")) +
@@ -177,61 +178,37 @@ p1 <- plot_data %>%
   
 ggsave("../figures/ntl_admit_death_expected.png", width = 20, height = 11, units = "cm", dpi = 300)
 
-p2 <- plot_data %>% 
-  rename(
-    obs_death = Antal_døde,
-    obs_admit = Total,
-    obs_pos = NewPositive) %>% 
+
+plot_data %>% 
+  filter(name %in% c("Positive", "Tested")) %>% 
+  pivot_wider(names_from = name, values_from = c(daily, ra), names_sep = "_") %>% 
   mutate(
-    obs_death = ra(obs_death),
-    obs_admit = ra(obs_admit),
-    obs_pos = ra(obs_pos),
-    pred_pos = NotPrevPos * 0.001,
-    pool_30 = rollsum(pred_pos, 30, align = "right", na.pad = TRUE),
-    pool_14 = rollsum(pred_pos, 14, align = "right", na.pad = TRUE),
-    pred_death =  pool_30 * 150 / 5800000,
-    pred_admit = (pool_14 * 3000 / 5800000) + (3000 * 0.001),
-    pred_death = ra(pred_death),
-    pred_admit = ra(pred_admit),
-    pred_pos = ra(pred_pos)) %>% 
-  select(Date, obs_death, obs_admit, obs_pos, pred_pos, pred_death, pred_admit) %>% 
-  pivot_longer(-Date, names_to = c("type", "variable"), names_sep = "_") %>% 
-  mutate(
-    variable = case_when(
-      variable == "admit" ~ "y_admit",
-      variable == "death" ~ "z_death",
-      variable == "pos" ~ "pos"
-    )
+    obs_pos = daily_Positive,
+    pred_pos = daily_Tested * 0.002
   ) %>% 
   filter(Date >= ymd("2021-02-01")) %>% 
+  select(Date, obs_pos, pred_pos) %>% 
+  pivot_longer(-Date) %>% 
   ggplot() +
-  geom_line(aes(Date, value, color = type), size = 1)+#, alpha = type, size = type)) +
-  facet_wrap(~ variable, scales = "free", labeller = as_labeller(c("z_death" = "Døde",  
-                                                                   "y_admit" = "Nyindlæggelser",
-                                                                   "pos" = "Positive"))) +
-  scale_alpha_manual(
-    name = "", 
-    labels = c("Observeret", "Forventet"), 
-    values = c(0.7, 1) 
-  ) +
-  scale_size_manual(
-    name = "", 
-    labels = c("Observeret", "Forventet"), 
-    values = c(0.4, 1)
-  ) +
+  geom_line(aes(Date, value, color = name), size = 1)+#, alpha = type, size = type)) +
   scale_x_date(labels = my_date_labels, breaks = "1 months", minor_break = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     x = "Dato", 
     y = "Antal", 
-    title = "Nedre grænse ved falsk-positivrate = 0.1%", 
-    caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI",
-    subtitle = "Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test\nvil falske positive tests også slå igennem i antal nyindlæggelser og døde.\n\n De nedre grænser er beregnet udfra antal PCR testede, den gennemsnitlige risiko for hhv. indlæggelse og død,\nog metoden hvormed COVID-19 indlæggelser og døde opgøres.") +
+    title = "<b><span style = 'font-size:14pt'>Nedre grænse for antal COVID-19 nyindlæggelser og døde</span></b><br><br>Fordi antallet af COVID-19 indlæggelser og døde kun er baseret på en positiv SARS-CoV-2 test kan der registreres nyindlagte og døde selv i et scenarie hvor ingen indlægges eller dør pga. COVID-19.<br><br>De <b style='color:#FC8D62;'>nedre grænser</b> er beregnet udfra antal PCR positive, den gennemsnitlige statistiske risiko for hhv. indlæggelse og død, og metoden hvormed COVID-19 indlæggelser og døde opgøres.<br> ", 
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_colour_brewer(palette = "Set2", name = "", 
                       labels = c("Observeret 7-dages gennemsnit", "Estimeret nedre grænse")) +
   facet_theme +
   theme(
+    plot.title.position = "plot",
+    plot.title = element_textbox_simple(
+      size = 10, face = "plain", lineheight = 1, padding = margin(0, 0, 5, 0)
+    ),
     strip.text = element_text(size = 10, face = "bold")
   )
+
+
 
 

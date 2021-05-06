@@ -74,11 +74,11 @@ week_df %>%
 
 week_admitted <- admitted %>%
   mutate(Week_end_Date = ceiling_date(Date + 4, unit = "week", getOption("lubridate.week.start", 0)) - 4) %>%
-  select(Week_end_Date, Total) %>%
+  select(Week_end_Date, Admitted) %>%
   filter(Week_end_Date > ymd("2020-03-11")) %>%
   rename(Date = Week_end_Date) %>%
   group_by(Date) %>%
-  summarise(value = sum(Total)) %>%
+  summarise(value = sum(Admitted)) %>%
   ungroup() %>%
   mutate(variable = "admitted") 
 

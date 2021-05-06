@@ -32,8 +32,8 @@ cat("Whole country plots DONE\n")
 source("Ag_plots.R")
 cat("Ag plots DONE\n")
 
-source("vax_plots_2.R")
-cat("Vaxxxxxx plots DONE\n")
+#source("vax_plots_2.R")
+#cat("Vaxxxxxx plots DONE\n")
 
 source("Read_tidy_muni.R")
 cat("Read and tidy, municipality DONE\n")

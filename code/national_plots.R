@@ -496,15 +496,11 @@ x %>%
 
 ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 10, units = "cm", dpi = 300)
   
-# Tiltag 2020 vs 2021 -------------------------------------------------------
+#  2020 vs 2021 -------------------------------------------------------
 
 x <- plot_data %>%
   filter(Date > ymd("2020-03-15")) %>% 
   filter(name %in% c("Admitted", "Deaths", "Index")) %>% 
-  mutate(
-    daily = ifelse(name == "Index", daily * 100, daily),
-    ra = ifelse(name == "Index", ra * 100, ra)
-  ) %>% 
   pivot_longer(c(daily, ra), names_to = "type") %>% 
   mutate(
     year = as.character(year(ymd(Date))),
