@@ -52,10 +52,7 @@ if(wday(ymd(today)) == 5){
   source("age_plots.R")
   cat("Age plots DONE\n")
   
-  }
-
-#source("baekkepp_model.R")
-#cat("Model updated\n")
+}
 
 source("update_index_md.R")
 cat("Index files updated\n")

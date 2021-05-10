@@ -99,7 +99,122 @@ plot_data <- model_data %>%
   filter(Date > as.Date("2020-02-15"))
 
 
-source("plot_styles.R")
+# Custom base plot functions -------------------------------------------------
+
+standard_plot <- function(title,
+                          max_y_value,
+                          y_label = "Antal",
+                          x_label = "Dato",
+                          y_label_dist = 4,
+                          x_by = "2 months",
+                          start_date = "2020-02-15",
+                          end_date = today) {
+  
+  par(family = "lato", mar = c(5, 8, 5, 2))
+  
+  plot(NULL,
+       type = "n",
+       ylab = "",
+       xlab = "",
+       axes = FALSE,
+       cex = 1.2,
+       cex.axis = cex_axis,
+       ylim = c(0, max_y_value),
+       xlim = c(as.Date(start_date), as.Date(end_date) - 1),
+  )
+  
+  
+  mtext(
+    text = title,
+    side = 3, # side 1 = bottom
+    line = 1,
+    cex = 1.5,
+    font = 2
+  )
+  
+  mtext(
+    text = x_label,
+    side = 1, # side 1 = bottom
+    line = 3,
+    cex = cex_labels,
+    font = 2
+  )
+  
+  mtext(
+    text = y_label,
+    side = 2, # side 1 = bottom
+    line = y_label_dist,
+    cex = cex_labels,
+    font = 2
+  )
+  
+  box(which = "plot", lty = "solid")
+  
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, x_by), format = "%b", cex.axis = cex_axis)
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, "1 month"), labels = FALSE, cex.axis = cex_axis)
+  
+  
+}
+
+double_plot <- function(title,
+                        max_y_value,
+                        y_label = "Antal",
+                        x_label = "Dato",
+                        y2_label,
+                        y_label_dist = 4,
+                        x_by = "2 months",
+                        start_date = "2020-02-15",
+                        end_date = today) {
+  
+  y2_label_pos <- as.double(0.21 * (as.Date(end_date) - as.Date(start_date)))
+  
+  par(family = "lato", mar = c(5, 8, 5, 6))
+  
+  plot(NULL,
+       type = "n",
+       ylab = "",
+       xlab = "",
+       axes = FALSE,
+       cex = 1.2,
+       cex.axis = cex_axis,
+       ylim = c(0, max_y_value),
+       xlim = c(as.Date(start_date), as.Date(end_date) - 1),
+  )
+  
+  
+  mtext(
+    text = title,
+    side = 3, # side 1 = bottom
+    line = 1,
+    cex = 1.5,
+    font = 2
+  )
+  
+  mtext(
+    text = x_label,
+    side = 1, # side 1 = bottom
+    line = 3,
+    cex = cex_labels,
+    font = 2
+  )
+  
+  mtext(
+    text = y_label,
+    side = 2, # side 1 = bottom
+    line = y_label_dist,
+    cex = cex_labels,
+    font = 2
+  )
+  
+  
+  box(which = "plot", lty = "solid")
+  
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, x_by), format = "%b", cex.axis = cex_axis)
+  axis.Date(1, at = seq(as.Date("2020-03-01"), as.Date(end_date) - 1, "1 month"), labels = FALSE, cex.axis = cex_axis)
+  
+  text(par("usr")[2] + y2_label_pos, mean(par("usr")[3:4]), y2_label, srt = -90, xpd = TRUE, adj = 0.5, cex = cex_labels, font = 2)
+}
+
 ra_lwd  <- 4
 cex_labels <- 1.4
 cex_axis <- 1.4

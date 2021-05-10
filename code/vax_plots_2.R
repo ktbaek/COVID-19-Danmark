@@ -18,6 +18,7 @@ age_vax_df %>%
     Done = sum(Done, na.rm = TRUE)) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, Begun, fill = Sex), stat = "identity", position = "dodge") +
+  scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   labs(
     y = "Antal", 
     title = "Antal påbegyndt COVID-19 vaccinerede per køn og alder", 
