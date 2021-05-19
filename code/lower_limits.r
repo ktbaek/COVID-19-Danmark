@@ -81,7 +81,7 @@ plot_data %>%
   labs(
     x = "Dato", 
     y = "Antal", 
-    title = "<b><span style = 'font-size:13pt'>Nedre grænse for antal COVID-19 nyindlæggelser</span></b><br><br>Fordi antallet af COVID-19 indlæggelser kun er baseret på en positiv SARS-CoV-2 test, kan der registreres nyindlagte selv i et scenarie hvor ingen indlægges pga. COVID-19.<br><br>De <b style='color:#FC8D62;'>nedre grænser</b> er beregnet udfra antal PCR positive, den gennemsnitlige statistiske risiko for indlæggelse, og metoden hvormed COVID-19 indlæggelser opgøres.<br><br>Estimeret nedre grænse for indlagte viser et interval mellem et muligt lavt og højt scenarie<br>", 
+    title = "<b><span style = 'font-size:13pt'>Nedre grænse for antal COVID-19 nyindlæggelser</span></b><br><br>Fordi antallet af COVID-19 indlæggelser kun er baseret på en positiv SARS-CoV-2 test, kan der registreres nyindlagte selv i et scenarie hvor ingen indlægges pga. COVID-19.<br><br>Den <b style='color:#FC8D62;'>nedre grænse</b> er beregnet udfra antal PCR positive, den gennemsnitlige statistiske risiko for indlæggelse, og metoden hvormed COVID-19 indlæggelser opgøres.<br><br>Estimeret nedre grænse for indlagte viser et interval mellem et muligt lavt og højt scenarie<br>", 
     caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI") +
   scale_colour_brewer(palette = "Set2", name = "", guide = FALSE) +
   scale_fill_brewer(palette = "Set2", name = "", 
@@ -90,7 +90,7 @@ plot_data %>%
   theme(
     plot.title.position = "plot",
     plot.title = element_textbox_simple(
-      size = 10, face = "plain", lineheight = 1.0.5, padding = margin(0, 5, 5, 0)
+      size = 10, face = "plain", lineheight = 1.05, padding = margin(0, 5, 5, 0)
     )
   )
 
