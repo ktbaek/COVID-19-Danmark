@@ -55,7 +55,7 @@ plot_data %>%
   filter(Date >= ymd("2021-02-01")) %>%
   ggplot() +
   geom_ribbon(aes(Date, ymin = lo, ymax = hi, fill = type), alpha = 0.8) +
-  geom_line(aes(Date, y, color = type), size = 1)+#, alpha = type, size = type)) +
+  geom_line(aes(Date, y, color = type), size = 1) +
   scale_x_date(labels = my_date_labels, breaks = "1 months", minor_break = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
