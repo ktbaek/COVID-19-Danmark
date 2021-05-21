@@ -47,7 +47,7 @@ plot_data %>%
   mutate(
     pool_14 = rollsum(daily_Positive, 14, align = "right", na.pad = TRUE),
     pred_admit_lo = (pool_14 * 2500 / 5800000) + (2500 * ra(daily_Positive / daily_Tested) * 0.7),
-    pred_admit_hi = (pool_14 * 2500 / 5800000) + (3000 * ra(daily_Positive / daily_Tested) * 1.5)
+    pred_admit_hi = (pool_14 * 2500 / 5800000) + (2500 * ra(daily_Positive / daily_Tested) * 1.5)
   ) %>%
   select(Date, obs_admit_y, pred_admit_lo, pred_admit_hi) %>%
   pivot_longer(-Date, names_to = c("type", "variable", "limit"), names_sep = "_") %>%
