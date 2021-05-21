@@ -1,7 +1,7 @@
 Estimat af nedre grænse for COVID-19 indlæggelser
 ================
 Kristoffer T. Bæk
-s
+
 2021-05-21
 
 
