@@ -1,5 +1,6 @@
 Estimat af nedre grænse for COVID-19 indlæggelser
 ================
+Kristoffer T. Bæk
 2021-05-21
 
 ### Estimat af hvor mange COVID-19 relaterede indlæggelser der vil registreres med SSI’s definition hvis ingen indlægges pga. COVID-19.
@@ -71,5 +72,3 @@ plot_data %>%
     )
   )
 ```
-
-![](admissions_calculation_files/figure-gfm/plot-1.png)<!-- -->
