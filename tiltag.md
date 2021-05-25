@@ -43,8 +43,7 @@
 | 6. april | 5-8.kl, ungdoms- og voksenuddannelser åbnes med 50% fysisk fremmøde. Videregående uddannelser åbnes med 20% fysisk fremmøde. Liberale erhverv åbner mod forevisning af coronapas.  |
 | 21. april | Indkøbscentre, stormagasiner mv. samt udeservering og organiseret idræt for børn. Udendørsservering på restauranter og cafeer mv., museer, kunsthaller samt biblioteker mod forevisning af coronapas. |
 | 6. maj | Indendørsservering på restauranter og cafeer mv., konferencer, spillesteder, teatre og biografer mod forevisning af coronapas. Indendørs idræt i organiseret regi for voksne over 18 år mod forevisning af coronapas. |
-| 21. maj | Der åbnes for alle resterende idræts- fritids- og foreningsaktiviteter mod forevisning af coronapas.
-Indendørsfaciliteter i forlystelsesparker, zoo, legelande mv. genåbnes mod forevisning af coronapas. Daghøjskoler og aftenskoler genåbnes under smitteforebyggende tiltag.  |
+| 21. maj | Der åbnes for alle resterende idræts- fritids- og foreningsaktiviteter mod forevisning af coronapas. Indendørsfaciliteter i forlystelsesparker, zoo, legelande mv. genåbnes mod forevisning af coronapas. Daghøjskoler og aftenskoler genåbnes under smitteforebyggende tiltag.  |
 
 
 
