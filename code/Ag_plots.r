@@ -91,20 +91,21 @@ ag_plot_data <-
   pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
   mutate(
     method = case_when(
-      method == "PCRonly" ~ "PCR uden antigen",
-      method == "PCRAgneg" ~ "PCR uden positive antigen",
-      method == "PCRall" ~ "PCR med alle antigen",
+      method == "PCRonly" ~ "PCR uden Ag-spor",
+      method == "Antigen" ~ "Ag-spor",
+      method == "PCRAgneg" ~ "PCR med pos fra Ag-spor",
+      method == "PCRall" ~ "PCR med Ag-spor",
       TRUE ~ method
     )
   )
 
 
 ag_plot_data %>% 
-  filter(str_detect(method, "PCR")) %>% 
+ # filter(str_detect(method, "PCR")) %>% 
   ggplot() +
   geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
   facet_grid(~ method) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 week", minor_breaks = "1 week") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   scale_color_manual(
     name = "", 
@@ -131,11 +132,32 @@ ag_plot_data %>%
   facet_theme + 
   theme(
     plot.subtitle = ggtext::element_markdown(),
-    #plot.title.position = 'plot',
+    plot.margin = margin(.6, .6, 0.3, .6, "cm"),
     plot.title = element_text(),
     legend.position = "none"
   )
 
 ggsave("../figures/ntl_ag_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+ag %>%
+  select(Date, AGnegPCRpos, AGnegPCRneg, AG_testede, AG_pos) %>% 
+  mutate(share_PCR_pos = 100 * AGnegPCRpos / (AGnegPCRneg + AGnegPCRpos),
+         share_PCR_test = 100 * (AGnegPCRneg + AGnegPCRpos) / (AG_testede - AG_pos)) %>% 
+ # pivot_longer(c(-Date)) %>% 
+  filter(Date > ymd("2021-01-31")) %>% 
+  ggplot() +
+  geom_line(aes(Date, share_PCR_test), size = 1) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Procent", 
+    x = "Dato", 
+    title = "Andel Ag-negative der dobbelttestes med PCR", 
+    caption = standard_caption
+  ) +
+  standard_theme  
+
+
 
 }
