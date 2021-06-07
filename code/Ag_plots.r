@@ -86,8 +86,14 @@ ag_plot_data <-
     ra_PCRall_pct = ra(daily_PCRall_pct),
     ra_PCRall_zix = ra(daily_PCRall_zix),
     ra_Total_pct = ra(daily_Total_pct),
-    ra_Total_zix = ra(daily_Total_zix)) %>% 
-  select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
+    ra_Total_zix = ra(daily_Total_zix))
+
+
+
+
+
+ag_plot_data %>%  
+select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
   pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
   mutate(
     method = case_when(
@@ -97,10 +103,7 @@ ag_plot_data <-
       method == "PCRall" ~ "PCR med Ag-spor",
       TRUE ~ method
     )
-  )
-
-
-ag_plot_data %>% 
+  ) %>% 
  # filter(str_detect(method, "PCR")) %>% 
   ggplot() +
   geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
@@ -140,6 +143,9 @@ ag_plot_data %>%
 ggsave("../figures/ntl_ag_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
+rsq <- function(x, y) summary(lm(y~x))$r.squared
+
+
 ag %>%
   select(Date, AGnegPCRpos, AGnegPCRneg, AG_testede, AG_pos) %>% 
   mutate(share_PCR_pos = 100 * AGnegPCRpos / (AGnegPCRneg + AGnegPCRpos),
@@ -158,6 +164,39 @@ ag %>%
   ) +
   standard_theme  
 
-
+ag_plot_data %>% 
+  mutate(
+    ra_AG_testede = ra(AG_testede),
+    ra_PCR_testede = ra(PCRonly_testede)
+    ) %>% 
+  select(ra_AG_testede, NewPositive, PCRonly_positive)  %>%  
+  rename(
+    "Smittetal" = NewPositive,
+    "Smittetal fraregnet PCR positive fra Ag-spor" = PCRonly_positive
+  ) %>% 
+  #select(ra_AG_testede, ra_PCRall_zix, ra_PCRonly_zix)  %>%  
+  #pivot_longer(c(-ra_AG_testede, -ra_PCR_testede))  %>%  
+  pivot_longer(-ra_AG_testede)  %>% 
+  #pivot_longer(c(-name, -value), names_to = "test", values_to = "test_value")  %>% 
+  group_by(name) %>% 
+  mutate(r2 = rsq(ra_AG_testede, value)) %>% 
+  ggplot() +
+  geom_point(aes(ra_AG_testede, value), alpha = 0.7) + 
+  geom_smooth(aes(ra_AG_testede, value), color = "orange", size = 0.5, method = "lm", se = FALSE) +
+  geom_text(aes(x = 140000, y = 100, label = paste0("R2 = ", round(r2, 2))), check_overlap = TRUE) +
+  facet_wrap(~name, scales = "free_x") +
+  scale_x_continuous(labels = scales::number) +
+  scale_y_continuous(limits = c(0,NA), labels = scales::number) +
+  labs(
+    y = "Indeks", 
+    x = "Antal testede i Ag-spor", 
+    title = "Smittetal vs antal Ag-testede", 
+    caption = standard_caption
+  ) +
+  standard_theme +
+  theme(
+    axis.title.x = element_text(face = "bold", margin = margin(t = 8, r = 0, b = 0, l = 0)),
+  )
+ggsave("../figures/ntl_ag_regression.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 }
