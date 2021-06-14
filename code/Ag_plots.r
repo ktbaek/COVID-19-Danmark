@@ -88,10 +88,6 @@ ag_plot_data <-
     ra_Total_pct = ra(daily_Total_pct),
     ra_Total_zix = ra(daily_Total_zix))
 
-
-
-
-
 ag_plot_data %>%  
 select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
   pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
@@ -104,7 +100,6 @@ select(Date, daily_Antigen_pct:ra_Total_zix) %>%
       TRUE ~ method
     )
   ) %>% 
- # filter(str_detect(method, "PCR")) %>% 
   ggplot() +
   geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
   facet_grid(~ method) +
@@ -166,13 +161,13 @@ ag %>%
 
 ag_plot_data %>% 
   mutate(
-    ra_AG_testede = ra(AG_testede),
+    ra_AG_testede = AG_testede,
     ra_PCR_testede = ra(PCRonly_testede)
     ) %>% 
   select(ra_AG_testede, NewPositive, PCRonly_positive)  %>%  
   rename(
-    "Smittetal" = NewPositive,
-    "Smittetal fraregnet PCR positive fra Ag-spor" = PCRonly_positive
+    "PCR smittetal" = NewPositive,
+    "PCR smittetal (uden personer fra Ag-spor)" = PCRonly_positive
   ) %>% 
   #select(ra_AG_testede, ra_PCRall_zix, ra_PCRonly_zix)  %>%  
   #pivot_longer(c(-ra_AG_testede, -ra_PCR_testede))  %>%  
@@ -181,14 +176,14 @@ ag_plot_data %>%
   group_by(name) %>% 
   mutate(r2 = rsq(ra_AG_testede, value)) %>% 
   ggplot() +
-  geom_point(aes(ra_AG_testede, value), alpha = 0.7) + 
+  geom_point(aes(ra_AG_testede, value), alpha = 0.6) + 
   geom_smooth(aes(ra_AG_testede, value), color = "orange", size = 0.5, method = "lm", se = FALSE) +
   geom_text(aes(x = 140000, y = 100, label = paste0("R2 = ", round(r2, 2))), check_overlap = TRUE) +
   facet_wrap(~name, scales = "free_x") +
-  scale_x_continuous(labels = scales::number) +
+  scale_x_continuous(labels = scales::number, breaks = c(0, 200000, 400000, 600000)) +
   scale_y_continuous(limits = c(0,NA), labels = scales::number) +
   labs(
-    y = "Indeks", 
+    y = "Positive", 
     x = "Antal testede i Ag-spor", 
     title = "Smittetal vs antal Ag-testede", 
     caption = standard_caption

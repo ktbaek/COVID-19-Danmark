@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  7. juni 2021 efter kl 14.
+Senest opdateret 14. juni 2021 efter kl 14.
 Opdateres hver mandag.
 
 <div class="likely">
@@ -33,9 +33,6 @@ Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forkla
 
 Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**.
 
-#### Procentdel positivt testede
-Procentdel positivt testede angiver den procentvise andel af personer der er testede positiv ud af hvor mange der er testet i alt. Omtales også som positivraten, positivprocenten eller positivandelen.
-
 
 ## Hele landet
 
@@ -48,17 +45,10 @@ Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne lin
 ![](/figures/ntl_hosp.png)
 ![](/figures/ntl_deaths.png)
 
-### Daglig procentdel positivt testede personer
-Plottet viser procentdelen af nye positivt testede personer ifht. hvor mange der er testet for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+### Dagligt antal positivt testede personer justeret for antal testede
+Plottet viser positivprocenten og et smitteindeks. Smitteindekset er anden måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden [benyttes af SSI](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
 
-``SSI datasæt: 'Test_pos_over_time'``
-
-![](/figures/ntl_pct_2.png)
-
-### Dagligt smitteindeks
-Plottet viser det daglige smitteindeks, som er en måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden [benyttes af SSI](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
-
-Den kraftige linje viser løbende gennemsnit baseret på et vindue på 7 dage.
+Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
