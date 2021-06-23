@@ -137,6 +137,56 @@ select(Date, daily_Antigen_pct:ra_Total_zix) %>%
 
 ggsave("../figures/ntl_ag_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+ag_plot_data %>%  
+  select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
+  pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
+  filter(method %in% c("PCRonly", "PCRall", "Total")) %>% 
+  mutate(
+    method = case_when(
+      method == "PCRonly" ~ "PCR uden Ag-spor",
+      method == "Antigen" ~ "Ag-spor",
+      method == "PCRAgneg" ~ "PCR med pos fra Ag-spor",
+      method == "PCRall" ~ "PCR med Ag-spor",
+      TRUE ~ method
+    )
+  ) %>% 
+  ggplot() +
+  geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
+  facet_grid(~ method) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month", minor_breaks = "1 month") +
+  scale_y_continuous(limits = c(0, NA)) +
+  scale_color_manual(
+    name = "", 
+    labels = c("Positivprocent", "Smitteindeks"), 
+    values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))
+  ) +
+  scale_size_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.3, 1)
+  ) +
+  scale_alpha_manual(
+    name = "", 
+    labels = c("Dagligt", "7-dages gennemsnit"), 
+    values = c(0.6, 1)
+  ) +
+  labs(
+    y = "Procent / Indeks", 
+    x = "Dato", 
+    title = "Antal SARS-CoV-2 positive justeret for antal testede", 
+    caption = standard_caption, 
+    subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>'
+  ) +
+  facet_theme + 
+  theme(
+    plot.subtitle = ggtext::element_markdown(),
+    plot.margin = margin(.6, .6, 0.3, .6, "cm"),
+    plot.title = element_text(),
+    legend.position = "none"
+  )
+
+ggsave("../figures/ntl_ag_pct2.png", width = 18, height = 10, units = "cm", dpi = 300)
+
 
 rsq <- function(x, y) summary(lm(y~x))$r.squared
 

@@ -37,13 +37,17 @@ week_df_1 <- age_df %>%
 
 week_df_2 <- age_df %>%
   filter(Date > ymd("2020-07-02")) %>%
-  filter(wday(Date) == 5) # thursday because it consistently appears throughout later in the period
+  filter(wday(Date) == 5) # thursday because it almost consistently appears throughout later in the period
 
 week_df_3 <- age_df %>%
   filter(Date == ymd("2021-01-15")) %>%
-  mutate(Date = ymd("2021-01-14")) #14 jan was missing so using 13 jan and setting as 14th. 
+  mutate(Date = ymd("2021-01-14")) #14 jan was missing so using 13 jan and setting as 14th
 
-week_df <- bind_rows(early_data, week_df_1, week_df_2, week_df_3) %>% 
+week_df_4 <- age_df %>%
+  filter(Date == ymd("2021-05-12")) %>%
+  mutate(Date = ymd("2021-05-13")) #13 may was missing so using 12 may and setting as 13th. 
+
+week_df <- bind_rows(early_data, week_df_1, week_df_2, week_df_3, week_df_4) %>% 
   arrange(Date) %>% 
   select(-date_of_file)
 

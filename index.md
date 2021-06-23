@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 14. juni 2021 efter kl 14.
+Senest opdateret 23. juni 2021 efter kl 14.
 Opdateres hver mandag.
 
 <div class="likely">
@@ -273,7 +273,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 [Tilbage til toppen](#)
 
 ## Aldersgrupper
-
+<!--
 ### Ugentligt antal positivt testede for hver aldersgruppe
 Plottet viser det ugentlige antal positivt testede (som absolut antal og antal per 100.000 personer) for hver aldersgruppe.
 
@@ -282,7 +282,7 @@ Bemærk at absolut antal positive aflæses på venstre akse mens antal positive 
 ``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
 
 ![](/figures/age_groups_pos.png)
-
+-->
 
 ### Dagligt antal døde for hver aldersgruppe
 Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
