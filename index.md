@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 23. juni 2021 efter kl 14.
+Senest opdateret 28. juni 2021 efter kl 14.
 Opdateres hver mandag.
 
 <div class="likely">
