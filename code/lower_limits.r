@@ -58,16 +58,25 @@ p1 <- plot_data %>%
   
 ggsave("../figures/ntl_admit_death_expected.png", width = 20, height = 11, units = "cm", dpi = 300)
 
+vaxx <- done_vax_df %>%
+  pivot_longer(-Date) %>%
+  replace_na(list(value = 0)) %>%
+  mutate(cum_value = cumsum(value)) %>% 
+  mutate(cum_value = ifelse(cum_value == 0, NA, cum_value)) %>% 
+  mutate(unvaxx_prop = (5800000 - cum_value) / 5800000) %>% 
+  select(Date, unvaxx_prop)
+
 plot_data %>% 
   filter(name %in% c("Positive", "Admitted", "Tested")) %>% 
   pivot_wider(names_from = name, values_from = c(daily, ra), names_sep = "_") %>% 
+  full_join(vaxx, by = "Date") %>% 
   rename(
     obs_admit_y= ra_Admitted
   ) %>% 
   mutate(
     pool_14 = rollsum(daily_Positive, 14, align = "right", na.pad = TRUE),
-    pred_admit_lo = (pool_14 * 2500 / 5800000) + (2500 * ra(daily_Positive / daily_Tested) * 0.7),
-    pred_admit_hi = (pool_14 * 2500 / 5800000) + (2500 * ra(daily_Positive / daily_Tested) * 1.5)
+    pred_admit_lo = (pool_14 * 2500 / 5800000) + (2500 * unvaxx_prop * ra(daily_Positive / daily_Tested) * 0.7),
+    pred_admit_hi = (pool_14 * 2500 / 5800000) + (2500 * unvaxx_prop * ra(daily_Positive / daily_Tested) * 1.5)
   ) %>% 
   select(Date, obs_admit_y, pred_admit_lo, pred_admit_hi) %>% 
   pivot_longer(-Date, names_to = c("type", "variable", "limit"), names_sep = "_") %>% 
