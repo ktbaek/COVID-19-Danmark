@@ -73,7 +73,7 @@ age_vax_df %>%
   mutate(Incidense = Begun / Population * 100) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, Incidense, fill = Sex), stat = "identity", position = "dodge") +
-  scale_y_continuous(limits = c(0,100),labels = function(x) paste0(x, " %")) +
+  scale_y_continuous(limits = c(0,101),labels = function(x) paste0(x, " %")) +
   labs(
     y = "Andel", 
     title = "Andel af personer som er påbegyndt COVID-19 vaccination", 
