@@ -649,6 +649,7 @@ ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "
   
   
   x <- dst_dd_age %>% 
+    mutate(across(c("0-4":"100+"), as.numeric)) %>% 
     pivot_longer(-Date, names_to = "Aldersgruppe", values_to = "daily_deaths") %>% 
     mutate(
       Aldersgruppe = case_when(
