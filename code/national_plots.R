@@ -603,8 +603,8 @@ plot_data <- dst_deaths %>%
 
 plot_data %>%
   ggplot() +
-  geom_bar(stat="identity",position = "identity", aes(Date, current, fill = "all"), width = 1) +
-  geom_bar(stat="identity",position = "identity", aes(Date, Deaths, fill = "covid"), width = 1) +
+  geom_bar(stat="identity", position = "identity", aes(x = Date, y = current, fill = "all"), width = 1) +
+  geom_bar(stat="identity", position = "identity", aes(Date, Deaths, fill = "covid"), width = 1) +
   geom_line(data = plot_data[!is.na(plot_data$smooth_avg), ], aes(Date, smooth_avg, color = "average"), size = 1) +
   scale_x_date(labels = my_date_labels, breaks = "2 months") +
   labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
