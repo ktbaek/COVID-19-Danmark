@@ -45,6 +45,11 @@
 | 6. maj | Indendørsservering på restauranter og cafeer mv., konferencer, spillesteder, teatre og biografer mod forevisning af coronapas. Indendørs idræt i organiseret regi for voksne over 18 år mod forevisning af coronapas. |
 | 21. maj | Der åbnes for alle resterende idræts- fritids- og foreningsaktiviteter mod forevisning af coronapas. Indendørsfaciliteter i forlystelsesparker, zoo, legelande mv. genåbnes mod forevisning af coronapas. Daghøjskoler og aftenskoler genåbnes under smitteforebyggende tiltag.  |
 | 14. juni | Krav om mundbind/visir ophæves undtagen i den kollektive transport, når man ikke sidder ned.  Åbningstiden på serveringssteder udvides til kl.24. Samtidig åbnes der generelt (dvs. også i detailhandlen) for salg af alkohol indtil kl. 24. Krav om coronapas ophæves for biblioteker, mv. |
+| 15. juli | Åbningstider for serveringssteder udvides til kl. 2. |
+| 13. august | Krav om mundbind i offentlig transport ophæves. |
+| 1. august | Krav om coronapas ophæves for forlystelsesparker, zoo, messer mv. |
+| 1. september | Forsamlingsloft for større forsamlinger ophæves. Natklubber genåbner mod krav om coronapas. Krav om coronapas ophæves for serveringssteder, badelande mv. |
+| 10. september | Alle tilbageværende restriktioner fjernes. |
 
 
 
