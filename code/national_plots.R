@@ -436,11 +436,14 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   ymd("2021-02-08"), "0-4. kl åbner", "open",
                   ymd("2021-03-01"), "Noget detailhandel,\nudendørs kultur/idræt", "open",
                   ymd("2021-03-15"), "Høj- og efterskoler,\nbegrænset åbning ældre klasser",  "open",
-                  ymd("2021-04-06"), "Mere fysisk fremmøde 5-8. kl\n + andre udd., liberale erhverv",  "open",
+                  ymd("2021-04-06"), "Mere fysisk fremmøde 5-8. kl\n + andre udd., liberale erhverv,\ncoronapas indføres",  "open",
                   ymd("2021-04-21"), "Større genåbning,\nforsamling op til hhv 10/50",  "open",
                   ymd("2021-05-06"), "Indendørs servering/idræt mv.",  "open",
                   ymd("2021-05-21"), "Øvrige idræts/\nkulturfaciliteter mv.",  "open",
-                  ymd("2021-06-14"), "Større genåbning,\nfjernelse af mundbindskrav",  "open"
+                  ymd("2021-06-14"), "Større genåbning,\nfjernelse af maskekrav",  "open",
+                  ymd("2021-08-01"), "Coronapas fjernes for zoo m.fl.",  "open",
+                  ymd("2021-09-01"), "Natklubber genåbner,\ncoronapas fjernes for servering mv.",  "open",
+                  ymd("2021-09-10"), "Alle restriktioner ophæves.",  "open"
                   )
 
 cols <- c(
@@ -478,10 +481,10 @@ x %>%
     color = "white", 
     verbose = TRUE,
     fill = "grey40", 
-    size = 2.5, 
+    size = 2.2, 
     ylim = c(0, NA), 
     xlim = c(-Inf, Inf),
-    nudge_y = max_values$value + 40,
+    nudge_y = max_values$value + 60,
     direction = "y",
     force_pull = 0, 
     box.padding = 0.1, 
@@ -494,9 +497,9 @@ x %>%
     labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), 
     values = c(admit_col, death_col, pct_col)
     ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), NA)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), ymd("2021-10-01"))) +
   scale_y_continuous(
-    limits = c(0, 100),
+    limits = c(0, 125),
     name = "Antal",
     sec.axis = sec_axis(~ . / 100, name = "Smitteindeks")
   ) +
@@ -510,12 +513,108 @@ x %>%
   standard_theme +
   theme(
     plot.subtitle = element_markdown(),
+    panel.grid.minor.x = element_blank(),
     legend.position = "none"
   )
 
 
 ggsave("../figures/ntl_tiltag_january.png", width = 18, height = 10, units = "cm", dpi = 300)
   
+
+
+# tiltag ENG-------------------------------------------------------------
+
+restrictions <- tribble(~Date, ~tiltag, ~type,
+                  ymd("2021-02-08"), "In-person schooling:\nup to 4th grade", "open",
+                  ymd("2021-03-01"), "Some retail,\noutdoor culture/sports", "open",
+                  ymd("2021-03-15"), "Outdoor schooling once/week:\ngrades 5 and up",  "open",
+                  ymd("2021-04-06"), "Hybrid-schooling: grades 5 and up + universities,\nsmall businesses,\ncovid passport requirement",  "open",
+                  ymd("2021-04-21"), "Larger reopening,\ngatherings up to 10/50",  "open",
+                  ymd("2021-05-06"), "Indoor dining/sports",  "open",
+                  ymd("2021-05-21"), "All other sports + culture",  "open",
+                  ymd("2021-06-14"), "Larger reopening,\nmasks no longer required",  "open",
+                  ymd("2021-08-01"), "Covid passport no longer required for zoos etc.",  "open",
+                  ymd("2021-09-01"), "Night clubs, covid passport\nno longer required for indoor dining etc.",  "open",
+                  ymd("2021-09-10"), "All restrictions removed",  "open"
+)
+
+cols <- c(
+  "A" = alpha(pos_col, 0.6), 
+  "B" = alpha(pct_col, 0.6), 
+  "C" = alpha(admit_col, 0.6), 
+  "D" = alpha(death_col, 0.6)
+)
+
+
+
+# Tiltag fra januar ENG-------------------------------------------------------
+
+x <- plot_data %>%
+  filter(name %in% c("Admitted", "Deaths", "Index")) %>% 
+  mutate(
+    daily = ifelse(name == "Index", daily * 100, daily),
+    ra = ifelse(name == "Index", ra * 100, ra)
+  ) %>% 
+  pivot_longer(c(daily, ra), names_to = "type") %>% 
+  filter(Date > ymd("2021-01-31")) 
+
+max_values <- x %>%
+  group_by(Date) %>% 
+  summarize(value = max(value, na.rm = TRUE)) %>% 
+  semi_join(tiltag, by = "Date")
+
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
+
+x %>% 
+  ggplot() +
+  geom_line(data = subset(x, type ==  "daily"), aes(Date, value, color = name), size = 0.2, alpha = 0.6) +
+  geom_line(data = subset(x, type ==  "ra"), aes(Date, value, color = name), size = 1.2) +
+  geom_label_repel(
+    data = subset(restrictions, Date >=  ymd("2021-02-01")),
+    aes(Date, 0, label = tiltag),
+    color = "white", 
+    verbose = TRUE,
+    fill = "grey40", 
+    size = 2.2, 
+    ylim = c(0, NA), 
+    xlim = c(-Inf, Inf),
+    nudge_y = max_values$value + 60,
+    direction = "y",
+    force_pull = 0, 
+    box.padding = 0.1, 
+    max.overlaps = Inf, 
+    segment.size = 0.32,
+    segment.color = "grey40"
+  ) +
+  scale_color_manual(
+    name = "", 
+    labels = c("Admissions", "Deaths", "Test adjusted cases"), 
+    values = c(admit_col, death_col, pct_col)
+  ) +
+  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", limits = c(ymd("2021-01-22"), ymd("2021-10-01"))) +
+  scale_y_continuous(
+    limits = c(0, 125),
+    name = "Admissions, deaths",
+    sec.axis = sec_axis(~ . / 100, name = "Test adjusted cases")
+  ) +
+  labs(
+    y = "Admissions, deaths", 
+    x = "Date", 
+    title = "Reopening 2021, Denmark", 
+    caption = standard_caption, 
+    subtitle = '<b style="color:#4393C3;">Admissions</b>,  <b style="color:#777777;">deaths</b>, and <b style="color:#E69F00;">test adjusted cases</b> (PCR positive / tested<sup>0.7</sup>)'
+  ) +
+  standard_theme +
+  theme(
+    plot.subtitle = element_markdown(),
+    panel.grid.minor.x = element_blank(),
+    legend.position = "none"
+  )
+
+
+ggsave("../figures/ntl_tiltag_january_EN.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 #  2020 vs 2021 -------------------------------------------------------
 
 x <- plot_data %>%
