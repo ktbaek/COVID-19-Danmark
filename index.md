@@ -166,7 +166,7 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, en
 
 ### Ugentligt antal positive, testede og nyindlagte for hver aldersgruppe
 
-Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 og positivprocenten for hver aldersgruppe.
+Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 i aldersgruppen, og positivprocenten for hver aldersgruppe.
 
 ``SSI datasæt: '18_fnkt_alder_uge_testede_positive_nyindlagte'``
 ``Danmarks Statistik datasæt: 'FOLK1A'``
