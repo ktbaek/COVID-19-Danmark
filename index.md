@@ -148,6 +148,8 @@ Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkter
 
 ![](/figures/ntl_tiltag_january.png)
 
+[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png).
+
 [Tilbage til toppen](#)
 
 ## Vaccinationsstatus
