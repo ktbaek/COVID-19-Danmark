@@ -125,14 +125,6 @@ Plottet viser det totale antal testede personer for hele landet opdelt på antig
 
 [Tilbage til toppen](#)
 
-## Virusvarianter
-### B.1.1.7 varianten
-
-Plots for B.1.1.7 opdateres ikke længere men seneste plots kan findes [her](/misc.md).
-
-
-[Tilbage til toppen](#)
-
 ## Politiske tiltag
 
 Se [liste](/tiltag.md) over tiltag.
@@ -167,6 +159,32 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, en
 ![](/figures/ntl_vax_age.png)
 
 ![](/figures/ntl_vax_age_pct.png)
+
+[Tilbage til toppen](#)
+
+## Aldersgrupper
+
+### Ugentligt antal positive, testede og nyindlagte for hver aldersgruppe
+
+Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 og positivprocenten for hver aldersgruppe.
+
+``SSI datasæt: '18_fnkt_alder_uge_testede_positive_nyindlagte'``
+``Danmarks Statistik datasæt: 'FOLK1A'``
+
+![](/figures/ntl_pos_age.png)
+
+![](/figures/ntl_test_age.png)
+
+![](/figures/ntl_pct_age.png)
+
+![](/figures/ntl_hosp_age.png)
+
+### Dagligt antal døde for hver aldersgruppe
+Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
+
+``Danmarks Statistik datasæt: 'DODC1'``
+
+![](/figures/ntl_deaths_age_total.png)
 
 [Tilbage til toppen](#)
 
@@ -274,38 +292,7 @@ For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_we
 
 [Tilbage til toppen](#)
 
-## Aldersgrupper
-<!--
-### Ugentligt antal positivt testede for hver aldersgruppe
-Plottet viser det ugentlige antal positivt testede (som absolut antal og antal per 100.000 personer) for hver aldersgruppe.
 
-Bemærk at absolut antal positive aflæses på venstre akse mens antal positive per 100.000 aflæses på højre akse.
-
-``SSI datasæt: 'Cases_by_age', Danmarks Statistik datasæt: 'FOLK1A'``
-
-![](/figures/age_groups_pos.png)
--->
-
-### Dagligt antal døde for hver aldersgruppe
-Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
-
-``Danmarks Statistik datasæt: 'DODC1'``
-
-
-![](/figures/ntl_deaths_age_total.png)
-
-<!--
-### Ugentligt antal positivt testede ældre (&ge; 50 år) vs. yngre (< 50 år)
-Plottene viser fordelingen af positivt testede ældre (&ge; 50 år) og yngre (< 50 år). Det øverste plot viser de absolutte antal positive, det nederste viser den relative fordeling mellem de to grupper.
-
-``SSI datasæt: 'Cases_by_age'``
-
-![](/figures/age_group_stack.png)
-![](/figures/age_group_fill.png)
-
--->
-
-[Tilbage til toppen](#)
 
 ## Øvrige sammenligninger
 

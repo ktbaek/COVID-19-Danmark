@@ -4,7 +4,7 @@ library(lubridate)
 library(scales)
 
 ssi_18 <- read_csv2("../data/18_fnkt_alder_uge_testede_positive_nyindlagte.csv")
-dst_age_groups <- read_csv2("../data/DST_age_sex_group_1_year.csv", col_names = FALSE)
+dst_age_groups <- read_csv2("../data/DST_age_group_1_year_quarterly.csv", col_names = FALSE)
 
 age_lookup_1 <- tribble(~Aldersgruppe, ~Aldersgruppe_cut,
                         "0-2", "(-1,2]",
@@ -20,11 +20,18 @@ age_lookup_1 <- tribble(~Aldersgruppe, ~Aldersgruppe_cut,
 
 age_groups <- dst_age_groups %>%
   rename(
-    Alder = X1,
-    Male = X2,
-    Female = X3
+    Alder = X4,
+    `2020_1` = X5,
+    `2020_2` = X6,
+    `2020_3` = X7,
+    `2020_4` = X8,
+    `2021_1` = X9,
+    `2021_2` = X10,
+    `2021_3` = X11
   ) %>%
-  mutate_all(str_replace_all, " år", "") %>%
+  select(-X1, -X2, -X3) %>% 
+  rowwise() 
+  mutate(Alder = str_split(Alder, " ")[[1]][1]) %>%
   mutate_all(as.double) %>%
   mutate(Population = Male + Female) %>%
   select(-Male, -Female) %>%
