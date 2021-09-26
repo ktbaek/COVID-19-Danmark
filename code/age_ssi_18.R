@@ -30,36 +30,41 @@ age_groups <- dst_age_groups %>%
     `2021_3` = X11
   ) %>%
   select(-X1, -X2, -X3) %>% 
-  rowwise() 
-  mutate(Alder = str_split(Alder, " ")[[1]][1]) %>%
-  mutate_all(as.double) %>%
-  mutate(Population = Male + Female) %>%
-  select(-Male, -Female) %>%
-  group_by(Aldersgruppe_cut = cut(Alder, breaks= c(-1, 2, 5, 11, 15, 19, 39, 64, 79, 125))) %>%
+  rowwise() %>% 
+  mutate(Alder = as.double(str_split(Alder, " ")[[1]][1])) %>%
+  pivot_longer(-Alder, names_to = "Kvartal", values_to = "Population") %>% 
+  separate(Kvartal, c("Year", "Quarter"), sep = "_") %>% 
+  mutate(
+    Quarter = as.integer(Quarter),
+    Year = as.integer(Year)
+  ) %>% 
+  group_by(Year, Quarter, Aldersgruppe_cut = cut(Alder, breaks= c(-1, 2, 5, 11, 15, 19, 39, 64, 79, 125))) %>% 
   summarize(Population = sum(Population)) %>%
   full_join(age_lookup_1, by = "Aldersgruppe_cut") %>%
   select(-Aldersgruppe_cut) 
 
 plot_data <- ssi_18 %>% 
-  full_join(age_groups, by = "Aldersgruppe") %>% 
+  #full_join(age_groups, by = "Aldersgruppe") %>% 
   separate(Uge, into = c("year", "week"), sep = "-") %>% 
   mutate(week = str_remove(week, "W")) %>% 
   mutate(
     week = as.integer(week),
-    year = as.integer(year)
+    Year = as.integer(year)
   ) %>% 
+  mutate(date = as.Date(paste0(year, sprintf("%02d", week), "1"), "%Y%U%u")) %>% 
+  mutate(Quarter = quarter(date)) %>% 
+  full_join(age_groups, by = c("Aldersgruppe", "Quarter", "Year")) %>% 
   rename(
     admitted = `Nyindlagte pr. 100.000 borgere`,
     tested = `Testede pr. 100.000 borgere`,
     positive = `Positive pr. 100.000 borgere`
   ) %>% 
-  select(year, week, Aldersgruppe, admitted, tested, positive, Population) %>% 
+  select(date, Aldersgruppe, admitted, tested, positive, Population) %>% 
   mutate(
     admitted = ifelse(is.na(admitted), 0, admitted),
     positive = ifelse(is.na(positive), 0, positive),
     tested = ifelse(is.na(tested), 0, tested)
   ) %>% 
-  mutate(date = as.Date(paste0(year, sprintf("%02d", week), "1"), "%Y%U%u")) %>% 
   mutate(
     total_admitted = Population * admitted / 100000,
     total_positive = Population * positive / 100000,
