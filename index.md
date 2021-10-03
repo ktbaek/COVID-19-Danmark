@@ -14,7 +14,7 @@ Opdateres ca. én gang om ugen.
     <div class="linkedin">Del</div>
 </div>
 
-<div>
+<div class="richandfamous">
 <a href="https://twitter.com/KT_baek?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <a href="https://www.buymeacoffee.com/covid19danmark" target="_blank"><img src="/assets/buymecoffee.svg" alt="Buy Me A Coffee" height="28"></a>
 </div>
