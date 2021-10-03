@@ -7,7 +7,7 @@ ag %>%
   filter(Date > ymd("2021-01-31")) %>% 
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   scale_fill_manual(
     name = "Heraf:", 
@@ -199,7 +199,7 @@ ag %>%
   filter(Date > ymd("2021-01-31")) %>% 
   ggplot() +
   geom_line(aes(Date, share_PCR_test), size = 1) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 weeks") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Procent", 
