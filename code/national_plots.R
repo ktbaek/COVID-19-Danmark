@@ -170,7 +170,7 @@ plot_data %>%
     values = c(alpha(pct_col, 0.3), 
                alpha(pos_col, 0.3))
     ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Antal",
