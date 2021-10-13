@@ -497,7 +497,7 @@ x %>%
     labels = c("Nyindlæggelser", "Døde", "Smitteindeks"), 
     values = c(admit_col, death_col, pct_col)
     ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), ymd("2021-10-01"))) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 months", limits = c(ymd("2021-02-01"), ymd(today))) +
   scale_y_continuous(
     limits = c(0, 125),
     name = "Antal",
@@ -591,7 +591,7 @@ x %>%
     labels = c("Admissions", "Deaths", "Test adjusted cases"), 
     values = c(admit_col, death_col, pct_col)
   ) +
-  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", limits = c(ymd("2021-01-22"), ymd("2021-10-01"))) +
+  scale_x_date(date_labels = "%e %b", date_breaks = "1 months", limits = c(ymd("2021-01-22"), ymd(today))) +
   scale_y_continuous(
     limits = c(0, 125),
     name = "Admissions, deaths",
@@ -815,4 +815,37 @@ ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "
   
   ggsave("../figures/ntl_deaths_age_total.png", width = 18, height = 10, units = "cm", dpi = 300)
   
+  
+  x %>% 
+    filter(year != "2021") %>% 
+    group_by(Aldersgruppe, md, Date) %>% 
+    mutate(min = min(ra_deaths, na.rm = TRUE)) %>% 
+    ggplot() +
+    geom_ribbon(aes(x = Date, ymin = min, ymax = ra_deaths, fill = year)) +
+    
+    
+    #geom_area(data = subset(x, year == "z2019"), aes(Date, ra_deaths), fill = hue_pal()(3)[3], alpha = 0.2) +
+    geom_line(aes(Date, ra_deaths, color = year), size = 0.1) +
+    facet_wrap(~ Aldersgruppe, ncol = 6) +
+    scale_x_date(date_labels = "%b", breaks = c(ymd("2019-01-01"), ymd("2019-07-01")), date_minor_breaks = "1 month") +
+    scale_y_continuous(limits = c(0, NA)) +
+    labs(
+      x = "Dato", 
+      y = "Antal døde", 
+      title = "Daglige dødsfald i Danmark per alder", 
+      caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik") +
+    scale_fill_manual(
+      name = "", 
+      labels = c("over",  "Under"),
+      values = c(alpha("red", 0.3), alpha("green", 0.3))
+      ) +
+    scale_color_manual(
+      name = "", 
+      labels = c("2020",  "Gennemsnit"),
+      values = c("black", "gray75")
+    ) +
+    guides(color = guide_legend(override.aes = list(size = 2)))+
+    standard_theme 
+  
+  ggsave("../figures/ntl_deaths_age_total_2.png", width = 18, height = 10, units = "cm", dpi = 300)
   

@@ -6,6 +6,7 @@ ag <- read_data(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.c
 
 dst_deaths <- read_data("../data/DST_daily_deaths.csv", col_names = FALSE)
 dst_deaths_5yr <- read_data("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
+
 dst_dd_age <- read_data("../data/DST_deaths_daily_age.csv", col_names = FALSE)
 dst_dd_age_5yr <- read_data("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
 
