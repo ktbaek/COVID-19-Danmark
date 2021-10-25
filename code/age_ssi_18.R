@@ -27,8 +27,9 @@ age_groups <- dst_age_groups %>%
     `2020_4` = X8,
     `2021_1` = X9,
     `2021_2` = X10,
-    `2021_3` = X11
+    `2021_3` = X11,
   ) %>%
+  mutate(`2021_4` = `2021_3`) %>% 
   select(-X1, -X2, -X3) %>% 
   rowwise() %>% 
   mutate(Alder = as.double(str_split(Alder, " ")[[1]][1])) %>%
@@ -38,6 +39,7 @@ age_groups <- dst_age_groups %>%
     Quarter = as.integer(Quarter),
     Year = as.integer(Year)
   ) %>% 
+  
   group_by(Year, Quarter, Aldersgruppe_cut = cut(Alder, breaks= c(-1, 2, 5, 11, 15, 19, 39, 64, 79, 125))) %>% 
   summarize(Population = sum(Population)) %>%
   full_join(age_lookup_1, by = "Aldersgruppe_cut") %>%
