@@ -29,6 +29,9 @@ cat("Read and tidy, national DONE\n")
 source("national_plots.R")
 cat("Whole country plots DONE\n")
 
+source("age_ssi_18.R")
+cat("Age plots DONE\n")
+
 source("Ag_plots.R")
 cat("Ag plots DONE\n")
 
