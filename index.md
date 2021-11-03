@@ -68,12 +68,28 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 
 ![](/figures/ntl_pos.png)
 
+
 ### Dagligt antal testede personer
-Plottet viser det totale antal testede personer og antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+Plottet viser det totale antal testede personer for hele landet opdelt på *antigen- og PCR tests*. Der er ikke data for antigentests før 1. feb 2021.  
 
-``SSI datasæt: 'Test_pos_over_time'``
+``SSI datasæt: 'Antigentests_pr_dag', 'Test_pos_over_time'``
 
-![](/figures/ntl_tests.png)
+![](/figures/ntl_ag_test.png)
+
+### Dagligt antal positivt antigentestede personer
+Plottet viser antallet af nye positivt testede personer for hele landet siden 1. feb 2021. Derudover angives det hvor mange af disse personer, som er blevet testet med PCR-test på samme dag eller dagen efter antigentest, samt svaret på denne test.
+
+``SSI datasæt: 'Antigentests_pr_dag'``
+
+![](/figures/ntl_ag_pos.png)
+
+### 2021 versus 2021
+Plottet viser forløbene af forskellige epidemi-indikatorer samt total antal døde (uanset årsag) for efteråret 2020 og efteråret 2021.
+
+``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time', 'Newly_admitted_over_time'``
+``Danmarks Statistik datasæt: 'DODC1'``
+
+[](/figures/ntl_fall_20_21.png)
 
 
 ### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede
@@ -106,26 +122,7 @@ SSI datasæt: ``'Test_pos_over_time'``
 
 ![](/figures/ntl_pos_pct.png)
 
-<!--
 
-
--->
-
-## Antigentests (lyntests)
-
-### Dagligt antal positivt antigentestede personer
-Plottet viser antallet af nye positivt testede personer for hele landet siden 1. feb 2021. Derudover angives det hvor mange af disse personer, som er blevet testet med PCR-test på samme dag eller dagen efter antigentest, samt svaret på denne test.
-
-``SSI datasæt: 'Antigentests_pr_dag'``
-
-![](/figures/ntl_ag_pos.png)
-
-### Dagligt antal testede personer
-Plottet viser det totale antal testede personer for hele landet opdelt på antigen- og PCR tests. Der er ikke data for antigentests før 1. feb 2021.  
-
-``SSI datasæt: 'Antigentests_pr_dag', 'Test_pos_over_time'``
-
-![](/figures/ntl_ag_test.png)
 
 
 [Tilbage til toppen](#)
