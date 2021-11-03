@@ -89,7 +89,7 @@ Plottet viser forløbene af forskellige epidemi-indikatorer samt total antal dø
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time', 'Newly_admitted_over_time'``
 ``Danmarks Statistik datasæt: 'DODC1'``
 
-[](/figures/ntl_fall_20_21.png)
+![](/figures/ntl_fall_20_21.png)
 
 
 ### Dagligt antal nyindlagte vs. hhv. antal nye positivt testede og procent positivt testede
