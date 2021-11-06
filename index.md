@@ -83,7 +83,7 @@ Plottet viser antallet af nye positivt testede personer for hele landet siden 1.
 
 ![](/figures/ntl_ag_pos.png)
 
-### 2021 versus 2021
+### 2021 versus 2020
 Plottet viser forløbene af forskellige epidemi-indikatorer samt total antal døde (uanset årsag) for efteråret 2020 og efteråret 2021.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time', 'Newly_admitted_over_time'``

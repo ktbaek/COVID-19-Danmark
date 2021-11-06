@@ -658,8 +658,9 @@ plot_data %>%
   labs(
     y = "Number/Percent", 
     x = "Date", 
-    title = "COVID-19, fall 2020 v. 2021, Denmark"
+    title = "SARS-CoV-2, fall 2021 v. 2020, Denmark"
   ) +
+  guides(color = guide_legend(override.aes = list(size = 1))) +
   facet_wrap(~ name, scales = "free_y") +
   facet_theme +
   theme(
