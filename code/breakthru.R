@@ -1,16 +1,18 @@
-bt_cases <- read_csv2("../data/SSIdata_211005/gennembrudsinfektioner_table2_antal_cases.csv")
-bt_tests <- read_csv2("../data/SSIdata_211005/gennembrudsinfektioner_table2_antal_tests.csv")
+bt_cases <- read_csv2("../data/SSIdata_211109/gennembrudsinfektioner_table2_antal_cases.csv")
+bt_tests <- read_csv2("../data/SSIdata_211109/gennembrudsinfektioner_table2_antal_tests.csv")
+bt_admitted <- read_csv2("../data/SSIdata_211109/gennembrudsinfektioner_table2_antal_indlagte.csv")
+bt_admitted_inc <- read_csv2("../data/SSIdata_211109/gennembrudsinfektioner_table2_incidence_indlagte.csv")
 
 bt_cases %>% 
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Antal", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
     Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld vaccineeffekt"),
-    #Week > 31,
+    Week > 31,
     Aldersgruppe != "12+") %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
   ggplot() +
-  geom_bar(aes(Aldersgruppe, Antal, fill = Vax_status), stat = "identity", position = "dodge") + 
+  geom_bar(aes(Aldersgruppe, Antal, fill = Vax_status), stat = "identity", position = "stack") + 
   scale_fill_discrete(name = "") +
   facet_wrap(~ Week, ncol = 4) +
   labs(
@@ -26,13 +28,62 @@ bt_cases %>%
 
 ggsave("../figures/ntl_breakthru_cases.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+bt_cases %>% 
+  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Antal", names_sep = "_") %>% 
+  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
+  filter(
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination"),
+    Week > 31,
+    Aldersgruppe == "12+") %>% 
+  mutate(Week = paste0("Uge ", Week)) %>% 
+  ggplot() +
+  geom_bar(aes(Week, Antal, fill = Vax_status), stat = "identity", position = "fill") + 
+  scale_fill_discrete(name = "") +
+  labs(
+    y = "Positive", 
+    x = "Aldersgruppe", 
+    title = "SARS-CoV-2 positive over 12 år", 
+    caption = standard_caption
+  ) +
+  standard_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+
+bt_admitted %>% 
+  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Antal", names_sep = "_") %>% 
+  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
+  filter(
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld vaccineeffekt"),
+    Week > 39,
+    Aldersgruppe != "12+") %>% 
+  mutate(Week = paste0("Uge ", Week)) %>% 
+  ggplot() +
+  geom_bar(aes(Aldersgruppe, Antal, fill = Vax_status), stat = "identity", position = "stack") + 
+  scale_fill_discrete(name = "") +
+  facet_wrap(~ Week, ncol = 4) +
+  labs(
+    y = "Positive", 
+    x = "Aldersgruppe", 
+    title = "SARS-CoV-2 positive", 
+    caption = standard_caption
+  ) +
+  standard_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+ggsave("../figures/ntl_breakthru_admitted.png", width = 18, height = 10, units = "cm", dpi = 300)
+
 
 bt_tests %>% 
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Antal", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    #Vax_status %in% c("Ingen vaccination", "Fuld vaccineeffekt"),
-   # Week > 31,
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld vaccineeffekt"),
+   Week > 31,
     Aldersgruppe != "12+") %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
   ggplot() +
@@ -82,7 +133,7 @@ bt_cases %>%
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 
-bt_table1 <- read_csv2("../data/SSIdata_211005/gennembrudsinfektioner_table1.csv")
+bt_table1 <- read_csv2("../data/SSIdata_211109/gennembrudsinfektioner_table1.csv")
 
 bt_table1 %>% 
   pivot_longer(-Ugenummer, names_to = c("Group", "Vax_status"), values_to = "Number", names_sep = "_[A-Z]") %>% 
@@ -134,6 +185,32 @@ bt_table1 %>%
   )
   
 ggsave("../figures/ntl_prev_infection.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+bt_table1 %>% 
+  pivot_longer(-Ugenummer, names_to = c("Group", "Vax_status"), values_to = "Number", names_sep = "_[A-Z]") %>% 
+  #mutate(Week = as.integer(str_sub(Ugenummer, 5, 6))) %>% 
+  mutate(Vax_status = case_when(
+    Vax_status == "ngen vaccination" ~ "Ingen vaccination",
+    Vax_status == "ørste vaccination" ~ "Første vaccination",
+    Vax_status == "nden vaccination" ~ "Anden vaccination",
+    Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
+  )) %>% 
+  filter(Group == "antal_cases") %>% 
+  filter(!Vax_status %in% c("Anden vaccination")) %>% 
+  ggplot() +
+  geom_bar(aes(Ugenummer, Number, fill = Vax_status), stat = "identity", position = "stack") + 
+  scale_y_continuous(labels = scales::number)+
+  labs(
+    y = "Antal tidligere smittede", 
+    x = "Uge", 
+    title = "Antal personer med tidligere positiv SARS-CoV-2 PCR test", 
+    caption = standard_caption
+  ) +
+  standard_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
   
   
   

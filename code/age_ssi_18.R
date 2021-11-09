@@ -176,3 +176,5 @@ plot_data %>%
   standard_theme
 
 ggsave("../figures/ntl_pct_age.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+  
