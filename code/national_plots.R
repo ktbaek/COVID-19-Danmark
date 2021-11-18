@@ -658,7 +658,8 @@ plot_data %>%
   labs(
     y = "Number/Percent", 
     x = "Date", 
-    title = "SARS-CoV-2, fall 2021 v. 2020, Denmark"
+    title = "SARS-CoV-2, fall 2021 v. 2020, Denmark",
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
   ) +
   guides(color = guide_legend(override.aes = list(size = 1))) +
   facet_wrap(~ name, scales = "free_y") +
@@ -671,14 +672,8 @@ plot_data %>%
 ggsave("../figures/ntl_fall_20_21.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-
-
-
-
-
-
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
-#  2020 vs 2021 -------------------------------------------------------
+# 2020 vs 2021 -------------------------------------------------------
 
 x <- plot_data %>%
   filter(Date > ymd("2020-03-15")) %>% 
