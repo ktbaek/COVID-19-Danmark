@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 16. november 2021 efter kl 14.
+Senest opdateret 19. november 2021 efter kl 14.
 Opdateres ca. én gang om ugen.
 
 <div class="likely">
@@ -97,9 +97,9 @@ Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procen
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time'``
 
-![](/figures/ntl_postest_admitted_barplot_2.png)
+![](/figures/ntl_pos_admit.png)
 
-![](/figures/ntl_pct_admitted_barplot_2.png)
+![](/figures/ntl_pct_admit.png)
 
 
 
@@ -109,9 +109,9 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time'``
 
-![](/figures/ntl_postest_deaths_barplot_2.png)
+![](/figures/ntl_pos_deaths.png)
 
-![](/figures/ntl_pct_deaths_barplot_2.png)
+![](/figures/ntl_pct_deaths.png)
 
 
 

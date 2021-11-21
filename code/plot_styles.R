@@ -24,7 +24,7 @@ my_date_labels <- function(breaks) {
   
   labels <- mapply(function(x, y) {
     if(y == 1) {
-      str_to_lower(strftime(x, "%e. %b %y"))
+      str_to_lower(strftime(x, "%e. %b\n %Y"))
     }else{
       str_to_lower(strftime(x, "%e. %b"))
     }
@@ -40,6 +40,7 @@ quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Light", "Lato-BoldItalic
 # global variables --------------------------------------------------------
 
 standard_caption <- "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI"
+standard_caption_en <- "Kristoffer T. Bæk, covid19danmark.dk, data: SSI"
 
 # Custom gg themes ------------------------------------------------------------
   
@@ -59,7 +60,7 @@ standard_theme <-
     axis.title.y = element_text(face = "bold", margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(face = "bold", margin = margin(t = 0, r = 0, b = 0, l = 20)),
     axis.title.x = element_blank(),
-    axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0)),
+    axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0), hjust = 0.5),
     legend.text = element_text(size = 11),
     legend.key.size = unit(0.4, 'cm')
   )
@@ -82,7 +83,7 @@ facet_theme <-
     axis.title.y = element_text(size = 12, margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.title.y.right = element_text(size = 12, margin = margin(t = 0, r = 0, b = 0, l = 20)),
     axis.title.x = element_blank(),
-    axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0))
+    axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 8, l = 0), hjust = 0.5)
   )
 
 tile_theme <-

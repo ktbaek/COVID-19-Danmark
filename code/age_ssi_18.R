@@ -3,6 +3,8 @@ library(magrittr)
 library(lubridate)
 library(scales)
 
+Sys.setlocale("LC_ALL", "da_DK.UTF-8")
+
 ssi_18 <- read_csv2("../data/18_fnkt_alder_uge_testede_positive_nyindlagte.csv")
 dst_age_groups <- read_csv2("../data/DST_age_group_1_year_quarterly.csv", col_names = FALSE)
 
@@ -73,11 +75,11 @@ plot_data <- ssi_18 %>%
     total_tested = Population * tested / 100000
   ) %>% 
   mutate(Aldersgruppe = case_when(
-    Aldersgruppe == "0-2" ~ "0-19",
-    Aldersgruppe == "3-5" ~ "0-19",
-    Aldersgruppe == "6-11" ~ "0-19",
-    Aldersgruppe == "12-15" ~ "0-19",
-    Aldersgruppe == "16-19" ~ "0-19",
+    Aldersgruppe == "0-2" ~ "0-5",
+    Aldersgruppe == "3-5" ~ "0-5",
+    Aldersgruppe == "6-11" ~ "6-11",
+    Aldersgruppe == "12-15" ~ "12-19",
+    Aldersgruppe == "16-19" ~ "12-19",
     Aldersgruppe == "20-39" ~ "20-39",
     Aldersgruppe == "40-64" ~ "40-64",
     Aldersgruppe == "65-79" ~ "65-79",
@@ -96,7 +98,7 @@ plot_data <- ssi_18 %>%
     tested_incidens = total_tested / Population * 10000
   )
 
-plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-19', '20-39','40-64', '65-79', '80+'))
+plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-5', '6-11', '12-19', '20-39','40-64', '65-79', '80+'))
 
 plot_data %>% 
   ggplot() +
