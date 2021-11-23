@@ -103,6 +103,7 @@ plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-5', '6-11', 
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -111,6 +112,7 @@ plot_data %>%
     title = "Ugentligt antal SARS-CoV-2-positive nyindlagte pr. 100.000", 
     caption = standard_caption
   ) +
+  guides(colour = guide_legend(nrow = 1)) +
   standard_theme
 
 ggsave("../figures/ntl_hosp_age.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -119,6 +121,7 @@ plot_data %>%
   filter(date > as_date("2021-02-28")) %>% 
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -127,6 +130,7 @@ plot_data %>%
     title = "Ugentligt antal SARS-CoV-2-positive nyindlagte pr. 100.000", 
     caption = standard_caption
   ) +
+  guides(colour = guide_legend(nrow = 1)) +
   standard_theme
 
 ggsave("../figures/ntl_hosp_age_2.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -135,6 +139,7 @@ ggsave("../figures/ntl_hosp_age_2.png", width = 18, height = 10, units = "cm", d
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, positive_incidens, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -143,6 +148,7 @@ plot_data %>%
     title = "Ugentligt antal SARS-CoV-2-positive pr. 100.000", 
     caption = standard_caption
   ) +
+  guides(colour = guide_legend(nrow = 1)) +
   standard_theme
 
 ggsave("../figures/ntl_pos_age.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -150,6 +156,7 @@ ggsave("../figures/ntl_pos_age.png", width = 18, height = 10, units = "cm", dpi 
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, tested_incidens, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -158,6 +165,7 @@ plot_data %>%
     title = "Ugentligt antal SARS-CoV-2-testede pr. 100.000", 
     caption = standard_caption
   ) +
+  guides(colour = guide_legend(nrow = 1)) +
   standard_theme
 
 ggsave("../figures/ntl_test_age.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -167,6 +175,7 @@ plot_data %>%
   filter(date > as_date("2020-08-01")) %>% 
   ggplot() +
   geom_line(aes(date, pos_pct, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   labs(
@@ -175,6 +184,7 @@ plot_data %>%
     title = "Ugentlig SARS-CoV-2 positivprocent", 
     caption = standard_caption
   ) +
+  guides(colour = guide_legend(nrow = 1)) +
   standard_theme
 
 ggsave("../figures/ntl_pct_age.png", width = 18, height = 10, units = "cm", dpi = 300)

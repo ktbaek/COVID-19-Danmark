@@ -508,7 +508,8 @@ tiltag <- tribble(~Date, ~tiltag, ~type,
                   ymd("2021-06-14"), "Større genåbning,\nfjernelse af maskekrav",  "open",
                   ymd("2021-08-01"), "Coronapas fjernes for zoo m.fl.",  "open",
                   ymd("2021-09-01"), "Natklubber genåbner,\ncoronapas fjernes for servering mv.",  "open",
-                  ymd("2021-09-10"), "Alle restriktioner ophæves.",  "open"
+                  ymd("2021-09-10"), "Alle restriktioner ophæves.",  "open",
+                  ymd("2021-11-12"), "Coronapas natteliv/servering.",  "restrict",
                   )
 
 cols <- c(

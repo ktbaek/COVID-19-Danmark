@@ -26,7 +26,8 @@ cat("Dashboard data updated\n")
 source("read_tidy_national.R")
 cat("Read and tidy, national DONE\n")
 
-source("national_plots.R")
+files_sources = list.files("current_plots", full.names = TRUE)
+sapply(files_sources, source)
 cat("Whole country plots DONE\n")
 
 source("age_ssi_18.R")
