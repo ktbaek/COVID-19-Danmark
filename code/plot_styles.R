@@ -39,7 +39,7 @@ quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Light", "Lato-BoldItalic
 
 # global variables --------------------------------------------------------
 
-standard_caption <- "Kristoffer T. Bæk, covid19danmark.dk, datakilde: SSI"
+standard_caption <- "Kristoffer T. Bæk, covid19danmark.dk, data: SSI"
 standard_caption_en <- "Kristoffer T. Bæk, covid19danmark.dk, data: SSI"
 
 # Custom gg themes ------------------------------------------------------------
