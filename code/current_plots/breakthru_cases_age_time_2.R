@@ -130,12 +130,7 @@ check2 %>%
 # Plots -------------------------------------------------------------------
 
 temp_df <- bt_cases_inc %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) %>% 
+  tidy_breakthru("incidence") %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
