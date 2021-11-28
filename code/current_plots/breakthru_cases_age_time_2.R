@@ -36,6 +36,7 @@ z <- tidy_breakthru(bt_cases_inc_all, "incidence_all")
 # Check that table2 data is consistent with table1 data -------------------
 
 table1_check_1 <- bt_table1 %>% 
+  # tidy data
   pivot_longer(-Ugenummer, names_to = c("Group", "Vax_status"), values_to = "Number_table1", names_sep = "_[A-Z]") %>% 
   mutate(Week = as.integer(str_sub(Ugenummer, 5, 6))) %>% 
   select(-Ugenummer) %>% 
@@ -44,11 +45,14 @@ table1_check_1 <- bt_table1 %>%
     Vax_status == "ørste vaccination" ~ "Første vaccination",
     Vax_status == "nden vaccination" ~ "Anden vaccination",
     Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
-  )) %>% filter(
+  )) %>% 
+  # select relevant variables and vax groups
+  filter(
     Group %in% c("antal_personer_alle", "antal_personer", "antal_cases", "antal_repositive"),
     Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt")
   ) 
 
+# check that cases and repositive numbers match
 x %>% 
   full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   pivot_longer(c(antal_cases, antal_repositive), names_to = "Group", values_to = "Number_table2") %>% 
@@ -57,31 +61,35 @@ x %>%
   full_join(filter(table1_check_1, Group %in% c("antal_cases", "antal_repositive")), by = c("Week", "Group", "Vax_status")) %>% 
   mutate(Check = Number_table2 == Number_table1) %>% 
   pull(Check) %>% 
-  all()
+  all() # -> they are identical in table 1 and 2
 
+# compare my calculation of population sizes with those in table 1
 check1 <- bt_cases_inc %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) %>% 
+  tidy_breakthru("incidence") %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   mutate(
+    # calculate population not including previous positives
     antal_personer = as.integer(antal_cases / incidence * 100000),
+    # calculate population including previous positives
     antal_personer_alle = as.integer(((antal_cases + antal_repositive) / incidence_all * 100000))
   ) %>% 
+  # sum across age groups
   group_by(Week, Vax_status) %>% 
   summarize(antal_personer = sum(antal_personer, na.rm = TRUE),
             antal_personer_alle = sum(antal_personer_alle, na.rm = TRUE)) %>% 
   pivot_longer(c(antal_personer, antal_personer_alle), names_to = "Group", values_to = "Number_table2") %>% 
   full_join(filter(table1_check_1, Group %in% c("antal_personer", "antal_personer_alle")), by = c("Week", "Group", "Vax_status")) %>% 
-  mutate(Diff = Number_table2 - Number_table1) 
+  mutate(
+    Diff = Number_table2 - Number_table1,
+    Diff_pct = abs(Diff / Number_table2) * 100
+    ) # -> max 0.7% difference
 
+# compare my calculation of prev infection population with those calculated from table 1
 check2 <- check1 %>% 
-  select(-Diff) %>% 
+  select(-Diff, -Diff_pct) %>% 
+  # pivot swap
   pivot_wider(names_from = Group, values_from = c(Number_table1, Number_table2), names_sep = ":") %>% 
   pivot_longer(c(-Week, -Vax_status), names_to = c("Dataset", "Group"), values_to = "value", names_sep = ":") %>% 
   pivot_wider(names_from = Group, values_from = value) %>% 
@@ -89,12 +97,36 @@ check2 <- check1 %>%
     prev_infection = antal_personer_alle - antal_personer
   ) %>% 
   select(-antal_personer_alle) %>% 
+  # pivot swap
   pivot_wider(names_from = Dataset, values_from = c(antal_personer, prev_infection), names_sep = ":") %>% 
   pivot_longer(c(-Week, -Vax_status), names_to = c("Group", "Dataset"), values_to = "value", names_sep = ":") %>%
   pivot_wider(names_from = Dataset, values_from = value) %>%
-  mutate(Diff = Number_table2 - Number_table1) 
+  mutate(
+    Diff = Number_table2 - Number_table1,
+    Diff_pct = abs(Diff / Number_table2) * 100
+  ) # -> max 5% difference (week 31), most under 0.5%
 
 
+# Check how calculations compare with total infected over time ------------
+
+# number of cases up until 2 months before last entry
+read_csv2("../data/SSI_plot_data.csv") %>% 
+  filter(
+    name == "Positive",
+    Date < ymd("2021-09-21")) %>% 
+  pull(daily) %>% 
+  sum(na.rm = TRUE) # 355,000
+
+check2 %>% 
+  filter(
+    Group == "prev_infection",
+    Week == 46
+  ) %>% 
+  pull(Number_table2) %>% 
+  sum() # 340,000
+
+# This is close enough, given I'm comparing daily and weekly tables that are not necessarily identical. 
+  
 # Plots -------------------------------------------------------------------
 
 temp_df <- bt_cases_inc %>% 
