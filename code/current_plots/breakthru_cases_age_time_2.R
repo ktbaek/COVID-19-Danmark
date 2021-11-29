@@ -125,7 +125,7 @@ check2 %>%
   pull(Number_table2) %>% 
   sum() # 340,000
 
-# This is close enough, given I'm comparing daily and weekly tables that are not necessarily identical. 
+# This is close enough, given I haven't included first vax. 
   
 # Plots -------------------------------------------------------------------
 
