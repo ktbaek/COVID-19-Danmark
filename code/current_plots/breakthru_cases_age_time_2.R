@@ -9,11 +9,11 @@ Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
 # Read and clean up -------------------------------------------------------
 
-bt_cases <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_cases.csv")
-bt_cases_inc <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_cases.csv")
-bt_table1 <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table1.csv")
-bt_repos <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_repositive.csv")
-bt_cases_inc_all <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_alle.csv")
+bt_cases <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_cases.csv")
+bt_cases_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_cases.csv")
+bt_table1 <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table1.csv")
+bt_repos <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_repositive.csv")
+bt_cases_inc_all <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_alle.csv")
 
 
 tidy_breakthru <- function(df, name){
@@ -22,7 +22,7 @@ tidy_breakthru <- function(df, name){
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = name, names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle")
   ) 
   
@@ -44,12 +44,12 @@ table1_check_1 <- bt_table1 %>%
     Vax_status == "ngen vaccination" ~ "Ingen vaccination",
     Vax_status == "ørste vaccination" ~ "Første vaccination",
     Vax_status == "nden vaccination" ~ "Anden vaccination",
-    Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
+    Vax_status == "uld effekt efter primært forløb" ~ "Fuld effekt efter primært forløb",
   )) %>% 
   # select relevant variables and vax groups
   filter(
     Group %in% c("antal_personer_alle", "antal_personer", "antal_cases", "antal_repositive"),
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt")
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb")
   ) 
 
 # check that cases and repositive numbers match
@@ -113,14 +113,14 @@ check2 <- check1 %>%
 read_csv2("../data/SSI_plot_data.csv") %>% 
   filter(
     name == "Positive",
-    Date < ymd("2021-09-21")) %>% 
+    Date < ymd("2021-09-28")) %>% 
   pull(daily) %>% 
   sum(na.rm = TRUE) # 355,000
 
 check2 %>% 
   filter(
     Group == "prev_infection",
-    Week == 46
+    Week == 47
   ) %>% 
   pull(Number_table2) %>% 
   sum() # 340,000
@@ -150,7 +150,7 @@ plot_data <- temp_df %>%
     incidence_repositive = incidence_repos
   ) %>% 
   pivot_longer(c(-Aldersgruppe, -Week, -Vax_status), names_to = c("variable", "type"), values_to = "value", names_sep = "_") %>% 
-  filter(!(Vax_status == "Fuld vaccineeffekt" & type == "repositive")) %>% 
+  filter(!(Vax_status == "Fuld effekt efter primært forløb" & type == "repositive")) %>% 
   mutate(Immunity_status = case_when(
     Vax_status == "Ingen vaccination" & type == "repositive" ~ "Tidligere positiv",
     TRUE ~ Vax_status
@@ -161,7 +161,7 @@ plot_data <- temp_df %>%
   ) %>% 
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) 
 
-plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt', 'Tidligere positiv'))  
+plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb', 'Tidligere positiv'))  
 
 p1 <- plot_data %>%   
   filter(variable == "incidence") %>% 
@@ -251,7 +251,7 @@ plot_data %>%
   scale_color_manual(name = "", values = c(pos_col, alpha(pos_col, 0.3))) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02), sec.axis = sec_axis(~ . * 1000, name = "Tidligere positive, ikke-vaccinerede")) +
-  labs(y = "Positive",
+  labs(y = "Repositive",
        title = "Ugentligt antal repositive og tidligere positive",
        subtitle = "Tidligere positive, ikke vaccinerede: >60 dage siden seneste positive PCR test",
        caption = standard_caption) +

@@ -1,19 +1,47 @@
-bt_cases <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_cases.csv")
-bt_tests <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_tests.csv")
-bt_admitted <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_indlagte.csv")
-bt_admitted_inc <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_indlagte.csv")
-bt_cases_inc <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_cases.csv")
-bt_deaths_inc <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_dode.csv")
-bt_deaths <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_dode.csv")
-bt_table1 <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table1.csv")
-bt_icu_inc <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_intensiv.csv")
-bt_icu <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_intensiv.csv")
-bt_repos <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_antal_repositive.csv")
-bt_cases_inc_all <- read_csv2("../data/SSIdata_211123/gennembrudsinfektioner_table2_incidence_alle.csv")
+bt_cases <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_cases.csv")
+bt_tests <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_tests.csv")
+bt_admitted <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_indlagte.csv")
+bt_admitted_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_indlagte.csv")
+bt_cases_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_cases.csv")
+bt_deaths_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_dode.csv")
+bt_deaths <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_dode.csv")
+bt_table1 <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table1.csv")
+bt_icu_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_intensiv.csv")
+bt_icu <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_intensiv.csv")
+bt_repos <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_repositive.csv")
+bt_cases_inc_all <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_alle.csv")
 
 library(patchwork)
 
 amager <- c("#b79128", "#006d86", "#79a039", "#e0462e", "#004648", "#1c6ac9", '#fc981e')
+
+table2_files <- list.files("../data/SSIdata_211130", pattern = "gennembrudsinfektioner_table2", full.names = TRUE) 
+
+read_tidy_table2 <- function(filename){
+  
+  table_name <- paste(str_split(filename, "_")[[1]][4], str_split(filename, "_")[[1]][5], sep = "_") %>% 
+    str_sub(1, length(.) - 6)
+    
+  read_csv2(filename) %>% 
+    pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "value", names_sep = "_") %>% 
+    mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
+    filter(
+      !Aldersgruppe %in% c("12+", "Alle")
+    ) %>% 
+    mutate(variable = table_name) %>% 
+    select(variable, everything())
+  
+}
+
+table2 <- lapply(table2_files, read_tidy_table2) %>% 
+  bind_rows()
+
+
+
+
+
+
+
 
 bt_admitted %<>% 
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Admitted", names_sep = "_") %>% 
@@ -25,12 +53,12 @@ plot_data <- bt_admitted_inc %>%
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   full_join(bt_admitted, by = c("Week", "Vax_status", "Aldersgruppe")) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld vaccineeffekt"),
-    Week > 42,
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld effekt efter primært forløb"),
+    Week > 43,
     Aldersgruppe == "12+") %>% 
   mutate(Week = paste0("Uge ", Week)) 
   
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Første vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Første vaccination', 'Fuld effekt efter primært forløb'))  
 
 plot_data %>%   
 ggplot() +
@@ -75,7 +103,7 @@ prev_infection <- bt_table1 %>%
     Vax_status == "ngen vaccination" ~ "Ingen vaccination",
     Vax_status == "ørste vaccination" ~ "Første vaccination",
     Vax_status == "nden vaccination" ~ "Anden vaccination",
-    Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
+    Vax_status == "uld effekt efter primært forløb" ~ "Fuld effekt efter primært forløb",
   )) %>% 
   filter(str_detect(Group, "personer")) %>% 
   pivot_wider(names_from = Group, values_from = Number) %>% 
@@ -89,7 +117,7 @@ plot_data <- bt_table1 %>%
     Vax_status == "ngen vaccination" ~ "Ingen vaccination",
     Vax_status == "ørste vaccination" ~ "Første vaccination",
     Vax_status == "nden vaccination" ~ "Anden vaccination",
-    Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
+    Vax_status == "uld effekt efter primært forløb" ~ "Fuld effekt efter primært forløb",
   )) %>% 
   filter(
     Group %in% c("antal_cases", "antal_repositive")
@@ -102,7 +130,7 @@ plot_data <- bt_table1 %>%
   ) %>% 
   filter(Vax_status != "Anden vaccination")
   
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Første vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Første vaccination', 'Fuld effekt efter primært forløb'))  
   
 plot_data %>% 
   mutate(Week = as.integer(str_sub(Ugenummer, 5, 6))) %>% 
@@ -157,7 +185,7 @@ x <- bt_deaths %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -170,7 +198,7 @@ plot_data <- bt_deaths_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -180,7 +208,7 @@ plot_data <- bt_deaths_inc %>%
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 plot_data %>%   
   ggplot() +
@@ -223,7 +251,7 @@ x <- bt_admitted %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -236,7 +264,7 @@ plot_data <- bt_admitted_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -246,7 +274,7 @@ plot_data <- bt_admitted_inc %>%
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   ggplot() +
@@ -316,7 +344,7 @@ x <- bt_deaths %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -329,7 +357,7 @@ plot_data <- bt_deaths_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -339,7 +367,7 @@ plot_data <- bt_deaths_inc %>%
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   ggplot() +
@@ -409,7 +437,7 @@ x <- bt_cases %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -422,7 +450,7 @@ plot_data <- bt_cases_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -432,7 +460,7 @@ plot_data <- bt_cases_inc %>%
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   ggplot() +
@@ -501,7 +529,7 @@ x <- bt_icu %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -514,7 +542,7 @@ plot_data <- bt_icu_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   mutate(Week = paste0("Uge ", Week)) %>% 
@@ -524,7 +552,7 @@ plot_data <- bt_icu_inc %>%
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   ggplot() +
@@ -597,7 +625,7 @@ x <- bt_tests %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   group_by(Week, Vax_status) %>% 
@@ -609,7 +637,7 @@ plot_data <- bt_cases %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   group_by(Week, Vax_status) %>% 
@@ -618,7 +646,7 @@ plot_data <- bt_cases %>%
   ) %>% 
   full_join(x, by = c("Week", "Vax_status"))
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 plot_data %>%   
   mutate(date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
@@ -650,14 +678,14 @@ plot_data <- inc_df %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   pivot_longer(c(incidence, number), names_to = "variable", values_to = "value")
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   filter(variable == "incidence") %>% 
@@ -770,7 +798,7 @@ x <- bt_tests %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "tested", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) 
 
@@ -778,14 +806,14 @@ plot_data <- bt_cases %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "positive", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u"),
          pct = positive / tested * 100)
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 p1 <- plot_data %>%   
   ggplot() +
@@ -823,7 +851,7 @@ x <- bt_icu %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "number", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) 
 
@@ -831,14 +859,14 @@ plot_data <- bt_icu_inc %>%
   pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
   mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
   filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
+    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
     !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
   ) %>% 
   full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   pivot_longer(c(incidence, number), names_to = "variable", values_to = "value")
 
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt'))  
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb'))  
 
 plot_data %>%   
   filter(variable == "incidence") %>% 
@@ -861,246 +889,5 @@ plot_data %>%
       size = 0.3
     ), 
   )
-
-
-# Check table 1 vs table 2 ------------------------------------------------
-
-
-x <- bt_cases %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "antal_cases", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) 
-
-y <- bt_repos %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "antal_repositive", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) 
-
-z <- bt_cases_inc_all %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence_all", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) 
-
-
-table1_check_1 <- bt_table1 %>% 
-  pivot_longer(-Ugenummer, names_to = c("Group", "Vax_status"), values_to = "Number_table1", names_sep = "_[A-Z]") %>% 
-  mutate(Week = as.integer(str_sub(Ugenummer, 5, 6))) %>% 
-  select(-Ugenummer) %>% 
-  mutate(Vax_status = case_when(
-    Vax_status == "ngen vaccination" ~ "Ingen vaccination",
-    Vax_status == "ørste vaccination" ~ "Første vaccination",
-    Vax_status == "nden vaccination" ~ "Anden vaccination",
-    Vax_status == "uld vaccineeffekt" ~ "Fuld vaccineeffekt",
-  )) %>% filter(
-    Group %in% c("antal_personer_alle", "antal_personer", "antal_cases", "antal_repositive"),
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt")
-  ) 
-
-x %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  pivot_longer(c(antal_cases, antal_repositive), names_to = "Group", values_to = "Number_table2") %>% 
-  group_by(Week, Group, Vax_status) %>% 
-  summarize(Number_table2 = sum(Number_table2, na.rm = TRUE)) %>% 
-  full_join(filter(table1_check_1, Group %in% c("antal_cases", "antal_repositive")), by = c("Week", "Group", "Vax_status")) %>% 
-  mutate(Check = Number_table2 == Number_table1) %>% 
-  pull(Check) %>% 
-  all()
-  
-
-check1 <- bt_cases_inc %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) %>% 
-  full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  mutate(
-    antal_personer = as.integer(antal_cases / incidence * 100000),
-    antal_personer_alle = as.integer(((antal_cases + antal_repositive) / incidence_all * 100000))
-  ) %>% 
-  group_by(Week, Vax_status) %>% 
-  summarize(antal_personer = sum(antal_personer, na.rm = TRUE),
-            antal_personer_alle = sum(antal_personer_alle, na.rm = TRUE)) %>% 
-  pivot_longer(c(antal_personer, antal_personer_alle), names_to = "Group", values_to = "Number_table2") %>% 
-  full_join(filter(table1_check_1, Group %in% c("antal_personer", "antal_personer_alle")), by = c("Week", "Group", "Vax_status")) %>% 
-  mutate(Diff = Number_table2 - Number_table1) 
-
-check2 <- check1 %>% 
-  select(-Diff) %>% 
-  pivot_wider(names_from = Group, values_from = c(Number_table1, Number_table2), names_sep = ":") %>% 
-  pivot_longer(c(-Week, -Vax_status), names_to = c("Dataset", "Group"), values_to = "value", names_sep = ":") %>% 
-  pivot_wider(names_from = Group, values_from = value) %>% 
-  mutate(
-    prev_infection = antal_personer_alle - antal_personer
-  ) %>% 
-  select(-antal_personer_alle) %>% 
-  pivot_wider(names_from = Dataset, values_from = c(antal_personer, prev_infection), names_sep = ":") %>% 
-  pivot_longer(c(-Week, -Vax_status), names_to = c("Group", "Dataset"), values_to = "value", names_sep = ":") %>%
-  pivot_wider(names_from = Dataset, values_from = value) %>%
-  mutate(Diff = Number_table2 - Number_table1) 
-
- 
-temp_df <- bt_cases_inc %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "incidence", names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld vaccineeffekt"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) %>% 
-  full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  mutate(
-    antal_personer = as.integer(antal_cases / incidence * 100000),
-    antal_personer_alle = as.integer(((antal_cases + antal_repositive) / incidence_all * 100000)),
-    prev_infection = antal_personer_alle - antal_personer,
-    incidence_repos = antal_repositive / prev_infection * 100000
-    )  
-
-plot_data <- temp_df %>% 
-  select(-incidence_all, -antal_personer_alle, -antal_personer, -prev_infection) %>% 
-  rename(
-    incidence_cases = incidence,
-    number_cases = antal_cases,
-    number_repositive = antal_repositive,
-    incidence_repositive = incidence_repos
-  ) %>% 
-  pivot_longer(c(-Aldersgruppe, -Week, -Vax_status), names_to = c("variable", "type"), values_to = "value", names_sep = "_") %>% 
-  filter(!(Vax_status == "Fuld vaccineeffekt" & type == "repositive")) %>% 
-  mutate(Immunity_status = case_when(
-    Vax_status == "Ingen vaccination" & type == "repositive" ~ "Tidligere positiv",
-    TRUE ~ Vax_status
-  )) %>% 
-  select(-type) %>% 
-  filter(
-    !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
-  ) %>% 
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) 
-
-plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels=c('Ingen vaccination', 'Fuld vaccineeffekt', 'Tidligere positiv'))  
-
-p1 <- plot_data %>%   
-  filter(variable == "incidence") %>% 
-  ggplot() +
-  geom_area(aes(Date, value, fill = Immunity_status, color = Immunity_status), size = 0.7, stat = "identity", position = "identity", alpha = 0.2) + 
-  scale_fill_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
-  scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, pos_col)) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
-  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
-  labs(y = "Positive per 100.000",
-       title = "Positive per 100.000",
-       subtitle = "Angiver antal positive per 100.000 i alders- og immunitetsgruppen") +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
-  facet_theme +
-  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
-  theme(
-    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
-    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
-    panel.background = element_rect(
-      fill = "gray97", 
-      colour = NA,
-      size = 0.3
-    ), 
-  )
-
-p2 <- plot_data %>%   
-  filter(variable == "number") %>% 
-  ggplot() +
-  geom_area(aes(Date, value, fill = Immunity_status, color = Immunity_status), size = 0.7, stat = "identity", position = "identity", alpha = 0.2) + 
-  scale_fill_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
-  scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, pos_col)) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
-  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
-  labs(y = "Positive",
-       title = "Absolute antal positive") +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
-  facet_theme +
-  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
-  theme(
-    plot.title = element_text(size = 11, face = "bold"),
-    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
-    panel.background = element_rect(
-      fill = "gray97", 
-      colour = NA,
-      size = 0.3
-    ), 
-  )
-
-p1 / p2 + plot_layout(guides='collect') + 
-  plot_annotation(
-    title = 'Ugentligt antal positive opdelt på alder og immunitetsstatus',
-    subtitle = "Relative og absolutte antal personer med positiv SARS-CoV-2 PCR test.\n'Tidligere positive' er tidligere positive, ikke-vaccinerede.",
-    caption = standard_caption,
-    theme = theme(
-      plot.margin = margin(0.7, 0.2, 0.2, 0.2, "cm"),
-      plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 5)),
-      plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
-    )) & theme(
-      text = element_text(family = "lato"),
-      strip.text.x = element_text(margin = margin(0, 0, 0.8, 0)), 
-      legend.position = "bottom",
-      panel.grid.major.x = element_line(color = "white", size = rel(1)),
-      panel.grid.major.y = element_line(color = "white"),
-      panel.grid.minor.x = element_blank())
-
-ggsave("../figures/exp_breakthru_cases_age_time_2.png", width = 16, height = 20, units = "cm", dpi = 300)
-
-
-temp_df %<>% 
-  filter(Vax_status == "Ingen vaccination") %>% 
-  select(Aldersgruppe, Week, prev_infection)
-
-plot_data %>%  
-  filter(variable == "number",
-         Immunity_status == "Tidligere positiv") %>% 
-  left_join(temp_df, by = c("Aldersgruppe", "Week")) %>% 
-  select(Aldersgruppe, Date, value, prev_infection) %>% 
-  mutate(prev_infection = prev_infection / 1000) %>% 
-  rename(
-    Repositive = value,
-    `Tidligere smittede` = prev_infection
-  ) %>% 
-  pivot_longer(c(Repositive, `Tidligere smittede`), names_to = "variable", values_to = "value") %>% 
-  ggplot() +
-  geom_line(aes(Date, value, color = variable), size = 0.7, stat = "identity", position = "identity") + 
-  scale_color_manual(name = "", values = c(pos_col, alpha(pos_col, 0.3))) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
-  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02), sec.axis = sec_axis(~ . * 1000, name = "Tidligere smittede, ikke-vaccinerede")) +
-  labs(y = "Positive",
-       title = "Absolute antal repositive og tidligere smittede",
-       caption = standard_caption) +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
-  facet_theme +
-  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
-  theme(
-    panel.grid.major.x = element_line(color = "white", size = rel(1)),
-    panel.grid.major.y = element_line(color = "white"),
-    panel.grid.minor.x = element_blank(),
-    plot.title = element_text(size = 11, face = "bold"),
-    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
-    panel.background = element_rect(
-      fill = "gray97", 
-      colour = NA,
-      size = 0.3
-    ), 
-  )
-
-ggsave("../figures/exp_breakthru_cases_age_time_prev_inf.png", width = 18, height = 10, units = "cm", dpi = 300)
-
 
 
