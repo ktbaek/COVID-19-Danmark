@@ -189,4 +189,14 @@ plot_data %>%
 
 ggsave("../figures/ntl_pct_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+
+plot_data %>% 
+  filter(
+    Aldersgruppe == "20-39",
+    date >= ymd("2021-06-01"),
+    date < ymd("2021-12-01")) %>% 
+  pull(total_positive) %>% 
+  sum()
+
+  
   

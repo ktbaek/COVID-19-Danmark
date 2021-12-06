@@ -1,4 +1,4 @@
-if(!is.null(ag)) {
+ag <- read_csv2("../data/SSI_Ag_data.csv")
 # Antigen -----------------------------------------------------------------
 
 ag %>%
@@ -53,139 +53,6 @@ ag %>%
 ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-ag_plot_data <- 
-  ag %>%
-  full_join(tests, by = "Date") %>% 
-  filter(
-    Date > ymd("2021-01-31"),
-    Date < ymd(today) - 2) %>% 
-  mutate(
-    total_testede = NotPrevPos + AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos,
-    total_positive = NewPositive + AGpos_minusPCRkonf,
-    PCRonly_testede = NotPrevPos - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRpos - AGnegPCRneg,
-    PCRonly_positive = NewPositive - AGnegPCRpos - AGpos_PCRpos,
-    PCRAgneg_testede = NotPrevPos - AGpos_PCRneg - AGpos_PCRpos,
-    PCRAgneg_positive = NewPositive - AGpos_PCRpos,
-    daily_Antigen_pct = AG_pos / AG_testede * 100,
-    daily_Antigen_zix = AG_pos / AG_testede ** 0.7,
-    daily_PCRonly_pct = PCRonly_positive / PCRonly_testede * 100,
-    daily_PCRonly_zix = PCRonly_positive / PCRonly_testede ** 0.7,
-    daily_PCRAgneg_pct = PCRAgneg_positive / PCRAgneg_testede * 100,
-    daily_PCRAgneg_zix = PCRAgneg_positive / PCRAgneg_testede ** 0.7,
-    daily_PCRall_pct = NewPositive / NotPrevPos * 100,
-    daily_PCRall_zix = NewPositive / NotPrevPos ** 0.7,
-    daily_Total_pct = total_positive / total_testede * 100,
-    daily_Total_zix = total_positive / total_testede ** 0.7) %>% 
-  mutate(
-    ra_Antigen_pct = ra(daily_Antigen_pct),
-    ra_Antigen_zix = ra(daily_Antigen_zix),
-    ra_PCRonly_pct = ra(daily_PCRonly_pct),
-    ra_PCRonly_zix = ra(daily_PCRonly_zix),
-    ra_PCRAgneg_pct = ra(daily_PCRAgneg_pct),
-    ra_PCRAgneg_zix = ra(daily_PCRAgneg_zix),
-    ra_PCRall_pct = ra(daily_PCRall_pct),
-    ra_PCRall_zix = ra(daily_PCRall_zix),
-    ra_Total_pct = ra(daily_Total_pct),
-    ra_Total_zix = ra(daily_Total_zix))
-
-ag_plot_data %>%  
-select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
-  pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
-  mutate(
-    method = case_when(
-      method == "PCRonly" ~ "PCR uden Ag-spor",
-      method == "Antigen" ~ "Ag-spor",
-      method == "PCRAgneg" ~ "PCR med pos fra Ag-spor",
-      method == "PCRall" ~ "PCR med Ag-spor",
-      TRUE ~ method
-    )
-  ) %>% 
-  ggplot() +
-  geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
-  facet_grid(~ method) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
-  scale_color_manual(
-    name = "", 
-    labels = c("Positivprocent", "Smitteindeks"), 
-    values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))
-  ) +
-  scale_size_manual(
-    name = "", 
-    labels = c("Dagligt", "7-dages gennemsnit"), 
-    values = c(0.3, 1)
-  ) +
-  scale_alpha_manual(
-    name = "", 
-    labels = c("Dagligt", "7-dages gennemsnit"), 
-    values = c(0.6, 1)
-  ) +
-  labs(
-    y = "Procent / Indeks", 
-    x = "Dato", 
-    title = "Antal SARS-CoV-2 positive justeret for antal testede", 
-    caption = standard_caption, 
-    subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>'
-  ) +
-  facet_theme + 
-  theme(
-    plot.subtitle = ggtext::element_markdown(),
-    plot.margin = margin(.6, .6, 0.3, .6, "cm"),
-    plot.title = element_text(),
-    legend.position = "none"
-  )
-
-ggsave("../figures/ntl_ag_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-ag_plot_data %>%  
-  select(Date, daily_Antigen_pct:ra_Total_zix) %>% 
-  pivot_longer(-Date, names_to = c("type", "method", "variable"), values_to = "value", names_sep = "_") %>% 
-  filter(method %in% c("PCRonly", "PCRall", "Total")) %>% 
-  mutate(
-    method = case_when(
-      method == "PCRonly" ~ "PCR uden Ag-spor",
-      method == "Antigen" ~ "Ag-spor",
-      method == "PCRAgneg" ~ "PCR med pos fra Ag-spor",
-      method == "PCRall" ~ "PCR med Ag-spor",
-      TRUE ~ method
-    )
-  ) %>% 
-  ggplot() +
-  geom_line(aes(Date, value, color = variable, size = type, alpha = type)) +
-  facet_grid(~ method) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
-  scale_color_manual(
-    name = "", 
-    labels = c("Positivprocent", "Smitteindeks"), 
-    values = c(lighten(pct_col, 0.3), darken(pct_col, 0.3))
-  ) +
-  scale_size_manual(
-    name = "", 
-    labels = c("Dagligt", "7-dages gennemsnit"), 
-    values = c(0.3, 1)
-  ) +
-  scale_alpha_manual(
-    name = "", 
-    labels = c("Dagligt", "7-dages gennemsnit"), 
-    values = c(0.6, 1)
-  ) +
-  labs(
-    y = "Procent / Indeks", 
-    x = "Dato", 
-    title = "Antal SARS-CoV-2 positive justeret for antal testede", 
-    caption = standard_caption, 
-    subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>'
-  ) +
-  facet_theme + 
-  theme(
-    plot.subtitle = ggtext::element_markdown(),
-    plot.margin = margin(.6, .6, 0.3, .6, "cm"),
-    plot.title = element_text(),
-    legend.position = "none"
-  )
-
-ggsave("../figures/ntl_ag_pct2.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 rsq <- function(x, y) summary(lm(y~x))$r.squared
@@ -244,4 +111,3 @@ ag_plot_data %>%
   )
 ggsave("../figures/ntl_ag_regression.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-}

@@ -27,20 +27,10 @@ Medmindre andet er angivet, viser graferne kun resultater for PCR tests.
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
 
-Læs en uddybende forklaring af datafiler, begreber og beregninger [her](/Forklaring.md).
-
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.*
 
 
-## Begreber
-#### Antal positivt testede
-
-
-Positivt testede angiver personer, som *for første gang er testet positive* for COVID-19, og kan derfor også omtales som **nye positive**.
-
-
 ## Hele landet
-
 
 ### Dagligt antal nyindlagte og dødsfald
 Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
@@ -102,8 +92,6 @@ Plottene sammenligner antal nyindlagte med hhv. antal positivt testede og procen
 ![](/figures/ntl_pct_admit.png)
 
 
-
-
 ### Dagligt antal døde vs. hhv. antal nye positivt testede og procent positivt testede
 Plottene sammenligner antal døde med hhv. antal positivt testede og procentdelen af positivt testede. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
@@ -112,55 +100,6 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 ![](/figures/ntl_pos_deaths.png)
 
 ![](/figures/ntl_pct_deaths.png)
-
-
-
-### Dagligt antal positivt testede og procentdelen af  positivt testede
-Plottet sammenligner forløbet af kurven over antal positivt testede personer med kurven over positivandelen for hele landet fra 1. maj. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
-
-SSI datasæt: ``'Test_pos_over_time'``
-
-![](/figures/ntl_pos_pct.png)
-
-
-
-
-[Tilbage til toppen](#)
-
-## Politiske tiltag
-
-Se [liste](/tiltag.md) over tiltag.
-
-### Daglige epidemi-indikatorer og tiltag
-Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april 2020 til 1. august, det midterste plot viser perioden fra 1. juli til 1. februar 2021, og det nederste plot viser perioden fra 1. januar til nu.
-
-``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
-
-![](/figures/ntl_tiltag_april.png)
-
-![](/figures/ntl_tiltag_july.png)
-
-![](/figures/ntl_tiltag_january.png)
-
-[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of reopening 2021 plot.
-
-[Tilbage til toppen](#)
-
-## Vaccinationsstatus
-
-### Total antal vaccinerede
-
-Øverste plot viser det kumulerede antal vaccinerede.
-
-De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu, enten som absolut antal, eller som procentdel af antal personer i køn- og aldersgruppen.
-
-``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
-
-![](/figures/ntl_vax_cum.png)
-
-![](/figures/ntl_vax_age.png)
-
-![](/figures/ntl_vax_age_pct.png)
 
 [Tilbage til toppen](#)
 
@@ -189,6 +128,54 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 
 ![](/figures/ntl_deaths_age_total.png)
 
 [Tilbage til toppen](#)
+
+## Vaccinationsstatus
+
+### Total antal vaccinerede
+
+Øverste plot viser det kumulerede antal vaccinerede.
+
+De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
+
+``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
+
+![](/figures/ntl_vax_cum.png)
+
+![](/figures/ntl_vax_age_pct.png)
+
+[Tilbage til toppen](#)
+
+## Gennembrudsinfektioner
+
+### Indlagte og døde opdelt på vaccinationsstatus
+
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt. 
+
+![](/figures/bt_admit_age_time.png)
+
+![](/figures/bt_icu_age_time.png)
+
+![](/figures/bt_deaths_age_time.png)
+
+## Politiske tiltag
+
+Se [liste](/tiltag.md) over tiltag.
+
+### Daglige epidemi-indikatorer og tiltag
+Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april 2020 til 1. august, det midterste plot viser perioden fra 1. juli til 1. februar 2021, og det nederste plot viser perioden fra 1. januar til nu.
+
+``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
+
+![](/figures/ntl_tiltag_april.png)
+
+![](/figures/ntl_tiltag_july.png)
+
+![](/figures/ntl_tiltag_january.png)
+
+[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of reopening 2021 plot.
+
+[Tilbage til toppen](#)
+
 
 ## Kommuner, landsdele og regioner
 ### Dagligt antal nye positivt testede og antal testede for hver kommune

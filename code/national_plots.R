@@ -1,4 +1,4 @@
-plot_data <- read_csv2("../data/SSI_plot_data.csv")
+plot_data <- read_csv2("../data/SSI_daily_data.csv")
 
 # Pos ------------------------------------------------------------------
 

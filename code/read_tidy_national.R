@@ -69,13 +69,13 @@ if(!is.null(full_data)) {
     mutate(ra = ra(daily)) %>% 
     ungroup() %>% 
     filter(Date > ymd("2020-02-14")) %>% 
-    write_csv2("../data/SSI_plot_data.csv")
+    write_csv2("../data/SSI_daily_data.csv")
     
     
 }
 
 if(!is.null(ag)) {
-ag %<>%
+ag %>%
   rename(Date = Dato) %>% 
   mutate(Date = ymd(Date)) %>%
   select(Date, everything()) %>% 
@@ -83,7 +83,8 @@ ag %<>%
   mutate(
     ra_ag_pos = ra(AG_pos),
     ra_ag_test = ra(AG_testede), 
-    ra_ag_pos_pos = ra(AGpos_PCRpos))
+    ra_ag_pos_pos = ra(AGpos_PCRpos)) %>% 
+    write_csv2("../data/SSI_Ag_data.csv")
   
 }
 

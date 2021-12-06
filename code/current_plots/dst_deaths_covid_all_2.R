@@ -1,7 +1,7 @@
-cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
+cols <- c("all" = lighten("#16697a", 0.4), "covid" = "#ffa62b", "average" = darken("#16697a", .4))
 
-deaths <- read_csv2("../data/SSI_plot_data.csv") %>% 
-  filter(name == "Deaths") %>% 
+deaths <- read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Deaths") %>%
   select(Date, daily)
 
 deaths_avg <- read_data("../data/DST_daily_deaths_5yr.csv", col_names = TRUE) %>%
@@ -10,7 +10,8 @@ deaths_avg <- read_data("../data/DST_daily_deaths_5yr.csv", col_names = TRUE) %>
   pivot_longer(-md, names_to = "year", values_to = "Deaths") %>%
   mutate(
     Deaths = ifelse(Deaths == "..", NA, Deaths),
-    Deaths = as.double(Deaths)) %>%
+    Deaths = as.double(Deaths)
+  ) %>%
   group_by(md) %>%
   summarize(
     avg_5yr = mean(Deaths, na.rm = TRUE),
@@ -33,17 +34,17 @@ plot_data <- dst_deaths %>%
   mutate(Non_covid = current - daily) %>%
   select(-current, -md) %>%
   filter(!is.na(Non_covid)) %>%
-  pivot_longer(-Date, names_to = "variable", values_to = "value") 
+  pivot_longer(-Date, names_to = "variable", values_to = "value")
 
-cols <- c("all" = lighten("#16697a", 0.4),"covid" = "#ffa62b", "average" = darken("#16697a", .4))
+cols <- c("all" = lighten("#16697a", 0.4), "covid" = "#ffa62b", "average" = darken("#16697a", .4))
 
 ggplot(plot_data) +
-  geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat="identity", position = "stack", aes(Date, value, fill = variable), width = 1) +
+  geom_bar(data = subset(plot_data, variable %in% c("Non_covid", "Antal_døde")), stat = "identity", position = "stack", aes(Date, value, fill = variable), width = 1) +
   geom_line(data = plot_data[plot_data$variable == "smooth_avg" & !is.na(plot_data$value), ], aes(Date, value, color = "average"), size = 1) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
   labs(x = "Dato", y = "Antal døde", title = "Daglige dødsfald i Danmark", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
   scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
-  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3],3)) +
-  standard_theme  
+  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3], 3)) +
+  standard_theme
 
 ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)

@@ -9,253 +9,378 @@ Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
 # Read and clean up -------------------------------------------------------
 
-bt_cases <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_cases.csv")
-bt_cases_inc <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_cases.csv")
-bt_table1 <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table1.csv")
-bt_repos <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_antal_repositive.csv")
-bt_cases_inc_all <- read_csv2("../data/SSIdata_211130/gennembrudsinfektioner_table2_incidence_alle.csv")
+bt_1 <- read_csv2("../data/tidy_breakthru_table1.csv")
+bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 
+# Functions ---------------------------------------------------------------
 
-tidy_breakthru <- function(df, name){
-  
-  df %>% 
-  pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = name, names_sep = "_") %>% 
-  mutate(Week = as.integer(str_sub(Week, 5, 6))) %>% 
-  filter(
-    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb"),
-    !Aldersgruppe %in% c("12+", "Alle")
-  ) 
-  
+# function for calculating test adjusted incidence
+tai <- function(pop, pos, tests, beta) {
+  pos / (pop * (tests / pop) ** beta) * 100000
 }
-
-x <- tidy_breakthru(bt_cases, "antal_cases")
-y <- tidy_breakthru(bt_repos, "antal_repositive")
-z <- tidy_breakthru(bt_cases_inc_all, "incidence_all")
-
 
 # Check that table2 data is consistent with table1 data -------------------
 
-table1_check_1 <- bt_table1 %>% 
-  # tidy data
-  pivot_longer(-Ugenummer, names_to = c("Group", "Vax_status"), values_to = "Number_table1", names_sep = "_[A-Z]") %>% 
-  mutate(Week = as.integer(str_sub(Ugenummer, 5, 6))) %>% 
-  select(-Ugenummer) %>% 
-  mutate(Vax_status = case_when(
-    Vax_status == "ngen vaccination" ~ "Ingen vaccination",
-    Vax_status == "ørste vaccination" ~ "Første vaccination",
-    Vax_status == "nden vaccination" ~ "Anden vaccination",
-    Vax_status == "uld effekt efter primært forløb" ~ "Fuld effekt efter primært forløb",
-  )) %>% 
-  # select relevant variables and vax groups
-  filter(
-    Group %in% c("antal_personer_alle", "antal_personer", "antal_cases", "antal_repositive"),
-    Vax_status %in% c("Ingen vaccination",  "Fuld effekt efter primært forløb")
-  ) 
-
 # check that cases and repositive numbers match
-x %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  pivot_longer(c(antal_cases, antal_repositive), names_to = "Group", values_to = "Number_table2") %>% 
-  group_by(Week, Group, Vax_status) %>% 
-  summarize(Number_table2 = sum(Number_table2, na.rm = TRUE)) %>% 
-  full_join(filter(table1_check_1, Group %in% c("antal_cases", "antal_repositive")), by = c("Week", "Group", "Vax_status")) %>% 
-  mutate(Check = Number_table2 == Number_table1) %>% 
-  pull(Check) %>% 
-  all() # -> they are identical in table 1 and 2
+bt_2 %>%
+  group_by(Week, Type, Variable, Vax_status) %>%
+  summarize(Number_table2 = sum(Value, na.rm = TRUE)) %>%
+  inner_join(filter(bt_1, Type == "antal" & Variable %in% c("cases.notprevpos", "cases.prevpos")), by = c("Week", "Type", "Variable", "Vax_status")) %>%
+  mutate(Check = Number_table2 == Value) %>%
+  pull(Check) %>%
+  all() # -> they are identical in table 1 and 2, as expected. 
 
 # compare my calculation of population sizes with those in table 1
-check1 <- bt_cases_inc %>% 
-  tidy_breakthru("incidence") %>% 
-  full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
+temp_df_1 <- bt_2 %>%
+  filter(Variable %in% c("cases.notprevpos", "cases.prevpos", "tests.notprevpos", "tests.alle", "cases.alle")) %>% 
+  pivot_wider(names_from = c(Type, Variable), values_from = Value, names_sep = "_") %>% 
+  select(-incidence_tests.alle) %>% 
   mutate(
-    # calculate population not including previous positives
-    antal_personer = as.integer(antal_cases / incidence * 100000),
-    # calculate population including previous positives
-    antal_personer_alle = as.integer(((antal_cases + antal_repositive) / incidence_all * 100000))
+    antal_personer.notprevpos = antal_cases.notprevpos / incidence_cases.notprevpos * 100000,
+    antal_personer.alle = (antal_cases.notprevpos + antal_cases.prevpos) / incidence_cases.alle * 100000,
+    antal_personer.prevpos = antal_personer.alle - antal_personer.notprevpos,
+    incidence_cases.prevpos = antal_cases.prevpos / antal_personer.prevpos * 100000,
+    antal_tests.prevpos = antal_tests.alle - antal_tests.notprevpos
   ) %>% 
-  # sum across age groups
-  group_by(Week, Vax_status) %>% 
-  summarize(antal_personer = sum(antal_personer, na.rm = TRUE),
-            antal_personer_alle = sum(antal_personer_alle, na.rm = TRUE)) %>% 
-  pivot_longer(c(antal_personer, antal_personer_alle), names_to = "Group", values_to = "Number_table2") %>% 
-  full_join(filter(table1_check_1, Group %in% c("antal_personer", "antal_personer_alle")), by = c("Week", "Group", "Vax_status")) %>% 
-  mutate(
-    Diff = Number_table2 - Number_table1,
-    Diff_pct = abs(Diff / Number_table2) * 100
-    ) # -> max 0.7% difference
-
-# compare my calculation of prev infection population with those calculated from table 1
-check2 <- check1 %>% 
-  select(-Diff, -Diff_pct) %>% 
-  # pivot swap
-  pivot_wider(names_from = Group, values_from = c(Number_table1, Number_table2), names_sep = ":") %>% 
-  pivot_longer(c(-Week, -Vax_status), names_to = c("Dataset", "Group"), values_to = "value", names_sep = ":") %>% 
-  pivot_wider(names_from = Group, values_from = value) %>% 
-  mutate(
-    prev_infection = antal_personer_alle - antal_personer
-  ) %>% 
-  select(-antal_personer_alle) %>% 
-  # pivot swap
-  pivot_wider(names_from = Dataset, values_from = c(antal_personer, prev_infection), names_sep = ":") %>% 
-  pivot_longer(c(-Week, -Vax_status), names_to = c("Group", "Dataset"), values_to = "value", names_sep = ":") %>%
-  pivot_wider(names_from = Dataset, values_from = value) %>%
-  mutate(
-    Diff = Number_table2 - Number_table1,
-    Diff_pct = abs(Diff / Number_table2) * 100
-  ) # -> max 5% difference (week 31), most under 0.5%
-
-
-# Check how calculations compare with total infected over time ------------
-
-# number of cases up until 2 months before last entry
-read_csv2("../data/SSI_plot_data.csv") %>% 
-  filter(
-    name == "Positive",
-    Date < ymd("2021-09-28")) %>% 
-  pull(daily) %>% 
-  sum(na.rm = TRUE) # 355,000
-
-check2 %>% 
-  filter(
-    Group == "prev_infection",
-    Week == 47
-  ) %>% 
-  pull(Number_table2) %>% 
-  sum() # 340,000
-
-# This is close enough, given I haven't included first vax. 
+  select(-incidence_cases.alle, -antal_tests.alle) %>% 
+  pivot_longer(c(antal_cases.notprevpos:antal_tests.prevpos), names_to = c("Type", "Variable"), values_to = "Value", names_sep = "_") %>% 
+  arrange(Aldersgruppe, Week, Vax_status, Type, Variable)
   
+temp_df_1 %>% 
+  filter(Type != "incidence") %>% 
+  group_by(Week, Vax_status, Type, Variable) %>%
+  summarize(
+    Table2 = sum(Value, na.rm = TRUE)
+  ) %>%
+  inner_join(filter(bt_1, Type == "antal" & Variable %in% c("personer.alle", "personer.notprevpos")), by = c("Week", "Type", "Variable", "Vax_status")) %>%
+  mutate(
+    Diff = Table2 - Value,
+    Diff_pct = round(abs(Diff / Table2) * 100, 2)
+  ) 
+# -> Within the categories that I'm using ("Ingen vaccination" and "Anden vaccination") the max percent difference is 0.09% -> I trust the calculation.
+
+# compare my calculation of prev infection population with those calculated from table 1. Given that the above check was OK, this is just a double check. 
+prevpos_check <- temp_df_1 %>% 
+  filter(Type != "incidence") %>% 
+  group_by(Week, Vax_status, Type, Variable) %>%
+  summarize(
+    Table2 = sum(Value, na.rm = TRUE)
+  ) %>%
+  inner_join(filter(bt_1, Type == "antal" & Variable %in% c("personer.alle", "personer.notprevpos")), by = c("Week", "Type", "Variable", "Vax_status")) %>%
+  rename(Table1 = Value) %>% 
+  # pivot swap
+  pivot_wider(names_from = Variable, values_from = c(Table1, Table2), names_sep = ":") %>%
+  pivot_longer(c(-Week, -Vax_status, -Type), names_to = c("Dataset", "Variable"), values_to = "value", names_sep = ":") %>%
+  pivot_wider(names_from = Variable, values_from = value) %>%
+  mutate(
+    personer.prevpos = personer.alle - personer.notprevpos
+  ) %>%
+  select(-personer.alle, -personer.notprevpos) %>%
+  pivot_wider(names_from = Dataset, values_from = personer.prevpos, names_sep = ":") %>%
+  mutate(
+    Diff = Table2 - Table1,
+    Diff_pct = round(abs(Diff / Table2) * 100, 2)
+  ) 
+# -> Within the categories that I'm using ("Ingen vaccination" and "Anden vaccination") the max percent difference is 1.9% and most are <1% -> I still trust the calculation.
+
+# Check how my calculations compare with total infected over time ------------
+
+temp_df_2 <- prevpos_check %>%
+  filter(Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")) %>%
+  group_by(Week) %>%
+  summarize(Table2 = sum(Table2, na.rm = TRUE)) %>% 
+  mutate(Date = as.Date(paste0("2021", sprintf("%02d", Week), "7"), "%Y%U%u"))
+  
+x <- read_csv2("../data/SSI_plot_data.csv") %>%
+  filter(name == "Positive") %>% 
+  select(Date, daily) %>% 
+  mutate(cum_daily = cumsum(daily)) %>% 
+  full_join(temp_df_2, by = "Date") %>% 
+  mutate(Table2 = lead(Table2, 60)) %>% 
+  filter(!is.na(Table2)) %>% 
+  mutate(pct_diff = abs(cum_daily - Table2) / Table2 * 100) %>% 
+  ggplot() +
+  geom_line(aes(Date + days(60), pct_diff)) +
+  scale_y_continuous(limits = c(0, NA))
+
+# This is close enough
+
 # Plots -------------------------------------------------------------------
 
-temp_df <- bt_cases_inc %>% 
-  tidy_breakthru("incidence") %>% 
-  full_join(x, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(z, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  full_join(y, by = c("Aldersgruppe", "Vax_status", "Week")) %>% 
-  mutate(
-    antal_personer = as.integer(antal_cases / incidence * 100000),
-    antal_personer_alle = as.integer(((antal_cases + antal_repositive) / incidence_all * 100000)),
-    prev_infection = antal_personer_alle - antal_personer,
-    incidence_repos = antal_repositive / prev_infection * 100000
-  )  
-
-plot_data <- temp_df %>% 
-  select(-incidence_all, -antal_personer_alle, -antal_personer, -prev_infection) %>% 
-  rename(
-    incidence_cases = incidence,
-    number_cases = antal_cases,
-    number_repositive = antal_repositive,
-    incidence_repositive = incidence_repos
-  ) %>% 
-  pivot_longer(c(-Aldersgruppe, -Week, -Vax_status), names_to = c("variable", "type"), values_to = "value", names_sep = "_") %>% 
-  filter(!(Vax_status == "Fuld effekt efter primært forløb" & type == "repositive")) %>% 
-  mutate(Immunity_status = case_when(
-    Vax_status == "Ingen vaccination" & type == "repositive" ~ "Tidligere positiv",
-    TRUE ~ Vax_status
-  )) %>% 
-  select(-type) %>% 
+plot_data <- temp_df_1 %>%
   filter(
-    !Aldersgruppe %in% c("12+", "Alle", "0-5", "6-11")
-  ) %>% 
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) 
+    !Aldersgruppe %in% c("0-5", "6-11"),
+    Vax_status %in% c("Ingen vaccination", "Anden vaccination"),
+    !str_detect(Variable, "tests"),
+    !str_detect(Variable, "personer")
+  ) %>%
+  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  filter(!(Vax_status == "Anden vaccination" & Variable == "cases.prevpos")) %>% 
+  mutate(Immunity_status = case_when(
+    Vax_status == "Ingen vaccination" & Variable == "cases.prevpos" ~ "Tidligere positiv",
+    TRUE ~ Vax_status
+  )) %>%
+    mutate(Immunity_status = ifelse(Immunity_status == "Anden vaccination", "Anden/tredje vaccination", Immunity_status))
 
-plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels=c('Ingen vaccination', 'Fuld effekt efter primært forløb', 'Tidligere positiv'))  
+plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels = c("Ingen vaccination", "Anden/tredje vaccination", "Tidligere positiv"))
 
-p1 <- plot_data %>%   
-  filter(variable == "incidence") %>% 
+p1 <- plot_data %>%
+  filter(Type == "incidence") %>%
   ggplot() +
-  geom_area(aes(Date, value, fill = Immunity_status, color = Immunity_status), size = 0.7, stat = "identity", position = "identity", alpha = 0.2) + 
+  geom_line(aes(Date, Value, fill = Immunity_status, color = Immunity_status), size = 0.7,  alpha = 1) +
   scale_fill_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
   scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, pos_col)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
-  labs(y = "Positive per 100.000",
-       title = "Positive per 100.000",
-       subtitle = "Angiver antal positive per 100.000 i alders- og immunitetsgruppen") +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
+  labs(
+    y = "Positive per 100.000",
+    title = "Positive per 100.000",
+    subtitle = "Angiver antal positive per 100.000 i alders- og immunitetsgruppen"
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
   facet_theme +
   guides(fill = guide_legend(override.aes = list(alpha = 1))) +
   theme(
     plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
     plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
+    plot.caption.position = "plot",
     panel.background = element_rect(
-      fill = "gray97", 
+      fill = "gray97",
       colour = NA,
       size = 0.3
-    ), 
+    ),
   )
 
-p2 <- plot_data %>%   
-  filter(variable == "number") %>% 
+p2 <- plot_data %>%
+  filter(Type == "antal") %>%
   ggplot() +
-  geom_area(aes(Date, value, fill = Immunity_status, color = Immunity_status), size = 0.7, stat = "identity", position = "identity", alpha = 0.2) + 
+  geom_area(aes(Date, Value, fill = Immunity_status, color = Immunity_status), size = 0, stat = "identity", position = "stack", alpha = 0.9) +
   scale_fill_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
   scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, pos_col)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
-  labs(y = "Positive",
-       title = "Absolutte antal positive") +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
+  labs(
+    y = "Positive",
+    title = "Absolut antal positive",
+    subtitle = "Angiver total antal positive opdelt på immunitetsstatus"
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
   facet_theme +
   guides(fill = guide_legend(override.aes = list(alpha = 1))) +
   theme(
-    plot.title = element_text(size = 11, face = "bold"),
+    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
     plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
+    plot.caption.position = "plot",
     panel.background = element_rect(
-      fill = "gray97", 
+      fill = "gray97",
       colour = NA,
       size = 0.3
-    ), 
+    ),
   )
 
-p1 / p2 + plot_layout(guides='collect') + 
+p1 / p2 + plot_layout(guides = "collect") +
   plot_annotation(
-    title = 'Ugentligt antal positive opdelt på alder og immunitetsstatus',
+    title = "Ugentligt antal positive opdelt på alder og immunitetsstatus",
     subtitle = "Relative og absolutte antal personer med positiv SARS-CoV-2 PCR test.\n'Tidligere positive' er tidligere positive, ikke-vaccinerede.",
     caption = standard_caption,
     theme = theme(
       plot.margin = margin(0.7, 0.2, 0.2, 0.2, "cm"),
       plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 5)),
       plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
-    )) & theme(
-      text = element_text(family = "lato"),
-      strip.text.x = element_text(margin = margin(0, 0, 0.8, 0)), 
-      legend.position = "bottom",
-      panel.grid.major.x = element_line(color = "white", size = rel(1)),
-      panel.grid.major.y = element_line(color = "white"),
-      panel.grid.minor.x = element_blank())
+    )
+  ) & theme(
+  text = element_text(family = "lato"),
+  strip.text.x = element_text(margin = margin(0, 0, 0.8, 0)),
+  legend.position = "bottom",
+  panel.grid.major.x = element_line(color = "white", size = rel(1)),
+  panel.grid.major.y = element_line(color = "white"),
+  panel.grid.minor.x = element_blank()
+)
 
 ggsave("../figures/breakthru_cases_age_time_2.png", width = 16, height = 20, units = "cm", dpi = 300)
 
-temp_df %<>% 
-  filter(Vax_status == "Ingen vaccination") %>% 
+
+plot_data <- temp_df_1 %>%
+  filter(
+    !Aldersgruppe %in% c("0-5", "6-11"),
+    Vax_status %in% c("Ingen vaccination", "Anden vaccination")
+  ) %>%
+  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  filter(!(Vax_status == "Anden vaccination" & str_detect(Variable, "\\.prevpos"))) %>% 
+  mutate(Immunity_status = case_when(
+    Vax_status == "Ingen vaccination" & str_detect(Variable, "\\.prevpos") ~ "Tidligere positiv",
+    TRUE ~ Vax_status
+  )) %>%
+  filter(
+    str_detect(Variable, "tests") | str_detect(Variable, "personer"),
+    Variable != "personer.alle",
+    Type == "antal") %>% 
+ separate(Variable, c("Variable", "PrevPos"), "\\.") %>% 
+  pivot_wider(names_from = Variable, values_from = Value) %>% 
+  mutate(incidence_tests = tests / personer * 100000) %>% 
+  mutate(Immunity_status = ifelse(Immunity_status == "Anden vaccination", "Anden/tredje vaccination", Immunity_status))
+
+plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels = c("Ingen vaccination", "Anden/tredje vaccination", "Tidligere positiv"))
+
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, incidence_tests, color = Immunity_status), size = 0.7, alpha = 1) +
+  scale_color_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
+  scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-09-01"), ymd("2021-11-01")), expand = expansion(mult = 0.01)) +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
+  labs(
+    y = "Tests per 100.000",
+    title = "Tests per 100.000",
+    subtitle = "Angiver antal testede per 100.000 i alders- og immunitetsgruppen"
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
+  facet_theme +
+  guides(color = guide_legend(override.aes = list(size = 1.5))) +
+  theme(
+    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
+    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
+    plot.caption.position = "plot",
+    panel.background = element_rect(
+      fill = "gray97",
+      colour = NA,
+      size = 0.3
+    ),
+  )
+
+
+
+
+plot_data %>%
+  ggplot() +
+  geom_line(aes(Date, tests, color = Immunity_status), size = 0.7, alpha = 1) +
+  scale_color_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
+  labs(
+    y = "Antal testede",
+    title = "Absolut antal testede",
+    subtitle = "Angiver antal testede i alders- og immunitetsgruppen"
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
+  facet_theme +
+  guides(color = guide_legend(override.aes = list(size = 1.5))) +
+  theme(
+    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
+    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
+    plot.caption.position = "plot",
+    panel.background = element_rect(
+      fill = "gray97",
+      colour = NA,
+      size = 0.3
+    ),
+  )
+
+
+
+
+
+
+
+
+
+
+plot_data <- temp_df_1 %>%
+  filter(
+    !Aldersgruppe %in% c("0-5", "6-11"),
+    Vax_status %in% c("Ingen vaccination", "Anden vaccination"),
+    Variable != "personer.alle",
+    Type == "antal"
+  ) %>%
+  pivot_wider(names_from = c("Type", "Variable"), values_from = "Value", names_sep = "_") %>%
+  mutate(antal_tests.prevpos = antal_tests.alle - antal_tests.notprevpos) %>% 
+  select(-antal_tests.alle) %>% 
+  pivot_longer(c(-Aldersgruppe, -Week, -Vax_status), names_to = c("Variable", "PrevPos"), values_to = "Value", names_sep = "\\.") %>%
+  pivot_wider(names_from = Variable, values_from = Value) %>%
+  mutate(tai = tai(antal_personer, antal_cases, antal_tests, 1)) %>% 
+  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  filter(!(Vax_status == "Anden vaccination" & PrevPos == "prevpos")) %>% 
+  mutate(Immunity_status = case_when(
+    Vax_status == "Ingen vaccination" & PrevPos == "prevpos" ~ "Tidligere positiv",
+    TRUE ~ Vax_status
+  )) %>%
+  mutate(Immunity_status = ifelse(Immunity_status == "Anden vaccination", "Anden/tredje vaccination", Immunity_status))
+
+plot_data$Immunity_status <- factor(plot_data$Immunity_status, levels = c("Ingen vaccination", "Anden/tredje vaccination", "Tidligere positiv"))
+
+plot_data %>%
+  ggplot() +
+  geom_area(aes(Date, tai, fill = Immunity_status, color = Immunity_status), size = 0.7, stat = "identity", position = "identity", alpha = 0.2) +
+  scale_fill_manual(name = "", values = c(pct_col, admit_col, pos_col)) +
+  scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, pos_col)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
+  labs(
+    y = "Positive per 100.000",
+    title = "Positive per 100.000",
+    subtitle = "Angiver antal positive per 100.000 i alders- og immunitetsgruppen"
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
+  facet_theme +
+  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
+  theme(
+    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
+    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
+    plot.caption.position = "plot",
+    panel.background = element_rect(
+      fill = "gray97",
+      colour = NA,
+      size = 0.3
+    ),
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+temp_df %<>%
+  filter(Vax_status == "Ingen vaccination") %>%
   select(Aldersgruppe, Week, prev_infection)
 
-plot_data %>%  
-  filter(variable == "number",
-         Immunity_status == "Tidligere positiv") %>% 
-  left_join(temp_df, by = c("Aldersgruppe", "Week")) %>% 
-  select(Aldersgruppe, Date, value, prev_infection) %>% 
-  mutate(prev_infection = prev_infection / 1000) %>% 
+plot_data %>%
+  filter(
+    variable == "number",
+    Immunity_status == "Tidligere positiv"
+  ) %>%
+  left_join(temp_df, by = c("Aldersgruppe", "Week")) %>%
+  select(Aldersgruppe, Date, value, prev_infection) %>%
+  mutate(prev_infection = prev_infection / 1000) %>%
   rename(
     Repositive = value,
     `Tidligere positive` = prev_infection
-  ) %>% 
-  pivot_longer(c(Repositive, `Tidligere positive`), names_to = "variable", values_to = "value") %>% 
+  ) %>%
+  pivot_longer(c(Repositive, `Tidligere positive`), names_to = "variable", values_to = "value") %>%
   ggplot() +
-  geom_line(aes(Date, value, color = variable), size = 0.7, stat = "identity", position = "identity") + 
+  geom_line(aes(Date, value, color = variable), size = 0.7, stat = "identity", position = "identity") +
   scale_color_manual(name = "", values = c(pos_col, alpha(pos_col, 0.3))) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month", expand = expansion(mult = 0.01)) +
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02), sec.axis = sec_axis(~ . * 1000, name = "Tidligere positive, ikke-vaccinerede")) +
-  labs(y = "Repositive",
-       title = "Ugentligt antal repositive og tidligere positive",
-       subtitle = "Tidligere positive, ikke vaccinerede: >60 dage siden seneste positive PCR test",
-       caption = standard_caption) +
-  facet_wrap(~ Aldersgruppe, ncol = 5) +
+  labs(
+    y = "Repositive",
+    title = "Ugentligt antal repositive og tidligere positive",
+    subtitle = "Tidligere positive, ikke vaccinerede: >60 dage siden seneste positive PCR test",
+    caption = standard_caption
+  ) +
+  facet_wrap(~Aldersgruppe, ncol = 5) +
   facet_theme +
   guides(fill = guide_legend(override.aes = list(alpha = 1))) +
   theme(
@@ -264,12 +389,12 @@ plot_data %>%
     panel.grid.minor.x = element_blank(),
     plot.title = element_text(size = 11, face = "bold"),
     plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
-    plot.caption.position =  "plot",
+    plot.caption.position = "plot",
     panel.background = element_rect(
-      fill = "gray97", 
+      fill = "gray97",
       colour = NA,
       size = 0.3
-    ), 
+    ),
   )
 
 ggsave("../figures/breakthru_cases_age_time_prev_inf.png", width = 18, height = 10, units = "cm", dpi = 300)
