@@ -3,18 +3,10 @@ last_file <- tail(vax_files[str_starts(vax_files, "Vaccine_")], 1)
 vax_today_string <- str_sub(last_file, 12, 17)
 vax_today <- paste0("20", str_sub(vax_today_string, 1, 2), "-", str_sub(vax_today_string, 3, 4), "-", str_sub(vax_today_string, 5, 6))
 
-
-# age_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/Vaccinationer_region_aldgrp_koen.csv"), locale = locale(encoding = "ISO-8859-1"))
-# 
-# begun_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FoersteVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
-# 
-# done_vax_df <- read_csv(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FaerdigVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
-
 age_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/Vaccinationer_region_aldgrp_koen.csv"), locale = locale(encoding = "ISO-8859-1"))
-
 begun_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FoersteVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
-
 done_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FaerdigVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
+revax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/Revacc1_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
@@ -97,9 +89,17 @@ done_vax_df %<>%
   group_by(Date) %>%
   summarize(Done = sum(Done, na.rm = TRUE))
 
+revax_df %<>% 
+  rename(
+    Date = `Revacc. 1 dato`,
+    Antal = `Antal revacc. 1`
+    ) %>% 
+  group_by(Date) %>%
+  summarize(Revax = sum(Antal, na.rm = TRUE))
 
 begun_vax_df %>%
   full_join(done_vax_df, by = "Date") %>%
+  full_join(revax_df, by = "Date") %>%
   pivot_longer(-Date) %>%
   replace_na(list(value = 0)) %>%
   group_by(name) %>%
@@ -109,7 +109,7 @@ begun_vax_df %>%
   geom_line(aes(Date, cum_value, color = name), size = 2) +
   scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
-  scale_color_manual(name = "", labels = c("Påbegyndt", "Færdigvaccineret"), values=c("#11999e", "#30e3ca")) +
+  scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Tredje dose"), values=c("#30e3ca", "#11999e", "#006699")) +
   labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
   standard_theme
 
