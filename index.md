@@ -147,7 +147,7 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som
 
 ## Gennembrudsinfektioner
 
-## Smittede opdelt på vaccinations- og tidligere smittestatus
+### Smittede opdelt på vaccinations- og tidligere smittestatus
 
 Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt.
 
