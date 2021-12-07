@@ -92,6 +92,7 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
 }
 
 
+
 bt_2 %>% plot_breakthru_age_panel(
   variable = "indlagte",
   variable_name = "Indlæggelser",
