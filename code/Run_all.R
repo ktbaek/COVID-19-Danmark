@@ -25,6 +25,7 @@ source("update_dashboard_data.R")
 cat("Dashboard data updated\n")
 
 source("read_tidy_national.R")
+source("read_tidy_breakthru.R")
 cat("Read and tidy, national DONE\n")
 
 files_sources = list.files("current_plots", full.names = TRUE)
@@ -33,9 +34,6 @@ cat("Whole country plots DONE\n")
 
 source("age_ssi_18.R")
 cat("Age plots DONE\n")
-
-source("Ag_plots.R")
-cat("Ag plots DONE\n")
 
 source("vax_plots_2.R")
 cat("Vaxxxxxx plots DONE\n")
@@ -48,16 +46,6 @@ cat("Municipality plots DONE\n")
 
 source("exp_admissions.R")
 cat("admission plot DONE\n")
-
-if(wday(ymd(today)) == 5){ 
-  
-  source("Read_tidy_age.R")
-  cat("Read and tidy, age DONE\n")
-  
-  source("age_plots.R")
-  cat("Age plots DONE\n")
-  
-}
 
 source("update_index_md.R")
 cat("Index files updated\n")
