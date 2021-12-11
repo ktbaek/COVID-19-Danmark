@@ -83,7 +83,7 @@ plot_data %>%
   scale_fill_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
   facet_theme +
   theme(
-    plot.margin = margin(0.5, 1, 0.3, 0.5, "cm"),
+    plot.margin = margin(0.5, 1, 0.2, 0.5, "cm"),
     legend.position = "none",
     axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1),
     plot.title = element_text(margin = margin(b = 3)),
@@ -98,4 +98,4 @@ plot_data %>%
     caption = standard_caption
   )
 
-ggsave("../figures/ntl_pos_admit_bars_quarter.png", width = 18, height = 12, units = "cm", dpi = 300)
+ggsave("../figures/ntl_pos_admit_bars_quarter.png", width = 18, height = 10, units = "cm", dpi = 300)
