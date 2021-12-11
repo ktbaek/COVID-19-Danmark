@@ -120,13 +120,6 @@ Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 i
 
 ![](/figures/ntl_hosp_age.png)
 
-### Dagligt antal døde for hver aldersgruppe
-Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
-
-``Danmarks Statistik datasæt: 'DODC1'``
-
-![](/figures/ntl_deaths_age_total.png)
-
 ### Ugentlig andel af positivt testede der indlægges
 
 Plottet viser andelen af PCR positive der efterfølgende indlægges. Andelene er beregnet ved lineær regression mellem antal positive og gennemsnittet af antal indlæggelser i samme uge eller de to følgende uger (det er den periode en positiv test kan give anledning til at en indlæggelse registreres som en COVID-19 relateret indlæggelse). Korrelationskoefficienterne under søjlerne angiver hvor god sammenhængen mellem antal positive og antal indlæggelser er.
@@ -134,6 +127,15 @@ Plottet viser andelen af PCR positive der efterfølgende indlægges. Andelene er
 ``SSI datasæt: '18_fnkt_alder_uge_testede_positive_nyindlagte'``
 
 ![](/figures/ntl_pos_admit_bars_quarter.png)
+
+### Dagligt antal døde for hver aldersgruppe
+Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
+
+``Danmarks Statistik datasæt: 'DODC1'``
+
+![](/figures/ntl_deaths_age_total.png)
+
+
 
 [Tilbage til toppen](#)
 
