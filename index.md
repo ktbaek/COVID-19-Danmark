@@ -127,6 +127,12 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 
 
 ![](/figures/ntl_deaths_age_total.png)
 
+### Ugentlig andel af positivt testede der indlægges
+
+Plottet viser andelen af PCR positive der efterfølgende indlægges. Andelene er beregnet ved lineær regression mellem antal positive og gennemsnittet af antal indlæggelser i samme uge eller de to følgende uger (det er den periode en positiv test kan give anledning til at en indlæggelse registreres som en COVID-19 relateret indlæggelse). Korrelationskoefficienterne angiver hvor god sammenhængen mellem antal positive og antal indlæggelser er. 
+
+![](/figures/ntl_pos_admit_bars_quarter.png)
+
 [Tilbage til toppen](#)
 
 ## Vaccinationsstatus

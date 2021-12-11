@@ -118,6 +118,23 @@ plot_data %>%
 ggsave("../figures/ntl_hosp_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
+  ggplot() +
+  geom_line(aes(date, total_admitted, color = Aldersgruppe), size = 0.8) +
+  scale_color_discrete(name = "") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Nyindlagte", 
+    x = "Dato", 
+    title = "Ugentligt antal SARS-CoV-2-positive nyindlagte", 
+    caption = standard_caption
+  ) +
+  guides(colour = guide_legend(nrow = 1)) +
+  standard_theme
+
+ggsave("../figures/ntl_hosp_age_abs.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data %>% 
   filter(date > as_date("2021-02-28")) %>% 
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
