@@ -175,22 +175,28 @@ Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders-
 
 ![](/figures/bt_deaths_age_time.png)
 
+## Virusvarianter
+
+Plottene viser en oversigt over forekomsten af varianterne Alfa, Delta, og Omikron samt tidligere varianter ("Andre") siden 1. november 2020. Det øverste plot viser absolutte antal positivt testede, og det nederste viser varianternes andel alle positivt testede.
+
+![](/figures/ntl_all_variants.png)
+
+![](/figures/ntl_all_variants_proportion.png)
+
 ## Politiske tiltag
 
 Se [liste](/tiltag.md) over tiltag.
 
 ### Daglige epidemi-indikatorer og tiltag
-Plottene viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage. Det øverste plot viser perioden fra 1. april 2020 til 1. august, det midterste plot viser perioden fra 1. juli til 1. februar 2021, og det nederste plot viser perioden fra 1. januar til nu.
+Plottet viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
-
-![](/figures/ntl_tiltag_april.png)
-
-![](/figures/ntl_tiltag_july.png)
 
 ![](/figures/ntl_tiltag_january.png)
 
 [English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of reopening 2021 plot.
+
+Lignende plots for [forår/sommer 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_april.png) og [efterår 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_july.png).
 
 [Tilbage til toppen](#)
 
