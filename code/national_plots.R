@@ -448,28 +448,29 @@ ggsave("../figures/ntl_pct_deaths.png", width = 18, height = 10, units = "cm", d
 
 # Twitter card ------------------------------------------------------------------
 
+avg <- plot_data %>%
+  filter(Date > ymd("2020-06-30")) %>%
+  group_by(name) %>% 
+  summarize(mean = mean(daily, na.rm = TRUE))
+
 plot_data %>%
-  filter(name %in% c("Positive", "Percent")) %>% 
-  filter(Date > ymd("2020-04-30")) %>%
-  pivot_wider(names_from = name, values_from = c(daily, ra), names_sep = "_") %>% 
+  full_join(avg, by = "name") %>% 
+  group_by(name) %>% 
+  mutate(daily_1 = lag(daily, n = 60)) %>% 
+  filter(Date > ymd("2020-06-30")) %>%
   ggplot() +
-  geom_point(aes(Date, daily_Percent * 1000), color = pct_col, alpha = 0.3, size = 2) +
-  geom_point(aes(Date, daily_Positive), color = pos_col, alpha = 0.3, size = 2) +
-  geom_line(aes(Date, ra_Percent * 1000), size = 1, color = pct_col) +
-  geom_line(aes(Date, ra_Positive), size = 1, color = pos_col) +
-  scale_color_manual(
+  
+  geom_area(aes(Date, daily_1 / mean, fill = name, alpha = name), position = "fill") +
+  scale_alpha_manual(
     name = "", 
-    labels = c("Positivprocent", "Positive"), 
-    values = c(alpha(pct_col, 0.3), 
-               alpha(pos_col, 0.3))
+    values = c(0, .5, 0.5, 0.5,  1, 0),
   ) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
-  scale_y_continuous(
-    limits = c(0, NA),
-    name = "Antal",
-    sec.axis = sec_axis(~ . / 1000, name = "Positivprocent", labels = function(x) paste0(x, " %")),
-  ) +
-  theme_void()
+  #scale_fill_manual(values = amager) +
+  scale_fill_manual(values = color_scale) +
+  theme_void() +
+  theme(
+    legend.position = "none"
+  )
  
 ggsave("../figures/twitter_card.png", width = 15, height = 8, units = "cm", dpi = 300) 
 
