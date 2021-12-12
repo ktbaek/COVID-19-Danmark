@@ -194,7 +194,7 @@ Plottet viser forløbene af de forskellige epidemi-indikatorer samt tidspunktern
 
 ![](/figures/ntl_tiltag_january.png)
 
-[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of reopening 2021 plot.
+[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of this plot.
 
 Lignende plots for [forår/sommer 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_april.png) og [efterår 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_july.png).
 
