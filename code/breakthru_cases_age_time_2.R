@@ -107,7 +107,7 @@ temp_df_2 <- prevpos_check %>%
   summarize(Table2 = sum(Table2, na.rm = TRUE)) %>%
   mutate(Date = as.Date(paste0("2021", sprintf("%02d", Week), "7"), "%Y%U%u"))
 
-x <- read_csv2("../data/SSI_plot_data.csv") %>%
+x <- read_csv2("../data/SSI_daily_data.csv") %>%
   filter(name == "Positive") %>%
   select(Date, daily) %>%
   mutate(cum_daily = cumsum(daily)) %>%
