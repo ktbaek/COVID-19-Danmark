@@ -2,17 +2,19 @@
 read_csv2("../data/SSI_omikron.csv") %>% 
   mutate(
     Date = dmy(Date),
-    pct = as.double(pct)
-  ) %>% 
+    Seq = as.double(pct),
+    variantPCR = as.double(variantPCR),
+    pct = ifelse(is.na(Seq), variantPCR, Seq)
+  ) %>%
   full_join(read_csv2("../data/SSI_daily_data.csv"), by = "Date") %>% 
   filter(name == "Positive") %>% 
   mutate(
     omikron = daily * pct / 100,
     delta = daily - omikron
     ) %>% 
-  select(-ra, -name, -pct, -daily) %>% 
+  select(-ra, -name, -pct, -daily, -variantPCR, -Seq) %>% 
   pivot_longer(-Date) %>% 
-  filter(Date >= ymd("2021-11-01")) %>% 
+  filter(Date >= ymd("2021-11-21")) %>% 
   ggplot() +
   geom_bar(aes(Date, value, fill = name), width = 1, stat = "identity", position = "stack") +
   scale_fill_manual(name = "", labels = c("Delta", "Omikron"), values=c("gray85", pos_col))+
@@ -40,8 +42,10 @@ alpha_delta <- read_csv2("../data/SSI_alpha_delta.csv") %>%
 omikron <- read_csv2("../data/SSI_omikron.csv") %>% 
   mutate(
     Date = dmy(Date),
-    pct = as.double(pct)
-  ) %>% 
+    Seq = as.double(pct),
+    variantPCR = as.double(variantPCR),
+    pct = ifelse(is.na(Seq), variantPCR, Seq)
+  )  %>% 
   inner_join(read_csv2("../data/SSI_daily_data.csv"), by = "Date") %>% 
   filter(name == "Positive") %>% 
   mutate(
@@ -111,7 +115,7 @@ plot_data %>%
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x * 100, " %")) +
   labs(
     y = "Andel",
-    title = "Ugentligt andel af varianter", 
+    title = "Ugentlig andel af varianter", 
     caption = standard_caption
   ) +
   standard_theme  

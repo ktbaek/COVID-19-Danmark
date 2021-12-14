@@ -2,15 +2,15 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   filter(name %in% c("Positive", "Admitted")) %>%
   pivot_longer(c(daily, ra), names_to = "type") %>%
   mutate(
-    value = ifelse(name == "Admitted", value * 10, value)
+    value = ifelse(name == "Admitted", value * 20, value)
   ) %>%
   ggplot() +
   geom_line(aes(Date, value, alpha = type, size = type, color = name)) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
-    sec.axis = sec_axis(~ . / 10, name = "Nyindlæggelser")
+    sec.axis = sec_axis(~ . / 20, name = "Nyindlæggelser")
   ) +
   scale_size_manual(
     name = "",
