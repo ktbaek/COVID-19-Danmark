@@ -3,22 +3,21 @@ read_csv2("../data/SSI_omikron.csv") %>%
   mutate(
     Date = dmy(Date),
     Seq = as.double(pct),
-    variantPCR = as.double(variantPCR),
-    pct = ifelse(is.na(Seq), variantPCR, Seq)
+    variantPCR = as.double(variantPCR)
   ) %>%
   full_join(read_csv2("../data/SSI_daily_data.csv"), by = "Date") %>% 
   filter(name == "Positive") %>% 
   mutate(
-    omikron = daily * pct / 100,
-    delta = daily - omikron
+    omikron_seq = daily * Seq / 100,
+    delta = daily - omikron_seq 
     ) %>% 
   select(-ra, -name, -pct, -daily, -variantPCR, -Seq) %>% 
   pivot_longer(-Date) %>% 
   filter(Date >= ymd("2021-11-21")) %>% 
   ggplot() +
   geom_bar(aes(Date, value, fill = name), width = 1, stat = "identity", position = "stack") +
-  scale_fill_manual(name = "", labels = c("Delta", "Omikron"), values=c("gray85", pos_col))+
-  scale_x_date(labels = my_date_labels, date_breaks = "1 week") +
+  scale_fill_manual(name = "", labels = c("Delta", "Omikron", "Omikron (kun variant PCR)"), values=c("gray85", pos_col))+
+  scale_x_date(labels = my_date_labels, date_breaks = "1 week", minor_breaks = NULL) +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Antal positive",
