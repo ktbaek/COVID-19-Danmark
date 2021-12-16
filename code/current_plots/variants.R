@@ -2,16 +2,15 @@
 read_csv2("../data/SSI_omikron.csv") %>% 
   mutate(
     Date = dmy(Date),
-    Seq = as.double(pct),
-    variantPCR = as.double(variantPCR)
+    pct = as.double(pct)
   ) %>%
   full_join(read_csv2("../data/SSI_daily_data.csv"), by = "Date") %>% 
   filter(name == "Positive") %>% 
   mutate(
-    omikron_seq = daily * Seq / 100,
-    delta = daily - omikron_seq 
+    omikron = daily * pct / 100,
+    delta = daily - omikron 
     ) %>% 
-  select(-ra, -name, -pct, -daily, -variantPCR, -Seq) %>% 
+  select(-ra, -name, -pct, -daily, -pct) %>% 
   pivot_longer(-Date) %>% 
   filter(Date >= ymd("2021-11-21")) %>% 
   ggplot() +
@@ -41,9 +40,7 @@ alpha_delta <- read_csv2("../data/SSI_alpha_delta.csv") %>%
 omikron <- read_csv2("../data/SSI_omikron.csv") %>% 
   mutate(
     Date = dmy(Date),
-    Seq = as.double(pct),
-    variantPCR = as.double(variantPCR),
-    pct = ifelse(is.na(Seq), variantPCR, Seq)
+    pct = as.double(pct)
   )  %>% 
   inner_join(read_csv2("../data/SSI_daily_data.csv"), by = "Date") %>% 
   filter(name == "Positive") %>% 
