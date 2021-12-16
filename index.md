@@ -187,7 +187,10 @@ Plottene viser en oversigt over forekomsten af varianterne Alfa, Delta, og Omikr
 
 ### Daglige antal: Omikron
 
+Plottet viser det daglige antal positive opdelt på de to nuværende varianter, Delta og Omikron.
+
 ![](/figures/ntl_omikron_daily_pos.png)
+
 
 
 
