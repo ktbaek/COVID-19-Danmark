@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 16. december 2021 efter kl 14.
+Senest opdateret 17. december 2021 efter kl 14.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -163,11 +163,15 @@ Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsg
 
 *Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination* og *Anden/tredje vaccination* angiver personer der ikke tidligere har testet positiv. Personer der er vaccineret *og* tidligere testet positive udgør kun et lille antal og er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er tæt på nul.
 
+``SSI datasæt: 'Gennembrudsinfektioner_table1', 'Gennembrudsinfektioner_table2'``
+
 ![](/figures/bt_cases_age_time_2.png)
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
 Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt.
+
+``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
 ![](/figures/bt_admit_age_time.png)
 
@@ -180,6 +184,8 @@ Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders-
 ### Ugentlige antal positive opdelt på varianter
 
 Plottene viser en oversigt over forekomsten af varianterne Alfa, Delta, og Omikron samt tidligere varianter ("Andre") siden 1. november 2020. Det øverste plot viser absolutte antal positivt testede, og det nederste viser varianternes andel af alle positivt testede. Datoerne angiver mandagen i hver uge.
+
+``SSI datasæt: Virusvariant pdf-rapporter``
 
 ![](/figures/ntl_all_variants_pos.png)
 
