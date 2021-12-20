@@ -195,6 +195,8 @@ Plottene viser en oversigt over forekomsten af varianterne Alfa, Delta, og Omikr
 
 Plottet viser det daglige antal positive opdelt på de to nuværende varianter, Delta og Omikron.
 
+``SSI datasæt: Omikron pdf-rapport, Table 2``
+
 ![](/figures/ntl_omikron_daily_pos.png)
 
 
@@ -249,8 +251,8 @@ Dette plot startende 1. maj 2020 kan ses [her](/figures/muni_30_pct_may.png).
 
 ![](/figures/muni_30_pct.png)
 
-### Dagligt antal nye positivt testede og antal testede for hver landsdel
-Plottet viser det daglige antal nye positivt testede og antal total testede for de seneste tre måneder for hver landsdel.
+### Dagligt antal positive, testede og procentdel positivt testede for hver landsdel
+Plottene viser det daglige antal nye positivt testede, antal total testede og procentdel af positivt testede (inkl. 7-dages gennemsnit) for de seneste tre måneder for hver landsdel.
 
 Bemærk at antal positive aflæses på højre akse mens antal testede aflæses på venstre akse.
 
@@ -260,17 +262,7 @@ Bemærk at antal positive aflæses på højre akse mens antal testede aflæses p
 
 ![](/figures/muni_pos_vs_test_landsdele.png)
 
-### Daglig procentdel positivt testede for hver landsdel
-Plottet viser den daglige procentdel af positivt testede (inkl. 7-dages gennemsnit) for de seneste tre måneder for hver landsdel.
-
-[Liste](/Geo_opdeling.md) over geografisk opdeling af Danmark.
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-
 ![](/figures/muni_pct_landsdele.png)
-
-
 
 
 ### Dagligt antal positive, testede og procentdel positivt testede i København og omegn
