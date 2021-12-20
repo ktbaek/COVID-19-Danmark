@@ -70,7 +70,7 @@ plot_data %>%
   facet_wrap(~ Kommune, scales = "free", ncol = 5) +
   scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +
   scale_color_manual(name = "", labels = c("Testede"), values = test_col) +
-  scale_x_date(date_labels = "%b", date_breaks = "3 month", date_minor_breaks = "1 month") +
+  scale_x_date(date_labels = "%b", date_breaks = "4 month", date_minor_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
     sec.axis = sec_axis(~ . / 100, name = "Positive"),
