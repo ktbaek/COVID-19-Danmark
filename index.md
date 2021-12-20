@@ -107,7 +107,7 @@ Plottene sammenligner antal døde med hhv. antal positivt testede og procentdele
 
 ### Ugentligt antal positive, testede og nyindlagte for hver aldersgruppe
 
-Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 i aldersgruppen, og positivprocenten for hver aldersgruppe.
+Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 i aldersgruppen, og positivprocenten for hver aldersgruppe. Datoerne angiver mandagen i hver uge.
 
 ``SSI datasæt: '18_fnkt_alder_uge_testede_positive_nyindlagte'``
 ``Danmarks Statistik datasæt: 'FOLK1A'``
@@ -163,13 +163,15 @@ Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsg
 
 *Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination* og *Anden/tredje vaccination* angiver personer der ikke tidligere har testet positiv. Personer der er vaccineret *og* tidligere testet positive udgør kun et lille antal og er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er tæt på nul.
 
+Datoerne angiver mandagen i hver uge.
+
 ``SSI datasæt: 'Gennembrudsinfektioner_table1', 'Gennembrudsinfektioner_table2'``
 
 ![](/figures/bt_cases_age_time_2.png)
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt.
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt. Datoerne angiver mandagen i hver uge.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
