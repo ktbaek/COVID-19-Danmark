@@ -2,7 +2,12 @@ library(tidyverse)
 library(magrittr)
 
 # get last tuesday's date
-lasttue <- as.character(ymd(today) - wday(today) + 3)
+days_subtract <- case_when(
+  wday(today) == 3 ~ 0,
+  wday(today) <= 2 ~ wday(today) + 4,
+  wday(today) >= 2 ~ wday(today) - 3
+)
+lasttue <- as.character(ymd(today) - days_subtract)
 lasttue <- paste0(str_sub(lasttue, 3, 4), str_sub(lasttue, 6, 7), str_sub(lasttue, 9, 10))
 
 # read and tidy table 1
