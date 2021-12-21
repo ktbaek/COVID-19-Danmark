@@ -96,6 +96,30 @@ all_data$Age <- factor(all_data$Age, levels = c(
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
+minmax_years <- all_data %>% 
+  filter(Year %in% c(2015:2019)) %>% 
+  group_by(Year, Age, Sex) %>% 
+  summarize(sum = sum(Daily, na.rm = TRUE)) %>% 
+  group_by(Age, Sex) %>% 
+  summarize(
+    min = Year[which.min(sum)], 
+    max = Year[which.max(sum)]
+  ) %>% 
+  pivot_longer(c(min, max), names_to = "type", values_to = "Year")
+    
+minmax <- all_data %>% 
+  right_join(minmax_years, by = c("Age", "Sex", "Year")) %>% 
+  select(-Date, -Year, -Population, - Quarter) %>% 
+  pivot_wider(names_from = type, values_from = Daily) %>% 
+  arrange(New_date) %>% 
+  group_by(Age, Sex) %>% 
+  mutate(
+    min = cumsum(replace_na(min, 0)),
+    max = cumsum(replace_na(max, 0)),
+  ) %>% 
+  arrange(Age, New_date)
+  
+
 plot_data <- all_data %>%
   mutate(Daily_relative = Daily / Population * 100000) %>% 
   group_by(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year)), Age, Sex, New_date) %>%
@@ -107,7 +131,8 @@ plot_data <- all_data %>%
   mutate(
     Cum = cumsum(replace_na(Daily, 0)),
     Cum_relative = cumsum(replace_na(Daily_relative, 0)),
-  )
+  ) %>% 
+  full_join(minmax, by = c("New_date", "Age", "Sex"))
 
 
 
@@ -129,25 +154,34 @@ plot_layer <- list(
   )
 )
 
+Age_range <- c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34")
+
 plot_data %>%
-  filter(Age %in% c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34")) %>%
+  filter(Age %in% Age_range) %>%
   ggplot() +
+  geom_ribbon(data = filter(plot_data, Year_group == "2015-2019", Age %in% Age_range), aes(New_date, ymin = min, ymax = max), alpha = 0.2, fill = hue_pal()(3)[3]) +
   geom_line(aes(New_date, Cum, color = as.factor(Year_group))) +
   plot_layer
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_young.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+Age_range <- c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69")
+
 plot_data %>%
-  filter(Age %in% c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69")) %>%
+  filter(Age %in% Age_range) %>%
   ggplot() +
+  geom_ribbon(data = filter(plot_data, Year_group == "2015-2019", Age %in% Age_range), aes(New_date, ymin = min, ymax = max), alpha = 0.2, fill = hue_pal()(3)[3]) +
   geom_line(aes(New_date, Cum, color = as.factor(Year_group))) +
   plot_layer
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_mid.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+Age_range <- c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")
+
 plot_data %>%
-  filter(Age %in% c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")) %>%
+  filter(Age %in% Age_range) %>%
   ggplot() +
+  geom_ribbon(data = filter(plot_data, Year_group == "2015-2019", Age %in% Age_range), aes(New_date, ymin = min, ymax = max), alpha = 0.2, fill = hue_pal()(3)[3]) +
   geom_line(aes(New_date, Cum, color = as.factor(Year_group))) +
   plot_layer
 
@@ -189,7 +223,7 @@ plot_data %>%
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-all_data %>% 
+x <- all_data %>% 
   group_by(Date, Year, Age) %>% 
   summarize(Population = sum(Population)) %>% 
   ggplot() +
@@ -210,31 +244,6 @@ all_data %>%
   )
 
 ggsave("../figures/DST_deaths_19_20_21/dst_pop_age_2015_21.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-
-# all_data$Age <- factor(all_data$Age, levels = rev(levels(all_data$Age)))
-# 
-# p2 <- all_data %>% 
-#   group_by(Date, Year, Age) %>% 
-#   summarize(Population = sum(Population)) %>% 
-#   ggplot() +
-#   geom_area(aes(Date, Population, fill = Age, color = Age), alpha = 0.6, position = "fill") +
-#   scale_x_date(date_label = "%Y", date_breaks = "3 years", minor_breaks = "1 year") +
-#   scale_fill_manual(values = rev(hue_pal()(21))) +
-#   scale_color_manual(values = rev(hue_pal()(21))) +
-#   scale_y_continuous(labels = function(x) paste0(x * 100, " %")) +
-#   facet_theme +
-#   theme(
-#     legend.position = "none",
-#     axis.title.y = element_blank(),
-#     panel.grid.minor.x = element_line(size = rel(0.3))
-#   )
-# 
-# p1 + p2 +
-#   plot_layout(widths = c(4, 1))
-
-
-
 
 
 all_data %>%
