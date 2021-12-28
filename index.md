@@ -163,7 +163,7 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som
 
 Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsgruppen) og i absolutte tal. Data for modtagere af én dosis (første vaccination) er udeladt.
 
-*Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination*, *Fuld effekt 2 doser*, og *Fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. Personer der er vaccineret *og* tidligere testet positive er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er meget små. Det samme gør sig gældende for modtagere af 3. dosis i aldersgrupper under 20 år.
+*Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Personer der er vaccineret *og* tidligere testet positive er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er meget små. Det samme gør sig gældende for modtagere af 3. dosis i aldersgrupper under 20 år.
 
 Datoerne angiver mandagen i hver uge.
 
