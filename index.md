@@ -173,7 +173,7 @@ Datoerne angiver mandagen i hver uge.
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Grupperne er ikke opdelt på baggrund af tidligere smittestatus. Data for modtagere af én dosis (første vaccination) er udeladt. Datoerne angiver mandagen i hver uge.
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Grupperne er ikke opdelt på baggrund af tidligere smittestatus. Data for modtagere af én dosis (første vaccination) er udeladt. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
