@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 27. december 2021 kl. 14:54.
+Senest opdateret 28. december 2021 kl. 14:9.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -159,9 +159,9 @@ De to nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som
 
 ### Smittede opdelt på vaccinations- og tidligere smittestatus
 
-Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt.
+Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsgruppen) og i absolutte tal. Data for modtagere af én dosis (første vaccination) er udeladt.
 
-*Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination* og *Anden/tredje vaccination* angiver personer der ikke tidligere har testet positiv. Personer der er vaccineret *og* tidligere testet positive udgør kun et lille antal og er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er tæt på nul.
+*Tidligere positive* angiver ikke-vaccinerede personer med en tidligere positiv PCR test der er mere end 60 dage gammel. *Ingen vaccination*, *Fuld effekt 2 doser*, og *Fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. Personer der er vaccineret *og* tidligere testet positive er ikke medtaget. For aldersgrupper 60+ er tidligere positive ikke medtaget, da antal nye positive (repositive) i disse grupper er meget små. Det samme gør sig gældende for modtagere af 3. dosis i aldersgrupper under 20 år.
 
 Datoerne angiver mandagen i hver uge.
 
@@ -171,7 +171,7 @@ Datoerne angiver mandagen i hver uge.
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Anden/tredje vaccination angiver alle som har fået mindst to doser. Data for modtagere af én dosis (første vaccination) er udeladt. Datoerne angiver mandagen i hver uge.
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Grupperne er ikke opdelt på baggrund af tidligere smittestatus. Data for modtagere af én dosis (første vaccination) er udeladt. Datoerne angiver mandagen i hver uge.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 

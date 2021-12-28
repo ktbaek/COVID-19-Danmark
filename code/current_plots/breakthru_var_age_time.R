@@ -4,26 +4,49 @@ library(patchwork)
 
 bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 
+my_breaks <- c(ymd("2021-10-01"), ymd("2021-12-01"))
+
 plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, subtitle) {
-  plot_data <- df %>%
+  
+  zero_replace <- df %>% 
+    filter(
+      Vax_status == "Fuld effekt efter revaccination",
+      Variable == "tests",
+      Group == "alle",
+      Value == 0) %>% 
+    mutate(
+      Type = "incidence",
+      Variable = variable,
+      Group = NA,
+      zero_tests = TRUE) %>% 
+    select(-Value)
+  
+    plot_data <- df %>%
+    left_join(zero_replace, by = c("Type", "Variable", "Group", "Aldersgruppe", "Week", "Vax_status")) %>% 
+    mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
     filter(
       !Aldersgruppe %in% c("0-5", "6-11"),
-      Vax_status %in% c("Ingen vaccination", "Anden vaccination"),
+      Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       Variable == variable
     ) %>%
     mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
-    mutate(Vax_status = ifelse(Vax_status == "Anden vaccination", "Anden/tredje vaccination", Vax_status))
+    mutate(Vax_status = case_when(
+      Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
+      Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
+      TRUE ~ Vax_status
+    ))
+      
 
 
-  plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Anden/tredje vaccination"))
+  plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
   p1 <- plot_data %>%
     filter(Type == "incidence") %>%
     ggplot() +
     geom_line(aes(Date, Value, fill = Vax_status, color = Vax_status), size = 0.7, alpha = 1) +
-    scale_fill_manual(name = "", values = c(pct_col, admit_col)) +
-    scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col)) +
-    scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-09-01"), ymd("2021-11-01")), expand = expansion(mult = 0.01)) +
+    scale_fill_manual(name = "", values = c(pct_col, admit_col, "#67cc32")) +
+    scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, "#67cc32")) +
+    scale_x_date(labels = my_date_labels, breaks = my_breaks, expand = expansion(mult = 0.01)) +
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
     labs(
       y = paste0(variable_name, " per 100.000"),
@@ -48,14 +71,14 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
     filter(Type == "antal") %>%
     ggplot() +
     geom_area(aes(Date, Value, fill = Vax_status, color = Vax_status), size = 0, stat = "identity", position = "stack", alpha = 0.9) +
-    scale_fill_manual(name = "", values = c(pct_col, admit_col)) +
-    scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col)) +
-    scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-09-01"), ymd("2021-11-01")), expand = expansion(mult = 0.01)) +
+    scale_fill_manual(name = "", values = c(pct_col, admit_col, "#67cc32")) +
+    scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, "#67cc32")) +
+    scale_x_date(labels = my_date_labels, breaks = my_breaks, expand = expansion(mult = 0.01)) +
     scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
     labs(
       y = variable_name,
       title = paste0("Absolut antal ", str_to_lower(variable_name)),
-      subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " opdelt på vaccinationsstatus")
+      subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " opdelt på vaccinationsstatus (grupperne er stablet)")
     ) +
     facet_wrap(~Aldersgruppe, ncol = 5) +
     facet_theme +

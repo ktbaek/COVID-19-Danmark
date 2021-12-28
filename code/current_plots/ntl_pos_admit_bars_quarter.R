@@ -59,7 +59,7 @@ plot_data <- ssi_18_tidy %>%
     slope = slope(positive, admitted)
   )
 
-plot_data %>%
+x <- plot_data %>%
   filter(slope >= 0) %>%
   select(Aldersgruppe, R, slope, year_quarter) %>%
   distinct() %>%

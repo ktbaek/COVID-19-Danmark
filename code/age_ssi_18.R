@@ -41,14 +41,12 @@ age_groups <- dst_age_groups %>%
     Quarter = as.integer(Quarter),
     Year = as.integer(Year)
   ) %>% 
-  
   group_by(Year, Quarter, Aldersgruppe_cut = cut(Alder, breaks= c(-1, 2, 5, 11, 15, 19, 39, 64, 79, 125))) %>% 
   summarize(Population = sum(Population)) %>%
   full_join(age_lookup_1, by = "Aldersgruppe_cut") %>%
   select(-Aldersgruppe_cut) 
 
 plot_data <- ssi_18 %>% 
-  #full_join(age_groups, by = "Aldersgruppe") %>% 
   separate(Uge, into = c("year", "week"), sep = "-") %>% 
   mutate(week = str_remove(week, "W")) %>% 
   mutate(

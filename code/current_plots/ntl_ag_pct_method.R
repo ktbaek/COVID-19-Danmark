@@ -81,7 +81,7 @@ plot_layer <- list(
 )
 
 p1 <- ag_plot_data %>%
-  filter(variable == "pct") %>%
+  filter(variable == "pct", method != "Ag-spor") %>%
   ggplot() +
   plot_layer +
   scale_y_continuous(labels = function(x) paste0(x, " %")) +
@@ -93,7 +93,7 @@ p1 <- ag_plot_data %>%
   )
 
 p2 <- ag_plot_data %>%
-  filter(variable == "ix") %>%
+  filter(variable == "ix", method != "Ag-spor") %>%
   ggplot() +
   plot_layer +
   labs(
