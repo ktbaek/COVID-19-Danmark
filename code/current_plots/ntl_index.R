@@ -10,7 +10,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   geom_line(aes(Date, value, alpha = type, size = type, color = name)) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
   scale_y_continuous(
-    limits = c(0, 5),
+    limits = c(0, NA),
     name = "Positivprocent",
     labels = function(x) paste0(x, " %"),
     sec.axis = sec_axis(~ . / 4, name = "Index", breaks = c(0, 0.5, 1))
