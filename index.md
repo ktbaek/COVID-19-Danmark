@@ -209,6 +209,7 @@ Plottet viser det daglige antal positive opdelt på de to nuværende varianter, 
 ## Politiske tiltag
 
 Se [liste](/tiltag.md) over tiltag.
+*Ikke fuldt opdateret*.
 
 ### Daglige epidemi-indikatorer og tiltag
 Plottet viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
