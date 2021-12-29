@@ -25,7 +25,9 @@ Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og
 
 Medmindre andet er angivet, viser graferne kun resultater for PCR tests.
 
-Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.  
+Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.
+
+Positivt testede angiver nye positive, altså personer der ikke har testet positiv før (undt. under gennembrudsinfektioner).
 
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.*
 
@@ -295,25 +297,6 @@ Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede 
 ![](/figures/muni_region_incidens.png)
 
 
-
-<!--
-
-### Ugentligt antal positivt testede per indbyggertal og procentdel positivt testede per testede (heatmaps)
-Plottene viser hhv. den ugentlige promille positivt testede per indbyggertal og den ugentlige procent positivt testede per total testede for udvalgte kommuner.  
-
-De udvalgte kommuner er de 30 kommuner der har haft flest positivt testede indenfor den seneste måned.  
-
-``SSI datasæt: 'Municipality_cases_time_series', 'Municipality_tested_persons_time_series``
-
-![](/figures/muni_30_weekly_incidens_tile.png)
-
-For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_incidens_tile.png).
-
-![](/figures/muni_30_weekly_pct_tile.png)
-
-For at se ovenstående plot for *alle* kommuner, klik [her](/figures/muni_all_weekly_pos_pct_tile.png).
-
--->
 
 
 
