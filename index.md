@@ -62,7 +62,7 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 ![](/figures/ntl_pos.png)
 
 ### Daglig positivprocent
-Plottet viser hvor stor en procentdel af PCR testede der tester positive. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. Vær opmærksom på at positivprocenten er påvirket af hvem der testes.
+Plottet viser hvor stor en procentdel af PCR testede der tester positive. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. Vær opmærksom på at positivprocenten er påvirket af hvem der testes, f.eks kan man antage at når man tester flere, tester man i højere grad personer med lavere sandsynlighed for at være smittede.
 
 ``SSI datasæt: 'Test_pos_over_time'``
 
