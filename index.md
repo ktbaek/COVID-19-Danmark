@@ -42,6 +42,7 @@ Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne lin
 ![](/figures/ntl_hosp.png)
 ![](/figures/ntl_deaths.png)
 
+<!--
 ### Dagligt antal positivt testede personer justeret for antal testede
 Plottet viser positivprocenten og et smitteindeks. Smitteindekset er anden måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden [benyttes af SSI](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
 
@@ -51,7 +52,7 @@ Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dag
 
 ![](/figures/ntl_index.png)
 
-
+-->
 
 ### Dagligt antal nye positivt testede personer
 Plottet viser antallet af nye positivt testede personer for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
@@ -59,6 +60,13 @@ Plottet viser antallet af nye positivt testede personer for hele landet. Den opt
 ``SSI datasæt: 'Test_pos_over_time'``
 
 ![](/figures/ntl_pos.png)
+
+### Daglig positivprocent
+Plottet viser hvor stor en procentdel af PCR testede der tester positive. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage. Vær opmærksom på at positivprocenten er påvirket af hvem der testes.
+
+``SSI datasæt: 'Test_pos_over_time'``
+
+![](/figures/ntl_pct.png)
 
 
 ### Dagligt antal testede personer
