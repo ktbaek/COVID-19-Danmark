@@ -32,20 +32,6 @@ bt_2 %>%
   all() # -> they are identical in table 1 and 2, as expected.
 
 # compare my calculation of population sizes with those in table 1
-temp_df_1 <- bt_2 %>%
-  filter(Variable %in% c("cases", "tests")) %>%
-  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
-  select(-incidence_tests_alle, -antal_tests_total) %>%
-  mutate(
-    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
-    antal_personer_alle = (antal_cases_notprevpos + antal_cases_prevpos) / incidence_cases_alle * 100000,
-    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
-    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
-    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos
-  ) %>%
-  select(-incidence_cases_alle, -antal_tests_alle) %>%
-  pivot_longer(c(antal_cases_notprevpos:antal_tests_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
-  arrange(Aldersgruppe, Week, Vax_status, Type, Variable, Group)
 
 temp_df_1 <- bt_2 %>%
   filter(Variable %in% c("cases", "tests")) %>%
@@ -464,3 +450,6 @@ plot_data %>%
   )
 
 ggsave("../figures/bt_personer_vax_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
