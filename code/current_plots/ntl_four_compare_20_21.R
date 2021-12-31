@@ -2,14 +2,23 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
   filter(!name %in% c("Index", "Tested")) %>%
   mutate(
     year = year(Date),
-    new_date = `year<-`(Date, 2021)
+    new_date = case_when(
+      year == 2020 ~ `year<-`(Date, 2021),
+      year == 2021 & month(Date) < 9 ~ `year<-`(Date, 2022),
+      TRUE ~ Date
+    ),
+    year = case_when(
+      year == 2020 ~ "2020/21",
+      year == 2021 & month(Date) < 9 ~ "2020/21",
+      TRUE ~ "2021/22"
+    )
   ) %>%
-  filter(new_date > "2021-08-31", new_date <= ymd(today)) %>%
+  filter(new_date > "2021-09-30", new_date <= ymd(today)) %>%
   pivot_longer(c(daily, ra), names_to = "type", values_to = "value") 
   
 plot_layer <- list(
   geom_line(aes(new_date, value, color = name, size = type, alpha = type)),
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months", expand = expansion(mult = c(0.01, 0))),
+  scale_x_date(labels = my_date_labels_no_year, date_breaks = "1 months", expand = expansion(mult = c(0.01, 0))),
   scale_size_manual(
     guide = FALSE,
     values = c(0.3, 1.2)
@@ -102,7 +111,7 @@ p4 <- plot_data %>%
 
 (p1 + p2) / (p3 + p4)  + 
   plot_annotation(
-  title = "SARS-CoV-2, efterår 2021 vs 2020, Danmark", 
+  title = "SARS-CoV-2, efterår/vinter 2021 vs 2020, Danmark", 
   caption = standard_caption, 
   theme = theme(
   legend.position = "bottom",

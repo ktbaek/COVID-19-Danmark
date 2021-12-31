@@ -26,14 +26,12 @@ cat("Dashboard data updated\n")
 
 source("read_tidy_national.R")
 source("read_tidy_breakthru.R")
+source("read_tidy_weekly_age.R")
 cat("Read and tidy, national DONE\n")
 
 files_sources = list.files("current_plots", full.names = TRUE)
 sapply(files_sources, source)
 cat("Whole country plots DONE\n")
-
-source("age_ssi_18.R")
-cat("Age plots DONE\n")
 
 source("vax_plots_2.R")
 cat("Vaxxxxxx plots DONE\n")

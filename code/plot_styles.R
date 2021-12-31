@@ -33,6 +33,12 @@ my_date_labels <- function(breaks) {
   return(labels)
 }
 
+my_date_labels_no_year <- function(breaks) {
+  
+  sapply(breaks, function(x) {str_to_lower(strftime(x, "%e. %b"))})
+
+}
+
 # Typeface ----------------------------------------------------------------
 
 quartzFonts(lato = c("Lato-Regular", "Lato-Bold", "Lato-Light", "Lato-BoldItalic"))

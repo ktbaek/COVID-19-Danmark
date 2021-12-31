@@ -205,6 +205,4 @@ bt_1 %>%
     axis.text.x = element_blank()
   )
 
-
-
 ggsave("../figures/bt_incidence_example1.png", width = 18, height = 10, units = "cm", dpi = 300)

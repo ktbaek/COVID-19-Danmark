@@ -20,14 +20,23 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   bind_rows(x) %>%
   mutate(
     year = year(Date),
-    new_date = `year<-`(Date, 2021)
+    new_date = case_when(
+      year == 2020 ~ `year<-`(Date, 2021),
+      year == 2021 & month(Date) < 9 ~ `year<-`(Date, 2022),
+      TRUE ~ Date
+    ),
+    year = case_when(
+      year == 2020 ~ "2020/21",
+      year == 2021 & month(Date) < 9 ~ "2020/21",
+      TRUE ~ "2021/22"
+      )
   ) %>%
   pivot_longer(c(daily, ra), names_to = "type", values_to = "value") %>%
-  filter(new_date > "2021-08-31", new_date <= "2021-12-31") %>%
+  filter(new_date > "2021-09-30", new_date <= "2022-01-31") %>%
   ggplot() +
   geom_line(aes(new_date, value, color = as.factor(year), size = type, alpha = type)) +
   scale_y_continuous(limits = c(0, NA)) +
-  scale_x_date(labels = my_date_labels, date_breaks = "1 months") +
+  scale_x_date(labels = my_date_labels_no_year, date_breaks = "1 months") +
   scale_color_manual(name = "", values = c(test_col, pos_col)) +
   scale_size_manual(
     guide = FALSE,
@@ -40,7 +49,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   labs(
     y = "Antal/procent",
     x = "Dato",
-    title = "SARS-CoV-2, efterår 2021 vs 2020, Danmark",
+    title = "SARS-CoV-2, efterår/vinter 2021 vs 2020, Danmark",
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
   ) +
   guides(color = guide_legend(override.aes = list(size = 1))) +
