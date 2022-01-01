@@ -1,11 +1,13 @@
 
+muni_data <- read_csv2("../data/tidy_muni_data.csv")
+
 month_correction <- case_when(
   day(ymd(today)) == 31 & month(ymd(today)) %in% c(3, 5, 7, 10, 12) ~ 1, 
   day(ymd(today)) %in% c(29, 30, 31) & month(ymd(today)) == 5 ~ 3,
   TRUE ~ 0)
 
 # Subset kommuner by most positives the last month ------------------------
-muni_subset <- muni_all %>% 
+muni_subset <- muni_data %>% 
   filter(Date > ymd(today) - month_correction - months(1)) %>%
   group_by(Kommune) %>% 
   summarize(pos_month = sum(Positive)) %>% 
@@ -14,7 +16,7 @@ muni_subset <- muni_all %>%
   pull(Kommune)
 
 # Figur: Positiv vs testede - alle kommuner 3 mdr-----------------
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   mutate(Positive = Positive * 100) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
@@ -50,7 +52,7 @@ ggsave("../figures/muni_all_pos_vs_test.png", width = 42, height = 48, units = "
 
 # Figur: Positiv vs testede - udvalgte kommuner fra marts ------------------
 
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd("2020-02-29")) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Positive = Positive * 100) %>%
@@ -88,7 +90,7 @@ ggsave("../figures/muni_30_pos_vs_test_march.png", width = 28, height = 22, unit
 
 # Figur: Positiv vs testede - udvalgte kommuner 3 mdr --------
 
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(Positive = Positive * 100) %>%
@@ -126,13 +128,12 @@ ggsave("../figures/muni_30_pos_vs_test.png", width = 28, height = 21, units = "c
 
 
 # -------------------------------------------------------------------------
-
-# Figur: Procent - alle kommuner 3 mdr --------
 ra <- function(x, n = 7) {
   stats::filter(x, rep(1 / n, n), sides = 2)
 }
+# Figur: Procent - alle kommuner 3 mdr --------
 
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   mutate(pct = Positive / Tested * 100) %>%
   group_by(Kommune) %>%
@@ -170,8 +171,7 @@ ggsave("../figures/muni_all_pct.png", width = 42, height = 47, units = "cm", dpi
 
 # Figur: Procent - udvalgte kommuner fra maj --------
 
-
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd("2020-04-30")) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(pct = Positive / Tested * 100) %>%
@@ -208,11 +208,7 @@ ggsave("../figures/muni_30_pct_may.png", width = 27, height = 20, units = "cm", 
 
 # Figur: procent - udvalgte kommuner 3 mdr -----------------
 
-ra <- function(x, n = 7) {
-  stats::filter(x, rep(1 / n, n), sides = 2)
-}
-
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   filter(Kommune %in% muni_subset) %>%
   mutate(pct = Positive / Tested * 100) %>%
@@ -547,8 +543,7 @@ ggsave("../figures/muni_pct_landsdele.png", width = 23, height = 14, units = "cm
 
 # Figur: Positiv vs testede - København og omegn, 1 md------------------
 
-
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   full_join(geo, by = "Kommune") %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   filter(Landsdel %in% c("København", "Københavns omegn")) %>%
@@ -590,7 +585,7 @@ ra <- function(x, n = 7) {
   stats::filter(x, rep(1 / n, n), sides = 2)
 }
 
-plot_data <- muni_all %>%
+plot_data <- muni_data %>%
   full_join(geo, by = "Kommune") %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   filter(Landsdel %in% c("København", "Københavns omegn")) %>%
@@ -668,21 +663,17 @@ ra <- function(x, n = 7) {
   stats::filter(x, rep(1 / n, n), sides = 1)
 }
 
-x <- admitted %>%
-  select(-`Ukendt Region`, -Admitted) %>%
-  pivot_longer(-Date, names_to = "Region", values_to = "Admitted") 
-
-muni_all %>%
+muni_data %>%
   full_join(geo, by = "Kommune") %>%
   group_by(Region, Date) %>%
   mutate(Tested = sum(Tested, na.rm = TRUE),
          Positive = sum(Positive, na.rm = TRUE)) %>%
   ungroup() %>%
-  select(-Kommune, -Landsdel) %>%
+  select(-Kommune, -Landsdel, -Befolkningstal) %>%
   distinct() %>%
   mutate(pct = Positive / Tested * 100) %>%
   select(-Tested) %>%
-  full_join(x, by = c("Region", "Date")) %>%
+  full_join(filter(read_csv2("../data/tidy_admitted_region.csv"), Region != "Ukendt_region"), by = c("Region", "Date")) %>%
   pivot_longer(c(-Date, -Region), names_to = "variable", values_to = "value") %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   ggplot() +
@@ -708,11 +699,11 @@ muni_all %>%
 ggsave("../figures/muni_region_all.png", width = 23, height = 14, units = "cm", dpi = 300)
 
 region_pop <- geo %>%
-  full_join(muni_pop, by = "Kommune") %>%
-  group_by(Region) %>%
+  full_join(muni_data, by = "Kommune") %>%
+  group_by(Region, Date) %>%
   summarize(Pop = sum(Befolkningstal, na.rm = TRUE))
 
-muni_all %>%
+muni_data %>%
   full_join(geo, by = "Kommune") %>%
   group_by(Region, Date) %>%
   mutate(Tested = sum(Tested, na.rm = TRUE),
@@ -824,8 +815,8 @@ plot_kommuner_pct <- function(muni_df, kommune) {
   
 }
 
-walk(unique(muni_all$Kommune), ~ plot_kommuner_pos(muni_all, .x))
-walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
+walk(unique(muni_data$Kommune), ~ plot_kommuner_pos(muni_data, .x))
+walk(unique(muni_data$Kommune), ~ plot_kommuner_pct(muni_data, .x))
 
 
 
@@ -837,7 +828,7 @@ walk(unique(muni_all$Kommune), ~ plot_kommuner_pct(muni_all, .x))
 # 
 # 
 # 
-# muni_alert <- muni_all %>% 
+# muni_alert <- muni_data %>% 
 #   filter(Date >= ymd(today) - days(8)) %>%
 #   full_join(muni_population, by = c("Kommune", "Date")) %>% 
 #   group_by(Kommune) %>% 

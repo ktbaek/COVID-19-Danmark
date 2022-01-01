@@ -45,8 +45,7 @@ muni_population %<>%
 muni_all <- muni_tested %>%
   full_join(muni_pos, by = c("Kommune", "Date")) %>%
   filter(!Kommune == "X100") %>%
-  filter(Date > ymd("2020-02-29")) %T>% 
-  write_csv2("../data/tidy_muni_data.csv")
+  filter(Date > ymd("2020-02-29")) 
 
 # Tests -------------------------------------------------------------------
 
@@ -89,6 +88,13 @@ muni_pop <- muni_population %>%
 muni_all %<>%
   filter(Date < ymd(today) - 1) # remove last two days
 
+muni_all %>%
+  full_join(muni_population, by = c("Date", "Kommune")) %>% 
+  arrange(Date) %>% 
+  group_by(Kommune) %>% 
+  fill(Befolkningstal, .direction = "downup") %>% 
+  write_csv2("../data/tidy_muni_data.csv")
+
 muni_wk <- muni_all %>%
   mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
 
@@ -130,3 +136,15 @@ landsdele <- muni_all %>%
   distinct()
 
 landsdele$Landsdel <- factor(landsdele$Landsdel, levels = landsdele_order)
+
+landsdele %>% 
+  write_csv2("../data/tidy_landsdele_data.csv")
+
+
+# REGION data -------------------------------------------------------------
+
+admitted %>%
+  select(-Admitted) %>%
+  rename(Ukendt_region = `Ukendt Region`) %>% 
+  pivot_longer(-Date, names_to = "Region", values_to = "Admitted") %>% 
+  write_csv2("../data/tidy_admitted_region.csv")
