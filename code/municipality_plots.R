@@ -683,7 +683,7 @@ muni_data %>%
     aes(Date, value, fill = variable),  
     width = 1) +
   facet_grid(variable ~ Region, scales = "free") +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
   scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positivprocent", "Positive"), values = c(admit_col, pct_col, pos_col)) +
   labs(
     y = "Værdi", 
@@ -698,35 +698,28 @@ muni_data %>%
 
 ggsave("../figures/muni_region_all.png", width = 23, height = 14, units = "cm", dpi = 300)
 
-region_pop <- geo %>%
-  full_join(muni_data, by = "Kommune") %>%
-  group_by(Region, Date) %>%
-  summarize(Pop = sum(Befolkningstal, na.rm = TRUE))
-
 muni_data %>%
   full_join(geo, by = "Kommune") %>%
   group_by(Region, Date) %>%
   mutate(Tested = sum(Tested, na.rm = TRUE),
-         Positive = sum(Positive, na.rm = TRUE)) %>%
-  ungroup() %>%
-  select(-Kommune, -Landsdel) %>%
+         Positive = sum(Positive, na.rm = TRUE),
+         Population = sum(Befolkningstal, na.rm = TRUE)) %>%
+  select(-Kommune, -Landsdel, - Befolkningstal) %>%
   distinct() %>%
   select(-Tested) %>%
-  full_join(x, by = c("Region", "Date")) %>%
-  full_join(region_pop, by = "Region") %>%
-  mutate(Positive = Positive / Pop * 100000,
-         Admitted = Admitted / Pop * 100000) %>%
-  select(-Pop) %>%
-  pivot_longer(c(-Date, -Region), names_to = "variable", values_to = "value") %>%
+  full_join(filter(read_csv2("../data/tidy_admitted_region.csv"), Region != "Ukendt_region"), by = c("Region", "Date")) %>%
+  mutate(Positive = Positive / Population * 100000,
+         Admitted = Admitted / Population * 100000) %>%
+  select(-Population) %>%
+  pivot_longer(c(-Date, -Region)) %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   ggplot() +
   geom_bar(
     stat = "identity", 
-    position = "stack", 
-    aes(Date, value, fill = variable),  
+    aes(Date, value, fill = name),  
     width = 1) +
-  facet_grid(variable ~ Region, scales = "free") +
-  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  facet_grid(name ~ Region, scales = "free") +
+  scale_x_date(labels = my_data_labels, date_breaks = "1 month") +
   scale_fill_manual(name = "", labels = c("Nyindlæggelser", "Positive"), values = c(admit_col, pos_col)) +
   labs(
     y = "Antal per 100.000 indbyggere", 

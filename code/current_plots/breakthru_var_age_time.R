@@ -36,8 +36,6 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       TRUE ~ Vax_status
     ))
       
-
-
   plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
   p1 <- plot_data %>%

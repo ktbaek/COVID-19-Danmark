@@ -1,4 +1,3 @@
-
 read_csv2("../data/SSI_omikron.csv") %>% 
   mutate(
     Date = dmy(Date),

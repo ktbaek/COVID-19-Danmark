@@ -34,8 +34,7 @@ dst_age_sex %<>%
   rename(Alder = X1,
          M = X2,
          K = X3) %>%
-  mutate_all(str_replace_all, " år", "") %>%
-  mutate_all(as.double) %>%
+  mutate(Alder = as.integer(str_replace(Alder, " \x8cr", ""))) %>%
   mutate(
     Aldersgruppe = case_when(
       Alder %in% c(0:9) ~ "0-9",
