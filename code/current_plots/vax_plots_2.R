@@ -90,7 +90,7 @@ begun_vax_df %>%
   geom_line(aes(Date, cum_value, color = name), size = 2) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
-  scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Tredje dose"), values=c("#30e3ca", "#11999e", "#006699")) +
+  scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
   standard_theme
 
