@@ -9,3 +9,70 @@ read_data <- function(path, type = 2, ...) {
 ra <- function(x, n = 7, s = 2) {
   stats::filter(x, rep(1 / n, n), sides = s)
 }
+
+
+get_age_breaks <- function(maxage = 100, agesplit = 10) c(seq(-1, maxage - 1, agesplit), 125)
+
+read_tidy_age <- function(my_breaks) {
+  
+  maxage <- my_breaks[length(my_breaks)-1] + 1
+  
+  read_csv2("../data/DST_pop_age_sex_19_20_21.csv", col_names = FALSE) %>%
+    rename(
+      Sex = X3,
+      Age = X4,
+      `2015_1` = X5,
+      `2015_2` = X6,
+      `2015_3` = X7,
+      `2015_4` = X8,
+      `2016_1` = X9,
+      `2016_2` = X10,
+      `2016_3` = X11,
+      `2016_4` = X12,
+      `2017_1` = X13,
+      `2017_2` = X14,
+      `2017_3` = X15,
+      `2017_4` = X16,
+      `2018_1` = X17,
+      `2018_2` = X18,
+      `2018_3` = X19,
+      `2018_4` = X20,
+      `2019_1` = X21,
+      `2019_2` = X22,
+      `2019_3` = X23,
+      `2019_4` = X24,
+      `2020_1` = X25,
+      `2020_2` = X26,
+      `2020_3` = X27,
+      `2020_4` = X28,
+      `2021_1` = X29,
+      `2021_2` = X30,
+      `2021_3` = X31,
+      `2021_4` = X32,
+    ) %>%
+    select(-X1, -X2) %>%
+    rowwise() %>%
+    mutate(
+      Age = as.double(str_split(Age, " ")[[1]][1]),
+      Sex = str_sub(Sex, 1, 1),
+      Sex = ifelse(Sex == "M", "Male", "Female")
+    ) %>%
+    pivot_longer(-c(Sex, Age), names_to = "Kvartal", values_to = "Population") %>%
+    separate(Kvartal, c("Year", "Quarter"), sep = "_") %>%
+    mutate(
+      Quarter = as.integer(Quarter),
+      Year = as.integer(Year)
+    ) %>%
+    group_by(Year, Quarter, Sex, Age_cut = cut(Age, breaks = my_breaks)) %>%
+    summarize(Population = sum(Population)) %>%
+    rowwise() %>%
+    mutate(
+      from = as.double(str_split(str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][1]) + 1,
+      to = as.double(str_split(str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][2]),
+      Age = case_when(
+        from == maxage ~ paste0(maxage, "+"),
+        TRUE ~ paste(from, to, sep = "-")
+      )
+    ) %>%
+    select(-from, -to, -Age_cut)
+}

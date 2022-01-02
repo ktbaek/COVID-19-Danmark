@@ -7,6 +7,7 @@ age_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string,
 begun_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FoersteVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 done_vax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FaerdigVacc_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 revax_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/Revacc1_region_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
+age_time_df <- read_csv2(paste0("../data/Vax_data/Vaccine_DB_", vax_today_string, "/FoersteVacc_FaerdigVacc_region_fnkt_alder_dag.csv"), locale = locale(encoding = "ISO-8859-1"))
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
@@ -28,30 +29,11 @@ age_vax_df %>%
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-dst_age_sex <- read_csv2("../data/DST_age_sex_group_1_year.csv", col_names = FALSE)
-
-dst_age_sex %<>%
-  rename(Alder = X1,
-         M = X2,
-         K = X3) %>%
-  mutate(Alder = as.integer(str_replace(Alder, " \x8cr", ""))) %>%
-  mutate(
-    Aldersgruppe = case_when(
-      Alder %in% c(0:9) ~ "0-9",
-      Alder %in% c(10:19) ~ "10-19",
-      Alder %in% c(20:29) ~ "20-29",
-      Alder %in% c(30:39) ~ "30-39",
-      Alder %in% c(40:49) ~ "40-49",
-      Alder %in% c(50:59) ~ "50-59",
-      Alder %in% c(60:69) ~ "60-69",
-      Alder %in% c(70:79) ~ "70-79",
-      Alder %in% c(80:89) ~ "80-89",
-      Alder > 89 ~ "90+")) %>% 
-  select(-Alder) %>% 
-  group_by(Aldersgruppe) %>% 
-  summarize(M = sum(M, na.rm = TRUE),
-            K = sum(K, na.rm = TRUE)) %>% 
-  pivot_longer(-Aldersgruppe, "Sex", values_to = "Population")
+pop <- read_tidy_age(maxage = 90, agesplit = 10) %>% 
+  filter(Year == 2021, Quarter == 4) %>% 
+  mutate(Sex = ifelse(Sex == "Male", "M", "K")) %>% 
+  ungroup() %>% 
+  select(-Year, -Quarter)
 
 age_vax_df %>%
   set_colnames(c("Region", "Aldersgruppe", "Sex", "Begun", "Done")) %>%
@@ -60,7 +42,7 @@ age_vax_df %>%
   summarize(
     Begun = sum(Begun, na.rm = TRUE),
     Done = sum(Done, na.rm = TRUE)) %>%
-  full_join(dst_age_sex, by = c("Aldersgruppe", "Sex")) %>% 
+  full_join(pop, by = c("Aldersgruppe" = "Age", "Sex")) %>% 
   mutate(Incidense = Begun / Population * 100) %>%
   ggplot() +
   geom_bar(aes(Aldersgruppe, Incidense, fill = Sex), stat = "identity", position = "dodge") +
@@ -113,6 +95,114 @@ begun_vax_df %>%
   standard_theme
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+fnkt_age_breaks <- c(-1, 5, 11, 15, 19, 39, 64, 79, 125)
+
+pop <- read_tidy_age(fnkt_age_breaks) %>% 
+  group_by(Year, Quarter, Age) %>% 
+  summarize(Population = sum(Population, na.rm = TRUE))
+  
+bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
+
+temp_df_1 <- bt_2 %>%
+  filter(Variable %in% c("cases", "tests")) %>%
+  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
+  select(-incidence_tests_alle, -antal_tests_total) %>%
+  mutate(
+    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
+    antal_personer_alle = (antal_cases_notprevpos + antal_cases_prevpos) / incidence_cases_alle * 100000,
+    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
+    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
+    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
+    incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
+    incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
+  ) %>%
+  select(-incidence_cases_alle, -antal_tests_alle) %>%
+  pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
+  arrange(Aldersgruppe, Week, Vax_status, Type, Variable, Group)
+
+booster <- temp_df_1 %>% 
+  filter(
+    Variable =="personer",
+    Group == "alle",
+    Vax_status == "Fuld effekt efter revaccination"
+  ) %>% 
+  rename("Third" = Value) %>% 
+  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+  select(-Vax_status, -Type, -Variable, -Group, -Week) %>% 
+  mutate(Aldersgruppe = case_when(
+    Aldersgruppe == "20-29" ~ "20-39",
+    Aldersgruppe == "30-39" ~ "20-39",
+    Aldersgruppe == "40-49" ~ "40-64",
+    Aldersgruppe == "50-59" ~ "40-64",
+    Aldersgruppe == "60-64" ~ "40-64",
+    Aldersgruppe == "65-69" ~ "65-79",
+    Aldersgruppe == "70-79" ~ "65-79",
+    TRUE ~ Aldersgruppe
+  )) %>% 
+  group_by(Date, Aldersgruppe) %>% 
+  summarize(Third = sum(Third, na.rm = TRUE)) %>% 
+  mutate(
+    Year = year(Date),
+    Quarter = quarter(Date)
+  ) %>% 
+  left_join(pop, by = c("Aldersgruppe" = "Age", "Year", "Quarter")) %>% 
+  mutate(
+    cum_pct = Third / Population * 100,
+    Dose = "Third") %>% 
+  select(-Third)
+  
+  
+
+
+plot_data <- age_time_df %>% 
+  rename(
+    Date = Dato,
+    First = `Antal første vacc.`,
+    Second = `Antal færdigvacc.`) %>% 
+  pivot_longer(c(First, Second), names_to = "Dose") %>% 
+  filter(!is.na(Aldersgruppe)) %>% 
+  mutate(Aldersgruppe = case_when(
+    Aldersgruppe == "0-2" ~ "0-5",
+    Aldersgruppe == "3-5" ~ "0-5",
+    TRUE ~ Aldersgruppe
+    )) %>% 
+  group_by(Date, Aldersgruppe, Dose) %>% 
+  summarize(value = sum(value, na.rm = TRUE)) %>% 
+  mutate(
+    Year = year(Date),
+    Quarter = quarter(Date)
+  ) %>% 
+  left_join(pop, by = c("Aldersgruppe" = "Age", "Year", "Quarter")) %>% 
+  mutate(pct = value / Population * 100) %>% 
+  group_by(Aldersgruppe, Dose) %>% 
+  arrange(Date) %>% 
+  mutate(cum = cumsum(value),
+         cum_pct = cumsum(pct)) %>% 
+  select(-value, -pct, -cum) %>% 
+  bind_rows(booster)
+
+
+plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
+ 
+plot_data %>% 
+  ggplot() +
+  geom_line(aes(Date, cum_pct, color = Dose), size = rel(0.7)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "6 month", minor_breaks = "1 month") +
+  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
+  scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Fuld effekt tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
+  guides(color = guide_legend(override.aes = list(size = 1.6))) +
+  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
+  facet_wrap(~ Aldersgruppe, ncol = 4) +
+  
+  standard_theme + 
+  theme(
+    panel.grid.minor.x = element_line(size = 0.1),
+    panel.grid.major.x = element_line(size = 0.3)
+  )
+  
+ggsave("../figures/ntl_vax_cum_age.png", width = 18, height = 10, units = "cm", dpi = 300)
+  
 
 if(today != vax_today){
 index_file  <- readLines("../index.md")
