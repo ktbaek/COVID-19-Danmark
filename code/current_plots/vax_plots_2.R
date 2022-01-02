@@ -29,7 +29,7 @@ age_vax_df %>%
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-pop <- read_tidy_age(maxage = 90, agesplit = 10) %>% 
+pop <- read_tidy_age(get_age_breaks(maxage = 90, agesplit = 10)) %>% 
   filter(Year == 2021, Quarter == 4) %>% 
   mutate(Sex = ifelse(Sex == "Male", "M", "K")) %>% 
   ungroup() %>% 
@@ -187,12 +187,12 @@ plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11
  
 plot_data %>% 
   ggplot() +
-  geom_line(aes(Date, cum_pct, color = Dose), size = rel(0.7)) +
+  geom_line(aes(Date, cum_pct, color = Dose), size = rel(0.8)) +
   scale_x_date(labels = my_date_labels, date_breaks = "6 month", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Fuld effekt tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   guides(color = guide_legend(override.aes = list(size = 1.6))) +
-  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
+  labs(y = "Procent", title = "Andel af COVID-19 vaccinerede opdelt på alder", caption = standard_caption) +
   facet_wrap(~ Aldersgruppe, ncol = 4) +
   
   standard_theme + 
