@@ -163,7 +163,7 @@ Plottet viser det kumulerede antal vaccinerede for alle aldre opdelt på dose.
 
 ### Andel vaccinerede i hver aldersgruppe
 
-Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Data for tredje dose er hentet fra et separat ugentligt datasæt hvorfra antal personer som har opnået fuld effekt efter tredje dose kan beregnes (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose). Opgørelsesmetoden for personer der har modtaget første og anden dose er derfor ikke fuldt identisk med opgørelsesmetoden for personer der har modtaget tredje dose.
+Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede værdier på baggrund af et separat datasæt og er derfor behæftet med noget usikkerhed. 
 
 Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
 
