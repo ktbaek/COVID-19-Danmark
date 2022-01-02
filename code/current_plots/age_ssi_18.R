@@ -36,7 +36,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Nyindlagte pr. 100.000", 
@@ -53,7 +53,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, total_admitted, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Nyindlagte", 
@@ -71,7 +71,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Nyindlagte pr. 100.000", 
@@ -89,7 +89,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, positive_incidens, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Positive pr. 100.000", 
@@ -106,7 +106,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, tested_incidens, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Testede pr. 100.000", 
@@ -125,7 +125,7 @@ plot_data %>%
   ggplot() +
   geom_line(aes(date, pos_pct, color = Aldersgruppe), size = 0.8) +
   scale_color_discrete(name = "") +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   labs(
     y = "Positivprocent", 

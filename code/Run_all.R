@@ -34,9 +34,6 @@ files_sources = list.files("current_plots", full.names = TRUE)
 sapply(files_sources, source)
 cat("Current plots DONE\n")
 
-source("vax_plots_2.R")
-cat("Vaxxxxxx plots DONE\n")
-
 source("exp_admissions.R")
 cat("admission plot DONE\n")
 
