@@ -161,7 +161,8 @@ Det midterste plot viser det kumulerede antal vaccinerede opdelt på aldersgrupp
 
 Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
 
-``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
+``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag', 'FoersteVacc_FaerdigVacc_region_fnkt_alder_dag', 'Gennembrudsinfektioner_table2'``
+``Danmarks Statistik datasæt: 'FOLK1A'``
 
 ![](/figures/ntl_vax_cum.png)
 
