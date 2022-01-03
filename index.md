@@ -157,17 +157,17 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 
 
 Plottet viser det kumulerede antal vaccinerede for alle aldre opdelt på dose.
 
-``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
+``SSI datasæt: 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
 
 ![](/figures/ntl_vax_cum.png)
 
 ### Andel vaccinerede i hver aldersgruppe
 
-Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede værdier på baggrund af et separat datasæt og er derfor behæftet med noget usikkerhed. 
+Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede værdier på baggrund af et separat datasæt og er derfor behæftet med noget usikkerhed.
 
 Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
 
-``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag', 'FoersteVacc_FaerdigVacc_region_fnkt_alder_dag', 'Gennembrudsinfektioner_table2'``
+``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_FaerdigVacc_region_fnkt_alder_dag', 'Gennembrudsinfektioner_table2'``
 ``Danmarks Statistik datasæt: 'FOLK1A'``
 
 
