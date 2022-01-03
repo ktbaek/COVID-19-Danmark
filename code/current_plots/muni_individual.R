@@ -19,7 +19,7 @@ plot_kommuner_pos <- function(muni_df, kommune) {
       size = 1, 
       aes(Date, value, color = variable)) +
     geom_segment(
-      aes(y = 0, x = ymd(today) - month_correction_2 - months(3) + 0.5, yend = 0, xend = ymd(today) - 1.5), 
+      aes(y = 0, x = ymd(today) - month_correction - months(3) + 0.5, yend = 0, xend = ymd(today) - 1.5), 
       color = alpha(pos_col, 0.5), 
       size = 0.1) +
     scale_fill_manual(name = "", labels = c("Positive"), values = alpha(pos_col, 0.8)) +

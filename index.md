@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 31. december 2021 kl. 14:38.
+Senest opdateret  3. januar 2022 kl. 16:43.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -163,7 +163,7 @@ Plottet viser det kumulerede antal vaccinerede for alle aldre opdelt på dose.
 
 ### Andel vaccinerede i hver aldersgruppe
 
-Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede værdier på baggrund af et separat datasæt og er derfor behæftet med noget usikkerhed.
+Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede ugentlige værdier på baggrund af et separat datasæt og er derfor behæftet med noget usikkerhed.
 
 Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
 

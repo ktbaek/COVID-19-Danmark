@@ -41,7 +41,8 @@ plot_layer <- list(
     plot.margin = margin(0.4, 0.4, 0.2, 0.4, "cm"),
     plot.title = element_blank(),
     plot.caption = element_blank(),
-    strip.text.x = element_text(size = rel(1.5))
+    strip.text.x = element_text(size = rel(1.5)),
+    panel.spacing.x = unit(0.6, "cm")
   )
 )
 

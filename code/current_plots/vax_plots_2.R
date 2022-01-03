@@ -104,32 +104,16 @@ pop <- read_tidy_age(fnkt_age_breaks) %>%
   
 bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 
-temp_df_1 <- bt_2 %>%
-  filter(Variable %in% c("cases", "tests")) %>%
+booster<- bt_2 %>%
+  filter(Variable == "tests",
+         Group == "alle") %>%
   pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
-  select(-incidence_tests_alle, -antal_tests_total) %>%
-  mutate(
-    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
-    antal_personer_alle = (antal_cases_notprevpos + antal_cases_prevpos) / incidence_cases_alle * 100000,
-    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
-    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
-    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
-    incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
-    incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
-  ) %>%
-  select(-incidence_cases_alle, -antal_tests_alle) %>%
-  pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
-  arrange(Aldersgruppe, Week, Vax_status, Type, Variable, Group)
-
-booster <- temp_df_1 %>% 
-  filter(
-    Variable =="personer",
-    Group == "alle",
-    Vax_status == "Fuld effekt efter revaccination"
-  ) %>% 
-  rename("Third" = Value) %>% 
+  mutate(antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000) %>%
+  select(-incidence_tests_alle, -antal_tests_alle) %>% 
+  filter(Vax_status == "Fuld effekt efter revaccination") %>% 
+  rename(Third = antal_personer_alle) %>% 
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
-  select(-Vax_status, -Type, -Variable, -Group, -Week) %>% 
+  select(-Vax_status, -Week) %>% 
   mutate(Aldersgruppe = case_when(
     Aldersgruppe == "20-29" ~ "20-39",
     Aldersgruppe == "30-39" ~ "20-39",
@@ -188,7 +172,7 @@ plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11
 plot_data %>% 
   ggplot() +
   geom_line(aes(Date, cum_pct, color = Dose), size = rel(0.8)) +
-  scale_x_date(labels = my_date_labels, date_breaks = "6 month", minor_breaks = "1 month") +
+  scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-07-01"), ymd("2022-01-01")), minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Fuld effekt tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   guides(color = guide_legend(override.aes = list(size = 1.6))) +
