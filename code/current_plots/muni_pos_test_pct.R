@@ -9,7 +9,7 @@ month_correction <- case_when(
 muni_subset <- muni_data %>% 
   filter(Date > ymd(today) - month_correction - months(1)) %>%
   group_by(Kommune) %>% 
-  summarize(pos_month = sum(Positive)) %>% 
+  summarize(pos_month = sum(Positive, na.rm = TRUE)) %>% 
   arrange(desc(pos_month)) %>%
   head(30) %>% 
   pull(Kommune)
