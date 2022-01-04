@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  4. januar 2022 kl. 18:2.
+Senest opdateret  4. januar 2022 kl. 18:21.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -179,8 +179,6 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 [Tilbage til toppen](#)
 
 ## Gennembrudsinfektioner
-
-*Senest opdateret 28. december 2021*
 
 ### Smittede opdelt på vaccinations- og tidligere smittestatus
 

@@ -1,74 +1,114 @@
 Type;Variable;Group;Week;Vax_status;Value
-antal;personer;alle;51;Ingen vaccination;1120530
-antal;personer;alle;51;Første vaccination; 236130
-antal;personer;alle;51;Anden vaccination;4518884
-antal;personer;alle;51;Fuld effekt efter primært forløb;3462086
-antal;personer;alle;51;Fuld effekt efter revaccination;1013094
-antal;personer;notprevpos;51;Ingen vaccination; 995667
-antal;personer;notprevpos;51;Første vaccination; 209060
-antal;personer;notprevpos;51;Anden vaccination;4228623
-antal;personer;notprevpos;51;Fuld effekt efter primært forløb;3218211
-antal;personer;notprevpos;51;Fuld effekt efter revaccination; 975495
-antal;cases;notprevpos;51;Ingen vaccination;  14232
-antal;cases;notprevpos;51;Første vaccination;   3614
-antal;cases;notprevpos;51;Anden vaccination;  58440
-antal;cases;notprevpos;51;Fuld effekt efter primært forløb;  52308
-antal;cases;notprevpos;51;Fuld effekt efter revaccination;   5675
-antal;tests;alle;51;Ingen vaccination; 148215
-antal;tests;alle;51;Første vaccination;  49441
-antal;tests;alle;51;Anden vaccination; 864935
-antal;tests;alle;51;Fuld effekt efter primært forløb; 659942
-antal;tests;alle;51;Fuld effekt efter revaccination; 197434
-antal;tests;notprevpos;51;Ingen vaccination; 133967
-antal;tests;notprevpos;51;Første vaccination;  44947
-antal;tests;notprevpos;51;Anden vaccination; 806157
-antal;tests;notprevpos;51;Fuld effekt efter primært forløb; 613878
-antal;tests;notprevpos;51;Fuld effekt efter revaccination; 186383
-antal;tests;total;51;Ingen vaccination; 177345
-antal;tests;total;51;Første vaccination;  58443
-antal;tests;total;51;Anden vaccination;1032038
-antal;tests;total;51;Fuld effekt efter primært forløb; 780727
-antal;tests;total;51;Fuld effekt efter revaccination; 242411
-antal;cases;prevpos;51;Ingen vaccination;   1024
+antal;personer;alle;52;Ingen vaccination;1088643
+antal;personer;alle;52;Første vaccination; 248331
+antal;personer;alle;52;Anden vaccination;4537947
+antal;personer;alle;52;Fuld effekt efter primært forløb;3150616
+antal;personer;alle;52;Fuld effekt efter revaccination;1347647
+antal;personer;notprevpos;52;Ingen vaccination; 955611
+antal;personer;notprevpos;52;Første vaccination; 219496
+antal;personer;notprevpos;52;Anden vaccination;4229125
+antal;personer;notprevpos;52;Fuld effekt efter primært forløb;2902372
+antal;personer;notprevpos;52;Fuld effekt efter revaccination;1294335
+antal;cases;notprevpos;52;Ingen vaccination;  21889
+antal;cases;notprevpos;52;Første vaccination;   5411
+antal;cases;notprevpos;52;Anden vaccination;  91884
+antal;cases;notprevpos;52;Fuld effekt efter primært forløb;  70545
+antal;cases;notprevpos;52;Fuld effekt efter revaccination;  20427
+antal;tests;alle;52;Ingen vaccination; 113927
+antal;tests;alle;52;Første vaccination;  36995
+antal;tests;alle;52;Anden vaccination; 761735
+antal;tests;alle;52;Fuld effekt efter primært forløb; 525326
+antal;tests;alle;52;Fuld effekt efter revaccination; 230538
+antal;tests;notprevpos;52;Ingen vaccination; 100222
+antal;tests;notprevpos;52;Første vaccination;  33296
+antal;tests;notprevpos;52;Anden vaccination; 708838
+antal;tests;notprevpos;52;Fuld effekt efter primært forløb; 486308
+antal;tests;notprevpos;52;Fuld effekt efter revaccination; 217781
+antal;tests;total;52;Ingen vaccination; 140934
+antal;tests;total;52;Første vaccination;  45731
+antal;tests;total;52;Anden vaccination; 935453
+antal;tests;total;52;Fuld effekt efter primært forløb; 639834
+antal;tests;total;52;Fuld effekt efter revaccination; 288439
+antal;cases;prevpos;52;Ingen vaccination;   2452
+antal;cases;prevpos;52;Første vaccination;    233
+antal;cases;prevpos;52;Anden vaccination;   4373
+antal;cases;prevpos;52;Fuld effekt efter primært forløb;   3656
+antal;cases;prevpos;52;Fuld effekt efter revaccination;    664
+antal;indlagte;NA;52;Ingen vaccination;    350
+antal;indlagte;NA;52;Første vaccination;     42
+antal;indlagte;NA;52;Anden vaccination;    731
+antal;indlagte;NA;52;Fuld effekt efter primært forløb;    452
+antal;indlagte;NA;52;Fuld effekt efter revaccination;    273
+antal;personer;alle;51;Ingen vaccination;1120351
+antal;personer;alle;51;Første vaccination; 236206
+antal;personer;alle;51;Anden vaccination;4519312
+antal;personer;alle;51;Fuld effekt efter primært forløb;3462386
+antal;personer;alle;51;Fuld effekt efter revaccination;1013194
+antal;personer;notprevpos;51;Ingen vaccination; 995529
+antal;personer;notprevpos;51;Første vaccination; 209132
+antal;personer;notprevpos;51;Anden vaccination;4229024
+antal;personer;notprevpos;51;Fuld effekt efter primært forløb;3218492
+antal;personer;notprevpos;51;Fuld effekt efter revaccination; 975592
+antal;cases;notprevpos;51;Ingen vaccination;  14241
+antal;cases;notprevpos;51;Første vaccination;   3618
+antal;cases;notprevpos;51;Anden vaccination;  58503
+antal;cases;notprevpos;51;Fuld effekt efter primært forløb;  52356
+antal;cases;notprevpos;51;Fuld effekt efter revaccination;   5690
+antal;tests;alle;51;Ingen vaccination; 148365
+antal;tests;alle;51;Første vaccination;  49485
+antal;tests;alle;51;Anden vaccination; 865401
+antal;tests;alle;51;Fuld effekt efter primært forløb; 660293
+antal;tests;alle;51;Fuld effekt efter revaccination; 197535
+antal;tests;notprevpos;51;Ingen vaccination; 134098
+antal;tests;notprevpos;51;Første vaccination;  44989
+antal;tests;notprevpos;51;Anden vaccination; 806585
+antal;tests;notprevpos;51;Fuld effekt efter primært forløb; 614198
+antal;tests;notprevpos;51;Fuld effekt efter revaccination; 186479
+antal;tests;total;51;Ingen vaccination; 177628
+antal;tests;total;51;Første vaccination;  58510
+antal;tests;total;51;Anden vaccination;1032942
+antal;tests;total;51;Fuld effekt efter primært forløb; 781382
+antal;tests;total;51;Fuld effekt efter revaccination; 242640
+antal;cases;prevpos;51;Ingen vaccination;   1027
 antal;cases;prevpos;51;Første vaccination;    122
-antal;cases;prevpos;51;Anden vaccination;   2390
-antal;cases;prevpos;51;Fuld effekt efter primært forløb;   2150
-antal;cases;prevpos;51;Fuld effekt efter revaccination;    205
-antal;indlagte;NA;51;Ingen vaccination;    313
+antal;cases;prevpos;51;Anden vaccination;   2395
+antal;cases;prevpos;51;Fuld effekt efter primært forløb;   2154
+antal;cases;prevpos;51;Fuld effekt efter revaccination;    206
+antal;indlagte;NA;51;Ingen vaccination;    314
 antal;indlagte;NA;51;Første vaccination;     27
-antal;indlagte;NA;51;Anden vaccination;    482
-antal;indlagte;NA;51;Fuld effekt efter primært forløb;    349
+antal;indlagte;NA;51;Anden vaccination;    489
+antal;indlagte;NA;51;Fuld effekt efter primært forløb;    356
 antal;indlagte;NA;51;Fuld effekt efter revaccination;    124
-antal;personer;alle;50;Ingen vaccination;1202835
-antal;personer;alle;50;Første vaccination; 177195
-antal;personer;alle;50;Anden vaccination;4496706
-antal;personer;alle;50;Fuld effekt efter primært forløb;3635567
-antal;personer;alle;50;Fuld effekt efter revaccination; 819038
-antal;personer;notprevpos;50;Ingen vaccination;1081854
-antal;personer;notprevpos;50;Første vaccination; 154334
-antal;personer;notprevpos;50;Anden vaccination;4225517
-antal;personer;notprevpos;50;Fuld effekt efter primært forløb;3402735
-antal;personer;notprevpos;50;Fuld effekt efter revaccination; 788656
-antal;cases;notprevpos;50;Ingen vaccination;  18909
-antal;cases;notprevpos;50;Første vaccination;   4261
-antal;cases;notprevpos;50;Anden vaccination;  50021
-antal;cases;notprevpos;50;Fuld effekt efter primært forløb;  46507
-antal;cases;notprevpos;50;Fuld effekt efter revaccination;   3189
-antal;tests;alle;50;Ingen vaccination; 219564
-antal;tests;alle;50;Første vaccination;  46553
-antal;tests;alle;50;Anden vaccination; 920356
-antal;tests;alle;50;Fuld effekt efter primært forløb; 745881
-antal;tests;alle;50;Fuld effekt efter revaccination; 166469
-antal;tests;notprevpos;50;Ingen vaccination; 200922
-antal;tests;notprevpos;50;Første vaccination;  41805
-antal;tests;notprevpos;50;Anden vaccination; 860911
-antal;tests;notprevpos;50;Fuld effekt efter primært forløb; 697422
-antal;tests;notprevpos;50;Fuld effekt efter revaccination; 157077
-antal;tests;total;50;Ingen vaccination; 292790
-antal;tests;total;50;Første vaccination;  64198
-antal;tests;total;50;Anden vaccination;1166813
-antal;tests;total;50;Fuld effekt efter primært forløb; 939507
-antal;tests;total;50;Fuld effekt efter revaccination; 217058
+antal;personer;alle;50;Ingen vaccination;1202341
+antal;personer;alle;50;Første vaccination; 177247
+antal;personer;alle;50;Anden vaccination;4497152
+antal;personer;alle;50;Fuld effekt efter primært forløb;3635921
+antal;personer;alle;50;Fuld effekt efter revaccination; 819112
+antal;personer;notprevpos;50;Ingen vaccination;1081390
+antal;personer;notprevpos;50;Første vaccination; 154383
+antal;personer;notprevpos;50;Anden vaccination;4225939
+antal;personer;notprevpos;50;Fuld effekt efter primært forløb;3403068
+antal;personer;notprevpos;50;Fuld effekt efter revaccination; 788729
+antal;cases;notprevpos;50;Ingen vaccination;  18902
+antal;cases;notprevpos;50;Første vaccination;   4263
+antal;cases;notprevpos;50;Anden vaccination;  50030
+antal;cases;notprevpos;50;Fuld effekt efter primært forløb;  46515
+antal;cases;notprevpos;50;Fuld effekt efter revaccination;   3190
+antal;tests;alle;50;Ingen vaccination; 219479
+antal;tests;alle;50;Første vaccination;  46573
+antal;tests;alle;50;Anden vaccination; 920421
+antal;tests;alle;50;Fuld effekt efter primært forløb; 745935
+antal;tests;alle;50;Fuld effekt efter revaccination; 166475
+antal;tests;notprevpos;50;Ingen vaccination; 200844
+antal;tests;notprevpos;50;Første vaccination;  41824
+antal;tests;notprevpos;50;Anden vaccination; 860972
+antal;tests;notprevpos;50;Fuld effekt efter primært forløb; 697473
+antal;tests;notprevpos;50;Fuld effekt efter revaccination; 157083
+antal;tests;total;50;Ingen vaccination; 292673
+antal;tests;total;50;Første vaccination;  64232
+antal;tests;total;50;Anden vaccination;1166892
+antal;tests;total;50;Fuld effekt efter primært forløb; 939569
+antal;tests;total;50;Fuld effekt efter revaccination; 217068
 antal;cases;prevpos;50;Ingen vaccination;    747
 antal;cases;prevpos;50;Første vaccination;     89
 antal;cases;prevpos;50;Anden vaccination;   1777
@@ -79,36 +119,36 @@ antal;indlagte;NA;50;Første vaccination;     26
 antal;indlagte;NA;50;Anden vaccination;    473
 antal;indlagte;NA;50;Fuld effekt efter primært forløb;    370
 antal;indlagte;NA;50;Fuld effekt efter revaccination;    100
-antal;personer;alle;49;Ingen vaccination;1273732
-antal;personer;alle;49;Første vaccination; 129968
-antal;personer;alle;49;Anden vaccination;4473439
-antal;personer;alle;49;Fuld effekt efter primært forløb;3816708
-antal;personer;alle;49;Fuld effekt efter revaccination; 625800
-antal;personer;notprevpos;49;Ingen vaccination;1156795
-antal;personer;notprevpos;49;Første vaccination; 108795
-antal;personer;notprevpos;49;Anden vaccination;4218508
-antal;personer;notprevpos;49;Fuld effekt efter primært forløb;3591566
-antal;personer;notprevpos;49;Fuld effekt efter revaccination; 601241
-antal;cases;notprevpos;49;Ingen vaccination;  18021
+antal;personer;alle;49;Ingen vaccination;1273286
+antal;personer;alle;49;Første vaccination; 129991
+antal;personer;alle;49;Anden vaccination;4473880
+antal;personer;alle;49;Fuld effekt efter primært forløb;3817089
+antal;personer;alle;49;Fuld effekt efter revaccination; 625858
+antal;personer;notprevpos;49;Ingen vaccination;1156375
+antal;personer;notprevpos;49;Første vaccination; 108815
+antal;personer;notprevpos;49;Anden vaccination;4218930
+antal;personer;notprevpos;49;Fuld effekt efter primært forløb;3591929
+antal;personer;notprevpos;49;Fuld effekt efter revaccination; 601298
+antal;cases;notprevpos;49;Ingen vaccination;  18020
 antal;cases;notprevpos;49;Første vaccination;   2276
-antal;cases;notprevpos;49;Anden vaccination;  27337
-antal;cases;notprevpos;49;Fuld effekt efter primært forløb;  25791
+antal;cases;notprevpos;49;Anden vaccination;  27338
+antal;cases;notprevpos;49;Fuld effekt efter primært forløb;  25792
 antal;cases;notprevpos;49;Fuld effekt efter revaccination;   1352
-antal;tests;alle;49;Ingen vaccination; 234016
-antal;tests;alle;49;Første vaccination;  26489
-antal;tests;alle;49;Anden vaccination; 844868
-antal;tests;alle;49;Fuld effekt efter primært forløb; 709861
-antal;tests;alle;49;Fuld effekt efter revaccination; 129879
-antal;tests;notprevpos;49;Ingen vaccination; 215304
-antal;tests;notprevpos;49;Første vaccination;  22843
-antal;tests;notprevpos;49;Anden vaccination; 794346
-antal;tests;notprevpos;49;Fuld effekt efter primært forløb; 667534
-antal;tests;notprevpos;49;Fuld effekt efter revaccination; 122533
-antal;tests;total;49;Ingen vaccination; 316523
-antal;tests;total;49;Første vaccination;  35680
-antal;tests;total;49;Anden vaccination;1051893
-antal;tests;total;49;Fuld effekt efter primært forløb; 879297
-antal;tests;total;49;Fuld effekt efter revaccination; 166050
+antal;tests;alle;49;Ingen vaccination; 233981
+antal;tests;alle;49;Første vaccination;  26486
+antal;tests;alle;49;Anden vaccination; 844901
+antal;tests;alle;49;Fuld effekt efter primært forløb; 709892
+antal;tests;alle;49;Fuld effekt efter revaccination; 129881
+antal;tests;notprevpos;49;Ingen vaccination; 215271
+antal;tests;notprevpos;49;Første vaccination;  22842
+antal;tests;notprevpos;49;Anden vaccination; 794375
+antal;tests;notprevpos;49;Fuld effekt efter primært forløb; 667561
+antal;tests;notprevpos;49;Fuld effekt efter revaccination; 122535
+antal;tests;total;49;Ingen vaccination; 316472
+antal;tests;total;49;Første vaccination;  35679
+antal;tests;total;49;Anden vaccination;1051937
+antal;tests;total;49;Fuld effekt efter primært forløb; 879339
+antal;tests;total;49;Fuld effekt efter revaccination; 166052
 antal;cases;prevpos;49;Ingen vaccination;    344
 antal;cases;prevpos;49;Første vaccination;     41
 antal;cases;prevpos;49;Anden vaccination;    431
@@ -116,39 +156,39 @@ antal;cases;prevpos;49;Fuld effekt efter primært forløb;    391
 antal;cases;prevpos;49;Fuld effekt efter revaccination;     39
 antal;indlagte;NA;49;Ingen vaccination;    241
 antal;indlagte;NA;49;Første vaccination;     17
-antal;indlagte;NA;49;Anden vaccination;    411
-antal;indlagte;NA;49;Fuld effekt efter primært forløb;    348
+antal;indlagte;NA;49;Anden vaccination;    412
+antal;indlagte;NA;49;Fuld effekt efter primært forløb;    349
 antal;indlagte;NA;49;Fuld effekt efter revaccination;     62
-antal;personer;alle;48;Ingen vaccination;1313442
-antal;personer;alle;48;Første vaccination; 109710
-antal;personer;alle;48;Anden vaccination;4454787
-antal;personer;alle;48;Fuld effekt efter primært forløb;3943033
-antal;personer;alle;48;Fuld effekt efter revaccination; 490165
-antal;personer;notprevpos;48;Ingen vaccination;1199179
-antal;personer;notprevpos;48;Første vaccination;  89708
-antal;personer;notprevpos;48;Anden vaccination;4210901
-antal;personer;notprevpos;48;Fuld effekt efter primært forløb;3723119
-antal;personer;notprevpos;48;Fuld effekt efter revaccination; 469858
-antal;cases;notprevpos;48;Ingen vaccination;  14776
+antal;personer;alle;48;Ingen vaccination;1313033
+antal;personer;alle;48;Første vaccination; 109723
+antal;personer;alle;48;Anden vaccination;4455244
+antal;personer;alle;48;Fuld effekt efter primært forløb;3943441
+antal;personer;alle;48;Fuld effekt efter revaccination; 490213
+antal;personer;notprevpos;48;Ingen vaccination;1198791
+antal;personer;notprevpos;48;Første vaccination;  89721
+antal;personer;notprevpos;48;Anden vaccination;4211339
+antal;personer;notprevpos;48;Fuld effekt efter primært forløb;3723508
+antal;personer;notprevpos;48;Fuld effekt efter revaccination; 469906
+antal;cases;notprevpos;48;Ingen vaccination;  14775
 antal;cases;notprevpos;48;Første vaccination;    929
-antal;cases;notprevpos;48;Anden vaccination;  18526
+antal;cases;notprevpos;48;Anden vaccination;  18525
 antal;cases;notprevpos;48;Fuld effekt efter primært forløb;  17760
 antal;cases;notprevpos;48;Fuld effekt efter revaccination;    686
-antal;tests;alle;48;Ingen vaccination; 227510
+antal;tests;alle;48;Ingen vaccination; 227475
 antal;tests;alle;48;Første vaccination;  18468
-antal;tests;alle;48;Anden vaccination; 786111
-antal;tests;alle;48;Fuld effekt efter primært forløb; 681760
+antal;tests;alle;48;Anden vaccination; 786137
+antal;tests;alle;48;Fuld effekt efter primært forløb; 681787
 antal;tests;alle;48;Fuld effekt efter revaccination; 101246
-antal;tests;notprevpos;48;Ingen vaccination; 209128
-antal;tests;notprevpos;48;Første vaccination;  15193
-antal;tests;notprevpos;48;Anden vaccination; 740910
-antal;tests;notprevpos;48;Fuld effekt efter primært forløb; 642993
+antal;tests;notprevpos;48;Ingen vaccination; 209094
+antal;tests;notprevpos;48;Første vaccination;  15194
+antal;tests;notprevpos;48;Anden vaccination; 740934
+antal;tests;notprevpos;48;Fuld effekt efter primært forløb; 643018
 antal;tests;notprevpos;48;Fuld effekt efter revaccination;  95338
-antal;tests;total;48;Ingen vaccination; 303538
-antal;tests;total;48;Første vaccination;  23682
-antal;tests;total;48;Anden vaccination; 949270
-antal;tests;total;48;Fuld effekt efter primært forløb; 819776
-antal;tests;total;48;Fuld effekt efter revaccination; 125668
+antal;tests;total;48;Ingen vaccination; 303505
+antal;tests;total;48;Første vaccination;  23680
+antal;tests;total;48;Anden vaccination; 949298
+antal;tests;total;48;Fuld effekt efter primært forløb; 819806
+antal;tests;total;48;Fuld effekt efter revaccination; 125667
 antal;cases;prevpos;48;Ingen vaccination;    230
 antal;cases;prevpos;48;Første vaccination;     22
 antal;cases;prevpos;48;Anden vaccination;    125
@@ -159,78 +199,78 @@ antal;indlagte;NA;48;Første vaccination;     16
 antal;indlagte;NA;48;Anden vaccination;    376
 antal;indlagte;NA;48;Fuld effekt efter primært forløb;    320
 antal;indlagte;NA;48;Fuld effekt efter revaccination;     54
-antal;personer;alle;47;Ingen vaccination;1332581
-antal;personer;alle;47;Første vaccination; 102250
-antal;personer;alle;47;Anden vaccination;4443510
-antal;personer;alle;47;Fuld effekt efter primært forløb;4025423
-antal;personer;alle;47;Fuld effekt efter revaccination; 398136
-antal;personer;notprevpos;47;Ingen vaccination;1219705
-antal;personer;notprevpos;47;Første vaccination;  83902
-antal;personer;notprevpos;47;Anden vaccination;4208014
-antal;personer;notprevpos;47;Fuld effekt efter primært forløb;3809902
-antal;personer;notprevpos;47;Fuld effekt efter revaccination; 381582
+antal;personer;alle;47;Ingen vaccination;1332174
+antal;personer;alle;47;Første vaccination; 102259
+antal;personer;alle;47;Anden vaccination;4443969
+antal;personer;alle;47;Fuld effekt efter primært forløb;4025840
+antal;personer;alle;47;Fuld effekt efter revaccination; 398172
+antal;personer;notprevpos;47;Ingen vaccination;1219318
+antal;personer;notprevpos;47;Første vaccination;  83911
+antal;personer;notprevpos;47;Anden vaccination;4208455
+antal;personer;notprevpos;47;Fuld effekt efter primært forløb;3810302
+antal;personer;notprevpos;47;Fuld effekt efter revaccination; 381618
 antal;cases;notprevpos;47;Ingen vaccination;  12803
 antal;cases;notprevpos;47;Første vaccination;    716
 antal;cases;notprevpos;47;Anden vaccination;  15302
 antal;cases;notprevpos;47;Fuld effekt efter primært forløb;  14772
 antal;cases;notprevpos;47;Fuld effekt efter revaccination;    459
-antal;tests;alle;47;Ingen vaccination; 224948
-antal;tests;alle;47;Første vaccination;  16767
-antal;tests;alle;47;Anden vaccination; 764540
-antal;tests;alle;47;Fuld effekt efter primært forløb; 679508
-antal;tests;alle;47;Fuld effekt efter revaccination;  82178
-antal;tests;notprevpos;47;Ingen vaccination; 207507
-antal;tests;notprevpos;47;Første vaccination;  13927
-antal;tests;notprevpos;47;Anden vaccination; 722369
-antal;tests;notprevpos;47;Fuld effekt efter primært forløb; 642583
-antal;tests;notprevpos;47;Fuld effekt efter revaccination;  77371
-antal;tests;total;47;Ingen vaccination; 293230
-antal;tests;total;47;Første vaccination;  20853
-antal;tests;total;47;Anden vaccination; 916530
-antal;tests;total;47;Fuld effekt efter primært forløb; 811522
-antal;tests;total;47;Fuld effekt efter revaccination; 101544
+antal;tests;alle;47;Ingen vaccination; 224928
+antal;tests;alle;47;Første vaccination;  16765
+antal;tests;alle;47;Anden vaccination; 764559
+antal;tests;alle;47;Fuld effekt efter primært forløb; 679524
+antal;tests;alle;47;Fuld effekt efter revaccination;  82180
+antal;tests;notprevpos;47;Ingen vaccination; 207487
+antal;tests;notprevpos;47;Første vaccination;  13925
+antal;tests;notprevpos;47;Anden vaccination; 722388
+antal;tests;notprevpos;47;Fuld effekt efter primært forløb; 642599
+antal;tests;notprevpos;47;Fuld effekt efter revaccination;  77373
+antal;tests;total;47;Ingen vaccination; 293207
+antal;tests;total;47;Første vaccination;  20851
+antal;tests;total;47;Anden vaccination; 916561
+antal;tests;total;47;Fuld effekt efter primært forløb; 811550
+antal;tests;total;47;Fuld effekt efter revaccination; 101546
 antal;cases;prevpos;47;Ingen vaccination;    208
 antal;cases;prevpos;47;Første vaccination;     12
 antal;cases;prevpos;47;Anden vaccination;    100
 antal;cases;prevpos;47;Fuld effekt efter primært forløb;     94
 antal;cases;prevpos;47;Fuld effekt efter revaccination;      6
 antal;indlagte;NA;47;Ingen vaccination;    219
-antal;indlagte;NA;47;Første vaccination;     13
+antal;indlagte;NA;47;Første vaccination;     14
 antal;indlagte;NA;47;Anden vaccination;    327
 antal;indlagte;NA;47;Fuld effekt efter primært forløb;    301
 antal;indlagte;NA;47;Fuld effekt efter revaccination;     26
-antal;personer;alle;46;Ingen vaccination;1355743
-antal;personer;alle;46;Første vaccination;  89076
-antal;personer;alle;46;Anden vaccination;4433785
-antal;personer;alle;46;Fuld effekt efter primært forløb;4091743
-antal;personer;alle;46;Fuld effekt efter revaccination; 325124
-antal;personer;notprevpos;46;Ingen vaccination;1241468
-antal;personer;notprevpos;46;Første vaccination;  73818
-antal;personer;notprevpos;46;Anden vaccination;4204397
-antal;personer;notprevpos;46;Fuld effekt efter primært forløb;3878515
-antal;personer;notprevpos;46;Fuld effekt efter revaccination; 311861
-antal;cases;notprevpos;46;Ingen vaccination;  12519
-antal;cases;notprevpos;46;Første vaccination;    697
-antal;cases;notprevpos;46;Anden vaccination;  14737
-antal;cases;notprevpos;46;Fuld effekt efter primært forløb;  14283
-antal;cases;notprevpos;46;Fuld effekt efter revaccination;    395
-antal;tests;alle;46;Ingen vaccination; 218426
-antal;tests;alle;46;Første vaccination;  14321
-antal;tests;alle;46;Anden vaccination; 712570
-antal;tests;alle;46;Fuld effekt efter primært forløb; 648603
-antal;tests;alle;46;Fuld effekt efter revaccination;  61710
-antal;tests;notprevpos;46;Ingen vaccination; 201439
-antal;tests;notprevpos;46;Første vaccination;  12117
-antal;tests;notprevpos;46;Anden vaccination; 674210
-antal;tests;notprevpos;46;Fuld effekt efter primært forløb; 613993
-antal;tests;notprevpos;46;Fuld effekt efter revaccination;  58294
-antal;tests;total;46;Ingen vaccination; 283324
-antal;tests;total;46;Første vaccination;  17635
-antal;tests;total;46;Anden vaccination; 853513
-antal;tests;total;46;Fuld effekt efter primært forløb; 775216
-antal;tests;total;46;Fuld effekt efter revaccination;  75526
-antal;cases;prevpos;46;Ingen vaccination;    202
-antal;cases;prevpos;46;Første vaccination;      6
+antal;personer;alle;46;Ingen vaccination;1355346
+antal;personer;alle;46;Første vaccination;  89083
+antal;personer;alle;46;Anden vaccination;4434226
+antal;personer;alle;46;Fuld effekt efter primært forløb;4092148
+antal;personer;alle;46;Fuld effekt efter revaccination; 325156
+antal;personer;notprevpos;46;Ingen vaccination;1241088
+antal;personer;notprevpos;46;Første vaccination;  73826
+antal;personer;notprevpos;46;Anden vaccination;4204821
+antal;personer;notprevpos;46;Fuld effekt efter primært forløb;3878904
+antal;personer;notprevpos;46;Fuld effekt efter revaccination; 311893
+antal;cases;notprevpos;46;Ingen vaccination;  12514
+antal;cases;notprevpos;46;Første vaccination;    698
+antal;cases;notprevpos;46;Anden vaccination;  14741
+antal;cases;notprevpos;46;Fuld effekt efter primært forløb;  14286
+antal;cases;notprevpos;46;Fuld effekt efter revaccination;    396
+antal;tests;alle;46;Ingen vaccination; 218408
+antal;tests;alle;46;Første vaccination;  14317
+antal;tests;alle;46;Anden vaccination; 712590
+antal;tests;alle;46;Fuld effekt efter primært forløb; 648620
+antal;tests;alle;46;Fuld effekt efter revaccination;  61712
+antal;tests;notprevpos;46;Ingen vaccination; 201421
+antal;tests;notprevpos;46;Første vaccination;  12113
+antal;tests;notprevpos;46;Anden vaccination; 674230
+antal;tests;notprevpos;46;Fuld effekt efter primært forløb; 614010
+antal;tests;notprevpos;46;Fuld effekt efter revaccination;  58296
+antal;tests;total;46;Ingen vaccination; 283304
+antal;tests;total;46;Første vaccination;  17630
+antal;tests;total;46;Anden vaccination; 853540
+antal;tests;total;46;Fuld effekt efter primært forløb; 775240
+antal;tests;total;46;Fuld effekt efter revaccination;  75528
+antal;cases;prevpos;46;Ingen vaccination;    201
+antal;cases;prevpos;46;Første vaccination;      7
 antal;cases;prevpos;46;Anden vaccination;     84
 antal;cases;prevpos;46;Fuld effekt efter primært forløb;     80
 antal;cases;prevpos;46;Fuld effekt efter revaccination;      3
@@ -239,36 +279,36 @@ antal;indlagte;NA;46;Første vaccination;      8
 antal;indlagte;NA;46;Anden vaccination;    328
 antal;indlagte;NA;46;Fuld effekt efter primært forløb;    296
 antal;indlagte;NA;46;Fuld effekt efter revaccination;     32
-antal;personer;alle;45;Ingen vaccination;1381633
-antal;personer;alle;45;Første vaccination;  72540
-antal;personer;alle;45;Anden vaccination;4424758
-antal;personer;alle;45;Fuld effekt efter primært forløb;4164572
-antal;personer;alle;45;Fuld effekt efter revaccination; 244536
-antal;personer;notprevpos;45;Ingen vaccination;1265265
-antal;personer;notprevpos;45;Første vaccination;  60140
-antal;personer;notprevpos;45;Anden vaccination;4199340
-antal;personer;notprevpos;45;Fuld effekt efter primært forløb;3951673
-antal;personer;notprevpos;45;Fuld effekt efter revaccination; 234676
-antal;cases;notprevpos;45;Ingen vaccination;  10462
+antal;personer;alle;45;Ingen vaccination;1381250
+antal;personer;alle;45;Første vaccination;  72543
+antal;personer;alle;45;Anden vaccination;4425201
+antal;personer;alle;45;Fuld effekt efter primært forløb;4164984
+antal;personer;alle;45;Fuld effekt efter revaccination; 244563
+antal;personer;notprevpos;45;Ingen vaccination;1264898
+antal;personer;notprevpos;45;Første vaccination;  60143
+antal;personer;notprevpos;45;Anden vaccination;4199767
+antal;personer;notprevpos;45;Fuld effekt efter primært forløb;3952069
+antal;personer;notprevpos;45;Fuld effekt efter revaccination; 234703
+antal;cases;notprevpos;45;Ingen vaccination;  10460
 antal;cases;notprevpos;45;Første vaccination;    435
-antal;cases;notprevpos;45;Anden vaccination;  11703
-antal;cases;notprevpos;45;Fuld effekt efter primært forløb;  11475
+antal;cases;notprevpos;45;Anden vaccination;  11706
+antal;cases;notprevpos;45;Fuld effekt efter primært forløb;  11478
 antal;cases;notprevpos;45;Fuld effekt efter revaccination;    195
-antal;tests;alle;45;Ingen vaccination; 203510
-antal;tests;alle;45;Første vaccination;  10551
-antal;tests;alle;45;Anden vaccination; 669953
-antal;tests;alle;45;Fuld effekt efter primært forløb; 626444
-antal;tests;alle;45;Fuld effekt efter revaccination;  41466
-antal;tests;notprevpos;45;Ingen vaccination; 187987
-antal;tests;notprevpos;45;Første vaccination;   9092
-antal;tests;notprevpos;45;Anden vaccination; 634264
-antal;tests;notprevpos;45;Fuld effekt efter primært forløb; 593376
-antal;tests;notprevpos;45;Fuld effekt efter revaccination;  39134
-antal;tests;total;45;Ingen vaccination; 259984
-antal;tests;total;45;Første vaccination;  12730
-antal;tests;total;45;Anden vaccination; 797241
-antal;tests;total;45;Fuld effekt efter primært forløb; 745032
-antal;tests;total;45;Fuld effekt efter revaccination;  49710
+antal;tests;alle;45;Ingen vaccination; 203480
+antal;tests;alle;45;Første vaccination;  10547
+antal;tests;alle;45;Anden vaccination; 669989
+antal;tests;alle;45;Fuld effekt efter primært forløb; 626478
+antal;tests;alle;45;Fuld effekt efter revaccination;  41468
+antal;tests;notprevpos;45;Ingen vaccination; 187960
+antal;tests;notprevpos;45;Første vaccination;   9088
+antal;tests;notprevpos;45;Anden vaccination; 634297
+antal;tests;notprevpos;45;Fuld effekt efter primært forløb; 593407
+antal;tests;notprevpos;45;Fuld effekt efter revaccination;  39136
+antal;tests;total;45;Ingen vaccination; 259952
+antal;tests;total;45;Første vaccination;  12725
+antal;tests;total;45;Anden vaccination; 797281
+antal;tests;total;45;Fuld effekt efter primært forløb; 745070
+antal;tests;total;45;Fuld effekt efter revaccination;  49712
 antal;cases;prevpos;45;Ingen vaccination;    174
 antal;cases;prevpos;45;Første vaccination;      7
 antal;cases;prevpos;45;Anden vaccination;     61
@@ -279,36 +319,36 @@ antal;indlagte;NA;45;Første vaccination;     15
 antal;indlagte;NA;45;Anden vaccination;    290
 antal;indlagte;NA;45;Fuld effekt efter primært forløb;    268
 antal;indlagte;NA;45;Fuld effekt efter revaccination;     22
-antal;personer;alle;44;Ingen vaccination;1392869
-antal;personer;alle;44;Første vaccination;  68147
-antal;personer;alle;44;Anden vaccination;4418174
-antal;personer;alle;44;Fuld effekt efter primært forløb;4240993
-antal;personer;alle;44;Fuld effekt efter revaccination; 160721
-antal;personer;notprevpos;44;Ingen vaccination;1276774
-antal;personer;notprevpos;44;Første vaccination;  56325
-antal;personer;notprevpos;44;Anden vaccination;4195677
-antal;personer;notprevpos;44;Fuld effekt efter primært forløb;4027632
-antal;personer;notprevpos;44;Fuld effekt efter revaccination; 154297
+antal;personer;alle;44;Ingen vaccination;1392493
+antal;personer;alle;44;Første vaccination;  68151
+antal;personer;alle;44;Anden vaccination;4418617
+antal;personer;alle;44;Fuld effekt efter primært forløb;4241407
+antal;personer;alle;44;Fuld effekt efter revaccination; 160744
+antal;personer;notprevpos;44;Ingen vaccination;1276413
+antal;personer;notprevpos;44;Første vaccination;  56330
+antal;personer;notprevpos;44;Anden vaccination;4196104
+antal;personer;notprevpos;44;Fuld effekt efter primært forløb;4028031
+antal;personer;notprevpos;44;Fuld effekt efter revaccination; 154320
 antal;cases;notprevpos;44;Ingen vaccination;   7605
 antal;cases;notprevpos;44;Første vaccination;    250
 antal;cases;notprevpos;44;Anden vaccination;   8017
 antal;cases;notprevpos;44;Fuld effekt efter primært forløb;   7884
 antal;cases;notprevpos;44;Fuld effekt efter revaccination;    108
-antal;tests;alle;44;Ingen vaccination; 150030
-antal;tests;alle;44;Første vaccination;   7104
-antal;tests;alle;44;Anden vaccination; 527581
-antal;tests;alle;44;Fuld effekt efter primært forløb; 505709
-antal;tests;alle;44;Fuld effekt efter revaccination;  20066
-antal;tests;notprevpos;44;Ingen vaccination; 139336
-antal;tests;notprevpos;44;Første vaccination;   6124
-antal;tests;notprevpos;44;Anden vaccination; 499628
-antal;tests;notprevpos;44;Fuld effekt efter primært forløb; 479246
-antal;tests;notprevpos;44;Fuld effekt efter revaccination;  18847
-antal;tests;total;44;Ingen vaccination; 193530
-antal;tests;total;44;Første vaccination;   8560
-antal;tests;total;44;Anden vaccination; 629890
-antal;tests;total;44;Fuld effekt efter primært forløb; 604162
-antal;tests;total;44;Fuld effekt efter revaccination;  23523
+antal;tests;alle;44;Ingen vaccination; 150020
+antal;tests;alle;44;Første vaccination;   7106
+antal;tests;alle;44;Anden vaccination; 527589
+antal;tests;alle;44;Fuld effekt efter primært forløb; 505714
+antal;tests;alle;44;Fuld effekt efter revaccination;  20069
+antal;tests;notprevpos;44;Ingen vaccination; 139326
+antal;tests;notprevpos;44;Første vaccination;   6126
+antal;tests;notprevpos;44;Anden vaccination; 499636
+antal;tests;notprevpos;44;Fuld effekt efter primært forløb; 479251
+antal;tests;notprevpos;44;Fuld effekt efter revaccination;  18850
+antal;tests;total;44;Ingen vaccination; 193518
+antal;tests;total;44;Første vaccination;   8562
+antal;tests;total;44;Anden vaccination; 629897
+antal;tests;total;44;Fuld effekt efter primært forløb; 604166
+antal;tests;total;44;Fuld effekt efter revaccination;  23526
 antal;cases;prevpos;44;Ingen vaccination;    130
 antal;cases;prevpos;44;Første vaccination;      5
 antal;cases;prevpos;44;Anden vaccination;     39
@@ -319,36 +359,36 @@ antal;indlagte;NA;44;Første vaccination;      9
 antal;indlagte;NA;44;Anden vaccination;    205
 antal;indlagte;NA;44;Fuld effekt efter primært forløb;    191
 antal;indlagte;NA;44;Fuld effekt efter revaccination;     11
-antal;personer;alle;43;Ingen vaccination;1401484
-antal;personer;alle;43;Første vaccination;  67844
-antal;personer;alle;43;Anden vaccination;4410722
-antal;personer;alle;43;Fuld effekt efter primært forløb;4277356
-antal;personer;alle;43;Fuld effekt efter revaccination; 115456
-antal;personer;notprevpos;43;Ingen vaccination;1285607
-antal;personer;notprevpos;43;Første vaccination;  56040
-antal;personer;notprevpos;43;Anden vaccination;4190803
-antal;personer;notprevpos;43;Fuld effekt efter primært forløb;4065208
-antal;personer;notprevpos;43;Fuld effekt efter revaccination; 110538
+antal;personer;alle;43;Ingen vaccination;1401119
+antal;personer;alle;43;Første vaccination;  67850
+antal;personer;alle;43;Anden vaccination;4411169
+antal;personer;alle;43;Fuld effekt efter primært forløb;4277777
+antal;personer;alle;43;Fuld effekt efter revaccination; 115475
+antal;personer;notprevpos;43;Ingen vaccination;1285257
+antal;personer;notprevpos;43;Første vaccination;  56047
+antal;personer;notprevpos;43;Anden vaccination;4191234
+antal;personer;notprevpos;43;Fuld effekt efter primært forløb;4065614
+antal;personer;notprevpos;43;Fuld effekt efter revaccination; 110557
 antal;cases;notprevpos;43;Ingen vaccination;   5195
 antal;cases;notprevpos;43;Første vaccination;    177
 antal;cases;notprevpos;43;Anden vaccination;   6427
 antal;cases;notprevpos;43;Fuld effekt efter primært forløb;   6346
 antal;cases;notprevpos;43;Fuld effekt efter revaccination;     66
-antal;tests;alle;43;Ingen vaccination; 106622
-antal;tests;alle;43;Første vaccination;   5875
-antal;tests;alle;43;Anden vaccination; 433115
-antal;tests;alle;43;Fuld effekt efter primært forløb; 419946
-antal;tests;alle;43;Fuld effekt efter revaccination;  11619
-antal;tests;notprevpos;43;Ingen vaccination;  98544
-antal;tests;notprevpos;43;Første vaccination;   5095
-antal;tests;notprevpos;43;Anden vaccination; 410368
-antal;tests;notprevpos;43;Fuld effekt efter primært forløb; 398206
-antal;tests;notprevpos;43;Fuld effekt efter revaccination;  10824
-antal;tests;total;43;Ingen vaccination; 127285
-antal;tests;total;43;Første vaccination;   6822
-antal;tests;total;43;Anden vaccination; 495004
-antal;tests;total;43;Fuld effekt efter primært forløb; 479992
-antal;tests;total;43;Fuld effekt efter revaccination;  13205
+antal;tests;alle;43;Ingen vaccination; 106613
+antal;tests;alle;43;Første vaccination;   5871
+antal;tests;alle;43;Anden vaccination; 433129
+antal;tests;alle;43;Fuld effekt efter primært forløb; 419962
+antal;tests;alle;43;Fuld effekt efter revaccination;  11617
+antal;tests;notprevpos;43;Ingen vaccination;  98536
+antal;tests;notprevpos;43;Første vaccination;   5091
+antal;tests;notprevpos;43;Anden vaccination; 410381
+antal;tests;notprevpos;43;Fuld effekt efter primært forløb; 398221
+antal;tests;notprevpos;43;Fuld effekt efter revaccination;  10822
+antal;tests;total;43;Ingen vaccination; 127273
+antal;tests;total;43;Første vaccination;   6818
+antal;tests;total;43;Anden vaccination; 495020
+antal;tests;total;43;Fuld effekt efter primært forløb; 480010
+antal;tests;total;43;Fuld effekt efter revaccination;  13203
 antal;cases;prevpos;43;Ingen vaccination;    107
 antal;cases;prevpos;43;Første vaccination;      3
 antal;cases;prevpos;43;Anden vaccination;     39
@@ -359,36 +399,36 @@ antal;indlagte;NA;43;Første vaccination;      3
 antal;indlagte;NA;43;Anden vaccination;    182
 antal;indlagte;NA;43;Fuld effekt efter primært forløb;    167
 antal;indlagte;NA;43;Fuld effekt efter revaccination;     15
-antal;personer;alle;42;Ingen vaccination;1407245
-antal;personer;alle;42;Første vaccination;  69646
-antal;personer;alle;42;Anden vaccination;4403476
-antal;personer;alle;42;Fuld effekt efter primært forløb;4296545
-antal;personer;alle;42;Fuld effekt efter revaccination;  85020
-antal;personer;notprevpos;42;Ingen vaccination;1291764
-antal;personer;notprevpos;42;Første vaccination;  57505
-antal;personer;notprevpos;42;Anden vaccination;4185817
-antal;personer;notprevpos;42;Fuld effekt efter primært forløb;4086114
-antal;personer;notprevpos;42;Fuld effekt efter revaccination;  81067
-antal;cases;notprevpos;42;Ingen vaccination;   3747
+antal;personer;alle;42;Ingen vaccination;1406884
+antal;personer;alle;42;Første vaccination;  69654
+antal;personer;alle;42;Anden vaccination;4403921
+antal;personer;alle;42;Fuld effekt efter primært forløb;4296970
+antal;personer;alle;42;Fuld effekt efter revaccination;  85036
+antal;personer;notprevpos;42;Ingen vaccination;1291418
+antal;personer;notprevpos;42;Første vaccination;  57513
+antal;personer;notprevpos;42;Anden vaccination;4186247
+antal;personer;notprevpos;42;Fuld effekt efter primært forløb;4086524
+antal;personer;notprevpos;42;Fuld effekt efter revaccination;  81083
+antal;cases;notprevpos;42;Ingen vaccination;   3745
 antal;cases;notprevpos;42;Første vaccination;    142
-antal;cases;notprevpos;42;Anden vaccination;   4716
-antal;cases;notprevpos;42;Fuld effekt efter primært forløb;   4656
+antal;cases;notprevpos;42;Anden vaccination;   4718
+antal;cases;notprevpos;42;Fuld effekt efter primært forløb;   4658
 antal;cases;notprevpos;42;Fuld effekt efter revaccination;     45
-antal;tests;alle;42;Ingen vaccination;  85057
-antal;tests;alle;42;Første vaccination;   4960
-antal;tests;alle;42;Anden vaccination; 326778
-antal;tests;alle;42;Fuld effekt efter primært forløb; 318273
-antal;tests;alle;42;Fuld effekt efter revaccination;   7021
-antal;tests;notprevpos;42;Ingen vaccination;  78714
-antal;tests;notprevpos;42;Første vaccination;   4346
-antal;tests;notprevpos;42;Anden vaccination; 310326
-antal;tests;notprevpos;42;Fuld effekt efter primært forløb; 302512
-antal;tests;notprevpos;42;Fuld effekt efter revaccination;   6496
-antal;tests;total;42;Ingen vaccination;  98521
-antal;tests;total;42;Første vaccination;   5644
-antal;tests;total;42;Anden vaccination; 362820
-antal;tests;total;42;Fuld effekt efter primært forløb; 353406
-antal;tests;total;42;Fuld effekt efter revaccination;   7740
+antal;tests;alle;42;Ingen vaccination;  85049
+antal;tests;alle;42;Første vaccination;   4955
+antal;tests;alle;42;Anden vaccination; 326793
+antal;tests;alle;42;Fuld effekt efter primært forløb; 318286
+antal;tests;alle;42;Fuld effekt efter revaccination;   7023
+antal;tests;notprevpos;42;Ingen vaccination;  78706
+antal;tests;notprevpos;42;Første vaccination;   4342
+antal;tests;notprevpos;42;Anden vaccination; 310340
+antal;tests;notprevpos;42;Fuld effekt efter primært forløb; 302524
+antal;tests;notprevpos;42;Fuld effekt efter revaccination;   6498
+antal;tests;total;42;Ingen vaccination;  98513
+antal;tests;total;42;Første vaccination;   5637
+antal;tests;total;42;Anden vaccination; 362838
+antal;tests;total;42;Fuld effekt efter primært forløb; 353422
+antal;tests;total;42;Fuld effekt efter revaccination;   7742
 antal;cases;prevpos;42;Ingen vaccination;     74
 antal;cases;prevpos;42;Første vaccination;      1
 antal;cases;prevpos;42;Anden vaccination;     37
@@ -399,36 +439,36 @@ antal;indlagte;NA;42;Første vaccination;      8
 antal;indlagte;NA;42;Anden vaccination;    143
 antal;indlagte;NA;42;Fuld effekt efter primært forløb;    136
 antal;indlagte;NA;42;Fuld effekt efter revaccination;      7
-antal;personer;alle;41;Ingen vaccination;1412310
-antal;personer;alle;41;Første vaccination;  74515
-antal;personer;alle;41;Anden vaccination;4393937
-antal;personer;alle;41;Fuld effekt efter primært forløb;4298975
-antal;personer;alle;41;Fuld effekt efter revaccination;  67677
-antal;personer;notprevpos;41;Ingen vaccination;1297222
-antal;personer;notprevpos;41;Første vaccination;  61732
-antal;personer;notprevpos;41;Anden vaccination;4178641
-antal;personer;notprevpos;41;Fuld effekt efter primært forløb;4090939
-antal;personer;notprevpos;41;Fuld effekt efter revaccination;  64228
+antal;personer;alle;41;Ingen vaccination;1411951
+antal;personer;alle;41;Første vaccination;  74525
+antal;personer;alle;41;Anden vaccination;4394380
+antal;personer;alle;41;Fuld effekt efter primært forløb;4299399
+antal;personer;alle;41;Fuld effekt efter revaccination;  67693
+antal;personer;notprevpos;41;Ingen vaccination;1296877
+antal;personer;notprevpos;41;Første vaccination;  61743
+antal;personer;notprevpos;41;Anden vaccination;4179069
+antal;personer;notprevpos;41;Fuld effekt efter primært forløb;4091348
+antal;personer;notprevpos;41;Fuld effekt efter revaccination;  64244
 antal;cases;notprevpos;41;Ingen vaccination;   2502
 antal;cases;notprevpos;41;Første vaccination;     82
 antal;cases;notprevpos;41;Anden vaccination;   2396
 antal;cases;notprevpos;41;Fuld effekt efter primært forløb;   2371
 antal;cases;notprevpos;41;Fuld effekt efter revaccination;     16
-antal;tests;alle;41;Ingen vaccination;  88536
-antal;tests;alle;41;Første vaccination;   5369
-antal;tests;alle;41;Anden vaccination; 230746
-antal;tests;alle;41;Fuld effekt efter primært forløb; 224554
-antal;tests;alle;41;Fuld effekt efter revaccination;   4037
-antal;tests;notprevpos;41;Ingen vaccination;  81784
-antal;tests;notprevpos;41;Første vaccination;   4718
-antal;tests;notprevpos;41;Anden vaccination; 217773
-antal;tests;notprevpos;41;Fuld effekt efter primært forløb; 212213
-antal;tests;notprevpos;41;Fuld effekt efter revaccination;   3674
-antal;tests;total;41;Ingen vaccination; 104332
-antal;tests;total;41;Første vaccination;   6160
-antal;tests;total;41;Anden vaccination; 259412
-antal;tests;total;41;Fuld effekt efter primært forløb; 252550
-antal;tests;total;41;Fuld effekt efter revaccination;   4426
+antal;tests;alle;41;Ingen vaccination;  88528
+antal;tests;alle;41;Første vaccination;   5366
+antal;tests;alle;41;Anden vaccination; 230752
+antal;tests;alle;41;Fuld effekt efter primært forløb; 224564
+antal;tests;alle;41;Fuld effekt efter revaccination;   4035
+antal;tests;notprevpos;41;Ingen vaccination;  81776
+antal;tests;notprevpos;41;Første vaccination;   4715
+antal;tests;notprevpos;41;Anden vaccination; 217779
+antal;tests;notprevpos;41;Fuld effekt efter primært forløb; 212223
+antal;tests;notprevpos;41;Fuld effekt efter revaccination;   3672
+antal;tests;total;41;Ingen vaccination; 104324
+antal;tests;total;41;Første vaccination;   6157
+antal;tests;total;41;Anden vaccination; 259419
+antal;tests;total;41;Fuld effekt efter primært forløb; 252561
+antal;tests;total;41;Fuld effekt efter revaccination;   4424
 antal;cases;prevpos;41;Ingen vaccination;     37
 antal;cases;prevpos;41;Første vaccination;      1
 antal;cases;prevpos;41;Anden vaccination;     14
@@ -439,36 +479,36 @@ antal;indlagte;NA;41;Første vaccination;      3
 antal;indlagte;NA;41;Anden vaccination;     84
 antal;indlagte;NA;41;Fuld effekt efter primært forløb;     75
 antal;indlagte;NA;41;Fuld effekt efter revaccination;      8
-antal;personer;alle;40;Ingen vaccination;1417830
-antal;personer;alle;40;Første vaccination;  80775
-antal;personer;alle;40;Anden vaccination;4382470
-antal;personer;alle;40;Fuld effekt efter primært forløb;4301467
-antal;personer;alle;40;Fuld effekt efter revaccination;  42195
-antal;personer;notprevpos;40;Ingen vaccination;1303717
-antal;personer;notprevpos;40;Første vaccination;  67303
-antal;personer;notprevpos;40;Anden vaccination;4170117
-antal;personer;notprevpos;40;Fuld effekt efter primært forløb;4096426
-antal;personer;notprevpos;40;Fuld effekt efter revaccination;  40049
-antal;cases;notprevpos;40;Ingen vaccination;   2217
-antal;cases;notprevpos;40;Første vaccination;     90
+antal;personer;alle;40;Ingen vaccination;1417474
+antal;personer;alle;40;Første vaccination;  80783
+antal;personer;alle;40;Anden vaccination;4382917
+antal;personer;alle;40;Fuld effekt efter primært forløb;4301894
+antal;personer;alle;40;Fuld effekt efter revaccination;  42209
+antal;personer;notprevpos;40;Ingen vaccination;1303375
+antal;personer;notprevpos;40;Første vaccination;  67312
+antal;personer;notprevpos;40;Anden vaccination;4170549
+antal;personer;notprevpos;40;Fuld effekt efter primært forløb;4096838
+antal;personer;notprevpos;40;Fuld effekt efter revaccination;  40063
+antal;cases;notprevpos;40;Ingen vaccination;   2216
+antal;cases;notprevpos;40;Første vaccination;     91
 antal;cases;notprevpos;40;Anden vaccination;   1691
 antal;cases;notprevpos;40;Fuld effekt efter primært forløb;   1672
 antal;cases;notprevpos;40;Fuld effekt efter revaccination;      6
-antal;tests;alle;40;Ingen vaccination;  62124
-antal;tests;alle;40;Første vaccination;   3880
-antal;tests;alle;40;Anden vaccination; 169421
-antal;tests;alle;40;Fuld effekt efter primært forløb; 165661
-antal;tests;alle;40;Fuld effekt efter revaccination;   2060
-antal;tests;notprevpos;40;Ingen vaccination;  57676
-antal;tests;notprevpos;40;Første vaccination;   3482
-antal;tests;notprevpos;40;Anden vaccination; 160258
-antal;tests;notprevpos;40;Fuld effekt efter primært forløb; 156881
-antal;tests;notprevpos;40;Fuld effekt efter revaccination;   1885
-antal;tests;total;40;Ingen vaccination;  73044
-antal;tests;total;40;Første vaccination;   4443
-antal;tests;total;40;Anden vaccination; 189776
-antal;tests;total;40;Fuld effekt efter primært forløb; 185603
-antal;tests;total;40;Fuld effekt efter revaccination;   2245
+antal;tests;alle;40;Ingen vaccination;  62120
+antal;tests;alle;40;Første vaccination;   3881
+antal;tests;alle;40;Anden vaccination; 169431
+antal;tests;alle;40;Fuld effekt efter primært forløb; 165670
+antal;tests;alle;40;Fuld effekt efter revaccination;   2061
+antal;tests;notprevpos;40;Ingen vaccination;  57673
+antal;tests;notprevpos;40;Første vaccination;   3483
+antal;tests;notprevpos;40;Anden vaccination; 160267
+antal;tests;notprevpos;40;Fuld effekt efter primært forløb; 156889
+antal;tests;notprevpos;40;Fuld effekt efter revaccination;   1886
+antal;tests;total;40;Ingen vaccination;  73041
+antal;tests;total;40;Første vaccination;   4444
+antal;tests;total;40;Anden vaccination; 189786
+antal;tests;total;40;Fuld effekt efter primært forløb; 185612
+antal;tests;total;40;Fuld effekt efter revaccination;   2246
 antal;cases;prevpos;40;Ingen vaccination;     32
 antal;cases;prevpos;40;Første vaccination;      0
 antal;cases;prevpos;40;Anden vaccination;     18
@@ -479,36 +519,36 @@ antal;indlagte;NA;40;Første vaccination;      2
 antal;indlagte;NA;40;Anden vaccination;     54
 antal;indlagte;NA;40;Fuld effekt efter primært forløb;     54
 antal;indlagte;NA;40;Fuld effekt efter revaccination;      0
-antal;personer;alle;39;Ingen vaccination;1423979
-antal;personer;alle;39;Første vaccination;  91781
-antal;personer;alle;39;Anden vaccination;4366383
-antal;personer;alle;39;Fuld effekt efter primært forløb;4298882
-antal;personer;alle;39;Fuld effekt efter revaccination;  12580
-antal;personer;notprevpos;39;Ingen vaccination;1311719
-antal;personer;notprevpos;39;Første vaccination;  77086
-antal;personer;notprevpos;39;Anden vaccination;4157984
-antal;personer;notprevpos;39;Fuld effekt efter primært forløb;4097887
-antal;personer;notprevpos;39;Fuld effekt efter revaccination;  12005
+antal;personer;alle;39;Ingen vaccination;1423640
+antal;personer;alle;39;Første vaccination;  91792
+antal;personer;alle;39;Anden vaccination;4366837
+antal;personer;alle;39;Fuld effekt efter primært forløb;4299308
+antal;personer;alle;39;Fuld effekt efter revaccination;  12591
+antal;personer;notprevpos;39;Ingen vaccination;1311392
+antal;personer;notprevpos;39;Første vaccination;  77098
+antal;personer;notprevpos;39;Anden vaccination;4158423
+antal;personer;notprevpos;39;Fuld effekt efter primært forløb;4098298
+antal;personer;notprevpos;39;Fuld effekt efter revaccination;  12016
 antal;cases;notprevpos;39;Ingen vaccination;   1715
 antal;cases;notprevpos;39;Første vaccination;     90
 antal;cases;notprevpos;39;Anden vaccination;   1174
 antal;cases;notprevpos;39;Fuld effekt efter primært forløb;   1155
 antal;cases;notprevpos;39;Fuld effekt efter revaccination;      5
-antal;tests;alle;39;Ingen vaccination;  54268
-antal;tests;alle;39;Første vaccination;   3761
-antal;tests;alle;39;Anden vaccination; 157569
-antal;tests;alle;39;Fuld effekt efter primært forløb; 155028
-antal;tests;alle;39;Fuld effekt efter revaccination;    523
-antal;tests;notprevpos;39;Ingen vaccination;  50383
-antal;tests;notprevpos;39;Første vaccination;   3349
-antal;tests;notprevpos;39;Anden vaccination; 149313
-antal;tests;notprevpos;39;Fuld effekt efter primært forløb; 147038
-antal;tests;notprevpos;39;Fuld effekt efter revaccination;    489
-antal;tests;total;39;Ingen vaccination;  63790
-antal;tests;total;39;Første vaccination;   4302
-antal;tests;total;39;Anden vaccination; 175232
-antal;tests;total;39;Fuld effekt efter primært forløb; 172378
-antal;tests;total;39;Fuld effekt efter revaccination;    574
+antal;tests;alle;39;Ingen vaccination;  54263
+antal;tests;alle;39;Første vaccination;   3762
+antal;tests;alle;39;Anden vaccination; 157575
+antal;tests;alle;39;Fuld effekt efter primært forløb; 155032
+antal;tests;alle;39;Fuld effekt efter revaccination;    524
+antal;tests;notprevpos;39;Ingen vaccination;  50380
+antal;tests;notprevpos;39;Første vaccination;   3350
+antal;tests;notprevpos;39;Anden vaccination; 149317
+antal;tests;notprevpos;39;Fuld effekt efter primært forløb; 147040
+antal;tests;notprevpos;39;Fuld effekt efter revaccination;    490
+antal;tests;total;39;Ingen vaccination;  63785
+antal;tests;total;39;Første vaccination;   4303
+antal;tests;total;39;Anden vaccination; 175238
+antal;tests;total;39;Fuld effekt efter primært forløb; 172382
+antal;tests;total;39;Fuld effekt efter revaccination;    575
 antal;cases;prevpos;39;Ingen vaccination;     25
 antal;cases;prevpos;39;Første vaccination;      0
 antal;cases;prevpos;39;Anden vaccination;      9
@@ -519,36 +559,36 @@ antal;indlagte;NA;39;Første vaccination;      4
 antal;indlagte;NA;39;Anden vaccination;     42
 antal;indlagte;NA;39;Fuld effekt efter primært forløb;     42
 antal;indlagte;NA;39;Fuld effekt efter revaccination;      0
-antal;personer;alle;38;Ingen vaccination;1431774
-antal;personer;alle;38;Første vaccination; 110189
-antal;personer;alle;38;Anden vaccination;4340422
-antal;personer;alle;38;Fuld effekt efter primært forløb;4265649
-antal;personer;alle;38;Fuld effekt efter revaccination;    893
-antal;personer;notprevpos;38;Ingen vaccination;1322403
-antal;personer;notprevpos;38;Første vaccination;  93758
-antal;personer;notprevpos;38;Anden vaccination;4137159
-antal;personer;notprevpos;38;Fuld effekt efter primært forløb;4070669
-antal;personer;notprevpos;38;Fuld effekt efter revaccination;    840
+antal;personer;alle;38;Ingen vaccination;1431439
+antal;personer;alle;38;Første vaccination; 110201
+antal;personer;alle;38;Anden vaccination;4340873
+antal;personer;alle;38;Fuld effekt efter primært forløb;4266073
+antal;personer;alle;38;Fuld effekt efter revaccination;    902
+antal;personer;notprevpos;38;Ingen vaccination;1322079
+antal;personer;notprevpos;38;Første vaccination;  93771
+antal;personer;notprevpos;38;Anden vaccination;4137595
+antal;personer;notprevpos;38;Fuld effekt efter primært forløb;4071078
+antal;personer;notprevpos;38;Fuld effekt efter revaccination;    849
 antal;cases;notprevpos;38;Ingen vaccination;   1433
 antal;cases;notprevpos;38;Første vaccination;     77
 antal;cases;notprevpos;38;Anden vaccination;    966
 antal;cases;notprevpos;38;Fuld effekt efter primært forløb;    953
 antal;cases;notprevpos;38;Fuld effekt efter revaccination;      0
-antal;tests;alle;38;Ingen vaccination;  54950
-antal;tests;alle;38;Første vaccination;   4760
-antal;tests;alle;38;Anden vaccination; 155740
-antal;tests;alle;38;Fuld effekt efter primært forløb; 153089
-antal;tests;alle;38;Fuld effekt efter revaccination;     48
-antal;tests;notprevpos;38;Ingen vaccination;  51326
-antal;tests;notprevpos;38;Første vaccination;   4299
-antal;tests;notprevpos;38;Anden vaccination; 147716
-antal;tests;notprevpos;38;Fuld effekt efter primært forløb; 145326
-antal;tests;notprevpos;38;Fuld effekt efter revaccination;     43
-antal;tests;total;38;Ingen vaccination;  63871
-antal;tests;total;38;Første vaccination;   5400
-antal;tests;total;38;Anden vaccination; 171172
-antal;tests;total;38;Fuld effekt efter primært forløb; 168161
-antal;tests;total;38;Fuld effekt efter revaccination;     53
+antal;tests;alle;38;Ingen vaccination;  54947
+antal;tests;alle;38;Første vaccination;   4756
+antal;tests;alle;38;Anden vaccination; 155748
+antal;tests;alle;38;Fuld effekt efter primært forløb; 153097
+antal;tests;alle;38;Fuld effekt efter revaccination;     47
+antal;tests;notprevpos;38;Ingen vaccination;  51324
+antal;tests;notprevpos;38;Første vaccination;   4295
+antal;tests;notprevpos;38;Anden vaccination; 147723
+antal;tests;notprevpos;38;Fuld effekt efter primært forløb; 145333
+antal;tests;notprevpos;38;Fuld effekt efter revaccination;     42
+antal;tests;total;38;Ingen vaccination;  63868
+antal;tests;total;38;Første vaccination;   5396
+antal;tests;total;38;Anden vaccination; 171180
+antal;tests;total;38;Fuld effekt efter primært forløb; 168169
+antal;tests;total;38;Fuld effekt efter revaccination;     52
 antal;cases;prevpos;38;Ingen vaccination;     16
 antal;cases;prevpos;38;Første vaccination;      0
 antal;cases;prevpos;38;Anden vaccination;      6
@@ -559,35 +599,35 @@ antal;indlagte;NA;38;Første vaccination;      2
 antal;indlagte;NA;38;Anden vaccination;     54
 antal;indlagte;NA;38;Fuld effekt efter primært forløb;     54
 antal;indlagte;NA;38;Fuld effekt efter revaccination;      0
-antal;personer;alle;37;Ingen vaccination;1441768
-antal;personer;alle;37;Første vaccination; 133806
-antal;personer;alle;37;Anden vaccination;4307266
-antal;personer;alle;37;Fuld effekt efter primært forløb;4197647
-antal;personer;alle;37;Fuld effekt efter revaccination;    686
-antal;personer;notprevpos;37;Ingen vaccination;1335224
-antal;personer;notprevpos;37;Første vaccination; 115367
-antal;personer;notprevpos;37;Anden vaccination;4109842
-antal;personer;notprevpos;37;Fuld effekt efter primært forløb;4010412
-antal;personer;notprevpos;37;Fuld effekt efter revaccination;    645
+antal;personer;alle;37;Ingen vaccination;1441432
+antal;personer;alle;37;Første vaccination; 133837
+antal;personer;alle;37;Anden vaccination;4307698
+antal;personer;alle;37;Fuld effekt efter primært forløb;4198062
+antal;personer;alle;37;Fuld effekt efter revaccination;    691
+antal;personer;notprevpos;37;Ingen vaccination;1334898
+antal;personer;notprevpos;37;Første vaccination; 115400
+antal;personer;notprevpos;37;Anden vaccination;4110259
+antal;personer;notprevpos;37;Fuld effekt efter primært forløb;4010813
+antal;personer;notprevpos;37;Fuld effekt efter revaccination;    650
 antal;cases;notprevpos;37;Ingen vaccination;   1294
 antal;cases;notprevpos;37;Første vaccination;     74
 antal;cases;notprevpos;37;Anden vaccination;    781
 antal;cases;notprevpos;37;Fuld effekt efter primært forløb;    763
 antal;cases;notprevpos;37;Fuld effekt efter revaccination;      0
-antal;tests;alle;37;Ingen vaccination;  58482
+antal;tests;alle;37;Ingen vaccination;  58474
 antal;tests;alle;37;Første vaccination;   6528
-antal;tests;alle;37;Anden vaccination; 169430
-antal;tests;alle;37;Fuld effekt efter primært forløb; 165233
+antal;tests;alle;37;Anden vaccination; 169438
+antal;tests;alle;37;Fuld effekt efter primært forløb; 165242
 antal;tests;alle;37;Fuld effekt efter revaccination;     50
-antal;tests;notprevpos;37;Ingen vaccination;  54440
+antal;tests;notprevpos;37;Ingen vaccination;  54432
 antal;tests;notprevpos;37;Første vaccination;   5933
-antal;tests;notprevpos;37;Anden vaccination; 160679
-antal;tests;notprevpos;37;Fuld effekt efter primært forløb; 156831
+antal;tests;notprevpos;37;Anden vaccination; 160687
+antal;tests;notprevpos;37;Fuld effekt efter primært forløb; 156840
 antal;tests;notprevpos;37;Fuld effekt efter revaccination;     43
-antal;tests;total;37;Ingen vaccination;  67589
+antal;tests;total;37;Ingen vaccination;  67581
 antal;tests;total;37;Første vaccination;   7453
-antal;tests;total;37;Anden vaccination; 186798
-antal;tests;total;37;Fuld effekt efter primært forløb; 182070
+antal;tests;total;37;Anden vaccination; 186806
+antal;tests;total;37;Fuld effekt efter primært forløb; 182079
 antal;tests;total;37;Fuld effekt efter revaccination;     53
 antal;cases;prevpos;37;Ingen vaccination;     17
 antal;cases;prevpos;37;Første vaccination;      0
@@ -599,43 +639,3 @@ antal;indlagte;NA;37;Første vaccination;      5
 antal;indlagte;NA;37;Anden vaccination;     44
 antal;indlagte;NA;37;Fuld effekt efter primært forløb;     43
 antal;indlagte;NA;37;Fuld effekt efter revaccination;      0
-antal;personer;alle;36;Ingen vaccination;1454914
-antal;personer;alle;36;Første vaccination; 168666
-antal;personer;alle;36;Anden vaccination;4259770
-antal;personer;alle;36;Fuld effekt efter primært forløb;4066229
-antal;personer;alle;36;Fuld effekt efter revaccination;    606
-antal;personer;notprevpos;36;Ingen vaccination;1350828
-antal;personer;notprevpos;36;Første vaccination; 147938
-antal;personer;notprevpos;36;Anden vaccination;4068932
-antal;personer;notprevpos;36;Fuld effekt efter primært forløb;3890154
-antal;personer;notprevpos;36;Fuld effekt efter revaccination;    568
-antal;cases;notprevpos;36;Ingen vaccination;   1905
-antal;cases;notprevpos;36;Første vaccination;    173
-antal;cases;notprevpos;36;Anden vaccination;   1103
-antal;cases;notprevpos;36;Fuld effekt efter primært forløb;   1058
-antal;cases;notprevpos;36;Fuld effekt efter revaccination;      0
-antal;tests;alle;36;Ingen vaccination;  75133
-antal;tests;alle;36;Første vaccination;  10266
-antal;tests;alle;36;Anden vaccination; 202611
-antal;tests;alle;36;Fuld effekt efter primært forløb; 192976
-antal;tests;alle;36;Fuld effekt efter revaccination;     43
-antal;tests;notprevpos;36;Ingen vaccination;  70163
-antal;tests;notprevpos;36;Første vaccination;   9387
-antal;tests;notprevpos;36;Anden vaccination; 192698
-antal;tests;notprevpos;36;Fuld effekt efter primært forløb; 183653
-antal;tests;notprevpos;36;Fuld effekt efter revaccination;     36
-antal;tests;total;36;Ingen vaccination;  87003
-antal;tests;total;36;Første vaccination;  11741
-antal;tests;total;36;Anden vaccination; 225141
-antal;tests;total;36;Fuld effekt efter primært forløb; 214284
-antal;tests;total;36;Fuld effekt efter revaccination;     54
-antal;cases;prevpos;36;Ingen vaccination;     40
-antal;cases;prevpos;36;Første vaccination;      2
-antal;cases;prevpos;36;Anden vaccination;      8
-antal;cases;prevpos;36;Fuld effekt efter primært forløb;      8
-antal;cases;prevpos;36;Fuld effekt efter revaccination;      0
-antal;indlagte;NA;36;Ingen vaccination;     85
-antal;indlagte;NA;36;Første vaccination;      9
-antal;indlagte;NA;36;Anden vaccination;     59
-antal;indlagte;NA;36;Fuld effekt efter primært forløb;     57
-antal;indlagte;NA;36;Fuld effekt efter revaccination;      0
