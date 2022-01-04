@@ -158,6 +158,8 @@ plot_data <- age_time_df %>%
     Quarter = quarter(Date)
   ) %>% 
   left_join(pop, by = c("Aldersgruppe" = "Age", "Year", "Quarter")) %>% 
+  group_by(Aldersgruppe) %>% 
+  fill(Population) %>% 
   mutate(pct = value / Population * 100) %>% 
   group_by(Aldersgruppe, Dose) %>% 
   arrange(Date) %>% 

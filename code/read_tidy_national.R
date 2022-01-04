@@ -83,7 +83,8 @@ ag %>%
   mutate(
     ra_ag_pos = ra(AG_pos),
     ra_ag_test = ra(AG_testede), 
-    ra_ag_pos_pos = ra(AGpos_PCRpos)) %>% 
+    ra_ag_pos_pos = ra(AGpos_PCRpos)
+    ) %>% 
     write_csv2("../data/SSI_Ag_data.csv")
   
 }

@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  3. januar 2022 kl. 16:43.
+Senest opdateret  4. januar 2022 kl. 16:26.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -157,7 +157,7 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 
 
 Plottet viser det kumulerede antal vaccinerede for alle aldre opdelt på dose.
 
-``SSI datasæt: 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag'``
+``SSI datasæt: 'FoersteVacc_region_dag', 'FaerdigVacc_region_dag', 'Revacc1_region_dag'``
 
 ![](/figures/ntl_vax_cum.png)
 
@@ -179,6 +179,8 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 [Tilbage til toppen](#)
 
 ## Gennembrudsinfektioner
+
+*Senest opdateret 28. december 2021*
 
 ### Smittede opdelt på vaccinations- og tidligere smittestatus
 
