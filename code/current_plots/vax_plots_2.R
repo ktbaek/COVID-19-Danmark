@@ -88,7 +88,7 @@ begun_vax_df %>%
   mutate(cum_value = ifelse(cum_value == 0, NA, cum_value)) %>% 
   ggplot() +
   geom_line(aes(Date, cum_value, color = name), size = 2) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
@@ -174,7 +174,7 @@ plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11
 plot_data %>% 
   ggplot() +
   geom_line(aes(Date, cum_pct, color = Dose), size = rel(0.8)) +
-  scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-07-01"), ymd("2022-01-01")), minor_breaks = "1 month") +
+  scale_x_date(labels = my_date_labels, breaks = c(ymd("2021-07-01"), ymd("2022-01-01")), minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Fuld effekt tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   guides(color = guide_legend(override.aes = list(size = 1.6))) +
@@ -196,5 +196,3 @@ dateline  <- paste0("Senest opdateret ", str_to_lower(format(as.Date(today), "%e
 index_file[8] <- dateline
 writeLines(index_file, con="../index.md")
 }
-
-

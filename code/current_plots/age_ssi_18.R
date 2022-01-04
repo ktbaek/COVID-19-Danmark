@@ -5,6 +5,8 @@ library(scales)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
+paultol_colors <- c('#CC6677', '#332288', '#DDCC77', '#117733', '#88CCEE', '#44AA99', '#AA4499')
+
 plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%  
   mutate(Aldersgruppe = case_when(
     Aldersgruppe == "0-2" ~ "0-5",
@@ -35,7 +37,7 @@ plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-5', '6-11', 
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -52,7 +54,7 @@ ggsave("../figures/ntl_hosp_age.png", width = 18, height = 10, units = "cm", dpi
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, total_admitted, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -70,7 +72,7 @@ plot_data %>%
   filter(date > as_date("2021-02-28")) %>% 
   ggplot() +
   geom_line(aes(date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -88,7 +90,7 @@ ggsave("../figures/ntl_hosp_age_2.png", width = 18, height = 10, units = "cm", d
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, positive_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -105,7 +107,7 @@ ggsave("../figures/ntl_pos_age.png", width = 18, height = 10, units = "cm", dpi 
 plot_data %>% 
   ggplot() +
   geom_line(aes(date, tested_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
@@ -124,7 +126,7 @@ plot_data %>%
   filter(date > as_date("2020-08-01")) %>% 
   ggplot() +
   geom_line(aes(date, pos_pct, color = Aldersgruppe), size = 0.8) +
-  scale_color_discrete(name = "") +
+  scale_color_manual(name = "", values = paultol_colors) +
   scale_x_date(labels = my_date_labels, date_breaks = "2 months", minor_breaks = "1 month") +
   scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
   labs(
