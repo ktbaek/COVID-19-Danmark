@@ -192,6 +192,20 @@ Datoerne angiver mandagen i hver uge.
 
 ![](/figures/bt_cases_age_time_2.png)
 
+### Testjusteret smittetal opdelt på vaccinations- og tidligere smittestatus
+
+Grupperne er defineret som ovenfor.
+
+Det øverste plot viser antal PCR testede per 100.000 (i alders- og immunitetsgruppen). Det nederste plot viser det testjusterede antal positive per 100.000 (i alders- og immunitetsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
+
+``SSI datasæt: 'Gennembrudsinfektioner_table1', 'Gennembrudsinfektioner_table2'``
+
+![](/figures/bt_tests_age_time.png)
+
+![](/figures/bt_tac_age_time_1.png)
+
+
+
 ### Indlagte og døde opdelt på vaccinationsstatus
 
 Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Grupperne er ikke opdelt på baggrund af tidligere smittestatus. Data for modtagere af én dosis (første vaccination) er udeladt. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge.
