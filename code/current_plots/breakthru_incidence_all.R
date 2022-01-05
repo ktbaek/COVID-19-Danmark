@@ -1,6 +1,9 @@
 bt_1 <- read_csv2("../data/tidy_breakthru_table1.csv")
 bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 
+
+# Alle aldersgrupper samlet -----------------------------------------------
+
 plot_data <- bt_1 %>% 
   filter(Variable %in% c("personer", "cases")) %>%
   pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
@@ -58,6 +61,8 @@ ggplot() +
 
 ggsave("../figures/bt_incidence_all.png", width = 20, height = 11, units = "cm", dpi = 300)
 
+
+# Pædagogisk eksempel -----------------------------------------------------
 
 plot_data <- bt_2 %>% 
   mutate(Vax_status = case_when(
@@ -206,3 +211,36 @@ bt_1 %>%
   )
 
 ggsave("../figures/bt_incidence_example1.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+# Opdelt på alder ---------------------------------------------------------
+
+temp_df_1 <- bt_2 %>%
+  filter(Variable %in% c("cases", "tests")) %>%
+  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
+  select(-antal_tests_total) %>%
+  mutate(
+    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
+    antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000,
+    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
+    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
+    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
+    incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
+    incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
+  ) %>%
+  select(-incidence_cases_alle, -antal_tests_alle) %>%
+  pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
+  arrange(Aldersgruppe, Week, Vax_status, Type, Variable, Group)
+
+plot_data <- temp_df_1 %>% 
+  filter(
+    Vax_status != "Anden vaccination",
+    Variable == "cases",
+    Group != "alle") %>% 
+  mutate(Vax_status = case_when(
+    Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
+    Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
+    TRUE ~ Vax_status
+  )) 
+
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Første vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))

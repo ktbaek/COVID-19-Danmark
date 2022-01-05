@@ -36,10 +36,10 @@ bt_2 %>%
 temp_df_1 <- bt_2 %>%
   filter(Variable %in% c("cases", "tests")) %>%
   pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
-  select(-incidence_tests_alle, -antal_tests_total) %>%
+  select(-antal_tests_total) %>%
   mutate(
     antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
-    antal_personer_alle = (antal_cases_notprevpos + antal_cases_prevpos) / incidence_cases_alle * 100000,
+    antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000,
     antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
     incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
     antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
@@ -97,7 +97,7 @@ temp_df_2 <- prevpos_check %>%
   summarize(Table2 = sum(Table2, na.rm = TRUE)) %>%
   mutate(Date = as.Date(paste0("2021", sprintf("%02d", Week), "7"), "%Y%U%u"))
 
-x <- read_csv2("../data/SSI_daily_data.csv") %>%
+read_csv2("../data/SSI_daily_data.csv") %>%
   filter(name == "Positive") %>%
   select(Date, daily) %>%
   mutate(cum_daily = cumsum(daily)) %>%
@@ -108,8 +108,6 @@ x <- read_csv2("../data/SSI_daily_data.csv") %>%
   ggplot() +
   geom_line(aes(Date + days(60), pct_diff)) +
   scale_y_continuous(limits = c(0, NA))
-
-# Between 0.8% and 6% difference. This is close enough
 
 # Plots -------------------------------------------------------------------
 
@@ -185,7 +183,7 @@ p2 <- plot_data %>%
     title = "Testjusteret antal positive per 100.000 (beta = 0.5)",
     subtitle = "Angiver den testjusterede incidens i alders- og immunitetsgruppen"
   ) +
-  facet_wrap(~Aldersgruppe, ncol = 5) +
+  facet_wrap(~ Aldersgruppe, ncol = 5) +
   facet_theme +
   guides(fill = guide_legend(override.aes = list(alpha = 1))) +
   theme(
@@ -275,6 +273,29 @@ p2 / p3 + plot_layout(guides = "collect") +
 
 ggsave("../figures/bt_tac_age_time_2.png", width = 16, height = 20, units = "cm", dpi = 300)
 
+p2 +
+  scale_color_manual(name = "", values = c(pct_col, admit_col, "#67cc32", pos_col)) +
+  guides(color = guide_legend(override.aes = list(size = 1.5))) +
+  labs(caption = standard_caption) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
+    plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
+    panel.grid.major.x = element_line(color = "white", size = rel(1)),
+    panel.grid.major.y = element_line(color = "white"),
+    panel.grid.minor.x = element_blank(),
+    panel.background = element_rect(
+      fill = "gray97",
+      colour = NA,
+      size = 0.3
+    ),
+  )
+
+ggsave("../figures/bt_tac_age_time_1.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
 plot_data <- temp_df_1 %>%
   filter(
     !Aldersgruppe %in% c("0-5", "6-11"),
@@ -309,8 +330,9 @@ plot_data %>%
   scale_y_continuous(limits = c(0, NA), expand = expansion(mult = 0.02)) +
   labs(
     y = "Tests per 100.000",
-    title = "Tests per 100.000",
-    subtitle = "Angiver antal testede per 100.000 i alders- og immunitetsgruppen"
+    title = "PCR tests per 100.000",
+    subtitle = "Angiver antal testede per 100.000 i alders- og immunitetsgruppen",
+    caption = standard_caption
   ) +
   facet_wrap(~Aldersgruppe, ncol = 5) +
   facet_theme +
