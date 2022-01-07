@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret  4. januar 2022 kl. 18:21.
+Senest opdateret  8. januar 2022 kl. 00:33.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -141,6 +141,9 @@ Plottet viser andelen af PCR positive der efterfølgende indlægges for hvert kv
 ![](/figures/ntl_pos_admit_bars_quarter.png)
 
 ### Dagligt antal døde for hver aldersgruppe
+
+*Ikke fuldt opdateret*
+
 Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 2020, 2021 indtil nu, og gennemsnittet for 2015-19. Antallet af døde i årene 2015-19 er justeret til befolkningstallet for 2020 indenfor hver aldersgruppe.
 
 ``Danmarks Statistik datasæt: 'DODC1'``

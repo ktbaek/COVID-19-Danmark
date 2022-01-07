@@ -78,6 +78,12 @@ list.files(paste0("../data/SSIdata_", lasttue), pattern = "gennembrudsinfektione
   bind_rows() %>%
   write_csv2("../data/tidy_breakthru_table2.csv")
 
+tai <- function(pop, pos, tests, beta) {
+  pos / (pop * (tests / pop)**beta) * 100000
+}
+
+beta <- 0.5
+
 read_csv2("../data/tidy_breakthru_table2.csv") %>%
   filter(Variable %in% c("cases", "tests")) %>%
   pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%

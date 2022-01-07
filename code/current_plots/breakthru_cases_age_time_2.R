@@ -13,6 +13,7 @@ my_breaks <- c(ymd("2021-10-01"), ymd("2021-12-01"))
 
 bt_1 <- read_csv2("../data/tidy_breakthru_table1.csv")
 bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
+bt_2_extra <- read_csv2("../data/tidy_breakthru_table2_deduced.csv")
 
 # function for calculating test adjusted incidence
 tai <- function(pop, pos, tests, beta) {
@@ -33,24 +34,7 @@ bt_2 %>%
 
 # compare my calculation of population sizes with those in table 1
 
-temp_df_1 <- bt_2 %>%
-  filter(Variable %in% c("cases", "tests")) %>%
-  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
-  select(-antal_tests_total) %>%
-  mutate(
-    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
-    antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000,
-    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
-    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
-    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
-    incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
-    incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
-  ) %>%
-  select(-incidence_cases_alle, -antal_tests_alle) %>%
-  pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
-  arrange(Aldersgruppe, Week, Vax_status, Type, Variable, Group)
-
-pop_check <- temp_df_1 %>%
+pop_check <- bt_2_extra %>%
   filter(Type != "incidence") %>%
   group_by(Week, Vax_status, Type, Variable, Group) %>%
   summarize(
@@ -65,7 +49,7 @@ pop_check <- temp_df_1 %>%
 # -> Within the categories that I'm using ("Ingen vaccination" and "Anden vaccination") the max percent difference is 0.11% -> I trust the calculation.
 
 # compare my calculation of prev infection population with those calculated from table 1. Given that the above check was OK, this is just a double check.
-prevpos_check <- temp_df_1 %>%
+prevpos_check <- bt_2_extra %>%
   filter(Type != "incidence") %>%
   group_by(Week, Vax_status, Type, Variable, Group) %>%
   summarize(
@@ -111,12 +95,13 @@ read_csv2("../data/SSI_daily_data.csv") %>%
 
 # Plots -------------------------------------------------------------------
 
-plot_data <- temp_df_1 %>%
+plot_data <- bt_2_extra %>%
   filter(
     !Aldersgruppe %in% c("0-5", "6-11"),
     Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
     Variable != "tests",
-    Variable != "personer"
+    Variable != "personer",
+    Group != "alle"
   ) %>%
   mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
   filter(!(Vax_status %in% c("Fuld effekt efter primært forløb", "Fuld effekt efter revaccination") & Group == "prevpos")) %>%
@@ -294,9 +279,7 @@ p2 +
 ggsave("../figures/bt_tac_age_time_1.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
-
-
-plot_data <- temp_df_1 %>%
+plot_data <- bt_2_extra %>%
   filter(
     !Aldersgruppe %in% c("0-5", "6-11"),
     Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
@@ -353,7 +336,7 @@ plot_data %>%
 
 ggsave("../figures/bt_tests_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-plot_data <- temp_df_1 %>%
+plot_data <- bt_2_extra %>%
   filter(
     !Aldersgruppe %in% c("0-5", "6-11"),
     Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
@@ -436,7 +419,7 @@ plot_data %>%
 
 ggsave("../figures/bt_cases_booster_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-plot_data <- temp_df_1 %>%
+plot_data <- bt_2_extra %>%
   filter(
     Variable == "personer",
     Group == "alle"
