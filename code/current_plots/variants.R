@@ -76,15 +76,15 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
     Omikron = Omikron_cases,
     Andre = Other
   ) %>% 
-  filter(!is.na(Date)) %>% 
+  filter(
+    !is.na(Date),
+    year(Date) < 2022) %>% 
   pivot_longer(-Date)
 
 plot_data$name <- factor(plot_data$name, levels = c("Andre", "Alfa", "Delta", "Omikron"))
 
 plot_data %>% 
-filter(
-  Date >= ymd("2020-11-01"),
-  Date != max(Date)) %>% 
+filter(Date >= ymd("2020-11-01")) %>% 
   ggplot() +
   geom_area(aes(Date, value, fill = name), width = 5, stat = "identity", position = "stack") +
   scale_fill_manual(name = "", values=c("gray45", "gray65", "gray85", pos_col))+
@@ -100,9 +100,7 @@ filter(
 ggsave("../figures/ntl_all_variants_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
-  filter(
-    Date >= ymd("2020-11-01"),
-    Date != max(Date)) %>% 
+  filter(Date >= ymd("2020-11-01")) %>% 
   ggplot() +
   geom_area(aes(Date, value, fill = name), width = 5, stat = "identity", position = "fill") +
   scale_fill_manual(name = "", values=c("gray45", "gray65", "gray85", pos_col))+
@@ -120,9 +118,7 @@ ggsave("../figures/ntl_all_variants_proportion.png", width = 18, height = 10, un
 Sys.setlocale("LC_ALL", "en_US.UTF-8")
 
 plot_data %>% 
-  filter(
-    Date >= ymd("2020-11-01"),
-    Date != max(Date)) %>% 
+  filter(Date >= ymd("2020-11-01")) %>% 
   ggplot() +
   geom_area(aes(Date, value, fill = name), width = 5, stat = "identity", position = "stack") +
   scale_fill_manual(name = "", labels = c("Other", "Alpha", "Delta", "Omicron"), values=c("gray45", "gray65", "gray85", pos_col))+

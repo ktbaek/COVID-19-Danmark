@@ -225,6 +225,8 @@ Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders-
 
 ## Virusvarianter
 
+*Opdateres ikke efter 2021*
+
 ### Ugentlige antal positive opdelt på varianter
 
 Plottene viser en oversigt over forekomsten af varianterne Alfa, Delta, og Omikron samt tidligere varianter ("Andre") siden 1. november 2020. Det øverste plot viser absolutte antal positivt testede, og det nederste viser varianternes andel af alle positivt testede. Datoerne angiver mandagen i hver uge.
