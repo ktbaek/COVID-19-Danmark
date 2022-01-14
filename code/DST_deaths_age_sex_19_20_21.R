@@ -169,9 +169,21 @@ plot_data %>%
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-x <- all_data %>% 
-  group_by(Date, Year, Age) %>% 
+all_data <- read_csv2("../data/tidy_dst_age_sex_2015_22.csv") %>% 
+  select(-Daily_deaths) %>% 
+  distinct() %>% 
+  filter(Year < 2022) %>% 
+  group_by(Date, Age) %>% 
   summarize(Population = sum(Population)) %>% 
+  filter(Date == floor_date(Date, "month"))
+
+all_data$Age <- factor(all_data$Age, levels = c(
+  "0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",
+  "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79",
+  "80-84", "85-89", "90-94", "95-99", "100+"
+))
+
+all_data %>% 
   ggplot() +
   geom_area(aes(Date, Population, fill = Age, color = Age), alpha = 0.4, size = 0.6, position = "stack") +
   scale_x_date(date_label = "%Y", date_breaks = "3 years", minor_breaks = "1 year") +
