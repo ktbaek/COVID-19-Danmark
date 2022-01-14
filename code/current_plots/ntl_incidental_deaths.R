@@ -30,7 +30,7 @@ pop <- read_tidy_age(get_age_breaks(100, 5)) %>%
   group_by(Year, Quarter, Age) %>% 
   summarize(Population = sum(Population, na.rm = TRUE))
 
-weekly_all_deaths <- read_csv2("../data/DST_tidy_daily_deaths_age.csv")%>%
+weekly_all_deaths <- read_csv2("../data/DST_tidy_daily_deaths_age.csv") %>%
   distinct() %>%
   mutate(
     Year = year(Date),

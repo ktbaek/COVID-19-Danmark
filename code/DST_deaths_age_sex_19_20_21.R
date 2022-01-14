@@ -6,7 +6,7 @@ pop$Age <- factor(pop$Age, levels = c(
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
-all_data <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE) %>%
+all_data <- read_csv2("../data/DST_deaths_age_sex.csv", col_names = FALSE) %>%
   rename(
     Male = X3,
     Female = X4,
@@ -26,12 +26,14 @@ all_data <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE) %>%
   pivot_longer(c(Male, Female), names_to = "Sex", values_to = "Daily") %>%
   mutate(Quarter = quarter(Date)) %>%
   full_join(pop, by = c("Age", "Year", "Quarter", "Sex")) %>%
-  arrange(Date)
+  arrange(Date) %>% 
+  group_by(Age, Sex) %>% 
+  fill(Population)
 
 all_data %>%
   select(Date, Year, Age, Sex, Population, Daily, -New_date) %>%
   rename(Daily_deaths = Daily) %>%
-  write_csv2("../data/tidy_dst_age_sex_2015_21.csv")
+  write_csv2("../data/tidy_dst_age_sex_2015_22.csv")
 
 all_data$Age <- factor(all_data$Age, levels = c(
   "0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",
@@ -64,6 +66,7 @@ minmax <- all_data %>%
   
 
 plot_data <- all_data %>%
+  filter(Year < 2022) %>% 
   mutate(Daily_relative = Daily / Population * 100000) %>% 
   group_by(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year)), Age, Sex, New_date) %>%
   summarize(
