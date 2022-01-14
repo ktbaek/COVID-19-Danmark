@@ -83,8 +83,8 @@ Plottet viser antallet af nye positivt testede personer for hele landet siden 1.
 
 ![](/figures/ntl_ag_pos.png)
 
-### 2021 versus 2020
-Plottene viser forløbene af forskellige epidemi-indikatorer samt total antal døde (uanset årsag) for efteråret 2020 og efteråret 2021.
+### 2021/22 versus 2020/21
+Plottene viser forløbene af forskellige epidemi-indikatorer samt total antal døde (uanset årsag) for efterår/vinter 2020/21 og efterår/vinter 2021/22.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Deaths_over_time', 'Newly_admitted_over_time'``
 ``Danmarks Statistik datasæt: 'DODC1'``
@@ -227,7 +227,7 @@ Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders-
 
 ## Virusvarianter
 
-*Opdateres ikke efter 2021*
+*Opdateres ikke efter 2. januar 2022*
 
 ### Ugentlige antal positive opdelt på varianter
 
