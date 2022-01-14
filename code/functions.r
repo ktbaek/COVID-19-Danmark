@@ -10,6 +10,24 @@ ra <- function(x, n = 7, s = 2) {
   stats::filter(x, rep(1 / n, n), sides = s)
 }
 
+last_wday_date <- function(today_date, weekday) {
+  
+  days_subtract <- case_when(
+  wday(today_date) == weekday ~ 0,
+  wday(today_date) < weekday ~ 7 + wday(today_date) - weekday,
+  wday(today_date) > weekday ~ wday(today_date) - weekday
+)
+
+  as.character(ymd(today_date) - days_subtract)
+
+}
+
+date_to_yymmdd <- function(date) {
+  
+  paste0(str_sub(date, 3, 4), str_sub(date, 6, 7), str_sub(date, 9, 10))
+
+  }
+
 
 get_age_breaks <- function(maxage = 100, agesplit = 10) c(seq(-1, maxage - 1, agesplit), 125)
 

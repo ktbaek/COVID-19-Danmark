@@ -27,9 +27,9 @@ ssi_18_tidy <- ssi_18 %>%
   mutate(date = as.Date(paste0(year, sprintf("%02d", week), "1"), "%Y%U%u")) %>%
   mutate(date = case_when(
     year(date) == 2020 ~ date - days(7),
-    year(date) == 2021 ~ date,
-    week == 53 ~ ymd("2020-12-28")
-  ), ) %>%
+    week == 53 ~ ymd("2020-12-28"),
+    TRUE ~ date
+  )) %>%
   rename(
     admitted = `Nyindlagte pr. 100.000 borgere`,
     tested = `Testede pr. 100.000 borgere`,
@@ -54,6 +54,7 @@ plot_data <- ssi_18_tidy %>%
   mutate(year_quarter = str_replace(year_quarter, "_", " Q")) %>%
   group_by(Aldersgruppe, year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
+  filter(!is.na(admitted)) %>% 
   mutate(
     R = sqrt(rsquared(positive, admitted)),
     slope = slope(positive, admitted)

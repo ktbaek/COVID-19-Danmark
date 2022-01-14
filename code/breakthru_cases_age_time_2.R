@@ -25,7 +25,7 @@ beta <- 0.5
 
 # check that cases and repositive numbers match
 bt_2 %>%
-  group_by(Week, Type, Variable, Group, Vax_status) %>%
+  group_by(Week, Year, Type, Variable, Group, Vax_status) %>%
   summarize(Number_table2 = sum(Value, na.rm = TRUE)) %>%
   inner_join(filter(bt_1, Type == "antal" & Variable == "cases"), by = c("Week", "Type", "Variable", "Group", "Vax_status")) %>%
   mutate(Check = Number_table2 == Value) %>%
@@ -36,7 +36,7 @@ bt_2 %>%
 
 pop_check <- bt_2_extra %>%
   filter(Type != "incidence") %>%
-  group_by(Week, Vax_status, Type, Variable, Group) %>%
+  group_by(Week, Year, Vax_status, Type, Variable, Group) %>%
   summarize(
     Table2 = sum(Value, na.rm = TRUE)
   ) %>%
@@ -51,7 +51,7 @@ pop_check <- bt_2_extra %>%
 # compare my calculation of prev infection population with those calculated from table 1. Given that the above check was OK, this is just a double check.
 prevpos_check <- bt_2_extra %>%
   filter(Type != "incidence") %>%
-  group_by(Week, Vax_status, Type, Variable, Group) %>%
+  group_by(Week, Year, Vax_status, Type, Variable, Group) %>%
   summarize(
     Table2 = sum(Value, na.rm = TRUE)
   ) %>%
@@ -103,7 +103,7 @@ plot_data <- bt_2_extra %>%
     Variable != "personer",
     Group != "alle"
   ) %>%
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
   filter(!(Vax_status %in% c("Fuld effekt efter primært forløb", "Fuld effekt efter revaccination") & Group == "prevpos")) %>%
   mutate(Immunity_status = case_when(
     Vax_status == "Ingen vaccination" & Group == "prevpos" ~ "Tidligere positiv",
@@ -284,7 +284,7 @@ plot_data <- bt_2_extra %>%
     !Aldersgruppe %in% c("0-5", "6-11"),
     Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
   ) %>%
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
   filter(!(Vax_status %in% c("Fuld effekt efter primært forløb", "Fuld effekt efter revaccination") & Group == "prevpos")) %>%
   mutate(Immunity_status = case_when(
     Vax_status == "Ingen vaccination" & Group == "prevpos" ~ "Tidligere positiv",
@@ -343,7 +343,7 @@ plot_data <- bt_2_extra %>%
     !str_detect(Variable, "tests"),
     !str_detect(Variable, "personer")
   ) %>%
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
   filter(!(Vax_status %in% c("Fuld effekt efter primært forløb", "Fuld effekt efter revaccination") & Group == "prevpos")) %>%
   mutate(Immunity_status = case_when(
     Vax_status == "Ingen vaccination" & Group == "prevpos" ~ "Tidligere positiv",
@@ -421,14 +421,10 @@ ggsave("../figures/bt_cases_booster_age_time.png", width = 18, height = 10, unit
 
 plot_data <- bt_2_extra %>%
   filter(
-    Variable == "personer",
-    Group == "alle"
+    Variable == "personer"
   ) %>%
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%  
-  filter(!(Vax_status %in% c("Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"))) %>% 
-  mutate(Vax_track = ifelse(Vax_status != "Ingen vaccination", "Påbegyndt vaccination", Vax_status)) %>% 
-  group_by(Date, Vax_track, Aldersgruppe) %>% 
-  summarize(Value = sum(Value, na.rm = TRUE))
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  filter(Vax_status == "Fuld effekt efter revaccination")
 
 
 plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
@@ -436,17 +432,16 @@ plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11
 
 plot_data %>%
   ggplot() +
-  geom_area(aes(Date, Value, fill = Vax_track), position = "fill", size = 1, alpha = 1) +
+  geom_line(aes(Date, Value, color = Group)) +
   scale_x_date(labels = my_date_labels, breaks = my_breaks, expand = expansion(mult = 0.01)) +
-  scale_fill_manual(name = "", values = c(pct_col, admit_col)) +
-  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x * 100, " %"), expand = expansion(mult = c(0.05, 0))) +
+  scale_color_discrete(name = "") +
+  scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   labs(
-    y = "Andel",
-    title = "Personer opdelt på vaccinationsstatus"
+    y = "Antal",
+    title = "Personer med fuld effekt tredje dose"
   ) +
   facet_wrap(~Aldersgruppe, ncol = 6) +
   facet_theme +
-  guides(fill = guide_legend(override.aes = list(alpha = 1))) +
   theme(
     plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
     plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
@@ -454,7 +449,7 @@ plot_data %>%
     panel.grid.minor.x = element_blank()
   )
 
-ggsave("../figures/bt_personer_vax_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
+ggsave("../figures/bt_personer_booster_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 
 

@@ -22,14 +22,14 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
     select(-Value)
   
     plot_data <- df %>%
-    left_join(zero_replace, by = c("Type", "Variable", "Group", "Aldersgruppe", "Week", "Vax_status")) %>% 
+    left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
     mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
     filter(
-      !Aldersgruppe %in% c("0-5", "6-11"),
+      !Age %in% c("0-5", "6-11"),
       Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       Variable == variable
     ) %>%
-    mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+    mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
     mutate(Vax_status = case_when(
       Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
       Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
@@ -51,7 +51,7 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       title = paste0(variable_name, " per 100.000"),
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " per 100.000 i alders- og vaccinationsgruppen")
     ) +
-    facet_wrap(~Aldersgruppe, ncol = 5) +
+    facet_wrap(~Age, ncol = 5) +
     facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
     theme(
@@ -78,7 +78,7 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       title = paste0("Absolut antal ", str_to_lower(variable_name)),
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " opdelt på vaccinationsstatus (grupperne er stablet)")
     ) +
-    facet_wrap(~Aldersgruppe, ncol = 5) +
+    facet_wrap(~Age, ncol = 5) +
     facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
     theme(

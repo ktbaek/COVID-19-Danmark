@@ -7,7 +7,7 @@ ag <- read_data(paste0("../data/SSIdata_", today_string, "/Antigentests_pr_dag.c
 dst_deaths <- read_data("../data/DST_daily_deaths.csv", col_names = FALSE)
 dst_deaths_5yr <- read_data("../data/DST_daily_deaths_5yr.csv", col_names = TRUE)
 
-dst_dd_age <- read_data("../data/DST_deaths_daily_age.csv", col_names = FALSE)
+read_data("../data/DST_deaths_daily_age.csv", col_names = FALSE)
 dst_dd_age_5yr <- read_data("../data/DST_daily_deaths_age_5yr.csv", col_names = TRUE)
 
 # Update list of SSI file dates
@@ -95,7 +95,7 @@ dst_deaths %<>%
     Date = X2, 
     current = X3)
 
-dst_dd_age %<>%
+read_data("../data/DST_deaths_daily_age.csv", col_names = FALSE) %>% 
   select(-X2) %>% 
   rename(Date = X1) %>% 
   mutate(md = paste0(str_sub(Date, 6, 7), str_sub(Date, 9, 10))) %>%
@@ -123,7 +123,10 @@ dst_dd_age %<>%
     "90-94" = X21,
     "95-99" = X22,
     "100+" = X23
-  ) 
+  ) %>% 
+  mutate(across(c(`0-4`:`100+`), as.numeric)) %>%
+  pivot_longer(-Date, names_to = "Age", values_to = "Deaths") %>% 
+  write_csv2("../data/DST_tidy_daily_deaths_age.csv")
 
 dst_folk <- read_csv2("../data/DST_FOLK1_2015-21.csv", col_names = FALSE) 
 

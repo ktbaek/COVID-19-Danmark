@@ -102,66 +102,63 @@ pop <- read_tidy_age(fnkt_age_breaks) %>%
   group_by(Year, Quarter, Age) %>% 
   summarize(Population = sum(Population, na.rm = TRUE))
   
-bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
+bt_2_extra <- read_csv2("../data/tidy_breakthru_table2_deduced.csv")
 
-booster<- bt_2 %>%
-  filter(Variable == "tests",
+booster<- bt_2_extra %>%
+  filter(Variable == "personer",
          Group == "alle") %>%
-  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
-  mutate(antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000) %>%
-  select(-incidence_tests_alle, -antal_tests_alle) %>% 
   filter(Vax_status == "Fuld effekt efter revaccination") %>% 
-  rename(Third = antal_personer_alle) %>% 
-  mutate(Date = as.Date(paste0(2021, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
-  select(-Vax_status, -Week) %>% 
-  mutate(Aldersgruppe = case_when(
-    Aldersgruppe == "20-29" ~ "20-39",
-    Aldersgruppe == "30-39" ~ "20-39",
-    Aldersgruppe == "40-49" ~ "40-64",
-    Aldersgruppe == "50-59" ~ "40-64",
-    Aldersgruppe == "60-64" ~ "40-64",
-    Aldersgruppe == "65-69" ~ "65-79",
-    Aldersgruppe == "70-79" ~ "65-79",
-    TRUE ~ Aldersgruppe
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+  select(-Vax_status, -Week, -Year, -Type, -Variable, -Group) %>% 
+  mutate(Age = case_when(
+    Age == "20-29" ~ "20-39",
+    Age == "30-39" ~ "20-39",
+    Age == "40-49" ~ "40-64",
+    Age == "50-59" ~ "40-64",
+    Age == "60-64" ~ "40-64",
+    Age == "65-69" ~ "65-79",
+    Age == "70-79" ~ "65-79",
+    TRUE ~ Age
   )) %>% 
-  group_by(Date, Aldersgruppe) %>% 
-  summarize(Third = sum(Third, na.rm = TRUE)) %>% 
+  group_by(Date, Age) %>% 
+  summarize(Value = sum(Value, na.rm = TRUE)) %>% 
   mutate(
     Year = year(Date),
     Quarter = quarter(Date)
   ) %>% 
-  left_join(pop, by = c("Aldersgruppe" = "Age", "Year", "Quarter")) %>% 
+  left_join(pop, by = c("Age", "Year", "Quarter")) %>% 
+  arrange(Date) %>% 
+  group_by(Age) %>% 
+  fill(Population) %>% 
   mutate(
-    cum_pct = Third / Population * 100,
+    cum_pct = Value / Population * 100,
     Dose = "Third") %>% 
-  select(-Third)
+  select(-Value)
   
-  
-
-
 plot_data <- age_time_df %>% 
   rename(
     Date = Dato,
+    Age = Aldersgruppe,
     First = `Antal første vacc.`,
     Second = `Antal færdigvacc.`) %>% 
   pivot_longer(c(First, Second), names_to = "Dose") %>% 
-  filter(!is.na(Aldersgruppe)) %>% 
-  mutate(Aldersgruppe = case_when(
-    Aldersgruppe == "0-2" ~ "0-5",
-    Aldersgruppe == "3-5" ~ "0-5",
-    TRUE ~ Aldersgruppe
+  filter(!is.na(Age)) %>% 
+  mutate(Age = case_when(
+    Age == "0-2" ~ "0-5",
+    Age == "3-5" ~ "0-5",
+    TRUE ~ Age
     )) %>% 
-  group_by(Date, Aldersgruppe, Dose) %>% 
+  group_by(Date, Age, Dose) %>% 
   summarize(value = sum(value, na.rm = TRUE)) %>% 
   mutate(
     Year = year(Date),
     Quarter = quarter(Date)
   ) %>% 
-  left_join(pop, by = c("Aldersgruppe" = "Age", "Year", "Quarter")) %>% 
-  group_by(Aldersgruppe) %>% 
+  left_join(pop, by = c("Age", "Year", "Quarter")) %>% 
+  group_by(Age) %>% 
   fill(Population) %>% 
   mutate(pct = value / Population * 100) %>% 
-  group_by(Aldersgruppe, Dose) %>% 
+  group_by(Age, Dose) %>% 
   arrange(Date) %>% 
   mutate(cum = cumsum(value),
          cum_pct = cumsum(pct)) %>% 
@@ -169,7 +166,7 @@ plot_data <- age_time_df %>%
   bind_rows(booster)
 
 
-plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
+plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
  
 plot_data %>% 
   ggplot() +
@@ -179,7 +176,7 @@ plot_data %>%
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Fuld effekt tredje dose"), values=c("#30e3ca", "#11999e", "#1c3499")) +
   guides(color = guide_legend(override.aes = list(size = 1.6))) +
   labs(y = "Procent", title = "Andel af COVID-19 vaccinerede opdelt på alder", caption = standard_caption) +
-  facet_wrap(~ Aldersgruppe, ncol = 4) +
+  facet_wrap(~ Age, ncol = 4) +
   
   standard_theme + 
   theme(

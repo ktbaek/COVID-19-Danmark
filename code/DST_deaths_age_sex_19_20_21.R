@@ -6,7 +6,7 @@ pop$Age <- factor(pop$Age, levels = c(
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
-all_data <- read_csv2("../data/DST_deaths_age_sex.csv", col_names = FALSE) %>%
+all_data <- read_csv2("../data/DST_deaths_daily_age.csv", col_names = FALSE) %>%
   rename(
     Male = X3,
     Female = X4,
