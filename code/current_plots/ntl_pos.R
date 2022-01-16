@@ -1,4 +1,8 @@
-prevpos <- read_csv2("../data/24_reinfektioner_daglig_region.csv", locale = locale(encoding = "ISO-8859-1")) %>% 
+ra <- function(x, n = 7, s = 2) {
+  stats::filter(x, rep(1 / n, n), sides = s)
+}
+
+plot_data <- read_csv2("../data/24_reinfektioner_daglig_region.csv", locale = locale(encoding = "ISO-8859-1")) %>% 
   rename(
     Date = Prøvedato,
     Positive = infected,
@@ -9,17 +13,25 @@ prevpos <- read_csv2("../data/24_reinfektioner_daglig_region.csv", locale = loca
   group_by(Date) %>% 
   summarize(daily = sum(Positive, na.rm = TRUE)) %>% 
   mutate(name = "Repositive") %>% 
-  slice(1:(n() - 2)) # exclude last two days that may not be updated
+  bind_rows(filter(read_csv2("../data/SSI_daily_data.csv"), name == "Positive")) %>% 
+  select(-ra) %>% 
+  pivot_wider(values_from = daily) %>% 
+  rowwise %>% 
+  mutate(sum = sum(c(Positive, Repositive), na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  arrange(Date) %>% 
+  filter(Date <= ymd(today) - days(3)) %>% 
+  mutate(ra = ra(sum)) %>% 
+  select(-sum) %>% 
+  pivot_longer(-Date) %>% 
+  mutate(name = case_when(name == "Positive" ~ "Nye positive", TRUE ~ name))
 
-read_csv2("../data/SSI_daily_data.csv") %>%
-  filter(name == "Positive") %>%
-  mutate(name = "Nye positive") %>% 
-  bind_rows(prevpos) %>% 
+plot_data %>% 
   ggplot() +
-  geom_bar(stat = "identity", position = "stack", aes(Date, daily, fill = name), alpha = 0.8, width = 1) +
-  #geom_line(aes(Date, ra), size = 1, color = pos_col) +
+  geom_bar(data = subset(plot_data, name != "ra"), stat = "identity", position = "stack", aes(Date, value, fill = name), alpha = 0.6, width = 1) +
+  geom_line(data = subset(plot_data, name == "ra"), aes(Date, value), size = 1, color = pos_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
-  scale_fill_manual(name = "", values = c(pos_col, darken(pos_col, 0.7))) +
+  scale_fill_manual(name = "Heraf:", values = c(pos_col, darken(pos_col, 0.9))) +
   scale_y_continuous(limits = c(0, NA)) +
   labs(
     y = "Antal positive",

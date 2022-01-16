@@ -57,7 +57,7 @@ Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dag
 -->
 
 ### Dagligt antal positivt testede personer
-Plottet viser antallet af positivt testede personer for hele landet opdelt på nye positive og repositive. Repositive er defineret som positive som tidligere har modtaget en positiv test, og hvis tidligere positive test er mere end 60 dage gammel.  
+Plottet viser antallet af positivt testede personer for hele landet opdelt på nye positive og repositive. Repositive er defineret som positive som tidligere har modtaget en positiv test, og hvis tidligere positive test er mere end 60 dage gammel. Den optrukne linje viser det løbende gennemsnit for det samlede antal positive baseret på et vindue på 7 dage. 
 
 ``SSI datasæt: 'Test_pos_over_time', '24_reinfektioner_daglig_region'``
 
