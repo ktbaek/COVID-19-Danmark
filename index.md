@@ -23,7 +23,7 @@ Opdateres et par gange om ugen.
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
 
-Medmindre andet er angivet, viser graferne kun resultater for PCR tests, og antal positive inkluderer ikke repositive (altså positive der tidligere har testet positiv).
+Medmindre andet er angivet, viser graferne kun resultater for PCR tests, og antal positive inkluderer *ikke* repositive (altså positive der tidligere har testet positiv).
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.
 
@@ -57,7 +57,7 @@ Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dag
 -->
 
 ### Dagligt antal positivt testede personer
-Plottet viser antallet af positivt testede personer for hele landet opdelt på nye positive og repositive. Repositive er defineret som positive som tidligere har modtaget en positiv test, og hvis tidligere positive test er mere end 60 dage gammel. Den optrukne linje viser det løbende gennemsnit for det samlede antal positive baseret på et vindue på 7 dage. 
+Plottet viser antallet af positivt testede personer for hele landet opdelt på nye positive og repositive. Repositive er defineret som positive som tidligere har modtaget en positiv test, og hvis tidligere positive test er mere end 60 dage gammel. Den optrukne linje viser det løbende gennemsnit for det samlede antal positive baseret på et vindue på 7 dage.
 
 ``SSI datasæt: 'Test_pos_over_time', '24_reinfektioner_daglig_region'``
 
