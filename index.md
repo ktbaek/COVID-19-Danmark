@@ -187,7 +187,7 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 
 ### Smittede opdelt på vaccinations- og tidligere smittestatus
 
-*Midlertidigt fjernet pga usikkerhed om SSI's gennembrudsdata ift tidligere positive*
+*Midlertidigt fjernet fra siden pga usikkerhed om SSI's definition af tidligere positive*
 
 <!--
 Plottet viser det ugentlige antal positive per 100.000 (i alders- og immunitetsgruppen) og i absolutte tal. Data for modtagere af én dosis (første vaccination) er udeladt.
