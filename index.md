@@ -37,6 +37,8 @@ Positivt testede angiver nye positive, altså personer der ikke har testet posit
 ### Dagligt antal nyindlagte og dødsfald
 Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
+Tallene for nyindlagte og døde er baseret på alle positive tests (inkl. reinfektioner).
+
 ``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
 
 ![](/figures/ntl_hosp.png)
@@ -214,7 +216,7 @@ Det øverste plot viser antal PCR testede per 100.000 (i alders- og immunitetsgr
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Grupperne er ikke opdelt på baggrund af tidligere smittestatus. Data for modtagere af én dosis (første vaccination) er udeladt. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Bemærk at en indlæggelse i disse plots er defineret som en indlæggelse indenfor **30 dage** efter en positiv test (i modsætning til de øvrige data over indlæggelser hvor risikotiden er 14 dage efter en positiv test).  
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Kun personer som ikke tidligere har testet positiv indgår. Data for modtagere af én dosis (første vaccination) er udeladt. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Bemærk at en indlæggelse i disse plots er defineret som en indlæggelse indenfor **30 dage** efter en positiv test (i modsætning til de øvrige data over indlæggelser hvor risikotiden er 14 dage efter en positiv test).  
 
 Vaccinestatus er defineret ud fra tidspunktet for den positive test, ikke tidspunktet for indlæggelse eller død.
 
