@@ -53,7 +53,7 @@ read_csv2(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.cs
     Variable = case_when(
       Variable == "personer" ~ "personer.notprevpos",
       Variable == "cases" ~ "cases.notprevpos",
-      Variable == "repositive" ~ "cases.prevpos",
+      Variable == "repositive" ~ "cases.prevpos60",
       Variable == "tests" ~ "tests.alle",
       TRUE ~ Variable
     ),
@@ -105,7 +105,7 @@ read_tidy_table2 <- function(filename) {
       Variable = case_when(
         Variable == "tests" ~ "tests.alle",
         Variable == "cases" ~ "cases.notprevpos",
-        Variable == "repositive" ~ "cases.prevpos",
+        Variable == "repositive" ~ "cases.prevpos60",
         Variable == "alle" ~ "cases.alle",
         TRUE ~ Variable
       ),
@@ -165,7 +165,7 @@ bt_2_deduced <- read_csv2("../data/tidy_breakthru_table2.csv") %>%
     antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
     antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
     antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
-    incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
+    #incidence_cases_prevpos = antal_cases_prevpos60 / antal_personer_prevpos * 100000,
     incidence_tests_prevpos = antal_tests_prevpos / antal_personer_prevpos * 100000,
     incidence_tests_notprevpos = antal_tests_notprevpos / antal_personer_notprevpos * 100000
   ) %>% 

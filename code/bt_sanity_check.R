@@ -201,3 +201,26 @@ p2 <- read_csv2("../data/SSI_daily_data.csv") %>%
 p1 + p2 + plot_layout(guides = "collect")
 
 ggsave("../figures/bt_QC_prevpos_vs_cum.png", width = 27, height = 10, units = "cm", dpi = 300)
+
+
+
+
+x <- bt_2 %>% 
+  filter(
+    Variable == "indlagte",
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")
+  ) %>% 
+  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
+  mutate(antal_personer = antal_indlagte_NA / incidence_indlagte_NA * 100000) %>% 
+  group_by(Week, Year) %>% 
+  summarize(antal_personer = sum(antal_personer, na.rm = TRUE))
+
+y <- bt_1 %>% 
+  filter(
+    Variable == "personer",
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")
+  ) %>% 
+  group_by(Group, Week, Year) %>% 
+  summarize(Value = sum(Value, na.rm = TRUE))
+  
+  
