@@ -37,7 +37,7 @@ Positivt testede angiver nye positive, altså personer der ikke har testet posit
 ### Dagligt antal nyindlagte og dødsfald
 Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
-Tallene for nyindlagte og døde er baseret på alle positive tests (inkl. reinfektioner).
+Tallene for nyindlagte og døde er pr. 21. december 2021 baseret på alle positive tests (inkl. reinfektioner).
 
 ``SSI datasæt: 'Deaths_over_time', 'Newly_admitted_over_time'``
 
