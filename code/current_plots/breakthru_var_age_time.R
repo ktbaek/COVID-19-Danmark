@@ -118,7 +118,7 @@ bt_2 %>% plot_breakthru_age_panel(
   variable = "indlagte",
   variable_name = "Indlæggelser",
   maintitle = "Ugentligt antal indlæggelser opdelt på alder og vaccinestatus",
-  subtitle = "Relative og absolutte antal indlæggelser indenfor 30 dage\nefter en positiv SARS-CoV-2 PCR test"
+  subtitle = "Relative og absolutte antal indlæggelser med positiv SARS-CoV-2 PCR test"
 )
 
 ggsave("../figures/bt_admit_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
@@ -137,7 +137,7 @@ bt_2 %>% plot_breakthru_age_panel(
   variable = "intensiv",
   variable_name = "Intensivindlæggelser",
   maintitle = "Ugentlige intensivindlæggelser opdelt på alder og vaccinestatus",
-  subtitle = "Relative og absolutte antal intensivindlæggelser indenfor 30 dage\nefter positiv SARS-CoV-2 PCR test"
+  subtitle = "Relative og absolutte antal intensivindlæggelser med positiv SARS-CoV-2 PCR test"
 )
 
 ggsave("../figures/bt_icu_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
@@ -146,7 +146,7 @@ bt_2 %>% plot_breakthru_age_panel(
   variable = "cases",
   variable_name = "Positive",
   maintitle = "Ugentligt antal positive opdelt på alder og vaccinestatus",
-  subtitle = "Relative og absolutte antal personer med en positiv SARS-CoV-2 PCR test\nViser kun ikke-tidligere positive."
+  subtitle = "Relative og absolutte antal personer med positiv SARS-CoV-2 PCR test\nViser kun ikke-tidligere positive."
 )
 
 ggsave("../figures/bt_pos_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)

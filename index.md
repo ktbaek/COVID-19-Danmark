@@ -238,7 +238,7 @@ Det øverste plot viser antal PCR testede per 100.000 (i alders- og immunitetsgr
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Kun personer som ikke tidligere har testet positiv indgår. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Bemærk at en indlæggelse i disse plots er defineret som en indlæggelse indenfor **30 dage** efter en positiv test (i modsætning til de øvrige data over indlæggelser hvor risikotiden er 14 dage efter en positiv test). Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Kun personer som ikke tidligere har testet positiv indgår. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
 
 Vaccinestatus er defineret ud fra tidspunktet for den positive test, ikke tidspunktet for indlæggelse eller død.
 
