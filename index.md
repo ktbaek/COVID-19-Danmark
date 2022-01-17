@@ -197,7 +197,7 @@ Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe.
 
 Det øverste plot viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal. Data for modtagere af én dosis (første vaccination) er udeladt. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
 
-Det nederste plot viser det ugentlige antal PCR testede personer per 100.000 (i alders- og vaccinationssgruppen).
+Det nederste plot viser det ugentlige antal PCR testede ikke-tidligere positive personer per 100.000 (i alders- og vaccinationssgruppen).
 
 Datoerne angiver mandagen i hver uge.
 
