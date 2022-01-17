@@ -27,7 +27,6 @@ Medmindre andet er angivet, viser graferne kun resultater for PCR tests, og anta
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.
 
-Positivt testede angiver nye positive, altså personer der ikke har testet positiv før (undt. under gennembrudsinfektioner).
 
 *Siden er under løbende udvikling. Jeg påtager mig ikke ansvar for eventuelle fejl.*
 
@@ -187,7 +186,7 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 
 ### Antal personer i hver vaccinationsgruppe
 
-Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe. Data for modtagere af én dosis (første vaccination) er udeladt. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
+Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
@@ -195,7 +194,7 @@ Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe.
 
 ### Smittede opdelt på vaccinationsstatus
 
-Det øverste plot viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal. Data for modtagere af én dosis (første vaccination) er udeladt. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
+Det øverste plot viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal.  *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
 
 Det nederste plot viser det ugentlige antal PCR testede ikke-tidligere positive personer per 100.000 (i alders- og vaccinationssgruppen).
 
@@ -239,7 +238,7 @@ Det øverste plot viser antal PCR testede per 100.000 (i alders- og immunitetsgr
 
 ### Indlagte og døde opdelt på vaccinationsstatus
 
-Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Kun personer som ikke tidligere har testet positiv indgår. Data for modtagere af én dosis (første vaccination) er udeladt. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Bemærk at en indlæggelse i disse plots er defineret som en indlæggelse indenfor **30 dage** efter en positiv test (i modsætning til de øvrige data over indlæggelser hvor risikotiden er 14 dage efter en positiv test).  
+Plottene viser det ugentlige antal indlæggelser og døde per 100.000 (i alders- og vaccinationsgruppen) og i absolutte tal. Kun personer som ikke tidligere har testet positiv indgår. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Datoerne angiver mandagen i hver uge. Bemærk at en indlæggelse i disse plots er defineret som en indlæggelse indenfor **30 dage** efter en positiv test (i modsætning til de øvrige data over indlæggelser hvor risikotiden er 14 dage efter en positiv test). Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
 
 Vaccinestatus er defineret ud fra tidspunktet for den positive test, ikke tidspunktet for indlæggelse eller død.
 
