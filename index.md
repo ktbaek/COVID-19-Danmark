@@ -187,7 +187,7 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 
 ### Antal personer i hver vaccinationsgruppe
 
-Plottet viser det ugentlige antal personer i hver alders- og vaccainationsgruppe. Data for modtagere af én dosis (første vaccination) er udeladt. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
+Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe. Data for modtagere af én dosis (første vaccination) er udeladt. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
