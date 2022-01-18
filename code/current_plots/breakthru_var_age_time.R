@@ -142,7 +142,9 @@ bt_2 %>% plot_breakthru_age_panel(
 
 ggsave("../figures/bt_icu_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
 
-bt_2 %>% plot_breakthru_age_panel(
+bt_2 %>% 
+  filter(!(Age %in% c("12-15", "16-19") & Vax_status == "Fuld effekt efter revaccination")) %>% 
+  plot_breakthru_age_panel(
   variable = "cases",
   variable_name = "Positive",
   maintitle = "Ugentligt antal positive opdelt på alder og vaccinestatus",

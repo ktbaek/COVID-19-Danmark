@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 14. januar 2022 kl. 22:08.
+Senest opdateret 18. januar 2022 kl. 17:03.
 Opdateres et par gange om ugen.
 
 <div class="likely">
@@ -194,9 +194,7 @@ Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe.
 
 ### Smittede opdelt på vaccinationsstatus
 
-Det øverste plot viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal.  *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
-
-Det nederste plot viser det ugentlige antal PCR testede ikke-tidligere positive personer per 100.000 (i alders- og vaccinationssgruppen).
+Plottet viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal.  *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt, og 12-19 årige der har modtaget 3. dose.
 
 Datoerne angiver mandagen i hver uge.
 
@@ -204,7 +202,19 @@ Datoerne angiver mandagen i hver uge.
 
 ![](/figures/bt_pos_age_time.png)
 
+### Testjusteret smittetal opdelt på vaccinationsstatus
+
+Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vaccinationsgruppen). Det nederste plot viser det testjusterede antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
+
+I begge plot angiver *ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt, og 12-19 årige der har modtaget 3. dose. 
+
+Datoerne angiver mandagen i hver uge.
+
+``SSI datasæt: 'Gennembrudsinfektioner_table2'``
+
 ![](/figures/bt_tests_age_time.png)
+
+![](/figures/bt_tac_age_time.png)
 
 <!--
 ### Smittede opdelt på vaccinations- og tidligere smittestatus
