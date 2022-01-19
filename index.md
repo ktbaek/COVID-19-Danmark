@@ -14,7 +14,6 @@ Opdateres et par gange om ugen.
     <div class="linkedin">Del</div>
 </div>
 
-
 Developed by Kristoffer T. Bæk, 2020-2022
 
 <div class="richandfamous">
