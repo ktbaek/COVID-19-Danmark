@@ -16,6 +16,10 @@ ssi_18 %>%
   mutate(date = as.Date(paste0(year, sprintf("%02d", week), "1"), "%Y%U%u")) %>% 
   mutate(Quarter = quarter(date)) %>% 
   full_join(pop, by = c("Aldersgruppe" = "Age", "Quarter", "Year")) %>% 
+  arrange(date) %>% 
+  group_by(Aldersgruppe) %>% 
+  fill(Population) %>% 
+  ungroup() %>% 
   rename(
     admitted = `Nyindlagte pr. 100.000 borgere`,
     tested = `Testede pr. 100.000 borgere`,
