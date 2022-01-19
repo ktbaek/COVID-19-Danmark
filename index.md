@@ -14,6 +14,10 @@ Opdateres et par gange om ugen.
     <div class="linkedin">Del</div>
 </div>
 
+Developed by Kristoffer T. Bæk, 2020-2022
+
+<div itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0003-3243-3962" href="https://orcid.org/0000-0003-3243-3962" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_32x32.png" style="width:1.5em;margin-right:.5em;" alt="ORCID iD icon"></a></div>
+
 <div class="richandfamous">
 <a href="https://twitter.com/KT_baek?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <a href="https://www.buymeacoffee.com/covid19danmark" target="_blank"><img src="/assets/buymecoffee.svg" alt="Buy Me A Coffee" height="28"></a>
@@ -206,7 +210,7 @@ Datoerne angiver mandagen i hver uge.
 
 Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vaccinationsgruppen). Det nederste plot viser det testjusterede antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
 
-I begge plot angiver *ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt, og 12-19 årige der har modtaget 3. dose. 
+I begge plot angiver *ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt, og 12-19 årige der har modtaget 3. dose.
 
 Datoerne angiver mandagen i hver uge.
 
