@@ -92,14 +92,12 @@ if (file.exists(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_tab
       antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
       antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000,
       antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
-      incidence_cases_prevpos = antal_cases_prevpos / antal_personer_prevpos * 100000,
       antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
       incidence_tests_prevpos = antal_tests_prevpos / antal_personer_prevpos * 100000,
       incidence_tests_notprevpos = antal_tests_notprevpos / antal_personer_notprevpos * 100000,
-      incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
-      incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
+      incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta)
     ) %>%
-    pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
+    pivot_longer(c(antal_cases_notprevpos:incidence_tac_notprevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
     arrange(Age, Week, Year, Vax_status, Type, Variable, Group) %T>%
     write_csv2("../data/tidy_breakthru_table2_deduced.csv")
 }

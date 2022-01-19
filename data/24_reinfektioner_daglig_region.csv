@@ -78,7 +78,7 @@
 2021-01-08;Sjælland;1;837221;1.Reinfektion;1
 2021-01-08;Sjælland;222;837221;2.Bekræftede tilfælde;2
 2021-01-08;Syddanmark;1;1222145;1.Reinfektion;1
-2021-01-08;Syddanmark;228;1222145;2.Bekræftede tilfælde;2
+2021-01-08;Syddanmark;227;1222145;2.Bekræftede tilfælde;2
 2021-01-09;Hovedstaden;2;1849689;1.Reinfektion;1
 2021-01-09;Hovedstaden;482;1849689;2.Bekræftede tilfælde;2
 2021-01-09;Midtjylland;0;1329540;1.Reinfektion;1
@@ -2796,9 +2796,9 @@
 2021-10-07;Nordjylland;0;590721;1.Reinfektion;1
 2021-10-07;Nordjylland;50;590721;2.Bekræftede tilfælde;2
 2021-10-07;Sjælland;0;840653;1.Reinfektion;1
-2021-10-07;Sjælland;91;840653;2.Bekræftede tilfælde;2
+2021-10-07;Sjælland;92;840653;2.Bekræftede tilfælde;2
 2021-10-07;Syddanmark;0;1224620;1.Reinfektion;1
-2021-10-07;Syddanmark;109;1224620;2.Bekræftede tilfælde;2
+2021-10-07;Syddanmark;108;1224620;2.Bekræftede tilfælde;2
 2021-10-08;Hovedstaden;5;1855361;1.Reinfektion;1
 2021-10-08;Hovedstaden;295;1855361;2.Bekræftede tilfælde;2
 2021-10-08;Midtjylland;2;1336319;1.Reinfektion;1
@@ -3480,7 +3480,7 @@
 2021-12-14;Syddanmark;22;1226082;1.Reinfektion;1
 2021-12-14;Syddanmark;1547;1226082;2.Bekræftede tilfælde;2
 2021-12-15;Hovedstaden;330;1860952;1.Reinfektion;1
-2021-12-15;Hovedstaden;5621;1860952;2.Bekræftede tilfælde;2
+2021-12-15;Hovedstaden;5620;1860952;2.Bekræftede tilfælde;2
 2021-12-15;Midtjylland;34;1338673;1.Reinfektion;1
 2021-12-15;Midtjylland;1775;1338673;2.Bekræftede tilfælde;2
 2021-12-15;Nordjylland;7;591302;1.Reinfektion;1
@@ -3602,13 +3602,13 @@
 2021-12-27;Hovedstaden;825;1860952;1.Reinfektion;1
 2021-12-27;Hovedstaden;9904;1860952;2.Bekræftede tilfælde;2
 2021-12-27;Midtjylland;137;1338673;1.Reinfektion;1
-2021-12-27;Midtjylland;3931;1338673;2.Bekræftede tilfælde;2
+2021-12-27;Midtjylland;3930;1338673;2.Bekræftede tilfælde;2
 2021-12-27;Nordjylland;65;591302;1.Reinfektion;1
 2021-12-27;Nordjylland;1952;591302;2.Bekræftede tilfælde;2
 2021-12-27;Sjælland;134;841390;1.Reinfektion;1
 2021-12-27;Sjælland;3463;841390;2.Bekræftede tilfælde;2
 2021-12-27;Syddanmark;89;1226082;1.Reinfektion;1
-2021-12-27;Syddanmark;3366;1226082;2.Bekræftede tilfælde;2
+2021-12-27;Syddanmark;3367;1226082;2.Bekræftede tilfælde;2
 2021-12-28;Hovedstaden;751;1860952;1.Reinfektion;1
 2021-12-28;Hovedstaden;9517;1860952;2.Bekræftede tilfælde;2
 2021-12-28;Midtjylland;170;1338673;1.Reinfektion;1
@@ -3622,7 +3622,7 @@
 2021-12-29;Hovedstaden;660;1860952;1.Reinfektion;1
 2021-12-29;Hovedstaden;7365;1860952;2.Bekræftede tilfælde;2
 2021-12-29;Midtjylland;106;1338673;1.Reinfektion;1
-2021-12-29;Midtjylland;3227;1338673;2.Bekræftede tilfælde;2
+2021-12-29;Midtjylland;3228;1338673;2.Bekræftede tilfælde;2
 2021-12-29;Nordjylland;59;591302;1.Reinfektion;1
 2021-12-29;Nordjylland;1592;591302;2.Bekræftede tilfælde;2
 2021-12-29;Sjælland;90;841390;1.Reinfektion;1
@@ -3650,13 +3650,13 @@
 2021-12-31;Syddanmark;75;1226082;1.Reinfektion;1
 2021-12-31;Syddanmark;2127;1226082;2.Bekræftede tilfælde;2
 2022-01-01;Hovedstaden;302;1860952;1.Reinfektion;1
-2022-01-01;Hovedstaden;3073;1860952;2.Bekræftede tilfælde;2
+2022-01-01;Hovedstaden;3072;1860952;2.Bekræftede tilfælde;2
 2022-01-01;Midtjylland;84;1338673;1.Reinfektion;1
-2022-01-01;Midtjylland;2035;1338673;2.Bekræftede tilfælde;2
+2022-01-01;Midtjylland;2036;1338673;2.Bekræftede tilfælde;2
 2022-01-01;Nordjylland;30;591302;1.Reinfektion;1
-2022-01-01;Nordjylland;634;591302;2.Bekræftede tilfælde;2
+2022-01-01;Nordjylland;633;591302;2.Bekræftede tilfælde;2
 2022-01-01;Sjælland;65;841390;1.Reinfektion;1
-2022-01-01;Sjælland;1184;841390;2.Bekræftede tilfælde;2
+2022-01-01;Sjælland;1185;841390;2.Bekræftede tilfælde;2
 2022-01-01;Syddanmark;47;1226082;1.Reinfektion;1
 2022-01-01;Syddanmark;1705;1226082;2.Bekræftede tilfælde;2
 2022-01-02;Hovedstaden;877;1860952;1.Reinfektion;1
@@ -3666,15 +3666,15 @@
 2022-01-02;Nordjylland;114;591302;1.Reinfektion;1
 2022-01-02;Nordjylland;2304;591302;2.Bekræftede tilfælde;2
 2022-01-02;Sjælland;130;841390;1.Reinfektion;1
-2022-01-02;Sjælland;1993;841390;2.Bekræftede tilfælde;2
+2022-01-02;Sjælland;1994;841390;2.Bekræftede tilfælde;2
 2022-01-02;Syddanmark;138;1226082;1.Reinfektion;1
 2022-01-02;Syddanmark;2860;1226082;2.Bekræftede tilfælde;2
 2022-01-03;Hovedstaden;1150;1862046;1.Reinfektion;1
 2022-01-03;Hovedstaden;10022;1862046;2.Bekræftede tilfælde;2
 2022-01-03;Midtjylland;271;1339467;1.Reinfektion;1
-2022-01-03;Midtjylland;5009;1339467;2.Bekræftede tilfælde;2
+2022-01-03;Midtjylland;5010;1339467;2.Bekræftede tilfælde;2
 2022-01-03;Nordjylland;115;591192;1.Reinfektion;1
-2022-01-03;Nordjylland;2154;591192;2.Bekræftede tilfælde;2
+2022-01-03;Nordjylland;2153;591192;2.Bekræftede tilfælde;2
 2022-01-03;Sjælland;207;841723;1.Reinfektion;1
 2022-01-03;Sjælland;3890;841723;2.Bekræftede tilfælde;2
 2022-01-03;Syddanmark;177;1226727;1.Reinfektion;1
@@ -3682,20 +3682,20 @@
 2022-01-04;Hovedstaden;1115;1862046;1.Reinfektion;1
 2022-01-04;Hovedstaden;8969;1862046;2.Bekræftede tilfælde;2
 2022-01-04;Midtjylland;309;1339467;1.Reinfektion;1
-2022-01-04;Midtjylland;4795;1339467;2.Bekræftede tilfælde;2
+2022-01-04;Midtjylland;4796;1339467;2.Bekræftede tilfælde;2
 2022-01-04;Nordjylland;142;591192;1.Reinfektion;1
 2022-01-04;Nordjylland;2069;591192;2.Bekræftede tilfælde;2
 2022-01-04;Sjælland;208;841723;1.Reinfektion;1
 2022-01-04;Sjælland;3314;841723;2.Bekræftede tilfælde;2
 2022-01-04;Syddanmark;211;1226727;1.Reinfektion;1
 2022-01-04;Syddanmark;4551;1226727;2.Bekræftede tilfælde;2
-2022-01-05;Hovedstaden;809;1862046;1.Reinfektion;1
-2022-01-05;Hovedstaden;6853;1862046;2.Bekræftede tilfælde;2
+2022-01-05;Hovedstaden;808;1862046;1.Reinfektion;1
+2022-01-05;Hovedstaden;6855;1862046;2.Bekræftede tilfælde;2
 2022-01-05;Midtjylland;272;1339467;1.Reinfektion;1
 2022-01-05;Midtjylland;3762;1339467;2.Bekræftede tilfælde;2
 2022-01-05;Nordjylland;120;591192;1.Reinfektion;1
 2022-01-05;Nordjylland;1689;591192;2.Bekræftede tilfælde;2
-2022-01-05;Sjælland;144;841723;1.Reinfektion;1
+2022-01-05;Sjælland;145;841723;1.Reinfektion;1
 2022-01-05;Sjælland;2024;841723;2.Bekræftede tilfælde;2
 2022-01-05;Syddanmark;157;1226727;1.Reinfektion;1
 2022-01-05;Syddanmark;3249;1226727;2.Bekræftede tilfælde;2
@@ -3706,11 +3706,11 @@
 2022-01-06;Nordjylland;85;591192;1.Reinfektion;1
 2022-01-06;Nordjylland;1339;591192;2.Bekræftede tilfælde;2
 2022-01-06;Sjælland;130;841723;1.Reinfektion;1
-2022-01-06;Sjælland;2271;841723;2.Bekræftede tilfælde;2
+2022-01-06;Sjælland;2272;841723;2.Bekræftede tilfælde;2
 2022-01-06;Syddanmark;149;1226727;1.Reinfektion;1
 2022-01-06;Syddanmark;2752;1226727;2.Bekræftede tilfælde;2
 2022-01-07;Hovedstaden;609;1862046;1.Reinfektion;1
-2022-01-07;Hovedstaden;5291;1862046;2.Bekræftede tilfælde;2
+2022-01-07;Hovedstaden;5292;1862046;2.Bekræftede tilfælde;2
 2022-01-07;Midtjylland;177;1339467;1.Reinfektion;1
 2022-01-07;Midtjylland;3164;1339467;2.Bekræftede tilfælde;2
 2022-01-07;Nordjylland;61;591192;1.Reinfektion;1
@@ -3734,43 +3734,43 @@
 2022-01-09;Midtjylland;210;1339467;1.Reinfektion;1
 2022-01-09;Midtjylland;3706;1339467;2.Bekræftede tilfælde;2
 2022-01-09;Nordjylland;64;591192;1.Reinfektion;1
-2022-01-09;Nordjylland;1502;591192;2.Bekræftede tilfælde;2
+2022-01-09;Nordjylland;1503;591192;2.Bekræftede tilfælde;2
 2022-01-09;Sjælland;106;841723;1.Reinfektion;1
 2022-01-09;Sjælland;1777;841723;2.Bekræftede tilfælde;2
 2022-01-09;Syddanmark;128;1226727;1.Reinfektion;1
 2022-01-09;Syddanmark;2749;1226727;2.Bekræftede tilfælde;2
 2022-01-10;Hovedstaden;920;1862046;1.Reinfektion;1
-2022-01-10;Hovedstaden;8810;1862046;2.Bekræftede tilfælde;2
+2022-01-10;Hovedstaden;8814;1862046;2.Bekræftede tilfælde;2
 2022-01-10;Midtjylland;211;1339467;1.Reinfektion;1
 2022-01-10;Midtjylland;4627;1339467;2.Bekræftede tilfælde;2
 2022-01-10;Nordjylland;96;591192;1.Reinfektion;1
 2022-01-10;Nordjylland;1892;591192;2.Bekræftede tilfælde;2
 2022-01-10;Sjælland;180;841723;1.Reinfektion;1
-2022-01-10;Sjælland;3461;841723;2.Bekræftede tilfælde;2
+2022-01-10;Sjælland;3460;841723;2.Bekræftede tilfælde;2
 2022-01-10;Syddanmark;196;1226727;1.Reinfektion;1
 2022-01-10;Syddanmark;4454;1226727;2.Bekræftede tilfælde;2
-2022-01-11;Hovedstaden;962;1862046;1.Reinfektion;1
+2022-01-11;Hovedstaden;963;1862046;1.Reinfektion;1
 2022-01-11;Hovedstaden;8798;1862046;2.Bekræftede tilfælde;2
 2022-01-11;Midtjylland;230;1339467;1.Reinfektion;1
-2022-01-11;Midtjylland;4546;1339467;2.Bekræftede tilfælde;2
+2022-01-11;Midtjylland;4545;1339467;2.Bekræftede tilfælde;2
 2022-01-11;Nordjylland;117;591192;1.Reinfektion;1
-2022-01-11;Nordjylland;1950;591192;2.Bekræftede tilfælde;2
+2022-01-11;Nordjylland;1949;591192;2.Bekræftede tilfælde;2
 2022-01-11;Sjælland;168;841723;1.Reinfektion;1
 2022-01-11;Sjælland;3003;841723;2.Bekræftede tilfælde;2
-2022-01-11;Syddanmark;227;1226727;1.Reinfektion;1
-2022-01-11;Syddanmark;4359;1226727;2.Bekræftede tilfælde;2
+2022-01-11;Syddanmark;226;1226727;1.Reinfektion;1
+2022-01-11;Syddanmark;4360;1226727;2.Bekræftede tilfælde;2
 2022-01-12;Hovedstaden;884;1862046;1.Reinfektion;1
-2022-01-12;Hovedstaden;8646;1862046;2.Bekræftede tilfælde;2
-2022-01-12;Midtjylland;246;1339467;1.Reinfektion;1
-2022-01-12;Midtjylland;4994;1339467;2.Bekræftede tilfælde;2
-2022-01-12;Nordjylland;99;591192;1.Reinfektion;1
-2022-01-12;Nordjylland;2078;591192;2.Bekræftede tilfælde;2
+2022-01-12;Hovedstaden;8647;1862046;2.Bekræftede tilfælde;2
+2022-01-12;Midtjylland;247;1339467;1.Reinfektion;1
+2022-01-12;Midtjylland;4996;1339467;2.Bekræftede tilfælde;2
+2022-01-12;Nordjylland;98;591192;1.Reinfektion;1
+2022-01-12;Nordjylland;2076;591192;2.Bekræftede tilfælde;2
 2022-01-12;Sjælland;160;841723;1.Reinfektion;1
 2022-01-12;Sjælland;2680;841723;2.Bekræftede tilfælde;2
 2022-01-12;Syddanmark;224;1226727;1.Reinfektion;1
 2022-01-12;Syddanmark;4177;1226727;2.Bekræftede tilfælde;2
 2022-01-13;Hovedstaden;958;1862046;1.Reinfektion;1
-2022-01-13;Hovedstaden;8623;1862046;2.Bekræftede tilfælde;2
+2022-01-13;Hovedstaden;8624;1862046;2.Bekræftede tilfælde;2
 2022-01-13;Midtjylland;236;1339467;1.Reinfektion;1
 2022-01-13;Midtjylland;5137;1339467;2.Bekræftede tilfælde;2
 2022-01-13;Nordjylland;75;591192;1.Reinfektion;1
@@ -3780,42 +3780,52 @@
 2022-01-13;Syddanmark;220;1226727;1.Reinfektion;1
 2022-01-13;Syddanmark;4672;1226727;2.Bekræftede tilfælde;2
 2022-01-14;Hovedstaden;943;1862046;1.Reinfektion;1
-2022-01-14;Hovedstaden;9664;1862046;2.Bekræftede tilfælde;2
+2022-01-14;Hovedstaden;9668;1862046;2.Bekræftede tilfælde;2
 2022-01-14;Midtjylland;270;1339467;1.Reinfektion;1
-2022-01-14;Midtjylland;5595;1339467;2.Bekræftede tilfælde;2
+2022-01-14;Midtjylland;5596;1339467;2.Bekræftede tilfælde;2
 2022-01-14;Nordjylland;98;591192;1.Reinfektion;1
-2022-01-14;Nordjylland;2007;591192;2.Bekræftede tilfælde;2
+2022-01-14;Nordjylland;2006;591192;2.Bekræftede tilfælde;2
 2022-01-14;Sjælland;182;841723;1.Reinfektion;1
 2022-01-14;Sjælland;3544;841723;2.Bekræftede tilfælde;2
 2022-01-14;Syddanmark;234;1226727;1.Reinfektion;1
 2022-01-14;Syddanmark;5073;1226727;2.Bekræftede tilfælde;2
 2022-01-15;Hovedstaden;1029;1862046;1.Reinfektion;1
-2022-01-15;Hovedstaden;10023;1862046;2.Bekræftede tilfælde;2
+2022-01-15;Hovedstaden;10024;1862046;2.Bekræftede tilfælde;2
 2022-01-15;Midtjylland;302;1339467;1.Reinfektion;1
-2022-01-15;Midtjylland;6032;1339467;2.Bekræftede tilfælde;2
+2022-01-15;Midtjylland;6033;1339467;2.Bekræftede tilfælde;2
 2022-01-15;Nordjylland;82;591192;1.Reinfektion;1
 2022-01-15;Nordjylland;2076;591192;2.Bekræftede tilfælde;2
 2022-01-15;Sjælland;147;841723;1.Reinfektion;1
 2022-01-15;Sjælland;2743;841723;2.Bekræftede tilfælde;2
-2022-01-15;Syddanmark;178;1226727;1.Reinfektion;1
+2022-01-15;Syddanmark;179;1226727;1.Reinfektion;1
 2022-01-15;Syddanmark;4312;1226727;2.Bekræftede tilfælde;2
-2022-01-16;Hovedstaden;1017;1862046;1.Reinfektion;1
-2022-01-16;Hovedstaden;10445;1862046;2.Bekræftede tilfælde;2
+2022-01-16;Hovedstaden;1028;1862046;1.Reinfektion;1
+2022-01-16;Hovedstaden;10598;1862046;2.Bekræftede tilfælde;2
 2022-01-16;Midtjylland;288;1339467;1.Reinfektion;1
-2022-01-16;Midtjylland;6776;1339467;2.Bekræftede tilfælde;2
+2022-01-16;Midtjylland;6783;1339467;2.Bekræftede tilfælde;2
 2022-01-16;Nordjylland;100;591192;1.Reinfektion;1
 2022-01-16;Nordjylland;2482;591192;2.Bekræftede tilfælde;2
-2022-01-16;Sjælland;169;841723;1.Reinfektion;1
-2022-01-16;Sjælland;3048;841723;2.Bekræftede tilfælde;2
+2022-01-16;Sjælland;170;841723;1.Reinfektion;1
+2022-01-16;Sjælland;3114;841723;2.Bekræftede tilfælde;2
 2022-01-16;Syddanmark;187;1226727;1.Reinfektion;1
-2022-01-16;Syddanmark;5167;1226727;2.Bekræftede tilfælde;2
-2022-01-17;Hovedstaden;494;1862046;1.Reinfektion;1
-2022-01-17;Hovedstaden;5591;1862046;2.Bekræftede tilfælde;2
-2022-01-17;Midtjylland;136;1339467;1.Reinfektion;1
-2022-01-17;Midtjylland;2491;1339467;2.Bekræftede tilfælde;2
-2022-01-17;Nordjylland;22;591192;1.Reinfektion;1
-2022-01-17;Nordjylland;632;591192;2.Bekræftede tilfælde;2
-2022-01-17;Sjælland;121;841723;1.Reinfektion;1
-2022-01-17;Sjælland;2117;841723;2.Bekræftede tilfælde;2
-2022-01-17;Syddanmark;108;1226727;1.Reinfektion;1
-2022-01-17;Syddanmark;3254;1226727;2.Bekræftede tilfælde;2
+2022-01-16;Syddanmark;5175;1226727;2.Bekræftede tilfælde;2
+2022-01-17;Hovedstaden;1325;1862046;1.Reinfektion;1
+2022-01-17;Hovedstaden;13309;1862046;2.Bekræftede tilfælde;2
+2022-01-17;Midtjylland;406;1339467;1.Reinfektion;1
+2022-01-17;Midtjylland;8371;1339467;2.Bekræftede tilfælde;2
+2022-01-17;Nordjylland;156;591192;1.Reinfektion;1
+2022-01-17;Nordjylland;3448;591192;2.Bekræftede tilfælde;2
+2022-01-17;Sjælland;350;841723;1.Reinfektion;1
+2022-01-17;Sjælland;6301;841723;2.Bekræftede tilfælde;2
+2022-01-17;Syddanmark;315;1226727;1.Reinfektion;1
+2022-01-17;Syddanmark;8724;1226727;2.Bekræftede tilfælde;2
+2022-01-18;Hovedstaden;313;1862046;1.Reinfektion;1
+2022-01-18;Hovedstaden;3919;1862046;2.Bekræftede tilfælde;2
+2022-01-18;Midtjylland;84;1339467;1.Reinfektion;1
+2022-01-18;Midtjylland;1819;1339467;2.Bekræftede tilfælde;2
+2022-01-18;Nordjylland;27;591192;1.Reinfektion;1
+2022-01-18;Nordjylland;550;591192;2.Bekræftede tilfælde;2
+2022-01-18;Sjælland;85;841723;1.Reinfektion;1
+2022-01-18;Sjælland;1876;841723;2.Bekræftede tilfælde;2
+2022-01-18;Syddanmark;83;1226727;1.Reinfektion;1
+2022-01-18;Syddanmark;1870;1226727;2.Bekræftede tilfælde;2
