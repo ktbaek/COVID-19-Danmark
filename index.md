@@ -14,7 +14,7 @@ Opdateres et par gange om ugen.
     <div class="linkedin">Del</div>
 </div>
 
-Developed by Kristoffer T. Bæk, 2020-2022
+Kristoffer T. Bæk, 2020-2022
 
 <div class="richandfamous">
 <a href="https://twitter.com/KT_baek?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
