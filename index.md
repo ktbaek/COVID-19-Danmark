@@ -143,6 +143,7 @@ Plottet viser andelen af PCR positive der efterfølgende indlægges for hvert kv
 
 ![](/figures/ntl_pos_admit_bars_quarter.png)
 
+<!--
 ### Dagligt antal døde for hver aldersgruppe
 
 *Ikke fuldt opdateret*
@@ -153,7 +154,7 @@ Plottet viser det daglige antal døde (alle årsager) for hver aldersgruppe for 
 
 ![](/figures/ntl_deaths_age_total.png)
 
-
+-->
 
 [Tilbage til toppen](#)
 
