@@ -14,9 +14,8 @@ Opdateres et par gange om ugen.
     <div class="linkedin">Del</div>
 </div>
 
+&nbsp;
 Developed by Kristoffer T. Bæk, 2020-2022
-
-<div itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0003-3243-3962" href="https://orcid.org/0000-0003-3243-3962" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_32x32.png" style="width:1.5em;margin-right:.5em;" alt="ORCID iD icon"></a></div>
 
 <div class="richandfamous">
 <a href="https://twitter.com/KT_baek?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-lang="en" data-show-count="false">Follow</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
