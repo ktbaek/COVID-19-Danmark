@@ -397,7 +397,9 @@ Nederste plot viser det daglige antal dødsfald i 2020 siden 1. jan 2020, opdelt
 
 Total antal daglige dødsfald opdateres fredage.
 
-``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1', 'FOLK1A'``
+``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
+
+
 
 ![](/figures/dst_deaths_covid_all.png)
 
@@ -407,7 +409,9 @@ Total antal daglige dødsfald opdateres fredage.
 
 Plottene viser det kumulerede antal døde per 100.000 personer i hver køns- og aldersgruppe for årene 2015 til 2021, med fokus på 2020 og 2021.
 
-``Danmarks Statistik datasæt: 'DODC1'``
+``Danmarks Statistik datasæt: 'DODC1', 'FOLK1A'``
+
+Kombineret datasæt [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/tidy_dst_age_sex_2015_22.csv).
 
 ![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_young.png)
 
