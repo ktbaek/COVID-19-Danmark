@@ -397,7 +397,7 @@ Nederste plot viser det daglige antal dødsfald i 2020 siden 1. jan 2020, opdelt
 
 Total antal daglige dødsfald opdateres fredage.
 
-``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
+``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1', 'FOLK1A'``
 
 ![](/figures/dst_deaths_covid_all.png)
 
