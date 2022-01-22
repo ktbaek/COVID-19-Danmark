@@ -10,22 +10,24 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
   
   zero_replace <- df %>% 
     filter(
-      Vax_status == "Fuld effekt efter revaccination",
+      Vax_status %in% c("Fuld effekt efter revaccination", "Fuld effekt efter primært forløb"),
       Variable == "tests",
       Group == "alle",
-      Value == 0) %>% 
+      Value == 0
+      ) %>% 
     mutate(
       Type = "incidence",
       Variable = variable,
-      Group = NA,
-      zero_tests = TRUE) %>% 
+      Group = as.character(NA),
+      zero_tests = TRUE
+      ) %>% 
     select(-Value)
   
     plot_data <- df %>%
     left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
     mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
     filter(
-      !Age %in% c("0-5", "6-11"),
+      #!Age %in% c("0-5", "6-11"),
       Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       Variable == variable
     ) %>%
@@ -37,8 +39,15 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
     ))
     
   if(variable == "cases") plot_data %<>% filter(Group == "notprevpos")
+  
+  plot_data %<>% 
+    filter(
+      !(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt 3 doser"),
+      !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
+      )
       
   plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
+  plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 
   p1 <- plot_data %>%
     filter(Type == "incidence") %>%
@@ -53,7 +62,7 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       title = paste0(variable_name, " per 100.000"),
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " per 100.000 i alders- og vaccinationsgruppen")
     ) +
-    facet_wrap(~Age, ncol = 5) +
+    facet_wrap(~Age, ncol = 6) +
     facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
     theme(
@@ -80,7 +89,7 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       title = paste0("Absolut antal ", str_to_lower(variable_name)),
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " opdelt på vaccinationsstatus (grupperne er stablet)")
     ) +
-    facet_wrap(~Age, ncol = 5) +
+    facet_wrap(~Age, ncol = 6) +
     facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
     theme(
@@ -143,7 +152,7 @@ bt_2 %>% plot_breakthru_age_panel(
 ggsave("../figures/bt_icu_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
 
 bt_2 %>% 
-  filter(!(Age %in% c("12-15", "16-19") & Vax_status == "Fuld effekt efter revaccination")) %>% 
+  filter(!(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt efter revaccination")) %>% 
   plot_breakthru_age_panel(
   variable = "cases",
   variable_name = "Positive",

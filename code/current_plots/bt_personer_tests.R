@@ -4,7 +4,7 @@ plot_data <- bt_2_extra %>%
   filter(
     Variable == "personer",
     Group == "notprevpos",
-    !Age %in% c("0-5", "6-11"),
+    #!Age %in% c("0-5", "6-11"),
   ) %>%
   mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   mutate(Vax_status = case_when(
@@ -14,7 +14,7 @@ plot_data <- bt_2_extra %>%
   )) %>% 
   filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
-plot_data$Age <- factor(plot_data$Age, levels = c("12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
+plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
 plot_data %>%
@@ -29,7 +29,7 @@ plot_data %>%
     subtitle = "Angiver ikke-tidligere positive personer (grupperne er stablet)",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 5) +
+  facet_wrap(~ Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(
@@ -53,7 +53,7 @@ plot_data <- bt_2_extra %>%
     Variable == "tests",
     Group == "notprevpos",
     Type == "incidence",
-    !Age %in% c("0-5", "6-11"),
+    #!Age %in% c("0-5", "6-11"),
   ) %>%
   mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   mutate(Vax_status = case_when(
@@ -61,10 +61,13 @@ plot_data <- bt_2_extra %>%
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
   )) %>% 
-  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
+  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
+         !(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt 3 doser"),
+         !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
+  )
 
 
-plot_data$Age <- factor(plot_data$Age, levels = c("12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
+plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
 
@@ -80,7 +83,7 @@ plot_data %>%
     subtitle = "Angiver antal testede personer per 100.000 i alders- og vaccinationsgruppen",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 5) +
+  facet_wrap(~ Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(
@@ -101,7 +104,7 @@ ggsave("../figures/bt_tests_age_time.png", width = 18, height = 10, units = "cm"
 
 plot_data <- bt_2_extra %>%
   filter(
-    !Age %in% c("0-5", "6-11"),
+    #!Age %in% c("0-5", "6-11"),
     Type == "incidence",
     Variable == "tac",
     Group == "notprevpos"
@@ -112,9 +115,12 @@ plot_data <- bt_2_extra %>%
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
   )) %>% 
-  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser")) 
+  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
+         !(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt 3 doser"),
+         !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
+  )
   
-plot_data$Age <- factor(plot_data$Age, levels = c("12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
+plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
   
 plot_data %>% 
@@ -130,7 +136,7 @@ plot_data %>%
     subtitle = "Angiver den testjusterede incidens i alders- og vaccinationsgruppen",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 5) +
+  facet_wrap(~ Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(
