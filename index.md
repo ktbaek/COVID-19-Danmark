@@ -403,7 +403,17 @@ Total antal daglige dødsfald opdateres fredage.
 
 ![](/figures/dst_deaths_covid_all_2.png)
 
+### Kumuleret antal dødsfald i Danmark
 
+Plottene viser det kumulerede antal døde per 100.000 personer i hver køns- og aldersgruppe for årene 2015 til 2021, med fokus på 2020 og 2021.
+
+``Danmarks Statistik datasæt: 'DODC1'``
+
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_young.png)
+
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_mid.png)
+
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png)
 
 
 
