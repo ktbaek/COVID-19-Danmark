@@ -171,9 +171,6 @@ Plottet viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel 
 ``Danmarks Statistik datasæt: 'FOLK1A'``
 
 
-
-![](/figures/ntl_vax_cum_age.png)
-
 ![](/figures/ntl_vax_age_pct.png)
 
 [Tilbage til toppen](#)
