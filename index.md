@@ -203,7 +203,7 @@ Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vac
 
 Det nederste plot viser et *forsøg* på at testjustere antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
 
-I begge plot er kun inkluderet personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-15 årige der har modtaget 3. dose.
+I begge plot er kun inkluderet personer der ikke tidligere har testet positiv. Grupper der derudover ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-15 årige der har modtaget 3. dose.
 
 Datoerne angiver mandagen i hver uge.
 
