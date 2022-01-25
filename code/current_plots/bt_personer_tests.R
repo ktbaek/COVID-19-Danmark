@@ -4,7 +4,6 @@ plot_data <- bt_2_extra %>%
   filter(
     Variable == "personer",
     Group == "notprevpos",
-    #!Age %in% c("0-5", "6-11"),
   ) %>%
   mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   mutate(Vax_status = case_when(
@@ -12,16 +11,16 @@ plot_data <- bt_2_extra %>%
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
   )) %>% 
-  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
+  filter(Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
 plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
-plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
+plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Første vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
 plot_data %>%
   ggplot() +
   geom_area(aes(Date, Value, fill = Vax_status), position = "stack") +
   scale_x_date(labels = my_date_labels, breaks = my_breaks, expand = expansion(mult = 0.01)) +
-  scale_fill_manual(name = "", values = c(pct_col, admit_col, "#67cc32")) +
+  scale_fill_manual(name = "", values = c(pct_col, lighten(death_col, 0.1), admit_col, "#67cc32")) +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   labs(
     y = "Antal",
@@ -52,8 +51,7 @@ plot_data <- bt_2_extra %>%
   filter(
     Variable == "tests",
     Group == "notprevpos",
-    Type == "incidence",
-    #!Age %in% c("0-5", "6-11"),
+    Type == "incidence"
   ) %>%
   mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
   mutate(Vax_status = case_when(
@@ -62,7 +60,7 @@ plot_data <- bt_2_extra %>%
     TRUE ~ Vax_status
   )) %>% 
   filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
-         !(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt 3 doser"),
+         !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
          !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
   )
 
@@ -116,7 +114,7 @@ plot_data <- bt_2_extra %>%
     TRUE ~ Vax_status
   )) %>% 
   filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
-         !(Age %in% c("0-5", "6-11", "12-15", "16-19") & Vax_status == "Fuld effekt 3 doser"),
+         !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
          !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
   )
   
@@ -124,7 +122,7 @@ plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19
 plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
   
 plot_data %>% 
-  filter(!(Age %in% c("12-15", "16-19") & Vax_status == "Fuld effekt 3 doser")) %>% 
+  filter(!(Age %in% c("12-15") & Vax_status == "Fuld effekt 3 doser")) %>% 
   ggplot() +
   geom_line(aes(Date, Value, color = Vax_status), size = 0.7, alpha = 1) +
   scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, "#67cc32")) +

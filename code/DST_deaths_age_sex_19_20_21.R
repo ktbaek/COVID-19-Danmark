@@ -87,7 +87,7 @@ ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_young.png", width 
 plot_data %>%
   filter(Age %in% Age_range) %>%
   ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
   plot_layer +
   labs(
     y = "Cumulated deaths per 100,000",
@@ -109,7 +109,7 @@ ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_mid.png", width = 
 plot_data %>%
   filter(Age %in% Age_range) %>%
   ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
   plot_layer +
   labs(
     y = "Cumulated deaths per 100,000",
@@ -131,7 +131,7 @@ ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_old.png", width = 
 plot_data %>%
   filter(Age %in% Age_range) %>%
   ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
   plot_layer +
   labs(
     y = "Cumulated deaths per 100,000",
@@ -214,3 +214,30 @@ theme(
   )
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_cum_rel_all.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+baseline <- all_data %>%
+  filter(Year < 2022) %>% 
+  mutate(Daily_relative = Daily / Population * 100000) %>% 
+  mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
+  filter(Year_group == "2015-2019") %>% 
+  group_by(New_date, Age, Sex) %>% 
+  summarize(Daily_rel_baseline = mean(Daily_relative, na.rm = TRUE))
+  
+plot_data <- all_data %>%
+  filter(Year < 2022) %>% 
+  mutate(Daily_relative = Daily / Population * 100000) %>% 
+  mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
+  full_join(baseline, by = c("New_date", "Age", "Sex")) %>% 
+  mutate(
+    Daily_relative = Daily_relative +1,
+    Daily_rel_baseline = Daily_rel_baseline +1,
+  ) %>% 
+  mutate(norm_deaths = Daily / Daily_rel_baseline)
+  
+Age_range <- c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")
+
+plot_data %>%
+  filter(Age %in% Age_range) %>%
+  ggplot() +
+  geom_line(aes(New_date, norm_deaths, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+  plot_layer

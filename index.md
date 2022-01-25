@@ -8,6 +8,8 @@ title: Covid-19 smitteudvikling i Danmark
 Senest opdateret 21. januar 2022 kl. 18:14.
 Opdateres et par gange om ugen.
 
+[SSI's datasæt]: https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/SSIdata_220121
+
 <div class="likely">
     <div class="facebook">Del</div>
     <div class="twitter">Tweet</div>
@@ -25,7 +27,7 @@ Kristoffer T. Bæk, 2020-2022
 
 Data er hentet på [SSI's COVID-19 overvågningsside](https://covid19.ssi.dk) og hos [Danmarks Statistik](https://statbank.dk).
 
-Medmindre andet er angivet, viser graferne kun resultater for PCR tests, og antal positive inkluderer *ikke* repositive (altså positive der tidligere har testet positiv).
+Medmindre andet er angivet viser graferne kun resultater for PCR tests, og antal positive inkluderer *ikke* repositive (altså positive der tidligere har testet positiv).
 
 Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der viser daglige testdata er de seneste to dage derfor ikke medtaget. På grafer over nyindlagte og døde er den seneste dag ikke medtaget.
 
@@ -45,17 +47,6 @@ Tallene for nyindlagte og døde er pr. 21. december 2021 baseret på alle positi
 ![](/figures/ntl_hosp.png)
 ![](/figures/ntl_deaths.png)
 
-<!--
-### Dagligt antal positivt testede personer justeret for antal testede
-Plottet viser positivprocenten og et smitteindeks. Smitteindekset er anden måde at vise antallet af positive justeret for antallet af testede. I modsætning til positivprocenten antager metoden, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden [benyttes af SSI](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da).
-
-Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
-
-``SSI datasæt: 'Test_pos_over_time'``
-
-![](/figures/ntl_index.png)
-
--->
 
 ### Dagligt antal positivt testede personer
 Plottet viser antallet af positivt testede personer for hele landet opdelt på nye positive og repositive. Repositive er defineret som positive som tidligere har modtaget en positiv test, og hvis tidligere positive test er mere end 60 dage gammel. Den optrukne linje viser det løbende gennemsnit for det samlede antal positive baseret på et vindue på 7 dage.
@@ -189,7 +180,7 @@ Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som p
 
 ### Antal personer i hver vaccinationsgruppe
 
-Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe. *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination) og personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
+Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe. Inkluderer kun personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose. Grupper der ikke er inkluderet: Personer der har modtaget 2 doser, men endnu ikke har opnået fuld effekt.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
@@ -197,9 +188,9 @@ Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe.
 
 ### Smittede opdelt på vaccinationsstatus
 
-Plottet viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal.  *Ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* angiver personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
+Plottet viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen) og i absolutte tal.  Inkluderer kun personer der ikke tidligere har testet positiv. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
 
-Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-19 årige der har modtaget 3. dose.
+Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-15 årige der har modtaget 3. dose.
 
 Datoerne angiver mandagen i hver uge.
 
@@ -211,7 +202,7 @@ Datoerne angiver mandagen i hver uge.
 
 Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vaccinationsgruppen). Det nederste plot viser det testjusterede antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
 
-I begge plot angiver *ingen vaccination*, *fuld effekt 2 doser*, og *fuld effekt 3 doser* personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-19 årige der har modtaget 3. dose.
+I begge plot er kun inkluderet personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-15 årige der har modtaget 3. dose.
 
 Datoerne angiver mandagen i hver uge.
 
@@ -405,21 +396,25 @@ Total antal daglige dødsfald opdateres fredage.
 
 ![](/figures/dst_deaths_covid_all_2.png)
 
-<!--
-### Kumuleret antal dødsfald i Danmark
 
-Plottene viser det kumulerede antal døde per 100.000 personer i hver køns- og aldersgruppe for årene 2015 til 2021, med fokus på 2020 og 2021.
+### Kumuleret overdødelighed per år
+
+Plottene viser den årskumulerede overdødelighed per 100.000 personer i hver køns- og aldersgruppe for årene 2015 til 2021. Baseline er gennemsnittet for årene 2015 - 2019.
+
+Beregning: Først er dødsfald per dag per 100.000 i hver gruppe beregnet og disse tal er derefter kumuleret for hvert år fra årets start. Dernæst er baseline beregnet som gennemsnittet af kumulerede dødsfald per 100.000 for årene 2015 - 2019. Over/underdødelighed er tilsidst beregnet som forskellen mellem kumuleret antal dødsfald per 100.000 og baseline.   
+
+Bemærk varierende y-akser.
 
 ``Danmarks Statistik datasæt: 'DODC1', 'FOLK1A'``
 
 Kombineret datasæt [her](https://github.com/ktbaek/COVID-19-Danmark/blob/master/data/tidy_dst_age_sex_2015_22.csv).
 
-![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_young.png)
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_young.png)
 
-![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_mid.png)
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_mid.png)
 
-![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png)
--->
+![](/figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_old.png)
+
 
 
 ### Dagligt antal akutindlæggelser i Danmark
