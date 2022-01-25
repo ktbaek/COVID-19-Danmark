@@ -23,8 +23,6 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       ) %>% 
     select(-Value)
   
-  print(data.frame(zero_replace))
-  
   plot_data <- df %>%
     left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
     mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 

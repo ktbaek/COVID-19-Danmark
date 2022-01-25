@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 21. januar 2022 kl. 18:14.
+Senest opdateret 25. januar 2022 kl. 17:43.
 Opdateres et par gange om ugen.
 
 [SSI's datasæt]: https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/SSIdata_220121
@@ -161,9 +161,11 @@ Plottet viser det kumulerede antal vaccinerede for alle aldre opdelt på dose.
 
 ### Andel vaccinerede i hver aldersgruppe
 
+<!--
 Det øverste plot viser det kumulerede antal vaccinerede som procentdel af antal personer i aldersgruppen. Antal personer som har opnået fuld effekt efter tredje dose (fuld effekt definerer SSI til 14 dage efter enten anden eller tredje dose) er beregnede ugentlige værdier på baggrund af et separat datasæt og er derfor ikke fuldstændig sammenlignelige med data for første og anden dose.
+-->
 
-Det nederste plot viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
+Plottet viser køns-og aldersfordeling for vaccinerede indtil nu som procentdel af antal personer i køn- og aldersgruppen.
 
 ``SSI datasæt: 'Vaccinationer_region_aldgrp_koen', 'FoersteVacc_FaerdigVacc_region_fnkt_alder_dag', 'Gennembrudsinfektioner_table2'``
 ``Danmarks Statistik datasæt: 'FOLK1A'``
@@ -200,7 +202,9 @@ Datoerne angiver mandagen i hver uge.
 
 ### Testjusteret smittetal opdelt på vaccinationsstatus
 
-Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vaccinationsgruppen). Det nederste plot viser det testjusterede antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
+Det øverste plot viser antal PCR testede personer per 100.000 (i alders- og vaccinationsgruppen).
+
+Det nederste plot viser et *forsøg* på at testjustere antal positive per 100.000 (i alders- og vaccinationsgruppen) hvor *beta* er sat til 0.5, hvilket er et kvalificeret gæt. I modsætning til positivprocenten antager denne type testjustering, at der ikke er et 1:1 forhold mellem antal positive og antal testede: Når man tester flere, antages det at man i højere grad tester personer med lavere sandsynlighed for at være smittede. Metoden er [beskrevet her](https://www.ssi.dk/-/media/ssi-files/ekspertrapport-af-den-23-oktober-2020-incidens-og-fremskrivning-af-covid19-tilflde.pdf?la=da). Datoerne angiver mandagen i hver uge.
 
 I begge plot er kun inkluderet personer der ikke tidligere har testet positiv. Grupper der ikke er inkluderet: personer der har modtaget én dosis (første vaccination), personer der har modtaget 2 doser men endnu ikke har opnået fuld effekt, 0-5 årige der har modtaget 2. dose, og 0-15 årige der har modtaget 3. dose.
 

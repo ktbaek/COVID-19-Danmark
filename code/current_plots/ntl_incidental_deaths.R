@@ -12,7 +12,7 @@ case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
     Aldersgruppe == "65-79" ~ "65-79",
     Aldersgruppe == "80+" ~ "80+"
   )) %>%
-  group_by(Aldersgruppe, date) %>% 
+  group_by(Aldersgruppe, Date) %>% 
   summarize(
     total_admitted = sum(total_admitted, na.rm = TRUE),
     total_positive = sum(total_positive, na.rm = TRUE),
@@ -24,7 +24,7 @@ case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
     positive_incidens = total_positive / Population * 100000,
     tested_incidens = total_tested / Population * 10000
   ) %>% 
-  select(date, Aldersgruppe, total_positive)
+  select(Date, Aldersgruppe, total_positive)
 
 pop <- read_tidy_age(get_age_breaks(100, 5)) %>% 
   group_by(Year, Quarter, Age) %>% 
@@ -82,8 +82,10 @@ weekly_covid_deaths <- read_csv2("../data/SSI_daily_data.csv") %>%
   summarize(Obs_deaths = sum(daily, na.rm = TRUE))
 
 pred_obs <- weekly_all_deaths %>% 
-  full_join(case_data, by = c("Age" = "Aldersgruppe", "Date" = "date")) %>% 
+  full_join(case_data, by = c("Age" = "Aldersgruppe", "Date")) %>% 
+  arrange(Date) %>% 
   group_by(Age) %>% 
+  fill(Deaths, Population, Death_incidence) %>% 
   mutate(pool_28 = rollsum(total_positive, 4, align = "right", na.pad = TRUE)) %>% 
   ungroup() %>% 
   mutate(Pred_deaths = Death_incidence * pool_28) %>% 
@@ -123,8 +125,3 @@ pred_obs %>%
   standard_theme
 
 ggsave("../figures/ntl_nonincidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)   
-    
-    
-
-  
-  

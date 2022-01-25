@@ -3,8 +3,6 @@ library(magrittr)
 library(lubridate)
 library(scales)
 
-ssi_18 <- read_csv2("../data/18_fnkt_alder_uge_testede_positive_nyindlagte.csv")
-
 rsquared <-
   function(x, y) {
     m <- lm(y ~ x)
@@ -17,42 +15,14 @@ slope <-
     return(summary(m)$coefficients[2])
   }
 
-ssi_18_tidy <- ssi_18 %>%
-  separate(Uge, into = c("year", "week"), sep = "-") %>%
-  mutate(week = str_remove(week, "W")) %>%
+plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   mutate(
-    week = as.integer(week),
-    year = as.integer(year)
-  ) %>%
-  mutate(date = as.Date(paste0(year, sprintf("%02d", week), "1"), "%Y%U%u")) %>%
-  mutate(date = case_when(
-    year(date) == 2020 ~ date - days(7),
-    week == 53 ~ ymd("2020-12-28"),
-    TRUE ~ date
-  )) %>%
-  rename(
-    admitted = `Nyindlagte pr. 100.000 borgere`,
-    tested = `Testede pr. 100.000 borgere`,
-    positive = `Positive pr. 100.000 borgere`
-  ) %>%
-  select(date, week, Aldersgruppe, admitted, tested, positive) %>%
-  mutate(
-    admitted = ifelse(is.na(admitted), 0, admitted),
-    positive = ifelse(is.na(positive), 0, positive),
-    tested = ifelse(is.na(tested), 0, tested)
-  ) %>%
-  mutate(
-    year = year(date),
-    quarter = quarter(date),
-    year_quarter = paste(year, quarter, sep = "_")
-  )
-
-ssi_18_tidy$Aldersgruppe <- factor(ssi_18_tidy$Aldersgruppe, levels = c("0-2", "3-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
-
-plot_data <- ssi_18_tidy %>%
-  filter(!year_quarter %in% c("2020_1", "2020_2")) %>%
-  mutate(year_quarter = str_replace(year_quarter, "_", " Q")) %>%
-  group_by(Aldersgruppe, year_quarter) %>%
+    Quarter = quarter(Date),
+    Year_quarter = paste(Year, Quarter, sep = "_")
+  ) %>% 
+  filter(!Year_quarter %in% c("2020_1", "2020_2", "2022_1")) %>%
+  mutate(Year_quarter = str_replace(Year_quarter, "_", " Q")) %>%
+  group_by(Aldersgruppe, Year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
   filter(!is.na(admitted)) %>% 
   mutate(
@@ -60,18 +30,20 @@ plot_data <- ssi_18_tidy %>%
     slope = slope(positive, admitted)
   )
 
-x <- plot_data %>%
+plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-2", "3-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
+
+plot_data %>%
   filter(slope >= 0) %>%
-  select(Aldersgruppe, R, slope, year_quarter) %>%
+  select(Aldersgruppe, R, slope, Year_quarter) %>%
   distinct() %>%
   mutate(R = ifelse(is.na(R), " ", paste0(sprintf("%.2f", round(R, 2))))) %>%
   ggplot() +
-  geom_bar(aes(year_quarter, slope * 100, fill = Aldersgruppe), stat = "identity") +
+  geom_bar(aes(Year_quarter, slope * 100, fill = Aldersgruppe), stat = "identity") +
   geom_text(
     aes(
-      x = year_quarter,
+      x = Year_quarter,
       y = -4,
-      group = year_quarter,
+      group = Year_quarter,
       label = R
     ),
     color = "gray70",
