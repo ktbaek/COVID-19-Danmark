@@ -1,8 +1,10 @@
 landsdele_data <- read_csv2("../data/tidy_landsdele_data.csv")
 
+ratio <- 10 # ratio between tested and positive axes
+
 plot_data <- landsdele_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
-  mutate(Positive = Positive * 100) %>%
+  mutate(Positive = Positive * ratio) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
 plot_data %>% 
@@ -23,7 +25,7 @@ plot_data %>%
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
+    sec.axis = sec_axis(~ . / ratio, name = "Positive"),
     limits = c(0, NA)) +
   labs(
     y = "Positive : Testede", 
