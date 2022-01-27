@@ -8,6 +8,7 @@ my_breaks <- c(ymd("2021-11-01"), ymd("2022-01-01"))
 
 plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, subtitle) {
   
+  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children. 
   zero_replace <- df %>% 
     filter(
       Vax_status %in% c("Fuld effekt efter revaccination", "Fuld effekt efter primært forløb"),
@@ -27,11 +28,10 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
     left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
     mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
     filter(
-      #!Age %in% c("0-5", "6-11"),
       Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       Variable == variable
     ) %>%
-    mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>%
+    mutate(Date = week_to_date(Year, Week)) %>%
     mutate(Vax_status = case_when(
       Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
       Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
@@ -163,6 +163,7 @@ ggsave("../figures/bt_pos_age_time.png", width = 16, height = 20, units = "cm", 
 
 plot_breakthru_cases_age_all <- function(df) {
   
+  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children. 
   zero_replace <- df %>% 
     filter(
       Vax_status %in% c("Fuld effekt efter revaccination", "Fuld effekt efter primært forløb"),
@@ -195,7 +196,6 @@ plot_breakthru_cases_age_all <- function(df) {
       TRUE ~ Vax_status
     ))
     
-  
   plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
   plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
   

@@ -28,6 +28,21 @@ date_to_yymmdd <- function(date) {
 
   }
 
+week_to_date <- function(year, week, day = "1"){
+  
+  as.Date(paste0(year, sprintf("%02d", week), day), "%Y%U%u")
+  
+}
+
+fix_week_2020 <- function(year, week, date) {
+  
+  case_when(
+  year == 2020 & week == 53 ~ ymd("2020-12-28"),
+  year == 2020 & week < 53 ~ date - days(7),
+  TRUE ~ date
+  )
+  
+}
 
 get_age_breaks <- function(maxage = 100, agesplit = 10) c(seq(-1, maxage - 1, agesplit), 125)
 

@@ -8,7 +8,7 @@ lasttue <- paste0(str_sub(lasttue, 3, 4), str_sub(lasttue, 6, 7), str_sub(lasttu
 if (file.exists(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.csv"))) {
 
   # read and tidy table 1
-  read_csv2(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.csv")) %>%
+  read_data(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.csv")) %>%
     pivot_longer(-Ugenummer, names_to = c("Variable", "Vax_status"), values_to = "Value", names_sep = "_[A-Z]") %>%
     separate(Variable, c("Type", "Variable"), sep = "_", extra = "merge") %>%
     mutate(

@@ -7,7 +7,7 @@ plot_data <- bt_2_extra %>%
     Variable == "personer",
     Group == "notprevpos",
   ) %>%
-  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>% 
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
@@ -55,7 +55,7 @@ plot_data <- bt_2_extra %>%
     Group == "notprevpos",
     Type == "incidence"
   ) %>%
-  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>% 
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
@@ -109,7 +109,7 @@ plot_data <- bt_2_extra %>%
     Variable == "tac",
     Group == "notprevpos"
   ) %>%
-  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>% 
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",

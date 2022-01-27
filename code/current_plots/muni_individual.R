@@ -1,9 +1,9 @@
-plot_kommuner_pos <- function(muni_df, kommune) {
+plot_kommuner_pos <- function(muni_df, kommune, ratio = 10) {
   
   plot_data <- muni_df %>%
     filter(Date > ymd(today) - month_correction - months(3)) %>%
     filter(Kommune == kommune) %>%
-    mutate(Positive = Positive * 100) %>%
+    mutate(Positive = Positive * ratio) %>%
     pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value") 
   
   plot_data %>%
@@ -27,7 +27,7 @@ plot_kommuner_pos <- function(muni_df, kommune) {
     scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
     scale_y_continuous(
       name = "Testede",
-      sec.axis = sec_axis(~ . / 100, name = "Positive"),
+      sec.axis = sec_axis(~ . / ratio, name = "Positive"),
       limits = c(0, NA)) +
     labs(
       y = "Positive : Testede", 

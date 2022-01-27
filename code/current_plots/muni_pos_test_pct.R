@@ -5,6 +5,8 @@ month_correction <- case_when(
   day(ymd(today)) %in% c(29, 30, 31) & month(ymd(today)) == 5 ~ 3,
   TRUE ~ 0)
 
+ratio <- 10 # ratio between tested and positive axes
+
 # Subset kommuner by most positives the last month ------------------------
 muni_subset <- muni_data %>% 
   filter(Date > ymd(today) - month_correction - months(1)) %>%
@@ -17,7 +19,7 @@ muni_subset <- muni_data %>%
 # Figur: Positiv vs testede - alle kommuner 3 mdr-----------------
 plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
-  mutate(Positive = Positive * 100) %>%
+  mutate(Positive = Positive * ratio) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
 plot_data %>% 
@@ -38,7 +40,7 @@ plot_data %>%
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
+    sec.axis = sec_axis(~ . / ratio, name = "Positive"),
     limits = c(0, NA)) +
   labs(
     y = "Positive : Testede", 
@@ -92,7 +94,7 @@ ggsave("../figures/muni_30_pos_vs_test_march.png", width = 28, height = 22, unit
 plot_data <- muni_data %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   filter(Kommune %in% muni_subset) %>%
-  mutate(Positive = Positive * 100) %>%
+  mutate(Positive = Positive * ratio) %>%
   pivot_longer(cols = c(Positive, Tested), names_to = "variable", values_to = "value")
 
 plot_data %>% 
@@ -113,7 +115,7 @@ plot_data %>%
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   scale_y_continuous(
     name = "Testede",
-    sec.axis = sec_axis(~ . / 100, name = "Positive"),
+    sec.axis = sec_axis(~ . / ratio, name = "Positive"),
     limits = c(0, NA)) +
   labs(
     y = "Positive : Testede", 

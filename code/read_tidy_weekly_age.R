@@ -20,13 +20,10 @@ x <- ssi_18 %>%
       )
   ) %>% 
   mutate(
-    Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u"),
-    Date = case_when(
-    Year == 2020 & Week == 53 ~ ymd("2020-12-28"),
-    Year == 2020 & Week < 53 ~ Date - days(7),
-    TRUE ~ Date
-  )) %>% 
-  mutate(Quarter = quarter(Date)) %>% 
+    Date = week_to_date(Year, Week),
+    Date = fix_week_2020(Year, Week, Date),
+    Quarter = quarter(Date)
+    ) %>% 
   left_join(pop, by = c("Aldersgruppe" = "Age", "Quarter", "Year")) %>% 
   arrange(Date) %>% 
   group_by(Aldersgruppe) %>% 
