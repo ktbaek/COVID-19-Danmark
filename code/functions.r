@@ -12,19 +12,19 @@ ra <- function(x, n = 7, s = 2) {
 
 last_wday_date <- function(today_date, weekday) {
   
-  days_subtract <- case_when(
-  wday(today_date) == weekday ~ 0,
-  wday(today_date) < weekday ~ 7 + wday(today_date) - weekday,
-  wday(today_date) > weekday ~ wday(today_date) - weekday
+  days_subtract <- dplyr::case_when(
+  lubridate::wday(today_date) == weekday ~ 0,
+  lubridate::wday(today_date) < weekday ~ 7 + lubridate::wday(today_date) - weekday,
+  lubridate::wday(today_date) > weekday ~ lubridate::wday(today_date) - weekday
 )
 
-  as.character(ymd(today_date) - days_subtract)
+  as.character(lubridate::ymd(today_date) - days_subtract)
 
 }
 
 date_to_yymmdd <- function(date) {
   
-  paste0(str_sub(date, 3, 4), str_sub(date, 6, 7), str_sub(date, 9, 10))
+  paste0(stringr::str_sub(date, 3, 4), stringr::str_sub(date, 6, 7), stringr::str_sub(date, 9, 10))
 
   }
 
@@ -36,9 +36,9 @@ week_to_date <- function(year, week, day = "1"){
 
 fix_week_2020 <- function(year, week, date) {
   
-  case_when(
-  year == 2020 & week == 53 ~ ymd("2020-12-28"),
-  year == 2020 & week < 53 ~ date - days(7),
+  dplyr::case_when(
+  year == 2020 & week == 53 ~ lubridate::ymd("2020-12-28"),
+  year == 2020 & week < 53 ~ date - lubridate::days(7),
   TRUE ~ date
   )
   
@@ -50,8 +50,8 @@ read_tidy_age <- function(my_breaks) {
   
   maxage <- my_breaks[length(my_breaks)-1] + 1
   
-  read_csv2("../data/DST_pop_age_sex_19_20_21.csv", col_names = FALSE) %>%
-    rename(
+  readr::read_csv2("../data/DST_pop_age_sex_19_20_21.csv", col_names = FALSE) %>%
+    dplyr::rename(
       Sex = X3,
       Age = X4,
       `2015_1` = X5,
@@ -83,29 +83,29 @@ read_tidy_age <- function(my_breaks) {
       `2021_3` = X31,
       `2021_4` = X32,
     ) %>%
-    select(-X1, -X2) %>%
-    rowwise() %>%
-    mutate(
-      Age = as.double(str_split(Age, " ")[[1]][1]),
-      Sex = str_sub(Sex, 1, 1),
+    dplyr::select(-X1, -X2) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      Age = as.double(readr::str_split(Age, " ")[[1]][1]),
+      Sex = stringr::str_sub(Sex, 1, 1),
       Sex = ifelse(Sex == "M", "Male", "Female")
     ) %>%
-    pivot_longer(-c(Sex, Age), names_to = "Kvartal", values_to = "Population") %>%
-    separate(Kvartal, c("Year", "Quarter"), sep = "_") %>%
-    mutate(
+    tidyr::pivot_longer(-c(Sex, Age), names_to = "Kvartal", values_to = "Population") %>%
+    tidyr::separate(Kvartal, c("Year", "Quarter"), sep = "_") %>%
+    dplyr::mutate(
       Quarter = as.integer(Quarter),
       Year = as.integer(Year)
     ) %>%
-    group_by(Year, Quarter, Sex, Age_cut = cut(Age, breaks = my_breaks)) %>%
-    summarize(Population = sum(Population)) %>%
-    rowwise() %>%
-    mutate(
-      from = as.double(str_split(str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][1]) + 1,
-      to = as.double(str_split(str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][2]),
-      Age = case_when(
+    dplyr::group_by(Year, Quarter, Sex, Age_cut = cut(Age, breaks = my_breaks)) %>%
+    dplyr::summarize(Population = sum(Population)) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      from = as.double(stringr::str_split(stringr::str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][1]) + 1,
+      to = as.double(sstringr::tr_split(stringr::str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][2]),
+      Age = dplyr::case_when(
         from == maxage ~ paste0(maxage, "+"),
         TRUE ~ paste(from, to, sep = "-")
       )
     ) %>%
-    select(-from, -to, -Age_cut)
+    dplyr::select(-from, -to, -Age_cut)
 }

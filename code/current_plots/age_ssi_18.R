@@ -5,137 +5,117 @@ library(scales)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
 
-paultol_colors <- c('#CC6677', '#332288', '#DDCC77', '#117733', '#88CCEE', '#44AA99', '#AA4499')
+paultol_colors <- c('#CC6677', '#332288', '#DDCC77', '#117733', '#88CCEE', '#882255', '#44AA99', '#999933', '#AA4499')
 
-plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%  
-  mutate(Aldersgruppe = case_when(
-    Aldersgruppe == "0-2" ~ "0-5",
-    Aldersgruppe == "3-5" ~ "0-5",
-    Aldersgruppe == "6-11" ~ "6-11",
-    Aldersgruppe == "12-15" ~ "12-19",
-    Aldersgruppe == "16-19" ~ "12-19",
-    Aldersgruppe == "20-39" ~ "20-39",
-    Aldersgruppe == "40-64" ~ "40-64",
-    Aldersgruppe == "65-79" ~ "65-79",
-    Aldersgruppe == "80+" ~ "80+"
-  )) %>%
-  group_by(Aldersgruppe, Date) %>% 
-  summarize(
-    total_admitted = sum(total_admitted, na.rm = TRUE),
-    total_positive = sum(total_positive, na.rm = TRUE),
-    total_tested = sum(total_tested, na.rm = TRUE),
-    Population = sum(Population, na.rm = TRUE)
-  ) %>% 
-  mutate(
-    admitted_incidens = total_admitted / Population * 100000,
-    positive_incidens = total_positive / Population * 100000,
-    tested_incidens = total_tested / Population * 10000
+plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") 
+
+plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-2', '3-5', '6-11', '12-15', '16-19', '20-39','40-64', '65-79', '80+'))
+
+plot_layer <- list(
+  geom_line(aes(Date, Value, color = Aldersgruppe), size = 0.8),
+  scale_color_manual(name = "", values = paultol_colors),
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.01)),
+  scale_y_continuous(limits = c(0, NA)),
+  guides(colour = guide_legend(nrow = 1)),
+  standard_theme
   )
 
-plot_data$Aldersgruppe = factor(plot_data$Aldersgruppe, levels=c('0-5', '6-11', '12-19', '20-39','40-64', '65-79', '80+'))
-
 plot_data %>% 
+  filter(
+    Type == "incidence",
+    Variable == "admitted"
+  ) %>% 
   ggplot() +
-  geom_line(aes(Date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
+  plot_layer +
   labs(
     y = "Nyindlagte pr. 100.000", 
     x = "Dato", 
     title = "Ugentligt antal SARS-CoV-2-positive nyindlagte pr. 100.000", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_hosp_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
+  filter(
+    Type == "antal",
+    Variable == "admitted"
+  ) %>% 
   ggplot() +
-  geom_line(aes(Date, total_admitted, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
+  plot_layer +
   labs(
     y = "Nyindlagte", 
     x = "Dato", 
     title = "Ugentligt antal SARS-CoV-2-positive nyindlagte", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_hosp_age_abs.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
-  filter(Date > as_date("2021-02-28")) %>% 
+  filter(
+    Type == "incidence",
+    Variable == "admitted",
+    Date > as_date("2021-02-28")
+  ) %>% 
   ggplot() +
-  geom_line(aes(Date, admitted_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
+  plot_layer +
   labs(
     y = "Nyindlagte pr. 100.000", 
     x = "Dato", 
     title = "Ugentligt antal SARS-CoV-2-positive nyindlagte pr. 100.000", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_hosp_age_2.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-
 plot_data %>% 
+  filter(
+    Type == "incidence",
+    Variable == "positive"
+  ) %>% 
   ggplot() +
-  geom_line(aes(Date, positive_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
+  plot_layer +
   labs(
     y = "Positive pr. 100.000", 
     x = "Dato", 
     title = "Ugentligt antal SARS-CoV-2-positive pr. 100.000", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_pos_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
+  filter(
+    Type == "incidence",
+    Variable == "tested"
+  ) %>% 
   ggplot() +
-  geom_line(aes(Date, tested_incidens, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA)) +
+  plot_layer +
   labs(
     y = "Testede pr. 100.000", 
     x = "Dato", 
     title = "Ugentligt antal SARS-CoV-2-testede pr. 100.000", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_test_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 plot_data %>% 
-  mutate(pos_pct = total_positive / total_tested * 100) %>% 
-  filter(Date > as_date("2020-08-01")) %>% 
+  filter(
+    Type == "antal",
+    Variable %in% c("tested", "positive"),
+    Date > as_date("2020-08-01")
+  ) %>% 
+  pivot_wider(names_from = Variable, values_from = Value) %>% 
+  mutate(Value = positive / tested * 100) %>% 
   ggplot() +
-  geom_line(aes(Date, pos_pct, color = Aldersgruppe), size = 0.8) +
-  scale_color_manual(name = "", values = paultol_colors) +
-  scale_x_date(labels = my_date_labels, date_breaks = "2 months", minor_breaks = "1 month") +
-  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
+  plot_layer +
   labs(
     y = "Positivprocent", 
     x = "Dato", 
     title = "Ugentlig SARS-CoV-2 positivprocent", 
     caption = standard_caption
-  ) +
-  guides(colour = guide_legend(nrow = 1)) +
-  standard_theme
+  ) 
 
 ggsave("../figures/ntl_pct_age.png", width = 18, height = 10, units = "cm", dpi = 300)

@@ -6,12 +6,13 @@ pop <- read_tidy_age(fnkt_age_breaks) %>%
   group_by(Year, Quarter, Age) %>% 
   summarize(Population = sum(Population, na.rm = TRUE))
 
-x <- ssi_18 %>% 
+ssi_18 %>% 
   separate(Uge, into = c("Year", "Week"), sep = "-") %>% 
   mutate(Week = str_remove(Week, "W")) %>% 
   mutate(
     Week = as.integer(Week),
     Year = as.integer(Year),
+    # fix spelling of age groups
     Aldersgruppe = case_when(
       Aldersgruppe == "00-02" ~ "0-2",
       Aldersgruppe == "03-05" ~ "3-5",
@@ -25,6 +26,7 @@ x <- ssi_18 %>%
     Quarter = quarter(Date)
     ) %>% 
   left_join(pop, by = c("Aldersgruppe" = "Age", "Quarter", "Year")) %>% 
+  # fill latest missing population numbers
   arrange(Date) %>% 
   group_by(Aldersgruppe) %>% 
   fill(Population) %>% 
@@ -34,15 +36,17 @@ x <- ssi_18 %>%
     tested = `Testede pr. 100.000 borgere`,
     positive = `Positive pr. 100.000 borgere`
   ) %>% 
-  select(Date, Year, Week, Aldersgruppe, admitted, tested, positive, Population) %>% 
   mutate(
-    admitted = ifelse(is.na(admitted), 0, admitted),
-    positive = ifelse(is.na(positive), 0, positive),
-    tested = ifelse(is.na(tested), 0, tested)
+    incidence.admitted = ifelse(is.na(admitted), 0, admitted),
+    incidence.positive = ifelse(is.na(positive), 0, positive),
+    incidence.tested = ifelse(is.na(tested), 0, tested)
   ) %>% 
   mutate(
-    total_admitted = Population * admitted / 100000,
-    total_positive = Population * positive / 100000,
-    total_tested = Population * tested / 100000
+    antal.admitted = Population * admitted / 100000,
+    antal.positive = `Antal positive`,
+    antal.tested = `Antal testede`
   ) %>% 
+  select(Date, Year, Week, Aldersgruppe, Population, incidence.admitted:antal.tested) %>% 
+  pivot_longer(incidence.admitted:antal.tested, values_to = "Value") %>% 
+  separate(name, c("Type", "Variable"), "\\.") %>%
   write_csv2("../data/SSI_weekly_age_data.csv")
