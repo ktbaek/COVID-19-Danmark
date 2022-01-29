@@ -1,12 +1,12 @@
 
-x <- dst_deaths %>%
-  mutate(Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10)))) %>%
-  rename(daily = current) %>%
+deaths_all <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
+  group_by(Date) %>%
+  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% 
   mutate(
     name = "Daglige dødsfald, alle årsager",
-    ra = ra(daily)
-  )
-
+    ra = ra(Deaths)
+  ) %>% 
+  rename(daily = Deaths)
 
 read_csv2("../data/SSI_daily_data.csv") %>%
   mutate(name = case_when(
@@ -17,7 +17,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
     name == "Deaths" ~ "Daglige dødsfald, COVID"
   )) %>%
   filter(name != "Index") %>%
-  bind_rows(x) %>%
+  bind_rows(deaths_all) %>%
   mutate(
     year = year(Date),
     new_date = case_when(

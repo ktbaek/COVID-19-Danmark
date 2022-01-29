@@ -1,6 +1,9 @@
 library(zoo)
 
 case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%  
+  filter(
+    Type == "antal",
+    Variable == "positive") %>% 
   mutate(Aldersgruppe = case_when(
     Aldersgruppe == "0-2" ~ "0-19",
     Aldersgruppe == "3-5" ~ "0-19",
@@ -13,29 +16,20 @@ case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
     Aldersgruppe == "80+" ~ "80+"
   )) %>%
   group_by(Aldersgruppe, Date) %>% 
-  summarize(
-    total_admitted = sum(total_admitted, na.rm = TRUE),
-    total_positive = sum(total_positive, na.rm = TRUE),
-    total_tested = sum(total_tested, na.rm = TRUE),
-    Population = sum(Population, na.rm = TRUE)
-  ) %>% 
-  mutate(
-    admitted_incidens = total_admitted / Population * 100000,
-    positive_incidens = total_positive / Population * 100000,
-    tested_incidens = total_tested / Population * 10000
-  ) %>% 
-  select(Date, Aldersgruppe, total_positive)
+  summarize(Positive = sum(Value, na.rm = TRUE)) 
 
 pop <- read_tidy_age(get_age_breaks(100, 5)) %>% 
   group_by(Year, Quarter, Age) %>% 
   summarize(Population = sum(Population, na.rm = TRUE))
 
-weekly_all_deaths <- read_csv2("../data/DST_tidy_daily_deaths_age.csv") %>%
-  distinct() %>%
+weekly_all_deaths <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
+  group_by(Date, Age) %>% 
+  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% 
   mutate(
     Year = year(Date),
     Quarter = quarter(Date)
   ) %>%
+  filter(Year >= 2020) %>% 
   left_join(pop, by = c("Age", "Year", "Quarter")) %>%
   group_by(Age) %>% 
   fill(Population) %>% 
@@ -62,13 +56,13 @@ weekly_all_deaths <- read_csv2("../data/DST_tidy_daily_deaths_age.csv") %>%
     Age == "95-99" ~ "80+",
     Age == "100+" ~ "80+"
   )
-  )  %>% 
+  ) %>% 
   group_by(Age, Date) %>% 
   summarize(
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = sum(Population, na.rm = TRUE)
   ) %>% 
-  group_by(Date = floor_date(Date, unit = "week", week_start = getOption("lubridate.week.start", 1)), Age) %>% 
+  group_by(Date = floor_date_monday(Date), Age) %>% 
   summarize(
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = mean(Population, na.rm = TRUE),
@@ -78,7 +72,7 @@ weekly_all_deaths <- read_csv2("../data/DST_tidy_daily_deaths_age.csv") %>%
 weekly_covid_deaths <- read_csv2("../data/SSI_daily_data.csv") %>% 
   filter(name == "Deaths") %>% 
   select(Date, daily) %>% 
-  group_by(Date = floor_date(Date, unit = "week", week_start = getOption("lubridate.week.start", 1))) %>% 
+  group_by(Date = floor_date_monday(Date)) %>% 
   summarize(Obs_deaths = sum(daily, na.rm = TRUE))
 
 pred_obs <- weekly_all_deaths %>% 
@@ -86,7 +80,7 @@ pred_obs <- weekly_all_deaths %>%
   arrange(Date) %>% 
   group_by(Age) %>% 
   fill(Deaths, Population, Death_incidence) %>% 
-  mutate(pool_28 = rollsum(total_positive, 4, align = "right", na.pad = TRUE)) %>% 
+  mutate(pool_28 = rollsum(Positive, 4, align = "right", na.pad = TRUE)) %>% 
   ungroup() %>% 
   mutate(Pred_deaths = Death_incidence * pool_28) %>% 
   group_by(Date) %>% 

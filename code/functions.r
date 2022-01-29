@@ -34,6 +34,12 @@ week_to_date <- function(year, week, day = "1"){
   
 }
 
+floor_date_monday <- function(date) {
+  
+  lubridate::floor_date(date, unit = "week", week_start = getOption("lubridate.week.start", 1))
+  
+}
+
 fix_week_2020 <- function(year, week, date) {
   
   dplyr::case_when(
@@ -86,7 +92,7 @@ read_tidy_age <- function(my_breaks) {
     dplyr::select(-X1, -X2) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      Age = as.double(readr::str_split(Age, " ")[[1]][1]),
+      Age = as.double(stringr::str_split(Age, " ")[[1]][1]),
       Sex = stringr::str_sub(Sex, 1, 1),
       Sex = ifelse(Sex == "M", "Male", "Female")
     ) %>%
@@ -101,7 +107,7 @@ read_tidy_age <- function(my_breaks) {
     dplyr::rowwise() %>%
     dplyr::mutate(
       from = as.double(stringr::str_split(stringr::str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][1]) + 1,
-      to = as.double(sstringr::tr_split(stringr::str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][2]),
+      to = as.double(stringr::str_split(stringr::str_replace_all(Age_cut, "[\\(\\]]", ""), ",")[[1]][2]),
       Age = dplyr::case_when(
         from == maxage ~ paste0(maxage, "+"),
         TRUE ~ paste(from, to, sep = "-")

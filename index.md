@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 27. januar 2022 kl. 21:35.
+Senest opdateret 29. januar 2022 kl. 16:56.
 Opdateres et par gange om ugen.
 
 [SSI's datasæt]: https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/SSIdata_220121
@@ -372,25 +372,20 @@ Nederste plot viser det daglige antal nyindlæggelser og antal positivt testede 
 
 ![](/figures/muni_region_incidens.png)
 
-
-
-
-
 [Tilbage til toppen](#)
-
-
 
 ## Øvrige sammenligninger
 
 ### Dagligt antal dødsfald i Danmark
-Øverste plot viser det totale antal daglige dødsfald siden 1. jan 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit).
+Øverste plot viser det totale antal daglige dødsfald siden 1. jan 2020, det daglige antal Covid-19 relaterede dødsfald, og det gennemsnitlige antal daglige dødsfald for perioden 2015-19 (7-dages gennemsnit).
 
-Nederste plot viser det daglige antal dødsfald i 2020 siden 1. jan 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19 (udglattet 7-dages gennemsnit).
+Nederste plot viser det daglige antal dødsfald i 2020 siden 1. jan 2020, opdelt på Covid-19- og ikke-Covid-19 relaterede dødsfald. Desuden vises det gennemsnitlige antal ugentlige dødsfald for perioden 2015-19 (7-dages gennemsnit).
+
+Bemærk at gennemsnittet for 2015-19 ikke er justeret for forandret befolkningsstørrelse eller -alderssammensætning.
 
 Total antal daglige dødsfald opdateres fredage.
 
 ``SSI datasæt: 'Deaths_over_time', Danmarks Statistik datasæt: 'DODC1'``
-
 
 
 ![](/figures/dst_deaths_covid_all.png)

@@ -6,33 +6,20 @@ pop$Age <- factor(pop$Age, levels = c(
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
-all_data <- read_csv2("../data/DST_deaths_age_sex.csv", col_names = FALSE) %>%
-  rename(
-    Male = X3,
-    Female = X4,
-    Date = X2,
-    Age = X1
-  ) %>%
-  mutate(
-    Date = ymd(paste0(str_sub(Date, 1, 4), "-", str_sub(Date, 6, 7), "-", str_sub(Date, 9, 10))),
-    Age = str_sub(Age, 1, nchar(Age) - 3),
-    Age = ifelse(str_detect(Age, "100"), "100+", Age)
-  ) %>%
-  distinct() %>%
+all_data <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
   mutate(
     Year = as.integer(year(Date)),
+    Quarter = quarter(Date),
     New_date = `year<-`(Date, 2021)
   ) %>%
-  pivot_longer(c(Male, Female), names_to = "Sex", values_to = "Daily") %>%
-  mutate(Quarter = quarter(Date)) %>%
+  filter(Year >= 2015) %>% 
   full_join(pop, by = c("Age", "Year", "Quarter", "Sex")) %>%
   arrange(Date) %>% 
   group_by(Age, Sex) %>% 
   fill(Population)
 
 all_data %>%
-  select(Date, Year, Age, Sex, Population, Daily, -New_date) %>%
-  rename(Daily_deaths = Daily) %>%
+  select(Date, Year, Age, Sex, Population, Deaths, -New_date) %>%
   write_csv2("../data/tidy_dst_age_sex_2015_22.csv")
 
 all_data$Age <- factor(all_data$Age, levels = c(
@@ -44,13 +31,13 @@ all_data$Age <- factor(all_data$Age, levels = c(
 
 plot_data <- all_data %>%
   filter(Year < 2022) %>% 
-  mutate(Daily_relative = Daily / Population * 100000) %>% 
+  mutate(Deaths_relative = Deaths / Population * 100000) %>% 
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
   group_by(Year, Age, Sex) %>% 
   arrange(New_date) %>%
   mutate(
-    Cum = cumsum(replace_na(Daily, 0)),
-    Cum_relative = cumsum(replace_na(Daily_relative, 0)),
+    Cum = cumsum(replace_na(Deaths, 0)),
+    Cum_relative = cumsum(replace_na(Deaths_relative, 0)),
   ) 
 
 
@@ -140,21 +127,20 @@ plot_data %>%
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-all_data <- read_csv2("../data/tidy_dst_age_sex_2015_22.csv") %>% 
-  select(-Daily_deaths) %>% 
-  distinct() %>% 
+all_pop_data <- read_csv2("../data/tidy_dst_age_sex_2015_22.csv") %>% 
+  select(-Deaths) %>% 
   filter(Year < 2022) %>% 
   group_by(Date, Age) %>% 
   summarize(Population = sum(Population)) %>% 
   filter(Date == floor_date(Date, "month"))
 
-all_data$Age <- factor(all_data$Age, levels = c(
+all_pop_data$Age <- factor(all_pop_data$Age, levels = c(
   "0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",
   "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79",
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
-all_data %>% 
+all_pop_data %>% 
   ggplot() +
   geom_area(aes(Date, Population, fill = Age, color = Age), alpha = 0.4, size = 0.6, position = "stack") +
   scale_x_date(date_label = "%Y", date_breaks = "3 years", minor_breaks = "1 year") +
@@ -174,57 +160,16 @@ all_data %>%
 
 ggsave("../figures/DST_deaths_19_20_21/dst_pop_age_2015_21.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-
-all_data %>%
-  group_by(Year, Date) %>% 
-  summarize(
-    Population = sum(Population, na.rm = TRUE),
-    Daily = sum(Daily, na.rm = TRUE),
-    Daily_relative = Daily / Population * 100000
-  ) %>% 
-  mutate(
-    New_date = `year<-`(Date, 2020)
-  ) %>% 
-  group_by(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year)), New_date) %>%
-  summarize(
-    Daily = mean(Daily, na.rm = TRUE),
-    Daily_relative = mean(Daily_relative, na.rm = TRUE)
-  ) %>% 
-  arrange(New_date) %>%
-  mutate(
-    Cum = cumsum(replace_na(Daily, 0)),
-    Cum_relative = cumsum(replace_na(Daily_relative, 0)),
-  ) %>% 
-  pivot_longer(c(Cum, Cum_relative)) %>% 
-  ggplot() +
-  geom_line(aes(New_date, value, color = as.factor(Year_group))) +
-  scale_x_date(date_labels = "%e %b", date_breaks = "3 months", minor_breaks = "1 month") +
-scale_color_manual(name = "", values = rev(hue_pal()(3))) +
-guides(color = guide_legend(override.aes = list(size = 1))) +
-  facet_wrap(~ name, labeller = labeller(name = c("Cum" = "Antal døde", "Cum_relative" = "Antal døde per 100.000")), scales = "free") +
-facet_theme +
-theme(
-  axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
-  plot.margin = margin(0.6, 0.6, 0.3, 0.6, "cm"),
-  panel.grid.minor.x = element_blank()
-) +
-  labs(
-    y = "Cumulated deaths per 100,000",
-    caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
-  )
-
-ggsave("../figures/DST_deaths_19_20_21/dst_deaths_cum_rel_all.png", width = 18, height = 10, units = "cm", dpi = 300)
-
 baseline <- all_data %>%
   filter(Year < 2022) %>% 
-  mutate(Daily_relative = Daily / Population * 100000) %>% 
+  mutate(Deaths_relative = Deaths / Population * 100000) %>% 
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
   filter(Year_group == "2015-2019") %>% 
   group_by(Year, Age, Sex) %>% 
   arrange(Date) %>%
   mutate(
-    Cum = cumsum(replace_na(Daily, 0)),
-    Cum_relative = cumsum(replace_na(Daily_relative, 0)),
+    Cum = cumsum(replace_na(Deaths, 0)),
+    Cum_relative = cumsum(replace_na(Deaths_relative, 0)),
   ) %>% 
   group_by(New_date, Age, Sex) %>% 
   summarize(
@@ -234,13 +179,13 @@ baseline <- all_data %>%
   
 plot_data <- all_data %>%
   filter(Year < 2022) %>% 
-  mutate(Daily_relative = Daily / Population * 100000) %>% 
+  mutate(Deaths_relative = Deaths / Population * 100000) %>% 
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
   group_by(Year, Age, Sex) %>% 
   arrange(Date) %>%
   mutate(
-    Cum = cumsum(replace_na(Daily, 0)),
-    Cum_relative = cumsum(replace_na(Daily_relative, 0)),
+    Cum = cumsum(replace_na(Deaths, 0)),
+    Cum_relative = cumsum(replace_na(Deaths_relative, 0)),
   ) %>% 
   full_join(baseline, by = c("New_date", "Age", "Sex")) %>% 
   mutate(xs_rel_deaths = Cum_relative - Cum_rel_baseline) %>% 

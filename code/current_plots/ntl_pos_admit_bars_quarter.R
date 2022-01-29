@@ -16,6 +16,11 @@ slope <-
   }
 
 plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
+  filter(
+    Type == "incidence",
+    Variable != "tested"
+  ) %>% 
+  pivot_wider(names_from = Variable, values_from = Value) %>% 
   mutate(
     Quarter = quarter(Date),
     Year_quarter = paste(Year, Quarter, sep = "_")
