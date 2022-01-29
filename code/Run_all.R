@@ -15,8 +15,3 @@ cat("Current plots DONE\n")
 
 source("update_index_md.R")
 cat("Index updated\n")
-
-
-
-
-
