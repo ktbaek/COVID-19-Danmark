@@ -32,7 +32,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
       )
   ) %>%
   pivot_longer(c(daily, ra), names_to = "type", values_to = "value") %>%
-  filter(new_date > "2021-09-30", new_date <= "2022-01-31") %>%
+  filter(new_date > "2021-09-30", new_date <= "2022-02-28") %>%
   ggplot() +
   geom_line(aes(new_date, value, color = as.factor(year), size = type, alpha = type)) +
   scale_y_continuous(limits = c(0, NA)) +
