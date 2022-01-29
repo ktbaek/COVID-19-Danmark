@@ -36,7 +36,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   ggplot() +
   geom_line(aes(new_date, value, color = as.factor(year), size = type, alpha = type)) +
   scale_y_continuous(limits = c(0, NA)) +
-  scale_x_date(labels = my_date_labels_no_year, date_breaks = "1 months") +
+  scale_x_date(labels = my_date_labels_no_year, date_breaks = "2 months", minor_breaks = "1 month") +
   scale_color_manual(name = "", values = c(test_col, pos_col)) +
   scale_size_manual(
     guide = FALSE,
