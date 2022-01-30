@@ -1,11 +1,11 @@
 
 deaths_all <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
   group_by(Date) %>%
-  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% 
+  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>%
   mutate(
     name = "Daglige dødsfald, alle årsager",
     ra = ra(Deaths)
-  ) %>% 
+  ) %>%
   rename(daily = Deaths)
 
 read_csv2("../data/SSI_daily_data.csv") %>%
@@ -29,7 +29,7 @@ read_csv2("../data/SSI_daily_data.csv") %>%
       year == 2020 ~ "2020/21",
       year == 2021 & month(Date) < 9 ~ "2020/21",
       TRUE ~ "2021/22"
-      )
+    )
   ) %>%
   pivot_longer(c(daily, ra), names_to = "type", values_to = "value") %>%
   filter(new_date > "2021-09-30", new_date <= "2022-02-28") %>%
@@ -62,4 +62,3 @@ read_csv2("../data/SSI_daily_data.csv") %>%
   )
 
 ggsave("../figures/ntl_fall_20_21.png", width = 18, height = 10, units = "cm", dpi = 300)
-

@@ -42,8 +42,8 @@ ag_data <- ag %>%
 
 ag_plot_data <- ag_data %>%
   filter(
-    Date > ymd("2021-06-30")#,
-    #method != "Antigen"
+    Date > ymd("2021-06-30") # ,
+    # method != "Antigen"
   ) %>%
   mutate(
     method = case_when(

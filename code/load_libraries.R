@@ -10,4 +10,3 @@ library(ggrepel)
 library(pdftools)
 library(ggtext)
 library(runner)
-library(dkstat) #https://github.com/rOpenGov/dkstat

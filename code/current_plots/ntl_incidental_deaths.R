@@ -1,9 +1,10 @@
 library(zoo)
 
-case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%  
+case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   filter(
     Type == "antal",
-    Variable == "positive") %>% 
+    Variable == "positive"
+  ) %>%
   mutate(Aldersgruppe = case_when(
     Aldersgruppe == "0-2" ~ "0-19",
     Aldersgruppe == "3-5" ~ "0-19",
@@ -15,24 +16,24 @@ case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
     Aldersgruppe == "65-79" ~ "65-79",
     Aldersgruppe == "80+" ~ "80+"
   )) %>%
-  group_by(Aldersgruppe, Date) %>% 
-  summarize(Positive = sum(Value, na.rm = TRUE)) 
+  group_by(Aldersgruppe, Date) %>%
+  summarize(Positive = sum(Value, na.rm = TRUE))
 
-pop <- read_tidy_age(get_age_breaks(100, 5)) %>% 
-  group_by(Year, Quarter, Age) %>% 
+pop <- get_pop_by_breaks(get_age_breaks(100, 5)) %>%
+  group_by(Year, Quarter, Age) %>%
   summarize(Population = sum(Population, na.rm = TRUE))
 
 weekly_all_deaths <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
-  group_by(Date, Age) %>% 
-  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>% 
+  group_by(Date, Age) %>%
+  summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>%
   mutate(
     Year = year(Date),
     Quarter = quarter(Date)
   ) %>%
-  filter(Year >= 2020) %>% 
+  filter(Year >= 2020) %>%
   left_join(pop, by = c("Age", "Year", "Quarter")) %>%
-  group_by(Age) %>% 
-  fill(Population) %>% 
+  group_by(Age) %>%
+  fill(Population) %>%
   mutate(Age = case_when(
     Age == "0-4" ~ "0-19",
     Age == "5-9" ~ "0-19",
@@ -55,44 +56,43 @@ weekly_all_deaths <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
     Age == "90-94" ~ "80+",
     Age == "95-99" ~ "80+",
     Age == "100+" ~ "80+"
-  )
-  ) %>% 
-  group_by(Age, Date) %>% 
+  )) %>%
+  group_by(Age, Date) %>%
   summarize(
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = sum(Population, na.rm = TRUE)
-  ) %>% 
-  group_by(Date = floor_date_monday(Date), Age) %>% 
+  ) %>%
+  group_by(Date = floor_date_monday(Date), Age) %>%
   summarize(
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = mean(Population, na.rm = TRUE),
     Death_incidence = Deaths / Population
   )
-  
-weekly_covid_deaths <- read_csv2("../data/SSI_daily_data.csv") %>% 
-  filter(name == "Deaths") %>% 
-  select(Date, daily) %>% 
-  group_by(Date = floor_date_monday(Date)) %>% 
+
+weekly_covid_deaths <- read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Deaths") %>%
+  select(Date, daily) %>%
+  group_by(Date = floor_date_monday(Date)) %>%
   summarize(Obs_deaths = sum(daily, na.rm = TRUE))
 
-pred_obs <- weekly_all_deaths %>% 
-  full_join(case_data, by = c("Age" = "Aldersgruppe", "Date")) %>% 
-  arrange(Date) %>% 
-  group_by(Age) %>% 
-  fill(Deaths, Population, Death_incidence) %>% 
-  mutate(pool_28 = rollsum(Positive, 4, align = "right", na.pad = TRUE)) %>% 
-  ungroup() %>% 
-  mutate(Pred_deaths = Death_incidence * pool_28) %>% 
-  group_by(Date) %>% 
-  summarize(Pred_deaths = sum(Pred_deaths, na.rm = TRUE)) %>% 
-  full_join(weekly_covid_deaths, by = "Date") %>% 
+pred_obs <- weekly_all_deaths %>%
+  full_join(case_data, by = c("Age" = "Aldersgruppe", "Date")) %>%
+  arrange(Date) %>%
+  group_by(Age) %>%
+  fill(Deaths, Population, Death_incidence) %>%
+  mutate(pool_28 = rollsum(Positive, 4, align = "right", na.pad = TRUE)) %>%
+  ungroup() %>%
+  mutate(Pred_deaths = Death_incidence * pool_28) %>%
+  group_by(Date) %>%
+  summarize(Pred_deaths = sum(Pred_deaths, na.rm = TRUE)) %>%
+  full_join(weekly_covid_deaths, by = "Date") %>%
   pivot_longer(-Date)
 
-pred_obs %>% 
-  filter(Date <= last_wday_date(today, 1)) %>% 
-  ggplot() + 
+pred_obs %>%
+  filter(Date <= last_wday_date(today, 1)) %>%
+  ggplot() +
   geom_line(aes(Date, value, color = name), size = 1) +
-  scale_color_manual(name = "", labels = c('Død med Covid', 'Estimeret "tilfældig" død med Covid' ), values = c(pos_col, test_col)) +
+  scale_color_manual(name = "", labels = c("Død med Covid", 'Estimeret "tilfældig" død med Covid'), values = c(pos_col, test_col)) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   labs(
@@ -101,21 +101,21 @@ pred_obs %>%
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
   ) +
   standard_theme
-    
-ggsave("../figures/ntl_incidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)   
 
-pred_obs %>% 
-  filter(Date <= last_wday_date(today, 1)) %>% 
-  pivot_wider() %>% 
-  ggplot() + 
+ggsave("../figures/ntl_incidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+pred_obs %>%
+  filter(Date <= last_wday_date(today, 1)) %>%
+  pivot_wider() %>%
+  ggplot() +
   geom_line(aes(Date, Obs_deaths - Pred_deaths), color = death_col, size = 1) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   labs(
     y = "Antal",
-    title = 'Estimat af antallet af ugentlige dødsfald pga. COVID-19',
+    title = "Estimat af antallet af ugentlige dødsfald pga. COVID-19",
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
   ) +
   standard_theme
 
-ggsave("../figures/ntl_nonincidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)   
+ggsave("../figures/ntl_nonincidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)

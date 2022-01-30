@@ -1,8 +1,3 @@
-library(tidyverse)
-library(magrittr)
-library(lubridate)
-library(scales)
-
 rsquared <-
   function(x, y) {
     m <- lm(y ~ x)
@@ -19,17 +14,17 @@ plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   filter(
     Type == "incidence",
     Variable != "tested"
-  ) %>% 
-  pivot_wider(names_from = Variable, values_from = Value) %>% 
+  ) %>%
+  pivot_wider(names_from = Variable, values_from = Value) %>%
   mutate(
     Quarter = quarter(Date),
     Year_quarter = paste(Year, Quarter, sep = "_")
-  ) %>% 
+  ) %>%
   filter(!Year_quarter %in% c("2020_1", "2020_2", "2022_1")) %>%
   mutate(Year_quarter = str_replace(Year_quarter, "_", " Q")) %>%
   group_by(Aldersgruppe, Year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
-  filter(!is.na(admitted)) %>% 
+  filter(!is.na(admitted)) %>%
   mutate(
     R = sqrt(rsquared(positive, admitted)),
     slope = slope(positive, admitted)
@@ -56,7 +51,7 @@ plot_data %>%
     family = "lato",
     check_overlap = TRUE
   ) +
-  facet_wrap(~ Aldersgruppe) +
+  facet_wrap(~Aldersgruppe) +
   scale_y_continuous(limits = c(-5, NA), labels = function(x) paste0(x, " %")) +
   scale_fill_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
   facet_theme +

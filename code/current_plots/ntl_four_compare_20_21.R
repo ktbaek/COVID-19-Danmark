@@ -1,4 +1,4 @@
-plot_data <- read_csv2("../data/SSI_daily_data.csv") %>% 
+plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
   filter(!name %in% c("Index", "Tested")) %>%
   mutate(
     year = year(Date),
@@ -14,8 +14,8 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
     )
   ) %>%
   filter(new_date > "2021-09-30", new_date <= ymd(today)) %>%
-  pivot_longer(c(daily, ra), names_to = "type", values_to = "value") 
-  
+  pivot_longer(c(daily, ra), names_to = "type", values_to = "value")
+
 plot_layer <- list(
   geom_line(aes(new_date, value, color = name, size = type, alpha = type)),
   scale_x_date(labels = my_date_labels_no_year, date_breaks = "1 months", expand = expansion(mult = c(0.01, 0))),
@@ -32,7 +32,7 @@ plot_layer <- list(
     caption = standard_caption
   ),
   guides(color = guide_legend(override.aes = list(size = 1))),
-  facet_wrap(~ year),
+  facet_wrap(~year),
   facet_theme,
   theme(
     axis.text.x = element_text(margin = margin(t = 0, r = 0, b = 0, l = 0)),
@@ -46,11 +46,11 @@ plot_layer <- list(
   )
 )
 
-p1 <- plot_data %>% 
-  filter(name %in% c("Positive", "Admitted")) %>% 
-  mutate(value = ifelse(name == "Admitted", value * 30, value)) %>% 
+p1 <- plot_data %>%
+  filter(name %in% c("Positive", "Admitted")) %>%
+  mutate(value = ifelse(name == "Admitted", value * 30, value)) %>%
   ggplot() +
-  plot_layer + 
+  plot_layer +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
@@ -58,14 +58,14 @@ p1 <- plot_data %>%
   ) +
   scale_color_manual(name = "", guide = FALSE, labels = c("Indlæggelser", "PCR positive"), values = c(admit_col, pos_col)) +
   labs(
-   title = "PCR positive vs indlæggelser"
-  ) 
+    title = "PCR positive vs indlæggelser"
+  )
 
-p2 <- plot_data %>% 
-  filter(name %in% c("Positive", "Deaths")) %>% 
-  mutate(value = ifelse(name == "Deaths", value * 300, value)) %>% 
+p2 <- plot_data %>%
+  filter(name %in% c("Positive", "Deaths")) %>%
+  mutate(value = ifelse(name == "Deaths", value * 300, value)) %>%
   ggplot() +
-  plot_layer + 
+  plot_layer +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Positive",
@@ -74,13 +74,13 @@ p2 <- plot_data %>%
   scale_color_manual(name = "", labels = c("Døde", "PCR positive"), values = c(death_col, pos_col)) +
   labs(
     title = "PCR positive vs døde"
-  ) 
+  )
 
-p3 <- plot_data %>% 
-  filter(name %in% c("Percent", "Admitted")) %>% 
-  mutate(value = ifelse(name == "Admitted", value / 25, value)) %>% 
+p3 <- plot_data %>%
+  filter(name %in% c("Percent", "Admitted")) %>%
+  mutate(value = ifelse(name == "Admitted", value / 25, value)) %>%
   ggplot() +
-  plot_layer + 
+  plot_layer +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Procent",
@@ -93,11 +93,11 @@ p3 <- plot_data %>%
   ) +
   theme(strip.text.x = element_blank())
 
-p4 <- plot_data %>% 
-  filter(name %in% c("Percent", "Deaths")) %>% 
-  mutate(value = ifelse(name == "Deaths", value / 2.5, value)) %>% 
+p4 <- plot_data %>%
+  filter(name %in% c("Percent", "Deaths")) %>%
+  mutate(value = ifelse(name == "Deaths", value / 2.5, value)) %>%
   ggplot() +
-  plot_layer + 
+  plot_layer +
   scale_y_continuous(
     limits = c(0, NA),
     name = "Procent",
@@ -110,23 +110,21 @@ p4 <- plot_data %>%
   ) +
   theme(strip.text.x = element_blank())
 
-(p1 + p2) / (p3 + p4)  + 
+(p1 + p2) / (p3 + p4) +
   plot_annotation(
-  title = "SARS-CoV-2, efterår/vinter 2021 vs 2020, Danmark", 
-  caption = standard_caption, 
-  theme = theme(
-  legend.position = "bottom",
-  legend.margin = margin(t = 0),
-  plot.margin = margin(0.6, 0.4, 0.2, 0.4, "cm"),
-  plot.title = element_text(size = rel(1.6), face = "bold", margin = margin(b = 0)),
-  plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
-)
-) & 
+    title = "SARS-CoV-2, efterår/vinter 2021 vs 2020, Danmark",
+    caption = standard_caption,
+    theme = theme(
+      legend.position = "bottom",
+      legend.margin = margin(t = 0),
+      plot.margin = margin(0.6, 0.4, 0.2, 0.4, "cm"),
+      plot.title = element_text(size = rel(1.6), face = "bold", margin = margin(b = 0)),
+      plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
+    )
+  ) &
   theme(
-  text = element_text(family = "lato")
-)
+    text = element_text(family = "lato")
+  )
 
 
 ggsave("../figures/ntl_four_compare_20_21.png", width = 27, height = 15, units = "cm", dpi = 300)
-  
-  

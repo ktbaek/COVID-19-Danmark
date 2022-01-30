@@ -24,8 +24,8 @@ muni_data %>%
   select(-Tested) %>%
   full_join(filter(read_csv2("../data/tidy_admitted_region.csv"), Region != "Ukendt_region"), by = c("Region", "Date")) %>%
   pivot_longer(c(-Date, -Region), values_to = "daily") %>%
-  group_by(Region, name) %>% 
-  mutate(ra = ra(daily)) %>% 
+  group_by(Region, name) %>%
+  mutate(ra = ra(daily)) %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   ggplot() +
   geom_bar(stat = "identity", aes(Date, daily, fill = name), alpha = 0.6, width = 1) +
@@ -68,8 +68,8 @@ muni_data %>%
   ) %>%
   select(-Population) %>%
   pivot_longer(c(-Date, -Region), values_to = "daily") %>%
-  group_by(Region, name) %>% 
-  mutate(ra = ra(daily)) %>% 
+  group_by(Region, name) %>%
+  mutate(ra = ra(daily)) %>%
   filter(Date > ymd(today) - month_correction - months(3)) %>%
   ggplot() +
   geom_bar(stat = "identity", aes(Date, daily, fill = name), alpha = 0.6, width = 1) +

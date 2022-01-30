@@ -7,26 +7,26 @@ bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 my_breaks <- c(ymd("2021-11-01"), ymd("2022-01-01"))
 
 plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, subtitle) {
-  
-  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children. 
-  zero_replace <- df %>% 
+
+  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children.
+  zero_replace <- df %>%
     filter(
       Vax_status %in% c("Fuld effekt efter revaccination", "Fuld effekt efter primært forløb"),
       Variable == "tests",
       Group == "alle",
       Value == 0
-      ) %>% 
+    ) %>%
     mutate(
       Type = "incidence",
       Variable = variable,
       Group = as.character(NA),
       zero_tests = TRUE
-      ) %>% 
+    ) %>%
     select(-Value)
-  
+
   plot_data <- df %>%
-    left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
-    mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
+    left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>%
+    mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>%
     filter(
       Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       Variable == variable
@@ -37,15 +37,15 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
       TRUE ~ Vax_status
     ))
-    
-  if(variable == "cases") plot_data %<>% filter(Group == "notprevpos")
-  
-  plot_data %<>% 
+
+  if (variable == "cases") plot_data %<>% filter(Group == "notprevpos")
+
+  plot_data %<>%
     filter(
       !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
       !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
-      )
-      
+    )
+
   plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
   plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 
@@ -151,37 +151,37 @@ bt_2 %>% plot_breakthru_age_panel(
 
 ggsave("../figures/bt_icu_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
 
-bt_2 %>% 
+bt_2 %>%
   plot_breakthru_age_panel(
-  variable = "cases",
-  variable_name = "Positive",
-  maintitle = "Ugentligt antal positive opdelt på alder og vaccinestatus",
-  subtitle = "Relative og absolutte antal personer med positiv SARS-CoV-2 PCR test\nViser kun ikke-tidligere positive."
-)
+    variable = "cases",
+    variable_name = "Positive",
+    maintitle = "Ugentligt antal positive opdelt på alder og vaccinestatus",
+    subtitle = "Relative og absolutte antal personer med positiv SARS-CoV-2 PCR test\nViser kun ikke-tidligere positive."
+  )
 
 ggsave("../figures/bt_pos_age_time.png", width = 16, height = 20, units = "cm", dpi = 300)
 
 plot_breakthru_cases_age_all <- function(df) {
-  
-  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children. 
-  zero_replace <- df %>% 
+
+  # identify weeks with no tests for vaccinated (proxy for no vaccinated). Mostly relevant for children.
+  zero_replace <- df %>%
     filter(
       Vax_status %in% c("Fuld effekt efter revaccination", "Fuld effekt efter primært forløb"),
       Variable == "tests",
       Group == "alle",
       Value == 0
-    ) %>% 
+    ) %>%
     mutate(
       Type = "incidence",
       Variable = "cases",
       Group = as.character(NA),
       zero_tests = TRUE
-    ) %>% 
+    ) %>%
     select(-Value)
-  
+
   plot_data <- df %>%
-    left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>% 
-    mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>% 
+    left_join(zero_replace, by = c("Type", "Variable", "Group", "Age", "Week", "Year", "Vax_status")) %>%
+    mutate(Value = ifelse(is.na(zero_tests), Value, NA)) %>%
     filter(
       Vax_status %in% c("Ingen vaccination", "Fuld effekt efter primært forløb", "Fuld effekt efter revaccination"),
       !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt efter revaccination"),
@@ -195,10 +195,10 @@ plot_breakthru_cases_age_all <- function(df) {
       Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
       TRUE ~ Vax_status
     ))
-    
+
   plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
   plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
-  
+
   plot_data %>%
     filter(Type == "incidence") %>%
     ggplot() +

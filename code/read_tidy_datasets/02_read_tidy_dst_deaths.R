@@ -1,51 +1,18 @@
-age_groups = c(
-  "0-4 år", 
-  "5-9 år", 
-  "10-14 år", 
-  "15-19 år", 
-  "20-24 år", 
-  "25-29 år", 
-  "30-34 år", 
-  "35-39 år", 
-  "40-44 år", 
-  "45-49 år", 
-  "50-54 år", 
-  "55-59 år", 
-  "60-64 år", 
-  "65-69 år", 
-  "70-74 år", 
-  "75-79 år", 
-  "80-84 år", 
-  "85-89 år", 
-  "90-94 år", 
-  "95-99 år", 
-  "100 år og derover")
+dst_dodc1 <- read_csv2("https://api.statbank.dk/v1/data/DODC1/CSV?delimiter=Semicolon&K%C3%98N=1%2C2&ALDER=0-4%2C5-9%2C10-14%2C15-19%2C20-24%2C25-29%2C30-34%2C35-39%2C40-44%2C45-49%2C50-54%2C55-59%2C60-64%2C65-69%2C70-74%2C75-79%2C80-84%2C85-89%2C90-94%2C95-99%2C100OV&Tid=*")
 
-sex_groups <- c("Mænd", "Kvinder")
-
-dodc1_meta <- dkstat::dst_meta("DODC1", lang = "da")
-
-dst_dodc1 <- dkstat::dst_get_data(
-  table = "DODC1", 
-  KØN = sex_groups, 
-  ALDER = age_groups, 
-  Tid = "*", 
-  lang = "da", 
-  meta_data = dodc1_meta) 
-
-dst_dodc1 %>% 
-  as_tibble() %>% 
+dst_dodc1 %>%
   rename(
     Sex = KØN,
     Age = ALDER,
     Date = TID,
-    Deaths = value
-  ) %>% 
-  rowwise() %>% 
+    Deaths = INDHOLD
+  ) %>%
+  mutate(Date = DSTdate_to_date(Date)) %>%
+  rowwise() %>%
   mutate(
     Age = str_split(Age, " ")[[1]][1],
     Age = ifelse(Age == 100, "100+", Age),
     Sex = ifelse(Sex == "Mænd", "Male", "Female")
-  ) %>% 
-  select(Date, Age, Sex, Deaths) %>% 
+  ) %>%
+  select(Date, Age, Sex, Deaths) %>%
   write_csv2("../data/tidy_DST_daily_deaths_age_sex.csv")

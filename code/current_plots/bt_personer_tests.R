@@ -7,12 +7,12 @@ plot_data <- bt_2_extra %>%
     Variable == "personer",
     Group == "notprevpos",
   ) %>%
-  mutate(Date = week_to_date(Year, Week)) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>%
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
-  )) %>% 
+  )) %>%
   filter(Vax_status %in% c("Ingen vaccination", "Første vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
 
 plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
@@ -30,7 +30,7 @@ plot_data %>%
     subtitle = "Angiver ikke-tidligere positive personer (grupperne er stablet)",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 6) +
+  facet_wrap(~Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(
@@ -44,7 +44,7 @@ plot_data %>%
       fill = "gray97",
       colour = NA,
       size = 0.3
-      )
+    )
   )
 
 ggsave("../figures/bt_personer_vaxgroup_age_time.png", width = 18, height = 10, units = "cm", dpi = 300)
@@ -55,15 +55,16 @@ plot_data <- bt_2_extra %>%
     Group == "notprevpos",
     Type == "incidence"
   ) %>%
-  mutate(Date = week_to_date(Year, Week)) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>%
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
-  )) %>% 
-  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
-         !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
-         !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
+  )) %>%
+  filter(
+    Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
+    !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
+    !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
   )
 
 
@@ -83,7 +84,7 @@ plot_data %>%
     subtitle = "Angiver antal testede personer per 100.000 i alders- og vaccinationsgruppen",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 6) +
+  facet_wrap(~Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(
@@ -104,27 +105,28 @@ ggsave("../figures/bt_tests_age_time.png", width = 18, height = 10, units = "cm"
 
 plot_data <- bt_2_extra %>%
   filter(
-    #!Age %in% c("0-5", "6-11"),
+    # !Age %in% c("0-5", "6-11"),
     Type == "incidence",
     Variable == "tac",
     Group == "notprevpos"
   ) %>%
-  mutate(Date = week_to_date(Year, Week)) %>% 
+  mutate(Date = week_to_date(Year, Week)) %>%
   mutate(Vax_status = case_when(
     Vax_status == "Fuld effekt efter primært forløb" ~ "Fuld effekt 2 doser",
     Vax_status == "Fuld effekt efter revaccination" ~ "Fuld effekt 3 doser",
     TRUE ~ Vax_status
-  )) %>% 
-  filter(Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
-         !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
-         !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
+  )) %>%
+  filter(
+    Vax_status %in% c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"),
+    !(Age %in% c("0-5", "6-11", "12-15") & Vax_status == "Fuld effekt 3 doser"),
+    !(Age == "0-5" & Vax_status == "Fuld effekt 2 doser")
   )
-  
+
 plot_data$Age <- factor(plot_data$Age, levels = c("0-5", "6-11", "12-15", "16-19", "20-29", "30-39", "40-49", "50-59", "60-64", "65-69", "70-79", "80+"))
 plot_data$Vax_status <- factor(plot_data$Vax_status, levels = c("Ingen vaccination", "Fuld effekt 2 doser", "Fuld effekt 3 doser"))
-  
-plot_data %>% 
-  filter(!(Age %in% c("12-15") & Vax_status == "Fuld effekt 3 doser")) %>% 
+
+plot_data %>%
+  filter(!(Age %in% c("12-15") & Vax_status == "Fuld effekt 3 doser")) %>%
   ggplot() +
   geom_line(aes(Date, Value, color = Vax_status), size = 0.7, alpha = 1) +
   scale_color_manual(guide = FALSE, name = "", values = c(pct_col, admit_col, "#67cc32")) +
@@ -136,7 +138,7 @@ plot_data %>%
     subtitle = "Angiver den testjusterede incidens i alders- og vaccinationsgruppen",
     caption = standard_caption
   ) +
-  facet_wrap(~ Age, ncol = 6) +
+  facet_wrap(~Age, ncol = 6) +
   facet_theme +
   guides(color = guide_legend(override.aes = list(size = 1.5))) +
   theme(

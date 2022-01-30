@@ -14,7 +14,7 @@ read_muni_csv <- function(x) {
     mutate(Date = paste0("20", str_sub(date_of_file, 1, 2), "-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6))) %>%
     select(-date_of_file) %>%
     rename(Kommune = `Kommune_(navn)`)
-  
+
   return(file)
 }
 
@@ -45,21 +45,21 @@ muni_population %<>%
 muni_all <- muni_tested %>%
   full_join(muni_pos, by = c("Kommune", "Date")) %>%
   filter(!Kommune == "X100") %>%
-  filter(Date > ymd("2020-02-29")) 
+  filter(Date > ymd("2020-02-29"))
 
 # Tests -------------------------------------------------------------------
 
 cat("Muni continuity:", 1 == unique(abs(diff(unique(muni_all$Date)))), "\n") # test for daily continuity in municipality data from march 1
-cat("Muni # pos:", length(unique(muni_pos$Kommune)), "\n") #test number of kommuner
-cat("Muni # tested:", length(unique(muni_tested$Kommune)), "\n") #test number of kommuner
+cat("Muni # pos:", length(unique(muni_pos$Kommune)), "\n") # test number of kommuner
+cat("Muni # tested:", length(unique(muni_tested$Kommune)), "\n") # test number of kommuner
 cat("Missing muni in pos:", setdiff(unique(muni_tested$Kommune), unique(muni_pos$Kommune)), "\n") # test missing kommuner
 
 # test that the numbers in 'test_pos_over_time' from SSI agree with the total for all municipalities in the municipality files from SSI:
 
 tests_check <- read_csv2("../data/SSI_daily_data.csv") %>%
-  filter(name %in% c("Positive", "Tested")) %>% 
-  select(-ra) %>% 
-  pivot_wider(values_from = "daily") 
+  filter(name %in% c("Positive", "Tested")) %>%
+  select(-ra) %>%
+  pivot_wider(values_from = "daily")
 
 muni_tests_check <- muni_all %>%
   group_by(Date) %>%
@@ -84,17 +84,17 @@ muni_tests_check %>%
 
 muni_pop <- muni_population %>%
   group_by(Kommune) %>%
-  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>% #population numbers change very little over the period so I use the mean.
+  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>% # population numbers change very little over the period so I use the mean.
   ungroup()
-  
+
 muni_all %<>%
   filter(Date < ymd(today) - 1) # remove last two days
 
 muni_all %>%
-  full_join(muni_population, by = c("Date", "Kommune")) %>% 
-  arrange(Date) %>% 
-  group_by(Kommune) %>% 
-  fill(Befolkningstal, .direction = "downup") %>% 
+  full_join(muni_population, by = c("Date", "Kommune")) %>%
+  arrange(Date) %>%
+  group_by(Kommune) %>%
+  fill(Befolkningstal, .direction = "downup") %>%
   write_csv2("../data/tidy_muni_data.csv")
 
 muni_wk <- muni_all %>%
@@ -122,7 +122,7 @@ landsdele_order <- geo %>%
   pull(Landsdel)
 
 geo %<>%
-  select(NIVEAU,TITEL, Region, Landsdel) %>%
+  select(NIVEAU, TITEL, Region, Landsdel) %>%
   filter(NIVEAU == 3) %>%
   select(-NIVEAU) %>%
   rename(Kommune = TITEL)
@@ -132,14 +132,15 @@ landsdele <- muni_all %>%
   group_by(Landsdel, Date) %>%
   mutate(
     Tested = sum(Tested, na.rm = TRUE),
-    Positive = sum(Positive, na.rm = TRUE)) %>%
+    Positive = sum(Positive, na.rm = TRUE)
+  ) %>%
   ungroup() %>%
   select(-Kommune) %>%
   distinct()
 
 landsdele$Landsdel <- factor(landsdele$Landsdel, levels = landsdele_order)
 
-landsdele %>% 
+landsdele %>%
   write_csv2("../data/tidy_landsdele_data.csv")
 
 
@@ -147,6 +148,6 @@ landsdele %>%
 
 admitted %>%
   select(-Admitted) %>%
-  rename(Ukendt_region = `Ukendt Region`) %>% 
-  pivot_longer(-Date, names_to = "Region", values_to = "Admitted") %>% 
+  rename(Ukendt_region = `Ukendt Region`) %>%
+  pivot_longer(-Date, names_to = "Region", values_to = "Admitted") %>%
   write_csv2("../data/tidy_admitted_region.csv")
