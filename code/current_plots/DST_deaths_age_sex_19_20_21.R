@@ -12,8 +12,8 @@ all_data <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
     Quarter = quarter(Date),
     New_date = `year<-`(Date, 2021)
   ) %>%
-  filter(Year >= 2015) %>%
   full_join(pop, by = c("Age", "Year", "Quarter", "Sex")) %>%
+  filter(Year >= 2015) %>%
   arrange(Date) %>%
   group_by(Age, Sex) %>%
   fill(Population)
@@ -28,9 +28,7 @@ all_data$Age <- factor(all_data$Age, levels = c(
   "80-84", "85-89", "90-94", "95-99", "100+"
 ))
 
-
 plot_data <- all_data %>%
-  # filter(Year < 2022) %>%
   mutate(Deaths_relative = Deaths / Population * 100000) %>%
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
   group_by(Year, Age, Sex) %>%
@@ -40,12 +38,10 @@ plot_data <- all_data %>%
     Cum_relative = cumsum(replace_na(Deaths_relative, 0)),
   )
 
-
-
 plot_layer <- list(
   scale_x_date(date_labels = "%e %b", date_breaks = "4 months", minor_breaks = "1 month"),
   scale_color_manual(name = "", values = rev(hue_pal()(4))),
-  scale_alpha_manual(name = "", values = c(0.3, 1, 1)),
+  scale_alpha_manual(name = "", values = c(0.2, 1, 1, 1)),
   labs(
     y = "Cumulated deaths",
     caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
@@ -61,71 +57,46 @@ plot_layer <- list(
   )
 )
 
-Age_range <- c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34")
+plot_cum_deaths <- function(df, age_range) {
+  df %>%
+    filter(Age %in% age_range) %>%
+    ggplot() +
+    geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+    plot_layer
+}
 
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer
-
+plot_data %>% plot_cum_deaths(c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34"))
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_young.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
-  labs(
-    y = "Cumulated deaths per 100,000",
-    caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
-  )
-
-ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_young.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-Age_range <- c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69")
-
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer
-
+plot_data %>% plot_cum_deaths(c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69"))
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_mid.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
-  labs(
-    y = "Cumulated deaths per 100,000",
-    caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
-  )
-
-ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_mid.png", width = 18, height = 10, units = "cm", dpi = 300)
-
-Age_range <- c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")
-
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer
-
+plot_data %>% plot_cum_deaths(c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+"))
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_old.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
-  labs(
-    y = "Cumulated deaths per 100,000",
-    caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
-  )
+plot_cumrel_deaths <- function(df, age_range) {
+  df %>%
+    filter(Age %in% age_range) %>%
+    ggplot() +
+    geom_line(aes(New_date, Cum_relative, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+    plot_layer +
+    labs(
+      y = "Cumulated deaths per 100,000",
+      caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
+    )
+}
 
+plot_data %>% plot_cumrel_deaths(c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34"))
+ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_young.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data %>% plot_cumrel_deaths(c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69"))
+ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_mid.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data %>% plot_cum_deaths(c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+"))
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_cum_rel_old.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+# Plot population over time -----------------------------------------------
 
 all_pop_data <- read_csv2("../data/tidy_dst_age_sex_2015_22.csv") %>%
   select(-Deaths) %>%
@@ -159,6 +130,9 @@ all_pop_data %>%
 
 ggsave("../figures/DST_deaths_19_20_21/dst_pop_age_2015_21.png", width = 18, height = 10, units = "cm", dpi = 300)
 
+
+# Plot excess deaths ------------------------------------------------------
+
 baseline <- all_data %>%
   mutate(Deaths_relative = Deaths / Population * 100000) %>%
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
@@ -176,7 +150,6 @@ baseline <- all_data %>%
   )
 
 plot_data <- all_data %>%
-  # filter(Year < 2022) %>%
   mutate(Deaths_relative = Deaths / Population * 100000) %>%
   mutate(Year_group = ifelse(Year %in% c(2015:2019), "2015-2019", as.character(Year))) %>%
   group_by(Year, Age, Sex) %>%
@@ -191,8 +164,8 @@ plot_data <- all_data %>%
 
 plot_layer <- list(
   scale_x_date(date_labels = "%e %b", date_breaks = "4 months", minor_breaks = "1 month"),
-  scale_color_manual(name = "", values = c(rev(hue_pal()(3)), hue_pal()(4)[4])),
-  scale_alpha_manual(name = "", values = c(0.25, 1, 1, 1)),
+  scale_color_manual(name = "", values = c(rev(hue_pal()(3)), hue_pal()(6)[2])),
+  scale_alpha_manual(name = "", values = c(0.2, 1, 1, 1)),
   labs(
     y = "Excess cumulated deaths per 100,000",
     subtitle = "Indicates excess yearly cumulated deaths per 100,000 in the gender- and age group. The baseline is mean cumulated deaths per 100,000 for 2015-2019.",
@@ -214,38 +187,29 @@ plot_layer <- list(
   )
 )
 
-Age_range <- c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34")
+plot_xs_deaths <- function(df, age_range) {
+  df %>%
+    filter(Age %in% age_range) %>%
+    ggplot() +
+    geom_hline(yintercept = 0, color = "gray70", size = 0.2) +
+    geom_line(aes(New_date, xs_rel_deaths, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
+    plot_layer
+}
 
 plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_hline(yintercept = 0, color = "gray70", size = 0.2) +
-  geom_line(aes(New_date, xs_rel_deaths, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
+  plot_xs_deaths(c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34")) +
   labs(title = "Excess deaths, 0-34 yo, Denmark")
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_young.png", width = 22.5, height = 12.5, units = "cm", dpi = 300)
 
-Age_range <- c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69")
-
 plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_hline(yintercept = 0, color = "gray70", size = 0.3) +
-  geom_line(aes(New_date, xs_rel_deaths, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
+  plot_xs_deaths(c("35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69")) +
   labs(title = "Excess deaths, 35-69 yo, Denmark")
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_mid.png", width = 22.5, height = 12.5, units = "cm", dpi = 300)
 
-Age_range <- c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")
-
 plot_data %>%
-  filter(Age %in% Age_range) %>%
-  ggplot() +
-  geom_hline(yintercept = 0, color = "gray70", size = 0.3) +
-  geom_line(aes(New_date, xs_rel_deaths, group = Year, alpha = as.factor(Year_group), color = as.factor(Year_group))) +
-  plot_layer +
+  plot_xs_deaths(c("70-74", "75-79", "80-84", "85-89", "90-94", "95-99", "100+")) +
   labs(title = "Excess deaths, 70+ yo, Denmark")
 
 ggsave("../figures/DST_deaths_19_20_21/dst_deaths_age_sex_xscum_rel_old.png", width = 22.5, height = 12.5, units = "cm", dpi = 300)
