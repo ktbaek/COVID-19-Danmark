@@ -48,7 +48,7 @@ Tallene for nyindlagte og døde er pr. 21. december 2021 baseret på alle positi
 ![](/figures/ntl_deaths.png)
 
 ### Dagligt antal indlagte
-Plottet viser antal indlagte heraf indlagte på intensiv. De optrukne linjer viser det løbende gennemsnit baseret på et vindue på 7 dage.
+Plottet viser antal indlagte, heraf indlagte på intensiv. Den optrukne linje viser det løbende gennemsnit for det samlede antal indlagte baseret på et vindue på 7 dage.
 
 Tallene for indlagte er pr. 21. december 2021 baseret på alle positive tests (inkl. reinfektioner).
 

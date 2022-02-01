@@ -1,26 +1,20 @@
-read_csv2("../data/tidy_dst_hosp_icu.csv") %>%
-  group_by(Variable) %>% 
-  mutate(ra = ra(Daily)) %>% 
-  pivot_longer(c(Daily, ra), "type", "value") %>% 
+plot_data <- read_csv2("../data/tidy_dst_hosp_icu.csv") %>%
+  pivot_wider(names_from = "Variable", values_from = "Daily") %>%
+  mutate(hosp_no_icu = hospitalized - icu) %>%
+  pivot_longer(-Date, values_to = "daily") %>%
+  group_by(name) %>%
+  mutate(ra = ra(daily)) %>%
+  pivot_longer(c(daily, ra), "type", "value")
+
+plot_data %>%
   ggplot() +
-  geom_line(aes(Date, value, alpha = type, size = type, color = Variable)) +
+  geom_bar(data = subset(plot_data, type != "ra" & name != "hospitalized"), stat = "identity", position = "stack", aes(Date, value, fill = name), alpha = 0.6, width = 1) +
+  geom_line(data = subset(plot_data, type == "ra" & name == "hospitalized"), aes(Date, value), size = 1, color = admit_col) +
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
-  scale_size_manual(
-    name = "",
-    labels = c("Dagligt", "7-dages gennemsnit"),
-    values = c(0.3, 1),
-    guide = FALSE
-  ) +
-  scale_alpha_manual(
-    name = "",
-    labels = c("Dagligt", "7-dages gennemsnit"),
-    values = c(0.6, 1),
-    guide = FALSE
-  ) +
-  scale_color_manual(
-    name = "",
-    labels = c("Intensiv", "Indlagte"),
-    values = c(darken(admit_col, 0.6), admit_col)
+  scale_fill_manual(
+    name = "Heraf:",
+    labels = c("Ikke-intensiv", "Intensiv"),
+    values = c(lighten(admit_col, 0.3), darken(admit_col, 0.7))
   ) +
   labs(
     y = "Antal",
@@ -28,7 +22,6 @@ read_csv2("../data/tidy_dst_hosp_icu.csv") %>%
     title = "Indlagte med positiv SARS-CoV-2 test",
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: Danmarks Statistik"
   ) +
-  guides(color = guide_legend(override.aes = list(size = 1))) +
   standard_theme +
   theme(
     legend.text = element_text(size = 11),

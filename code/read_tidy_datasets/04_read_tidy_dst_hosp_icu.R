@@ -9,8 +9,8 @@ dst_smit1 %>%
   mutate(
     Date = DSTdate_to_date(Date),
     Variable = case_when(
-      Variable == "Indlagte på Intensiv afdeling ifm. COVID-19" ~ "hospitalized",
-      TRUE ~ "icu"
+      Variable == "Indlagte på Intensiv afdeling ifm. COVID-19" ~ "icu",
+      TRUE ~ "hospitalized"
     )
   ) %>% 
   write_csv2("../data/tidy_dst_hosp_icu.csv")
