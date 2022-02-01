@@ -1,6 +1,3 @@
-ra <- function(x, n = 7, s = 2) {
-  stats::filter(x, rep(1 / n, n), sides = s)
-}
 
 plot_data <- read_csv2("../data/24_reinfektioner_daglig_region.csv", locale = locale(encoding = "ISO-8859-1")) %>%
   rename(

@@ -14,7 +14,7 @@ plot_data %>%
   scale_fill_manual(
     name = "Heraf:",
     labels = c("Ikke-intensiv", "Intensiv"),
-    values = c(lighten(admit_col, 0.3), darken(admit_col, 0.7))
+    values = c(lighten(admit_col, 0.4), darken(admit_col, 0.6))
   ) +
   labs(
     y = "Antal",
