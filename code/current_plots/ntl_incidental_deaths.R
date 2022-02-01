@@ -82,7 +82,7 @@ pred_obs <- weekly_all_deaths %>%
   fill(Deaths, Population, Death_incidence) %>%
   mutate(pool_28 = rollsum(Positive, 4, align = "right", na.pad = TRUE)) %>%
   ungroup() %>%
-  mutate(Pred_deaths = Death_incidence * pool_28) %>%
+  mutate(Pred_deaths = Death_incidence * pool_28 * 1.125) %>% # The extra .125 is an approximation to account for these being summed weekly data.
   group_by(Date) %>%
   summarize(Pred_deaths = sum(Pred_deaths, na.rm = TRUE)) %>%
   full_join(weekly_covid_deaths, by = "Date") %>%

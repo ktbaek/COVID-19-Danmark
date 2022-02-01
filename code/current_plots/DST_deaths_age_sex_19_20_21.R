@@ -117,7 +117,7 @@ all_pop_data %>%
   facet_wrap(~Age, ncol = 7) +
   scale_y_continuous(labels = scales::number) +
   labs(
-    title = "Befolkningsudvikling 2015-2021",
+    title = "Befolkningsudvikling 2015-nu",
     caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
   ) +
   facet_theme +
@@ -169,7 +169,7 @@ plot_layer <- list(
   labs(
     y = "Excess cumulated deaths per 100,000",
     subtitle = "Indicates excess yearly cumulated deaths per 100,000 in the gender- and age group. The baseline is mean cumulated deaths per 100,000 for 2015-2019.",
-    caption = "Kristoffer T. Bæk, data: Danmarks Statistik"
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, data: Danmarks Statistik"
   ),
   facet_wrap(Sex ~ Age, scales = "free_y", ncol = 7),
   guides(color = guide_legend(override.aes = list(alpha = 1, size = 1))),

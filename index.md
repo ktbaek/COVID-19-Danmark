@@ -37,8 +37,8 @@ Der går typisk 2-3 dage før testdata er helt opdateret. På de grafer der vise
 
 ## Hele landet
 
-### Dagligt antal nyindlagte og dødsfald
-Plottene viser antal nyindlagte og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
+### Dagligt antal nyindlæggelser og dødsfald
+Plottene viser antal nyindlæggelser og antal døde for hele landet. Den optrukne linje viser det løbende gennemsnit baseret på et vindue på 7 dage.
 
 Tallene for nyindlagte og døde er pr. 21. december 2021 baseret på alle positive tests (inkl. reinfektioner).
 
@@ -46,6 +46,15 @@ Tallene for nyindlagte og døde er pr. 21. december 2021 baseret på alle positi
 
 ![](/figures/ntl_hosp.png)
 ![](/figures/ntl_deaths.png)
+
+### Dagligt antal indlagte
+Plottet viser antal indlagte heraf indlagte på intensiv. De optrukne linjer viser det løbende gennemsnit baseret på et vindue på 7 dage.
+
+Tallene for indlagte er pr. 21. december 2021 baseret på alle positive tests (inkl. reinfektioner).
+
+``Danmarks statistik datasæt: 'SMIT1'``
+
+![](/figures/dst_hosp_icu.png)
 
 
 ### Dagligt antal positivt testede personer
