@@ -6,12 +6,10 @@ source("functions.R")
 source("plot_styles.R")
 
 files_sources <- list.files("read_tidy_datasets", full.names = TRUE)
-sapply(files_sources, source)
-cat("Read and tidy DONE\n")
+sapply(files_sources, source_echo)
 
 files_sources <- list.files("current_plots", full.names = TRUE)
-sapply(files_sources, source)
-cat("Current plots DONE\n")
+sapply(files_sources, source_echo)
 
 source("update_index_md.R")
 cat("Index updated\n")

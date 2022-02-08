@@ -6,6 +6,13 @@ read_data <- function(path, type = 2, ...) {
     }
 }
 
+source_echo <- function(filepath) {
+  
+  print(filepath)
+  source(filepath)
+  
+}
+
 ra <- function(x, n = 7, s = 2) {
   stats::filter(x, rep(1 / n, n), sides = s)
 }

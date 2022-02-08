@@ -1,4 +1,3 @@
-library(ISOweek)
 
 dst_admitted <- read_csv2("../data/exp_UG_DST_admitted.csv", col_names = TRUE)
 

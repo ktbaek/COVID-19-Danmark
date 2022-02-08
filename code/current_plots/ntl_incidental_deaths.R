@@ -1,4 +1,3 @@
-library(zoo)
 
 case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   filter(
@@ -119,3 +118,26 @@ pred_obs %>%
   standard_theme
 
 ggsave("../figures/ntl_nonincidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+pred_obs %>%
+  pivot_wider() %>% 
+  mutate(covid_deaths = Obs_deaths - Pred_deaths) %>% 
+  select(-Obs_deaths) %>% 
+  pivot_longer(-Date) %>% 
+  filter(
+    Date <= last_wday_date(today, 1),
+    Date > ymd("2020-04_01")) %>%
+  ggplot() +
+  geom_bar(aes(Date, value, fill = name), stat = "identity", position = "fill", width = 7) +
+  scale_fill_manual(name = "", labels = c("Ikke tilfældig", "Tilfældig"), values = c("gray85", test_col)) +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.0)) +
+  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x * 100, " %"), expand = expansion(mult = 0.02)) +
+  guides(color = guide_legend(override.aes = list(size = 1.5))) +
+  labs(
+    y = "Andel",
+    title = 'Estimat af andelen af "tilfældige" Covid dødsfald',
+    caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
+  ) +
+  standard_theme
+
+ggsave("../figures/ntl_incidental_deaths_share.png", width = 18, height = 10, units = "cm", dpi = 300)

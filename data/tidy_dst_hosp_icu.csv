@@ -1,1353 +1,1367 @@
 Variable;Date;Daily
-icu;2020-03-21; 42
-icu;2020-03-22; 46
-icu;2020-03-23; 55
-icu;2020-03-24; 59
-icu;2020-03-25; 87
-icu;2020-03-26; 94
-icu;2020-03-27;109
-icu;2020-03-28;121
-icu;2020-03-29;131
-icu;2020-03-30;137
-icu;2020-03-31;145
-icu;2020-04-01;146
-icu;2020-04-02;146
-icu;2020-04-03;139
-icu;2020-04-04;137
-icu;2020-04-05;138
-icu;2020-04-06;133
-icu;2020-04-07;127
-icu;2020-04-08;127
-icu;2020-04-09;120
-icu;2020-04-10;113
-icu;2020-04-11;106
-icu;2020-04-12;104
-icu;2020-04-13;100
-icu;2020-04-14; 93
-icu;2020-04-15; 89
-icu;2020-04-16; 92
-icu;2020-04-17; 93
-icu;2020-04-18; 87
-icu;2020-04-19; 84
-icu;2020-04-20; 84
-icu;2020-04-21; 81
-icu;2020-04-22; 80
-icu;2020-04-23; 74
-icu;2020-04-24; 69
-icu;2020-04-25; 70
-icu;2020-04-26; 70
-icu;2020-04-27; 72
-icu;2020-04-28; 66
-icu;2020-04-29; 65
-icu;2020-04-30; 62
-icu;2020-05-01; 61
-icu;2020-05-02; 60
-icu;2020-05-03; 62
-icu;2020-05-04; 57
-icu;2020-05-05; 49
-icu;2020-05-06; 46
-icu;2020-05-07; 43
-icu;2020-05-08; 42
-icu;2020-05-09; 39
-icu;2020-05-10; 39
-icu;2020-05-11; 42
-icu;2020-05-12; 42
-icu;2020-05-13; 37
-icu;2020-05-14; 35
-icu;2020-05-15; 32
-icu;2020-05-16; 28
-icu;2020-05-17; 27
-icu;2020-05-18; 26
-icu;2020-05-19; 25
-icu;2020-05-20; 25
-icu;2020-05-21; 23
-icu;2020-05-22; 23
-icu;2020-05-23; 19
-icu;2020-05-24; 20
-icu;2020-05-25; 19
-icu;2020-05-26; 22
-icu;2020-05-27; 22
-icu;2020-05-28; 20
-icu;2020-05-29; 18
-icu;2020-05-30; 20
-icu;2020-05-31; 20
-icu;2020-06-01; 20
-icu;2020-06-02; 21
-icu;2020-06-03; 20
-icu;2020-06-04; 17
-icu;2020-06-05; 17
-icu;2020-06-06; 15
-icu;2020-06-07; 15
-icu;2020-06-08; 16
-icu;2020-06-09; 15
-icu;2020-06-10; 17
-icu;2020-06-11; 13
-icu;2020-06-12; 12
-icu;2020-06-13;  9
-icu;2020-06-14;  9
-icu;2020-06-15;  9
-icu;2020-06-16;  8
-icu;2020-06-17;  6
-icu;2020-06-18;  6
-icu;2020-06-19;  6
-icu;2020-06-20;  6
-icu;2020-06-21;  6
-icu;2020-06-22;  7
-icu;2020-06-23;  8
-icu;2020-06-24;  8
-icu;2020-06-25;  9
-icu;2020-06-26; 11
-icu;2020-06-27; 11
-icu;2020-06-28; 10
-icu;2020-06-29;  9
-icu;2020-06-30; 10
-icu;2020-07-01; 11
-icu;2020-07-02;  9
-icu;2020-07-03;  6
-icu;2020-07-04;  6
-icu;2020-07-05;  6
-icu;2020-07-06;  7
-icu;2020-07-07;  5
-icu;2020-07-08;  5
-icu;2020-07-09;  5
-icu;2020-07-10;  4
-icu;2020-07-11;  5
-icu;2020-07-12;  6
-icu;2020-07-13;  6
-icu;2020-07-14;  6
-icu;2020-07-15;  6
-icu;2020-07-16;  5
-icu;2020-07-17;  5
-icu;2020-07-18;  2
-icu;2020-07-19;  3
-icu;2020-07-20;  3
-icu;2020-07-21;  4
-icu;2020-07-22;  4
-icu;2020-07-23;  3
-icu;2020-07-24;  3
-icu;2020-07-25;  3
-icu;2020-07-26;  3
-icu;2020-07-27;  3
-icu;2020-07-28;  3
-icu;2020-07-29;  3
-icu;2020-07-30;  3
-icu;2020-07-31;  3
-icu;2020-08-01;  2
-icu;2020-08-02;  2
-icu;2020-08-03;  2
-icu;2020-08-04;  3
-icu;2020-08-05;  2
-icu;2020-08-06;  2
-icu;2020-08-07;  2
-icu;2020-08-08;  2
-icu;2020-08-09;  2
-icu;2020-08-10;  2
-icu;2020-08-11;  2
-icu;2020-08-12;  1
-icu;2020-08-13;  1
-icu;2020-08-14;  1
-icu;2020-08-15;  0
-icu;2020-08-16;  0
-icu;2020-08-17;  1
-icu;2020-08-18;  1
-icu;2020-08-19;  1
-icu;2020-08-20;  1
-icu;2020-08-21;  1
-icu;2020-08-22;  1
-icu;2020-08-23;  2
-icu;2020-08-24;  3
-icu;2020-08-25;  3
-icu;2020-08-26;  3
-icu;2020-08-27;  2
-icu;2020-08-28;  2
-icu;2020-08-29;  4
-icu;2020-08-30;  4
-icu;2020-08-31;  4
-icu;2020-09-01;  4
-icu;2020-09-02;  4
-icu;2020-09-03;  3
-icu;2020-09-04;  3
-icu;2020-09-05;  3
-icu;2020-09-06;  4
-icu;2020-09-07;  3
-icu;2020-09-08;  3
-icu;2020-09-09;  5
-icu;2020-09-10;  5
-icu;2020-09-11;  7
-icu;2020-09-12;  4
-icu;2020-09-13;  4
-icu;2020-09-14;  4
-icu;2020-09-15;  3
-icu;2020-09-16;  2
-icu;2020-09-17;  3
-icu;2020-09-18;  3
-icu;2020-09-19;  4
-icu;2020-09-20;  9
-icu;2020-09-21; 12
-icu;2020-09-22; 14
-icu;2020-09-23; 15
-icu;2020-09-24; 14
-icu;2020-09-25; 16
-icu;2020-09-26; 17
-icu;2020-09-27; 17
-icu;2020-09-28; 17
-icu;2020-09-29; 15
-icu;2020-09-30; 15
-icu;2020-10-01; 13
-icu;2020-10-02; 17
-icu;2020-10-03; 17
-icu;2020-10-04; 18
-icu;2020-10-05; 17
-icu;2020-10-06; 15
-icu;2020-10-07; 15
-icu;2020-10-08; 17
-icu;2020-10-09; 18
-icu;2020-10-10; 20
-icu;2020-10-11; 19
-icu;2020-10-12; 19
-icu;2020-10-13; 19
-icu;2020-10-14; 17
-icu;2020-10-15; 17
-icu;2020-10-16; 16
-icu;2020-10-17; 16
-icu;2020-10-18; 17
-icu;2020-10-19; 18
-icu;2020-10-20; 15
-icu;2020-10-21; 16
-icu;2020-10-22; 17
-icu;2020-10-23; 18
-icu;2020-10-24; 17
-icu;2020-10-25; 18
-icu;2020-10-26; 17
-icu;2020-10-27; 19
-icu;2020-10-28; 18
-icu;2020-10-29; 17
-icu;2020-10-30; 17
-icu;2020-10-31; 19
-icu;2020-11-01; 19
-icu;2020-11-02; 23
-icu;2020-11-03; 22
-icu;2020-11-04; 24
-icu;2020-11-05; 24
-icu;2020-11-06; 23
-icu;2020-11-07; 29
-icu;2020-11-08; 30
-icu;2020-11-09; 33
-icu;2020-11-10; 33
-icu;2020-11-11; 40
-icu;2020-11-12; 44
-icu;2020-11-13; 40
-icu;2020-11-14; 41
-icu;2020-11-15; 45
-icu;2020-11-16; 44
-icu;2020-11-17; 41
-icu;2020-11-18; 43
-icu;2020-11-19; 41
-icu;2020-11-20; 39
-icu;2020-11-21; 40
-icu;2020-11-22; 39
-icu;2020-11-23; 41
-icu;2020-11-24; 40
-icu;2020-11-25; 42
-icu;2020-11-26; 42
-icu;2020-11-27; 46
-icu;2020-11-28; 42
-icu;2020-11-29; 43
-icu;2020-11-30; 44
-icu;2020-12-01; 38
-icu;2020-12-02; 36
-icu;2020-12-03; 38
-icu;2020-12-04; 40
-icu;2020-12-05; 39
-icu;2020-12-06; 42
-icu;2020-12-07; 43
-icu;2020-12-08; 42
-icu;2020-12-09; 39
-icu;2020-12-10; 40
-icu;2020-12-11; 48
-icu;2020-12-12; 54
-icu;2020-12-13; 58
-icu;2020-12-14; 61
-icu;2020-12-15; 68
-icu;2020-12-16; 68
-icu;2020-12-17; 76
-icu;2020-12-18; 79
-icu;2020-12-19; 86
-icu;2020-12-20; 87
-icu;2020-12-21; 87
-icu;2020-12-22; 83
-icu;2020-12-23; 91
-icu;2020-12-24; 97
-icu;2020-12-25; 98
-icu;2020-12-26; 96
-icu;2020-12-27;102
-icu;2020-12-28;113
-icu;2020-12-29;128
-icu;2020-12-30;136
-icu;2020-12-31;132
-icu;2021-01-01;129
-icu;2021-01-02;136
-icu;2021-01-03;136
-icu;2021-01-04;140
-icu;2021-01-05;141
-icu;2021-01-06;137
-icu;2021-01-07;134
-icu;2021-01-08;138
-icu;2021-01-09;132
-icu;2021-01-10;138
-icu;2021-01-11;138
-icu;2021-01-12;135
-icu;2021-01-13;137
-icu;2021-01-14;128
-icu;2021-01-15;129
-icu;2021-01-16;137
-icu;2021-01-17;131
-icu;2021-01-18;132
-icu;2021-01-19;132
-icu;2021-01-20;132
-icu;2021-01-21;136
-icu;2021-01-22;130
-icu;2021-01-23;125
-icu;2021-01-24;124
-icu;2021-01-25;123
-icu;2021-01-26;119
-icu;2021-01-27;112
-icu;2021-01-28;113
-icu;2021-01-29;103
-icu;2021-01-30;102
-icu;2021-01-31; 97
-icu;2021-02-01; 94
-icu;2021-02-02; 93
-icu;2021-02-03; 90
-icu;2021-02-04; 86
-icu;2021-02-05; 82
-icu;2021-02-06; 78
-icu;2021-02-07; 76
-icu;2021-02-08; 73
-icu;2021-02-09; 74
-icu;2021-02-10; 74
-icu;2021-02-11; 69
-icu;2021-02-12; 68
-icu;2021-02-13; 64
-icu;2021-02-14; 65
-icu;2021-02-15; 68
-icu;2021-02-16; 63
-icu;2021-02-17; 57
-icu;2021-02-18; 57
-icu;2021-02-19; 51
-icu;2021-02-20; 51
-icu;2021-02-21; 53
-icu;2021-02-22; 51
-icu;2021-02-23; 48
-icu;2021-02-24; 47
-icu;2021-02-25; 45
-icu;2021-02-26; 43
-icu;2021-02-27; 44
-icu;2021-02-28; 41
-icu;2021-03-01; 44
-icu;2021-03-02; 39
-icu;2021-03-03; 34
-icu;2021-03-04; 30
-icu;2021-03-05; 31
-icu;2021-03-06; 33
-icu;2021-03-07; 37
-icu;2021-03-08; 38
-icu;2021-03-09; 38
-icu;2021-03-10; 43
-icu;2021-03-11; 44
-icu;2021-03-12; 38
-icu;2021-03-13; 39
-icu;2021-03-14; 39
-icu;2021-03-15; 40
-icu;2021-03-16; 43
-icu;2021-03-17; 41
-icu;2021-03-18; 38
-icu;2021-03-19; 38
-icu;2021-03-20; 40
-icu;2021-03-21; 40
-icu;2021-03-22; 42
-icu;2021-03-23; 46
-icu;2021-03-24; 46
-icu;2021-03-25; 44
-icu;2021-03-26; 40
-icu;2021-03-27; 41
-icu;2021-03-28; 43
-icu;2021-03-29; 41
-icu;2021-03-30; 41
-icu;2021-03-31; 43
-icu;2021-04-01; 39
-icu;2021-04-02; 41
-icu;2021-04-03; 39
-icu;2021-04-04; 39
-icu;2021-04-05; 40
-icu;2021-04-06; 38
-icu;2021-04-07; 34
-icu;2021-04-08; 37
-icu;2021-04-09; 37
-icu;2021-04-10; 38
-icu;2021-04-11; 38
-icu;2021-04-12; 40
-icu;2021-04-13; 39
-icu;2021-04-14; 41
-icu;2021-04-15; 37
-icu;2021-04-16; 36
-icu;2021-04-17; 40
-icu;2021-04-18; 35
-icu;2021-04-19; 36
-icu;2021-04-20; 38
-icu;2021-04-21; 41
-icu;2021-04-22; 44
-icu;2021-04-23; 42
-icu;2021-04-24; 40
-icu;2021-04-25; 40
-icu;2021-04-26; 39
-icu;2021-04-27; 36
-icu;2021-04-28; 32
-icu;2021-04-29; 30
-icu;2021-04-30; 35
-icu;2021-05-01; 37
-icu;2021-05-02; 37
-icu;2021-05-03; 42
-icu;2021-05-04; 43
-icu;2021-05-05; 40
-icu;2021-05-06; 34
-icu;2021-05-07; 31
-icu;2021-05-08; 30
-icu;2021-05-09; 31
-icu;2021-05-10; 27
-icu;2021-05-11; 32
-icu;2021-05-12; 29
-icu;2021-05-13; 36
-icu;2021-05-14; 33
-icu;2021-05-15; 33
-icu;2021-05-16; 32
-icu;2021-05-17; 29
-icu;2021-05-18; 31
-icu;2021-05-19; 33
-icu;2021-05-20; 33
-icu;2021-05-21; 31
-icu;2021-05-22; 32
-icu;2021-05-23; 35
-icu;2021-05-24; 37
-icu;2021-05-25; 36
-icu;2021-05-26; 36
-icu;2021-05-27; 36
-icu;2021-05-28; 33
-icu;2021-05-29; 33
-icu;2021-05-30; 32
-icu;2021-05-31; 34
-icu;2021-06-01; 36
-icu;2021-06-02; 37
-icu;2021-06-03; 34
-icu;2021-06-04; 32
-icu;2021-06-05; 30
-icu;2021-06-06; 29
-icu;2021-06-07; 27
-icu;2021-06-08; 27
-icu;2021-06-09; 27
-icu;2021-06-10; 22
-icu;2021-06-11; 23
-icu;2021-06-12; 20
-icu;2021-06-13; 20
-icu;2021-06-14; 20
-icu;2021-06-15; 19
-icu;2021-06-16; 20
-icu;2021-06-17; 19
-icu;2021-06-18; 20
-icu;2021-06-19; 20
-icu;2021-06-20; 19
-icu;2021-06-21; 17
-icu;2021-06-22; 18
-icu;2021-06-23; 15
-icu;2021-06-24; 16
-icu;2021-06-25; 17
-icu;2021-06-26; 17
-icu;2021-06-27; 17
-icu;2021-06-28; 14
-icu;2021-06-29; 14
-icu;2021-06-30; 12
-icu;2021-07-01; 12
-icu;2021-07-02; 11
-icu;2021-07-03; 10
-icu;2021-07-04;  9
-icu;2021-07-05;  9
-icu;2021-07-06;  8
-icu;2021-07-07;  9
-icu;2021-07-08;  8
-icu;2021-07-09;  9
-icu;2021-07-10;  9
-icu;2021-07-11;  9
-icu;2021-07-12;  9
-icu;2021-07-13; 10
-icu;2021-07-14; 12
-icu;2021-07-15; 11
-icu;2021-07-16; 11
-icu;2021-07-17; 10
-icu;2021-07-18; 10
-icu;2021-07-19;  9
-icu;2021-07-20; 10
-icu;2021-07-21; 12
-icu;2021-07-22; 13
-icu;2021-07-23; 11
-icu;2021-07-24; 10
-icu;2021-07-25; 10
-icu;2021-07-26; 10
-icu;2021-07-27; 10
-icu;2021-07-28; 10
-icu;2021-07-29; 10
-icu;2021-07-30;  8
-icu;2021-07-31;  8
-icu;2021-08-01;  8
-icu;2021-08-02;  8
-icu;2021-08-03;  8
-icu;2021-08-04;  8
-icu;2021-08-05;  9
-icu;2021-08-06; 12
-icu;2021-08-07; 12
-icu;2021-08-08; 13
-icu;2021-08-09; 13
-icu;2021-08-10; 14
-icu;2021-08-11; 18
-icu;2021-08-12; 16
-icu;2021-08-13; 14
-icu;2021-08-14; 16
-icu;2021-08-15; 15
-icu;2021-08-16; 15
-icu;2021-08-17; 15
-icu;2021-08-18; 16
-icu;2021-08-19; 15
-icu;2021-08-20; 16
-icu;2021-08-21; 15
-icu;2021-08-22; 20
-icu;2021-08-23; 18
-icu;2021-08-24; 20
-icu;2021-08-25; 21
-icu;2021-08-26; 19
-icu;2021-08-27; 19
-icu;2021-08-28; 19
-icu;2021-08-29; 19
-icu;2021-08-30; 22
-icu;2021-08-31; 21
-icu;2021-09-01; 25
-icu;2021-09-02; 25
-icu;2021-09-03; 26
-icu;2021-09-04; 26
-icu;2021-09-05; 26
-icu;2021-09-06; 26
-icu;2021-09-07; 26
-icu;2021-09-08; 28
-icu;2021-09-09; 28
-icu;2021-09-10; 29
-icu;2021-09-11; 32
-icu;2021-09-12; 32
-icu;2021-09-13; 30
-icu;2021-09-14; 30
-icu;2021-09-15; 28
-icu;2021-09-16; 26
-icu;2021-09-17; 24
-icu;2021-09-18; 23
-icu;2021-09-19; 23
-icu;2021-09-20; 22
-icu;2021-09-21; 22
-icu;2021-09-22; 22
-icu;2021-09-23; 18
-icu;2021-09-24; 17
-icu;2021-09-25; 18
-icu;2021-09-26; 17
-icu;2021-09-27; 18
-icu;2021-09-28; 15
-icu;2021-09-29; 16
-icu;2021-09-30; 18
-icu;2021-10-01; 15
-icu;2021-10-02; 12
-icu;2021-10-03; 12
-icu;2021-10-04; 12
-icu;2021-10-05; 13
-icu;2021-10-06; 11
-icu;2021-10-07; 11
-icu;2021-10-08; 14
-icu;2021-10-09; 17
-icu;2021-10-10; 15
-icu;2021-10-11; 17
-icu;2021-10-12; 17
-icu;2021-10-13; 18
-icu;2021-10-14; 16
-icu;2021-10-15; 14
-icu;2021-10-16; 15
-icu;2021-10-17; 15
-icu;2021-10-18; 13
-icu;2021-10-19; 15
-icu;2021-10-20; 11
-icu;2021-10-21; 14
-icu;2021-10-22; 16
-icu;2021-10-23; 16
-icu;2021-10-24; 19
-icu;2021-10-25; 20
-icu;2021-10-26; 22
-icu;2021-10-27; 23
-icu;2021-10-28; 24
-icu;2021-10-29; 28
-icu;2021-10-30; 26
-icu;2021-10-31; 24
-icu;2021-11-01; 29
-icu;2021-11-02; 32
-icu;2021-11-03; 30
-icu;2021-11-04; 31
-icu;2021-11-05; 35
-icu;2021-11-06; 36
-icu;2021-11-07; 40
-icu;2021-11-08; 36
-icu;2021-11-09; 39
-icu;2021-11-10; 39
-icu;2021-11-11; 41
-icu;2021-11-12; 43
-icu;2021-11-13; 38
-icu;2021-11-14; 40
-icu;2021-11-15; 40
-icu;2021-11-16; 44
-icu;2021-11-17; 47
-icu;2021-11-18; 50
-icu;2021-11-19; 48
-icu;2021-11-20; 50
-icu;2021-11-21; 51
-icu;2021-11-22; 50
-icu;2021-11-23; 49
-icu;2021-11-24; 49
-icu;2021-11-25; 48
-icu;2021-11-26; 53
-icu;2021-11-27; 50
-icu;2021-11-28; 51
-icu;2021-11-29; 60
-icu;2021-11-30; 60
-icu;2021-12-01; 61
-icu;2021-12-02; 57
-icu;2021-12-03; 57
-icu;2021-12-04; 58
-icu;2021-12-05; 58
-icu;2021-12-06; 65
-icu;2021-12-07; 66
-icu;2021-12-08; 66
-icu;2021-12-09; 67
-icu;2021-12-10; 65
-icu;2021-12-11; 60
-icu;2021-12-12; 65
-icu;2021-12-13; 67
-icu;2021-12-14; 70
-icu;2021-12-15; 66
-icu;2021-12-16; 61
-icu;2021-12-17; 63
-icu;2021-12-18; 65
-icu;2021-12-19; 63
-icu;2021-12-20; 66
-icu;2021-12-21; 67
-icu;2021-12-22; 66
-icu;2021-12-23; 72
-icu;2021-12-24; 74
-icu;2021-12-25; 73
-icu;2021-12-26; 71
-icu;2021-12-27; 70
-icu;2021-12-28; 71
-icu;2021-12-29; 77
-icu;2021-12-30; 75
-icu;2021-12-31; 73
-icu;2022-01-01; 73
-icu;2022-01-02; 76
-icu;2022-01-03; 73
-icu;2022-01-04; 77
-icu;2022-01-05; 80
-icu;2022-01-06; 82
-icu;2022-01-07; 78
-icu;2022-01-08; 78
-icu;2022-01-09; 77
-icu;2022-01-10; 74
-icu;2022-01-11; 73
-icu;2022-01-12; 73
-icu;2022-01-13; 64
-icu;2022-01-14; 60
-icu;2022-01-15; 59
-icu;2022-01-16; 59
-icu;2022-01-17; 52
-icu;2022-01-18; 49
-icu;2022-01-19; 50
-icu;2022-01-20; 49
-icu;2022-01-21; 44
-icu;2022-01-22; 45
-icu;2022-01-23; 42
-icu;2022-01-24; 43
-icu;2022-01-25; 44
-hospitalized;2020-03-21;206
-hospitalized;2020-03-22;232
-hospitalized;2020-03-23;254
-hospitalized;2020-03-24;301
-hospitalized;2020-03-25;350
-hospitalized;2020-03-26;386
-hospitalized;2020-03-27;430
-hospitalized;2020-03-28;459
-hospitalized;2020-03-29;499
-hospitalized;2020-03-30;533
-hospitalized;2020-03-31;529
-hospitalized;2020-04-01;535
-hospitalized;2020-04-02;527
-hospitalized;2020-04-03;511
-hospitalized;2020-04-04;498
-hospitalized;2020-04-05;490
-hospitalized;2020-04-06;488
-hospitalized;2020-04-07;466
-hospitalized;2020-04-08;446
-hospitalized;2020-04-09;427
-hospitalized;2020-04-10;398
-hospitalized;2020-04-11;402
-hospitalized;2020-04-12;391
-hospitalized;2020-04-13;381
-hospitalized;2020-04-14;374
-hospitalized;2020-04-15;355
-hospitalized;2020-04-16;341
-hospitalized;2020-04-17;337
-hospitalized;2020-04-18;304
-hospitalized;2020-04-19;303
-hospitalized;2020-04-20;321
-hospitalized;2020-04-21;315
-hospitalized;2020-04-22;309
-hospitalized;2020-04-23;303
-hospitalized;2020-04-24;303
-hospitalized;2020-04-25;276
-hospitalized;2020-04-26;273
-hospitalized;2020-04-27;293
-hospitalized;2020-04-28;271
-hospitalized;2020-04-29;254
-hospitalized;2020-04-30;236
-hospitalized;2020-05-01;229
-hospitalized;2020-05-02;214
-hospitalized;2020-05-03;225
-hospitalized;2020-05-04;228
-hospitalized;2020-05-05;209
-hospitalized;2020-05-06;190
-hospitalized;2020-05-07;178
-hospitalized;2020-05-08;183
-hospitalized;2020-05-09;169
-hospitalized;2020-05-10;174
-hospitalized;2020-05-11;173
-hospitalized;2020-05-12;151
-hospitalized;2020-05-13;138
-hospitalized;2020-05-14;128
-hospitalized;2020-05-15;120
-hospitalized;2020-05-16;115
-hospitalized;2020-05-17;113
-hospitalized;2020-05-18;118
-hospitalized;2020-05-19;115
-hospitalized;2020-05-20;103
-hospitalized;2020-05-21;100
-hospitalized;2020-05-22;100
-hospitalized;2020-05-23;102
-hospitalized;2020-05-24;100
-hospitalized;2020-05-25;102
-hospitalized;2020-05-26; 97
-hospitalized;2020-05-27; 91
-hospitalized;2020-05-28; 96
-hospitalized;2020-05-29; 93
-hospitalized;2020-05-30; 87
-hospitalized;2020-05-31; 85
-hospitalized;2020-06-01; 88
-hospitalized;2020-06-02; 86
-hospitalized;2020-06-03; 82
-hospitalized;2020-06-04; 76
-hospitalized;2020-06-05; 66
-hospitalized;2020-06-06; 68
-hospitalized;2020-06-07; 65
-hospitalized;2020-06-08; 66
-hospitalized;2020-06-09; 59
-hospitalized;2020-06-10; 57
-hospitalized;2020-06-11; 51
-hospitalized;2020-06-12; 51
-hospitalized;2020-06-13; 47
-hospitalized;2020-06-14; 49
-hospitalized;2020-06-15; 46
-hospitalized;2020-06-16; 43
-hospitalized;2020-06-17; 39
-hospitalized;2020-06-18; 38
-hospitalized;2020-06-19; 37
-hospitalized;2020-06-20; 39
-hospitalized;2020-06-21; 38
-hospitalized;2020-06-22; 37
-hospitalized;2020-06-23; 32
-hospitalized;2020-06-24; 33
-hospitalized;2020-06-25; 36
-hospitalized;2020-06-26; 31
-hospitalized;2020-06-27; 29
-hospitalized;2020-06-28; 30
-hospitalized;2020-06-29; 35
-hospitalized;2020-06-30; 32
-hospitalized;2020-07-01; 29
-hospitalized;2020-07-02; 29
-hospitalized;2020-07-03; 27
-hospitalized;2020-07-04; 26
-hospitalized;2020-07-05; 24
-hospitalized;2020-07-06; 23
-hospitalized;2020-07-07; 17
-hospitalized;2020-07-08; 18
-hospitalized;2020-07-09; 18
-hospitalized;2020-07-10; 17
-hospitalized;2020-07-11; 15
-hospitalized;2020-07-12; 18
-hospitalized;2020-07-13; 18
-hospitalized;2020-07-14; 17
-hospitalized;2020-07-15; 19
-hospitalized;2020-07-16; 17
-hospitalized;2020-07-17; 20
-hospitalized;2020-07-18; 16
-hospitalized;2020-07-19; 19
-hospitalized;2020-07-20; 18
-hospitalized;2020-07-21; 18
-hospitalized;2020-07-22; 16
-hospitalized;2020-07-23; 19
-hospitalized;2020-07-24; 16
-hospitalized;2020-07-25; 17
-hospitalized;2020-07-26; 23
-hospitalized;2020-07-27; 23
-hospitalized;2020-07-28; 22
-hospitalized;2020-07-29; 21
-hospitalized;2020-07-30; 18
-hospitalized;2020-07-31; 18
-hospitalized;2020-08-01; 16
-hospitalized;2020-08-02; 20
-hospitalized;2020-08-03; 24
-hospitalized;2020-08-04; 24
-hospitalized;2020-08-05; 23
-hospitalized;2020-08-06; 24
-hospitalized;2020-08-07; 25
-hospitalized;2020-08-08; 21
-hospitalized;2020-08-09; 20
-hospitalized;2020-08-10; 23
-hospitalized;2020-08-11; 20
-hospitalized;2020-08-12; 16
-hospitalized;2020-08-13; 13
-hospitalized;2020-08-14; 14
-hospitalized;2020-08-15; 14
-hospitalized;2020-08-16; 12
-hospitalized;2020-08-17; 16
-hospitalized;2020-08-18; 18
-hospitalized;2020-08-19; 16
-hospitalized;2020-08-20; 20
-hospitalized;2020-08-21; 22
-hospitalized;2020-08-22; 22
-hospitalized;2020-08-23; 19
-hospitalized;2020-08-24; 20
-hospitalized;2020-08-25; 21
-hospitalized;2020-08-26; 19
-hospitalized;2020-08-27; 19
-hospitalized;2020-08-28; 21
-hospitalized;2020-08-29; 21
-hospitalized;2020-08-30; 21
-hospitalized;2020-08-31; 23
-hospitalized;2020-09-01; 20
-hospitalized;2020-09-02; 15
-hospitalized;2020-09-03; 17
-hospitalized;2020-09-04; 18
-hospitalized;2020-09-05; 16
-hospitalized;2020-09-06; 27
-hospitalized;2020-09-07; 29
-hospitalized;2020-09-08; 28
-hospitalized;2020-09-09; 30
-hospitalized;2020-09-10; 35
-hospitalized;2020-09-11; 44
-hospitalized;2020-09-12; 43
-hospitalized;2020-09-13; 47
-hospitalized;2020-09-14; 50
-hospitalized;2020-09-15; 55
-hospitalized;2020-09-16; 51
-hospitalized;2020-09-17; 60
-hospitalized;2020-09-18; 58
-hospitalized;2020-09-19; 62
-hospitalized;2020-09-20; 67
-hospitalized;2020-09-21; 75
-hospitalized;2020-09-22; 79
-hospitalized;2020-09-23; 78
-hospitalized;2020-09-24; 95
-hospitalized;2020-09-25;101
-hospitalized;2020-09-26; 97
-hospitalized;2020-09-27; 95
-hospitalized;2020-09-28;110
-hospitalized;2020-09-29;107
-hospitalized;2020-09-30;102
-hospitalized;2020-10-01;109
-hospitalized;2020-10-02;106
-hospitalized;2020-10-03;105
-hospitalized;2020-10-04;105
-hospitalized;2020-10-05;120
-hospitalized;2020-10-06;124
-hospitalized;2020-10-07;116
-hospitalized;2020-10-08;115
-hospitalized;2020-10-09;106
-hospitalized;2020-10-10;103
-hospitalized;2020-10-11;102
-hospitalized;2020-10-12;107
-hospitalized;2020-10-13;103
-hospitalized;2020-10-14;104
-hospitalized;2020-10-15;104
-hospitalized;2020-10-16;110
-hospitalized;2020-10-17;110
-hospitalized;2020-10-18;119
-hospitalized;2020-10-19;129
-hospitalized;2020-10-20;128
-hospitalized;2020-10-21;122
-hospitalized;2020-10-22;124
-hospitalized;2020-10-23;125
-hospitalized;2020-10-24;120
-hospitalized;2020-10-25;127
-hospitalized;2020-10-26;145
-hospitalized;2020-10-27;137
-hospitalized;2020-10-28;136
-hospitalized;2020-10-29;139
-hospitalized;2020-10-30;144
-hospitalized;2020-10-31;147
-hospitalized;2020-11-01;156
-hospitalized;2020-11-02;174
-hospitalized;2020-11-03;169
-hospitalized;2020-11-04;184
-hospitalized;2020-11-05;182
-hospitalized;2020-11-06;191
-hospitalized;2020-11-07;187
-hospitalized;2020-11-08;188
-hospitalized;2020-11-09;196
-hospitalized;2020-11-10;211
-hospitalized;2020-11-11;216
-hospitalized;2020-11-12;239
-hospitalized;2020-11-13;236
-hospitalized;2020-11-14;243
-hospitalized;2020-11-15;259
-hospitalized;2020-11-16;267
-hospitalized;2020-11-17;259
-hospitalized;2020-11-18;248
-hospitalized;2020-11-19;255
-hospitalized;2020-11-20;244
-hospitalized;2020-11-21;237
-hospitalized;2020-11-22;254
-hospitalized;2020-11-23;261
-hospitalized;2020-11-24;255
-hospitalized;2020-11-25;251
-hospitalized;2020-11-26;244
-hospitalized;2020-11-27;254
-hospitalized;2020-11-28;249
-hospitalized;2020-11-29;256
-hospitalized;2020-11-30;259
-hospitalized;2020-12-01;254
-hospitalized;2020-12-02;266
-hospitalized;2020-12-03;267
-hospitalized;2020-12-04;293
-hospitalized;2020-12-05;279
-hospitalized;2020-12-06;302
-hospitalized;2020-12-07;328
-hospitalized;2020-12-08;354
-hospitalized;2020-12-09;349
-hospitalized;2020-12-10;342
-hospitalized;2020-12-11;361
-hospitalized;2020-12-12;371
-hospitalized;2020-12-13;390
-hospitalized;2020-12-14;429
-hospitalized;2020-12-15;439
-hospitalized;2020-12-16;493
-hospitalized;2020-12-17;516
-hospitalized;2020-12-18;568
-hospitalized;2020-12-19;606
-hospitalized;2020-12-20;661
-hospitalized;2020-12-21;713
-hospitalized;2020-12-22;723
-hospitalized;2020-12-23;720
-hospitalized;2020-12-24;724
-hospitalized;2020-12-25;726
-hospitalized;2020-12-26;776
-hospitalized;2020-12-27;817
-hospitalized;2020-12-28;872
-hospitalized;2020-12-29;900
-hospitalized;2020-12-30;926
-hospitalized;2020-12-31;879
-hospitalized;2021-01-01;885
-hospitalized;2021-01-02;944
-hospitalized;2021-01-03;937
-hospitalized;2021-01-04;964
-hospitalized;2021-01-05;942
-hospitalized;2021-01-06;886
-hospitalized;2021-01-07;861
-hospitalized;2021-01-08;864
-hospitalized;2021-01-09;833
-hospitalized;2021-01-10;875
-hospitalized;2021-01-11;920
-hospitalized;2021-01-12;917
-hospitalized;2021-01-13;859
-hospitalized;2021-01-14;839
-hospitalized;2021-01-15;792
-hospitalized;2021-01-16;779
-hospitalized;2021-01-17;799
-hospitalized;2021-01-18;817
-hospitalized;2021-01-19;792
-hospitalized;2021-01-20;771
-hospitalized;2021-01-21;745
-hospitalized;2021-01-22;745
-hospitalized;2021-01-23;703
-hospitalized;2021-01-24;725
-hospitalized;2021-01-25;738
-hospitalized;2021-01-26;684
-hospitalized;2021-01-27;666
-hospitalized;2021-01-28;611
-hospitalized;2021-01-29;583
-hospitalized;2021-01-30;541
-hospitalized;2021-01-31;529
-hospitalized;2021-02-01;544
-hospitalized;2021-02-02;504
-hospitalized;2021-02-03;482
-hospitalized;2021-02-04;444
-hospitalized;2021-02-05;405
-hospitalized;2021-02-06;382
-hospitalized;2021-02-07;378
-hospitalized;2021-02-08;400
-hospitalized;2021-02-09;371
-hospitalized;2021-02-10;370
-hospitalized;2021-02-11;357
-hospitalized;2021-02-12;337
-hospitalized;2021-02-13;308
-hospitalized;2021-02-14;309
-hospitalized;2021-02-15;315
-hospitalized;2021-02-16;298
-hospitalized;2021-02-17;280
-hospitalized;2021-02-18;269
-hospitalized;2021-02-19;264
-hospitalized;2021-02-20;248
-hospitalized;2021-02-21;248
-hospitalized;2021-02-22;254
-hospitalized;2021-02-23;247
-hospitalized;2021-02-24;238
-hospitalized;2021-02-25;235
-hospitalized;2021-02-26;231
-hospitalized;2021-02-27;217
-hospitalized;2021-02-28;231
-hospitalized;2021-03-01;243
-hospitalized;2021-03-02;232
-hospitalized;2021-03-03;225
-hospitalized;2021-03-04;217
-hospitalized;2021-03-05;215
-hospitalized;2021-03-06;211
-hospitalized;2021-03-07;224
-hospitalized;2021-03-08;234
-hospitalized;2021-03-09;221
-hospitalized;2021-03-10;230
-hospitalized;2021-03-11;222
-hospitalized;2021-03-12;225
-hospitalized;2021-03-13;213
-hospitalized;2021-03-14;217
-hospitalized;2021-03-15;211
-hospitalized;2021-03-16;207
-hospitalized;2021-03-17;196
-hospitalized;2021-03-18;195
-hospitalized;2021-03-19;191
-hospitalized;2021-03-20;179
-hospitalized;2021-03-21;184
-hospitalized;2021-03-22;192
-hospitalized;2021-03-23;214
-hospitalized;2021-03-24;216
-hospitalized;2021-03-25;214
-hospitalized;2021-03-26;207
-hospitalized;2021-03-27;192
-hospitalized;2021-03-28;200
-hospitalized;2021-03-29;216
-hospitalized;2021-03-30;226
-hospitalized;2021-03-31;218
-hospitalized;2021-04-01;211
-hospitalized;2021-04-02;211
-hospitalized;2021-04-03;215
-hospitalized;2021-04-04;211
-hospitalized;2021-04-05;220
-hospitalized;2021-04-06;219
-hospitalized;2021-04-07;237
-hospitalized;2021-04-08;237
-hospitalized;2021-04-09;221
-hospitalized;2021-04-10;208
-hospitalized;2021-04-11;211
-hospitalized;2021-04-12;207
-hospitalized;2021-04-13;197
-hospitalized;2021-04-14;204
-hospitalized;2021-04-15;191
-hospitalized;2021-04-16;185
-hospitalized;2021-04-17;173
-hospitalized;2021-04-18;181
-hospitalized;2021-04-19;199
-hospitalized;2021-04-20;194
-hospitalized;2021-04-21;191
-hospitalized;2021-04-22;191
-hospitalized;2021-04-23;190
-hospitalized;2021-04-24;177
-hospitalized;2021-04-25;181
-hospitalized;2021-04-26;177
-hospitalized;2021-04-27;172
-hospitalized;2021-04-28;181
-hospitalized;2021-04-29;173
-hospitalized;2021-04-30;176
-hospitalized;2021-05-01;174
-hospitalized;2021-05-02;179
-hospitalized;2021-05-03;184
-hospitalized;2021-05-04;163
-hospitalized;2021-05-05;161
-hospitalized;2021-05-06;156
-hospitalized;2021-05-07;157
-hospitalized;2021-05-08;143
-hospitalized;2021-05-09;150
-hospitalized;2021-05-10;153
-hospitalized;2021-05-11;165
-hospitalized;2021-05-12;158
-hospitalized;2021-05-13;154
-hospitalized;2021-05-14;163
-hospitalized;2021-05-15;162
-hospitalized;2021-05-16;164
-hospitalized;2021-05-17;173
-hospitalized;2021-05-18;166
-hospitalized;2021-05-19;163
-hospitalized;2021-05-20;160
-hospitalized;2021-05-21;143
-hospitalized;2021-05-22;146
-hospitalized;2021-05-23;139
-hospitalized;2021-05-24;143
-hospitalized;2021-05-25;148
-hospitalized;2021-05-26;148
-hospitalized;2021-05-27;149
-hospitalized;2021-05-28;143
-hospitalized;2021-05-29;144
-hospitalized;2021-05-30;148
-hospitalized;2021-05-31;153
-hospitalized;2021-06-01;155
-hospitalized;2021-06-02;157
-hospitalized;2021-06-03;143
-hospitalized;2021-06-04;145
-hospitalized;2021-06-05;134
-hospitalized;2021-06-06;138
-hospitalized;2021-06-07;137
-hospitalized;2021-06-08;124
-hospitalized;2021-06-09;122
-hospitalized;2021-06-10;120
-hospitalized;2021-06-11;111
-hospitalized;2021-06-12; 99
-hospitalized;2021-06-13; 98
-hospitalized;2021-06-14;102
-hospitalized;2021-06-15;101
-hospitalized;2021-06-16; 93
-hospitalized;2021-06-17; 84
-hospitalized;2021-06-18; 84
-hospitalized;2021-06-19; 76
-hospitalized;2021-06-20; 80
-hospitalized;2021-06-21; 82
-hospitalized;2021-06-22; 67
-hospitalized;2021-06-23; 64
-hospitalized;2021-06-24; 68
-hospitalized;2021-06-25; 65
-hospitalized;2021-06-26; 63
-hospitalized;2021-06-27; 66
-hospitalized;2021-06-28; 65
-hospitalized;2021-06-29; 62
-hospitalized;2021-06-30; 55
-hospitalized;2021-07-01; 52
-hospitalized;2021-07-02; 48
-hospitalized;2021-07-03; 43
-hospitalized;2021-07-04; 39
-hospitalized;2021-07-05; 40
-hospitalized;2021-07-06; 43
-hospitalized;2021-07-07; 39
-hospitalized;2021-07-08; 38
-hospitalized;2021-07-09; 35
-hospitalized;2021-07-10; 28
-hospitalized;2021-07-11; 29
-hospitalized;2021-07-12; 37
-hospitalized;2021-07-13; 47
-hospitalized;2021-07-14; 51
-hospitalized;2021-07-15; 51
-hospitalized;2021-07-16; 53
-hospitalized;2021-07-17; 55
-hospitalized;2021-07-18; 53
-hospitalized;2021-07-19; 50
-hospitalized;2021-07-20; 50
-hospitalized;2021-07-21; 55
-hospitalized;2021-07-22; 57
-hospitalized;2021-07-23; 55
-hospitalized;2021-07-24; 56
-hospitalized;2021-07-25; 59
-hospitalized;2021-07-26; 60
-hospitalized;2021-07-27; 61
-hospitalized;2021-07-28; 64
-hospitalized;2021-07-29; 57
-hospitalized;2021-07-30; 56
-hospitalized;2021-07-31; 54
-hospitalized;2021-08-01; 57
-hospitalized;2021-08-02; 54
-hospitalized;2021-08-03; 62
-hospitalized;2021-08-04; 59
-hospitalized;2021-08-05; 62
-hospitalized;2021-08-06; 69
-hospitalized;2021-08-07; 67
-hospitalized;2021-08-08; 80
-hospitalized;2021-08-09; 83
-hospitalized;2021-08-10; 85
-hospitalized;2021-08-11;103
-hospitalized;2021-08-12;113
-hospitalized;2021-08-13;101
-hospitalized;2021-08-14; 94
-hospitalized;2021-08-15;107
-hospitalized;2021-08-16;117
-hospitalized;2021-08-17;101
-hospitalized;2021-08-18;105
-hospitalized;2021-08-19;116
-hospitalized;2021-08-20;115
-hospitalized;2021-08-21;115
-hospitalized;2021-08-22;124
-hospitalized;2021-08-23;131
-hospitalized;2021-08-24;131
-hospitalized;2021-08-25;133
-hospitalized;2021-08-26;127
-hospitalized;2021-08-27;126
-hospitalized;2021-08-28;124
-hospitalized;2021-08-29;129
-hospitalized;2021-08-30;142
-hospitalized;2021-08-31;147
-hospitalized;2021-09-01;134
-hospitalized;2021-09-02;132
-hospitalized;2021-09-03;137
-hospitalized;2021-09-04;121
-hospitalized;2021-09-05;124
-hospitalized;2021-09-06;125
-hospitalized;2021-09-07;123
-hospitalized;2021-09-08;128
-hospitalized;2021-09-09;132
-hospitalized;2021-09-10;132
-hospitalized;2021-09-11;124
-hospitalized;2021-09-12;125
-hospitalized;2021-09-13;125
-hospitalized;2021-09-14;117
-hospitalized;2021-09-15;116
-hospitalized;2021-09-16;102
-hospitalized;2021-09-17;105
-hospitalized;2021-09-18; 97
-hospitalized;2021-09-19; 98
-hospitalized;2021-09-20; 99
-hospitalized;2021-09-21; 96
-hospitalized;2021-09-22; 89
-hospitalized;2021-09-23; 87
-hospitalized;2021-09-24; 87
-hospitalized;2021-09-25; 77
-hospitalized;2021-09-26; 85
-hospitalized;2021-09-27; 95
-hospitalized;2021-09-28; 93
-hospitalized;2021-09-29; 89
-hospitalized;2021-09-30; 93
-hospitalized;2021-10-01; 83
-hospitalized;2021-10-02; 85
-hospitalized;2021-10-03; 82
-hospitalized;2021-10-04; 86
-hospitalized;2021-10-05; 87
-hospitalized;2021-10-06; 95
-hospitalized;2021-10-07; 98
-hospitalized;2021-10-08; 88
-hospitalized;2021-10-09; 77
-hospitalized;2021-10-10; 83
-hospitalized;2021-10-11; 89
-hospitalized;2021-10-12; 89
-hospitalized;2021-10-13; 91
-hospitalized;2021-10-14; 90
-hospitalized;2021-10-15;105
-hospitalized;2021-10-16;110
-hospitalized;2021-10-17;120
-hospitalized;2021-10-18;121
-hospitalized;2021-10-19;120
-hospitalized;2021-10-20;126
-hospitalized;2021-10-21;132
-hospitalized;2021-10-22;144
-hospitalized;2021-10-23;156
-hospitalized;2021-10-24;167
-hospitalized;2021-10-25;186
-hospitalized;2021-10-26;195
-hospitalized;2021-10-27;200
-hospitalized;2021-10-28;212
-hospitalized;2021-10-29;221
-hospitalized;2021-10-30;219
-hospitalized;2021-10-31;233
-hospitalized;2021-11-01;248
-hospitalized;2021-11-02;255
-hospitalized;2021-11-03;264
-hospitalized;2021-11-04;246
-hospitalized;2021-11-05;263
-hospitalized;2021-11-06;277
-hospitalized;2021-11-07;282
-hospitalized;2021-11-08;303
-hospitalized;2021-11-09;315
-hospitalized;2021-11-10;319
-hospitalized;2021-11-11;307
-hospitalized;2021-11-12;316
-hospitalized;2021-11-13;319
-hospitalized;2021-11-14;346
-hospitalized;2021-11-15;356
-hospitalized;2021-11-16;371
-hospitalized;2021-11-17;369
-hospitalized;2021-11-18;362
-hospitalized;2021-11-19;378
-hospitalized;2021-11-20;386
-hospitalized;2021-11-21;414
-hospitalized;2021-11-22;438
-hospitalized;2021-11-23;444
-hospitalized;2021-11-24;435
-hospitalized;2021-11-25;411
-hospitalized;2021-11-26;426
-hospitalized;2021-11-27;418
-hospitalized;2021-11-28;435
-hospitalized;2021-11-29;446
-hospitalized;2021-11-30;433
-hospitalized;2021-12-01;439
-hospitalized;2021-12-02;427
-hospitalized;2021-12-03;449
-hospitalized;2021-12-04;434
-hospitalized;2021-12-05;447
-hospitalized;2021-12-06;468
-hospitalized;2021-12-07;465
-hospitalized;2021-12-08;461
-hospitalized;2021-12-09;460
-hospitalized;2021-12-10;472
-hospitalized;2021-12-11;455
-hospitalized;2021-12-12;468
-hospitalized;2021-12-13;487
-hospitalized;2021-12-14;498
-hospitalized;2021-12-15;508
-hospitalized;2021-12-16;517
-hospitalized;2021-12-17;518
-hospitalized;2021-12-18;533
-hospitalized;2021-12-19;560
-hospitalized;2021-12-20;581
-hospitalized;2021-12-21;554
-hospitalized;2021-12-22;553
-hospitalized;2021-12-23;570
-hospitalized;2021-12-24;538
-hospitalized;2021-12-25;522
-hospitalized;2021-12-26;579
-hospitalized;2021-12-27;608
-hospitalized;2021-12-28;666
-hospitalized;2021-12-29;675
-hospitalized;2021-12-30;665
-hospitalized;2021-12-31;641
-hospitalized;2022-01-01;647
-hospitalized;2022-01-02;709
-hospitalized;2022-01-03;770
-hospitalized;2022-01-04;794
-hospitalized;2022-01-05;784
-hospitalized;2022-01-06;756
-hospitalized;2022-01-07;755
-hospitalized;2022-01-08;730
-hospitalized;2022-01-09;723
-hospitalized;2022-01-10;777
-hospitalized;2022-01-11;754
-hospitalized;2022-01-12;751
-hospitalized;2022-01-13;755
-hospitalized;2022-01-14;757
-hospitalized;2022-01-15;711
-hospitalized;2022-01-16;734
-hospitalized;2022-01-17;802
-hospitalized;2022-01-18;810
-hospitalized;2022-01-19;821
-hospitalized;2022-01-20;825
-hospitalized;2022-01-21;813
-hospitalized;2022-01-22;781
-hospitalized;2022-01-23;813
-hospitalized;2022-01-24;894
-hospitalized;2022-01-25;918
+icu;2020-03-21;  42
+icu;2020-03-22;  46
+icu;2020-03-23;  55
+icu;2020-03-24;  59
+icu;2020-03-25;  87
+icu;2020-03-26;  94
+icu;2020-03-27; 109
+icu;2020-03-28; 121
+icu;2020-03-29; 131
+icu;2020-03-30; 137
+icu;2020-03-31; 145
+icu;2020-04-01; 146
+icu;2020-04-02; 146
+icu;2020-04-03; 139
+icu;2020-04-04; 137
+icu;2020-04-05; 138
+icu;2020-04-06; 133
+icu;2020-04-07; 127
+icu;2020-04-08; 127
+icu;2020-04-09; 120
+icu;2020-04-10; 113
+icu;2020-04-11; 106
+icu;2020-04-12; 104
+icu;2020-04-13; 100
+icu;2020-04-14;  93
+icu;2020-04-15;  89
+icu;2020-04-16;  92
+icu;2020-04-17;  93
+icu;2020-04-18;  87
+icu;2020-04-19;  84
+icu;2020-04-20;  84
+icu;2020-04-21;  81
+icu;2020-04-22;  80
+icu;2020-04-23;  74
+icu;2020-04-24;  69
+icu;2020-04-25;  70
+icu;2020-04-26;  70
+icu;2020-04-27;  72
+icu;2020-04-28;  66
+icu;2020-04-29;  65
+icu;2020-04-30;  62
+icu;2020-05-01;  61
+icu;2020-05-02;  60
+icu;2020-05-03;  62
+icu;2020-05-04;  57
+icu;2020-05-05;  49
+icu;2020-05-06;  46
+icu;2020-05-07;  43
+icu;2020-05-08;  42
+icu;2020-05-09;  39
+icu;2020-05-10;  39
+icu;2020-05-11;  42
+icu;2020-05-12;  42
+icu;2020-05-13;  37
+icu;2020-05-14;  35
+icu;2020-05-15;  32
+icu;2020-05-16;  28
+icu;2020-05-17;  27
+icu;2020-05-18;  26
+icu;2020-05-19;  25
+icu;2020-05-20;  25
+icu;2020-05-21;  23
+icu;2020-05-22;  23
+icu;2020-05-23;  19
+icu;2020-05-24;  20
+icu;2020-05-25;  19
+icu;2020-05-26;  22
+icu;2020-05-27;  22
+icu;2020-05-28;  20
+icu;2020-05-29;  18
+icu;2020-05-30;  20
+icu;2020-05-31;  20
+icu;2020-06-01;  20
+icu;2020-06-02;  21
+icu;2020-06-03;  20
+icu;2020-06-04;  17
+icu;2020-06-05;  17
+icu;2020-06-06;  15
+icu;2020-06-07;  15
+icu;2020-06-08;  16
+icu;2020-06-09;  15
+icu;2020-06-10;  17
+icu;2020-06-11;  13
+icu;2020-06-12;  12
+icu;2020-06-13;   9
+icu;2020-06-14;   9
+icu;2020-06-15;   9
+icu;2020-06-16;   8
+icu;2020-06-17;   6
+icu;2020-06-18;   6
+icu;2020-06-19;   6
+icu;2020-06-20;   6
+icu;2020-06-21;   6
+icu;2020-06-22;   7
+icu;2020-06-23;   8
+icu;2020-06-24;   8
+icu;2020-06-25;   9
+icu;2020-06-26;  11
+icu;2020-06-27;  11
+icu;2020-06-28;  10
+icu;2020-06-29;   9
+icu;2020-06-30;  10
+icu;2020-07-01;  11
+icu;2020-07-02;   9
+icu;2020-07-03;   6
+icu;2020-07-04;   6
+icu;2020-07-05;   6
+icu;2020-07-06;   7
+icu;2020-07-07;   5
+icu;2020-07-08;   5
+icu;2020-07-09;   5
+icu;2020-07-10;   4
+icu;2020-07-11;   5
+icu;2020-07-12;   6
+icu;2020-07-13;   6
+icu;2020-07-14;   6
+icu;2020-07-15;   6
+icu;2020-07-16;   5
+icu;2020-07-17;   5
+icu;2020-07-18;   2
+icu;2020-07-19;   3
+icu;2020-07-20;   3
+icu;2020-07-21;   4
+icu;2020-07-22;   4
+icu;2020-07-23;   3
+icu;2020-07-24;   3
+icu;2020-07-25;   3
+icu;2020-07-26;   3
+icu;2020-07-27;   3
+icu;2020-07-28;   3
+icu;2020-07-29;   3
+icu;2020-07-30;   3
+icu;2020-07-31;   3
+icu;2020-08-01;   2
+icu;2020-08-02;   2
+icu;2020-08-03;   2
+icu;2020-08-04;   3
+icu;2020-08-05;   2
+icu;2020-08-06;   2
+icu;2020-08-07;   2
+icu;2020-08-08;   2
+icu;2020-08-09;   2
+icu;2020-08-10;   2
+icu;2020-08-11;   2
+icu;2020-08-12;   1
+icu;2020-08-13;   1
+icu;2020-08-14;   1
+icu;2020-08-15;   0
+icu;2020-08-16;   0
+icu;2020-08-17;   1
+icu;2020-08-18;   1
+icu;2020-08-19;   1
+icu;2020-08-20;   1
+icu;2020-08-21;   1
+icu;2020-08-22;   1
+icu;2020-08-23;   2
+icu;2020-08-24;   3
+icu;2020-08-25;   3
+icu;2020-08-26;   3
+icu;2020-08-27;   2
+icu;2020-08-28;   2
+icu;2020-08-29;   4
+icu;2020-08-30;   4
+icu;2020-08-31;   4
+icu;2020-09-01;   4
+icu;2020-09-02;   4
+icu;2020-09-03;   3
+icu;2020-09-04;   3
+icu;2020-09-05;   3
+icu;2020-09-06;   4
+icu;2020-09-07;   3
+icu;2020-09-08;   3
+icu;2020-09-09;   5
+icu;2020-09-10;   5
+icu;2020-09-11;   7
+icu;2020-09-12;   4
+icu;2020-09-13;   4
+icu;2020-09-14;   4
+icu;2020-09-15;   3
+icu;2020-09-16;   2
+icu;2020-09-17;   3
+icu;2020-09-18;   3
+icu;2020-09-19;   4
+icu;2020-09-20;   9
+icu;2020-09-21;  12
+icu;2020-09-22;  14
+icu;2020-09-23;  15
+icu;2020-09-24;  14
+icu;2020-09-25;  16
+icu;2020-09-26;  17
+icu;2020-09-27;  17
+icu;2020-09-28;  17
+icu;2020-09-29;  15
+icu;2020-09-30;  15
+icu;2020-10-01;  13
+icu;2020-10-02;  17
+icu;2020-10-03;  17
+icu;2020-10-04;  18
+icu;2020-10-05;  17
+icu;2020-10-06;  15
+icu;2020-10-07;  15
+icu;2020-10-08;  17
+icu;2020-10-09;  18
+icu;2020-10-10;  20
+icu;2020-10-11;  19
+icu;2020-10-12;  19
+icu;2020-10-13;  19
+icu;2020-10-14;  17
+icu;2020-10-15;  17
+icu;2020-10-16;  16
+icu;2020-10-17;  16
+icu;2020-10-18;  17
+icu;2020-10-19;  18
+icu;2020-10-20;  15
+icu;2020-10-21;  16
+icu;2020-10-22;  17
+icu;2020-10-23;  18
+icu;2020-10-24;  17
+icu;2020-10-25;  18
+icu;2020-10-26;  17
+icu;2020-10-27;  19
+icu;2020-10-28;  18
+icu;2020-10-29;  17
+icu;2020-10-30;  17
+icu;2020-10-31;  19
+icu;2020-11-01;  19
+icu;2020-11-02;  23
+icu;2020-11-03;  22
+icu;2020-11-04;  24
+icu;2020-11-05;  24
+icu;2020-11-06;  23
+icu;2020-11-07;  29
+icu;2020-11-08;  30
+icu;2020-11-09;  33
+icu;2020-11-10;  33
+icu;2020-11-11;  40
+icu;2020-11-12;  44
+icu;2020-11-13;  40
+icu;2020-11-14;  41
+icu;2020-11-15;  45
+icu;2020-11-16;  44
+icu;2020-11-17;  41
+icu;2020-11-18;  43
+icu;2020-11-19;  41
+icu;2020-11-20;  39
+icu;2020-11-21;  40
+icu;2020-11-22;  39
+icu;2020-11-23;  41
+icu;2020-11-24;  40
+icu;2020-11-25;  42
+icu;2020-11-26;  42
+icu;2020-11-27;  46
+icu;2020-11-28;  42
+icu;2020-11-29;  43
+icu;2020-11-30;  44
+icu;2020-12-01;  38
+icu;2020-12-02;  36
+icu;2020-12-03;  38
+icu;2020-12-04;  40
+icu;2020-12-05;  39
+icu;2020-12-06;  42
+icu;2020-12-07;  43
+icu;2020-12-08;  42
+icu;2020-12-09;  39
+icu;2020-12-10;  40
+icu;2020-12-11;  48
+icu;2020-12-12;  54
+icu;2020-12-13;  58
+icu;2020-12-14;  61
+icu;2020-12-15;  68
+icu;2020-12-16;  68
+icu;2020-12-17;  76
+icu;2020-12-18;  79
+icu;2020-12-19;  86
+icu;2020-12-20;  87
+icu;2020-12-21;  87
+icu;2020-12-22;  83
+icu;2020-12-23;  91
+icu;2020-12-24;  97
+icu;2020-12-25;  98
+icu;2020-12-26;  96
+icu;2020-12-27; 102
+icu;2020-12-28; 113
+icu;2020-12-29; 128
+icu;2020-12-30; 136
+icu;2020-12-31; 132
+icu;2021-01-01; 129
+icu;2021-01-02; 136
+icu;2021-01-03; 136
+icu;2021-01-04; 140
+icu;2021-01-05; 141
+icu;2021-01-06; 137
+icu;2021-01-07; 134
+icu;2021-01-08; 138
+icu;2021-01-09; 132
+icu;2021-01-10; 138
+icu;2021-01-11; 138
+icu;2021-01-12; 135
+icu;2021-01-13; 137
+icu;2021-01-14; 128
+icu;2021-01-15; 129
+icu;2021-01-16; 137
+icu;2021-01-17; 131
+icu;2021-01-18; 132
+icu;2021-01-19; 132
+icu;2021-01-20; 132
+icu;2021-01-21; 136
+icu;2021-01-22; 130
+icu;2021-01-23; 125
+icu;2021-01-24; 124
+icu;2021-01-25; 123
+icu;2021-01-26; 119
+icu;2021-01-27; 112
+icu;2021-01-28; 113
+icu;2021-01-29; 103
+icu;2021-01-30; 102
+icu;2021-01-31;  97
+icu;2021-02-01;  94
+icu;2021-02-02;  93
+icu;2021-02-03;  90
+icu;2021-02-04;  86
+icu;2021-02-05;  82
+icu;2021-02-06;  78
+icu;2021-02-07;  76
+icu;2021-02-08;  73
+icu;2021-02-09;  74
+icu;2021-02-10;  74
+icu;2021-02-11;  69
+icu;2021-02-12;  68
+icu;2021-02-13;  64
+icu;2021-02-14;  65
+icu;2021-02-15;  68
+icu;2021-02-16;  63
+icu;2021-02-17;  57
+icu;2021-02-18;  57
+icu;2021-02-19;  51
+icu;2021-02-20;  51
+icu;2021-02-21;  53
+icu;2021-02-22;  51
+icu;2021-02-23;  48
+icu;2021-02-24;  47
+icu;2021-02-25;  45
+icu;2021-02-26;  43
+icu;2021-02-27;  44
+icu;2021-02-28;  41
+icu;2021-03-01;  44
+icu;2021-03-02;  39
+icu;2021-03-03;  34
+icu;2021-03-04;  30
+icu;2021-03-05;  31
+icu;2021-03-06;  33
+icu;2021-03-07;  37
+icu;2021-03-08;  38
+icu;2021-03-09;  38
+icu;2021-03-10;  43
+icu;2021-03-11;  44
+icu;2021-03-12;  38
+icu;2021-03-13;  39
+icu;2021-03-14;  39
+icu;2021-03-15;  40
+icu;2021-03-16;  43
+icu;2021-03-17;  41
+icu;2021-03-18;  38
+icu;2021-03-19;  38
+icu;2021-03-20;  40
+icu;2021-03-21;  40
+icu;2021-03-22;  42
+icu;2021-03-23;  46
+icu;2021-03-24;  46
+icu;2021-03-25;  44
+icu;2021-03-26;  40
+icu;2021-03-27;  41
+icu;2021-03-28;  43
+icu;2021-03-29;  41
+icu;2021-03-30;  41
+icu;2021-03-31;  43
+icu;2021-04-01;  39
+icu;2021-04-02;  41
+icu;2021-04-03;  39
+icu;2021-04-04;  39
+icu;2021-04-05;  40
+icu;2021-04-06;  38
+icu;2021-04-07;  34
+icu;2021-04-08;  37
+icu;2021-04-09;  37
+icu;2021-04-10;  38
+icu;2021-04-11;  38
+icu;2021-04-12;  40
+icu;2021-04-13;  39
+icu;2021-04-14;  41
+icu;2021-04-15;  37
+icu;2021-04-16;  36
+icu;2021-04-17;  40
+icu;2021-04-18;  35
+icu;2021-04-19;  36
+icu;2021-04-20;  38
+icu;2021-04-21;  41
+icu;2021-04-22;  44
+icu;2021-04-23;  42
+icu;2021-04-24;  40
+icu;2021-04-25;  40
+icu;2021-04-26;  39
+icu;2021-04-27;  36
+icu;2021-04-28;  32
+icu;2021-04-29;  30
+icu;2021-04-30;  35
+icu;2021-05-01;  37
+icu;2021-05-02;  37
+icu;2021-05-03;  42
+icu;2021-05-04;  43
+icu;2021-05-05;  40
+icu;2021-05-06;  34
+icu;2021-05-07;  31
+icu;2021-05-08;  30
+icu;2021-05-09;  31
+icu;2021-05-10;  27
+icu;2021-05-11;  32
+icu;2021-05-12;  29
+icu;2021-05-13;  36
+icu;2021-05-14;  33
+icu;2021-05-15;  33
+icu;2021-05-16;  32
+icu;2021-05-17;  29
+icu;2021-05-18;  31
+icu;2021-05-19;  33
+icu;2021-05-20;  33
+icu;2021-05-21;  31
+icu;2021-05-22;  32
+icu;2021-05-23;  35
+icu;2021-05-24;  37
+icu;2021-05-25;  36
+icu;2021-05-26;  36
+icu;2021-05-27;  36
+icu;2021-05-28;  33
+icu;2021-05-29;  33
+icu;2021-05-30;  32
+icu;2021-05-31;  34
+icu;2021-06-01;  36
+icu;2021-06-02;  37
+icu;2021-06-03;  34
+icu;2021-06-04;  32
+icu;2021-06-05;  30
+icu;2021-06-06;  29
+icu;2021-06-07;  27
+icu;2021-06-08;  27
+icu;2021-06-09;  27
+icu;2021-06-10;  22
+icu;2021-06-11;  23
+icu;2021-06-12;  20
+icu;2021-06-13;  20
+icu;2021-06-14;  20
+icu;2021-06-15;  19
+icu;2021-06-16;  20
+icu;2021-06-17;  19
+icu;2021-06-18;  20
+icu;2021-06-19;  20
+icu;2021-06-20;  19
+icu;2021-06-21;  17
+icu;2021-06-22;  18
+icu;2021-06-23;  15
+icu;2021-06-24;  16
+icu;2021-06-25;  17
+icu;2021-06-26;  17
+icu;2021-06-27;  17
+icu;2021-06-28;  14
+icu;2021-06-29;  14
+icu;2021-06-30;  12
+icu;2021-07-01;  12
+icu;2021-07-02;  11
+icu;2021-07-03;  10
+icu;2021-07-04;   9
+icu;2021-07-05;   9
+icu;2021-07-06;   8
+icu;2021-07-07;   9
+icu;2021-07-08;   8
+icu;2021-07-09;   9
+icu;2021-07-10;   9
+icu;2021-07-11;   9
+icu;2021-07-12;   9
+icu;2021-07-13;  10
+icu;2021-07-14;  12
+icu;2021-07-15;  11
+icu;2021-07-16;  11
+icu;2021-07-17;  10
+icu;2021-07-18;  10
+icu;2021-07-19;   9
+icu;2021-07-20;  10
+icu;2021-07-21;  12
+icu;2021-07-22;  13
+icu;2021-07-23;  11
+icu;2021-07-24;  10
+icu;2021-07-25;  10
+icu;2021-07-26;  10
+icu;2021-07-27;  10
+icu;2021-07-28;  10
+icu;2021-07-29;  10
+icu;2021-07-30;   8
+icu;2021-07-31;   8
+icu;2021-08-01;   8
+icu;2021-08-02;   8
+icu;2021-08-03;   8
+icu;2021-08-04;   8
+icu;2021-08-05;   9
+icu;2021-08-06;  12
+icu;2021-08-07;  12
+icu;2021-08-08;  13
+icu;2021-08-09;  13
+icu;2021-08-10;  14
+icu;2021-08-11;  18
+icu;2021-08-12;  16
+icu;2021-08-13;  14
+icu;2021-08-14;  16
+icu;2021-08-15;  15
+icu;2021-08-16;  15
+icu;2021-08-17;  15
+icu;2021-08-18;  16
+icu;2021-08-19;  15
+icu;2021-08-20;  16
+icu;2021-08-21;  15
+icu;2021-08-22;  20
+icu;2021-08-23;  18
+icu;2021-08-24;  20
+icu;2021-08-25;  21
+icu;2021-08-26;  19
+icu;2021-08-27;  19
+icu;2021-08-28;  19
+icu;2021-08-29;  19
+icu;2021-08-30;  22
+icu;2021-08-31;  21
+icu;2021-09-01;  25
+icu;2021-09-02;  25
+icu;2021-09-03;  26
+icu;2021-09-04;  26
+icu;2021-09-05;  26
+icu;2021-09-06;  26
+icu;2021-09-07;  26
+icu;2021-09-08;  28
+icu;2021-09-09;  28
+icu;2021-09-10;  29
+icu;2021-09-11;  32
+icu;2021-09-12;  32
+icu;2021-09-13;  30
+icu;2021-09-14;  30
+icu;2021-09-15;  28
+icu;2021-09-16;  26
+icu;2021-09-17;  24
+icu;2021-09-18;  23
+icu;2021-09-19;  23
+icu;2021-09-20;  22
+icu;2021-09-21;  22
+icu;2021-09-22;  22
+icu;2021-09-23;  18
+icu;2021-09-24;  17
+icu;2021-09-25;  18
+icu;2021-09-26;  17
+icu;2021-09-27;  18
+icu;2021-09-28;  15
+icu;2021-09-29;  16
+icu;2021-09-30;  18
+icu;2021-10-01;  15
+icu;2021-10-02;  12
+icu;2021-10-03;  12
+icu;2021-10-04;  12
+icu;2021-10-05;  13
+icu;2021-10-06;  11
+icu;2021-10-07;  11
+icu;2021-10-08;  14
+icu;2021-10-09;  17
+icu;2021-10-10;  15
+icu;2021-10-11;  17
+icu;2021-10-12;  17
+icu;2021-10-13;  18
+icu;2021-10-14;  16
+icu;2021-10-15;  14
+icu;2021-10-16;  15
+icu;2021-10-17;  15
+icu;2021-10-18;  13
+icu;2021-10-19;  15
+icu;2021-10-20;  11
+icu;2021-10-21;  14
+icu;2021-10-22;  16
+icu;2021-10-23;  16
+icu;2021-10-24;  19
+icu;2021-10-25;  20
+icu;2021-10-26;  22
+icu;2021-10-27;  23
+icu;2021-10-28;  24
+icu;2021-10-29;  28
+icu;2021-10-30;  26
+icu;2021-10-31;  24
+icu;2021-11-01;  29
+icu;2021-11-02;  32
+icu;2021-11-03;  30
+icu;2021-11-04;  31
+icu;2021-11-05;  35
+icu;2021-11-06;  36
+icu;2021-11-07;  40
+icu;2021-11-08;  36
+icu;2021-11-09;  39
+icu;2021-11-10;  39
+icu;2021-11-11;  41
+icu;2021-11-12;  43
+icu;2021-11-13;  38
+icu;2021-11-14;  40
+icu;2021-11-15;  40
+icu;2021-11-16;  44
+icu;2021-11-17;  47
+icu;2021-11-18;  50
+icu;2021-11-19;  48
+icu;2021-11-20;  50
+icu;2021-11-21;  51
+icu;2021-11-22;  50
+icu;2021-11-23;  49
+icu;2021-11-24;  49
+icu;2021-11-25;  48
+icu;2021-11-26;  53
+icu;2021-11-27;  50
+icu;2021-11-28;  51
+icu;2021-11-29;  60
+icu;2021-11-30;  60
+icu;2021-12-01;  61
+icu;2021-12-02;  57
+icu;2021-12-03;  57
+icu;2021-12-04;  58
+icu;2021-12-05;  58
+icu;2021-12-06;  65
+icu;2021-12-07;  66
+icu;2021-12-08;  66
+icu;2021-12-09;  67
+icu;2021-12-10;  65
+icu;2021-12-11;  60
+icu;2021-12-12;  65
+icu;2021-12-13;  67
+icu;2021-12-14;  70
+icu;2021-12-15;  66
+icu;2021-12-16;  61
+icu;2021-12-17;  63
+icu;2021-12-18;  65
+icu;2021-12-19;  63
+icu;2021-12-20;  66
+icu;2021-12-21;  67
+icu;2021-12-22;  66
+icu;2021-12-23;  72
+icu;2021-12-24;  74
+icu;2021-12-25;  73
+icu;2021-12-26;  71
+icu;2021-12-27;  70
+icu;2021-12-28;  71
+icu;2021-12-29;  77
+icu;2021-12-30;  75
+icu;2021-12-31;  73
+icu;2022-01-01;  73
+icu;2022-01-02;  76
+icu;2022-01-03;  73
+icu;2022-01-04;  77
+icu;2022-01-05;  80
+icu;2022-01-06;  82
+icu;2022-01-07;  78
+icu;2022-01-08;  78
+icu;2022-01-09;  77
+icu;2022-01-10;  74
+icu;2022-01-11;  73
+icu;2022-01-12;  73
+icu;2022-01-13;  64
+icu;2022-01-14;  60
+icu;2022-01-15;  59
+icu;2022-01-16;  59
+icu;2022-01-17;  52
+icu;2022-01-18;  49
+icu;2022-01-19;  50
+icu;2022-01-20;  49
+icu;2022-01-21;  44
+icu;2022-01-22;  45
+icu;2022-01-23;  42
+icu;2022-01-24;  43
+icu;2022-01-25;  44
+icu;2022-01-26;  40
+icu;2022-01-27;  37
+icu;2022-01-28;  33
+icu;2022-01-29;  35
+icu;2022-01-30;  31
+icu;2022-01-31;  32
+icu;2022-02-01;  28
+hospitalized;2020-03-21; 206
+hospitalized;2020-03-22; 232
+hospitalized;2020-03-23; 254
+hospitalized;2020-03-24; 301
+hospitalized;2020-03-25; 350
+hospitalized;2020-03-26; 386
+hospitalized;2020-03-27; 430
+hospitalized;2020-03-28; 459
+hospitalized;2020-03-29; 499
+hospitalized;2020-03-30; 533
+hospitalized;2020-03-31; 529
+hospitalized;2020-04-01; 535
+hospitalized;2020-04-02; 527
+hospitalized;2020-04-03; 511
+hospitalized;2020-04-04; 498
+hospitalized;2020-04-05; 490
+hospitalized;2020-04-06; 488
+hospitalized;2020-04-07; 466
+hospitalized;2020-04-08; 446
+hospitalized;2020-04-09; 427
+hospitalized;2020-04-10; 398
+hospitalized;2020-04-11; 402
+hospitalized;2020-04-12; 391
+hospitalized;2020-04-13; 381
+hospitalized;2020-04-14; 374
+hospitalized;2020-04-15; 355
+hospitalized;2020-04-16; 341
+hospitalized;2020-04-17; 337
+hospitalized;2020-04-18; 304
+hospitalized;2020-04-19; 303
+hospitalized;2020-04-20; 321
+hospitalized;2020-04-21; 315
+hospitalized;2020-04-22; 309
+hospitalized;2020-04-23; 303
+hospitalized;2020-04-24; 303
+hospitalized;2020-04-25; 276
+hospitalized;2020-04-26; 273
+hospitalized;2020-04-27; 293
+hospitalized;2020-04-28; 271
+hospitalized;2020-04-29; 254
+hospitalized;2020-04-30; 236
+hospitalized;2020-05-01; 229
+hospitalized;2020-05-02; 214
+hospitalized;2020-05-03; 225
+hospitalized;2020-05-04; 228
+hospitalized;2020-05-05; 209
+hospitalized;2020-05-06; 190
+hospitalized;2020-05-07; 178
+hospitalized;2020-05-08; 183
+hospitalized;2020-05-09; 169
+hospitalized;2020-05-10; 174
+hospitalized;2020-05-11; 173
+hospitalized;2020-05-12; 151
+hospitalized;2020-05-13; 138
+hospitalized;2020-05-14; 128
+hospitalized;2020-05-15; 120
+hospitalized;2020-05-16; 115
+hospitalized;2020-05-17; 113
+hospitalized;2020-05-18; 118
+hospitalized;2020-05-19; 115
+hospitalized;2020-05-20; 103
+hospitalized;2020-05-21; 100
+hospitalized;2020-05-22; 100
+hospitalized;2020-05-23; 102
+hospitalized;2020-05-24; 100
+hospitalized;2020-05-25; 102
+hospitalized;2020-05-26;  97
+hospitalized;2020-05-27;  91
+hospitalized;2020-05-28;  96
+hospitalized;2020-05-29;  93
+hospitalized;2020-05-30;  87
+hospitalized;2020-05-31;  85
+hospitalized;2020-06-01;  88
+hospitalized;2020-06-02;  86
+hospitalized;2020-06-03;  82
+hospitalized;2020-06-04;  76
+hospitalized;2020-06-05;  66
+hospitalized;2020-06-06;  68
+hospitalized;2020-06-07;  65
+hospitalized;2020-06-08;  66
+hospitalized;2020-06-09;  59
+hospitalized;2020-06-10;  57
+hospitalized;2020-06-11;  51
+hospitalized;2020-06-12;  51
+hospitalized;2020-06-13;  47
+hospitalized;2020-06-14;  49
+hospitalized;2020-06-15;  46
+hospitalized;2020-06-16;  43
+hospitalized;2020-06-17;  39
+hospitalized;2020-06-18;  38
+hospitalized;2020-06-19;  37
+hospitalized;2020-06-20;  39
+hospitalized;2020-06-21;  38
+hospitalized;2020-06-22;  37
+hospitalized;2020-06-23;  32
+hospitalized;2020-06-24;  33
+hospitalized;2020-06-25;  36
+hospitalized;2020-06-26;  31
+hospitalized;2020-06-27;  29
+hospitalized;2020-06-28;  30
+hospitalized;2020-06-29;  35
+hospitalized;2020-06-30;  32
+hospitalized;2020-07-01;  29
+hospitalized;2020-07-02;  29
+hospitalized;2020-07-03;  27
+hospitalized;2020-07-04;  26
+hospitalized;2020-07-05;  24
+hospitalized;2020-07-06;  23
+hospitalized;2020-07-07;  17
+hospitalized;2020-07-08;  18
+hospitalized;2020-07-09;  18
+hospitalized;2020-07-10;  17
+hospitalized;2020-07-11;  15
+hospitalized;2020-07-12;  18
+hospitalized;2020-07-13;  18
+hospitalized;2020-07-14;  17
+hospitalized;2020-07-15;  19
+hospitalized;2020-07-16;  17
+hospitalized;2020-07-17;  20
+hospitalized;2020-07-18;  16
+hospitalized;2020-07-19;  19
+hospitalized;2020-07-20;  18
+hospitalized;2020-07-21;  18
+hospitalized;2020-07-22;  16
+hospitalized;2020-07-23;  19
+hospitalized;2020-07-24;  16
+hospitalized;2020-07-25;  17
+hospitalized;2020-07-26;  23
+hospitalized;2020-07-27;  23
+hospitalized;2020-07-28;  22
+hospitalized;2020-07-29;  21
+hospitalized;2020-07-30;  18
+hospitalized;2020-07-31;  18
+hospitalized;2020-08-01;  16
+hospitalized;2020-08-02;  20
+hospitalized;2020-08-03;  24
+hospitalized;2020-08-04;  24
+hospitalized;2020-08-05;  23
+hospitalized;2020-08-06;  24
+hospitalized;2020-08-07;  25
+hospitalized;2020-08-08;  21
+hospitalized;2020-08-09;  20
+hospitalized;2020-08-10;  23
+hospitalized;2020-08-11;  20
+hospitalized;2020-08-12;  16
+hospitalized;2020-08-13;  13
+hospitalized;2020-08-14;  14
+hospitalized;2020-08-15;  14
+hospitalized;2020-08-16;  12
+hospitalized;2020-08-17;  16
+hospitalized;2020-08-18;  18
+hospitalized;2020-08-19;  16
+hospitalized;2020-08-20;  20
+hospitalized;2020-08-21;  22
+hospitalized;2020-08-22;  22
+hospitalized;2020-08-23;  19
+hospitalized;2020-08-24;  20
+hospitalized;2020-08-25;  21
+hospitalized;2020-08-26;  19
+hospitalized;2020-08-27;  19
+hospitalized;2020-08-28;  21
+hospitalized;2020-08-29;  21
+hospitalized;2020-08-30;  21
+hospitalized;2020-08-31;  23
+hospitalized;2020-09-01;  20
+hospitalized;2020-09-02;  15
+hospitalized;2020-09-03;  17
+hospitalized;2020-09-04;  18
+hospitalized;2020-09-05;  16
+hospitalized;2020-09-06;  27
+hospitalized;2020-09-07;  29
+hospitalized;2020-09-08;  28
+hospitalized;2020-09-09;  30
+hospitalized;2020-09-10;  35
+hospitalized;2020-09-11;  44
+hospitalized;2020-09-12;  43
+hospitalized;2020-09-13;  47
+hospitalized;2020-09-14;  50
+hospitalized;2020-09-15;  55
+hospitalized;2020-09-16;  51
+hospitalized;2020-09-17;  60
+hospitalized;2020-09-18;  58
+hospitalized;2020-09-19;  62
+hospitalized;2020-09-20;  67
+hospitalized;2020-09-21;  75
+hospitalized;2020-09-22;  79
+hospitalized;2020-09-23;  78
+hospitalized;2020-09-24;  95
+hospitalized;2020-09-25; 101
+hospitalized;2020-09-26;  97
+hospitalized;2020-09-27;  95
+hospitalized;2020-09-28; 110
+hospitalized;2020-09-29; 107
+hospitalized;2020-09-30; 102
+hospitalized;2020-10-01; 109
+hospitalized;2020-10-02; 106
+hospitalized;2020-10-03; 105
+hospitalized;2020-10-04; 105
+hospitalized;2020-10-05; 120
+hospitalized;2020-10-06; 124
+hospitalized;2020-10-07; 116
+hospitalized;2020-10-08; 115
+hospitalized;2020-10-09; 106
+hospitalized;2020-10-10; 103
+hospitalized;2020-10-11; 102
+hospitalized;2020-10-12; 107
+hospitalized;2020-10-13; 103
+hospitalized;2020-10-14; 104
+hospitalized;2020-10-15; 104
+hospitalized;2020-10-16; 110
+hospitalized;2020-10-17; 110
+hospitalized;2020-10-18; 119
+hospitalized;2020-10-19; 129
+hospitalized;2020-10-20; 128
+hospitalized;2020-10-21; 122
+hospitalized;2020-10-22; 124
+hospitalized;2020-10-23; 125
+hospitalized;2020-10-24; 120
+hospitalized;2020-10-25; 127
+hospitalized;2020-10-26; 145
+hospitalized;2020-10-27; 137
+hospitalized;2020-10-28; 136
+hospitalized;2020-10-29; 139
+hospitalized;2020-10-30; 144
+hospitalized;2020-10-31; 147
+hospitalized;2020-11-01; 156
+hospitalized;2020-11-02; 174
+hospitalized;2020-11-03; 169
+hospitalized;2020-11-04; 184
+hospitalized;2020-11-05; 182
+hospitalized;2020-11-06; 191
+hospitalized;2020-11-07; 187
+hospitalized;2020-11-08; 188
+hospitalized;2020-11-09; 196
+hospitalized;2020-11-10; 211
+hospitalized;2020-11-11; 216
+hospitalized;2020-11-12; 239
+hospitalized;2020-11-13; 236
+hospitalized;2020-11-14; 243
+hospitalized;2020-11-15; 259
+hospitalized;2020-11-16; 267
+hospitalized;2020-11-17; 259
+hospitalized;2020-11-18; 248
+hospitalized;2020-11-19; 255
+hospitalized;2020-11-20; 244
+hospitalized;2020-11-21; 237
+hospitalized;2020-11-22; 254
+hospitalized;2020-11-23; 261
+hospitalized;2020-11-24; 255
+hospitalized;2020-11-25; 251
+hospitalized;2020-11-26; 244
+hospitalized;2020-11-27; 254
+hospitalized;2020-11-28; 249
+hospitalized;2020-11-29; 256
+hospitalized;2020-11-30; 259
+hospitalized;2020-12-01; 254
+hospitalized;2020-12-02; 266
+hospitalized;2020-12-03; 267
+hospitalized;2020-12-04; 293
+hospitalized;2020-12-05; 279
+hospitalized;2020-12-06; 302
+hospitalized;2020-12-07; 328
+hospitalized;2020-12-08; 354
+hospitalized;2020-12-09; 349
+hospitalized;2020-12-10; 342
+hospitalized;2020-12-11; 361
+hospitalized;2020-12-12; 371
+hospitalized;2020-12-13; 390
+hospitalized;2020-12-14; 429
+hospitalized;2020-12-15; 439
+hospitalized;2020-12-16; 493
+hospitalized;2020-12-17; 516
+hospitalized;2020-12-18; 568
+hospitalized;2020-12-19; 606
+hospitalized;2020-12-20; 661
+hospitalized;2020-12-21; 713
+hospitalized;2020-12-22; 723
+hospitalized;2020-12-23; 720
+hospitalized;2020-12-24; 724
+hospitalized;2020-12-25; 726
+hospitalized;2020-12-26; 776
+hospitalized;2020-12-27; 817
+hospitalized;2020-12-28; 872
+hospitalized;2020-12-29; 900
+hospitalized;2020-12-30; 926
+hospitalized;2020-12-31; 879
+hospitalized;2021-01-01; 885
+hospitalized;2021-01-02; 944
+hospitalized;2021-01-03; 937
+hospitalized;2021-01-04; 964
+hospitalized;2021-01-05; 942
+hospitalized;2021-01-06; 886
+hospitalized;2021-01-07; 861
+hospitalized;2021-01-08; 864
+hospitalized;2021-01-09; 833
+hospitalized;2021-01-10; 875
+hospitalized;2021-01-11; 920
+hospitalized;2021-01-12; 917
+hospitalized;2021-01-13; 859
+hospitalized;2021-01-14; 839
+hospitalized;2021-01-15; 792
+hospitalized;2021-01-16; 779
+hospitalized;2021-01-17; 799
+hospitalized;2021-01-18; 817
+hospitalized;2021-01-19; 792
+hospitalized;2021-01-20; 771
+hospitalized;2021-01-21; 745
+hospitalized;2021-01-22; 745
+hospitalized;2021-01-23; 703
+hospitalized;2021-01-24; 725
+hospitalized;2021-01-25; 738
+hospitalized;2021-01-26; 684
+hospitalized;2021-01-27; 666
+hospitalized;2021-01-28; 611
+hospitalized;2021-01-29; 583
+hospitalized;2021-01-30; 541
+hospitalized;2021-01-31; 529
+hospitalized;2021-02-01; 544
+hospitalized;2021-02-02; 504
+hospitalized;2021-02-03; 482
+hospitalized;2021-02-04; 444
+hospitalized;2021-02-05; 405
+hospitalized;2021-02-06; 382
+hospitalized;2021-02-07; 378
+hospitalized;2021-02-08; 400
+hospitalized;2021-02-09; 371
+hospitalized;2021-02-10; 370
+hospitalized;2021-02-11; 357
+hospitalized;2021-02-12; 337
+hospitalized;2021-02-13; 308
+hospitalized;2021-02-14; 309
+hospitalized;2021-02-15; 315
+hospitalized;2021-02-16; 298
+hospitalized;2021-02-17; 280
+hospitalized;2021-02-18; 269
+hospitalized;2021-02-19; 264
+hospitalized;2021-02-20; 248
+hospitalized;2021-02-21; 248
+hospitalized;2021-02-22; 254
+hospitalized;2021-02-23; 247
+hospitalized;2021-02-24; 238
+hospitalized;2021-02-25; 235
+hospitalized;2021-02-26; 231
+hospitalized;2021-02-27; 217
+hospitalized;2021-02-28; 231
+hospitalized;2021-03-01; 243
+hospitalized;2021-03-02; 232
+hospitalized;2021-03-03; 225
+hospitalized;2021-03-04; 217
+hospitalized;2021-03-05; 215
+hospitalized;2021-03-06; 211
+hospitalized;2021-03-07; 224
+hospitalized;2021-03-08; 234
+hospitalized;2021-03-09; 221
+hospitalized;2021-03-10; 230
+hospitalized;2021-03-11; 222
+hospitalized;2021-03-12; 225
+hospitalized;2021-03-13; 213
+hospitalized;2021-03-14; 217
+hospitalized;2021-03-15; 211
+hospitalized;2021-03-16; 207
+hospitalized;2021-03-17; 196
+hospitalized;2021-03-18; 195
+hospitalized;2021-03-19; 191
+hospitalized;2021-03-20; 179
+hospitalized;2021-03-21; 184
+hospitalized;2021-03-22; 192
+hospitalized;2021-03-23; 214
+hospitalized;2021-03-24; 216
+hospitalized;2021-03-25; 214
+hospitalized;2021-03-26; 207
+hospitalized;2021-03-27; 192
+hospitalized;2021-03-28; 200
+hospitalized;2021-03-29; 216
+hospitalized;2021-03-30; 226
+hospitalized;2021-03-31; 218
+hospitalized;2021-04-01; 211
+hospitalized;2021-04-02; 211
+hospitalized;2021-04-03; 215
+hospitalized;2021-04-04; 211
+hospitalized;2021-04-05; 220
+hospitalized;2021-04-06; 219
+hospitalized;2021-04-07; 237
+hospitalized;2021-04-08; 237
+hospitalized;2021-04-09; 221
+hospitalized;2021-04-10; 208
+hospitalized;2021-04-11; 211
+hospitalized;2021-04-12; 207
+hospitalized;2021-04-13; 197
+hospitalized;2021-04-14; 204
+hospitalized;2021-04-15; 191
+hospitalized;2021-04-16; 185
+hospitalized;2021-04-17; 173
+hospitalized;2021-04-18; 181
+hospitalized;2021-04-19; 199
+hospitalized;2021-04-20; 194
+hospitalized;2021-04-21; 191
+hospitalized;2021-04-22; 191
+hospitalized;2021-04-23; 190
+hospitalized;2021-04-24; 177
+hospitalized;2021-04-25; 181
+hospitalized;2021-04-26; 177
+hospitalized;2021-04-27; 172
+hospitalized;2021-04-28; 181
+hospitalized;2021-04-29; 173
+hospitalized;2021-04-30; 176
+hospitalized;2021-05-01; 174
+hospitalized;2021-05-02; 179
+hospitalized;2021-05-03; 184
+hospitalized;2021-05-04; 163
+hospitalized;2021-05-05; 161
+hospitalized;2021-05-06; 156
+hospitalized;2021-05-07; 157
+hospitalized;2021-05-08; 143
+hospitalized;2021-05-09; 150
+hospitalized;2021-05-10; 153
+hospitalized;2021-05-11; 165
+hospitalized;2021-05-12; 158
+hospitalized;2021-05-13; 154
+hospitalized;2021-05-14; 163
+hospitalized;2021-05-15; 162
+hospitalized;2021-05-16; 164
+hospitalized;2021-05-17; 173
+hospitalized;2021-05-18; 166
+hospitalized;2021-05-19; 163
+hospitalized;2021-05-20; 160
+hospitalized;2021-05-21; 143
+hospitalized;2021-05-22; 146
+hospitalized;2021-05-23; 139
+hospitalized;2021-05-24; 143
+hospitalized;2021-05-25; 148
+hospitalized;2021-05-26; 148
+hospitalized;2021-05-27; 149
+hospitalized;2021-05-28; 143
+hospitalized;2021-05-29; 144
+hospitalized;2021-05-30; 148
+hospitalized;2021-05-31; 153
+hospitalized;2021-06-01; 155
+hospitalized;2021-06-02; 157
+hospitalized;2021-06-03; 143
+hospitalized;2021-06-04; 145
+hospitalized;2021-06-05; 134
+hospitalized;2021-06-06; 138
+hospitalized;2021-06-07; 137
+hospitalized;2021-06-08; 124
+hospitalized;2021-06-09; 122
+hospitalized;2021-06-10; 120
+hospitalized;2021-06-11; 111
+hospitalized;2021-06-12;  99
+hospitalized;2021-06-13;  98
+hospitalized;2021-06-14; 102
+hospitalized;2021-06-15; 101
+hospitalized;2021-06-16;  93
+hospitalized;2021-06-17;  84
+hospitalized;2021-06-18;  84
+hospitalized;2021-06-19;  76
+hospitalized;2021-06-20;  80
+hospitalized;2021-06-21;  82
+hospitalized;2021-06-22;  67
+hospitalized;2021-06-23;  64
+hospitalized;2021-06-24;  68
+hospitalized;2021-06-25;  65
+hospitalized;2021-06-26;  63
+hospitalized;2021-06-27;  66
+hospitalized;2021-06-28;  65
+hospitalized;2021-06-29;  62
+hospitalized;2021-06-30;  55
+hospitalized;2021-07-01;  52
+hospitalized;2021-07-02;  48
+hospitalized;2021-07-03;  43
+hospitalized;2021-07-04;  39
+hospitalized;2021-07-05;  40
+hospitalized;2021-07-06;  43
+hospitalized;2021-07-07;  39
+hospitalized;2021-07-08;  38
+hospitalized;2021-07-09;  35
+hospitalized;2021-07-10;  28
+hospitalized;2021-07-11;  29
+hospitalized;2021-07-12;  37
+hospitalized;2021-07-13;  47
+hospitalized;2021-07-14;  51
+hospitalized;2021-07-15;  51
+hospitalized;2021-07-16;  53
+hospitalized;2021-07-17;  55
+hospitalized;2021-07-18;  53
+hospitalized;2021-07-19;  50
+hospitalized;2021-07-20;  50
+hospitalized;2021-07-21;  55
+hospitalized;2021-07-22;  57
+hospitalized;2021-07-23;  55
+hospitalized;2021-07-24;  56
+hospitalized;2021-07-25;  59
+hospitalized;2021-07-26;  60
+hospitalized;2021-07-27;  61
+hospitalized;2021-07-28;  64
+hospitalized;2021-07-29;  57
+hospitalized;2021-07-30;  56
+hospitalized;2021-07-31;  54
+hospitalized;2021-08-01;  57
+hospitalized;2021-08-02;  54
+hospitalized;2021-08-03;  62
+hospitalized;2021-08-04;  59
+hospitalized;2021-08-05;  62
+hospitalized;2021-08-06;  69
+hospitalized;2021-08-07;  67
+hospitalized;2021-08-08;  80
+hospitalized;2021-08-09;  83
+hospitalized;2021-08-10;  85
+hospitalized;2021-08-11; 103
+hospitalized;2021-08-12; 113
+hospitalized;2021-08-13; 101
+hospitalized;2021-08-14;  94
+hospitalized;2021-08-15; 107
+hospitalized;2021-08-16; 117
+hospitalized;2021-08-17; 101
+hospitalized;2021-08-18; 105
+hospitalized;2021-08-19; 116
+hospitalized;2021-08-20; 115
+hospitalized;2021-08-21; 115
+hospitalized;2021-08-22; 124
+hospitalized;2021-08-23; 131
+hospitalized;2021-08-24; 131
+hospitalized;2021-08-25; 133
+hospitalized;2021-08-26; 127
+hospitalized;2021-08-27; 126
+hospitalized;2021-08-28; 124
+hospitalized;2021-08-29; 129
+hospitalized;2021-08-30; 142
+hospitalized;2021-08-31; 147
+hospitalized;2021-09-01; 134
+hospitalized;2021-09-02; 132
+hospitalized;2021-09-03; 137
+hospitalized;2021-09-04; 121
+hospitalized;2021-09-05; 124
+hospitalized;2021-09-06; 125
+hospitalized;2021-09-07; 123
+hospitalized;2021-09-08; 128
+hospitalized;2021-09-09; 132
+hospitalized;2021-09-10; 132
+hospitalized;2021-09-11; 124
+hospitalized;2021-09-12; 125
+hospitalized;2021-09-13; 125
+hospitalized;2021-09-14; 117
+hospitalized;2021-09-15; 116
+hospitalized;2021-09-16; 102
+hospitalized;2021-09-17; 105
+hospitalized;2021-09-18;  97
+hospitalized;2021-09-19;  98
+hospitalized;2021-09-20;  99
+hospitalized;2021-09-21;  96
+hospitalized;2021-09-22;  89
+hospitalized;2021-09-23;  87
+hospitalized;2021-09-24;  87
+hospitalized;2021-09-25;  77
+hospitalized;2021-09-26;  85
+hospitalized;2021-09-27;  95
+hospitalized;2021-09-28;  93
+hospitalized;2021-09-29;  89
+hospitalized;2021-09-30;  93
+hospitalized;2021-10-01;  83
+hospitalized;2021-10-02;  85
+hospitalized;2021-10-03;  82
+hospitalized;2021-10-04;  86
+hospitalized;2021-10-05;  87
+hospitalized;2021-10-06;  95
+hospitalized;2021-10-07;  98
+hospitalized;2021-10-08;  88
+hospitalized;2021-10-09;  77
+hospitalized;2021-10-10;  83
+hospitalized;2021-10-11;  89
+hospitalized;2021-10-12;  89
+hospitalized;2021-10-13;  91
+hospitalized;2021-10-14;  90
+hospitalized;2021-10-15; 105
+hospitalized;2021-10-16; 110
+hospitalized;2021-10-17; 120
+hospitalized;2021-10-18; 121
+hospitalized;2021-10-19; 120
+hospitalized;2021-10-20; 126
+hospitalized;2021-10-21; 132
+hospitalized;2021-10-22; 144
+hospitalized;2021-10-23; 156
+hospitalized;2021-10-24; 167
+hospitalized;2021-10-25; 186
+hospitalized;2021-10-26; 195
+hospitalized;2021-10-27; 200
+hospitalized;2021-10-28; 212
+hospitalized;2021-10-29; 221
+hospitalized;2021-10-30; 219
+hospitalized;2021-10-31; 233
+hospitalized;2021-11-01; 248
+hospitalized;2021-11-02; 255
+hospitalized;2021-11-03; 264
+hospitalized;2021-11-04; 246
+hospitalized;2021-11-05; 263
+hospitalized;2021-11-06; 277
+hospitalized;2021-11-07; 282
+hospitalized;2021-11-08; 303
+hospitalized;2021-11-09; 315
+hospitalized;2021-11-10; 319
+hospitalized;2021-11-11; 307
+hospitalized;2021-11-12; 316
+hospitalized;2021-11-13; 319
+hospitalized;2021-11-14; 346
+hospitalized;2021-11-15; 356
+hospitalized;2021-11-16; 371
+hospitalized;2021-11-17; 369
+hospitalized;2021-11-18; 362
+hospitalized;2021-11-19; 378
+hospitalized;2021-11-20; 386
+hospitalized;2021-11-21; 414
+hospitalized;2021-11-22; 438
+hospitalized;2021-11-23; 444
+hospitalized;2021-11-24; 435
+hospitalized;2021-11-25; 411
+hospitalized;2021-11-26; 426
+hospitalized;2021-11-27; 418
+hospitalized;2021-11-28; 435
+hospitalized;2021-11-29; 446
+hospitalized;2021-11-30; 433
+hospitalized;2021-12-01; 439
+hospitalized;2021-12-02; 427
+hospitalized;2021-12-03; 449
+hospitalized;2021-12-04; 434
+hospitalized;2021-12-05; 447
+hospitalized;2021-12-06; 468
+hospitalized;2021-12-07; 465
+hospitalized;2021-12-08; 461
+hospitalized;2021-12-09; 460
+hospitalized;2021-12-10; 472
+hospitalized;2021-12-11; 455
+hospitalized;2021-12-12; 468
+hospitalized;2021-12-13; 487
+hospitalized;2021-12-14; 498
+hospitalized;2021-12-15; 508
+hospitalized;2021-12-16; 517
+hospitalized;2021-12-17; 518
+hospitalized;2021-12-18; 533
+hospitalized;2021-12-19; 560
+hospitalized;2021-12-20; 581
+hospitalized;2021-12-21; 554
+hospitalized;2021-12-22; 553
+hospitalized;2021-12-23; 570
+hospitalized;2021-12-24; 538
+hospitalized;2021-12-25; 522
+hospitalized;2021-12-26; 579
+hospitalized;2021-12-27; 608
+hospitalized;2021-12-28; 666
+hospitalized;2021-12-29; 675
+hospitalized;2021-12-30; 665
+hospitalized;2021-12-31; 641
+hospitalized;2022-01-01; 647
+hospitalized;2022-01-02; 709
+hospitalized;2022-01-03; 770
+hospitalized;2022-01-04; 794
+hospitalized;2022-01-05; 784
+hospitalized;2022-01-06; 756
+hospitalized;2022-01-07; 755
+hospitalized;2022-01-08; 730
+hospitalized;2022-01-09; 723
+hospitalized;2022-01-10; 777
+hospitalized;2022-01-11; 754
+hospitalized;2022-01-12; 751
+hospitalized;2022-01-13; 755
+hospitalized;2022-01-14; 757
+hospitalized;2022-01-15; 711
+hospitalized;2022-01-16; 734
+hospitalized;2022-01-17; 802
+hospitalized;2022-01-18; 810
+hospitalized;2022-01-19; 821
+hospitalized;2022-01-20; 825
+hospitalized;2022-01-21; 813
+hospitalized;2022-01-22; 781
+hospitalized;2022-01-23; 813
+hospitalized;2022-01-24; 894
+hospitalized;2022-01-25; 918
+hospitalized;2022-01-26; 938
+hospitalized;2022-01-27; 955
+hospitalized;2022-01-28; 967
+hospitalized;2022-01-29; 922
+hospitalized;2022-01-30; 948
+hospitalized;2022-01-31;1028
+hospitalized;2022-02-01;1070
