@@ -20,7 +20,7 @@ plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
     Quarter = quarter(Date),
     Year_quarter = paste(Year, Quarter, sep = "_")
   ) %>%
-  filter(!Year_quarter %in% c("2020_1", "2020_2", "2022_1")) %>%
+  filter(!Year_quarter %in% c("2020_1", "2020_2")) %>%
   mutate(Year_quarter = str_replace(Year_quarter, "_", " Q")) %>%
   group_by(Aldersgruppe, Year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
