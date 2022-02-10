@@ -1,13 +1,13 @@
 rsquared <-
   function(x, y) {
-    m <- lm(y ~ x)
+    m <- lm(y ~ 0 + x)
     return(summary(m)$r.squared)
   }
 
 slope <-
   function(x, y) {
-    m <- lm(y ~ x)
-    return(summary(m)$coefficients[2])
+    m <- lm(y ~ 0 + x)
+    return(summary(m)$coefficients[1])
   }
 
 plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
@@ -25,6 +25,7 @@ plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   group_by(Aldersgruppe, Year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
   filter(!is.na(admitted)) %>%
+  
   mutate(
     R = sqrt(rsquared(positive, admitted)),
     slope = slope(positive, admitted)
