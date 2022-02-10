@@ -3,7 +3,7 @@ plot_data <- read_csv2("../data/24_reinfektioner_daglig_region.csv", locale = lo
   rename(
     Date = Prøvedato,
     Positive = infected,
-    Type = `Type af tilfælde (reinfektion eller bekræftet tilfælde)`
+    Type = `Type af tilfælde (reinfektion eller første infektion)`
   ) %>%
   select(-type_count, -`Antal borgere`) %>%
   filter(Type == "1.Reinfektion") %>%
