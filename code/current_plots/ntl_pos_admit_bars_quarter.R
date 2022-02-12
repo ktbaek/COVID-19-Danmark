@@ -1,6 +1,6 @@
 rsquared <-
   function(x, y) {
-    m <- lm(y ~ x)
+    m <- lm(y ~ 0 + x)
     return(summary(m)$r.squared)
   }
 
