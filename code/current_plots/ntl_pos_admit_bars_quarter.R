@@ -1,6 +1,6 @@
 rsquared <-
   function(x, y) {
-    m <- lm(y ~ 0 + x)
+    m <- lm(y ~ x)
     return(summary(m)$r.squared)
   }
 
@@ -25,7 +25,6 @@ plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   group_by(Aldersgruppe, Year_quarter) %>%
   mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
   filter(!is.na(admitted)) %>%
-  
   mutate(
     R = sqrt(rsquared(positive, admitted)),
     slope = slope(positive, admitted)
@@ -52,9 +51,23 @@ plot_data %>%
     family = "lato",
     check_overlap = TRUE
   ) +
+  geom_text(
+    aes(
+      x = Year_quarter,
+      y = slope * 100 + 5,
+      group = Year_quarter,
+      label = paste0(round(signif(slope * 100, 2), 1), "%"),
+      color = Aldersgruppe
+    ),
+    size = rel(1.8),
+    family = "lato",
+    fontface = "bold",
+    check_overlap = TRUE
+  ) +
   facet_wrap(~Aldersgruppe) +
   scale_y_continuous(limits = c(-5, NA), labels = function(x) paste0(x, " %")) +
   scale_fill_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
+  scale_color_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
   facet_theme +
   theme(
     plot.margin = margin(0.5, 1, 0.2, 0.5, "cm"),
@@ -65,10 +78,10 @@ plot_data %>%
     panel.grid.major.x = element_blank()
   ) +
   labs(
-    y = "Andel",
+    y = "Fraction",
     x = "Quarter",
-    title = "Ugentlige indlæggelser som andel af antal PCR positive",
-    subtitle = "Én uges positive er sammenlignet med gennemsnittet af indlæggelser i samme uge og de to følgende uger ('risikotiden'). Indlæggelser er defineret på baggrund af positiv SARS-CoV-2 PCR test. Tal under søjlerne angiver korrelationskoefficienten (interval 0-1).",
+    title = "Admissions as fraction of cases by age, Denmark",
+    subtitle = "One weeks PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
     caption = standard_caption
   )
 
