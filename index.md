@@ -141,7 +141,7 @@ Plottene viser det ugentlige antal positive, testede og nyindlagte per 100.000 i
 
 Plottet viser andelen af PCR positive der efterfølgende indlægges for hvert kvartal siden 1. juli 2020. Andelene er beregnet ved lineær regression mellem 1) antal positive i en enkelt uge og 2) gennemsnittet af antal indlæggelser i samme uge eller de to følgende uger (det er den periode en positiv test kan give anledning til at en indlæggelse registreres som en COVID-19 relateret indlæggelse). Korrelationskoefficienterne under søjlerne angiver hvor god sammenhængen mellem antal positive og antal indlæggelser er.
 
-Bemærkt at resultatet for indeværende kvartal muligvis kun er baseret på få datapunkter.
+Bemærk at resultatet for indeværende kvartal muligvis kun er baseret på få datapunkter.
 
 ``SSI datasæt: '18_fnkt_alder_uge_testede_positive_nyindlagte'``
 
