@@ -81,7 +81,7 @@ plot_data %>%
     y = "Fraction",
     x = "Quarter",
     title = "Admissions as fraction of cases by age, Denmark",
-    subtitle = "One weeks PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
+    subtitle = "One week's PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
     caption = standard_caption
   )
 
