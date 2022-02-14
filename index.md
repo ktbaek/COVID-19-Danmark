@@ -5,7 +5,7 @@ title: Covid-19 smitteudvikling i Danmark
 ---
 # Grafer over Covid-19 smitteudvikling i Danmark
 
-Senest opdateret 10. februar 2022 kl. 18:52.
+Senest opdateret 14. februar 2022 kl. 14:16.
 Opdateres et par gange om ugen.
 
 [SSI's datasæt]: https://github.com/ktbaek/COVID-19-Danmark/tree/master/data/SSIdata_220121
@@ -299,19 +299,13 @@ Plottet viser det daglige antal positive opdelt på de to nuværende varianter, 
 
 ## Politiske tiltag
 
-Se [liste](/tiltag.md) over tiltag.
-*Ikke fuldt opdateret*.
 
-### Daglige epidemi-indikatorer og tiltag
-Plottet viser forløbene af de forskellige epidemi-indikatorer samt tidspunkterne for politiske tiltag. De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
+### Daglige epidemi-indikatorer og Oxfords Stringency Index
+Plottet viser forløbene af forskellige epidemi-indikatorer samt værdierne af [Oxfords Stringecy Index](https://www.bsg.ox.ac.uk/research/research-projects/covid-19-government-response-tracker). De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
 
-``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time'``
+``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time', Danmarks Statistik: 'FOLK1A', 'DODC1', 'SMIT1'``
 
-![](/figures/ntl_tiltag_january.png)
-
-[English version](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_january_EN.png) of this plot.
-
-Lignende plots for [forår/sommer 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_april.png) og [efterår 2020](https://raw.githubusercontent.com/ktbaek/COVID-19-Danmark/master/figures/ntl_tiltag_july.png).
+![](/ntl_indicators_SI.png)
 
 [Tilbage til toppen](#)
 

@@ -27,7 +27,9 @@ plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   filter(!is.na(admitted)) %>%
   mutate(
     R = sqrt(rsquared(positive, admitted)),
-    slope = slope(positive, admitted)
+    slope = slope(positive, admitted),
+    ratio = admitted / positive * 100,
+    sd = sd(ratio, na.rm = TRUE)
   )
 
 plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-2", "3-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
@@ -86,3 +88,28 @@ plot_data %>%
   )
 
 ggsave("../figures/ntl_pos_admit_bars_quarter.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data %>%
+  select(Date, Aldersgruppe, ratio, sd) %>%
+  distinct() %>%
+  ggplot() +
+  geom_line(aes(Date, ratio, color = Aldersgruppe)) +
+  facet_wrap(~Aldersgruppe, ncol = 3) +
+  scale_x_date(labels = my_date_labels, breaks = c(ymd("2020-07-01"), ymd("2021-01-01"), ymd("2021-07-01"), ymd("2022-01-01"))) +
+  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
+  #scale_color_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
+  facet_theme +
+  theme(
+    plot.margin = margin(0.5, 1, 0.2, 0.5, "cm"),
+    legend.position = "none",
+    plot.title = element_text(margin = margin(b = 3)),
+    plot.subtitle = element_textbox_simple(size = rel(0.8), width = unit(1, "npc"), margin = margin(b = 4))
+  ) +
+  labs(
+    y = "Fraction",
+    title = "Admissions as fraction of cases by age, Denmark",
+    subtitle = "One week's PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
+    caption = standard_caption
+  )
+
+ggsave("../figures/ntl_pos_admit_lines.png", width = 18, height = 10, units = "cm", dpi = 300)

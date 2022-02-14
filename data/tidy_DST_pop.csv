@@ -55,6 +55,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  0;Male;31649
 2021;3;  0;Male;31870
 2021;4;  0;Male;32068
+2022;1;  0;Male;32655
 2008;1;  1;Male;33797
 2008;2;  1;Male;33680
 2008;3;  1;Male;33391
@@ -111,6 +112,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  1;Male;31863
 2021;3;  1;Male;31672
 2021;4;  1;Male;31572
+2022;1;  1;Male;31464
 2008;1;  2;Male;33129
 2008;2;  2;Male;33255
 2008;3;  2;Male;33456
@@ -167,6 +169,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  2;Male;31595
 2021;3;  2;Male;31663
 2021;4;  2;Male;31873
+2022;1;  2;Male;31839
 2008;1;  3;Male;33280
 2008;2;  3;Male;33201
 2008;3;  3;Male;33377
@@ -223,6 +226,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  3;Male;32009
 2021;3;  3;Male;32100
 2021;4;  3;Male;32072
+2022;1;  3;Male;31991
 2008;1;  4;Male;33398
 2008;2;  4;Male;33566
 2008;3;  4;Male;33635
@@ -279,6 +283,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  4;Male;32342
 2021;3;  4;Male;32311
 2021;4;  4;Male;31861
+2022;1;  4;Male;31908
 2008;1;  5;Male;33269
 2008;2;  5;Male;33163
 2008;3;  5;Male;33028
@@ -335,6 +340,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  5;Male;31077
 2021;3;  5;Male;31674
 2021;4;  5;Male;32281
+2022;1;  5;Male;32434
 2008;1;  6;Male;33615
 2008;2;  6;Male;33392
 2008;3;  6;Male;33126
@@ -391,6 +397,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  6;Male;30332
 2021;3;  6;Male;30220
 2021;4;  6;Male;30410
+2022;1;  6;Male;30679
 2008;1;  7;Male;34593
 2008;2;  7;Male;34593
 2008;3;  7;Male;34418
@@ -447,6 +454,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  7;Male;29822
 2021;3;  7;Male;29803
 2021;4;  7;Male;30118
+2022;1;  7;Male;30391
 2008;1;  8;Male;34174
 2008;2;  8;Male;34091
 2008;3;  8;Male;34293
@@ -503,6 +511,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  8;Male;31016
 2021;3;  8;Male;30846
 2021;4;  8;Male;30521
+2022;1;  8;Male;30018
 2008;1;  9;Male;34534
 2008;2;  9;Male;34436
 2008;3;  9;Male;34622
@@ -559,6 +568,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  9;Male;31510
 2021;3;  9;Male;31359
 2021;4;  9;Male;31225
+2022;1;  9;Male;31453
 2008;1; 10;Male;35332
 2008;2; 10;Male;34990
 2008;3; 10;Male;34428
@@ -615,6 +625,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 10;Male;33492
 2021;3; 10;Male;32890
 2021;4; 10;Male;32426
+2022;1; 10;Male;31685
 2008;1; 11;Male;35555
 2008;2; 11;Male;35448
 2008;3; 11;Male;35756
@@ -671,6 +682,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 11;Male;34294
 2021;3; 11;Male;34350
 2021;4; 11;Male;34315
+2022;1; 11;Male;34286
 2008;1; 12;Male;36924
 2008;2; 12;Male;36830
 2008;3; 12;Male;36337
@@ -727,6 +739,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 12;Male;35272
 2021;3; 12;Male;35150
 2021;4; 12;Male;34559
+2022;1; 12;Male;34281
 2008;1; 13;Male;36875
 2008;2; 13;Male;37126
 2008;3; 13;Male;37027
@@ -783,6 +796,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 13;Male;34994
 2021;3; 13;Male;35131
 2021;4; 13;Male;35622
+2022;1; 13;Male;35540
 2008;1; 14;Male;35822
 2008;2; 14;Male;35711
 2008;3; 14;Male;36073
@@ -839,6 +853,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 14;Male;35224
 2021;3; 14;Male;34968
 2021;4; 14;Male;34648
+2022;1; 14;Male;34888
 2008;1; 15;Male;36271
 2008;2; 15;Male;36323
 2008;3; 15;Male;36154
@@ -895,6 +910,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 15;Male;34665
 2021;3; 15;Male;34798
 2021;4; 15;Male;35240
+2022;1; 15;Male;35416
 2008;1; 16;Male;34634
 2008;2; 16;Male;35089
 2008;3; 16;Male;35364
@@ -951,6 +967,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 16;Male;34751
 2021;3; 16;Male;34873
 2021;4; 16;Male;35034
+2022;1; 16;Male;34810
 2008;1; 17;Male;34652
 2008;2; 17;Male;34642
 2008;3; 17;Male;34896
@@ -1007,6 +1024,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 17;Male;35017
 2021;3; 17;Male;35008
 2021;4; 17;Male;34801
+2022;1; 17;Male;34970
 2008;1; 18;Male;33490
 2008;2; 18;Male;33809
 2008;3; 18;Male;33957
@@ -1063,6 +1081,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 18;Male;34579
 2021;3; 18;Male;34457
 2021;4; 18;Male;35174
+2022;1; 18;Male;35114
 2008;1; 19;Male;32550
 2008;2; 19;Male;32865
 2008;3; 19;Male;33140
@@ -1119,6 +1138,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 19;Male;35305
 2021;3; 19;Male;34929
 2021;4; 19;Male;35337
+2022;1; 19;Male;35532
 2008;1; 20;Male;31662
 2008;2; 20;Male;32066
 2008;3; 20;Male;32100
@@ -1175,6 +1195,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 20;Male;37024
 2021;3; 20;Male;36805
 2021;4; 20;Male;36970
+2022;1; 20;Male;36356
 2008;1; 21;Male;31720
 2008;2; 21;Male;32061
 2008;3; 21;Male;31979
@@ -1231,6 +1252,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 21;Male;36983
 2021;3; 21;Male;37133
 2021;4; 21;Male;37534
+2022;1; 21;Male;37944
 2008;1; 22;Male;31140
 2008;2; 22;Male;31522
 2008;3; 22;Male;31693
@@ -1287,6 +1309,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 22;Male;37965
 2021;3; 22;Male;37999
 2021;4; 22;Male;38202
+2022;1; 22;Male;38063
 2008;1; 23;Male;30313
 2008;2; 23;Male;30531
 2008;3; 23;Male;30862
@@ -1343,6 +1366,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 23;Male;38971
 2021;3; 23;Male;38341
 2021;4; 23;Male;38797
+2022;1; 23;Male;39000
 2008;1; 24;Male;29713
 2008;2; 24;Male;30058
 2008;3; 24;Male;30264
@@ -1399,6 +1423,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 24;Male;39809
 2021;3; 24;Male;40162
 2021;4; 24;Male;40617
+2022;1; 24;Male;40166
 2008;1; 25;Male;30646
 2008;2; 25;Male;30403
 2008;3; 25;Male;30262
@@ -1455,6 +1480,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 25;Male;41486
 2021;3; 25;Male;40951
 2021;4; 25;Male;40564
+2022;1; 25;Male;40600
 2008;1; 26;Male;30393
 2008;2; 26;Male;30567
 2008;3; 26;Male;30711
@@ -1511,6 +1537,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 26;Male;42034
 2021;3; 26;Male;41802
 2021;4; 26;Male;42294
+2022;1; 26;Male;42013
 2008;1; 27;Male;32182
 2008;2; 27;Male;31746
 2008;3; 27;Male;31123
@@ -1567,6 +1594,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 27;Male;40657
 2021;3; 27;Male;41024
 2021;4; 27;Male;41128
+2022;1; 27;Male;42131
 2008;1; 28;Male;32978
 2008;2; 28;Male;32758
 2008;3; 28;Male;32707
@@ -1623,6 +1651,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 28;Male;41243
 2021;3; 28;Male;41159
 2021;4; 28;Male;41270
+2022;1; 28;Male;41036
 2008;1; 29;Male;34179
 2008;2; 29;Male;34088
 2008;3; 29;Male;33703
@@ -1679,6 +1708,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 29;Male;40228
 2021;3; 29;Male;40526
 2021;4; 29;Male;41179
+2022;1; 29;Male;41675
 2008;1; 30;Male;34170
 2008;2; 30;Male;34088
 2008;3; 30;Male;34496
@@ -1735,6 +1765,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 30;Male;39853
 2021;3; 30;Male;40092
 2021;4; 30;Male;40027
+2022;1; 30;Male;40064
 2008;1; 31;Male;35694
 2008;2; 31;Male;35061
 2008;3; 31;Male;34571
@@ -1791,6 +1822,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 31;Male;39064
 2021;3; 31;Male;39286
 2021;4; 31;Male;39779
+2022;1; 31;Male;40196
 2008;1; 32;Male;38401
 2008;2; 32;Male;37978
 2008;3; 32;Male;37400
@@ -1847,6 +1879,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 32;Male;37962
 2021;3; 32;Male;38315
 2021;4; 32;Male;38459
+2022;1; 32;Male;38877
 2008;1; 33;Male;38008
 2008;2; 33;Male;38083
 2008;3; 33;Male;38347
@@ -1903,6 +1936,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 33;Male;36575
 2021;3; 33;Male;36843
 2021;4; 33;Male;37547
+2022;1; 33;Male;38047
 2008;1; 34;Male;38247
 2008;2; 34;Male;38067
 2008;3; 34;Male;38009
@@ -1959,6 +1993,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 34;Male;35922
 2021;3; 34;Male;36192
 2021;4; 34;Male;36285
+2022;1; 34;Male;36515
 2008;1; 35;Male;39811
 2008;2; 35;Male;39493
 2008;3; 35;Male;38782
@@ -2015,6 +2050,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 35;Male;34851
 2021;3; 35;Male;35288
 2021;4; 35;Male;35614
+2022;1; 35;Male;35919
 2008;1; 36;Male;39870
 2008;2; 36;Male;40452
 2008;3; 36;Male;40677
@@ -2071,6 +2107,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 36;Male;33400
 2021;3; 36;Male;33757
 2021;4; 36;Male;34280
+2022;1; 36;Male;34639
 2008;1; 37;Male;38074
 2008;2; 37;Male;38477
 2008;3; 37;Male;39109
@@ -2127,6 +2164,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 37;Male;32784
 2021;3; 37;Male;33008
 2021;4; 37;Male;33234
+2022;1; 37;Male;33517
 2008;1; 38;Male;38207
 2008;2; 38;Male;37696
 2008;3; 38;Male;37737
@@ -2183,6 +2221,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 38;Male;32850
 2021;3; 38;Male;32789
 2021;4; 38;Male;32832
+2022;1; 38;Male;32556
 2008;1; 39;Male;39833
 2008;2; 39;Male;39390
 2008;3; 39;Male;38810
@@ -2239,6 +2278,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 39;Male;32872
 2021;3; 39;Male;32912
 2021;4; 39;Male;32907
+2022;1; 39;Male;33449
 2008;1; 40;Male;42446
 2008;2; 40;Male;41602
 2008;3; 40;Male;40997
@@ -2295,6 +2335,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 40;Male;33784
 2021;3; 40;Male;33227
 2021;4; 40;Male;33075
+2022;1; 40;Male;32797
 2008;1; 41;Male;45722
 2008;2; 41;Male;45448
 2008;3; 41;Male;44966
@@ -2351,6 +2392,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 41;Male;34807
 2021;3; 41;Male;34726
 2021;4; 41;Male;34692
+2022;1; 41;Male;34510
 2008;1; 42;Male;44144
 2008;2; 42;Male;44528
 2008;3; 42;Male;45009
@@ -2407,6 +2449,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 42;Male;35618
 2021;3; 42;Male;35305
 2021;4; 42;Male;35127
+2022;1; 42;Male;35028
 2008;1; 43;Male;43412
 2008;2; 43;Male;43354
 2008;3; 43;Male;43639
@@ -2463,6 +2506,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 43;Male;35441
 2021;3; 43;Male;35899
 2021;4; 43;Male;36071
+2022;1; 43;Male;35863
 2008;1; 44;Male;42229
 2008;2; 44;Male;42873
 2008;3; 44;Male;42807
@@ -2519,6 +2563,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 44;Male;36355
 2021;3; 44;Male;35810
 2021;4; 44;Male;35412
+2022;1; 44;Male;35542
 2008;1; 45;Male;39985
 2008;2; 45;Male;40294
 2008;3; 45;Male;40918
@@ -2575,6 +2620,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 45;Male;38947
 2021;3; 45;Male;38487
 2021;4; 45;Male;37725
+2022;1; 45;Male;37032
 2008;1; 46;Male;38787
 2008;2; 46;Male;39228
 2008;3; 46;Male;39582
@@ -2631,6 +2677,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 46;Male;39006
 2021;3; 46;Male;39184
 2021;4; 46;Male;39625
+2022;1; 46;Male;39518
 2008;1; 47;Male;38823
 2008;2; 47;Male;38703
 2008;3; 47;Male;38611
@@ -2687,6 +2734,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 47;Male;38591
 2021;3; 47;Male;38601
 2021;4; 47;Male;38780
+2022;1; 47;Male;38967
 2008;1; 48;Male;37140
 2008;2; 48;Male;37346
 2008;3; 48;Male;37952
@@ -2743,6 +2791,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 48;Male;39972
 2021;3; 48;Male;39201
 2021;4; 48;Male;38778
+2022;1; 48;Male;38746
 2008;1; 49;Male;37210
 2008;2; 49;Male;37211
 2008;3; 49;Male;36813
@@ -2799,6 +2848,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 49;Male;40651
 2021;3; 49;Male;41017
 2021;4; 49;Male;40888
+2022;1; 49;Male;40310
 2008;1; 50;Male;36930
 2008;2; 50;Male;37106
 2008;3; 50;Male;37312
@@ -2855,6 +2905,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 50;Male;38446
 2021;3; 50;Male;39071
 2021;4; 50;Male;39657
+2022;1; 50;Male;40091
 2008;1; 51;Male;37129
 2008;2; 51;Male;36892
 2008;3; 51;Male;36931
@@ -2911,6 +2962,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 51;Male;37559
 2021;3; 51;Male;37617
 2021;4; 51;Male;37785
+2022;1; 51;Male;38034
 2008;1; 52;Male;36677
 2008;2; 52;Male;36732
 2008;3; 52;Male;36618
@@ -2967,6 +3019,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 52;Male;39076
 2021;3; 52;Male;38505
 2021;4; 52;Male;38302
+2022;1; 52;Male;38051
 2008;1; 53;Male;35542
 2008;2; 53;Male;35814
 2008;3; 53;Male;36079
@@ -3023,6 +3076,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 53;Male;40929
 2021;3; 53;Male;40408
 2021;4; 53;Male;39775
+2022;1; 53;Male;39367
 2008;1; 54;Male;36198
 2008;2; 54;Male;35865
 2008;3; 54;Male;35541
@@ -3079,6 +3133,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 54;Male;44471
 2021;3; 54;Male;44024
 2021;4; 54;Male;42978
+2022;1; 54;Male;41768
 2008;1; 55;Male;35297
 2008;2; 55;Male;35792
 2008;3; 55;Male;36035
@@ -3135,6 +3190,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 55;Male;43365
 2021;3; 55;Male;43832
 2021;4; 55;Male;44190
+2022;1; 55;Male;44583
 2008;1; 56;Male;34825
 2008;2; 56;Male;34457
 2008;3; 56;Male;34588
@@ -3191,6 +3247,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 56;Male;41942
 2021;3; 56;Male;42299
 2021;4; 56;Male;42749
+2022;1; 56;Male;42871
 2008;1; 57;Male;35340
 2008;2; 57;Male;35140
 2008;3; 57;Male;34789
@@ -3247,6 +3304,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 57;Male;41248
 2021;3; 57;Male;41205
 2021;4; 57;Male;41444
+2022;1; 57;Male;41794
 2008;1; 58;Male;35056
 2008;2; 58;Male;35199
 2008;3; 58;Male;35376
@@ -3303,6 +3361,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 58;Male;38459
 2021;3; 58;Male;39129
 2021;4; 58;Male;39737
+2022;1; 58;Male;40425
 2008;1; 59;Male;36890
 2008;2; 59;Male;36211
 2008;3; 59;Male;35592
@@ -3359,6 +3418,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 59;Male;37099
 2021;3; 59;Male;37439
 2021;4; 59;Male;37790
+2022;1; 59;Male;37837
 2008;1; 60;Male;38982
 2008;2; 60;Male;38286
 2008;3; 60;Male;37441
@@ -3415,6 +3475,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 60;Male;36369
 2021;3; 60;Male;36336
 2021;4; 60;Male;36257
+2022;1; 60;Male;36442
 2008;1; 61;Male;40313
 2008;2; 61;Male;39855
 2008;3; 61;Male;39407
@@ -3471,6 +3532,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 61;Male;34689
 2021;3; 61;Male;35282
 2021;4; 61;Male;35812
+2022;1; 61;Male;36125
 2008;1; 62;Male;38560
 2008;2; 62;Male;39156
 2008;3; 62;Male;39886
@@ -3527,6 +3589,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 62;Male;34359
 2021;3; 62;Male;34010
 2021;4; 62;Male;34407
+2022;1; 62;Male;34161
 2008;1; 63;Male;36117
 2008;2; 63;Male;36627
 2008;3; 63;Male;37324
@@ -3583,6 +3646,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 63;Male;34045
 2021;3; 63;Male;34243
 2021;4; 63;Male;33860
+2022;1; 63;Male;34067
 2008;1; 64;Male;32600
 2008;2; 64;Male;33772
 2008;3; 64;Male;34368
@@ -3639,6 +3703,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 64;Male;33380
 2021;3; 64;Male;33542
 2021;4; 64;Male;33369
+2022;1; 64;Male;33432
 2008;1; 65;Male;30543
 2008;2; 65;Male;31015
 2008;3; 65;Male;31297
@@ -3695,6 +3760,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 65;Male;32845
 2021;3; 65;Male;32755
 2021;4; 65;Male;32974
+2022;1; 65;Male;33140
 2008;1; 66;Male;26640
 2008;2; 66;Male;27305
 2008;3; 66;Male;28309
@@ -3751,6 +3817,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 66;Male;31674
 2021;3; 66;Male;31917
 2021;4; 66;Male;32243
+2022;1; 66;Male;32318
 2008;1; 67;Male;25473
 2008;2; 67;Male;25102
 2008;3; 67;Male;25344
@@ -3807,6 +3874,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 67;Male;31356
 2021;3; 67;Male;31117
 2021;4; 67;Male;30957
+2022;1; 67;Male;30952
 2008;1; 68;Male;23993
 2008;2; 68;Male;24707
 2008;3; 68;Male;24774
@@ -3863,6 +3931,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 68;Male;31104
 2021;3; 68;Male;31304
 2021;4; 68;Male;31509
+2022;1; 68;Male;31146
 2008;1; 69;Male;23211
 2008;2; 69;Male;23087
 2008;3; 69;Male;23067
@@ -3919,6 +3988,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 69;Male;29296
 2021;3; 69;Male;29482
 2021;4; 69;Male;29684
+2022;1; 69;Male;30006
 2008;1; 70;Male;21586
 2008;2; 70;Male;22081
 2008;3; 70;Male;22293
@@ -3975,6 +4045,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 70;Male;29647
 2021;3; 70;Male;29350
 2021;4; 70;Male;29028
+2022;1; 70;Male;29181
 2008;1; 71;Male;20516
 2008;2; 71;Male;20523
 2008;3; 71;Male;20772
@@ -4031,6 +4102,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 71;Male;29226
 2021;3; 71;Male;29340
 2021;4; 71;Male;29305
+2022;1; 71;Male;29137
 2008;1; 72;Male;18944
 2008;2; 72;Male;18964
 2008;3; 72;Male;19320
@@ -4087,6 +4159,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 72;Male;29767
 2021;3; 72;Male;29295
 2021;4; 72;Male;28727
+2022;1; 72;Male;28397
 2008;1; 73;Male;17834
 2008;2; 73;Male;17959
 2008;3; 73;Male;18183
@@ -4143,6 +4216,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 73;Male;31017
 2021;3; 73;Male;30225
 2021;4; 73;Male;29800
+2022;1; 73;Male;29509
 2008;1; 74;Male;16450
 2008;2; 74;Male;16912
 2008;3; 74;Male;17121
@@ -4199,6 +4273,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 74;Male;31530
 2021;3; 74;Male;31289
 2021;4; 74;Male;31091
+2022;1; 74;Male;30636
 2008;1; 75;Male;15393
 2008;2; 75;Male;15252
 2008;3; 75;Male;15245
@@ -4255,6 +4330,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 75;Male;30373
 2021;3; 75;Male;31013
 2021;4; 75;Male;31173
+2022;1; 75;Male;30960
 2008;1; 76;Male;14537
 2008;2; 76;Male;14661
 2008;3; 76;Male;14737
@@ -4311,6 +4387,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 76;Male;27305
 2021;3; 76;Male;27945
 2021;4; 76;Male;28286
+2022;1; 76;Male;28705
 2008;1; 77;Male;13773
 2008;2; 77;Male;13754
 2008;3; 77;Male;13744
@@ -4367,6 +4444,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 77;Male;24537
 2021;3; 77;Male;24955
 2021;4; 77;Male;25424
+2022;1; 77;Male;25824
 2008;1; 78;Male;12901
 2008;2; 78;Male;12831
 2008;3; 78;Male;12917
@@ -4423,6 +4501,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 78;Male;21966
 2021;3; 78;Male;22259
 2021;4; 78;Male;22332
+2022;1; 78;Male;22659
 2008;1; 79;Male;12298
 2008;2; 79;Male;12313
 2008;3; 79;Male;12395
@@ -4479,6 +4558,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 79;Male;18735
 2021;3; 79;Male;19414
 2021;4; 79;Male;20169
+2022;1; 79;Male;20686
 2008;1; 80;Male;10884
 2008;2; 80;Male;10984
 2008;3; 80;Male;11005
@@ -4535,6 +4615,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 80;Male;16526
 2021;3; 80;Male;16758
 2021;4; 80;Male;16979
+2022;1; 80;Male;17319
 2008;1; 81;Male;10338
 2008;2; 81;Male;10283
 2008;3; 81;Male;10310
@@ -4591,6 +4672,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 81;Male;15514
 2021;3; 81;Male;15656
 2021;4; 81;Male;15881
+2022;1; 81;Male;15729
 2008;1; 82;Male; 9235
 2008;2; 82;Male; 9308
 2008;3; 82;Male; 9375
@@ -4647,6 +4729,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 82;Male;13699
 2021;3; 82;Male;13790
 2021;4; 82;Male;13999
+2022;1; 82;Male;14047
 2008;1; 83;Male; 8427
 2008;2; 83;Male; 8419
 2008;3; 83;Male; 8402
@@ -4703,6 +4786,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 83;Male;12296
 2021;3; 83;Male;12461
 2021;4; 83;Male;12659
+2022;1; 83;Male;12808
 2008;1; 84;Male; 7159
 2008;2; 84;Male; 7180
 2008;3; 84;Male; 7238
@@ -4759,6 +4843,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 84;Male;10637
 2021;3; 84;Male;10887
 2021;4; 84;Male;10905
+2022;1; 84;Male;11054
 2008;1; 85;Male; 6235
 2008;2; 85;Male; 6196
 2008;3; 85;Male; 6258
@@ -4815,6 +4900,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 85;Male; 8897
 2021;3; 85;Male; 9172
 2021;4; 85;Male; 9336
+2022;1; 85;Male; 9483
 2008;1; 86;Male; 5635
 2008;2; 86;Male; 5608
 2008;3; 86;Male; 5552
@@ -4871,6 +4957,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 86;Male; 7585
 2021;3; 86;Male; 7718
 2021;4; 86;Male; 7893
+2022;1; 86;Male; 7833
 2008;1; 87;Male; 4794
 2008;2; 87;Male; 4777
 2008;3; 87;Male; 4847
@@ -4927,6 +5014,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 87;Male; 6495
 2021;3; 87;Male; 6618
 2021;4; 87;Male; 6564
+2022;1; 87;Male; 6601
 2008;1; 88;Male; 3531
 2008;2; 88;Male; 3830
 2008;3; 88;Male; 4077
@@ -4983,6 +5071,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 88;Male; 5257
 2021;3; 88;Male; 5284
 2021;4; 88;Male; 5409
+2022;1; 88;Male; 5451
 2008;1; 89;Male; 3037
 2008;2; 89;Male; 2906
 2008;3; 89;Male; 2854
@@ -5039,6 +5128,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 89;Male; 4243
 2021;3; 89;Male; 4356
 2021;4; 89;Male; 4397
+2022;1; 89;Male; 4415
 2008;1; 90;Male; 2248
 2008;2; 90;Male; 2304
 2008;3; 90;Male; 2318
@@ -5095,6 +5185,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 90;Male; 3419
 2021;3; 90;Male; 3400
 2021;4; 90;Male; 3466
+2022;1; 90;Male; 3467
 2008;1; 91;Male; 1877
 2008;2; 91;Male; 1837
 2008;3; 91;Male; 1833
@@ -5151,6 +5242,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 91;Male; 2691
 2021;3; 91;Male; 2722
 2021;4; 91;Male; 2712
+2022;1; 91;Male; 2750
 2008;1; 92;Male; 1362
 2008;2; 92;Male; 1350
 2008;3; 92;Male; 1399
@@ -5207,6 +5299,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 92;Male; 2182
 2021;3; 92;Male; 2220
 2021;4; 92;Male; 2192
+2022;1; 92;Male; 2141
 2008;1; 93;Male; 1085
 2008;2; 93;Male; 1099
 2008;3; 93;Male; 1067
@@ -5263,6 +5356,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 93;Male; 1559
 2021;3; 93;Male; 1567
 2021;4; 93;Male; 1651
+2022;1; 93;Male; 1650
 2008;1; 94;Male;  757
 2008;2; 94;Male;  747
 2008;3; 94;Male;  734
@@ -5319,6 +5413,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 94;Male; 1173
 2021;3; 94;Male; 1186
 2021;4; 94;Male; 1189
+2022;1; 94;Male; 1138
 2008;1; 95;Male;  569
 2008;2; 95;Male;  534
 2008;3; 95;Male;  545
@@ -5375,6 +5470,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 95;Male;  812
 2021;3; 95;Male;  851
 2021;4; 95;Male;  851
+2022;1; 95;Male;  851
 2008;1; 96;Male;  370
 2008;2; 96;Male;  388
 2008;3; 96;Male;  372
@@ -5431,6 +5527,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 96;Male;  554
 2021;3; 96;Male;  576
 2021;4; 96;Male;  568
+2022;1; 96;Male;  555
 2008;1; 97;Male;  243
 2008;2; 97;Male;  247
 2008;3; 97;Male;  259
@@ -5487,6 +5584,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 97;Male;  356
 2021;3; 97;Male;  332
 2021;4; 97;Male;  370
+2022;1; 97;Male;  376
 2008;1; 98;Male;  141
 2008;2; 98;Male;  157
 2008;3; 98;Male;  159
@@ -5543,6 +5641,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 98;Male;  205
 2021;3; 98;Male;  232
 2021;4; 98;Male;  217
+2022;1; 98;Male;  228
 2008;1; 99;Male;   79
 2008;2; 99;Male;   79
 2008;3; 99;Male;   88
@@ -5599,6 +5698,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 99;Male;  124
 2021;3; 99;Male;  122
 2021;4; 99;Male;  125
+2022;1; 99;Male;  117
 2008;1;100;Male;   43
 2008;2;100;Male;   51
 2008;3;100;Male;   43
@@ -5655,6 +5755,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;100;Male;   70
 2021;3;100;Male;   75
 2021;4;100;Male;   77
+2022;1;100;Male;   67
 2008;1;101;Male;   25
 2008;2;101;Male;   28
 2008;3;101;Male;   30
@@ -5711,6 +5812,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;101;Male;   60
 2021;3;101;Male;   52
 2021;4;101;Male;   49
+2022;1;101;Male;   47
 2008;1;102;Male;   20
 2008;2;102;Male;   17
 2008;3;102;Male;   13
@@ -5767,6 +5869,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;102;Male;   25
 2021;3;102;Male;   31
 2021;4;102;Male;   33
+2022;1;102;Male;   24
 2008;1;103;Male;   10
 2008;2;103;Male;   10
 2008;3;103;Male;   12
@@ -5823,6 +5926,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;103;Male;   12
 2021;3;103;Male;   15
 2021;4;103;Male;   17
+2022;1;103;Male;   22
 2008;1;104;Male;    1
 2008;2;104;Male;    3
 2008;3;104;Male;    3
@@ -5879,6 +5983,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;104;Male;    6
 2021;3;104;Male;    4
 2021;4;104;Male;    2
+2022;1;104;Male;    3
 2008;1;105;Male;    3
 2008;2;105;Male;    2
 2008;3;105;Male;    1
@@ -5935,6 +6040,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;105;Male;    3
 2021;3;105;Male;    3
 2021;4;105;Male;    4
+2022;1;105;Male;    3
 2008;1;106;Male;    1
 2008;2;106;Male;    1
 2008;3;106;Male;    2
@@ -5991,6 +6097,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;106;Male;    2
 2021;3;106;Male;    1
 2021;4;106;Male;    0
+2022;1;106;Male;    1
 2008;1;107;Male;    0
 2008;2;107;Male;    0
 2008;3;107;Male;    0
@@ -6047,6 +6154,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;107;Male;    0
 2021;3;107;Male;    1
 2021;4;107;Male;    2
+2022;1;107;Male;    1
 2008;1;108;Male;    0
 2008;2;108;Male;    0
 2008;3;108;Male;    0
@@ -6103,6 +6211,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;108;Male;    0
 2021;3;108;Male;    0
 2021;4;108;Male;    0
+2022;1;108;Male;    0
 2008;1;109;Male;    0
 2008;2;109;Male;    0
 2008;3;109;Male;    0
@@ -6159,6 +6268,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;109;Male;    0
 2021;3;109;Male;    0
 2021;4;109;Male;    0
+2022;1;109;Male;    0
 2008;1;110;Male;    0
 2008;2;110;Male;    0
 2008;3;110;Male;    0
@@ -6215,6 +6325,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;110;Male;    0
 2021;3;110;Male;    0
 2021;4;110;Male;    0
+2022;1;110;Male;    0
 2008;1;111;Male;    0
 2008;2;111;Male;    0
 2008;3;111;Male;    0
@@ -6271,6 +6382,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;111;Male;    0
 2021;3;111;Male;    0
 2021;4;111;Male;    0
+2022;1;111;Male;    0
 2008;1;112;Male;    0
 2008;2;112;Male;    0
 2008;3;112;Male;    0
@@ -6327,6 +6439,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;112;Male;    0
 2021;3;112;Male;    0
 2021;4;112;Male;    0
+2022;1;112;Male;    0
 2008;1;113;Male;    0
 2008;2;113;Male;    0
 2008;3;113;Male;    0
@@ -6383,6 +6496,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;113;Male;    0
 2021;3;113;Male;    0
 2021;4;113;Male;    0
+2022;1;113;Male;    0
 2008;1;114;Male;    0
 2008;2;114;Male;    0
 2008;3;114;Male;    0
@@ -6439,6 +6553,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;114;Male;    0
 2021;3;114;Male;    0
 2021;4;114;Male;    0
+2022;1;114;Male;    0
 2008;1;115;Male;    0
 2008;2;115;Male;    0
 2008;3;115;Male;    0
@@ -6495,6 +6610,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;115;Male;    0
 2021;3;115;Male;    0
 2021;4;115;Male;    0
+2022;1;115;Male;    0
 2008;1;116;Male;    0
 2008;2;116;Male;    0
 2008;3;116;Male;    0
@@ -6551,6 +6667,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;116;Male;    0
 2021;3;116;Male;    0
 2021;4;116;Male;    0
+2022;1;116;Male;    0
 2008;1;117;Male;    0
 2008;2;117;Male;    0
 2008;3;117;Male;    0
@@ -6607,6 +6724,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;117;Male;    0
 2021;3;117;Male;    0
 2021;4;117;Male;    0
+2022;1;117;Male;    0
 2008;1;118;Male;    0
 2008;2;118;Male;    0
 2008;3;118;Male;    0
@@ -6663,6 +6781,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;118;Male;    0
 2021;3;118;Male;    0
 2021;4;118;Male;    0
+2022;1;118;Male;    0
 2008;1;119;Male;    0
 2008;2;119;Male;    0
 2008;3;119;Male;    0
@@ -6719,6 +6838,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;119;Male;    0
 2021;3;119;Male;    0
 2021;4;119;Male;    0
+2022;1;119;Male;    0
 2008;1;120;Male;    0
 2008;2;120;Male;    0
 2008;3;120;Male;    0
@@ -6775,6 +6895,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;120;Male;    0
 2021;3;120;Male;    0
 2021;4;120;Male;    0
+2022;1;120;Male;    0
 2008;1;121;Male;    0
 2008;2;121;Male;    0
 2008;3;121;Male;    0
@@ -6831,6 +6952,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;121;Male;    0
 2021;3;121;Male;    0
 2021;4;121;Male;    0
+2022;1;121;Male;    0
 2008;1;122;Male;    0
 2008;2;122;Male;    0
 2008;3;122;Male;    0
@@ -6887,6 +7009,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;122;Male;    0
 2021;3;122;Male;    0
 2021;4;122;Male;    0
+2022;1;122;Male;    0
 2008;1;123;Male;    0
 2008;2;123;Male;    0
 2008;3;123;Male;    0
@@ -6943,6 +7066,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;123;Male;    0
 2021;3;123;Male;    0
 2021;4;123;Male;    0
+2022;1;123;Male;    0
 2008;1;124;Male;    0
 2008;2;124;Male;    0
 2008;3;124;Male;    0
@@ -6999,6 +7123,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;124;Male;    0
 2021;3;124;Male;    0
 2021;4;124;Male;    0
+2022;1;124;Male;    0
 2008;1;125;Male;    0
 2008;2;125;Male;    0
 2008;3;125;Male;    0
@@ -7055,6 +7180,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;125;Male;    0
 2021;3;125;Male;    0
 2021;4;125;Male;    0
+2022;1;125;Male;    0
 2008;1;  0;Female;31436
 2008;2;  0;Female;31619
 2008;3;  0;Female;31797
@@ -7111,6 +7237,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  0;Female;30016
 2021;3;  0;Female;30070
 2021;4;  0;Female;30483
+2022;1;  0;Female;30947
 2008;1;  1;Female;31925
 2008;2;  1;Female;31889
 2008;3;  1;Female;31568
@@ -7167,6 +7294,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  1;Female;30226
 2021;3;  1;Female;30364
 2021;4;  1;Female;30136
+2022;1;  1;Female;30050
 2008;1;  2;Female;31864
 2008;2;  2;Female;31690
 2008;3;  2;Female;31865
@@ -7223,6 +7351,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  2;Female;29863
 2021;3;  2;Female;29631
 2021;4;  2;Female;29946
+2022;1;  2;Female;30025
 2008;1;  3;Female;31936
 2008;2;  3;Female;31924
 2008;3;  3;Female;31986
@@ -7279,6 +7408,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  3;Female;30372
 2021;3;  3;Female;30522
 2021;4;  3;Female;30556
+2022;1;  3;Female;30144
 2008;1;  4;Female;31865
 2008;2;  4;Female;32186
 2008;3;  4;Female;32121
@@ -7335,6 +7465,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  4;Female;30427
 2021;3;  4;Female;30507
 2021;4;  4;Female;30202
+2022;1;  4;Female;30389
 2008;1;  5;Female;31442
 2008;2;  5;Female;31234
 2008;3;  5;Female;31379
@@ -7391,6 +7522,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  5;Female;29480
 2021;3;  5;Female;29859
 2021;4;  5;Female;30377
+2022;1;  5;Female;30459
 2008;1;  6;Female;32210
 2008;2;  6;Female;31982
 2008;3;  6;Female;31881
@@ -7447,6 +7579,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  6;Female;28652
 2021;3;  6;Female;28657
 2021;4;  6;Female;28829
+2022;1;  6;Female;29160
 2008;1;  7;Female;33088
 2008;2;  7;Female;32948
 2008;3;  7;Female;32659
@@ -7503,6 +7636,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  7;Female;28435
 2021;3;  7;Female;28380
 2021;4;  7;Female;28556
+2022;1;  7;Female;28774
 2008;1;  8;Female;32765
 2008;2;  8;Female;32925
 2008;3;  8;Female;32819
@@ -7559,6 +7693,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  8;Female;29287
 2021;3;  8;Female;29265
 2021;4;  8;Female;28976
+2022;1;  8;Female;28665
 2008;1;  9;Female;32749
 2008;2;  9;Female;32814
 2008;3;  9;Female;33192
@@ -7615,6 +7750,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;  9;Female;30256
 2021;3;  9;Female;29835
 2021;4;  9;Female;29536
+2022;1;  9;Female;29581
 2008;1; 10;Female;33495
 2008;2; 10;Female;33177
 2008;3; 10;Female;32764
@@ -7671,6 +7807,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 10;Female;31944
 2021;3; 10;Female;31519
 2021;4; 10;Female;31206
+2022;1; 10;Female;30597
 2008;1; 11;Female;33737
 2008;2; 11;Female;33692
 2008;3; 11;Female;34020
@@ -7727,6 +7864,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 11;Female;32427
 2021;3; 11;Female;32449
 2021;4; 11;Female;32480
+2022;1; 11;Female;32559
 2008;1; 12;Female;34853
 2008;2; 12;Female;34299
 2008;3; 12;Female;33926
@@ -7783,6 +7921,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 12;Female;33248
 2021;3; 12;Female;33037
 2021;4; 12;Female;32601
+2022;1; 12;Female;32316
 2008;1; 13;Female;35266
 2008;2; 13;Female;35756
 2008;3; 13;Female;35361
@@ -7839,6 +7978,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 13;Female;33298
 2021;3; 13;Female;33523
 2021;4; 13;Female;33634
+2022;1; 13;Female;33445
 2008;1; 14;Female;34013
 2008;2; 14;Female;33947
 2008;3; 14;Female;34387
@@ -7895,6 +8035,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 14;Female;33327
 2021;3; 14;Female;32976
 2021;4; 14;Female;33043
+2022;1; 14;Female;33208
 2008;1; 15;Female;34251
 2008;2; 15;Female;34320
 2008;3; 15;Female;34366
@@ -7951,6 +8092,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 15;Female;33137
 2021;3; 15;Female;33306
 2021;4; 15;Female;33641
+2022;1; 15;Female;33593
 2008;1; 16;Female;32961
 2008;2; 16;Female;33359
 2008;3; 16;Female;33450
@@ -8007,6 +8149,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 16;Female;33302
 2021;3; 16;Female;33296
 2021;4; 16;Female;33514
+2022;1; 16;Female;33610
 2008;1; 17;Female;32798
 2008;2; 17;Female;32916
 2008;3; 17;Female;33123
@@ -8063,6 +8206,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 17;Female;33648
 2021;3; 17;Female;33517
 2021;4; 17;Female;33487
+2022;1; 17;Female;33499
 2008;1; 18;Female;31849
 2008;2; 18;Female;32230
 2008;3; 18;Female;32339
@@ -8119,6 +8263,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 18;Female;32607
 2021;3; 18;Female;32715
 2021;4; 18;Female;33295
+2022;1; 18;Female;33560
 2008;1; 19;Female;30807
 2008;2; 19;Female;31018
 2008;3; 19;Female;31476
@@ -8175,6 +8320,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 19;Female;33741
 2021;3; 19;Female;33517
 2021;4; 19;Female;33953
+2022;1; 19;Female;33619
 2008;1; 20;Female;30027
 2008;2; 20;Female;30602
 2008;3; 20;Female;30355
@@ -8231,6 +8377,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 20;Female;35244
 2021;3; 20;Female;34919
 2021;4; 20;Female;35237
+2022;1; 20;Female;34911
 2008;1; 21;Female;30361
 2008;2; 21;Female;30612
 2008;3; 21;Female;30454
@@ -8287,6 +8434,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 21;Female;35916
 2021;3; 21;Female;35643
 2021;4; 21;Female;36274
+2022;1; 21;Female;36594
 2008;1; 22;Female;30178
 2008;2; 22;Female;30446
 2008;3; 22;Female;30403
@@ -8343,6 +8491,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 22;Female;36276
 2021;3; 22;Female;36571
 2021;4; 22;Female;36986
+2022;1; 22;Female;36623
 2008;1; 23;Female;29424
 2008;2; 23;Female;29488
 2008;3; 23;Female;29780
@@ -8399,6 +8548,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 23;Female;37371
 2021;3; 23;Female;36758
 2021;4; 23;Female;37135
+2022;1; 23;Female;37345
 2008;1; 24;Female;29259
 2008;2; 24;Female;29440
 2008;3; 24;Female;29768
@@ -8455,6 +8605,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 24;Female;38361
 2021;3; 24;Female;38656
 2021;4; 24;Female;39121
+2022;1; 24;Female;38445
 2008;1; 25;Female;29971
 2008;2; 25;Female;29659
 2008;3; 25;Female;29355
@@ -8511,6 +8662,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 25;Female;39178
 2021;3; 25;Female;38777
 2021;4; 25;Female;38583
+2022;1; 25;Female;38875
 2008;1; 26;Female;30208
 2008;2; 26;Female;30603
 2008;3; 26;Female;30711
@@ -8567,6 +8719,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 26;Female;40853
 2021;3; 26;Female;40395
 2021;4; 26;Female;40590
+2022;1; 26;Female;40031
 2008;1; 27;Female;32200
 2008;2; 27;Female;31301
 2008;3; 27;Female;30857
@@ -8623,6 +8776,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 27;Female;39058
 2021;3; 27;Female;39492
 2021;4; 27;Female;39626
+2022;1; 27;Female;40664
 2008;1; 28;Female;32941
 2008;2; 28;Female;33097
 2008;3; 28;Female;32846
@@ -8679,6 +8833,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 28;Female;39565
 2021;3; 28;Female;39573
 2021;4; 28;Female;39645
+2022;1; 28;Female;39336
 2008;1; 29;Female;34025
 2008;2; 29;Female;33928
 2008;3; 29;Female;33636
@@ -8735,6 +8890,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 29;Female;38724
 2021;3; 29;Female;38759
 2021;4; 29;Female;39286
+2022;1; 29;Female;39714
 2008;1; 30;Female;33896
 2008;2; 30;Female;33666
 2008;3; 30;Female;34096
@@ -8791,6 +8947,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 30;Female;38394
 2021;3; 30;Female;38728
 2021;4; 30;Female;38478
+2022;1; 30;Female;38567
 2008;1; 31;Female;35066
 2008;2; 31;Female;34509
 2008;3; 31;Female;34157
@@ -8847,6 +9004,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 31;Female;37712
 2021;3; 31;Female;37836
 2021;4; 31;Female;38110
+2022;1; 31;Female;38424
 2008;1; 32;Female;38499
 2008;2; 32;Female;37998
 2008;3; 32;Female;37243
@@ -8903,6 +9061,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 32;Female;36118
 2021;3; 32;Female;36616
 2021;4; 32;Female;37259
+2022;1; 32;Female;37479
 2008;1; 33;Female;37877
 2008;2; 33;Female;38022
 2008;3; 33;Female;38442
@@ -8959,6 +9118,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 33;Female;35067
 2021;3; 33;Female;35192
 2021;4; 33;Female;35646
+2022;1; 33;Female;36175
 2008;1; 34;Female;37821
 2008;2; 34;Female;37870
 2008;3; 34;Female;37649
@@ -9015,6 +9175,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 34;Female;34336
 2021;3; 34;Female;34535
 2021;4; 34;Female;34586
+2022;1; 34;Female;34610
 2008;1; 35;Female;39609
 2008;2; 35;Female;39309
 2008;3; 35;Female;38620
@@ -9071,6 +9232,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 35;Female;33763
 2021;3; 35;Female;33880
 2021;4; 35;Female;34059
+2022;1; 35;Female;34316
 2008;1; 36;Female;38730
 2008;2; 36;Female;39291
 2008;3; 36;Female;39918
@@ -9127,6 +9289,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 36;Female;32280
 2021;3; 36;Female;32863
 2021;4; 36;Female;33367
+2022;1; 36;Female;33762
 2008;1; 37;Female;37357
 2008;2; 37;Female;37549
 2008;3; 37;Female;37804
@@ -9183,6 +9346,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 37;Female;31963
 2021;3; 37;Female;32185
 2021;4; 37;Female;32356
+2022;1; 37;Female;32426
 2008;1; 38;Female;37109
 2008;2; 38;Female;36998
 2008;3; 38;Female;37146
@@ -9239,6 +9403,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 38;Female;31788
 2021;3; 38;Female;31534
 2021;4; 38;Female;31752
+2022;1; 38;Female;31889
 2008;1; 39;Female;38283
 2008;2; 39;Female;37674
 2008;3; 39;Female;37367
@@ -9295,6 +9460,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 39;Female;32816
 2021;3; 39;Female;32801
 2021;4; 39;Female;32434
+2022;1; 39;Female;32343
 2008;1; 40;Female;41189
 2008;2; 40;Female;40484
 2008;3; 40;Female;39876
@@ -9351,6 +9517,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 40;Female;33227
 2021;3; 40;Female;32796
 2021;4; 40;Female;32702
+2022;1; 40;Female;32495
 2008;1; 41;Female;44156
 2008;2; 41;Female;43838
 2008;3; 41;Female;43217
@@ -9407,6 +9574,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 41;Female;34854
 2021;3; 41;Female;34642
 2021;4; 41;Female;34596
+2022;1; 41;Female;34341
 2008;1; 42;Female;42873
 2008;2; 42;Female;43292
 2008;3; 42;Female;43608
@@ -9463,6 +9631,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 42;Female;35518
 2021;3; 42;Female;35166
 2021;4; 42;Female;34770
+2022;1; 42;Female;34791
 2008;1; 43;Female;41671
 2008;2; 43;Female;41791
 2008;3; 43;Female;42283
@@ -9519,6 +9688,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 43;Female;35189
 2021;3; 43;Female;35596
 2021;4; 43;Female;35838
+2022;1; 43;Female;35704
 2008;1; 44;Female;41080
 2008;2; 44;Female;41403
 2008;3; 44;Female;41347
@@ -9575,6 +9745,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 44;Female;35985
 2021;3; 44;Female;35543
 2021;4; 44;Female;35342
+2022;1; 44;Female;35474
 2008;1; 45;Female;38789
 2008;2; 45;Female;39056
 2008;3; 45;Female;39653
@@ -9631,6 +9802,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 45;Female;39301
 2021;3; 45;Female;38643
 2021;4; 45;Female;37792
+2022;1; 45;Female;36644
 2008;1; 46;Female;37873
 2008;2; 46;Female;38325
 2008;3; 46;Female;38848
@@ -9687,6 +9859,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 46;Female;39297
 2021;3; 46;Female;39676
 2021;4; 46;Female;39694
+2022;1; 46;Female;39867
 2008;1; 47;Female;37815
 2008;2; 47;Female;37831
 2008;3; 47;Female;37653
@@ -9743,6 +9916,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 47;Female;38892
 2021;3; 47;Female;38704
 2021;4; 47;Female;38983
+2022;1; 47;Female;39156
 2008;1; 48;Female;36415
 2008;2; 48;Female;36547
 2008;3; 48;Female;36992
@@ -9799,6 +9973,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 48;Female;40197
 2021;3; 48;Female;39513
 2021;4; 48;Female;39152
+2022;1; 48;Female;38868
 2008;1; 49;Female;36445
 2008;2; 49;Female;36396
 2008;3; 49;Female;36192
@@ -9855,6 +10030,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 49;Female;40097
 2021;3; 49;Female;40723
 2021;4; 49;Female;40774
+2022;1; 49;Female;40598
 2008;1; 50;Female;36283
 2008;2; 50;Female;36415
 2008;3; 50;Female;36553
@@ -9911,6 +10087,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 50;Female;38326
 2021;3; 50;Female;38528
 2021;4; 50;Female;39031
+2022;1; 50;Female;39537
 2008;1; 51;Female;36546
 2008;2; 51;Female;36366
 2008;3; 51;Female;36449
@@ -9967,6 +10144,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 51;Female;37402
 2021;3; 51;Female;37710
 2021;4; 51;Female;37964
+2022;1; 51;Female;38074
 2008;1; 52;Female;35973
 2008;2; 52;Female;36118
 2008;3; 52;Female;36036
@@ -10023,6 +10201,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 52;Female;38130
 2021;3; 52;Female;37788
 2021;4; 52;Female;37669
+2022;1; 52;Female;37515
 2008;1; 53;Female;35510
 2008;2; 53;Female;35535
 2008;3; 53;Female;35662
@@ -10079,6 +10258,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 53;Female;40724
 2021;3; 53;Female;40123
 2021;4; 53;Female;39336
+2022;1; 53;Female;38725
 2008;1; 54;Female;35969
 2008;2; 54;Female;35705
 2008;3; 54;Female;35464
@@ -10135,6 +10315,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 54;Female;43777
 2021;3; 54;Female;43181
 2021;4; 54;Female;42321
+2022;1; 54;Female;41348
 2008;1; 55;Female;35264
 2008;2; 55;Female;35504
 2008;3; 55;Female;35965
@@ -10191,6 +10372,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 55;Female;42972
 2021;3; 55;Female;43291
 2021;4; 55;Female;43608
+2022;1; 55;Female;43974
 2008;1; 56;Female;34416
 2008;2; 56;Female;34455
 2008;3; 56;Female;34354
@@ -10247,6 +10429,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 56;Female;41370
 2021;3; 56;Female;41901
 2021;4; 56;Female;42264
+2022;1; 56;Female;42515
 2008;1; 57;Female;35754
 2008;2; 57;Female;35355
 2008;3; 57;Female;35018
@@ -10303,6 +10486,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 57;Female;40750
 2021;3; 57;Female;40712
 2021;4; 57;Female;40964
+2022;1; 57;Female;41143
 2008;1; 58;Female;35434
 2008;2; 58;Female;35541
 2008;3; 58;Female;35478
@@ -10359,6 +10543,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 58;Female;38325
 2021;3; 58;Female;38894
 2021;4; 58;Female;39422
+2022;1; 58;Female;40275
 2008;1; 59;Female;36960
 2008;2; 59;Female;36322
 2008;3; 59;Female;36109
@@ -10415,6 +10600,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 59;Female;37378
 2021;3; 59;Female;37875
 2021;4; 59;Female;38101
+2022;1; 59;Female;37922
 2008;1; 60;Female;39133
 2008;2; 60;Female;38349
 2008;3; 60;Female;37300
@@ -10471,6 +10657,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 60;Female;36532
 2021;3; 60;Female;36464
 2021;4; 60;Female;36573
+2022;1; 60;Female;36785
 2008;1; 61;Female;39960
 2008;2; 61;Female;39967
 2008;3; 61;Female;39860
@@ -10527,6 +10714,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 61;Female;35180
 2021;3; 61;Female;35620
 2021;4; 61;Female;35983
+2022;1; 61;Female;36375
 2008;1; 62;Female;38451
 2008;2; 62;Female;38927
 2008;3; 62;Female;39557
@@ -10583,6 +10771,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 62;Female;34926
 2021;3; 62;Female;34730
 2021;4; 62;Female;35089
+2022;1; 62;Female;34902
 2008;1; 63;Female;36486
 2008;2; 63;Female;37034
 2008;3; 63;Female;37507
@@ -10639,6 +10828,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 63;Female;34663
 2021;3; 63;Female;34803
 2021;4; 63;Female;34583
+2022;1; 63;Female;34755
 2008;1; 64;Female;33689
 2008;2; 64;Female;34604
 2008;3; 64;Female;35116
@@ -10695,6 +10885,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 64;Female;34326
 2021;3; 64;Female;34409
 2021;4; 64;Female;34210
+2022;1; 64;Female;34214
 2008;1; 65;Female;31314
 2008;2; 65;Female;31956
 2008;3; 65;Female;32405
@@ -10751,6 +10942,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 65;Female;33868
 2021;3; 65;Female;33835
 2021;4; 65;Female;34208
+2022;1; 65;Female;34259
 2008;1; 66;Female;27887
 2008;2; 66;Female;28516
 2008;3; 66;Female;29350
@@ -10807,6 +10999,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 66;Female;33142
 2021;3; 66;Female;33259
 2021;4; 66;Female;33250
+2022;1; 66;Female;33382
 2008;1; 67;Female;26960
 2008;2; 67;Female;26674
 2008;3; 67;Female;26998
@@ -10863,6 +11056,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 67;Female;32913
 2021;3; 67;Female;32751
 2021;4; 67;Female;32745
+2022;1; 67;Female;32813
 2008;1; 68;Female;25371
 2008;2; 68;Female;25931
 2008;3; 68;Female;25996
@@ -10919,6 +11113,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 68;Female;32468
 2021;3; 68;Female;32863
 2021;4; 68;Female;33107
+2022;1; 68;Female;32808
 2008;1; 69;Female;25086
 2008;2; 69;Female;24875
 2008;3; 69;Female;25050
@@ -10975,6 +11170,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 69;Female;31211
 2021;3; 69;Female;31144
 2021;4; 69;Female;31414
+2022;1; 69;Female;31868
 2008;1; 70;Female;24185
 2008;2; 70;Female;24609
 2008;3; 70;Female;24502
@@ -11031,6 +11227,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 70;Female;31833
 2021;3; 70;Female;31527
 2021;4; 70;Female;31087
+2022;1; 70;Female;30815
 2008;1; 71;Female;22785
 2008;2; 71;Female;22944
 2008;3; 71;Female;23277
@@ -11087,6 +11284,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 71;Female;31823
 2021;3; 71;Female;31765
 2021;4; 71;Female;31789
+2022;1; 71;Female;31788
 2008;1; 72;Female;21551
 2008;2; 72;Female;21606
 2008;3; 72;Female;21916
@@ -11143,6 +11341,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 72;Female;32165
 2021;3; 72;Female;31961
 2021;4; 72;Female;31574
+2022;1; 72;Female;31229
 2008;1; 73;Female;20746
 2008;2; 73;Female;20849
 2008;3; 73;Female;21040
@@ -11199,6 +11398,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 73;Female;33640
 2021;3; 73;Female;32749
 2021;4; 73;Female;32158
+2022;1; 73;Female;32220
 2008;1; 74;Female;19430
 2008;2; 74;Female;19670
 2008;3; 74;Female;19893
@@ -11255,6 +11455,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 74;Female;34340
 2021;3; 74;Female;34404
 2021;4; 74;Female;34135
+2022;1; 74;Female;33614
 2008;1; 75;Female;19153
 2008;2; 75;Female;18857
 2008;3; 75;Female;18842
@@ -11311,6 +11512,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 75;Female;32862
 2021;3; 75;Female;33441
 2021;4; 75;Female;33626
+2022;1; 75;Female;33658
 2008;1; 76;Female;18218
 2008;2; 76;Female;18390
 2008;3; 76;Female;18392
@@ -11367,6 +11569,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 76;Female;30841
 2021;3; 76;Female;31222
 2021;4; 76;Female;31475
+2022;1; 76;Female;31687
 2008;1; 77;Female;17726
 2008;2; 77;Female;17827
 2008;3; 77;Female;17691
@@ -11423,6 +11626,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 77;Female;28177
 2021;3; 77;Female;28672
 2021;4; 77;Female;29255
+2022;1; 77;Female;29510
 2008;1; 78;Female;16838
 2008;2; 78;Female;16689
 2008;3; 78;Female;16860
@@ -11479,6 +11683,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 78;Female;25488
 2021;3; 78;Female;25875
 2021;4; 78;Female;26168
+2022;1; 78;Female;26637
 2008;1; 79;Female;16659
 2008;2; 79;Female;16503
 2008;3; 79;Female;16355
@@ -11535,6 +11740,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 79;Female;22201
 2021;3; 79;Female;22866
 2021;4; 79;Female;23607
+2022;1; 79;Female;24184
 2008;1; 80;Female;15634
 2008;2; 80;Female;15716
 2008;3; 80;Female;15680
@@ -11591,6 +11797,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 80;Female;20144
 2021;3; 80;Female;20446
 2021;4; 80;Female;20691
+2022;1; 80;Female;20867
 2008;1; 81;Female;15169
 2008;2; 81;Female;15092
 2008;3; 81;Female;15114
@@ -11647,6 +11854,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 81;Female;18927
 2021;3; 81;Female;19074
 2021;4; 81;Female;19306
+2022;1; 81;Female;19477
 2008;1; 82;Female;14585
 2008;2; 82;Female;14421
 2008;3; 82;Female;14402
@@ -11703,6 +11911,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 82;Female;17378
 2021;3; 82;Female;17579
 2021;4; 82;Female;17739
+2022;1; 82;Female;17711
 2008;1; 83;Female;13860
 2008;2; 83;Female;13874
 2008;3; 83;Female;13858
@@ -11759,6 +11968,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 83;Female;16528
 2021;3; 83;Female;16566
 2021;4; 83;Female;16556
+2022;1; 83;Female;16576
 2008;1; 84;Female;12905
 2008;2; 84;Female;12835
 2008;3; 84;Female;12861
@@ -11815,6 +12025,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 84;Female;14351
 2021;3; 84;Female;14664
 2021;4; 84;Female;14915
+2022;1; 84;Female;15251
 2008;1; 85;Female;11419
 2008;2; 85;Female;11448
 2008;3; 85;Female;11540
@@ -11871,6 +12082,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 85;Female;12690
 2021;3; 85;Female;12875
 2021;4; 85;Female;13055
+2022;1; 85;Female;13203
 2008;1; 86;Female;11236
 2008;2; 86;Female;11197
 2008;3; 86;Female;11028
@@ -11927,6 +12139,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 86;Female;11388
 2021;3; 86;Female;11632
 2021;4; 86;Female;11809
+2022;1; 86;Female;11515
 2008;1; 87;Female;10232
 2008;2; 87;Female; 9919
 2008;3; 87;Female; 9891
@@ -11983,6 +12196,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 87;Female; 9949
 2021;3; 87;Female;10068
 2021;4; 87;Female;10025
+2022;1; 87;Female;10269
 2008;1; 88;Female; 7844
 2008;2; 88;Female; 8497
 2008;3; 88;Female; 9039
@@ -12039,6 +12253,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 88;Female; 8622
 2021;3; 88;Female; 8704
 2021;4; 88;Female; 8769
+2022;1; 88;Female; 8781
 2008;1; 89;Female; 7001
 2008;2; 89;Female; 6865
 2008;3; 89;Female; 6655
@@ -12095,6 +12310,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 89;Female; 7629
 2021;3; 89;Female; 7652
 2021;4; 89;Female; 7645
+2022;1; 89;Female; 7633
 2008;1; 90;Female; 5869
 2008;2; 90;Female; 5892
 2008;3; 90;Female; 5920
@@ -12151,6 +12367,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 90;Female; 6584
 2021;3; 90;Female; 6610
 2021;4; 90;Female; 6701
+2022;1; 90;Female; 6581
 2008;1; 91;Female; 4986
 2008;2; 91;Female; 4953
 2008;3; 91;Female; 4954
@@ -12207,6 +12424,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 91;Female; 5410
 2021;3; 91;Female; 5457
 2021;4; 91;Female; 5502
+2022;1; 91;Female; 5602
 2008;1; 92;Female; 3960
 2008;2; 92;Female; 3984
 2008;3; 92;Female; 4117
@@ -12263,6 +12481,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 92;Female; 4776
 2021;3; 92;Female; 4777
 2021;4; 92;Female; 4676
+2022;1; 92;Female; 4558
 2008;1; 93;Female; 3393
 2008;2; 93;Female; 3336
 2008;3; 93;Female; 3251
@@ -12319,6 +12538,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 93;Female; 3800
 2021;3; 93;Female; 3817
 2021;4; 93;Female; 3872
+2022;1; 93;Female; 3923
 2008;1; 94;Female; 2580
 2008;2; 94;Female; 2628
 2008;3; 94;Female; 2693
@@ -12375,6 +12595,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 94;Female; 3157
 2021;3; 94;Female; 3122
 2021;4; 94;Female; 3086
+2022;1; 94;Female; 2985
 2008;1; 95;Female; 1994
 2008;2; 95;Female; 1984
 2008;3; 95;Female; 1948
@@ -12431,6 +12652,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 95;Female; 2528
 2021;3; 95;Female; 2504
 2021;4; 95;Female; 2499
+2022;1; 95;Female; 2452
 2008;1; 96;Female; 1404
 2008;2; 96;Female; 1407
 2008;3; 96;Female; 1447
@@ -12487,6 +12709,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 96;Female; 1920
 2021;3; 96;Female; 1908
 2021;4; 96;Female; 1938
+2022;1; 96;Female; 1877
 2008;1; 97;Female; 1069
 2008;2; 97;Female; 1019
 2008;3; 97;Female;  973
@@ -12543,6 +12766,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 97;Female; 1386
 2021;3; 97;Female; 1429
 2021;4; 97;Female; 1385
+2022;1; 97;Female; 1416
 2008;1; 98;Female;  699
 2008;2; 98;Female;  723
 2008;3; 98;Female;  756
@@ -12599,6 +12823,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 98;Female;  958
 2021;3; 98;Female;  986
 2021;4; 98;Female; 1004
+2022;1; 98;Female;  975
 2008;1; 99;Female;  464
 2008;2; 99;Female;  455
 2008;3; 99;Female;  451
@@ -12655,6 +12880,7 @@ Year;Quarter;Age;Sex;Population
 2021;2; 99;Female;  662
 2021;3; 99;Female;  642
 2021;4; 99;Female;  630
+2022;1; 99;Female;  603
 2008;1;100;Female;  245
 2008;2;100;Female;  299
 2008;3;100;Female;  313
@@ -12711,6 +12937,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;100;Female;  452
 2021;3;100;Female;  451
 2021;4;100;Female;  458
+2022;1;100;Female;  461
 2008;1;101;Female;  168
 2008;2;101;Female;  153
 2008;3;101;Female;  146
@@ -12767,6 +12994,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;101;Female;  271
 2021;3;101;Female;  287
 2021;4;101;Female;  295
+2022;1;101;Female;  283
 2008;1;102;Female;  101
 2008;2;102;Female;   96
 2008;3;102;Female;  102
@@ -12823,6 +13051,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;102;Female;  143
 2021;3;102;Female;  141
 2021;4;102;Female;  131
+2022;1;102;Female;  143
 2008;1;103;Female;   54
 2008;2;103;Female;   60
 2008;3;103;Female;   57
@@ -12879,6 +13108,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;103;Female;   78
 2021;3;103;Female;   82
 2021;4;103;Female;   87
+2022;1;103;Female;   84
 2008;1;104;Female;   34
 2008;2;104;Female;   33
 2008;3;104;Female;   34
@@ -12935,6 +13165,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;104;Female;   49
 2021;3;104;Female;   38
 2021;4;104;Female;   35
+2022;1;104;Female;   34
 2008;1;105;Female;   16
 2008;2;105;Female;   15
 2008;3;105;Female;   15
@@ -12991,6 +13222,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;105;Female;   27
 2021;3;105;Female;   31
 2021;4;105;Female;   31
+2022;1;105;Female;   28
 2008;1;106;Female;    9
 2008;2;106;Female;    9
 2008;3;106;Female;    7
@@ -13047,6 +13279,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;106;Female;   13
 2021;3;106;Female;    9
 2021;4;106;Female;   13
+2022;1;106;Female;   12
 2008;1;107;Female;    0
 2008;2;107;Female;    2
 2008;3;107;Female;    3
@@ -13103,6 +13336,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;107;Female;    7
 2021;3;107;Female;    6
 2021;4;107;Female;    4
+2022;1;107;Female;    4
 2008;1;108;Female;    1
 2008;2;108;Female;    1
 2008;3;108;Female;    1
@@ -13159,6 +13393,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;108;Female;    4
 2021;3;108;Female;    3
 2021;4;108;Female;    3
+2022;1;108;Female;    1
 2008;1;109;Female;    0
 2008;2;109;Female;    0
 2008;3;109;Female;    0
@@ -13215,6 +13450,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;109;Female;    0
 2021;3;109;Female;    0
 2021;4;109;Female;    1
+2022;1;109;Female;    1
 2008;1;110;Female;    0
 2008;2;110;Female;    0
 2008;3;110;Female;    0
@@ -13271,6 +13507,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;110;Female;    1
 2021;3;110;Female;    1
 2021;4;110;Female;    0
+2022;1;110;Female;    0
 2008;1;111;Female;    0
 2008;2;111;Female;    0
 2008;3;111;Female;    0
@@ -13327,6 +13564,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;111;Female;    0
 2021;3;111;Female;    0
 2021;4;111;Female;    1
+2022;1;111;Female;    1
 2008;1;112;Female;    0
 2008;2;112;Female;    0
 2008;3;112;Female;    0
@@ -13383,6 +13621,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;112;Female;    0
 2021;3;112;Female;    0
 2021;4;112;Female;    0
+2022;1;112;Female;    0
 2008;1;113;Female;    0
 2008;2;113;Female;    0
 2008;3;113;Female;    0
@@ -13439,6 +13678,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;113;Female;    0
 2021;3;113;Female;    0
 2021;4;113;Female;    0
+2022;1;113;Female;    0
 2008;1;114;Female;    0
 2008;2;114;Female;    0
 2008;3;114;Female;    0
@@ -13495,6 +13735,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;114;Female;    0
 2021;3;114;Female;    0
 2021;4;114;Female;    0
+2022;1;114;Female;    0
 2008;1;115;Female;    0
 2008;2;115;Female;    0
 2008;3;115;Female;    0
@@ -13551,6 +13792,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;115;Female;    0
 2021;3;115;Female;    0
 2021;4;115;Female;    0
+2022;1;115;Female;    0
 2008;1;116;Female;    0
 2008;2;116;Female;    0
 2008;3;116;Female;    0
@@ -13607,6 +13849,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;116;Female;    0
 2021;3;116;Female;    0
 2021;4;116;Female;    0
+2022;1;116;Female;    0
 2008;1;117;Female;    0
 2008;2;117;Female;    0
 2008;3;117;Female;    0
@@ -13663,6 +13906,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;117;Female;    0
 2021;3;117;Female;    0
 2021;4;117;Female;    0
+2022;1;117;Female;    0
 2008;1;118;Female;    0
 2008;2;118;Female;    0
 2008;3;118;Female;    0
@@ -13719,6 +13963,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;118;Female;    0
 2021;3;118;Female;    0
 2021;4;118;Female;    0
+2022;1;118;Female;    0
 2008;1;119;Female;    0
 2008;2;119;Female;    0
 2008;3;119;Female;    0
@@ -13775,6 +14020,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;119;Female;    0
 2021;3;119;Female;    0
 2021;4;119;Female;    0
+2022;1;119;Female;    0
 2008;1;120;Female;    0
 2008;2;120;Female;    0
 2008;3;120;Female;    0
@@ -13831,6 +14077,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;120;Female;    0
 2021;3;120;Female;    0
 2021;4;120;Female;    0
+2022;1;120;Female;    0
 2008;1;121;Female;    0
 2008;2;121;Female;    0
 2008;3;121;Female;    0
@@ -13887,6 +14134,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;121;Female;    0
 2021;3;121;Female;    0
 2021;4;121;Female;    0
+2022;1;121;Female;    0
 2008;1;122;Female;    0
 2008;2;122;Female;    0
 2008;3;122;Female;    0
@@ -13943,6 +14191,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;122;Female;    0
 2021;3;122;Female;    0
 2021;4;122;Female;    0
+2022;1;122;Female;    0
 2008;1;123;Female;    0
 2008;2;123;Female;    0
 2008;3;123;Female;    0
@@ -13999,6 +14248,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;123;Female;    0
 2021;3;123;Female;    0
 2021;4;123;Female;    0
+2022;1;123;Female;    0
 2008;1;124;Female;    0
 2008;2;124;Female;    0
 2008;3;124;Female;    0
@@ -14055,6 +14305,7 @@ Year;Quarter;Age;Sex;Population
 2021;2;124;Female;    0
 2021;3;124;Female;    0
 2021;4;124;Female;    0
+2022;1;124;Female;    0
 2008;1;125;Female;    0
 2008;2;125;Female;    0
 2008;3;125;Female;    0
@@ -14111,3 +14362,4 @@ Year;Quarter;Age;Sex;Population
 2021;2;125;Female;    0
 2021;3;125;Female;    0
 2021;4;125;Female;    0
+2022;1;125;Female;    0

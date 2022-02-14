@@ -12,6 +12,8 @@ restrictions <- tribble(
   ymd("2021-09-01"), "Night clubs, covid passport\nno longer required for indoor dining etc.", "open",
   ymd("2021-09-10"), "All restrictions removed", "open",
   ymd("2021-11-12"), "Covid passport reinstated\nfor nightlife, dining", "restricted",
+  ymd("2021-12-10"), "Nightlife restrictions, masks at cafes etc", "restricted",
+  ymd("2021-12-15"), "School closures", "restricted",
 )
 
 plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
