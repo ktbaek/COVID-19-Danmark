@@ -69,8 +69,8 @@ plot_data %>%
   filter(Date > "2021-09-01") %>% 
   ggplot() +
   geom_rect(aes(xmin=Date,xmax=Date+1,ymin = -Inf, ymax = Inf, 
-                fill=SI), alpha = 0.8) +
-  geom_line(aes(Date, value_per_M, size = type, alpha = type), color = pos_col) +
+                fill=SI), alpha = 0.2) +
+  geom_line(aes(Date, value_per_M, size = type, alpha = type), color = admit_col) +
   scale_y_continuous(limits = c(0, NA)) +
   scale_x_date(date_labels = "%e %b", date_breaks = "2 months", minor_breaks = "1 month", expand = expansion(mult = 0.01)) +
   scale_color_manual(name = "", values = c(test_col, pos_col)) +
@@ -82,7 +82,7 @@ plot_data %>%
     guide = FALSE,
     values = c(0.7, 1)
   ) +
-  scale_fill_continuous(name = "Stringency Index", low = lighten(test_col, 0.7), high = darken(test_col, 0.3)) +
+  scale_fill_continuous(name = "Stringency Index", low = "#DADADA70", high = "#5D5D5D70") +
   labs(
     y = "Number per 1M/percent",
     x = "Date",
