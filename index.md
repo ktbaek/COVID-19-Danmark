@@ -301,7 +301,7 @@ Plottet viser det daglige antal positive opdelt på de to nuværende varianter, 
 
 
 ### Daglige epidemi-indikatorer og Oxfords Stringency Index
-Plottet viser forløbene af forskellige epidemi-indikatorer samt værdierne af [Oxfords Stringecy Index](https://www.bsg.ox.ac.uk/research/research-projects/covid-19-government-response-tracker). De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
+Plottet viser forløbene af forskellige epidemi-indikatorer samt værdierne af [Oxfords Stringency Index](https://www.bsg.ox.ac.uk/research/research-projects/covid-19-government-response-tracker). De optrukne linjer viser de løbende gennemsnit baseret på et vindue på 7 dage fra 1. januar til nu.
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time', Danmarks Statistik: 'FOLK1A', 'DODC1', 'SMIT1'``
 
