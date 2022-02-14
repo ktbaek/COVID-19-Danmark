@@ -305,7 +305,7 @@ Plottet viser forløbene af forskellige epidemi-indikatorer samt værdierne af [
 
 ``SSI datasæt: 'Test_pos_over_time', 'Newly_admitted_over_time', 'Deaths_over_time', Danmarks Statistik: 'FOLK1A', 'DODC1', 'SMIT1'``
 
-![](/ntl_indicators_SI.png)
+![](/figures/ntl_indicators_SI.png)
 
 [Tilbage til toppen](#)
 
