@@ -4241,7 +4241,7 @@ Date;Region;Admitted
 2022-02-05;Midtjylland; 48
 2022-02-05;Nordjylland; 23
 2022-02-05;Ukendt_region;  3
-2022-02-06;Hovedstaden;103
+2022-02-06;Hovedstaden;104
 2022-02-06;Sjælland; 59
 2022-02-06;Syddanmark; 67
 2022-02-06;Midtjylland; 50
@@ -4250,12 +4250,12 @@ Date;Region;Admitted
 2022-02-07;Hovedstaden;149
 2022-02-07;Sjælland; 71
 2022-02-07;Syddanmark; 97
-2022-02-07;Midtjylland; 84
+2022-02-07;Midtjylland; 85
 2022-02-07;Nordjylland; 29
 2022-02-07;Ukendt_region;  0
 2022-02-08;Hovedstaden;121
 2022-02-08;Sjælland; 70
-2022-02-08;Syddanmark; 87
+2022-02-08;Syddanmark; 88
 2022-02-08;Midtjylland; 81
 2022-02-08;Nordjylland; 44
 2022-02-08;Ukendt_region;  2
@@ -4266,26 +4266,32 @@ Date;Region;Admitted
 2022-02-09;Nordjylland; 38
 2022-02-09;Ukendt_region;  0
 2022-02-10;Hovedstaden;122
-2022-02-10;Sjælland; 61
-2022-02-10;Syddanmark; 73
-2022-02-10;Midtjylland; 92
+2022-02-10;Sjælland; 62
+2022-02-10;Syddanmark; 77
+2022-02-10;Midtjylland; 94
 2022-02-10;Nordjylland; 35
 2022-02-10;Ukendt_region;  4
 2022-02-11;Hovedstaden;130
 2022-02-11;Sjælland; 67
-2022-02-11;Syddanmark; 70
-2022-02-11;Midtjylland; 68
+2022-02-11;Syddanmark; 82
+2022-02-11;Midtjylland; 71
 2022-02-11;Nordjylland; 43
 2022-02-11;Ukendt_region;  1
-2022-02-12;Hovedstaden; 79
-2022-02-12;Sjælland; 47
+2022-02-12;Hovedstaden; 78
+2022-02-12;Sjælland; 48
 2022-02-12;Syddanmark; 52
-2022-02-12;Midtjylland; 52
-2022-02-12;Nordjylland; 40
+2022-02-12;Midtjylland; 56
+2022-02-12;Nordjylland; 41
 2022-02-12;Ukendt_region;  1
-2022-02-13;Hovedstaden;109
-2022-02-13;Sjælland; 43
-2022-02-13;Syddanmark; 44
-2022-02-13;Midtjylland; 62
-2022-02-13;Nordjylland; 30
-2022-02-13;Ukendt_region;  2
+2022-02-13;Hovedstaden;121
+2022-02-13;Sjælland; 47
+2022-02-13;Syddanmark; 55
+2022-02-13;Midtjylland; 69
+2022-02-13;Nordjylland; 39
+2022-02-13;Ukendt_region;  4
+2022-02-14;Hovedstaden;122
+2022-02-14;Sjælland; 69
+2022-02-14;Syddanmark; 71
+2022-02-14;Midtjylland; 55
+2022-02-14;Nordjylland; 37
+2022-02-14;Ukendt_region;  3
