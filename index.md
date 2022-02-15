@@ -280,6 +280,8 @@ Vaccinestatus er defineret ud fra tidspunktet for den positive test, ikke tidspu
 
 ![](/figures/bt_deaths_age_time.png)
 
+[Tilbage til toppen](#)
+
 ## Virusvarianter
 
 *Opdateres ikke efter 2. januar 2022*
@@ -304,7 +306,7 @@ Plottet viser det daglige antal positive opdelt på de to nuværende varianter, 
 
 
 
-
+[Tilbage til toppen](#)
 
 ## Kommuner, landsdele og regioner
 ### Dagligt antal nye positivt testede og antal testede for hver kommune
