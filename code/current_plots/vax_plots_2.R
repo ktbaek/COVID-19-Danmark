@@ -31,7 +31,7 @@ age_vax_df %>%
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
-pop <- get_pop_by_breaks(get_age_breaks(maxage = 90, agesplit = 10)) %>%
+pop <- get_pop_by_breaks(age_breaks = get_age_breaks(maxage = 90, agesplit = 10)) %>%
   filter(Year == 2021, Quarter == 4) %>%
   mutate(Sex = ifelse(Sex == "Male", "M", "K")) %>%
   ungroup() %>%
@@ -102,7 +102,7 @@ ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi 
 
 fnkt_age_breaks <- c(-1, 5, 11, 15, 19, 39, 64, 79, 125)
 
-pop <- get_pop_by_breaks(fnkt_age_breaks) %>%
+pop <- get_pop_by_breaks(age_breaks = fnkt_age_breaks) %>%
   group_by(Year, Quarter, Age) %>%
   summarize(Population = sum(Population, na.rm = TRUE))
 

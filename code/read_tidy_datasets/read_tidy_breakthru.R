@@ -2,7 +2,7 @@ library(tidyverse)
 library(magrittr)
 
 # get last tuesday's date
-lasttue <- last_wday_date(today, 3)
+lasttue <- floor_date_wday(today, 2)
 lasttue <- paste0(str_sub(lasttue, 3, 4), str_sub(lasttue, 6, 7), str_sub(lasttue, 9, 10))
 
 if (file.exists(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.csv"))) {

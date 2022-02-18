@@ -689,6 +689,13 @@ icu;2022-02-05;  31
 icu;2022-02-06;  34
 icu;2022-02-07;  31
 icu;2022-02-08;  39
+icu;2022-02-09;  34
+icu;2022-02-10;  33
+icu;2022-02-11;  32
+icu;2022-02-12;  30
+icu;2022-02-13;  25
+icu;2022-02-14;  25
+icu;2022-02-15;  31
 hospitalized;2020-03-21; 206
 hospitalized;2020-03-22; 232
 hospitalized;2020-03-23; 254
@@ -1379,3 +1386,10 @@ hospitalized;2022-02-05;1138
 hospitalized;2022-02-06;1203
 hospitalized;2022-02-07;1294
 hospitalized;2022-02-08;1315
+hospitalized;2022-02-09;1332
+hospitalized;2022-02-10;1354
+hospitalized;2022-02-11;1370
+hospitalized;2022-02-12;1316
+hospitalized;2022-02-13;1356
+hospitalized;2022-02-14;1465
+hospitalized;2022-02-15;1523

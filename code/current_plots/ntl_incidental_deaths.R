@@ -18,7 +18,7 @@ case_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
   group_by(Aldersgruppe, Date) %>%
   summarize(Positive = sum(Value, na.rm = TRUE))
 
-pop <- get_pop_by_breaks(get_age_breaks(100, 5)) %>%
+pop <- get_pop_by_breaks(age_breaks = get_age_breaks(100, 5)) %>%
   group_by(Year, Quarter, Age) %>%
   summarize(Population = sum(Population, na.rm = TRUE))
 
@@ -61,7 +61,7 @@ weekly_all_deaths <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = sum(Population, na.rm = TRUE)
   ) %>%
-  group_by(Date = floor_date_monday(Date), Age) %>%
+  group_by(Date = floor_date_wday(Date), Age) %>%
   summarize(
     Deaths = sum(Deaths, na.rm = TRUE),
     Population = mean(Population, na.rm = TRUE),
@@ -71,7 +71,7 @@ weekly_all_deaths <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
 weekly_covid_deaths <- read_csv2("../data/SSI_daily_data.csv") %>%
   filter(name == "Deaths") %>%
   select(Date, daily) %>%
-  group_by(Date = floor_date_monday(Date)) %>%
+  group_by(Date = floor_date_wday(Date)) %>%
   summarize(Obs_deaths = sum(daily, na.rm = TRUE))
 
 pred_obs <- weekly_all_deaths %>%
@@ -88,7 +88,7 @@ pred_obs <- weekly_all_deaths %>%
   pivot_longer(-Date)
 
 pred_obs %>%
-  filter(Date <= last_wday_date(today, 1)) %>%
+  filter(Date <= floor_date_wday(today, 7)) %>%
   ggplot() +
   geom_line(aes(Date, value, color = name), size = 1) +
   scale_color_manual(name = "", labels = c("Død med Covid", 'Estimeret "tilfældig" død med Covid'), values = c(pos_col, test_col)) +
@@ -104,7 +104,7 @@ pred_obs %>%
 ggsave("../figures/ntl_incidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
 
 pred_obs %>%
-  filter(Date <= last_wday_date(today, 1)) %>%
+  filter(Date <= floor_date_wday(today, 7)) %>%
   pivot_wider() %>%
   ggplot() +
   geom_line(aes(Date, Obs_deaths - Pred_deaths), color = death_col, size = 1) +
@@ -125,7 +125,7 @@ pred_obs %>%
   select(-Obs_deaths) %>% 
   pivot_longer(-Date) %>% 
   filter(
-    Date <= last_wday_date(today, 1),
+    Date <= floor_date_wday(today, 7),
     Date > ymd("2020-04_01")) %>%
   ggplot() +
   geom_bar(aes(Date, value, fill = name), stat = "identity", position = "fill", width = 7) +

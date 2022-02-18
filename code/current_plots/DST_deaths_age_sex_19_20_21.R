@@ -1,4 +1,4 @@
-pop <- get_pop_by_breaks(get_age_breaks(maxage = 100, agesplit = 5))
+pop <- get_pop_by_breaks(age_breaks = get_age_breaks(maxage = 100, agesplit = 5))
 
 pop$Age <- factor(pop$Age, levels = c(
   "0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",

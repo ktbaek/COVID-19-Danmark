@@ -2,7 +2,7 @@ ssi_18 <- read_csv2("../data/18_fnkt_alder_uge_testede_positive_nyindlagte.csv")
 
 fnkt_age_breaks <- c(-1, 2, 5, 11, 15, 19, 39, 64, 79, 125)
 
-pop <- get_pop_by_breaks(fnkt_age_breaks) %>%
+pop <- get_pop_by_breaks(age_breaks = fnkt_age_breaks) %>%
   group_by(Year, Quarter, Age) %>%
   summarize(Population = sum(Population, na.rm = TRUE))
 
@@ -22,7 +22,6 @@ ssi_18 %>%
   ) %>%
   mutate(
     Date = week_to_date(Year, Week),
-    Date = fix_week_2020(Year, Week, Date),
     Quarter = quarter(Date)
   ) %>%
   left_join(pop, by = c("Aldersgruppe" = "Age", "Quarter", "Year")) %>%

@@ -14,30 +14,6 @@ test_col <- color_scale[5]
 pct_col <- color_scale[2]
 admit_col <- color_scale[3]
 death_col <- color_scale[1]
-binary_col <- c(color_scale[6], color_scale[7])
-
-# Date labels -------------------------------------------------------------
-
-my_date_labels <- function(breaks) {
-  
-  d <- c(0, replace_na(diff(year(breaks)), 0))
-  
-  labels <- mapply(function(x, y) {
-    if(y == 1) {
-      str_to_lower(strftime(x, "%e. %b\n %Y"))
-    }else{
-      str_to_lower(strftime(x, "%e. %b"))
-    }
-  }, breaks, d)
-  
-  return(labels)
-}
-
-my_date_labels_no_year <- function(breaks) {
-  
-  sapply(breaks, function(x) {str_to_lower(strftime(x, "%e. %b"))})
-
-}
 
 # Typeface ----------------------------------------------------------------
 
