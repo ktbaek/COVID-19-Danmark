@@ -118,7 +118,7 @@ p4 <- plot_data %>%
       legend.position = "bottom",
       legend.margin = margin(t = 0),
       plot.margin = margin(0.6, 0.4, 0.2, 0.4, "cm"),
-      plot.title = element_text(size = rel(1.6), face = "bold", margin = margin(b = 0)),
+      plot.title = element_text(size = rel(1.6), face = "bold", hjust = 0, margin = margin(b = 0)),
       plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
     )
   ) &

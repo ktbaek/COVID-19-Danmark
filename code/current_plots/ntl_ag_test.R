@@ -5,7 +5,7 @@ read_csv2("../data/SSI_Ag_data.csv") %>%
   pivot_longer(c(-Date)) %>%
   ggplot() +
   geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
-  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month") +
+  scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   scale_y_continuous(
     limits = c(0, NA),
     labels = scales::number
