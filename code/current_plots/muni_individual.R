@@ -37,8 +37,7 @@ plot_kommuner_pos <- function(muni_df, kommune, ratio = 10) {
       x = "Dato",
       title = paste0("Dagligt antal SARS-CoV-2 testede og positive for ", kommune),
       caption = standard_caption
-    ) +
-    standard_theme
+    )
 
   ggsave(paste0("../figures/Kommuner/", kommune, "_pos_test_daily.png"), width = 18, height = 10, units = "cm", dpi = 300)
 }
@@ -67,8 +66,7 @@ plot_kommuner_pct <- function(muni_df, kommune) {
       x = "Dato",
       title = paste0("Dagligt procent positivt SARS-CoV-2 testede for ", kommune),
       caption = standard_caption
-    ) +
-    standard_theme
+    )
 
   ggsave(paste0("../figures/Kommuner/", kommune, "_pct_daily.png"), width = 18, height = 10, units = "cm", dpi = 300)
 }

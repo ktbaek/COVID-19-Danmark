@@ -57,8 +57,7 @@ tibble("Date" = seq(as.Date("2020-01-01"), as.Date(today), by = "1 day")) %>%
   scale_x_date(labels = my_date_labels, date_breaks = "2 month") +
   scale_fill_manual(name = "", labels = c("Total (gennemsnit 2008-18)", "COVID-19"), values = cols[1:2]) +
   labs(x = "Dato", y = "Antal nyindlæggelser", title = "Antal daglige akutindlæggelser i Danmark", subtitle = "Data for 2008-18 er justeret til 2018 befolkningstal. Total-kurven viser ugegennemsnit", caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI") +
-  scale_y_continuous(limits = c(0, 3000)) +
-  standard_theme
+  scale_y_continuous(limits = c(0, 3000))
 
 
 ggsave("../figures/dst_admissions_covid_all.png", width = 18, height = 12, units = "cm", dpi = 300)

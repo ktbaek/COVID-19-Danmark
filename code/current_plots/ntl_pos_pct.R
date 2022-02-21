@@ -37,7 +37,6 @@ read_csv2("../data/SSI_daily_data.csv") %>%
     caption = standard_caption
   ) +
   guides(color = guide_legend(override.aes = list(size = 1))) +
-  standard_theme +
   theme(
     legend.text = element_text(size = 11),
     legend.key.size = unit(0.4, "cm")

@@ -38,8 +38,7 @@ plot_data %>%
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: Danmarks Statistik og SSI"
   ) +
   scale_fill_manual(name = "", labels = c("Alle", "COVID-19"), values = cols[1:2]) +
-  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "Gennemsnit alle 2020"), values = cols[3]) +
-  standard_theme
+  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "Gennemsnit alle 2020"), values = cols[3])
 
 ggsave("../figures/dst_deaths_covid_all.png", width = 18, height = 12, units = "cm", dpi = 300)
 
@@ -70,7 +69,6 @@ ggplot(plot_data) +
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: Danmarks Statistik og SSI"
   ) +
   scale_fill_manual(name = "", labels = c("COVID-19", "Ikke COVID-19"), values = c("#ffa62b", lighten("#16697a", 0.4))) +
-  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3], 3)) +
-  standard_theme
+  scale_color_manual(name = "", labels = c("Gennemsnit 2015-19", "", ""), values = rep(cols[3], 3))
 
 ggsave("../figures/dst_deaths_covid_all_2.png", width = 18, height = 12, units = "cm", dpi = 300)

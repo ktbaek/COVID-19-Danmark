@@ -26,8 +26,7 @@ age_vax_df %>%
     caption = standard_caption,
     subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today) - 1, "%e. %b %Y")))
   ) +
-  scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values = c("#11999e", "#30e3ca")) +
-  standard_theme
+  scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values = c("#11999e", "#30e3ca")) 
 
 ggsave("../figures/ntl_vax_age.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -56,8 +55,7 @@ age_vax_df %>%
     caption = "Kristoffer T. Bæk, covid19danmark.dk, datakilde: Danmarks Statistik og SSI",
     subtitle = paste0("Til og med ", str_to_lower(strftime(as.Date(vax_today) - 1, "%e. %b %Y")))
   ) +
-  scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values = c("#11999e", "#30e3ca")) +
-  standard_theme
+  scale_fill_manual(name = "", labels = c("Kvinder", "Mænd"), values = c("#11999e", "#30e3ca")) 
 
 ggsave("../figures/ntl_vax_age_pct.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -95,8 +93,7 @@ begun_vax_df %>%
   scale_x_date(labels = my_date_labels, date_breaks = "2 months", minor_breaks = "1 month", expand = expansion(mult = 0.03)) +
   scale_y_continuous(limits = c(0, NA), labels = scales::number) +
   scale_color_manual(name = "", labels = c("Første dose", "Anden dose", "Tredje dose"), values = c("#30e3ca", "#11999e", "#1c3499")) +
-  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) +
-  standard_theme
+  labs(y = "Antal", title = "Kumuleret antal COVID-19 vaccinerede", caption = standard_caption) 
 
 ggsave("../figures/ntl_vax_cum.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -187,7 +184,6 @@ plot_data %>%
   guides(color = guide_legend(override.aes = list(size = 1.6))) +
   labs(y = "Procent", title = "Andel af COVID-19 vaccinerede opdelt på alder", caption = standard_caption) +
   facet_wrap(~Age, ncol = 4) +
-  standard_theme +
   theme(
     panel.grid.minor.x = element_line(size = 0.1),
     panel.grid.major.x = element_line(size = 0.3)

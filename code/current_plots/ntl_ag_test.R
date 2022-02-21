@@ -20,7 +20,6 @@ read_csv2("../data/SSI_Ag_data.csv") %>%
     x = "Dato",
     title = "Dagligt antal SARS-CoV-2 testede",
     caption = standard_caption
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)

@@ -11,8 +11,7 @@ plot_layer <- list(
   scale_color_manual(name = "", values = paultol_colors),
   scale_x_date(labels = my_date_labels, date_breaks = "3 months", minor_breaks = "1 month", expand = expansion(mult = 0.01)),
   scale_y_continuous(limits = c(0, NA)),
-  guides(colour = guide_legend(nrow = 1)),
-  standard_theme
+  guides(colour = guide_legend(nrow = 1))
 )
 
 plot_data %>%

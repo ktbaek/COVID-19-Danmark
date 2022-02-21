@@ -98,8 +98,7 @@ pred_obs %>%
     y = "Antal",
     title = 'Estimat af antallet af "tilfældige" ugentlige Covid dødsfald',
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_incidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -114,8 +113,7 @@ pred_obs %>%
     y = "Antal",
     title = "Estimat af antallet af ugentlige dødsfald pga. COVID-19",
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_nonincidental_deaths.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -137,7 +135,6 @@ pred_obs %>%
     y = "Andel",
     title = 'Estimat af andelen af "tilfældige" Covid dødsfald',
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: SSI, Danmarks Statistik"
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_incidental_deaths_share.png", width = 18, height = 10, units = "cm", dpi = 300)

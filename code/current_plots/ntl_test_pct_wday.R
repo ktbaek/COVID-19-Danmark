@@ -33,7 +33,6 @@ read_csv2("../data/SSI_Ag_data.csv") %>%
     caption = standard_caption
   ) +
   guides(colour = guide_legend(nrow = 1)) +
-  standard_theme +
   theme(axis.title.x = element_text())
 
 ggsave("../figures/ntl_test_pct_wday.png", width = 18, height = 10, units = "cm", dpi = 300)

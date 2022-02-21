@@ -22,7 +22,6 @@ plot_data %>%
     title = "Indlagte med positiv SARS-CoV-2 test",
     caption = "Kristoffer T. Bæk, covid19danmark.dk, data: Danmarks Statistik"
   ) +
-  standard_theme +
   theme(
     legend.text = element_text(size = 11),
     legend.key.size = unit(0.4, "cm")

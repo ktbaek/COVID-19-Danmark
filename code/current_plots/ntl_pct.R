@@ -11,7 +11,6 @@ read_csv2("../data/SSI_daily_data.csv") %>%
     x = "Dato",
     title = "Daglig SARS-CoV-2 PCR positivprocent",
     caption = standard_caption
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_pct.png", width = 18, height = 10, units = "cm", dpi = 300)

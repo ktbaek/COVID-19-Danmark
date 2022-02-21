@@ -35,7 +35,6 @@ plot_data %>%
     x = "Dato",
     title = "Dagligt antal positivt SARS-CoV-2 testede",
     caption = standard_caption
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_pos.png", width = 18, height = 10, units = "cm", dpi = 300)

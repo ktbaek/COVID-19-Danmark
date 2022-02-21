@@ -40,7 +40,6 @@ read_csv2("../data/SSI_daily_data.csv") %>%
     caption = standard_caption,
     subtitle = '<b style="color:#EFA722;">Positivprocent</b> = positive / testede \u00D7 100. <b style="color:#9D6C06;">Smitteindeks</b> = positive / testede<sup>0.7</sup>'
   ) +
-  standard_theme +
   theme(
     plot.subtitle = element_markdown()
   )

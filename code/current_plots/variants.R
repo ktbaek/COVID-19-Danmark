@@ -21,8 +21,7 @@ read_csv2("../data/SSI_omikron.csv") %>%
     y = "Antal positive",
     title = "Dagligt antal positivt testede opdelt på variant",
     caption = standard_caption
-  ) +
-  standard_theme
+  ) 
 
 ggsave("../figures/ntl_omikron_daily_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -96,8 +95,7 @@ plot_data %>%
     y = "Positive",
     title = "Ugentligt antal positivt testede opdelt på variant",
     caption = standard_caption
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_all_variants_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -112,8 +110,7 @@ plot_data %>%
     y = "Andel",
     title = "Ugentlig andel af varianter",
     caption = standard_caption
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_all_variants_proportion.png", width = 18, height = 10, units = "cm", dpi = 300)
 
@@ -130,8 +127,7 @@ plot_data %>%
     y = "Cases",
     title = "Weekly cases by variant in Denmark",
     caption = standard_caption_en
-  ) +
-  standard_theme
+  )
 
 ggsave("../figures/ntl_all_variants_pos_EN.png", width = 18, height = 10, units = "cm", dpi = 300)
 
