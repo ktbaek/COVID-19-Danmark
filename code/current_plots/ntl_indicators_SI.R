@@ -4,7 +4,7 @@ si <- read_csv("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/ma
   pivot_longer(everything(), names_to = "Date", values_to = "SI") %>% 
   mutate(Date = dmy(Date)) %>% 
   fill(SI)
-  
+
 deaths_all <- read_csv2("../data/tidy_DST_daily_deaths_age_sex.csv") %>%
   group_by(Date) %>%
   summarize(Deaths = sum(Deaths, na.rm = TRUE)) %>%
@@ -34,7 +34,7 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
   filter(
     Date > ymd("2021-01-01"),
     !name %in% c("Index", "hosp_no_icu")
-    ) %>%
+  ) %>%
   mutate(
     Year = year(Date),
     Quarter = quarter(Date)
@@ -57,8 +57,8 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
   )
   ) %>%
   inner_join(si, by = "Date") 
-  
-  
+
+
 plot_data$name = factor(plot_data$name, levels = c("PCR cases", "PCR tested", "PCR positivity rate", "Deaths w/ positive PCR",
                                                    "Admissions w/ positive PCR", "Hospitalized w/ positive PCR", "In ICU w/ positive PCR",
                                                    "Deaths all causes"))
@@ -93,7 +93,7 @@ plot_data %>%
   guides(
     color = guide_legend(override.aes = list(size = 1)),
     fill = guide_colourbar(barwidth = 8, barheight = 0.5)
-    ) +
+  ) +
   facet_wrap(~name, ncol = 4, scales = "free_y") +
   facet_theme +
   theme(
@@ -112,5 +112,3 @@ plot_data %>%
 ggsave("../figures/ntl_indicators_SI.png", width = 20, height = 11, units = "cm", dpi = 300)
 
 Sys.setlocale("LC_ALL", "da_DK.UTF-8")
-
-

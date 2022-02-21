@@ -4075,7 +4075,7 @@ Date;Region;Admitted
 2022-01-08;Ukendt_region;  1
 2022-01-09;Hovedstaden; 64
 2022-01-09;Sjælland; 29
-2022-01-09;Syddanmark; 25
+2022-01-09;Syddanmark; 26
 2022-01-09;Midtjylland; 23
 2022-01-09;Nordjylland; 13
 2022-01-09;Ukendt_region;  1
@@ -4091,7 +4091,7 @@ Date;Region;Admitted
 2022-01-11;Midtjylland; 23
 2022-01-11;Nordjylland; 19
 2022-01-11;Ukendt_region;  1
-2022-01-12;Hovedstaden; 91
+2022-01-12;Hovedstaden; 90
 2022-01-12;Sjælland; 34
 2022-01-12;Syddanmark; 27
 2022-01-12;Midtjylland; 30
@@ -4196,7 +4196,7 @@ Date;Region;Admitted
 2022-01-29;Hovedstaden; 97
 2022-01-29;Sjælland; 44
 2022-01-29;Syddanmark; 35
-2022-01-29;Midtjylland; 38
+2022-01-29;Midtjylland; 39
 2022-01-29;Nordjylland;  7
 2022-01-29;Ukendt_region;  4
 2022-01-30;Hovedstaden;109
@@ -4213,14 +4213,14 @@ Date;Region;Admitted
 2022-01-31;Ukendt_region;  2
 2022-02-01;Hovedstaden;139
 2022-02-01;Sjælland; 66
-2022-02-01;Syddanmark; 51
+2022-02-01;Syddanmark; 52
 2022-02-01;Midtjylland; 43
 2022-02-01;Nordjylland; 29
 2022-02-01;Ukendt_region;  5
 2022-02-02;Hovedstaden;117
 2022-02-02;Sjælland; 90
-2022-02-02;Syddanmark; 54
-2022-02-02;Midtjylland; 57
+2022-02-02;Syddanmark; 53
+2022-02-02;Midtjylland; 58
 2022-02-02;Nordjylland; 32
 2022-02-02;Ukendt_region;  4
 2022-02-03;Hovedstaden;113
@@ -4249,31 +4249,31 @@ Date;Region;Admitted
 2022-02-06;Ukendt_region;  2
 2022-02-07;Hovedstaden;149
 2022-02-07;Sjælland; 70
-2022-02-07;Syddanmark; 98
+2022-02-07;Syddanmark; 97
 2022-02-07;Midtjylland; 85
 2022-02-07;Nordjylland; 28
 2022-02-07;Ukendt_region;  0
 2022-02-08;Hovedstaden;121
 2022-02-08;Sjælland; 70
 2022-02-08;Syddanmark; 91
-2022-02-08;Midtjylland; 81
+2022-02-08;Midtjylland; 82
 2022-02-08;Nordjylland; 44
 2022-02-08;Ukendt_region;  2
 2022-02-09;Hovedstaden;151
 2022-02-09;Sjælland; 76
 2022-02-09;Syddanmark; 89
-2022-02-09;Midtjylland; 74
+2022-02-09;Midtjylland; 73
 2022-02-09;Nordjylland; 38
 2022-02-09;Ukendt_region;  0
 2022-02-10;Hovedstaden;123
 2022-02-10;Sjælland; 62
-2022-02-10;Syddanmark; 78
+2022-02-10;Syddanmark; 77
 2022-02-10;Midtjylland; 99
 2022-02-10;Nordjylland; 35
 2022-02-10;Ukendt_region;  4
 2022-02-11;Hovedstaden;130
-2022-02-11;Sjælland; 67
-2022-02-11;Syddanmark; 80
+2022-02-11;Sjælland; 68
+2022-02-11;Syddanmark; 82
 2022-02-11;Midtjylland; 72
 2022-02-11;Nordjylland; 43
 2022-02-11;Ukendt_region;  1
@@ -4286,30 +4286,48 @@ Date;Region;Admitted
 2022-02-13;Hovedstaden;123
 2022-02-13;Sjælland; 47
 2022-02-13;Syddanmark; 59
-2022-02-13;Midtjylland; 70
+2022-02-13;Midtjylland; 71
 2022-02-13;Nordjylland; 38
 2022-02-13;Ukendt_region;  3
 2022-02-14;Hovedstaden;149
 2022-02-14;Sjælland; 77
-2022-02-14;Syddanmark; 93
+2022-02-14;Syddanmark; 95
 2022-02-14;Midtjylland; 70
 2022-02-14;Nordjylland; 57
 2022-02-14;Ukendt_region;  3
 2022-02-15;Hovedstaden;137
 2022-02-15;Sjælland; 69
-2022-02-15;Syddanmark; 83
+2022-02-15;Syddanmark; 84
 2022-02-15;Midtjylland; 82
 2022-02-15;Nordjylland; 59
 2022-02-15;Ukendt_region;  7
 2022-02-16;Hovedstaden;124
-2022-02-16;Sjælland; 64
-2022-02-16;Syddanmark; 73
-2022-02-16;Midtjylland; 99
-2022-02-16;Nordjylland; 49
+2022-02-16;Sjælland; 65
+2022-02-16;Syddanmark; 88
+2022-02-16;Midtjylland;101
+2022-02-16;Nordjylland; 47
 2022-02-16;Ukendt_region;  2
-2022-02-17;Hovedstaden;108
-2022-02-17;Sjælland; 62
-2022-02-17;Syddanmark; 99
-2022-02-17;Midtjylland; 52
-2022-02-17;Nordjylland; 36
-2022-02-17;Ukendt_region;  2
+2022-02-17;Hovedstaden;120
+2022-02-17;Sjælland; 75
+2022-02-17;Syddanmark;113
+2022-02-17;Midtjylland; 88
+2022-02-17;Nordjylland; 43
+2022-02-17;Ukendt_region;  4
+2022-02-18;Hovedstaden;120
+2022-02-18;Sjælland; 59
+2022-02-18;Syddanmark; 55
+2022-02-18;Midtjylland; 54
+2022-02-18;Nordjylland; 50
+2022-02-18;Ukendt_region;  1
+2022-02-19;Hovedstaden; 69
+2022-02-19;Sjælland; 43
+2022-02-19;Syddanmark; 38
+2022-02-19;Midtjylland; 59
+2022-02-19;Nordjylland; 54
+2022-02-19;Ukendt_region;  2
+2022-02-20;Hovedstaden; 96
+2022-02-20;Sjælland; 52
+2022-02-20;Syddanmark; 49
+2022-02-20;Midtjylland; 52
+2022-02-20;Nordjylland; 25
+2022-02-20;Ukendt_region;  2
