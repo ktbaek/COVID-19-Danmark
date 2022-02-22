@@ -72,7 +72,7 @@ plot_data %>%
                 fill=SI), alpha = 0.2) +
   geom_line(aes(Date, value_per_M, size = type, alpha = type), color = admit_col) +
   scale_y_continuous(limits = c(0, NA)) +
-  scale_x_date(date_labels = "%e %b", date_breaks = "2 months", minor_breaks = "1 month", expand = expansion(mult = 0.01)) +
+  scale_x_date(labels = my_date_labels_en, date_breaks = "2 months", minor_breaks = "1 month", expand = expansion(mult = 0.01)) +
   scale_color_manual(name = "", values = c(test_col, pos_col)) +
   scale_size_manual(
     guide = FALSE,

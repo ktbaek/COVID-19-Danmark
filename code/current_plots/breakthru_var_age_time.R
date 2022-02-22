@@ -63,8 +63,8 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " per 100.000 i alders- og vaccinationsgruppen")
     ) +
     facet_wrap(~Age, ncol = 6) +
-    facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
+    facet_theme +
     theme(
       plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
       plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
@@ -90,8 +90,8 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       subtitle = paste0("Angiver antal ", str_to_lower(variable_name), " opdelt på vaccinationsstatus (grupperne er stablet)")
     ) +
     facet_wrap(~Age, ncol = 6) +
-    facet_theme +
     guides(fill = guide_legend(override.aes = list(alpha = 1))) +
+    facet_theme +
     theme(
       plot.title = element_text(size = 11, face = "bold", margin = margin(b = 3)),
       plot.margin = margin(0.7, 0.7, 0.2, 0.7, "cm"),
@@ -110,11 +110,13 @@ plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, sub
       caption = standard_caption,
       theme = theme(
         plot.margin = margin(0.7, 0.2, 0.2, 0.2, "cm"),
-        plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 5)),
+        plot.title = element_text(size = rel(1.3), face = "bold", margin = margin(b = 5), hjust = 0),
+        plot.subtitle = element_text(size = rel(0.9), hjust = 0),
         plot.caption = element_text(color = "gray60", hjust = 0, size = 10),
       )
     ) & theme(
     text = element_text(family = "lato"),
+    axis.title.y = element_text(face = "plain"),
     strip.text.x = element_text(margin = margin(0, 0, 0.8, 0)),
     legend.position = "bottom",
     panel.grid.major.x = element_line(color = "white", size = rel(1)),
