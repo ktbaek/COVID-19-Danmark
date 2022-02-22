@@ -1,0 +1,437 @@
+---
+title: "Analysis and QC of SSI's breakthrough data (Denmark)"
+author: 
+  - name: Kristoffer T. Bæk
+  - affiliation: covid19danmark.dk
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r load-packages, include = FALSE}
+library(tidyverse)
+library(magrittr)
+library(distill)
+library(lubridate)
+library(scales)
+library(knitr)
+
+source("../code/functions.R")
+```
+
+Every Tuesday since week 38, 2021, SSI has published datasets related to breakthrough infections. The data is given as Table 1 and Table 2, where Table 1 is not age stratified whereas Table 2 is. Table 2 is published as several csv files as shown below:
+
+```{r}
+lasttue <- last_wday_date(today(), 3) %>% date_to_yymmdd()
+
+list.files(paste0("../data/SSIdata_", lasttue), pattern = "gennembrudsinfektioner_table2")
+```
+
+Furthermore, the numbers in the tables are stratified by vaccination status as follows: 
+
+- Ingen vaccination (no vaccination)
+- Første vaccination (first dose, counts from day of dose)
+- Anden vaccination (second or more doses, counts from day of second dose)
+- Fuld effekt efter primært forløb (counts from 14 days after second dose up to 14 days after third dose, if relevant)
+- Fuld effekt efter revaccination (counts from 14 days after third dose)
+
+This means that 'Ingen vaccination', 'Første vaccination' and 'Anden vaccination' sums up to the total number (e.g. tests, cases etc.).
+
+## Tidy the datasets
+
+For convenience, I read all Table 2 files and combine them into one file. For each csv file, I rename the variables for better consistency by defining `Type` as either 'antal' (number) or 'incidence' (number per 100,000), and `Variable` as e.g. 'cases', 'tests' etc as given by the csv filename (for Table 2) or the variable name (for Table 1). Furthermore, I add a third identifier, `Group`, to indicate e.g previous infection status: 'notprevpos' (not previously positive), 'prevpos' (previously positive), or 'alle' (all). As an example, 'antal_cases' become 'antal, cases, notprevpos' (`Type, Variable, Group`), and 'antal_repositive' becomes 'antal, cases, prevpos' (`Type, Variable, Group`). 
+
+I recode Table 1 using the same system. 
+
+```{r read-table-1, layout="l-body-outset"}
+# read and tidy table 1
+read_csv2(paste0("../data/SSIdata_", lasttue, "/gennembrudsinfektioner_table1.csv")) %>%
+  pivot_longer(-Ugenummer, names_to = c("Variable", "Vax_status"), values_to = "Value", names_sep = "_[A-Z]") %>%
+  separate(Variable, c("Type", "Variable"), sep = "_", extra = "merge") %>%
+  mutate(
+    Variable = str_replace(Variable, "_", "."),
+    # rename some SSI variables for better consistency
+    Variable = case_when(
+      Variable == "personer" ~ "personer.notprevpos",
+      Variable == "cases" ~ "cases.notprevpos",
+      Variable == "repositive" ~ "cases.prevpos60",
+      Variable == "tests" ~ "tests.alle",
+      TRUE ~ Variable
+    ),
+    # fix loss of first letter caused by separation
+    Vax_status = case_when(
+      Vax_status == "ngen vaccination" ~ "Ingen vaccination",
+      Vax_status == "ørste vaccination" ~ "Første vaccination",
+      Vax_status == "nden vaccination" ~ "Anden vaccination",
+      Vax_status == "uld effekt efter primært forløb" ~ "Fuld effekt efter primært forløb",
+      Vax_status == "uld effekt efter revaccination" ~ "Fuld effekt efter revaccination",
+    ),
+    Week = as.integer(str_sub(Ugenummer, 5, 6)),
+    Year = as.integer(str_sub(Ugenummer, 8, 11))
+  ) %>%
+  select(-Ugenummer) %>%
+  separate(Variable, c("Variable", "Group"), "\\.") %>%
+  select(Type, Variable, Group, Week, Year, everything()) %T>%
+  write_csv2("../data/tidy_breakthru_table1.csv") %>% 
+  arrange(desc(Year), desc(Week)) %>% 
+  head(10) %>% 
+  kable(caption = "Example rows in cleaned up Table 1")
+```
+
+
+```{r read-table-2, layout="l-body-outset"}
+# read and tidy table 2
+read_tidy_table2 <- function(filename) {
+  type <- str_split(filename, "_")[[1]][4]
+  variable <- str_split(filename, paste0(type, "_"))[[1]][2] %>%
+    str_sub(1, length(.) - 6)
+
+  read_csv2(filename) %>%
+    pivot_longer(-Aldersgruppe, names_to = c("Week", "Vax_status"), values_to = "Value", names_sep = "_") %>%
+    mutate(
+      Year = as.integer(str_sub(Week, 8, 11)),
+      Week = as.integer(str_sub(Week, 5, 6))
+    ) %>%
+    # remove the two summarizing age categories
+    filter(
+      !Aldersgruppe %in% c("12+", "Alle")
+    ) %>%
+    mutate(
+      Type = type,
+      Variable = variable
+    ) %>%
+    mutate(
+      Variable = str_replace(Variable, "_", "."),
+      # rename some SSI variables for better consistency
+      Variable = case_when(
+        Variable == "tests" ~ "tests.alle",
+        Variable == "cases" ~ "cases.notprevpos",
+        Variable == "repositive" ~ "cases.prevpos60",
+        Variable == "alle" ~ "cases.alle",
+        TRUE ~ Variable
+      ),
+    ) %>%
+    separate(Variable, c("Variable", "Group"), "\\.") %>%
+    rename(Age = Aldersgruppe) %>%
+    select(Type, Variable, Group, Week, Year, everything())
+}
+
+list.files(paste0("../data/SSIdata_", lasttue), pattern = "gennembrudsinfektioner_table2", full.names = TRUE) %>%
+  lapply(read_tidy_table2) %>%
+  bind_rows() %T>%
+  write_csv2("../data/tidy_breakthru_table2.csv") %>% 
+  arrange(desc(Year), desc(Week)) %>% 
+  head(10) %>% 
+  kable(caption = "Example rows in cleaned up Table 2")
+```
+
+
+```{r read-data}
+bt_1 <- read_csv2("../data/tidy_breakthru_table1.csv")
+bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
+```
+
+## Deduction of additional variables
+
+Having tidied the datasets, I go on to deduce some missing variables. The already available variables in Table 1 and Table 2 are shown below:
+
+```{r echo=FALSE}
+# Table 1
+bt_1 %>%
+  select(Type, Variable, Group) %>%
+  distinct() %>% 
+  kable(caption = "Variables available in Table 1")
+```
+
+```{r echo=FALSE}
+# Table 2
+bt_2 %>%
+  select(Type, Variable, Group) %>%
+  distinct() %>% 
+  kable(caption = "Variables available in Table 2")
+```
+
+
+For the variable 'tests, total' a person can count several times in a week (but only once per day), whereas for 'tests, alle' and 'tests, notprevpos', a person can count only once per week. ´Tests, total´ is not used in my analyses because it is less comparable to other variables, e.g incidences that are calculated using *person-weeks*. 
+
+I deduce missing variables as shown in the code below:
+
+```{r deduce-variables}
+bt_2_deduced <- read_csv2("../data/tidy_breakthru_table2.csv") %>%
+  filter(Variable %in% c("cases", "tests")) %>%
+  pivot_wider(names_from = c(Type, Variable, Group), values_from = Value, names_sep = "_") %>%
+  select(-antal_tests_total) %>%
+  mutate(
+    antal_personer_alle = antal_tests_alle / incidence_tests_alle * 100000,
+    antal_personer_notprevpos = antal_cases_notprevpos / incidence_cases_notprevpos * 100000,
+    antal_personer_prevpos = antal_personer_alle - antal_personer_notprevpos,
+    antal_tests_prevpos = antal_tests_alle - antal_tests_notprevpos,
+    #incidence_cases_prevpos = antal_cases_prevpos60 / antal_personer_prevpos * 100000,
+    incidence_tests_prevpos = antal_tests_prevpos / antal_personer_prevpos * 100000,
+    incidence_tests_notprevpos = antal_tests_notprevpos / antal_personer_notprevpos * 100000
+  ) %>% 
+  mutate(
+    across(matches("antal"), as.integer),
+    across(matches("incidence"), round, 2))
+```
+
+And calculate the test adjusted incidenses:
+
+```{r calculate-tai}
+# function and beta value to calucate the test adjusted incidence
+tai <- function(pop, pos, tests, beta) {
+  pos / (pop * (tests / pop)**beta) * 100000
+}
+
+beta <- 0.5
+
+bt_2_deduced %>%
+  mutate(
+    incidence_tac_notprevpos = tai(antal_personer_notprevpos, antal_cases_notprevpos, antal_tests_notprevpos, beta),
+    incidence_tac_prevpos = tai(antal_personer_prevpos, antal_cases_prevpos, antal_tests_prevpos, beta)
+  ) %>%
+  pivot_longer(c(antal_cases_notprevpos:incidence_tac_prevpos), names_to = c("Type", "Variable", "Group"), values_to = "Value", names_sep = "_") %>%
+  arrange(Age, Week, Year, Vax_status, Type, Variable, Group) %>%
+  write_csv2("../data/tidy_breakthru_table2_deduced.csv")
+```
+
+## QC checks
+
+### Table 1 vs Table 2
+
+First I compare the deduced population sizes in Table 2 with the non-age-stratified population sizes in Table 1.
+
+```{r layout="l-page"}
+bt_2_extra <- read_csv2("../data/tidy_breakthru_table2_deduced.csv")
+
+bt_2_extra %>%
+  filter(Type != "incidence") %>%
+  group_by(Week, Year, Vax_status, Type, Variable, Group) %>%
+  summarize(
+    Table2 = sum(Value, na.rm = TRUE)
+  ) %>%
+  inner_join(filter(bt_1, Type == "antal" & Variable == "personer"), by = c("Week", "Year", "Type", "Variable", "Group", "Vax_status")) %>%
+  rename(Table1 = Value) %>% 
+  mutate(
+    Diff = Table2 - Table1,
+    Diff_pct = round(abs(Diff / Table1) * 100, 2)
+  ) %>% 
+  arrange(desc(Diff_pct)) %>% 
+  head(10) %>% 
+  kable(caption = "Percent difference between deduced population sizes in Table 2 vs Table 1, arranged high to low, first 10 rows")
+```
+
+There are three large relative differences in the first weeks for the boosted group, but apart from that the remaning relative differences are less than 1%.
+
+Then I compare the deduced population size for previously infected in Table 2 with the non-age-stratified population size for previously infected in Table 1.
+
+
+```{r layout="l-body-outset"}
+prevpos_check <- bt_2_extra %>%
+  filter(Type != "incidence") %>%
+  group_by(Week, Year, Vax_status, Type, Variable, Group) %>%
+  summarize(
+    Table2 = sum(Value, na.rm = TRUE)
+  ) %>%
+  inner_join(filter(bt_1, Type == "antal" & Variable == "personer"), by = c("Week", "Year", "Type", "Variable", "Group", "Vax_status")) %>%
+  rename(Table1 = Value) %>%
+  # pivot swap
+  pivot_wider(names_from = c(Variable, Group), values_from = c(Table1, Table2), names_sep = "_") %>%
+  pivot_longer(c(-Week, -Year, -Vax_status, -Type), names_to = c("Dataset", "Variable", "Group"), values_to = "value", names_sep = "_") %>%
+  pivot_wider(names_from = c(Variable, Group), values_from = value, names_sep = "_") %>%
+  mutate(
+    personer_prevpos = personer_alle - personer_notprevpos
+  ) %>%
+  select(-personer_alle, -personer_notprevpos) %>%
+  pivot_wider(names_from = Dataset, values_from = personer_prevpos) %>%
+  mutate(
+    Diff = Table2 - Table1,
+    Diff_pct = round(abs(Diff / Table1) * 100, 2)
+  ) 
+
+prevpos_check %>% 
+  arrange(desc(Diff_pct)) %>% 
+  head(15) %>% 
+  kable(caption = "Percent difference between deduced prevpos population sizes in Table 2 vs Table 1, arranged high to low, first 15 rows")
+```
+
+There are less than 10 very large relative differences, also in the early weeks for the boosted group. Apart from those, most of the differences are less than 1%.
+
+### Table 2 vs population sizes from Danmarks Statistik
+
+Then I compare the deduced age-stratified population sizes in Table 2 with population data from DST. 
+
+
+```{r layout="l-body-outset"}
+bt_age_breaks <- c(-1, 5, 11, 15, 19, 29, 39, 49, 59, 64, 69, 79, 125)
+
+pop <- read_tidy_age(bt_age_breaks) %>% 
+  group_by(Year, Quarter, Age) %>% 
+  summarize(Population = sum(Population, na.rm = TRUE))
+
+bt_2_extra %>%
+  filter(
+    Type == "antal",
+    Variable == "personer",
+    Group == "alle",
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")
+    ) %>%
+  group_by(Age, Week, Year) %>%
+  summarize(
+    Table2 = sum(Value, na.rm = TRUE)
+  ) %>%
+  mutate(
+    Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u"),
+    Quarter = quarter(Date)
+    ) %>%
+  left_join(pop, by = c("Age", "Year", "Quarter")) %>% 
+  arrange(Date) %>% 
+  group_by(Age) %>% 
+  fill(Population) %>% 
+  mutate(
+    Diff = Table2 - Population,
+    Diff_pct = round(abs(Diff / Table2) * 100, 2)
+  ) %>% 
+  arrange(desc(Diff_pct)) %>% 
+  select(-Date) %>% 
+  head(10) %>% 
+  kable(caption = "Percent difference between deduced total population sizes in Table 2 vs population sizes from DST, arranged high to low, first 10 rows")
+```
+
+The highest differences are around 3%. This is probably due to the DST data being updated quarterly, while SSI's data are updated weekly. 
+
+### Table 2 vs daily case numbers from SSI
+
+```{r}
+temp_df <- bt_2_extra %>%
+  filter(
+    Type == "antal",
+    Variable == "cases",
+    Group == "notprevpos",
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")
+    ) %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  group_by(Date) %>%
+  summarize(Table2 = sum(Value, na.rm = TRUE)) 
+  
+
+read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Positive") %>%
+  select(Date, daily) %>%
+  group_by(Date = floor_date(Date, unit = "week", week_start = getOption("lubridate.week.start", 1))) %>%
+  filter(!is.na(daily)) %>% 
+  mutate(n = n()) %>% 
+  filter(n == 7) %>% 
+  summarize(`SSI daily data` = sum(daily, na.rm = TRUE)) %>% 
+  full_join(temp_df, by = "Date") %>%
+  pivot_longer(-Date) %>% 
+  filter(Date > ymd("2021-09-01")) %>% 
+  ggplot() +
+  geom_line(aes(Date, value, color = name), size = 1) +
+  scale_color_discrete(name = "Dataset") +
+  scale_y_continuous(limits = c(0, NA), labels = scales::number) + 
+  labs(
+    y = "Cases, not previously positive",
+    title = "Comparison of case numbers (notprevpos) in Table 2 with SSI's daily files"
+  ) 
+```
+
+As expected there is a very good fit between the weekly case numbers in Table 2 and SSI's daily case numbers. 
+
+### Number of previosly infected vs cumulated case numbers from SSI up to 60 or 30 days ago
+
+Previosly infected in Table 1 and Table 2 is defined as a person whose last positive test was >60 days ago. Therefore the deduced number of previosly infected in the breakthrough files should correspond to the number of cases up to 60 days ago. 
+
+```{r}
+temp_df <- prevpos_check %>%
+  filter(Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination")) %>%
+  group_by(Week, Year) %>%
+  summarize(Table2 = sum(Table2, na.rm = TRUE)) %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u"))
+
+read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Positive") %>%
+  select(Date, daily) %>%
+  mutate(`SSI daily cumulated` = cumsum(daily)) %>%
+  full_join(temp_df, by = "Date") %>%
+  mutate(Table2 = lead(Table2, 60)) %>%
+  select(-Week, -Year, -daily) %>% 
+  filter(wday(Date) == 5) %>% 
+  pivot_longer(-Date) %>% 
+  ggplot() +
+  scale_color_discrete(name = "Dataset") +
+  geom_line(aes(Date, value, color = name), size = 1) +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Cumulated cases",
+    title = "Comparison of deduced number of prev. infected persons in Table 2\nwith cumulated case numbers up to 60 days ago"
+  ) 
+```
+
+There is not a good fit. I try comparing with the number of cases up to 30 days ago instead.
+
+
+
+```{r}
+read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Positive") %>%
+  select(Date, daily) %>%
+  mutate(`SSI daily cumulated` = cumsum(daily)) %>%
+  full_join(temp_df, by = "Date") %>%
+  mutate(Table2 = lead(Table2, 30)) %>%
+  select(-Week, -Year, -daily) %>% 
+  filter(wday(Date) == 7) %>% 
+  pivot_longer(-Date) %>% 
+  ggplot() +
+  scale_color_discrete(name = "Dataset") +
+  geom_line(aes(Date, value, color = name), size = 1) +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Cumulated cases",
+    title = "Comparison of deduced number of prev. infected persons in Table 2\nwith cumulated case numbers up to 30 days ago"
+  ) 
+```
+
+This fits much better, which I don't understand. 
+
+I try the same with the numbers for previously infected from Table 1. This is just to be absolutely sure given that I already know that these numbers match between Table 1 and 2. 
+
+```{r}
+temp_df <- bt_1 %>% 
+  filter(
+    Vax_status %in% c("Ingen vaccination", "Første vaccination", "Anden vaccination"),
+    Type == "antal",
+    Variable == "personer"
+    ) %>%
+  group_by(Week, Year, Group) %>%
+  summarize(Value = sum(Value, na.rm = TRUE)) %>% 
+  pivot_wider(names_from = Group, values_from = Value) %>% 
+  mutate(
+    Table1 = alle - notprevpos
+  )  %>%
+  mutate(Date = as.Date(paste0(Year, sprintf("%02d", Week), "1"), "%Y%U%u")) %>% 
+  select(-alle, -notprevpos)
+
+read_csv2("../data/SSI_daily_data.csv") %>%
+  filter(name == "Positive") %>%
+  select(Date, daily) %>%
+  mutate(`SSI daily cumulated` = cumsum(daily)) %>%
+  full_join(temp_df, by = "Date") %>%
+  mutate(Table1 = lead(Table1, 30)) %>%
+  select(-Week, -Year, -daily) %>% 
+  filter(wday(Date) == 7) %>% 
+  pivot_longer(-Date) %>% 
+  ggplot() +
+  scale_color_discrete(name = "Dataset") +
+  geom_line(aes(Date, value, color = name), size = 1) +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Cumulated cases",
+    title = "Comparison of number of prev. infected persons in Table 1\nwith cumulated case numbers up to 60 days ago"
+  ) 
+```
+
+
+I get the same result as for the Table 2 numbers, as expected. But I still don't understand it. 
+
+
+

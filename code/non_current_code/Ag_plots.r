@@ -1,0 +1,113 @@
+ag <- read_csv2("../data/SSI_Ag_data.csv")
+# Antigen -----------------------------------------------------------------
+
+ag %>%
+  select(Date, AGpos_minusPCRkonf, AGpos_PCRpos, AGpos_PCRneg) %>% 
+  pivot_longer(c(-Date)) %>% 
+  filter(Date > ymd("2021-01-31")) %>% 
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+  scale_y_continuous(limits = c(0, NA)) +
+  scale_fill_manual(
+    name = "Heraf:", 
+    labels = c("Ikke PCR testede", "PCR negative", "PCR positive"), 
+    values = c(alpha("gray80", 0.7), alpha("gray55", 0.7), alpha(pos_col, 0.9))
+  ) +
+  labs(
+    y = "Antal positive", 
+    x = "Dato", 
+    title = "Dagligt antal positive SARS-CoV-2 antigentestede", 
+    caption = standard_caption
+  ) +
+  standard_theme  
+
+ggsave("../figures/ntl_ag_pos.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+ag %>%
+  full_join(tests, by = "Date") %>% 
+  mutate(ag_testede = AG_testede - AGpos_PCRneg - AGpos_PCRpos - AGnegPCRneg - AGnegPCRpos) %>% 
+  select(Date, ag_testede, Tested) %>% 
+  pivot_longer(c(-Date)) %>% 
+  ggplot() +
+  geom_bar(stat = "identity", position = "stack", aes(Date, value, fill = name), width = 1) +
+  scale_x_date(labels = my_date_labels, date_breaks = "2 months") +
+  scale_y_continuous(
+    limits = c(0, NA),
+    labels = scales::number
+  ) +
+  scale_fill_manual(
+    name = "Heraf:", 
+    labels = c("Antigen", "PCR"), 
+    values = c(alpha(lighten(test_col, 0.6), 0.8), alpha(darken(test_col, 0), 0.9))
+  ) +
+  labs(
+    y = "Antal", 
+    x = "Dato", 
+    title = "Dagligt antal SARS-CoV-2 testede", 
+    caption = standard_caption
+  ) +
+  standard_theme  
+
+ggsave("../figures/ntl_ag_test.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+
+
+
+rsq <- function(x, y) summary(lm(y~x))$r.squared
+
+
+ag %>%
+  select(Date, AGnegPCRpos, AGnegPCRneg, AG_testede, AG_pos) %>% 
+  mutate(share_PCR_pos = 100 * AGnegPCRpos / (AGnegPCRneg + AGnegPCRpos),
+         share_PCR_test = 100 * (AGnegPCRneg + AGnegPCRpos) / (AG_testede - AG_pos)) %>% 
+ # pivot_longer(c(-Date)) %>% 
+  filter(Date > ymd("2021-01-31")) %>% 
+  ggplot() +
+  geom_line(aes(Date, share_PCR_test), size = 1) +
+  scale_x_date(labels = my_date_labels, date_breaks = "1 month") +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    y = "Procent", 
+    x = "Dato", 
+    title = "Andel Ag-negative der dobbelttestes med PCR", 
+    caption = standard_caption
+  ) +
+  standard_theme  
+
+ag_plot_data %>% 
+  mutate(
+    ra_AG_testede = AG_testede,
+    ra_PCR_testede = ra(PCRonly_testede)
+    ) %>% 
+  select(ra_AG_testede, NewPositive, PCRonly_positive)  %>%  
+  rename(
+    "PCR smittetal" = NewPositive,
+    "PCR smittetal (uden personer fra Ag-spor)" = PCRonly_positive
+  ) %>% 
+  #select(ra_AG_testede, ra_PCRall_zix, ra_PCRonly_zix)  %>%  
+  #pivot_longer(c(-ra_AG_testede, -ra_PCR_testede))  %>%  
+  pivot_longer(-ra_AG_testede)  %>% 
+  #pivot_longer(c(-name, -value), names_to = "test", values_to = "test_value")  %>% 
+  group_by(name) %>% 
+  mutate(r2 = rsq(ra_AG_testede, value)) %>% 
+  ggplot() +
+  geom_point(aes(ra_AG_testede, value), alpha = 0.6) + 
+  geom_smooth(aes(ra_AG_testede, value), color = "orange", size = 0.5, method = "lm", se = FALSE) +
+  geom_text(aes(x = 140000, y = 100, label = paste0("R2 = ", round(r2, 2))), check_overlap = TRUE) +
+  facet_wrap(~name, scales = "free_x") +
+  scale_x_continuous(labels = scales::number, breaks = c(0, 200000, 400000, 600000)) +
+  scale_y_continuous(limits = c(0,NA), labels = scales::number) +
+  labs(
+    y = "Positive", 
+    x = "Antal testede i Ag-spor", 
+    title = "Smittetal vs antal Ag-testede", 
+    caption = standard_caption
+  ) +
+  standard_theme +
+  theme(
+    axis.title.x = element_text(face = "bold", margin = margin(t = 8, r = 0, b = 0, l = 0)),
+  )
+ggsave("../figures/ntl_ag_regression.png", width = 18, height = 10, units = "cm", dpi = 300)
+

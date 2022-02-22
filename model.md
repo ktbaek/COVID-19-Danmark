@@ -5,9 +5,9 @@ description: Estimering af det faktiske antal SARS-CoV-2 smittede
 ---
 
 # Model for Covid-19 smitteudviklingen i Danmark
-Kristoffer T. Bæk og Kasper P. Kepp
+Kristoffer T. Bæk og Kasper P. Kepp, oktober 2020
 
-Senest opdateret 15. januar 2021.
+Senest opdateret april 2021.
 
 <div class="likely">
     <div class="facebook">Del</div>
@@ -18,7 +18,8 @@ Senest opdateret 15. januar 2021.
 
 
 
-Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede i Danmark fra februar til nu. Modellen er baseret på antallet af Covid-19 relaterede dødsfald og tre forskellige estimater for dødeligheden (*infection fatality rate*, IFR). Modellen er empirisk, vil korrelere tæt til dødsfald, og kan ikke bruges til forudsigelse.
+
+Vi foreslår en simpel model for estimering af antallet af SARS-CoV-2 smittede i Danmark fra februar 2020 til nu. Modellen er baseret på antallet af Covid-19 relaterede dødsfald og tre forskellige estimater for dødeligheden (*infection fatality rate*, IFR). Modellen er empirisk, vil korrelere tæt til dødsfald, og kan ikke bruges til forudsigelse.
 
 ## Beregningsmetode
 

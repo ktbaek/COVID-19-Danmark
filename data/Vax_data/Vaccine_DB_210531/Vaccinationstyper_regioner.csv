@@ -1,0 +1,21 @@
+"Vaccinenavn","Regionsnavn","Antal første vacc.","Antal faerdigvacc."
+AstraZeneca Covid-19 vaccine,Nordjylland,16913,5
+AstraZeneca Covid-19 vaccine,Midtjylland,33748,129
+AstraZeneca Covid-19 vaccine,Syddanmark,30578,318
+AstraZeneca Covid-19 vaccine,Hovedstaden,45413,343
+AstraZeneca Covid-19 vaccine,Sjælland,23900,344
+Janssen COVID-19 vaccine,Nordjylland,29,29
+Janssen COVID-19 vaccine,Midtjylland,234,234
+Janssen COVID-19 vaccine,Syddanmark,93,93
+Janssen COVID-19 vaccine,Hovedstaden,727,727
+Janssen COVID-19 vaccine,Sjælland,89,89
+Moderna Covid-19 Vaccine,Nordjylland,24049,4887
+Moderna Covid-19 Vaccine,Midtjylland,32351,19751
+Moderna Covid-19 Vaccine,Syddanmark,37856,41315
+Moderna Covid-19 Vaccine,Hovedstaden,35963,28803
+Moderna Covid-19 Vaccine,Sjælland,36760,38721
+Pfizer BioNTech Covid-19 vacc,Nordjylland,167722,129261
+Pfizer BioNTech Covid-19 vacc,Midtjylland,394814,253525
+Pfizer BioNTech Covid-19 vacc,Syddanmark,376746,232477
+Pfizer BioNTech Covid-19 vacc,Hovedstaden,586200,350376
+Pfizer BioNTech Covid-19 vacc,Sjælland,286385,150757

@@ -1,8 +1,8 @@
-## Liste over politiske tiltag efter nedlukningen 11. marts
+## Liste over politiske tiltag efter nedlukningen 11. marts 2020
 
 | Dato | Tiltag | Kilde
 |:--|:--|:--|
-| 14. marts | Danmarks grænser lukker kl. 12 | [link](https://web.archive.org/web/20200406163109/https://www.dr.dk/nyheder/indland/statsministeren-danmarks-graenser-lukker-fra-klokken-12-i-morgen)
+| 14. marts | Danmarks grænser lukker kl. 12 | [link](https://web.archive.org/web/20200406163109/https://www.dr.dk/nyheder/indland/statsministeren-danmarks-graenser-lukker-fra-klokken-12-i-morgen)
 | 18. marts | Forsamlingsloft på 10 personer, nedlukning af liberale erhverv, indendørs sports- og idrætsfaciliteter, fitnesscentre, storcentre, kulturliv | [link](https://web.archive.org/web/20200920230538/https://anklagemyndigheden.dk/da/boedetakster-overtraedelse-af-forbud-mod-stoerre-forsamlinger-som-foelge-af-covid-19)
 | **Fase 1** |
 | 15. april | Genåbning af skoler 0.-5. kl og daginstitutioner |
@@ -35,7 +35,21 @@
 | 17. december | Nedlukning af storcentre, stormagasiner og butiksarkader |
 | 21. december | Nedlukning af liberale erhverv |
 | 25. december | Nedlukning af detailhandlen. Apoteker og dagligvarebutikker holdes åbent |
+| **2021** |
 | 5. januar | Forsamlingsloft sænkes til 5 |
+| 8. februar | Genåbning af skoler 0.-4. kl |
+| 1. marts | Udvalgsvarebutikker under 5000 m2 (dog undtaget udvalgsvarebutikker i storcentre) genåbnes med skærpede kvadratmeterkrav. Butikker på over 5000 m2 kan holde åbent for et meget begrænset antal kunder mod tidsbestilling. Udendørs kulturinstitutioner genåbnes (krav om negativ COVID-19-test). Forsamlingsforbuddet hæves til 25 personer for udendørs idræts- og foreningsaktiviteter i organiseret regi.|
+| 15. marts | Højskoler og efterskoler åbner. Undervisning af afgangselever hver anden uge. Udendørs undervisning af 5-8 kl. og ikke-afgangselever på ungdomsuddannelser én gang om ugen. |
+| 6. april | 5-8.kl, ungdoms- og voksenuddannelser åbnes med 50% fysisk fremmøde. Videregående uddannelser åbnes med 20% fysisk fremmøde. Liberale erhverv åbner mod forevisning af coronapas.  |
+| 21. april | Indkøbscentre, stormagasiner mv. samt udeservering og organiseret idræt for børn. Udendørsservering på restauranter og cafeer mv., museer, kunsthaller samt biblioteker mod forevisning af coronapas. |
+| 6. maj | Indendørsservering på restauranter og cafeer mv., konferencer, spillesteder, teatre og biografer mod forevisning af coronapas. Indendørs idræt i organiseret regi for voksne over 18 år mod forevisning af coronapas. |
+| 21. maj | Der åbnes for alle resterende idræts- fritids- og foreningsaktiviteter mod forevisning af coronapas. Indendørsfaciliteter i forlystelsesparker, zoo, legelande mv. genåbnes mod forevisning af coronapas. Daghøjskoler og aftenskoler genåbnes under smitteforebyggende tiltag.  |
+| 14. juni | Krav om mundbind/visir ophæves undtagen i den kollektive transport, når man ikke sidder ned.  Åbningstiden på serveringssteder udvides til kl.24. Samtidig åbnes der generelt (dvs. også i detailhandlen) for salg af alkohol indtil kl. 24. Krav om coronapas ophæves for biblioteker, mv. |
+| 15. juli | Åbningstider for serveringssteder udvides til kl. 2. |
+| 13. august | Krav om mundbind i offentlig transport ophæves. |
+| 1. august | Krav om coronapas ophæves for forlystelsesparker, zoo, messer mv. |
+| 1. september | Forsamlingsloft for større forsamlinger ophæves. Natklubber genåbner mod krav om coronapas. Krav om coronapas ophæves for serveringssteder, badelande mv. |
+| 10. september | Alle tilbageværende restriktioner fjernes. |
 
 
 

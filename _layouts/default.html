@@ -43,11 +43,11 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-{% if page.id == 'home' %}
+{% if page.id == 'home' or page.id == 'misc' %}
   {% include sidebar.html %}
 {% endif %}
 
-    <div class="container-lg px-3 my-5 markdown-body {% if page.id == 'home' %} with_sidebar {% endif %}">
+    <div class="container-lg px-3 my-5 markdown-body {% if page.id == 'home' or page.id == 'misc' %} with_sidebar {% endif %}">
       {% if site.title and site.title != page.title %}
       <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
       {% endif %}
@@ -56,7 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       {% if site.github.private != true and site.github.license %}
       <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
-        Developed by Kristoffer T. Bæk, 2020
+        Developed by Kristoffer T. Bæk, 2020-2022
         <br>
          <a href="{{ site.github.repository_url }}">View on GitHub</a>
          <br>

@@ -1,0 +1,115 @@
+rsquared <-
+  function(x, y) {
+    m <- lm(y ~ 0 + x)
+    return(summary(m)$r.squared)
+  }
+
+slope <-
+  function(x, y) {
+    m <- lm(y ~ 0 + x)
+    return(summary(m)$coefficients[1])
+  }
+
+plot_data <- read_csv2("../data/SSI_weekly_age_data.csv") %>%
+  filter(
+    Type == "incidence",
+    Variable != "tested"
+  ) %>%
+  pivot_wider(names_from = Variable, values_from = Value) %>%
+  mutate(
+    Quarter = quarter(Date),
+    Year_quarter = paste(Year, Quarter, sep = "_")
+  ) %>%
+  filter(!Year_quarter %in% c("2020_1", "2020_2")) %>%
+  mutate(Year_quarter = str_replace(Year_quarter, "_", " Q")) %>%
+  group_by(Aldersgruppe, Year_quarter) %>%
+  mutate(admitted = 0.33 * (lead(admitted, n = 0) + lead(admitted, n = 1) + lead(admitted, n = 2))) %>%
+  filter(!is.na(admitted)) %>%
+  mutate(
+    R = sqrt(rsquared(positive, admitted)),
+    slope = slope(positive, admitted),
+    ratio = admitted / positive * 100,
+    sd = sd(ratio, na.rm = TRUE)
+  )
+
+plot_data$Aldersgruppe <- factor(plot_data$Aldersgruppe, levels = c("0-2", "3-5", "6-11", "12-15", "16-19", "20-39", "40-64", "65-79", "80+"))
+
+plot_data %>%
+  filter(slope >= 0) %>%
+  select(Aldersgruppe, R, slope, Year_quarter) %>%
+  distinct() %>%
+  mutate(R = ifelse(is.na(R), " ", paste0(sprintf("%.2f", round(R, 2))))) %>%
+  ggplot() +
+  geom_bar(aes(Year_quarter, slope * 100, fill = Aldersgruppe), stat = "identity") +
+  geom_text(
+    aes(
+      x = Year_quarter,
+      y = -4,
+      group = Year_quarter,
+      label = R
+    ),
+    color = "gray70",
+    size = rel(1.8),
+    family = "lato",
+    check_overlap = TRUE
+  ) +
+  geom_text(
+    aes(
+      x = Year_quarter,
+      y = slope * 100 + 5,
+      group = Year_quarter,
+      label = paste0(round(signif(slope * 100, 2), 1), "%"),
+      color = Aldersgruppe
+    ),
+    size = rel(1.8),
+    family = "lato",
+    fontface = "bold",
+    check_overlap = TRUE
+  ) +
+  facet_wrap(~Aldersgruppe) +
+  scale_y_continuous(limits = c(-5, NA), labels = function(x) paste0(x, " %")) +
+  scale_fill_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
+  scale_color_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
+  facet_theme +
+  theme(
+    plot.margin = margin(0.5, 1, 0.2, 0.5, "cm"),
+    legend.position = "none",
+    axis.text.x = element_text(angle = 30, hjust = 1, vjust = 1),
+    plot.title = element_text(margin = margin(b = 3)),
+    plot.subtitle = element_textbox_simple(size = rel(0.8), width = unit(1, "npc"), margin = margin(b = 4)),
+    panel.grid.major.x = element_blank()
+  ) +
+  labs(
+    y = "Fraction",
+    x = "Quarter",
+    title = "Admissions as fraction of cases by age, Denmark",
+    subtitle = "One week's PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
+    caption = standard_caption
+  )
+
+ggsave("../figures/ntl_pos_admit_bars_quarter.png", width = 18, height = 10, units = "cm", dpi = 300)
+
+plot_data %>%
+  select(Date, Aldersgruppe, ratio, sd) %>%
+  distinct() %>%
+  ggplot() +
+  geom_line(aes(Date, ratio, color = Aldersgruppe)) +
+  facet_wrap(~Aldersgruppe, ncol = 3) +
+  scale_x_date(labels = my_date_labels, breaks = c(ymd("2020-07-01"), ymd("2021-01-01"), ymd("2021-07-01"), ymd("2022-01-01"))) +
+  scale_y_continuous(limits = c(0, NA), labels = function(x) paste0(x, " %")) +
+  #scale_color_manual(name = "", values = c(hue_pal()(7)[1], hue_pal()(7)[1:2], hue_pal()(7)[3], hue_pal()(7)[3:7])) +
+  facet_theme +
+  theme(
+    plot.margin = margin(0.5, 1, 0.2, 0.5, "cm"),
+    legend.position = "none",
+    plot.title = element_text(margin = margin(b = 3)),
+    plot.subtitle = element_textbox_simple(size = rel(0.8), width = unit(1, "npc"), margin = margin(b = 4))
+  ) +
+  labs(
+    y = "Fraction",
+    title = "Admissions as fraction of cases by age, Denmark",
+    subtitle = "One week's PCR positives are compared with the average number of admissions in the same week and the two following weeks (time at risk, by definition). Admissions are defined by a positive PCR test. The numbers under the bars indicate correlation coefficients.",
+    caption = standard_caption
+  )
+
+ggsave("../figures/ntl_pos_admit_lines.png", width = 18, height = 10, units = "cm", dpi = 300)

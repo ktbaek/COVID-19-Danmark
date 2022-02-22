@@ -208,7 +208,7 @@ body {
     font-size: 14px;
     border-radius: 3px;
     height: 30px;
-    margin:-20px 5px 0px
+    margin:-20px 5px 40px
 }
 
 .likely .likely__icon {
@@ -284,6 +284,8 @@ width: 200px;
 position: fixed;
 left: 0;
 top: 0;
+bottom: 0;
+overflow-y: scroll;
 padding-top: 40px;
 padding-left: 20px;
 color: inherit;
@@ -297,6 +299,13 @@ display: block;
 
 .with_sidebar {
 margin-left: 200px;
+}
+
+.richandfamous {
+  margin-top: -10px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+
 }
 
 #coffee {
