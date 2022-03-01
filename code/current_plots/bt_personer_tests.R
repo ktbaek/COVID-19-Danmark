@@ -1,6 +1,6 @@
 bt_2_extra <- read_csv2("../data/tidy_breakthru_table2_deduced.csv")
 
-my_breaks <- c(ymd("2021-11-01"), ymd("2022-01-01"))
+my_breaks <- c(ymd("2021-12-01"), ymd("2022-02-01"))
 
 plot_data <- bt_2_extra %>%
   filter(
