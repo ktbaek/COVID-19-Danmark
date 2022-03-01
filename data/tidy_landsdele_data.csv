@@ -6662,7 +6662,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-10-27; 7533; 151;Sjælland;Vest- og Sydsjælland
 2021-10-27; 6833; 100;Syddanmark;Fyn
 2021-10-27;10291; 152;Syddanmark;Sydjylland
-2021-10-27; 8935; 156;Midtjylland;Østjylland
+2021-10-27; 8935; 157;Midtjylland;Østjylland
 2021-10-27; 5091;  70;Midtjylland;Vestjylland
 2021-10-27; 7675;  91;Nordjylland;Nordjylland
 2021-10-28;15376; 419;Hovedstaden;København
@@ -6951,7 +6951,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-11-22;18202; 404;Midtjylland;Østjylland
 2021-11-22;10222; 200;Midtjylland;Vestjylland
 2021-11-22;14899; 309;Nordjylland;Nordjylland
-2021-11-23;24258; 907;Hovedstaden;København
+2021-11-23;24258; 905;Hovedstaden;København
 2021-11-23;16962; 621;Hovedstaden;Københavns omegn
 2021-11-23;14836; 489;Hovedstaden;Nordsjælland
 2021-11-23; 1840;  18;Hovedstaden;Bornholm
@@ -7017,7 +7017,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-11-28;20452; 485;Midtjylland;Østjylland
 2021-11-28;10670; 221;Midtjylland;Vestjylland
 2021-11-28;12816; 285;Nordjylland;Nordjylland
-2021-11-29;25189; 920;Hovedstaden;København
+2021-11-29;25189; 919;Hovedstaden;København
 2021-11-29;18759; 671;Hovedstaden;Københavns omegn
 2021-11-29;16263; 532;Hovedstaden;Nordsjælland
 2021-11-29; 1820;  27;Hovedstaden;Bornholm
@@ -7063,7 +7063,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-02; 9721; 176;Nordjylland;Nordjylland
 2021-12-03;24415;1025;Hovedstaden;København
 2021-12-03;18258; 763;Hovedstaden;Københavns omegn
-2021-12-03;15360; 469;Hovedstaden;Nordsjælland
+2021-12-03;15360; 468;Hovedstaden;Nordsjælland
 2021-12-03; 1739;  28;Hovedstaden;Bornholm
 2021-12-03; 9052; 256;Sjælland;Østsjælland
 2021-12-03;18490; 557;Sjælland;Vest- og Sydsjælland
@@ -7091,7 +7091,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-05; 8888; 349;Sjælland;Vest- og Sydsjælland
 2021-12-05;13610; 296;Syddanmark;Fyn
 2021-12-05;13835; 374;Syddanmark;Sydjylland
-2021-12-05;19337; 563;Midtjylland;Østjylland
+2021-12-05;19337; 562;Midtjylland;Østjylland
 2021-12-05;11702; 316;Midtjylland;Vestjylland
 2021-12-05;13048; 385;Nordjylland;Nordjylland
 2021-12-06;26445;1238;Hovedstaden;København
@@ -7227,7 +7227,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-17;16997; 694;Midtjylland;Vestjylland
 2021-12-17;16514; 598;Nordjylland;Nordjylland
 2021-12-18;26158;2531;Hovedstaden;København
-2021-12-18;16083;1324;Hovedstaden;Københavns omegn
+2021-12-18;16083;1325;Hovedstaden;Københavns omegn
 2021-12-18;14264;1072;Hovedstaden;Nordsjælland
 2021-12-18; 2209;  65;Hovedstaden;Bornholm
 2021-12-18; 6842; 484;Sjælland;Østsjælland
@@ -7236,7 +7236,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-18;17873; 738;Syddanmark;Sydjylland
 2021-12-18;24497;1182;Midtjylland;Østjylland
 2021-12-18;14118; 694;Midtjylland;Vestjylland
-2021-12-18;14452; 692;Nordjylland;Nordjylland
+2021-12-18;14452; 691;Nordjylland;Nordjylland
 2021-12-19;27792;2657;Hovedstaden;København
 2021-12-19;16561;1339;Hovedstaden;Københavns omegn
 2021-12-19;14705;1116;Hovedstaden;Nordsjælland
@@ -7264,7 +7264,7 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-21;19865;1312;Hovedstaden;Nordsjælland
 2021-12-21; 2397;  60;Hovedstaden;Bornholm
 2021-12-21;11853; 720;Sjælland;Østsjælland
-2021-12-21;23145;1129;Sjælland;Vest- og Sydsjælland
+2021-12-21;23145;1128;Sjælland;Vest- og Sydsjælland
 2021-12-21;22011; 739;Syddanmark;Fyn
 2021-12-21;29762; 930;Syddanmark;Sydjylland
 2021-12-21;30621;1238;Midtjylland;Østjylland
@@ -7358,13 +7358,13 @@ Date;Tested;Positive;Region;Landsdel
 2021-12-29;28565;2092;Midtjylland;Østjylland
 2021-12-29;15305;1135;Midtjylland;Vestjylland
 2021-12-29;17862;1592;Nordjylland;Nordjylland
-2021-12-30;26848;3454;Hovedstaden;København
+2021-12-30;26848;3453;Hovedstaden;København
 2021-12-30;19379;2383;Hovedstaden;Københavns omegn
 2021-12-30;17783;1855;Hovedstaden;Nordsjælland
 2021-12-30; 2151;  97;Hovedstaden;Bornholm
 2021-12-30;10415; 944;Sjælland;Østsjælland
 2021-12-30;21839;1861;Sjælland;Vest- og Sydsjælland
-2021-12-30;21431;1527;Syddanmark;Fyn
+2021-12-30;21431;1528;Syddanmark;Fyn
 2021-12-30;26314;1691;Syddanmark;Sydjylland
 2021-12-30;27609;2349;Midtjylland;Østjylland
 2021-12-30;15873;1269;Midtjylland;Vestjylland
@@ -7425,7 +7425,7 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-04;14189;1494;Midtjylland;Vestjylland
 2022-01-04;17696;2069;Nordjylland;Nordjylland
 2022-01-05;22131;3174;Hovedstaden;København
-2022-01-05;15191;2115;Hovedstaden;Københavns omegn
+2022-01-05;15191;2113;Hovedstaden;Københavns omegn
 2022-01-05;13036;1490;Hovedstaden;Nordsjælland
 2022-01-05; 1879;  78;Hovedstaden;Bornholm
 2022-01-05; 6920; 807;Sjælland;Østsjælland
@@ -7454,8 +7454,8 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-07;16956;1327;Sjælland;Vest- og Sydsjælland
 2022-01-07;17323;1149;Syddanmark;Fyn
 2022-01-07;24397;1569;Syddanmark;Sydjylland
-2022-01-07;23818;2243;Midtjylland;Østjylland
-2022-01-07;12566; 922;Midtjylland;Vestjylland
+2022-01-07;23818;2242;Midtjylland;Østjylland
+2022-01-07;12566; 923;Midtjylland;Vestjylland
 2022-01-07;15640;1265;Nordjylland;Nordjylland
 2022-01-08;15859;2441;Hovedstaden;København
 2022-01-08;12670;1890;Hovedstaden;Københavns omegn
@@ -7467,7 +7467,7 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-08;14250;1162;Syddanmark;Sydjylland
 2022-01-08;19389;2134;Midtjylland;Østjylland
 2022-01-08;10294; 854;Midtjylland;Vestjylland
-2022-01-08;12229;1227;Nordjylland;Nordjylland
+2022-01-08;12229;1226;Nordjylland;Nordjylland
 2022-01-09;18234;2920;Hovedstaden;København
 2022-01-09;14430;2177;Hovedstaden;Københavns omegn
 2022-01-09;11715;1421;Hovedstaden;Nordsjælland
@@ -7486,9 +7486,9 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-10; 8986;1080;Sjælland;Østsjælland
 2022-01-10;21708;2383;Sjælland;Vest- og Sydsjælland
 2022-01-10;18867;1615;Syddanmark;Fyn
-2022-01-10;26422;2838;Syddanmark;Sydjylland
+2022-01-10;26422;2837;Syddanmark;Sydjylland
 2022-01-10;25850;3345;Midtjylland;Østjylland
-2022-01-10;13036;1282;Midtjylland;Vestjylland
+2022-01-10;13036;1283;Midtjylland;Vestjylland
 2022-01-10;16359;1894;Nordjylland;Nordjylland
 2022-01-11;21475;3880;Hovedstaden;København
 2022-01-11;16835;2866;Hovedstaden;Københavns omegn
@@ -7502,15 +7502,15 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-11;12708;1325;Midtjylland;Vestjylland
 2022-01-11;16535;1948;Nordjylland;Nordjylland
 2022-01-12;21309;3854;Hovedstaden;København
-2022-01-12;16967;2772;Hovedstaden;Københavns omegn
-2022-01-12;13618;1924;Hovedstaden;Nordsjælland
+2022-01-12;16967;2773;Hovedstaden;Københavns omegn
+2022-01-12;13618;1923;Hovedstaden;Nordsjælland
 2022-01-12; 1829; 101;Hovedstaden;Bornholm
 2022-01-12; 7334;1004;Sjælland;Østsjælland
-2022-01-12;15568;1677;Sjælland;Vest- og Sydsjælland
+2022-01-12;15568;1678;Sjælland;Vest- og Sydsjælland
 2022-01-12;15997;1730;Syddanmark;Fyn
-2022-01-12;23498;2447;Syddanmark;Sydjylland
+2022-01-12;23498;2446;Syddanmark;Sydjylland
 2022-01-12;25471;3707;Midtjylland;Østjylland
-2022-01-12;11939;1289;Midtjylland;Vestjylland
+2022-01-12;11939;1290;Midtjylland;Vestjylland
 2022-01-12;16765;2079;Nordjylland;Nordjylland
 2022-01-13;22679;3703;Hovedstaden;København
 2022-01-13;19141;2900;Hovedstaden;Københavns omegn
@@ -7518,11 +7518,11 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-13; 1641;  96;Hovedstaden;Bornholm
 2022-01-13; 9988;1193;Sjælland;Østsjælland
 2022-01-13;23388;2263;Sjælland;Vest- og Sydsjælland
-2022-01-13;21174;1954;Syddanmark;Fyn
+2022-01-13;21174;1955;Syddanmark;Fyn
 2022-01-13;29115;2719;Syddanmark;Sydjylland
 2022-01-13;28169;3731;Midtjylland;Østjylland
 2022-01-13;14113;1405;Midtjylland;Vestjylland
-2022-01-13;17568;1891;Nordjylland;Nordjylland
+2022-01-13;17568;1890;Nordjylland;Nordjylland
 2022-01-14;21861;4088;Hovedstaden;København
 2022-01-14;17806;3264;Hovedstaden;Københavns omegn
 2022-01-14;14579;2239;Hovedstaden;Nordsjælland
@@ -7568,12 +7568,12 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-17;16018;2440;Midtjylland;Vestjylland
 2022-01-17;19621;3450;Nordjylland;Nordjylland
 2022-01-18;24574;5900;Hovedstaden;København
-2022-01-18;20469;4706;Hovedstaden;Københavns omegn
+2022-01-18;20469;4707;Hovedstaden;Københavns omegn
 2022-01-18;17621;3512;Hovedstaden;Nordsjælland
 2022-01-18; 1741; 185;Hovedstaden;Bornholm
 2022-01-18;10195;2027;Sjælland;Østsjælland
-2022-01-18;23934;3887;Sjælland;Vest- og Sydsjælland
-2022-01-18;21005;3528;Syddanmark;Fyn
+2022-01-18;23934;3888;Sjælland;Vest- og Sydsjælland
+2022-01-18;21005;3527;Syddanmark;Fyn
 2022-01-18;31485;5123;Syddanmark;Sydjylland
 2022-01-18;29751;5889;Midtjylland;Østjylland
 2022-01-18;15346;2367;Midtjylland;Vestjylland
@@ -7600,29 +7600,29 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-20;31532;5550;Midtjylland;Østjylland
 2022-01-20;16194;2217;Midtjylland;Vestjylland
 2022-01-20;19892;3171;Nordjylland;Nordjylland
-2022-01-21;22785;4905;Hovedstaden;København
-2022-01-21;18658;4082;Hovedstaden;Københavns omegn
+2022-01-21;22785;4904;Hovedstaden;København
+2022-01-21;18658;4083;Hovedstaden;Københavns omegn
 2022-01-21;16389;3212;Hovedstaden;Nordsjælland
 2022-01-21; 2063; 231;Hovedstaden;Bornholm
 2022-01-21;10027;1805;Sjælland;Østsjælland
-2022-01-21;22898;3834;Sjælland;Vest- og Sydsjælland
+2022-01-21;22898;3835;Sjælland;Vest- og Sydsjælland
 2022-01-21;22319;3429;Syddanmark;Fyn
 2022-01-21;28105;4617;Syddanmark;Sydjylland
 2022-01-21;29908;6032;Midtjylland;Østjylland
 2022-01-21;15022;2331;Midtjylland;Vestjylland
 2022-01-21;18156;2930;Nordjylland;Nordjylland
-2022-01-22;19035;5016;Hovedstaden;København
+2022-01-22;19035;5017;Hovedstaden;København
 2022-01-22;16141;4114;Hovedstaden;Københavns omegn
 2022-01-22;13976;3255;Hovedstaden;Nordsjælland
 2022-01-22; 1687; 258;Hovedstaden;Bornholm
 2022-01-22; 7364;1632;Sjælland;Østsjælland
 2022-01-22;12506;2505;Sjælland;Vest- og Sydsjælland
-2022-01-22;14693;2996;Syddanmark;Fyn
+2022-01-22;14693;2995;Syddanmark;Fyn
 2022-01-22;18233;3402;Syddanmark;Sydjylland
 2022-01-22;25646;5970;Midtjylland;Østjylland
 2022-01-22;12413;2307;Midtjylland;Vestjylland
-2022-01-22;16051;3259;Nordjylland;Nordjylland
-2022-01-23;21066;5481;Hovedstaden;København
+2022-01-22;16051;3257;Nordjylland;Nordjylland
+2022-01-23;21066;5482;Hovedstaden;København
 2022-01-23;16949;4351;Hovedstaden;Københavns omegn
 2022-01-23;14956;3562;Hovedstaden;Nordsjælland
 2022-01-23; 1830; 261;Hovedstaden;Bornholm
@@ -7644,20 +7644,20 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-24;32812;8221;Midtjylland;Østjylland
 2022-01-24;16769;3511;Midtjylland;Vestjylland
 2022-01-24;21605;5028;Nordjylland;Nordjylland
-2022-01-25;22670;5805;Hovedstaden;København
+2022-01-25;22670;5804;Hovedstaden;København
 2022-01-25;17864;4459;Hovedstaden;Københavns omegn
 2022-01-25;16590;4043;Hovedstaden;Nordsjælland
 2022-01-25; 2207; 299;Hovedstaden;Bornholm
 2022-01-25; 9907;2198;Sjælland;Østsjælland
-2022-01-25;23679;5093;Sjælland;Vest- og Sydsjælland
+2022-01-25;23679;5094;Sjælland;Vest- og Sydsjælland
 2022-01-25;21021;4581;Syddanmark;Fyn
 2022-01-25;30102;6659;Syddanmark;Sydjylland
 2022-01-25;28390;7511;Midtjylland;Østjylland
 2022-01-25;15475;3268;Midtjylland;Vestjylland
 2022-01-25;19953;4773;Nordjylland;Nordjylland
-2022-01-26;19702;4722;Hovedstaden;København
+2022-01-26;19702;4721;Hovedstaden;København
 2022-01-26;15627;3884;Hovedstaden;Københavns omegn
-2022-01-26;14738;3504;Hovedstaden;Nordsjælland
+2022-01-26;14738;3505;Hovedstaden;Nordsjælland
 2022-01-26; 2073; 285;Hovedstaden;Bornholm
 2022-01-26; 8056;1782;Sjælland;Østsjælland
 2022-01-26;16997;3439;Sjælland;Vest- og Sydsjælland
@@ -7675,19 +7675,19 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-27;20214;3605;Syddanmark;Fyn
 2022-01-27;27112;5259;Syddanmark;Sydjylland
 2022-01-27;26185;6390;Midtjylland;Østjylland
-2022-01-27;14315;2883;Midtjylland;Vestjylland
-2022-01-27;17612;3736;Nordjylland;Nordjylland
-2022-01-28;15182;3720;Hovedstaden;København
+2022-01-27;14315;2882;Midtjylland;Vestjylland
+2022-01-27;17612;3737;Nordjylland;Nordjylland
+2022-01-28;15182;3721;Hovedstaden;København
 2022-01-28;11984;2962;Hovedstaden;Københavns omegn
-2022-01-28;12062;2849;Hovedstaden;Nordsjælland
+2022-01-28;12062;2848;Hovedstaden;Nordsjælland
 2022-01-28; 1434; 208;Hovedstaden;Bornholm
-2022-01-28; 7117;1579;Sjælland;Østsjælland
+2022-01-28; 7117;1580;Sjælland;Østsjælland
 2022-01-28;18378;3666;Sjælland;Vest- og Sydsjælland
 2022-01-28;16990;3403;Syddanmark;Fyn
 2022-01-28;22326;4763;Syddanmark;Sydjylland
-2022-01-28;24540;6349;Midtjylland;Østjylland
+2022-01-28;24540;6351;Midtjylland;Østjylland
 2022-01-28;12653;2835;Midtjylland;Vestjylland
-2022-01-28;15660;3633;Nordjylland;Nordjylland
+2022-01-28;15660;3632;Nordjylland;Nordjylland
 2022-01-29;10949;3251;Hovedstaden;København
 2022-01-29; 9375;2604;Hovedstaden;Københavns omegn
 2022-01-29; 9544;2765;Hovedstaden;Nordsjælland
@@ -7699,26 +7699,26 @@ Date;Tested;Positive;Region;Landsdel
 2022-01-29;14007;3928;Midtjylland;Østjylland
 2022-01-29; 5817;1446;Midtjylland;Vestjylland
 2022-01-29;12824;3510;Nordjylland;Nordjylland
-2022-01-30; 9066;3074;Hovedstaden;København
+2022-01-30; 9066;3073;Hovedstaden;København
 2022-01-30; 8253;2595;Hovedstaden;Københavns omegn
 2022-01-30; 7972;2580;Hovedstaden;Nordsjælland
 2022-01-30;  986; 182;Hovedstaden;Bornholm
-2022-01-30; 5066;1398;Sjælland;Østsjælland
+2022-01-30; 5066;1399;Sjælland;Østsjælland
 2022-01-30; 9450;2491;Sjælland;Vest- og Sydsjælland
-2022-01-30;12674;3366;Syddanmark;Fyn
+2022-01-30;12674;3365;Syddanmark;Fyn
 2022-01-30;15909;4325;Syddanmark;Sydjylland
 2022-01-30;15268;5529;Midtjylland;Østjylland
 2022-01-30; 8241;2798;Midtjylland;Vestjylland
 2022-01-30;15851;4738;Nordjylland;Nordjylland
-2022-01-31;19259;5848;Hovedstaden;København
+2022-01-31;19259;5849;Hovedstaden;København
 2022-01-31;14347;3925;Hovedstaden;Københavns omegn
 2022-01-31;15310;4166;Hovedstaden;Nordsjælland
 2022-01-31; 1639; 379;Hovedstaden;Bornholm
 2022-01-31; 8901;2359;Sjælland;Østsjælland
 2022-01-31;21167;5612;Sjælland;Vest- og Sydsjælland
 2022-01-31;17594;4243;Syddanmark;Fyn
-2022-01-31;26573;7563;Syddanmark;Sydjylland
-2022-01-31;27931;9299;Midtjylland;Østjylland
+2022-01-31;26573;7562;Syddanmark;Sydjylland
+2022-01-31;27931;9300;Midtjylland;Østjylland
 2022-01-31;15499;4868;Midtjylland;Vestjylland
 2022-01-31;17698;5032;Nordjylland;Nordjylland
 2022-02-01;13453;4225;Hovedstaden;København
@@ -7726,13 +7726,13 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-01;11445;3170;Hovedstaden;Nordsjælland
 2022-02-01; 1560; 319;Hovedstaden;Bornholm
 2022-02-01; 6543;1711;Sjælland;Østsjælland
-2022-02-01;17177;4175;Sjælland;Vest- og Sydsjælland
+2022-02-01;17177;4176;Sjælland;Vest- og Sydsjælland
 2022-02-01;15420;4192;Syddanmark;Fyn
 2022-02-01;22506;6541;Syddanmark;Sydjylland
-2022-02-01;22731;7794;Midtjylland;Østjylland
-2022-02-01;12783;3871;Midtjylland;Vestjylland
+2022-02-01;22731;7792;Midtjylland;Østjylland
+2022-02-01;12783;3873;Midtjylland;Vestjylland
 2022-02-01;16033;4586;Nordjylland;Nordjylland
-2022-02-02;13527;3766;Hovedstaden;København
+2022-02-02;13527;3767;Hovedstaden;København
 2022-02-02;10131;2794;Hovedstaden;Københavns omegn
 2022-02-02;10157;2633;Hovedstaden;Nordsjælland
 2022-02-02; 1669; 293;Hovedstaden;Bornholm
@@ -7740,7 +7740,7 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-02;12393;2976;Sjælland;Vest- og Sydsjælland
 2022-02-02;14002;3421;Syddanmark;Fyn
 2022-02-02;20658;5426;Syddanmark;Sydjylland
-2022-02-02;22805;7219;Midtjylland;Østjylland
+2022-02-02;22805;7220;Midtjylland;Østjylland
 2022-02-02;12238;3728;Midtjylland;Vestjylland
 2022-02-02;16952;4590;Nordjylland;Nordjylland
 2022-02-03;13769;3463;Hovedstaden;København
@@ -7751,7 +7751,7 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-03;18763;3865;Sjælland;Vest- og Sydsjælland
 2022-02-03;16454;3542;Syddanmark;Fyn
 2022-02-03;22597;5416;Syddanmark;Sydjylland
-2022-02-03;23414;6683;Midtjylland;Østjylland
+2022-02-03;23414;6682;Midtjylland;Østjylland
 2022-02-03;13406;3550;Midtjylland;Vestjylland
 2022-02-03;16134;4102;Nordjylland;Nordjylland
 2022-02-04;11297;3083;Hovedstaden;København
@@ -7760,8 +7760,8 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-04; 1468; 333;Hovedstaden;Bornholm
 2022-02-04; 5785;1234;Sjælland;Østsjælland
 2022-02-04;15489;3573;Sjælland;Vest- og Sydsjælland
-2022-02-04;13867;3460;Syddanmark;Fyn
-2022-02-04;19338;5224;Syddanmark;Sydjylland
+2022-02-04;13867;3461;Syddanmark;Fyn
+2022-02-04;19338;5223;Syddanmark;Sydjylland
 2022-02-04;21265;6250;Midtjylland;Østjylland
 2022-02-04;12054;3457;Midtjylland;Vestjylland
 2022-02-04;15192;4133;Nordjylland;Nordjylland
@@ -7769,67 +7769,67 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-05; 7027;2044;Hovedstaden;Københavns omegn
 2022-02-05; 7660;2354;Hovedstaden;Nordsjælland
 2022-02-05; 1424; 339;Hovedstaden;Bornholm
-2022-02-05; 3942;1058;Sjælland;Østsjælland
+2022-02-05; 3942;1057;Sjælland;Østsjælland
 2022-02-05; 8384;2247;Sjælland;Vest- og Sydsjælland
-2022-02-05;10488;2854;Syddanmark;Fyn
+2022-02-05;10488;2853;Syddanmark;Fyn
 2022-02-05;14430;4136;Syddanmark;Sydjylland
-2022-02-05;18301;6296;Midtjylland;Østjylland
+2022-02-05;18301;6297;Midtjylland;Østjylland
 2022-02-05; 9828;3199;Midtjylland;Vestjylland
 2022-02-05;14118;4482;Nordjylland;Nordjylland
-2022-02-06;11406;4235;Hovedstaden;København
+2022-02-06;11406;4237;Hovedstaden;København
 2022-02-06; 8740;2665;Hovedstaden;Københavns omegn
 2022-02-06; 9040;2764;Hovedstaden;Nordsjælland
 2022-02-06; 1467; 324;Hovedstaden;Bornholm
-2022-02-06; 4501;1408;Sjælland;Østsjælland
+2022-02-06; 4501;1407;Sjælland;Østsjælland
 2022-02-06; 8880;2620;Sjælland;Vest- og Sydsjælland
 2022-02-06;12630;4000;Syddanmark;Fyn
 2022-02-06;15805;4855;Syddanmark;Sydjylland
 2022-02-06;20799;7543;Midtjylland;Østjylland
 2022-02-06;12148;4055;Midtjylland;Vestjylland
 2022-02-06;15782;5462;Nordjylland;Nordjylland
-2022-02-07;15894;5345;Hovedstaden;København
+2022-02-07;15894;5346;Hovedstaden;København
 2022-02-07;11234;3164;Hovedstaden;Københavns omegn
 2022-02-07;11950;3319;Hovedstaden;Nordsjælland
 2022-02-07; 1683; 477;Hovedstaden;Bornholm
-2022-02-07; 7698;2271;Sjælland;Østsjælland
+2022-02-07; 7698;2270;Sjælland;Østsjælland
 2022-02-07;19695;5669;Sjælland;Vest- og Sydsjælland
 2022-02-07;16346;4805;Syddanmark;Fyn
 2022-02-07;23058;8237;Syddanmark;Sydjylland
 2022-02-07;25486;9502;Midtjylland;Østjylland
 2022-02-07;14337;4959;Midtjylland;Vestjylland
 2022-02-07;17951;6315;Nordjylland;Nordjylland
-2022-02-08;14610;5396;Hovedstaden;København
-2022-02-08; 9705;2900;Hovedstaden;Københavns omegn
-2022-02-08;10347;3096;Hovedstaden;Nordsjælland
+2022-02-08;14610;5395;Hovedstaden;København
+2022-02-08; 9705;2902;Hovedstaden;Københavns omegn
+2022-02-08;10347;3097;Hovedstaden;Nordsjælland
 2022-02-08; 1677; 403;Hovedstaden;Bornholm
 2022-02-08; 6105;1840;Sjælland;Østsjælland
 2022-02-08;16818;4914;Sjælland;Vest- og Sydsjælland
 2022-02-08;15801;5257;Syddanmark;Fyn
 2022-02-08;21528;7547;Syddanmark;Sydjylland
-2022-02-08;24103;9365;Midtjylland;Østjylland
+2022-02-08;24103;9363;Midtjylland;Østjylland
 2022-02-08;13829;5056;Midtjylland;Vestjylland
 2022-02-08;17690;6464;Nordjylland;Nordjylland
-2022-02-09;14394;4532;Hovedstaden;København
-2022-02-09;10029;2820;Hovedstaden;Københavns omegn
+2022-02-09;14394;4534;Hovedstaden;København
+2022-02-09;10029;2819;Hovedstaden;Københavns omegn
 2022-02-09; 9859;2699;Hovedstaden;Nordsjælland
 2022-02-09; 1763; 388;Hovedstaden;Bornholm
 2022-02-09; 5517;1487;Sjælland;Østsjælland
-2022-02-09;13220;3814;Sjælland;Vest- og Sydsjælland
+2022-02-09;13220;3815;Sjælland;Vest- og Sydsjælland
 2022-02-09;14154;4134;Syddanmark;Fyn
 2022-02-09;19944;6859;Syddanmark;Sydjylland
 2022-02-09;24888;9159;Midtjylland;Østjylland
-2022-02-09;13220;4751;Midtjylland;Vestjylland
+2022-02-09;13220;4750;Midtjylland;Vestjylland
 2022-02-09;18028;6479;Nordjylland;Nordjylland
 2022-02-10;13620;3703;Hovedstaden;København
-2022-02-10;10063;2368;Hovedstaden;Københavns omegn
-2022-02-10;10298;2499;Hovedstaden;Nordsjælland
+2022-02-10;10063;2369;Hovedstaden;Københavns omegn
+2022-02-10;10298;2498;Hovedstaden;Nordsjælland
 2022-02-10; 1452; 293;Hovedstaden;Bornholm
 2022-02-10; 6491;1525;Sjælland;Østsjælland
-2022-02-10;17727;4235;Sjælland;Vest- og Sydsjælland
+2022-02-10;17728;4236;Sjælland;Vest- og Sydsjælland
 2022-02-10;16208;4248;Syddanmark;Fyn
 2022-02-10;20998;6221;Syddanmark;Sydjylland
-2022-02-10;23136;7463;Midtjylland;Østjylland
-2022-02-10;13097;4081;Midtjylland;Vestjylland
+2022-02-10;23136;7461;Midtjylland;Østjylland
+2022-02-10;13097;4082;Midtjylland;Vestjylland
 2022-02-10;17379;5791;Nordjylland;Nordjylland
 2022-02-11;10051;2960;Hovedstaden;København
 2022-02-11; 7633;2024;Hovedstaden;Københavns omegn
@@ -7842,9 +7842,9 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-11;21265;7129;Midtjylland;Østjylland
 2022-02-11;11177;3469;Midtjylland;Vestjylland
 2022-02-11;16370;5407;Nordjylland;Nordjylland
-2022-02-12; 7723;2591;Hovedstaden;København
-2022-02-12; 5703;1745;Hovedstaden;Københavns omegn
-2022-02-12; 5768;1833;Hovedstaden;Nordsjælland
+2022-02-12; 7723;2590;Hovedstaden;København
+2022-02-12; 5703;1746;Hovedstaden;Københavns omegn
+2022-02-12; 5768;1832;Hovedstaden;Nordsjælland
 2022-02-12;  849; 225;Hovedstaden;Bornholm
 2022-02-12; 3067; 960;Sjælland;Østsjælland
 2022-02-12; 7023;2075;Sjælland;Vest- og Sydsjælland
@@ -7853,91 +7853,168 @@ Date;Tested;Positive;Region;Landsdel
 2022-02-12;16002;6017;Midtjylland;Østjylland
 2022-02-12; 8435;3007;Midtjylland;Vestjylland
 2022-02-12;13280;4977;Nordjylland;Nordjylland
-2022-02-13; 8236;2855;Hovedstaden;København
-2022-02-13; 6020;1947;Hovedstaden;Københavns omegn
-2022-02-13; 6193;1989;Hovedstaden;Nordsjælland
+2022-02-13; 8236;2853;Hovedstaden;København
+2022-02-13; 6020;1948;Hovedstaden;Københavns omegn
+2022-02-13; 6193;1990;Hovedstaden;Nordsjælland
 2022-02-13; 1030; 273;Hovedstaden;Bornholm
 2022-02-13; 3568;1063;Sjælland;Østsjælland
-2022-02-13; 7230;2357;Sjælland;Vest- og Sydsjælland
+2022-02-13; 7230;2358;Sjælland;Vest- og Sydsjælland
 2022-02-13; 9431;3004;Syddanmark;Fyn
 2022-02-13;13621;4908;Syddanmark;Sydjylland
-2022-02-13;16753;6497;Midtjylland;Østjylland
+2022-02-13;16753;6496;Midtjylland;Østjylland
 2022-02-13; 9314;3525;Midtjylland;Vestjylland
 2022-02-13;14083;5379;Nordjylland;Nordjylland
-2022-02-14;11695;4008;Hovedstaden;København
-2022-02-14; 8273;2408;Hovedstaden;Københavns omegn
+2022-02-14;11697;4008;Hovedstaden;København
+2022-02-14; 8273;2406;Hovedstaden;Københavns omegn
 2022-02-14; 8067;2304;Hovedstaden;Nordsjælland
 2022-02-14; 1291; 372;Hovedstaden;Bornholm
-2022-02-14; 6044;1731;Sjælland;Østsjælland
-2022-02-14;14246;4399;Sjælland;Vest- og Sydsjælland
-2022-02-14;12316;3688;Syddanmark;Fyn
+2022-02-14; 6044;1732;Sjælland;Østsjælland
+2022-02-14;14246;4400;Sjælland;Vest- og Sydsjælland
+2022-02-14;12318;3689;Syddanmark;Fyn
 2022-02-14;18747;6623;Syddanmark;Sydjylland
 2022-02-14;19595;7310;Midtjylland;Østjylland
 2022-02-14;10777;3786;Midtjylland;Vestjylland
 2022-02-14;16413;6230;Nordjylland;Nordjylland
-2022-02-15;10362;3998;Hovedstaden;København
-2022-02-15; 7397;2287;Hovedstaden;Københavns omegn
-2022-02-15; 7143;2175;Hovedstaden;Nordsjælland
+2022-02-15;10362;3999;Hovedstaden;København
+2022-02-15; 7397;2286;Hovedstaden;Københavns omegn
+2022-02-15; 7143;2176;Hovedstaden;Nordsjælland
 2022-02-15; 1135; 257;Hovedstaden;Bornholm
 2022-02-15; 4841;1526;Sjælland;Østsjælland
-2022-02-15;12468;3843;Sjælland;Vest- og Sydsjælland
-2022-02-15;11589;3866;Syddanmark;Fyn
+2022-02-15;12469;3843;Sjælland;Vest- og Sydsjælland
+2022-02-15;11589;3865;Syddanmark;Fyn
 2022-02-15;15933;5497;Syddanmark;Sydjylland
-2022-02-15;17918;6980;Midtjylland;Østjylland
+2022-02-15;17918;6979;Midtjylland;Østjylland
 2022-02-15; 9866;3721;Midtjylland;Vestjylland
 2022-02-15;15347;5604;Nordjylland;Nordjylland
-2022-02-16;10145;3363;Hovedstaden;København
-2022-02-16; 6921;1982;Hovedstaden;Københavns omegn
-2022-02-16; 6478;1933;Hovedstaden;Nordsjælland
+2022-02-16;10145;3361;Hovedstaden;København
+2022-02-16; 6922;1984;Hovedstaden;Københavns omegn
+2022-02-16; 6478;1932;Hovedstaden;Nordsjælland
 2022-02-16; 1170; 225;Hovedstaden;Bornholm
-2022-02-16; 4251;1131;Sjælland;Østsjælland
-2022-02-16; 8964;2622;Sjælland;Vest- og Sydsjælland
-2022-02-16; 9831;2974;Syddanmark;Fyn
-2022-02-16;14755;4928;Syddanmark;Sydjylland
-2022-02-16;17074;6364;Midtjylland;Østjylland
+2022-02-16; 4251;1132;Sjælland;Østsjælland
+2022-02-16; 8970;2624;Sjælland;Vest- og Sydsjælland
+2022-02-16; 9831;2972;Syddanmark;Fyn
+2022-02-16;14755;4929;Syddanmark;Sydjylland
+2022-02-16;17073;6363;Midtjylland;Østjylland
 2022-02-16; 8770;3283;Midtjylland;Vestjylland
-2022-02-16;15087;5147;Nordjylland;Nordjylland
-2022-02-17; 9880;2874;Hovedstaden;København
+2022-02-16;15087;5148;Nordjylland;Nordjylland
+2022-02-17; 9881;2875;Hovedstaden;København
 2022-02-17; 7474;1888;Hovedstaden;Københavns omegn
-2022-02-17; 7202;1842;Hovedstaden;Nordsjælland
+2022-02-17; 7202;1843;Hovedstaden;Nordsjælland
 2022-02-17; 1147; 273;Hovedstaden;Bornholm
 2022-02-17; 5124;1153;Sjælland;Østsjælland
-2022-02-17;12748;3244;Sjælland;Vest- og Sydsjælland
-2022-02-17;11343;3212;Syddanmark;Fyn
+2022-02-17;12750;3246;Sjælland;Vest- og Sydsjælland
+2022-02-17;11343;3211;Syddanmark;Fyn
 2022-02-17;15287;4557;Syddanmark;Sydjylland
-2022-02-17;16645;5596;Midtjylland;Østjylland
-2022-02-17; 8985;3081;Midtjylland;Vestjylland
-2022-02-17;14147;4496;Nordjylland;Nordjylland
-2022-02-18; 7273;2129;Hovedstaden;København
-2022-02-18; 5524;1454;Hovedstaden;Københavns omegn
-2022-02-18; 5287;1409;Hovedstaden;Nordsjælland
+2022-02-17;16645;5595;Midtjylland;Østjylland
+2022-02-17; 8986;3082;Midtjylland;Vestjylland
+2022-02-17;14148;4497;Nordjylland;Nordjylland
+2022-02-18; 7275;2129;Hovedstaden;København
+2022-02-18; 5525;1453;Hovedstaden;Københavns omegn
+2022-02-18; 5287;1410;Hovedstaden;Nordsjælland
 2022-02-18;  786; 177;Hovedstaden;Bornholm
-2022-02-18; 3623; 937;Sjælland;Østsjælland
+2022-02-18; 3625; 937;Sjælland;Østsjælland
 2022-02-18; 8942;2292;Sjælland;Vest- og Sydsjælland
-2022-02-18; 8873;2507;Syddanmark;Fyn
-2022-02-18;12670;3757;Syddanmark;Sydjylland
-2022-02-18;13926;4404;Midtjylland;Østjylland
-2022-02-18; 7680;2485;Midtjylland;Vestjylland
-2022-02-18;11645;3745;Nordjylland;Nordjylland
-2022-02-19; 6049;2171;Hovedstaden;København
-2022-02-19; 4427;1352;Hovedstaden;Københavns omegn
-2022-02-19; 4658;1559;Hovedstaden;Nordsjælland
-2022-02-19;  614; 194;Hovedstaden;Bornholm
-2022-02-19; 2048; 607;Sjælland;Østsjælland
-2022-02-19; 5692;1617;Sjælland;Vest- og Sydsjælland
-2022-02-19; 6661;2335;Syddanmark;Fyn
-2022-02-19; 9948;3449;Syddanmark;Sydjylland
-2022-02-19;11679;4570;Midtjylland;Østjylland
-2022-02-19; 6324;2416;Midtjylland;Vestjylland
-2022-02-19; 9068;3371;Nordjylland;Nordjylland
-2022-02-20; 6937;2462;Hovedstaden;København
-2022-02-20; 5426;1809;Hovedstaden;Københavns omegn
-2022-02-20; 5634;1924;Hovedstaden;Nordsjælland
-2022-02-20;  802; 219;Hovedstaden;Bornholm
-2022-02-20; 2535; 800;Sjælland;Østsjælland
-2022-02-20; 6190;1887;Sjælland;Vest- og Sydsjælland
-2022-02-20; 7479;2553;Syddanmark;Fyn
-2022-02-20;12056;4114;Syddanmark;Sydjylland
-2022-02-20;14456;5804;Midtjylland;Østjylland
-2022-02-20; 7609;2865;Midtjylland;Vestjylland
-2022-02-20; 9649;3666;Nordjylland;Nordjylland
+2022-02-18; 8874;2507;Syddanmark;Fyn
+2022-02-18;12673;3758;Syddanmark;Sydjylland
+2022-02-18;13929;4406;Midtjylland;Østjylland
+2022-02-18; 7680;2484;Midtjylland;Vestjylland
+2022-02-18;11646;3745;Nordjylland;Nordjylland
+2022-02-19; 6063;2171;Hovedstaden;København
+2022-02-19; 4434;1351;Hovedstaden;Københavns omegn
+2022-02-19; 4666;1559;Hovedstaden;Nordsjælland
+2022-02-19;  616; 194;Hovedstaden;Bornholm
+2022-02-19; 2057; 607;Sjælland;Østsjælland
+2022-02-19; 5717;1617;Sjælland;Vest- og Sydsjælland
+2022-02-19; 6680;2334;Syddanmark;Fyn
+2022-02-19; 9969;3450;Syddanmark;Sydjylland
+2022-02-19;11698;4571;Midtjylland;Østjylland
+2022-02-19; 6334;2417;Midtjylland;Vestjylland
+2022-02-19; 9114;3371;Nordjylland;Nordjylland
+2022-02-20; 6971;2463;Hovedstaden;København
+2022-02-20; 5451;1809;Hovedstaden;Københavns omegn
+2022-02-20; 5658;1924;Hovedstaden;Nordsjælland
+2022-02-20;  807; 220;Hovedstaden;Bornholm
+2022-02-20; 2543; 800;Sjælland;Østsjælland
+2022-02-20; 6214;1887;Sjælland;Vest- og Sydsjælland
+2022-02-20; 7567;2558;Syddanmark;Fyn
+2022-02-20;12095;4115;Syddanmark;Sydjylland
+2022-02-20;14480;5805;Midtjylland;Østjylland
+2022-02-20; 7629;2864;Midtjylland;Vestjylland
+2022-02-20; 9692;3666;Nordjylland;Nordjylland
+2022-02-21; 9428;2808;Hovedstaden;København
+2022-02-21; 6708;1880;Hovedstaden;Københavns omegn
+2022-02-21; 7493;2032;Hovedstaden;Nordsjælland
+2022-02-21;  923; 233;Hovedstaden;Bornholm
+2022-02-21; 3995;1054;Sjælland;Østsjælland
+2022-02-21;11893;3414;Sjælland;Vest- og Sydsjælland
+2022-02-21;10307;2876;Syddanmark;Fyn
+2022-02-21;14875;4618;Syddanmark;Sydjylland
+2022-02-21;15899;5566;Midtjylland;Østjylland
+2022-02-21; 8616;2871;Midtjylland;Vestjylland
+2022-02-21;11364;3989;Nordjylland;Nordjylland
+2022-02-22; 7408;2537;Hovedstaden;København
+2022-02-22; 5360;1548;Hovedstaden;Københavns omegn
+2022-02-22; 5544;1645;Hovedstaden;Nordsjælland
+2022-02-22;  839; 207;Hovedstaden;Bornholm
+2022-02-22; 2908; 817;Sjælland;Østsjælland
+2022-02-22; 8690;2350;Sjælland;Vest- og Sydsjælland
+2022-02-22; 8458;2527;Syddanmark;Fyn
+2022-02-22;11817;3652;Syddanmark;Sydjylland
+2022-02-22;12301;4388;Midtjylland;Østjylland
+2022-02-22; 6582;2431;Midtjylland;Vestjylland
+2022-02-22;10448;3714;Nordjylland;Nordjylland
+2022-02-23; 7284;2179;Hovedstaden;København
+2022-02-23; 5293;1430;Hovedstaden;Københavns omegn
+2022-02-23; 4728;1273;Hovedstaden;Nordsjælland
+2022-02-23;  815; 229;Hovedstaden;Bornholm
+2022-02-23; 2667; 772;Sjælland;Østsjælland
+2022-02-23; 6212;1779;Sjælland;Vest- og Sydsjælland
+2022-02-23; 7296;2010;Syddanmark;Fyn
+2022-02-23;10586;2988;Syddanmark;Sydjylland
+2022-02-23;12112;3996;Midtjylland;Østjylland
+2022-02-23; 6248;2097;Midtjylland;Vestjylland
+2022-02-23; 9851;3287;Nordjylland;Nordjylland
+2022-02-24; 7314;1817;Hovedstaden;København
+2022-02-24; 5572;1220;Hovedstaden;Københavns omegn
+2022-02-24; 5482;1142;Hovedstaden;Nordsjælland
+2022-02-24;  719; 134;Hovedstaden;Bornholm
+2022-02-24; 3159; 713;Sjælland;Østsjælland
+2022-02-24; 9251;1956;Sjælland;Vest- og Sydsjælland
+2022-02-24; 8147;1994;Syddanmark;Fyn
+2022-02-24;10479;2701;Syddanmark;Sydjylland
+2022-02-24;11004;3258;Midtjylland;Østjylland
+2022-02-24; 5841;1724;Midtjylland;Vestjylland
+2022-02-24; 8928;2837;Nordjylland;Nordjylland
+2022-02-25; 5194;1343;Hovedstaden;København
+2022-02-25; 3928; 922;Hovedstaden;Københavns omegn
+2022-02-25; 4049; 973;Hovedstaden;Nordsjælland
+2022-02-25;  566; 144;Hovedstaden;Bornholm
+2022-02-25; 2547; 659;Sjælland;Østsjælland
+2022-02-25; 6124;1398;Sjælland;Vest- og Sydsjælland
+2022-02-25; 6356;1578;Syddanmark;Fyn
+2022-02-25; 8091;2109;Syddanmark;Sydjylland
+2022-02-25; 9082;2715;Midtjylland;Østjylland
+2022-02-25; 4998;1527;Midtjylland;Vestjylland
+2022-02-25; 7432;2331;Nordjylland;Nordjylland
+2022-02-26; 3735;1146;Hovedstaden;København
+2022-02-26; 3064; 861;Hovedstaden;Københavns omegn
+2022-02-26; 2961; 880;Hovedstaden;Nordsjælland
+2022-02-26;  373; 115;Hovedstaden;Bornholm
+2022-02-26; 1457; 446;Sjælland;Østsjælland
+2022-02-26; 3442; 969;Sjælland;Vest- og Sydsjælland
+2022-02-26; 4013;1304;Syddanmark;Fyn
+2022-02-26; 5254;1620;Syddanmark;Sydjylland
+2022-02-26; 6842;2481;Midtjylland;Østjylland
+2022-02-26; 3494;1224;Midtjylland;Vestjylland
+2022-02-26; 5559;2066;Nordjylland;Nordjylland
+2022-02-27; 4484;1398;Hovedstaden;København
+2022-02-27; 3536;1097;Hovedstaden;Københavns omegn
+2022-02-27; 3366; 960;Hovedstaden;Nordsjælland
+2022-02-27;  410; 109;Hovedstaden;Bornholm
+2022-02-27; 1963; 626;Sjælland;Østsjælland
+2022-02-27; 4219;1245;Sjælland;Vest- og Sydsjælland
+2022-02-27; 4772;1437;Syddanmark;Fyn
+2022-02-27; 6681;2127;Syddanmark;Sydjylland
+2022-02-27; 7930;2853;Midtjylland;Østjylland
+2022-02-27; 4178;1514;Midtjylland;Vestjylland
+2022-02-27; 6800;2594;Nordjylland;Nordjylland
