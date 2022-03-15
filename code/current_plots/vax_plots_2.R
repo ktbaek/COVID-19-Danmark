@@ -74,8 +74,8 @@ done_vax_df %<>%
 
 revax_df %<>%
   rename(
-    Date = `Revacc. 1 dato`,
-    Antal = `Antal revacc. 1`
+    Date = `3. stik dato`,
+    Antal = `Antal 3. stik`
   ) %>%
   group_by(Date) %>%
   summarize(Revax = sum(Antal, na.rm = TRUE))
@@ -143,8 +143,8 @@ plot_data <- age_time_df %>%
   rename(
     Date = Dato,
     Age = Aldersgruppe,
-    First = `Antal første vacc.`,
-    Second = `Antal færdigvacc.`
+    First = `Antal 1. stik`,
+    Second = `Antal 2. stik`
   ) %>%
   pivot_longer(c(First, Second), names_to = "Dose") %>%
   filter(!is.na(Age)) %>%

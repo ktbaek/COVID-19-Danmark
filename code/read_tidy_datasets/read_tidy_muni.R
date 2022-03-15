@@ -35,7 +35,7 @@ muni_pos %<>%
 
 muni_tested %<>%
   mutate(Date = ymd(PrDate_adjusted)) %>%
-  select(-PrDate_adjusted, -X101) %>%
+  select(-PrDate_adjusted) %>%
   pivot_longer(-Date, names_to = "Kommune", values_to = "Tested") %>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 

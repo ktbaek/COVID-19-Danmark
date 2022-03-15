@@ -1,6 +1,6 @@
 si <- read_csv("https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/timeseries/stringency_index.csv") %>% 
   filter(country_code == "DNK") %>% 
-  select(-X1, -country_name, -country_code) %>% 
+  select(-`...1`, -country_name, -country_code) %>% 
   pivot_longer(everything(), names_to = "Date", values_to = "SI") %>% 
   mutate(Date = dmy(Date)) %>% 
   fill(SI)
