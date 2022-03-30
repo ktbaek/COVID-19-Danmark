@@ -2,7 +2,7 @@ muni_data <- read_csv2("../data/tidy_muni_data.csv")
 
 month_correction <- case_when(
   day(ymd(today)) == 31 & month(ymd(today)) %in% c(3, 5, 7, 10, 12) ~ 1,
-  day(ymd(today)) %in% c(29, 30, 31) & month(ymd(today)) == 5 ~ 3,
+  day(ymd(today)) %in% c(29, 30, 31) & month(ymd(today)) %in% c(3, 5) ~ 3,
   TRUE ~ 0
 )
 

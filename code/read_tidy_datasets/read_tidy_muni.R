@@ -5,25 +5,27 @@ muni_tested <- read_csv2(paste0("../data/SSIdata_", today_string, "/Municipality
 
 geo <- read_csv2("../data/DST_geografisk_hieraki.csv")
 
+muni_pop <- read_csv2("../data/tidy_DST_pop_muni.csv")
+
 # Read MUNICIPALITY data for population numbers. Test data are used from files read above (they don't include population data).
-read_muni_csv <- function(x) {
-  file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
-  file %<>%
-    mutate(date_of_file = x) %>%
-    select(date_of_file, `Kommune_(navn)`, Befolkningstal) %>%
-    mutate(Date = paste0("20", str_sub(date_of_file, 1, 2), "-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6))) %>%
-    select(-date_of_file) %>%
-    rename(Kommune = `Kommune_(navn)`)
-
-  return(file)
-}
-
-csv_list <- lapply(ssi_filer_date, read_muni_csv)
-
-muni_population <- bind_rows(csv_list)
-
-muni_population %<>%
-  mutate(Date = ymd(Date))
+# read_muni_csv <- function(x) {
+#   file <- read_csv2(paste0("../data/SSIdata_", x, "/Municipality_test_pos.csv"))
+#   file %<>%
+#     mutate(date_of_file = x) %>%
+#     select(date_of_file, `Kommune_(navn)`, Befolkningstal) %>%
+#     mutate(Date = paste0("20", str_sub(date_of_file, 1, 2), "-", str_sub(date_of_file, 3, 4), "-", str_sub(date_of_file, 5, 6))) %>%
+#     select(-date_of_file) %>%
+#     rename(Kommune = `Kommune_(navn)`)
+# 
+#   return(file)
+# }
+# 
+# csv_list <- lapply(ssi_filer_date, read_muni_csv)
+# 
+# muni_population <- bind_rows(csv_list)
+# 
+# muni_population %<>%
+#   mutate(Date = ymd(Date))
 
 # Tidy MUNICIPALITY data -----------------------------------------
 
@@ -37,9 +39,6 @@ muni_tested %<>%
   mutate(Date = ymd(PrDate_adjusted)) %>%
   select(-PrDate_adjusted) %>%
   pivot_longer(-Date, names_to = "Kommune", values_to = "Tested") %>%
-  mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
-
-muni_population %<>%
   mutate(Kommune = ifelse(Kommune == "Copenhagen", "København", Kommune))
 
 muni_all <- muni_tested %>%
@@ -82,39 +81,20 @@ muni_tests_check %>%
 
 # Result: not 100% agree: numbers in the two datasets sometimes differ by a few cases and tests (0.5 - 1% difference). I don't know why, ask SSI.
 
-# Arrange MUNICIPALITY data weekly -----------------------------------------------------
-
-muni_pop <- muni_population %>%
-  group_by(Kommune) %>%
-  summarize(Befolkningstal = as.integer(mean(Befolkningstal))) %>% # population numbers change very little over the period so I use the mean.
-  ungroup()
-
 muni_all %<>%
   filter(Date < ymd(today) - 1) # remove last two days
 
 muni_all %>%
-  full_join(muni_population, by = c("Date", "Kommune")) %>%
+  mutate(
+    Year = year(Date),
+    Quarter = quarter(Date)
+  ) %>% 
+  full_join(muni_pop, by = c("Year", "Quarter", "Kommune")) %>%
   arrange(Date) %>%
   group_by(Kommune) %>%
-  fill(Befolkningstal, .direction = "downup") %>%
+  fill(Population, .direction = "down") %>%
   write_csv2("../data/tidy_muni_data.csv")
 
-muni_wk <- muni_all %>%
-  mutate(Week_end_Date = ceiling_date(Date, unit = "week", getOption("lubridate.week.start", 0)))
-
-muni_wk %<>%
-  full_join(muni_pop, by = c("Kommune"))
-
-muni_wk %<>%
-  filter(Week_end_Date < today) %>% # remove current week
-  group_by(Week_end_Date, Kommune) %>%
-  mutate(
-    Positive_wk = sum(Positive, na.rm = FALSE),
-    Tested_wk = sum(Tested, na.rm = FALSE)
-  ) %>%
-  ungroup() %>%
-  select(-Date, -Positive, -Tested) %>%
-  distinct()
 # Arrange by LANDSDELE ----------------------------------------------------
 
 landsdele_order <- geo %>%

@@ -18,7 +18,7 @@ muni_data %>%
     Positive = sum(Positive, na.rm = TRUE)
   ) %>%
   ungroup() %>%
-  select(-Kommune, -Landsdel, -Befolkningstal) %>%
+  select(-Kommune, -Landsdel, -Population, -Year, -Quarter) %>%
   distinct() %>%
   mutate(pct = Positive / Tested * 100) %>%
   select(-Tested) %>%
@@ -56,9 +56,9 @@ muni_data %>%
   mutate(
     Tested = sum(Tested, na.rm = TRUE),
     Positive = sum(Positive, na.rm = TRUE),
-    Population = sum(Befolkningstal, na.rm = TRUE)
+    Population = sum(Population, na.rm = TRUE)
   ) %>%
-  select(-Kommune, -Landsdel, -Befolkningstal) %>%
+  select(-Kommune, -Landsdel, -Year, -Quarter) %>%
   distinct() %>%
   select(-Tested) %>%
   full_join(filter(read_csv2("../data/tidy_admitted_region.csv"), Region != "Ukendt_region"), by = c("Region", "Date")) %>%

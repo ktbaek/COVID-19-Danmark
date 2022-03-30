@@ -8,7 +8,10 @@ pop <- get_pop_by_breaks(age_breaks = fnkt_age_breaks) %>%
 
 ssi_18 %>%
   separate(Uge, into = c("Year", "Week"), sep = "-") %>%
-  mutate(Week = str_remove(Week, "W")) %>%
+  mutate(
+    Week = str_remove(Week, "W"),
+    Week = str_remove(Week, "U")
+    ) %>%
   mutate(
     Week = as.integer(Week),
     Year = as.integer(Year),
