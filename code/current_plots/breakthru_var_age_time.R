@@ -4,7 +4,7 @@ library(patchwork)
 
 bt_2 <- read_csv2("../data/tidy_breakthru_table2.csv")
 
-my_breaks <- c(ymd("2021-12-01"), ymd("2022-02-01"))
+my_breaks <- c(ymd("2022-01-01"), ymd("2022-03-01"))
 
 plot_breakthru_age_panel <- function(df, variable, variable_name, maintitle, subtitle) {
 
