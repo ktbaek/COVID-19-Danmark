@@ -40,6 +40,8 @@ plot_data <- read_csv2("../data/SSI_daily_data.csv") %>%
     Quarter = quarter(Date)
   ) %>% 
   left_join(pop, by = c("Year", "Quarter")) %>% 
+  arrange(date) %>% 
+  fill(Population) %>% 
   mutate(value_per_M = case_when(
     name != "Percent" ~ value / Population * 1e6,
     TRUE ~ value
