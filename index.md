@@ -218,7 +218,7 @@ Plottet viser det ugentlige antal personer i hver alders- og vaccinationsgruppe.
 
 #### Seneste uge
 
-Plottet viser det ugentlige antal positive per 100.000 (i alders- og vaccinationssgruppen). "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
+Plottet viser antal positive per 100.000 (i alders- og vaccinationssgruppen) for den senest opgjorte uge. "Fuld effekt" definerer SSI som 14 dage efter modtaget dose.
 
 ``SSI datasæt: 'Gennembrudsinfektioner_table2'``
 
