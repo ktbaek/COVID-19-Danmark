@@ -1,9 +1,9 @@
 ## Liste over politiske tiltag efter nedlukningen 11. marts 2020
 
-| Dato | Tiltag |
-|:--|:--|
-| 14. marts | Danmarks grænser lukker kl. 12 |
-| 18. marts | Forsamlingsloft på 10 personer, nedlukning af liberale erhverv, indendørs sports- og idrætsfaciliteter, fitnesscentre, storcentre, kulturliv |
+| Dato | Tiltag | Kilde
+|:--|:--|:--|
+| 14. marts | Danmarks grænser lukker kl. 12 | [link](https://web.archive.org/web/20200406163109/https://www.dr.dk/nyheder/indland/statsministeren-danmarks-graenser-lukker-fra-klokken-12-i-morgen)
+| 18. marts | Forsamlingsloft på 10 personer, nedlukning af liberale erhverv, indendørs sports- og idrætsfaciliteter, fitnesscentre, storcentre, kulturliv | [link](https://web.archive.org/web/20200920230538/https://anklagemyndigheden.dk/da/boedetakster-overtraedelse-af-forbud-mod-stoerre-forsamlinger-som-foelge-af-covid-19)
 | **Fase 1** |
 | 15. april | Genåbning af skoler 0.-5. kl og daginstitutioner |
 | 20. april | Genåbning af liberale erhverv |
@@ -55,7 +55,6 @@
 
 ### Kilder:
 
-[Statsministeren: Danmarks grænser lukker fra klokken 12 i morgen](https://www.dr.dk/nyheder/indland/statsministeren-danmarks-graenser-lukker-fra-klokken-12-i-morgen)
 
 [https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07](https://politi.dk/rigspolitiet/nyhedsliste/forsamlingsforbuddet-gaelder-nu-for-flere-end-100-personer/2020/07/07)
 
